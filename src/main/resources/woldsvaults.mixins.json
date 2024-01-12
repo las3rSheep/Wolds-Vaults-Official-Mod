@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "xyz.iwolfking.woldsvaults.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "woldsvaults.refmap.json",
+  "mixins": [
+    "HostileCachedModelMixin",
+    "HostileEventsMixin",
+    "MixinItemShardPouch",
+    "MixinPlayerInventory",
+    "MixinSoulboundSnapshot",
+    "MixinSpiritExtractor"
+  ],
+  "client": [
+    "HostileDataModelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
