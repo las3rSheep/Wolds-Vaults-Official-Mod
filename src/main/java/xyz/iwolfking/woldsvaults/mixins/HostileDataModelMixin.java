@@ -8,8 +8,9 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
-
 import org.spongepowered.asm.mixin.Overwrite;
 import shadows.hostilenetworks.data.DataModel;
 import shadows.hostilenetworks.data.ModelTier;
@@ -25,9 +26,18 @@ import static shadows.hostilenetworks.item.DataModelItem.getStoredModel;
 public class HostileDataModelMixin {
     /**
      * @author iwolfking
+     * @reason Disable adding iterations to data model
+     */
+    @Overwrite(remap = false)
+    public static void setIters(ItemStack stack, int data) {
+    }
+
+    /**
+     * @author iwolfking
      * @reason Remove data per kill info
      */
     @Overwrite
+    @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack pStack, Level pLevel, List<Component> list, TooltipFlag pFlag) {
         if (Screen.hasShiftDown()) {
             DataModel model = getStoredModel(pStack);

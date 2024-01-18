@@ -6,7 +6,7 @@ import xyz.iwolfking.woldsvaults.commands.PlayerResearchCommand;
 
 public class RegisterCommandEventHandler {
     public static void woldsvaults_registerCommandsEvent(RegisterCommandsEvent event) {
-        //PlayerResearchCommand.register(event.getDispatcher());
-        //ClaimPurchaseCommand.register(event.getDispatcher());
+        PlayerResearchCommand.register(event.getDispatcher());
+        ClaimPurchaseCommand.register(event.getDispatcher());
     }
 }

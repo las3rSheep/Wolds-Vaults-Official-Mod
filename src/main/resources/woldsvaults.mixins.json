@@ -6,14 +6,22 @@
   "refmap": "woldsvaults.refmap.json",
   "mixins": [
     "HostileCachedModelMixin",
+    "HostileDataModelMixin",
     "HostileEventsMixin",
+    "MixinBetterCombatAttackRange",
+    "MixinGearModelRollRaritiesConfig",
     "MixinItemShardPouch",
+    "MixinMainModDynamicModels",
+    "MixinModDynamicModelsArmor",
     "MixinPlayerInventory",
     "MixinSoulboundSnapshot",
-    "MixinSpiritExtractor"
+    "MixinSpiritExtractor",
+    "MixinThrownTrident",
+    "MixinVaultGearToolTier",
+    "ThrownTridentAccessor"
   ],
   "client": [
-    "HostileDataModelMixin"
+    "MixinThrownTridentRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
