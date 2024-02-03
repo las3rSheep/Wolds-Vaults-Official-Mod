@@ -11,13 +11,18 @@
     "MixinBetterCombatAttackRange",
     "MixinGearModelRollRaritiesConfig",
     "MixinItemShardPouch",
+    "MixinKitchenBlock",
     "MixinMainModDynamicModels",
+    "MixinModConfigs",
     "MixinModDynamicModelsArmor",
     "MixinPlayerInventory",
+    "MixinScannableItems",
     "MixinSoulboundSnapshot",
     "MixinSpiritExtractor",
     "MixinThrownTrident",
     "MixinVaultGearToolTier",
+    "MixinVaultGearWorkbenchConfig",
+    "ScannerModuleItemAccessor",
     "ThrownTridentAccessor"
   ],
   "client": [
