@@ -2,5 +2,6 @@
   "curios.identifier.shard_pouch": "Shard Pouch",
   "item.the_vault.crystal_seal_monolith": "Seal of the Searcher",
   "item.the_vault.gem_box": "Gem Box",
-  "item.scannable.vault_ores_module": "Scanner Module: Vault Ores"
+  "item.scannable.vault_ores_module": "Scanner Module: Vault Ores",
+  "item.the_vault.crystal_seal_unhinged": "Seal of the Psychopath"
 }

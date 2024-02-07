@@ -116,6 +116,29 @@ public abstract class MixinThrownTrident extends AbstractArrow {
                 /* 427 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/nether"), (Entity)entity)) {
                     /* 428 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_NETHER, VaultGearAttributeTypeMerger.floatSum())).floatValue();
                     /*     */     }
+                if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/champion"), (Entity)entity)) {
+                    /* 434 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_CHAMPION, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                    /*     */     }
+                /*     */
+                /* 437 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/dungeon"), (Entity)entity)) {
+                    /* 438 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_DUNGEON, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                    /*     */     }
+                /*     */
+                /* 441 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/tank"), (Entity)entity)) {
+                    /* 442 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_TANK, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                    /*     */     }
+                /*     */
+                /* 445 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/horde"), (Entity)entity)) {
+                    /* 446 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_HORDE, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                    /*     */     }
+                /*     */
+                /* 449 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/assassin"), (Entity)entity)) {
+                    /* 450 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_ASSASSIN, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                    /*     */     }
+                /*     */
+                /* 453 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/dweller"), (Entity)entity)) {
+                    /* 454 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_DWELLER, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                    /*     */     }
                 f += player.getAttributeValue(Attributes.ATTACK_DAMAGE);
                 f += (f * (1.0F + increasedDamage));
             }
