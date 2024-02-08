@@ -27,7 +27,6 @@ public class MixinManaPylonBuff extends PylonBuff<ManaPylonBuff.Config> {
     public void onTick(MinecraftServer server) {
         super.onTick(server);
         getPlayer(server).ifPresent(player -> {
-                                System.out.println(this.tick);
             /*    */           AttributeModifier modifier = new AttributeModifier(this.uuid, "Pylon Buff", 2.0, AttributeModifier.Operation.ADDITION);
             /*    */           AttributeInstance attribute = player.getAttribute(ModAttributes.MANA_REGEN);
             /*    */           if (attribute != null && !attribute.hasModifier(modifier)) {

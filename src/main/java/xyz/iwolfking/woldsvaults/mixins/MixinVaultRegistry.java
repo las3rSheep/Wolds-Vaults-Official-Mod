@@ -6,6 +6,8 @@ import iskallia.vault.core.vault.objective.*;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import xyz.iwolfking.woldsvaults.objectives.HauntedBraziersObjective;
+import xyz.iwolfking.woldsvaults.objectives.UnhingedScavengerObjective;
 
 @Mixin(VaultRegistry.class)
 public class MixinVaultRegistry {
@@ -22,6 +24,8 @@ public class MixinVaultRegistry {
     /* 72 */     .add(FindExitObjective.KEY)
     /* 73 */     .add(TrackSpeedrunObjective.KEY)
     /* 74 */     .add(MonolithObjective.KEY)
+                 .add(HauntedBraziersObjective.KEY)
+                 .add(UnhingedScavengerObjective.KEY)
     /* 75 */     .add(ElixirObjective.KEY)
     /* 76 */     .add(LodestoneObjective.KEY)
     /* 77 */     .add(CrakePedestalObjective.KEY)
