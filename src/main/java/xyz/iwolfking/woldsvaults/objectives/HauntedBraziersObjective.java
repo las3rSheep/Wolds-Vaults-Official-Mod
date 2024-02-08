@@ -1,8 +1,14 @@
 package xyz.iwolfking.woldsvaults.objectives;
 
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
+import iskallia.vault.VaultMod;
 import iskallia.vault.block.MonolithBlock;
 import iskallia.vault.block.PlaceholderBlock;
 import iskallia.vault.block.entity.MonolithTileEntity;
+import iskallia.vault.client.gui.helper.LightmapHelper;
 import iskallia.vault.core.Version;
 import iskallia.vault.core.data.key.LootTableKey;
 import iskallia.vault.core.data.key.SupplierKey;
@@ -36,13 +42,20 @@ import iskallia.vault.item.gear.DataTransferItem;
 import iskallia.vault.item.gear.VaultLevelItem;
 import iskallia.vault.network.message.MonolithIgniteMessage;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -51,13 +64,15 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.PacketDistributor;
 
 import java.util.*;
 
 public class HauntedBraziersObjective extends MonolithObjective {
     public static final SupplierKey KEY;
-
+    public static final ResourceLocation HAUNTED_HUD = VaultMod.id("textures/gui/monolith/haunted_hud.png");
     public HauntedBraziersObjective() {
     }
 
@@ -276,6 +291,55 @@ public class HauntedBraziersObjective extends MonolithObjective {
             world.playSound((Player)null, pos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
 
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public boolean render(Vault vault, PoseStack matrixStack, Window window, float partialTicks, Player player) {
+        int current;
+        FormattedCharSequence var10001;
+        float var10002;
+        if ((Integer)this.get(COUNT) >= (Integer)this.get(TARGET)) {
+            current = window.getGuiScaledWidth() / 2;
+            Font font = Minecraft.getInstance().font;
+            MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
+            Component txt = (new TextComponent("Test, or Exit to Complete")).withStyle(ChatFormatting.WHITE);
+            var10001 = txt.getVisualOrderText();
+            var10002 = (float)current - (float)font.width(txt) / 2.0F;
+            Objects.requireNonNull(font);
+            font.drawInBatch(var10001, var10002, 9.0F, -1, true, matrixStack.last().pose(), buffer, false, 0, LightmapHelper.getPackedFullbrightCoords());
+            buffer.endBatch();
+            return true;
+        } else {
+            current = (Integer)this.get(COUNT);
+            int total = (Integer)this.get(TARGET);
+            Component txt = (new TextComponent(String.valueOf(current))).withStyle(ChatFormatting.WHITE).append((new TextComponent(" / ")).withStyle(ChatFormatting.WHITE)).append((new TextComponent(String.valueOf(total))).withStyle(ChatFormatting.WHITE));
+            int midX = window.getGuiScaledWidth() / 2;
+            matrixStack.pushPose();
+            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+            int previousTexture = RenderSystem.getShaderTexture(0);
+            RenderSystem.setShaderTexture(0, HAUNTED_HUD);
+            float progress = (float)current / (float)total;
+            matrixStack.translate((double)(midX - 80), 8.0, 0.0);
+            GuiComponent.blit(matrixStack, 0, 0, 0.0F, 0.0F, 200, 26, 200, 100);
+            GuiComponent.blit(matrixStack, 0, 8, 0.0F, 30.0F, 13 + (int)(130.0F * progress), 10, 200, 100);
+            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+            RenderSystem.setShaderTexture(0, previousTexture);
+            matrixStack.popPose();
+            Font font = Minecraft.getInstance().font;
+            MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
+            matrixStack.pushPose();
+            matrixStack.scale(0.6F, 0.6F, 0.6F);
+            var10001 = txt.getVisualOrderText();
+            var10002 = (float)midX / 0.6F - (float)font.width(txt) / 2.0F;
+            Objects.requireNonNull(font);
+            font.drawInBatch(var10001, var10002, (float)(9 + 22), -1, true, matrixStack.last().pose(), buffer, false, 0, LightmapHelper.getPackedFullbrightCoords());
+            buffer.endBatch();
+            matrixStack.popPose();
+            return true;
+        }
     }
 
     static {

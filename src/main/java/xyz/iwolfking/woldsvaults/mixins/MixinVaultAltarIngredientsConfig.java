@@ -36,7 +36,22 @@ public class MixinVaultAltarIngredientsConfig {
     private ServerPlayer woldsVaults$capturedPlayer;
 
     private static Map<String, String> namespaceToModNameMap = Map.ofEntries(
-            new AbstractMap.SimpleEntry<String, String>("powah", "Powah")
+            new AbstractMap.SimpleEntry<String, String>("powah", "Powah"),
+            new AbstractMap.SimpleEntry<String, String>("refinedstorage", "Refined Storage"),
+            new AbstractMap.SimpleEntry<String, String>("ae2", "Applied Energistics"),
+            new AbstractMap.SimpleEntry<String, String>("botania", "Botania"),
+            new AbstractMap.SimpleEntry<String, String>("integrateddynamics", "Integrated Dynamics"),
+            new AbstractMap.SimpleEntry<String, String>("mekanism", "Mekanism"),
+            new AbstractMap.SimpleEntry<String, String>("thermal", "Thermal Expansion"),
+            new AbstractMap.SimpleEntry<String, String>("create", "Create"),
+            new AbstractMap.SimpleEntry<String, String>("createaddition", "Create Crafts and Additions"),
+            new AbstractMap.SimpleEntry<String, String>("industrialforegoing", "Industrial Foregoing"),
+            new AbstractMap.SimpleEntry<String, String>("hostilenetworks", "Hostile Neural Networks"),
+            new AbstractMap.SimpleEntry<String, String>("mysticalagriculture", "Mystical Agriculture"),
+            new AbstractMap.SimpleEntry<String, String>("fluxnetworks", "Flux Networks"),
+            new AbstractMap.SimpleEntry<String, String>("botanicalmachinery", "Botanical Machinery")
+
+
     );
     @Unique
     private Map<String, AltarIngredientEntry> woldsVaults$getEntriesWithModFilter(int vaultLevel, ServerPlayer player) {
@@ -46,16 +61,14 @@ public class MixinVaultAltarIngredientsConfig {
         } else {
             Map<String, WeightedList<AltarIngredientEntry>> map = (Map) pool.get();
             Map<String, AltarIngredientEntry> recipe = new HashMap();
+            PlayerResearchesData researchData = PlayerResearchesData.get(player.getLevel());
+            ResearchTree playerResearchTree = researchData.getResearches(player);
             map.forEach((k, v) -> {
                 List<AltarIngredientEntry> entriesToRemove = new ArrayList<>();
                 v.forEach((altarIngredientEntry, number) -> {
                     List<ItemStack> itemsToRemove = new ArrayList<>();
                     altarIngredientEntry.getItems().forEach(itemStack -> {
                         if (namespaceToModNameMap.containsKey(Objects.requireNonNull(itemStack.getItem().getRegistryName()).getNamespace())) {
-                            //check if player has research
-                            PlayerResearchesData researchData = PlayerResearchesData.get(player.getLevel());
-                            ResearchTree playerResearchTree = researchData.getResearches(player);
-
                             if (!playerResearchTree.isResearched(namespaceToModNameMap.get(itemStack.getItem().getRegistryName().getNamespace()))) {
                                 itemsToRemove.add(itemStack);
                             }
