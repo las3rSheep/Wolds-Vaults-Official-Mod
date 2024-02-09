@@ -19,7 +19,7 @@ public class MixinVaultGearToolTier {
 
     //Add new gear to gear config
     @Inject(method = "registerConfigs",  at = @At("TAIL"))
-    private static void registerConfigs(CallbackInfoReturnable<Map<Item, VaultGearTierConfig>> cir, @Local LocalRef<List<Item>> gearItems, @Local LocalRef<Map<Item, VaultGearTierConfig>> gearConfig) {
+    private static void registerConfigs(CallbackInfoReturnable<Map<Item, VaultGearTierConfig>> cir, @Local LocalRef<Map<Item, VaultGearTierConfig>> gearConfig) {
         List<Item> newGearItems = Arrays.asList(xyz.iwolfking.woldsvaults.init.ModItems.BATTLESTAFF, xyz.iwolfking.woldsvaults.init.ModItems.TRIDENT);
 
         Iterator var2 = newGearItems.iterator();

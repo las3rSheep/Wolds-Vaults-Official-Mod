@@ -58,6 +58,10 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -73,6 +77,7 @@ import java.util.*;
 public class HauntedBraziersObjective extends MonolithObjective {
     public static final SupplierKey KEY;
     public static final ResourceLocation HAUNTED_HUD = VaultMod.id("textures/gui/monolith/haunted_hud.png");
+    private static final TargetingConditions TARGETING_CONDITIONS = (TargetingConditions.forCombat()).range(8.0D).ignoreLineOfSight();
     public HauntedBraziersObjective() {
     }
 
@@ -133,6 +138,16 @@ public class HauntedBraziersObjective extends MonolithObjective {
                                     killBoss.set(KillBossObjective.BOSS_POS, pos);
                                 }
                             }
+                            List<LivingEntity> nearbyEntities = world.getEntitiesOfClass(LivingEntity.class, Objects.requireNonNull(world.getBlockEntity(pos)).getRenderBoundingBox().inflate(20.0D));
+
+                            nearbyEntities.forEach(livingEntity -> {
+                                if(livingEntity.hasEffect(MobEffects.DAMAGE_RESISTANCE) && !(livingEntity instanceof Player)) {
+                                    livingEntity.removeEffect(MobEffects.DAMAGE_RESISTANCE);
+
+                                    livingEntity.hurt(DamageSource.MAGIC,livingEntity.getMaxHealth() / 2);
+                                }
+
+                            });
                         }
 
                         if (overStacking) {
@@ -303,7 +318,7 @@ public class HauntedBraziersObjective extends MonolithObjective {
             current = window.getGuiScaledWidth() / 2;
             Font font = Minecraft.getInstance().font;
             MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
-            Component txt = (new TextComponent("Test, or Exit to Complete")).withStyle(ChatFormatting.WHITE);
+            Component txt = (new TextComponent("Grave Rob, or Exit to Complete")).withStyle(ChatFormatting.AQUA);
             var10001 = txt.getVisualOrderText();
             var10002 = (float)current - (float)font.width(txt) / 2.0F;
             Objects.requireNonNull(font);

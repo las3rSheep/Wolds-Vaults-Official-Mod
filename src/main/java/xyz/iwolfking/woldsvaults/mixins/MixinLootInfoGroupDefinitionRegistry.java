@@ -27,6 +27,7 @@ public abstract class MixinLootInfoGroupDefinitionRegistry {
     static {
         woldsVaults$register("completion_crate_unhinged_scavenger", () -> new ItemStack((ItemLike) ModBlocks.VAULT_CRATE_SCAVENGER));
         woldsVaults$register("vendor_pedestal", () -> new ItemStack((ItemLike) ModBlocks.SHOP_PEDESTAL));
+        woldsVaults$register("completion_crate_haunted_mono", () -> new ItemStack((ItemLike) ModBlocks.VAULT_CRATE_MONOLITH));
     }
 
     @Unique

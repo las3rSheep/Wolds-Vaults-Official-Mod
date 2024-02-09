@@ -25,6 +25,8 @@ public class ModItems {
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_SPIRITS;
     public static VaultBattleStaffItem BATTLESTAFF;
 
+   // public static VaultBowItem BOW;
+
     public static VaultTridentItem TRIDENT;
 
     public static LootableItem GEM_BOX;
@@ -37,6 +39,7 @@ public class ModItems {
         registry.register(BATTLESTAFF);
         registry.register(TRIDENT);
         registry.register(GEM_BOX);
+       // registry.register(BOW);
 
     }
 
@@ -47,6 +50,6 @@ public class ModItems {
         BATTLESTAFF = new VaultBattleStaffItem(VaultMod.id("battlestaff"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         TRIDENT = new VaultTridentItem(VaultMod.id("trident"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         GEM_BOX = new LootableItem(VaultMod.id("gem_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.GEM_BOX.POOL.getRandom(new Random())).get().generateItemStack());
-
+        //BOW = new VaultBowItem(VaultMod.id("bow"), (new Item.Properties().tab(GEAR_GROUP).stacksTo(1)));
     }
 }
