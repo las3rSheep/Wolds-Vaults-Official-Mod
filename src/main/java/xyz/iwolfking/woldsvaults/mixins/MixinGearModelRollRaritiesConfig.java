@@ -32,8 +32,6 @@ public abstract class MixinGearModelRollRaritiesConfig extends Config {
     @Expose
     private static Map<VaultGearRarity, List<String>> TRIDENT_MODEL_ROLLS;
 
-    @Expose
-    private static Map<VaultGearRarity, List<String>> RANG_MODEL_ROLLS;
 
     @Inject(method = "reset", at = @At("HEAD"))
     private void resetHook(CallbackInfo ci) {
@@ -45,12 +43,6 @@ public abstract class MixinGearModelRollRaritiesConfig extends Config {
 
         TRIDENT_MODEL_ROLLS = new HashMap<>();
         /* 160 */     TRIDENT_MODEL_ROLLS.put(VaultGearRarity.SCRAPPY, (List<String>) Tridents.REGISTRY
-/* 161 */         .getIds().stream()
-/* 162 */         .map(ResourceLocation::toString)
-/* 163 */         .collect(Collectors.toList()));
-
-        RANG_MODEL_ROLLS = new HashMap<>();
-        /* 160 */     RANG_MODEL_ROLLS.put(VaultGearRarity.SCRAPPY, (List<String>) Tridents.REGISTRY
 /* 161 */         .getIds().stream()
 /* 162 */         .map(ResourceLocation::toString)
 /* 163 */         .collect(Collectors.toList()));

@@ -12,7 +12,6 @@ import iskallia.vault.client.gui.helper.LightmapHelper;
 import iskallia.vault.core.Version;
 import iskallia.vault.core.data.key.LootTableKey;
 import iskallia.vault.core.data.key.SupplierKey;
-import iskallia.vault.core.data.key.registry.FieldRegistry;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.event.common.BlockSetEvent;
 import iskallia.vault.core.event.common.BlockUseEvent;
@@ -61,7 +60,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -77,7 +75,6 @@ import java.util.*;
 public class HauntedBraziersObjective extends MonolithObjective {
     public static final SupplierKey KEY;
     public static final ResourceLocation HAUNTED_HUD = VaultMod.id("textures/gui/monolith/haunted_hud.png");
-    private static final TargetingConditions TARGETING_CONDITIONS = (TargetingConditions.forCombat()).range(8.0D).ignoreLineOfSight();
     public HauntedBraziersObjective() {
     }
 
@@ -95,15 +92,6 @@ public class HauntedBraziersObjective extends MonolithObjective {
         return new HauntedBraziersObjective(target, objectiveProbability, stackModifierPool, overStackModifierPool, overStackLootTable);
     }
 
-    @Override
-    public SupplierKey<Objective> getKey() {
-        return KEY;
-    }
-
-    @Override
-    public FieldRegistry getFields() {
-        return FIELDS;
-    }
 
     @Override
     public void initServer(VirtualWorld world, Vault vault) {

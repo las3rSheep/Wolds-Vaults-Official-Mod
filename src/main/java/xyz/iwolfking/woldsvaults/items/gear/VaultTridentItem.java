@@ -145,6 +145,7 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     /*     */   public Component getName(ItemStack stack) {
         /* 138 */     return VaultGearHelper.getDisplayName(stack, super.getName(stack));
         /*     */   }
+    
 
     @Override
     public int getUseDuration(ItemStack stack) {

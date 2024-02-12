@@ -110,7 +110,7 @@ public class MixinWildSpawnerTileEntity extends BaseSpawnerTileEntity {
 
             Vault vaultObj = ServerVaults.get(this.level).get();
             String objective = vaultObj.get(Vault.OBJECTIVES).get(Objectives.KEY);
-
+            boolean hasSpooky = false;
 
             while (true) {
                 WildSpawnerConfig.SpawnerGroup sg;
@@ -127,7 +127,14 @@ public class MixinWildSpawnerTileEntity extends BaseSpawnerTileEntity {
                         sg = (WildSpawnerConfig.SpawnerGroup) var2.next();
                     } while (sg.minLevel > vaultLevel);
                 } while (this.spawnerGroup != null && sg.minLevel <= this.spawnerGroup.minLevel);
-                if(objective.equals("haunted_braziers") ) {
+
+                if(!objective.equals("haunted_braziers")) {
+                    hasSpooky = vaultObj.get(Vault.MODIFIERS).getModifiers().stream().anyMatch(vaultModifier -> (
+                            vaultModifier.getId().toString().equals("the_vault:spooky")
+                    ));
+                }
+
+                if(objective.equals("haunted_braziers") || hasSpooky ) {
                     this.spawnerGroup = ModConfigs.WILD_SPAWNER.spawnerGroups.get(3);
                 }
                 else {

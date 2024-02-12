@@ -14,13 +14,13 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(ManaPylonBuff.class)
 public class MixinManaPylonBuff extends PylonBuff<ManaPylonBuff.Config> {
     @Unique
-    protected int tick = 0;
+    protected int woldsVaults$tick = 0;
     public MixinManaPylonBuff(ManaPylonBuff.Config config) {
         super(config);
     }
 
     public boolean isDone() {
-        /* 20 */     return (super.isDone() || this.tick >= 1200);
+        /* 20 */     return (super.isDone() || this.woldsVaults$tick >= 1200);
         /*    */   }
 
     @Override
@@ -33,7 +33,7 @@ public class MixinManaPylonBuff extends PylonBuff<ManaPylonBuff.Config> {
                 /*    */             attribute.addTransientModifier(modifier);
                 /*    */           }
             /*    */         });
-        this.tick++;
+        this.woldsVaults$tick++;
     }
 
     public void onRemove(MinecraftServer server) {
@@ -49,12 +49,12 @@ public class MixinManaPylonBuff extends PylonBuff<ManaPylonBuff.Config> {
     @Override
     public void write(CompoundTag object) {
         super.write(object);
-        object.putInt("tick", this.tick);
+        object.putInt("tick", this.woldsVaults$tick);
     }
 
     @Override
     public void read(CompoundTag object) {
         super.read(object);
-        this.tick = object.getInt("tick");
+        this.woldsVaults$tick = object.getInt("tick");
     }
 }
