@@ -40,8 +40,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.NotNull;
 import xyz.iwolfking.woldsvaults.models.Tridents;
 
@@ -73,6 +71,7 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     /*     */   public Optional<? extends DynamicModel<?>> resolveDynamicModel(ItemStack stack, ResourceLocation key) {
         /*  66 */     return Tridents.REGISTRY.get(key);
         /*     */   }
+
     /*     */
     /*     */
     /*     */   @Nullable
@@ -238,11 +237,7 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
         /* 157 */     super.appendHoverText(stack, world, tooltip, flag);
         /* 158 */     tooltip.addAll(createTooltip(stack, GearTooltip.itemTooltip()));
         /*     */   }
-    /*     */
-    /*     */
-    /*     */   public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-        /* 163 */     return (ToolActions.SWORD_SWEEP == toolAction);
-        /*     */   }
+
     /*     */ }
 
 

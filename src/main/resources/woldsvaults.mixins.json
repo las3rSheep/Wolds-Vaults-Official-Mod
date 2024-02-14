@@ -19,11 +19,13 @@
     "MixinMainModDynamicModels",
     "MixinManaPylonBuff",
     "MixinModConfigs",
+    "MixinModModels",
     "MixinPlayerInventory",
     "MixinScannableItems",
     "MixinShopPedestalBlock",
     "MixinSoulboundSnapshot",
     "MixinSpiritExtractor",
+    "MixinStatisticsElementContainerScreenData",
     "MixinThrownTrident",
     "MixinVaultAltarIngredientsConfig",
     "MixinVaultGearToolTier",
@@ -31,8 +33,7 @@
     "MixinVaultRegistry",
     "MixinWildSpawnerTileEntity",
     "ScannerModuleItemAccessor",
-    "ThrownTridentAccessor",
-    "MixinStatisticsElementContainerScreenData"
+    "ThrownTridentAccessor"
   ],
   "client": [
     "MixinThrownTridentRenderer"
