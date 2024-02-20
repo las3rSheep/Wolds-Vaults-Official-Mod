@@ -11,7 +11,6 @@ import iskallia.vault.block.entity.MonolithTileEntity;
 import iskallia.vault.client.gui.helper.LightmapHelper;
 import iskallia.vault.core.Version;
 import iskallia.vault.core.data.key.LootTableKey;
-import iskallia.vault.core.data.key.SupplierKey;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.event.common.BlockSetEvent;
 import iskallia.vault.core.event.common.BlockUseEvent;
@@ -73,7 +72,7 @@ import net.minecraftforge.network.PacketDistributor;
 import java.util.*;
 
 public class HauntedBraziersObjective extends MonolithObjective {
-    public static final SupplierKey KEY;
+    //public static final SupplierKey KEY;
     public static final ResourceLocation HAUNTED_HUD = VaultMod.id("textures/gui/monolith/haunted_hud.png");
     public HauntedBraziersObjective() {
     }
@@ -346,6 +345,6 @@ public class HauntedBraziersObjective extends MonolithObjective {
     }
 
     static {
-        KEY = SupplierKey.of("haunted_braziers", Objective.class).with(Version.v1_2, HauntedBraziersObjective::new);
+       // KEY = SupplierKey.of("haunted_braziers", Objective.class).with(Version.v1_2, HauntedBraziersObjective::new);
     }
 }

@@ -30,6 +30,7 @@ public class ModItems {
     public static VaultTridentItem TRIDENT;
 
     public static LootableItem GEM_BOX;
+    public static LootableItem SUPPLY_BOX;
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
@@ -39,6 +40,7 @@ public class ModItems {
         registry.register(BATTLESTAFF);
         registry.register(TRIDENT);
         registry.register(GEM_BOX);
+        registry.register(SUPPLY_BOX);
        // registry.register(BOW);
 
     }
@@ -50,6 +52,7 @@ public class ModItems {
         BATTLESTAFF = new VaultBattleStaffItem(VaultMod.id("battlestaff"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         TRIDENT = new VaultTridentItem(VaultMod.id("trident"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         GEM_BOX = new LootableItem(VaultMod.id("gem_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.GEM_BOX.POOL.getRandom(new Random())).get().generateItemStack());
+        SUPPLY_BOX = new LootableItem(VaultMod.id("supply_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.SUPPLY_BOX.POOL.getRandom(new Random())).get().generateItemStack());
         //BOW = new VaultBowItem(VaultMod.id("bow"), (new Item.Properties().tab(GEAR_GROUP).stacksTo(1)));
     }
 }

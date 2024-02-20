@@ -51,6 +51,7 @@ import java.util.Random;
 import java.util.UUID;
 
 public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider {
+
     private static final Random rand = new Random();
     private final VaultSalvagerTileEntity.SalvagerInventory inventory = new VaultSalvagerTileEntity.SalvagerInventory(10);
     private UUID gearIdProcessing = null;

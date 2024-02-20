@@ -5,6 +5,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -37,5 +38,10 @@ public class RegistryEvents {
     @SubscribeEvent
     /*     */   public static void onTrinketRegistry(RegistryEvent.Register<TrinketEffect<?>> event) {
         /* 146 */     ModTrinkets.init(event);
+        /*     */   }
+
+    @SubscribeEvent
+    /*     */   public static void ohRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        /*  74 */     ModBlocks.registerTileEntityRenderers(event);
         /*     */   }
 }

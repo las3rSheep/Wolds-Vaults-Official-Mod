@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.RegistryEvent;
 import xyz.iwolfking.woldsvaults.blocks.VaultSalvagerBlock;
 import xyz.iwolfking.woldsvaults.blocks.tiles.VaultSalvagerTileEntity;
@@ -21,6 +22,13 @@ public class ModBlocks {
 
     public static final VaultSalvagerBlock VAULT_SALVAGER_BLOCK;
     public static final BlockEntityType<VaultSalvagerTileEntity> VAULT_SALVAGER_ENTITY;
+
+
+    static {
+        VAULT_SALVAGER_BLOCK = new VaultSalvagerBlock();
+        VAULT_SALVAGER_ENTITY = BlockEntityType.Builder.of(VaultSalvagerTileEntity::new, new Block[]{VAULT_SALVAGER_BLOCK}).build((Type)null);
+
+    }
 
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         registerBlock(event, VAULT_SALVAGER_BLOCK, VaultMod.id("vault_salvager"));
@@ -33,10 +41,11 @@ public class ModBlocks {
         registerBlockItem(event, VAULT_SALVAGER_BLOCK);
     }
 
-    static {
-        VAULT_SALVAGER_BLOCK = new VaultSalvagerBlock();
-        VAULT_SALVAGER_ENTITY = BlockEntityType.Builder.of(VaultSalvagerTileEntity::new, new Block[]{VAULT_SALVAGER_BLOCK}).build((Type)null);
+    public static void registerTileEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+
     }
+
+
 
     private static void registerBlock(RegistryEvent.Register<Block> event, Block block, ResourceLocation id) {
         block.setRegistryName(id);

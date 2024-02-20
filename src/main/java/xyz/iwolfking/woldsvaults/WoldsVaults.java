@@ -29,6 +29,7 @@ import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import xyz.iwolfking.woldsvaults.curios.ShardPouchCurio;
 import xyz.iwolfking.woldsvaults.events.RegisterCommandEventHandler;
+import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 
 import java.util.stream.Collectors;
 
@@ -70,6 +71,7 @@ public class WoldsVaults {
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
+        EnchantedEventsRegistry.addEvents();
 
     }
 
