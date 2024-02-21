@@ -26,6 +26,9 @@ public class MixinClassicListenersLogic  {
             case "haunted_braziers":
                 var10000 = "Haunted Brazier";
                 break;
+            case "enchanted_elixir":
+                var10000 = "Enchanted Elixir";
+                break;
             case "monolith":
                 var10000 = "Brazier";
                 break;

@@ -29,7 +29,7 @@ public class EnchantedElixirCrystalObjective extends CrystalObjective {
     public void configure(Vault vault, RandomSource random) {
         int level = ((VaultLevel)vault.get(Vault.LEVEL)).get();
         vault.ifPresent(Vault.OBJECTIVES, (objectives) -> {
-            objectives.add(EnchantedElixirObjective.create().add(LodestoneObjective.of(this.objectiveProbability).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.ELIXIR, "elixir", level, true)).add(VictoryObjective.of(300))));
+            objectives.add(EnchantedElixirObjective.create().add(LodestoneObjective.of(this.objectiveProbability).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.ELIXIR, "enchanted_elixir", level, true)).add(VictoryObjective.of(300))));
             objectives.add(BailObjective.create(true, new ResourceLocation[]{ClassicPortalLogic.EXIT}));
             objectives.add(DeathObjective.create(true));
             objectives.set(Objectives.KEY, CrystalData.OBJECTIVE.getType(this));
@@ -41,7 +41,7 @@ public class EnchantedElixirCrystalObjective extends CrystalObjective {
     }
 
     public Optional<Integer> getColor(float time) {
-        return Optional.of(12888079);
+        return Optional.of(7012807);
     }
 
     public Optional<CompoundTag> writeNbt() {

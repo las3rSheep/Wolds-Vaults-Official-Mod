@@ -9,8 +9,10 @@ import iskallia.vault.core.vault.objective.elixir.ElixirTask;
 import iskallia.vault.core.vault.player.Listener;
 import iskallia.vault.core.vault.player.Runner;
 import iskallia.vault.core.world.storage.VirtualWorld;
-import iskallia.vault.init.ModConfigs;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
+import xyz.iwolfking.woldsvaults.init.ModConfigs;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 
 import java.util.*;
@@ -26,7 +28,6 @@ public class EnchantedElixirObjective extends ElixirObjective {
     }
 
 
-    private boolean hasFiredEvent = false;
 
     private Map<ServerPlayer, Integer> elixirCollectionMap = new HashMap<>();
 
@@ -51,7 +52,13 @@ public class EnchantedElixirObjective extends ElixirObjective {
             ServerPlayer objPlayer = listener.getPlayer().get();
             if(goal.get(ElixirGoal.CURRENT) > elixirBreakpointsMap.get(objPlayer).get(elixirCollectionMap.get(objPlayer))) {
                 elixirCollectionMap.put(objPlayer, elixirCollectionMap.get(objPlayer) + 1);
-                triggerRandomEvent(objPlayer, vault);
+                if(elixirCollectionMap.keySet().size() == elixirCollectionMap.get(objPlayer)) {
+                    triggerOmegaRandomEvent(objPlayer, vault);
+                }
+                else {
+                    triggerRandomEvent(objPlayer, vault);
+                }
+
             }
         }
         if (goal != null && goal.isCompleted()) {
@@ -66,9 +73,9 @@ public class EnchantedElixirObjective extends ElixirObjective {
         ElixirGoal goal = new ElixirGoal();
         ((GoalMap)this.get(GOALS)).put((UUID)listener.get(Listener.ID), goal);
         JavaRandom random = JavaRandom.ofInternal((Long)vault.get(Vault.SEED) ^ ((UUID)listener.get(Listener.ID)).getMostSignificantBits());
-        goal.set(ElixirGoal.TARGET, ModConfigs.ELIXIR.generateTarget(((VaultLevel)vault.get(Vault.LEVEL)).get(), random));
+        goal.set(ElixirGoal.TARGET, xyz.iwolfking.woldsvaults.init.ModConfigs.ENCHANTED_ELIXIR.generateTarget(((VaultLevel)vault.get(Vault.LEVEL)).get(), random));
         goal.set(ElixirGoal.BASE_TARGET, (Integer)goal.get(ElixirGoal.TARGET));
-        Iterator var6 = ModConfigs.ELIXIR.generateGoals(((VaultLevel)vault.get(Vault.LEVEL)).get(), random).iterator();
+        Iterator var6 = ModConfigs.ENCHANTED_ELIXIR.generateGoals(((VaultLevel)vault.get(Vault.LEVEL)).get(), random).iterator();
 
         while(var6.hasNext()) {
             ElixirTask task = (ElixirTask)var6.next();
@@ -79,22 +86,45 @@ public class EnchantedElixirObjective extends ElixirObjective {
     }
 
     private void generateElixirBreakpointsMap(Listener listener) {
+        Random random = new Random();
+        int numberOfBreakpoints = random.nextInt((24 - 10) + 1) + 10;
         if(listener.getPlayer().isPresent()) {
             ElixirGoal goal = (ElixirGoal)((GoalMap)this.get(GOALS)).get(listener.get(Listener.ID));
             List<Float> elixirBreakPointsList = new ArrayList<>();
             Float elixirTarget = goal.get(ElixirGoal.TARGET).floatValue();
-            for(int i = 0; i < 10; i++) {
-                float decimalModifier = (((float)i) + 1.0F) / 10.0F;
+            for(int i = 0; i < numberOfBreakpoints; i++) {
+                float decimalModifier = (((float)i) + 1.0F) / ((float)numberOfBreakpoints);
                 elixirBreakPointsList.add(elixirTarget * decimalModifier);
             }
             elixirBreakpointsMap.put(listener.getPlayer().get(), elixirBreakPointsList);
-            System.out.println(Arrays.toString(elixirBreakPointsList.toArray()));
+
+            if(numberOfBreakpoints > 10 && numberOfBreakpoints < 15) {
+                listener.getPlayer().ifPresent(serverPlayer -> {
+                    serverPlayer.displayClientMessage(new TextComponent("It is foreseen! You will experience a low number of random events this vault!").withStyle(ChatFormatting.YELLOW), false);
+                });
+            }
+            else if(numberOfBreakpoints > 14 && numberOfBreakpoints < 19) {
+                listener.getPlayer().ifPresent(serverPlayer -> {
+                    serverPlayer.displayClientMessage(new TextComponent("It is foreseen! You will experience a moderate number of random events this vault!").withStyle(ChatFormatting.AQUA), false);
+                });
+            }
+            else if(numberOfBreakpoints > 18 && numberOfBreakpoints < 25) {
+                listener.getPlayer().ifPresent(serverPlayer -> {
+                    serverPlayer.displayClientMessage(new TextComponent("It is foreseen! You will experience a high number of random events this vault!").withStyle(ChatFormatting.LIGHT_PURPLE), false);
+                });
+            }
         }
     }
 
     private void triggerRandomEvent(ServerPlayer objPlayer, Vault vault) {
         if(EnchantedEventsRegistry.getEvents().getRandom().isPresent()) {
             EnchantedEventsRegistry.getEvents().getRandom().get().triggerEvent(objPlayer.getOnPos(), objPlayer, vault);
+        }
+    }
+
+    private void triggerOmegaRandomEvent(ServerPlayer objPlayer, Vault vault) {
+        if(EnchantedEventsRegistry.getEvents().getRandom().isPresent()) {
+            EnchantedEventsRegistry.getOmegaEvents().getRandom().get().triggerEvent(objPlayer.getOnPos(), objPlayer, vault);
         }
     }
 

@@ -59,8 +59,13 @@ public abstract class BasicEnchantedEvent {
 
         while(listeners.hasNext()) {
             Listener listener = (Listener) listeners.next();
-            if((random.nextInt(100 - 1) + 1) > 70) {
+            if((random.nextInt(100 - 1) + 1) >= 85) {
                 listener.getPlayer().ifPresent((other) -> {
+                    if(originator.equals(other)) {
+                        if(!((random.nextInt(100 - 1) + 1) >= 85)) {
+                            return;
+                        }
+                    }
                     other.level.playSound((Player)null, other.getX(), other.getY(), other.getZ(), SoundEvents.GUARDIAN_ATTACK, SoundSource.PLAYERS, 0.9F, 1.2F);
                     other.displayClientMessage(getCascadingEventMessage(originator), false);
                     triggerEvent(other.getOnPos(), other, vault);

@@ -5,10 +5,17 @@
   "item.scannable.vault_ores_module": "Scanner Module: Vault Ores",
   "item.the_vault.crystal_seal_unhinged": "Seal of the Psychopath",
   "item.the_vault.crystal_seal_spirits": "Seal of the Exorcist",
+  "item.the_vault.crystal_seal_enchanter": "Seal of the Enchanter",
   "jei.the_vault.completion_crate_unhinged_scavenger_loot": "Unhinged Scavenger Crate",
   "jei.the_vault.completion_crate_haunted_mono_loot": "Haunted Braziers Crate",
+  "jei.the_vault.completion_crate_enchanted_elixir_loot": "Enchanted Elixir Crate",
   "jei.the_vault.vendor_pedestal_loot": "Vendor Pedestal",
   "block.the_vault.vault_salvager": "Vault Salvager",
   "item.the_vault.supply_box": "Supply Box",
+  "item.the_vault.augment_box": "Augment Box",
+  "item.the_vault.scavenger_benitoite_gemstone": "Benitoite Gemstone",
+  "item.the_vault.scavenger_wutodic_gemstone": "Wutodic Gemstone",
+  "item.the_vault.scavenger_echoing_gemstone": "Echoing Gemstone",
+  "item.the_vault.scavenger_pogging_gemstone": "Pogging Gemstone",
   "block.the_vault.sophisticated_treasure_chest": "Sophisticated Treasure Chest"
 }
