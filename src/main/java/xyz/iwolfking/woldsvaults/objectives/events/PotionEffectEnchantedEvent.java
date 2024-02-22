@@ -1,7 +1,6 @@
 package xyz.iwolfking.woldsvaults.objectives.events;
 
 import iskallia.vault.core.vault.Vault;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
@@ -16,8 +15,8 @@ public class PotionEffectEnchantedEvent extends BasicEnchantedEvent {
     private final Integer effectDuration;
 
 
-    public PotionEffectEnchantedEvent(String eventName, String eventDescription, ChatFormatting primaryColor, ChatFormatting secondaryColor, MobEffect effect, Integer duration, Integer level) {
-        super(eventName, eventDescription, primaryColor, secondaryColor);
+    public PotionEffectEnchantedEvent(String eventName, String eventDescription, String primaryColor, MobEffect effect, Integer duration, Integer level) {
+        super(eventName, eventDescription, primaryColor);
         this.effect = effect;
         this.effectDuration = duration;
         this.effectLevel = level;

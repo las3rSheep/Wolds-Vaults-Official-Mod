@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
+import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 
 import java.util.Iterator;
 import java.util.Random;
@@ -19,14 +20,19 @@ public abstract class BasicEnchantedEvent {
     private final String eventName;
     private final String eventDescription;
 
-    private final ChatFormatting primaryColor;
+    private final TextColor primaryColor;
+
+    private int cascadingValue = 85;
+
+    private boolean cascadingRandomly = false;
 
 
 
-    protected BasicEnchantedEvent(String eventName, String eventDescription, ChatFormatting primaryColor, ChatFormatting secondaryColor) {
+    protected BasicEnchantedEvent(String eventName, String eventDescription, String primaryColor) {
         this.eventDescription = eventDescription;
         this.eventName = eventName;
-        this.primaryColor = primaryColor;
+        this.primaryColor = TextColor.parseColor(primaryColor);
+
     }
 
     public void triggerEvent(BlockPos pos, ServerPlayer player, Vault vault) {
@@ -56,34 +62,45 @@ public abstract class BasicEnchantedEvent {
     public void targetOthers(Vault vault, ServerPlayer originator) {
         Iterator listeners = ((Listeners)vault.get(Vault.LISTENERS)).getAll().iterator();
         Random random = new Random();
-
         while(listeners.hasNext()) {
             Listener listener = (Listener) listeners.next();
-            if((random.nextInt(100 - 1) + 1) >= 85) {
+            if((random.nextInt(0, 100) >= cascadingValue)) {
                 listener.getPlayer().ifPresent((other) -> {
                     if(originator.equals(other)) {
-                        if(!((random.nextInt(100 - 1) + 1) >= 85)) {
+                        if(!((random.nextInt(100 - 1) + 1) >= cascadingValue)) {
                             return;
                         }
                     }
                     other.level.playSound((Player)null, other.getX(), other.getY(), other.getZ(), SoundEvents.GUARDIAN_ATTACK, SoundSource.PLAYERS, 0.9F, 1.2F);
                     other.displayClientMessage(getCascadingEventMessage(originator), false);
-                    triggerEvent(other.getOnPos(), other, vault);
+                    cascadingValue = cascadingValue+3;
+                    if(!cascadingRandomly) {
+                        triggerEvent(other.getOnPos(), other, vault);
+                    }
+                    else {
+                        EnchantedEventsRegistry.getEvents().getRandom().get().triggerEvent(other.getOnPos(), other, vault);
+                    }
+
                 });
+            }
+            else {
+                if(random.nextInt(0, 100) >= 75 && cascadingValue > 85) {
+                    cascadingValue--;
+                }
             }
         }
     }
 
 
     public Component getEventMessage() {
-        return new TextComponent(eventName + " Event!").withStyle(primaryColor).withStyle(getHoverDescription());
+        return new TextComponent(eventName + " Event!").withStyle(Style.EMPTY.withColor(primaryColor)).withStyle(getHoverDescription());
     }
 
     public Component getCascadingEventMessage(ServerPlayer originator) {
         MutableComponent cascadeMessage = new TextComponent("");
         cascadeMessage.append(originator.getDisplayName());
         cascadeMessage.append("'s ").withStyle(originator.getDisplayName().getStyle());
-        cascadeMessage.append(eventName).withStyle(primaryColor).withStyle(getHoverDescription());
+        cascadeMessage.append(eventName).withStyle(Style.EMPTY.withColor(primaryColor)).withStyle(getHoverDescription());
         cascadeMessage.append(" event has cascaded onto you!").withStyle(ChatFormatting.GRAY);
         return cascadeMessage;
     }
@@ -92,8 +109,8 @@ public abstract class BasicEnchantedEvent {
         return this.eventName;
     }
 
-    public ChatFormatting getPrimaryColor() {
-        return this.primaryColor;
+    public TextColor getPrimaryColor() {
+        return primaryColor;
     }
 
     public Component getEventDescriptor() {

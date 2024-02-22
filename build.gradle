@@ -193,6 +193,8 @@ dependencies {
     implementation fg.deobf('curse.maven:alexs-mobs-426558:3853078')
     implementation fg.deobf('curse.maven:the-wild-backport-537901:3988035')
     implementation fg.deobf('curse.maven:quark-243121:3840125')
+    implementation fg.deobf('curse.maven:applied-energistics-2-223794:4136407')
+    implementation fg.deobf('curse.maven:alexs-cloud-storage-606618:3757407')
     //implementation fg.deobf('curse.maven:sophisticated-storage-619320:5104306')
     //implementation fg.deobf('curse.maven:sophisticated-core-618298:5102972')
     // compile against the JEI API but do not include it at runtime

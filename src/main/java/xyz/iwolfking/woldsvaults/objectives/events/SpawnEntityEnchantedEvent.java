@@ -5,7 +5,6 @@ import iskallia.vault.core.random.RandomSource;
 import iskallia.vault.core.util.WeightedList;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.world.storage.VirtualWorld;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -23,8 +22,8 @@ public class SpawnEntityEnchantedEvent extends BasicEnchantedEvent {
     private final WeightedList<Integer> amounts;
 
 
-    public SpawnEntityEnchantedEvent(String eventName, String eventDescription, ChatFormatting primaryColor, ChatFormatting secondaryColor, WeightedList<EntityType<?>> entities, WeightedList<Integer> amounts) {
-        super(eventName, eventDescription, primaryColor, secondaryColor);
+    public SpawnEntityEnchantedEvent(String eventName, String eventDescription, String primaryColor, WeightedList<EntityType<?>> entities, WeightedList<Integer> amounts) {
+        super(eventName, eventDescription, primaryColor);
         this.entities = entities;
         this.amounts = amounts;
     }
@@ -72,7 +71,6 @@ public class SpawnEntityEnchantedEvent extends BasicEnchantedEvent {
             entity = type.create(world);
         }
 
-        entity.setGlowingTag(true);
         BlockState state = world.getBlockState(new BlockPos(x, y - 1, z));
         if (!state.isValidSpawn(world, new BlockPos(x, y - 1, z), entity.getType())) {
             return null;

@@ -33,7 +33,11 @@ public class EnchantedElixirObjective extends ElixirObjective {
 
     private Map<ServerPlayer, List<Float>> elixirBreakpointsMap = new HashMap<>();
 
+    private List<Listener> completedListeners = new ArrayList<>();
 
+    private boolean shouldCascadeRandomly = false;
+    private boolean shouldCascade = true;
+    private float cascadeIncrease = 0.0F;
     @Override
     public void tickListener(VirtualWorld world, Vault vault, Listener listener) {
         if (listener instanceof Runner runner) {
@@ -42,26 +46,28 @@ public class EnchantedElixirObjective extends ElixirObjective {
                 this.generateGoal(world, vault, runner);
                 if(listener.getPlayer().isPresent()) {
                     elixirCollectionMap.put(listener.getPlayer().get(), 0);
-                    generateElixirBreakpointsMap(listener);
+                    generateElixirBreakpointsMap(listener, true);
                 }
             }
+        }
+        if(elixirBreakpointsMap.get(listener.getPlayer().get()).isEmpty()) {
+            elixirCollectionMap.put(listener.getPlayer().get(), 0);
+            generateElixirBreakpointsMap(listener, false);
         }
 
         ElixirGoal goal = (ElixirGoal)((GoalMap)this.get(GOALS)).get(listener.get(Listener.ID));
         if(!goal.isCompleted()) {
             ServerPlayer objPlayer = listener.getPlayer().get();
-            if(goal.get(ElixirGoal.CURRENT) > elixirBreakpointsMap.get(objPlayer).get(elixirCollectionMap.get(objPlayer))) {
+            if(goal.get(ElixirGoal.CURRENT) >= elixirBreakpointsMap.get(objPlayer).get(elixirCollectionMap.get(objPlayer))) {
                 elixirCollectionMap.put(objPlayer, elixirCollectionMap.get(objPlayer) + 1);
-                if(elixirCollectionMap.keySet().size() == elixirCollectionMap.get(objPlayer)) {
-                    triggerOmegaRandomEvent(objPlayer, vault);
-                }
-                else {
                     triggerRandomEvent(objPlayer, vault);
-                }
-
             }
         }
-        if (goal != null && goal.isCompleted()) {
+        if(goal.isCompleted() && !completedListeners.contains(listener)) {
+            completedListeners.add(listener);
+            triggerOmegaRandomEvent(listener.getPlayer().get(), vault);
+        }
+        if (goal.isCompleted()) {
             ((ObjList)this.get(CHILDREN)).forEach((child) -> {
                 child.tickListener(world, vault, listener);
             });
@@ -85,9 +91,9 @@ public class EnchantedElixirObjective extends ElixirObjective {
         goal.initServer(world, vault, this, listener.getId());
     }
 
-    private void generateElixirBreakpointsMap(Listener listener) {
+    private void generateElixirBreakpointsMap(Listener listener, boolean sendMessage) {
         Random random = new Random();
-        int numberOfBreakpoints = random.nextInt((24 - 10) + 1) + 10;
+        int numberOfBreakpoints = random.nextInt(10, 24);
         if(listener.getPlayer().isPresent()) {
             ElixirGoal goal = (ElixirGoal)((GoalMap)this.get(GOALS)).get(listener.get(Listener.ID));
             List<Float> elixirBreakPointsList = new ArrayList<>();
@@ -97,20 +103,23 @@ public class EnchantedElixirObjective extends ElixirObjective {
                 elixirBreakPointsList.add(elixirTarget * decimalModifier);
             }
             elixirBreakpointsMap.put(listener.getPlayer().get(), elixirBreakPointsList);
+            if(!sendMessage) {
+                return;
+            }
 
             if(numberOfBreakpoints > 10 && numberOfBreakpoints < 15) {
                 listener.getPlayer().ifPresent(serverPlayer -> {
-                    serverPlayer.displayClientMessage(new TextComponent("It is foreseen! You will experience a low number of random events this vault!").withStyle(ChatFormatting.YELLOW), false);
+                    serverPlayer.displayClientMessage(new TextComponent("You will experience a low number of random events this vault!").withStyle(ChatFormatting.YELLOW), false);
                 });
             }
             else if(numberOfBreakpoints > 14 && numberOfBreakpoints < 19) {
                 listener.getPlayer().ifPresent(serverPlayer -> {
-                    serverPlayer.displayClientMessage(new TextComponent("It is foreseen! You will experience a moderate number of random events this vault!").withStyle(ChatFormatting.AQUA), false);
+                    serverPlayer.displayClientMessage(new TextComponent("You will experience a moderate number of random events this vault!").withStyle(ChatFormatting.AQUA), false);
                 });
             }
             else if(numberOfBreakpoints > 18 && numberOfBreakpoints < 25) {
                 listener.getPlayer().ifPresent(serverPlayer -> {
-                    serverPlayer.displayClientMessage(new TextComponent("It is foreseen! You will experience a high number of random events this vault!").withStyle(ChatFormatting.LIGHT_PURPLE), false);
+                    serverPlayer.displayClientMessage(new TextComponent("You will experience a high number of random events this vault!").withStyle(ChatFormatting.LIGHT_PURPLE), false);
                 });
             }
         }
@@ -128,5 +137,20 @@ public class EnchantedElixirObjective extends ElixirObjective {
         }
     }
 
+    public void setShouldCascadeRandomly(boolean bool) {
+        shouldCascadeRandomly = bool;
+    }
+
+    public void setShouldCascade(boolean bool) {
+        shouldCascade = bool;
+    }
+
+    public void setCascadeIncrease(float value) {
+        cascadeIncrease = value;
+    }
+
+    public float getCascadeIncrease() {
+        return cascadeIncrease;
+    }
 
 }

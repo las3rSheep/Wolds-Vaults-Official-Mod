@@ -14,6 +14,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -28,8 +29,8 @@ public class VaultModifierEnchantedEvent extends BasicEnchantedEvent {
 
 
     private final String modifierString;
-    public VaultModifierEnchantedEvent(String eventName, String eventDescription, ChatFormatting primaryColor, ChatFormatting secondaryColor, String modifierString) {
-        super(eventName, eventDescription, primaryColor, secondaryColor);
+    public VaultModifierEnchantedEvent(String eventName, String eventDescription, String primaryColor, String modifierString) {
+        super(eventName, eventDescription, primaryColor);
         this.modifierString = modifierString;
     }
 
@@ -72,7 +73,7 @@ public class VaultModifierEnchantedEvent extends BasicEnchantedEvent {
 
     @Override
     public Component getEventMessage() {
-        return new TextComponent("Random " +  this.getEventName() + " Modifier Event!").withStyle(this.getPrimaryColor()).withStyle(getHoverDescription());
+        return new TextComponent("Random " +  this.getEventName() + " Modifier Event!").withStyle(Style.EMPTY.withColor(getPrimaryColor())).withStyle(getHoverDescription());
     }
 
 

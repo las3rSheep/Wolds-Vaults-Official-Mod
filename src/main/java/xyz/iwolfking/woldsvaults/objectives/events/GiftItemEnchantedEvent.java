@@ -12,18 +12,18 @@ import xyz.iwolfking.woldsvaults.objectives.lib.BasicEnchantedEvent;
 public class GiftItemEnchantedEvent extends BasicEnchantedEvent {
 
     private final WeightedList<ItemStack> items;
-    public GiftItemEnchantedEvent(String eventName, String eventDescription, ChatFormatting primaryColor, ChatFormatting secondaryColor, WeightedList<ItemStack> items) {
-        super(eventName, eventDescription, primaryColor, secondaryColor);
+    public GiftItemEnchantedEvent(String eventName, String eventDescription, String primaryColor, WeightedList<ItemStack> items) {
+        super(eventName, eventDescription, primaryColor);
         this.items = items;
     }
 
     @Override
     public void triggerEvent(BlockPos pos, ServerPlayer player, Vault vault) {
-        ItemStack randomGiftItem = items.getRandom().get();
         items.getRandom().ifPresent(itemStack -> {
-            player.addItem(randomGiftItem);
+            System.out.println(itemStack.getDisplayName());
+            player.displayClientMessage(new TextComponent("You have been gifted " + itemStack.getCount() + "x ").append(itemStack.getDisplayName()).withStyle(ChatFormatting.GOLD), true);
+            player.addItem(itemStack);
         });
-        player.displayClientMessage(new TextComponent("You have been gifted " + randomGiftItem.getCount() + "x ").append(randomGiftItem.getDisplayName()), true);
         super.triggerEvent(pos, player, vault);
     }
 }
