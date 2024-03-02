@@ -32,7 +32,6 @@ public abstract class BasicEnchantedEvent {
         this.eventDescription = eventDescription;
         this.eventName = eventName;
         this.primaryColor = TextColor.parseColor(primaryColor);
-
     }
 
     public void triggerEvent(BlockPos pos, ServerPlayer player, Vault vault) {

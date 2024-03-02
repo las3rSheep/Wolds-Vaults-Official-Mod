@@ -1,9 +1,12 @@
 package xyz.iwolfking.woldsvaults.objectives;
 
+import iskallia.vault.core.Version;
+import iskallia.vault.core.data.key.SupplierKey;
 import iskallia.vault.core.random.JavaRandom;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.VaultLevel;
 import iskallia.vault.core.vault.objective.ElixirObjective;
+import iskallia.vault.core.vault.objective.Objective;
 import iskallia.vault.core.vault.objective.elixir.ElixirGoal;
 import iskallia.vault.core.vault.objective.elixir.ElixirTask;
 import iskallia.vault.core.vault.player.Listener;
@@ -20,13 +23,19 @@ import java.util.*;
 public class EnchantedElixirObjective extends ElixirObjective {
 
     protected EnchantedElixirObjective() {
-        this.set(GOALS, new EnchantedElixirObjective.GoalMap());
+        this.set(GOALS, new GoalMap());
     }
+
+    public static final SupplierKey<Objective> E_KEY = (SupplierKey)SupplierKey.of("enchanted_elixir", Objective.class).with(Version.v1_12, EnchantedElixirObjective::new);;
 
     public static EnchantedElixirObjective create() {
         return new EnchantedElixirObjective();
     }
 
+    @Override
+    public SupplierKey<Objective> getKey() {
+        return E_KEY;
+    }
 
 
     private Map<ServerPlayer, Integer> elixirCollectionMap = new HashMap<>();
@@ -79,7 +88,7 @@ public class EnchantedElixirObjective extends ElixirObjective {
         ElixirGoal goal = new ElixirGoal();
         ((GoalMap)this.get(GOALS)).put((UUID)listener.get(Listener.ID), goal);
         JavaRandom random = JavaRandom.ofInternal((Long)vault.get(Vault.SEED) ^ ((UUID)listener.get(Listener.ID)).getMostSignificantBits());
-        goal.set(ElixirGoal.TARGET, xyz.iwolfking.woldsvaults.init.ModConfigs.ENCHANTED_ELIXIR.generateTarget(((VaultLevel)vault.get(Vault.LEVEL)).get(), random));
+        goal.set(ElixirGoal.TARGET, ModConfigs.ENCHANTED_ELIXIR.generateTarget(((VaultLevel)vault.get(Vault.LEVEL)).get(), random));
         goal.set(ElixirGoal.BASE_TARGET, (Integer)goal.get(ElixirGoal.TARGET));
         Iterator var6 = ModConfigs.ENCHANTED_ELIXIR.generateGoals(((VaultLevel)vault.get(Vault.LEVEL)).get(), random).iterator();
 

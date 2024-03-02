@@ -35,6 +35,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -66,6 +68,9 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
         /*     */
         /*  61 */     return (ResourceLocation) MiscUtils.getRandomEntry(possibleIds, random);
         /*     */   }
+
+
+
     /*     */
     /*     */
     /*     */   public Optional<? extends DynamicModel<?>> resolveDynamicModel(ItemStack stack, ResourceLocation key) {
@@ -102,6 +107,17 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     /*     */   public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         /*  96 */     return false;
         /*     */   }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if(enchantment.equals(Enchantments.LOYALTY) || enchantment.equals(Enchantments.RIPTIDE) || enchantment.equals(Enchantments.CHANNELING)) {
+            return false;
+        }
+        else {
+            return super.canApplyAtEnchantingTable(stack, enchantment);
+        }
+    }
+
     /*     */
     /*     */
     /*     */   public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
@@ -157,9 +173,10 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int duration) {
         if (entity instanceof Player) {
             Player player = (Player)entity;
+            VaultGearData data = VaultGearData.read(stack);
+            float percentDecrease = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_WINDUP, VaultGearAttributeTypeMerger.floatSum());
             int i = this.getUseDuration(stack) - duration;
-            if (i >= 10) {
-                VaultGearData data = VaultGearData.read(stack);
+            if (i >= (10 * percentDecrease)) {
                 int j = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_RIPTIDE, VaultGearAttributeTypeMerger.intSum());
                 if (j <= 0 || player.isInWaterOrRain()) {
                     if (!level.isClientSide) {

@@ -27,7 +27,7 @@ public class MixinVaultRegistry {
     /* 74 */     .add(MonolithObjective.KEY)
                  .add(HauntedBraziersObjective.KEY)
                  .add(UnhingedScavengerObjective.KEY)
-                 .add(EnchantedElixirObjective.KEY)
+                 .add(EnchantedElixirObjective.E_KEY)
     /* 75 */     .add(ElixirObjective.KEY)
     /* 76 */     .add(LodestoneObjective.KEY)
     /* 77 */     .add(CrakePedestalObjective.KEY)
@@ -35,7 +35,7 @@ public class MixinVaultRegistry {
     /* 79 */     .add(HeraldObjective.KEY)
     /* 80 */     .add(AscensionObjective.KEY);
     @Final
-    @Shadow public static final SupplierRegistry<Objective> OBJECTIVE = objectives;
+    @Shadow public static final SupplierRegistry OBJECTIVE = objectives;
 
 
 
