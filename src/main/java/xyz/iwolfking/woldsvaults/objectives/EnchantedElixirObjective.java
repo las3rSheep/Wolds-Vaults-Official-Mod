@@ -59,12 +59,23 @@ public class EnchantedElixirObjective extends ElixirObjective {
                 }
             }
         }
-        if(elixirBreakpointsMap.get(listener.getPlayer().get()).isEmpty()) {
-            elixirCollectionMap.put(listener.getPlayer().get(), 0);
+        ServerPlayer listenerPlayer = listener.getPlayer().get();
+        ElixirGoal goal = (ElixirGoal)((GoalMap)this.get(GOALS)).get(listener.get(Listener.ID));
+        if(elixirBreakpointsMap != null && elixirBreakpointsMap.get(listener.getPlayer().get()) == null) {
             generateElixirBreakpointsMap(listener, false);
+            Integer currentElixir = goal.get(ElixirGoal.CURRENT);
+            for(int i = 0; i < elixirBreakpointsMap.get(listenerPlayer).size() - 1; i++) {
+                if(elixirBreakpointsMap.get(listenerPlayer).get(i) >= currentElixir) {
+                    if(i + 1 >= elixirBreakpointsMap.get(listenerPlayer).size()) {
+                        completedListeners.add(listener);
+                    }
+                    elixirCollectionMap.put(listenerPlayer, i);
+                    break;
+                }
+            }
         }
 
-        ElixirGoal goal = (ElixirGoal)((GoalMap)this.get(GOALS)).get(listener.get(Listener.ID));
+
         if(!goal.isCompleted()) {
             ServerPlayer objPlayer = listener.getPlayer().get();
             if(goal.get(ElixirGoal.CURRENT) >= elixirBreakpointsMap.get(objPlayer).get(elixirCollectionMap.get(objPlayer))) {

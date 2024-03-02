@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.objectives.data;
 import com.cursedcauldron.wildbackport.common.registry.WBMobEffects;
 import com.github.alexthe666.alexsmobs.effect.AMEffectRegistry;
 import com.github.alexthe666.alexsmobs.entity.AMEntityRegistry;
+import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
 import com.github.alexthe668.cloudstorage.entity.CSEntityRegistry;
 import iskallia.vault.core.util.WeightedList;
 import iskallia.vault.init.ModEntities;
@@ -14,6 +15,8 @@ import samebutdifferent.ecologics.registry.ModMobEffects;
 import vazkii.quark.content.mobs.module.WraithModule;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.objectives.events.*;
+import xyz.iwolfking.woldsvaults.objectives.events.unique.LaCucarachaSpecialEnchantedEvent;
+import xyz.iwolfking.woldsvaults.objectives.events.unique.PlayerSwapEnchantedEvent;
 import xyz.iwolfking.woldsvaults.objectives.lib.BasicEnchantedEvent;
 
 import java.util.List;
@@ -23,6 +26,8 @@ public class EnchantedEventsRegistry {
 
     private static final WeightedList<BasicEnchantedEvent> ENCHANTED_EVENTS = new WeightedList<>();
     private static final WeightedList<BasicEnchantedEvent> OMEGA_ENCHANTED_EVENTS = new WeightedList<>();
+    private static final WeightedList<BasicEnchantedEvent> POSITIVE_ENCHANTED_EVENTS = new WeightedList<>();
+    private static final WeightedList<BasicEnchantedEvent> NEGATIVE_ENCHANTED_EVENTS = new WeightedList<>();
 
     private static final WeightedList<BasicEnchantedEvent> SPAWN_ENTITY_ENCHANTED_EVENTS = new WeightedList<>();
     private static final WeightedList<BasicEnchantedEvent> MODIFIER_ENCHANTED_EVENTS = new WeightedList<>();
@@ -68,6 +73,7 @@ public class EnchantedEventsRegistry {
     public static final SpawnEntityEnchantedEvent ZOO_EVENT;
     public static final SpawnEntityEnchantedEvent VOID_ZOO_EVENT;
     public static final SpawnEntityEnchantedEvent DWELLER_EVENT;
+    public static final SpawnEntityEnchantedEvent LA_CUCARACHA_EVENT;
     public static final GiftItemEnchantedEvent WOLD_SANTA_BOX_EVENT;
     public static final GiftItemEnchantedEvent CONSOLATION_PRIZE;
     public static final InceptionEnchantedEvent PANDAMONIUM_EVENT;
@@ -77,6 +83,7 @@ public class EnchantedEventsRegistry {
     public static final InceptionEnchantedEvent HORDE_EVENT;
     public static final InceptionEnchantedEvent VAMPIRE_SURVIVORS;
     public static final PlayerSwapEnchantedEvent TELESWAP_EVENT;
+    public static final LaCucarachaSpecialEnchantedEvent LA_CUCARACHA_RANDOM_EVENT;
 
     public static final BuffEntityInAreaEnchantedEvent MOB_VIGOR_EVENT;
     public static final BuffEntityInAreaEnchantedEvent MOB_DOWNGRADE_EVENT;
@@ -87,69 +94,70 @@ public class EnchantedEventsRegistry {
 
     public static void addEvents() {
         //Vault Modifier events
-        register(COMMON_POSITIVE_MODIFER_EVENT, 60.0, false);
-        register(COMMON_NEGATIVE_MODIFER_EVENT, 60.0, false);
-        register(RARE_POSITIVE_MODIFER_EVENT, 35.0, false);
-        register(RARE_NEGATIVE_MODIFER_EVENT, 35.0, false);
-        register(OMEGA_POSITIVE_MODIFIER_EVENT, 6.0, true);
-        register(OMEGA_NEGATIVE_MODIFER_EVENT, 6.0, true);
-        register(OMEGA_GOD_MODIFIER_EVENT, 3.0, true);
-        register(CHAOS_MODIFIER_EVENT, 6.0, true);
-        register(MOB_ONHITS_MODIFIER_EVENT, 6.0, false);
-        register(CURSES_MODIFIER_EVENT, 1.0, true);
-        register(I_CAN_SEE_FOREVER_EVENT, 1.0, true);
-        register(HUNTERS_EVENT, 15.0, true);
-        register(CASCADING_CHESTS_MODFIER_EVENT, 10.0, true);
+        register(COMMON_POSITIVE_MODIFER_EVENT, 60.0, false, true);
+        register(COMMON_NEGATIVE_MODIFER_EVENT, 60.0, false, false);
+        register(RARE_POSITIVE_MODIFER_EVENT, 35.0, false, true);
+        register(RARE_NEGATIVE_MODIFER_EVENT, 35.0, false, false);
+        register(OMEGA_POSITIVE_MODIFIER_EVENT, 6.0, true, true);
+        register(OMEGA_NEGATIVE_MODIFER_EVENT, 6.0, true, false);
+        register(OMEGA_GOD_MODIFIER_EVENT, 3.0, true, true);
+        register(CHAOS_MODIFIER_EVENT, 6.0, true, true);
+        register(MOB_ONHITS_MODIFIER_EVENT, 6.0, false, false);
+        register(CURSES_MODIFIER_EVENT, 1.0, true, false);
+        register(I_CAN_SEE_FOREVER_EVENT, 1.0, true, true);
+        register(HUNTERS_EVENT, 12.0, true, true);
+        register(CASCADING_CHESTS_MODFIER_EVENT, 10.0, true, true);
 
         //Potion Effect events
-        register(SLIPPERY_FLOORS_EVENT, 22.0, false);
-        register(SUNBIRD_CURSE_EVENT, 12.0, false);
-        register(SUNBIRD_BLESSING_EVENT, 12.0, false);
-        register(CLINGING_EVENT, 12.0, false);
-        register(DARKNESS_EVENT, 14.0, false);
-        register(INSTAKILL_EVENT, 16.0, false);
-        register(LEVITATION_EVENT, 12.0, false);
+        register(SLIPPERY_FLOORS_EVENT, 22.0, false, false);
+        register(SUNBIRD_CURSE_EVENT, 12.0, false, false);
+        register(SUNBIRD_BLESSING_EVENT, 12.0, false, true);
+        register(CLINGING_EVENT, 12.0, false, false);
+        register(DARKNESS_EVENT, 14.0, false, false);
+        register(INSTAKILL_EVENT, 16.0, false, true);
+        register(LEVITATION_EVENT, 12.0, false, false);
 
         //Multi-Potion Effect events
-        register(BOLSTERED_EVENT, 16.0, false);
-        register(CHEMICAL_BATH_EVENT, 7.0, false);
-        register(HOLY_BLESSING_EVENT, 14.0, false);
-        register(HYPERSPEED_EVENT, 16.0, false);
+        register(BOLSTERED_EVENT, 16.0, false, true);
+        register(CHEMICAL_BATH_EVENT, 7.0, false, false);
+        register(HOLY_BLESSING_EVENT, 14.0, false, true);
+        register(HYPERSPEED_EVENT, 16.0, false, true);
 
         //Mob Spawn events
-        register(COW_EVENT, 12.0, false);
-        register(CREEPER_EVENT, 16.0, false);
-        register(ZOMBOID_EVENT, 16.0, false);
-        register(BUNFUNGUS_EVENT, 12.0, false);
-        register(ARACHNOPHOBIA_EVENT, 16.0, false);
-        register(GHOSTY_EVENT, 16.0, false);
-        register(CLOUDSTORAGE_EVENT, 16.0, false);
-        register(ZOO_EVENT, 10.0, false);
-        register(DWELLER_EVENT, 16.0, false);
-        register(VOID_ZOO_EVENT, 6.0, false);
-        register(TURTLES_EVENT, 16.0, false);
+        register(COW_EVENT, 12.0, false, false);
+        register(CREEPER_EVENT, 16.0, false, false);
+        register(ZOMBOID_EVENT, 16.0, false, false);
+        register(BUNFUNGUS_EVENT, 12.0, false, false);
+        register(ARACHNOPHOBIA_EVENT, 16.0, false, false);
+        register(GHOSTY_EVENT, 16.0, false, false);
+        register(CLOUDSTORAGE_EVENT, 16.0, false, false);
+        register(ZOO_EVENT, 10.0, false, false);
+        register(DWELLER_EVENT, 16.0, false, false);
+        register(VOID_ZOO_EVENT, 6.0, false, false);
+        register(TURTLES_EVENT, 16.0, false, false);
+        register(LA_CUCARACHA_EVENT, 4.0, true, false);
 
         //Mob Buff Events
-        register(MOB_VIGOR_EVENT, 16.0, false);
-        register(MOB_DOWNGRADE_EVENT, 16.0, false);
-        register(DISAPPEAR_MOBS_EVENT, 16.0, false);
-        register(MOB_RESISTANCE_EVENT, 16.0, false);
-        register(RANDOM_MOB_BUFFS, 16.0, false);
+        register(MOB_VIGOR_EVENT, 16.0, false, false);
+        register(MOB_DOWNGRADE_EVENT, 16.0, false, true);
+        register(DISAPPEAR_MOBS_EVENT, 16.0, false, false);
+        register(MOB_RESISTANCE_EVENT, 16.0, false, false);
+        register(RANDOM_MOB_BUFFS, 16.0, false, false);
 
         //Item Gift events
-        register(WOLD_SANTA_BOX_EVENT, 16.0, true);
-        register(CONSOLATION_PRIZE, 16.0, false);
+        register(WOLD_SANTA_BOX_EVENT, 16.0, true, true);
+        register(CONSOLATION_PRIZE, 16.0, false, true);
 
         //Inception Events
-        register(PANDAMONIUM_EVENT, 6.0, false);
-        register(HORDE_EVENT, 8.0, true);
-        register(X_RANDOM_EVENT, 8.0, true);
-        register(X_MODIFIER_RANDOM_EVENT, 8.0, true);
-        register(X_OMEGA_RANDOM_EVENT, 1.0, true);
-        register(VAMPIRE_SURVIVORS, 3.0, false);
+        register(PANDAMONIUM_EVENT, 6.0, false, false);
+        register(HORDE_EVENT, 8.0, true, false);
+        register(X_RANDOM_EVENT, 8.0, true, true);
+        register(X_MODIFIER_RANDOM_EVENT, 8.0, true, true);
+        register(X_OMEGA_RANDOM_EVENT, 1.0, true, true);
+        register(VAMPIRE_SURVIVORS, 3.0, false, true);
 
         //Unique Events
-        register(TELESWAP_EVENT, 12.0, false);
+        register(TELESWAP_EVENT, 12.0, false, false);
 
         ENCHANTED_EVENTS.forEach((basicEnchantedEvent, aDouble) -> {
             if(basicEnchantedEvent instanceof SpawnEntityEnchantedEvent) {
@@ -164,10 +172,17 @@ public class EnchantedEventsRegistry {
         });
     }
 
-    private static void register(BasicEnchantedEvent event, Double weight, boolean isOmega) {
+    private static void register(BasicEnchantedEvent event, Double weight, boolean isOmega, boolean isPositive) {
         ENCHANTED_EVENTS.add(event, weight);
         if(isOmega) {
             OMEGA_ENCHANTED_EVENTS.add(event, 1.0);
+        }
+
+        if(isPositive) {
+            POSITIVE_ENCHANTED_EVENTS.add(event, weight);
+        }
+        else {
+            NEGATIVE_ENCHANTED_EVENTS.add(event, weight);
         }
     }
 
@@ -178,6 +193,14 @@ public class EnchantedEventsRegistry {
     public static WeightedList<BasicEnchantedEvent> getOmegaEvents() {
         return OMEGA_ENCHANTED_EVENTS;
     }
+    public static WeightedList<BasicEnchantedEvent> getPositiveEvents() {
+        return POSITIVE_ENCHANTED_EVENTS;
+    }
+
+    public static WeightedList<BasicEnchantedEvent> getNegativeEvents() {
+        return NEGATIVE_ENCHANTED_EVENTS;
+    }
+
 
     static {
         COMMON_POSITIVE_MODIFER_EVENT = new VaultModifierEnchantedEvent("Common Positive", "Adds a modifier from a common pool of positive modifiers.", "#cccc00",  "basic_positive");
@@ -209,7 +232,7 @@ public class EnchantedEventsRegistry {
         BAT_EVENT = new SpawnEntityEnchantedEvent("Bat Swarm", "Bats everywhere!?", "#c2c2a3",  new WeightedList<EntityType<?>>().add(EntityType.BAT, 6.0), new WeightedList<Integer>().add(3, 10).add(6, 10));
         CREEPER_EVENT = new SpawnEntityEnchantedEvent("Jeepers Creepers", "Attack of the creepers", "#1aff66", new WeightedList<EntityType<?>>().add(ModEntities.T1_CREEPER, 6.0).add(ModEntities.T2_CREEPER, 4.0).add(ModEntities.T3_CREEPER, 2.0), new WeightedList<Integer>().add(5, 10).add(7, 10).add(8, 8));
         ZOMBOID_EVENT = new SpawnEntityEnchantedEvent("Project Zomboid", "Attack of the zombies", "#006600",  new WeightedList<EntityType<?>>().add(ModEntities.T1_ZOMBIE, 6.0).add(ModEntities.T2_ZOMBIE, 4.0).add(ModEntities.T3_ZOMBIE, 2.0), new WeightedList<Integer>().add(6, 10).add(7, 10).add(3, 6).add(9, 5));
-        BUNFUNGUS_EVENT = new SpawnEntityEnchantedEvent("Bun Bun Bunnies", "I am Joseph and I like bunnies", "#ffb3b3",  new WeightedList<EntityType<?>>().add(AMEntityRegistry.BUNFUNGUS.get(), 6.0), new WeightedList<Integer>().add(6, 10).add(7, 10).add(3, 6).add(9, 5));
+        BUNFUNGUS_EVENT = new SpawnEntityEnchantedEvent("Bunfungus Amongus", "I am Joseph and I like bunnies", "#ffb3b3",  new WeightedList<EntityType<?>>().add(AMEntityRegistry.BUNFUNGUS.get(), 6.0).add(AMEntityRegistry.MUNGUS.get(), 1.0), new WeightedList<Integer>().add(6, 10).add(7, 10).add(3, 6).add(9, 5));
         ARACHNOPHOBIA_EVENT = new SpawnEntityEnchantedEvent("Arachnophobia", "Attack of the spidders", "#0d0033",  new WeightedList<EntityType<?>>().add(ModEntities.VAULT_SPIDER, 6.0).add(ModEntities.VAULT_SPIDER_BABY, 4.0).add(ModEntities.DUNGEON_SPIDER, 2.0), new WeightedList<Integer>().add(6, 10).add(7, 10).add(8, 10));
         GHOSTY_EVENT = new SpawnEntityEnchantedEvent("Happy Halloween", "All ghost costumes this year?", "#ff471a",  new WeightedList<EntityType<?>>().add(WraithModule.wraithType, 6.0), new WeightedList<Integer>().add(8, 10).add(12, 10));
         CLOUDSTORAGE_EVENT = new SpawnEntityEnchantedEvent("Happy Clood Become Angry Clood", "You will understand my pain", "#e6ffff",  new WeightedList<EntityType<?>>().add(CSEntityRegistry.BLOVIATOR.get(), 6.0), new WeightedList<Integer>().add(1, 10).add(2, 10));
@@ -218,6 +241,7 @@ public class EnchantedEventsRegistry {
         ZOO_EVENT = new SpawnEntityEnchantedEvent("Escaped Zoo", "Who's Alex anyway?", "#85e085", new WeightedList<EntityType<?>>().add(AMEntityRegistry.CROCODILE.get(), 6.0).add(AMEntityRegistry.GORILLA.get(), 6.0).add(AMEntityRegistry.TIGER.get(), 6.0).add(AMEntityRegistry.ELEPHANT.get(), 4.0).add(AMEntityRegistry.KOMODO_DRAGON.get(), 2.0).add(AMEntityRegistry.SNOW_LEOPARD.get(), 3.0), new WeightedList<Integer>().add(6, 10).add(8, 10));
         VOID_ZOO_EVENT = new SpawnEntityEnchantedEvent("Void Invasion", "Ender what now?", "#bf00ff",  new WeightedList<EntityType<?>>().add(AMEntityRegistry.ENDERIOPHAGE.get(), 12.0).add(AMEntityRegistry.VOID_WORM.get(), 3.0).add(AMEntityRegistry.COSMIC_COD.get(), 4.0).add(AMEntityRegistry.MIMICUBE.get(), 5.0).add(ModEntities.T1_ENDERMAN, 7.0).add(ModEntities.T2_ENDERMAN, 9.0), new WeightedList<Integer>().add(6, 10).add(8, 10));
         DWELLER_EVENT = new SpawnEntityEnchantedEvent("Dweller Duel", "Attack of the dwellers", "#ff6666",  new WeightedList<EntityType<?>>().add(ModEntities.VAULT_FIGHTER_TYPES.get(1), 6.0).add(ModEntities.VAULT_FIGHTER_TYPES.get(2), 6.0).add(ModEntities.VAULT_FIGHTER_TYPES.get(3), 6.0).add(ModEntities.VAULT_FIGHTER_TYPES.get(4), 6.0), new WeightedList<Integer>().add(6, 10).add(10, 10));
+        LA_CUCARACHA_EVENT = new SpawnEntityEnchantedEvent("La Cucaracha", "Cha Cha Cha", "#ff6666",  new WeightedList<EntityType<?>>().add(AMEntityRegistry.COCKROACH.get(), 6.0), new WeightedList<Integer>().add(2, 10).add(3, 10), AMItemRegistry.MARACA.get().getDefaultInstance());
         WOLD_SANTA_BOX_EVENT = new GiftItemEnchantedEvent("Wold's Box Giveaway", "And they said I wasn't nice", "#4d94ff", new WeightedList<ItemStack>().add(new ItemStack(ModItems.SUPPLY_BOX.asItem(), 1), 4.0).add(new ItemStack(ModItems.GEM_BOX.asItem(), 1), 4.0).add(new ItemStack(iskallia.vault.init.ModItems.MOD_BOX.asItem(), 1), 4.0).add(new ItemStack(iskallia.vault.init.ModItems.MYSTERY_BOX.asItem(), 1), 4.0).add(new ItemStack(ModItems.AUGMENT_BOX), 4.0));
         CONSOLATION_PRIZE = new GiftItemEnchantedEvent("Consolation Prize", "At least you tried...", "#7979d2", new WeightedList<ItemStack>().add(new ItemStack(iskallia.vault.init.ModItems.VELVET.asItem(), 8), 4.0).add(new ItemStack(iskallia.vault.init.ModItems.ORNATE_INGOT.asItem(), 8), 4.0).add(new ItemStack(iskallia.vault.init.ModItems.GILDED_INGOT.asItem(), 8), 4.0).add(new ItemStack(iskallia.vault.init.ModItems.VAULT_MEAT.asItem(), 8), 4.0));
         PANDAMONIUM_EVENT = new InceptionEnchantedEvent("PANDAMONIUM", "Unleash the horde", "#4dffff",  SPAWN_ENTITY_ENCHANTED_EVENTS, true, 5);
@@ -227,6 +251,7 @@ public class EnchantedEventsRegistry {
         HORDE_EVENT = new InceptionEnchantedEvent("Horde Night", "3 Random Mob spawn events", "#5c5cd6",  SPAWN_ENTITY_ENCHANTED_EVENTS, true, 3);
         VAMPIRE_SURVIVORS = new InceptionEnchantedEvent("Vampire Survivors", "Grants leeching and spawns bats", "#ffc34d",  new WeightedList<BasicEnchantedEvent>().add(LEECHING_MODIFIER_EVENT, 1.0).add(BAT_EVENT, 1.0), false, 0);
         TELESWAP_EVENT = new PlayerSwapEnchantedEvent("Teleswap", "Swap places with another player", "#cc6699");
+        LA_CUCARACHA_RANDOM_EVENT = new LaCucarachaSpecialEnchantedEvent("Cockroach's Judgement", "Gives a random negative or postive event to each player.", "#eab676", 0.25F);
         MOB_VIGOR_EVENT = new BuffEntityInAreaEnchantedEvent("Mob Boost", "Gives speed and strength to nearby mobs", "#789D00", new WeightedList<MobEffectInstance>().add(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1800, 1 ), 1.0).add(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1800, 1), 1.0), true, 1, 32);
         MOB_DOWNGRADE_EVENT = new BuffEntityInAreaEnchantedEvent("Mob Downgrade", "Gives slowness and weakness to nearby mobs", "#789DCD", new WeightedList<MobEffectInstance>().add(new MobEffectInstance(MobEffects.WEAKNESS, 3600, 5 ), 1.0).add(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 3600, 5), 1.0), true, 1, 32);
         DISAPPEAR_MOBS_EVENT = new BuffEntityInAreaEnchantedEvent("Mob Invisibility", "Makes mobs in the area around you invisible", "#789DCD", new WeightedList<MobEffectInstance>().add(new MobEffectInstance(MobEffects.INVISIBILITY, 7200, 0 ), 1.0), true, 1, 32);
