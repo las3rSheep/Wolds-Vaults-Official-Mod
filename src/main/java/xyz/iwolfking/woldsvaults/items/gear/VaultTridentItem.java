@@ -87,13 +87,13 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     /*     */
     /*     */   @NotNull
     /*     */   public VaultGearClassification getClassification(ItemStack stack) {
-        /*  78 */     return VaultGearClassification.SWORD;
+        /*  78 */     return VaultGearClassification.AXE;
         /*     */   }
     /*     */
     /*     */
     /*     */   @Nonnull
     /*     */   public ProficiencyType getCraftingProficiencyType(ItemStack stack) {
-        /*  84 */     return ProficiencyType.SWORD;
+        /*  84 */     return ProficiencyType.AXE;
         /*     */   }
     /*     */
     /*     */
@@ -112,6 +112,9 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         if(enchantment.equals(Enchantments.LOYALTY) || enchantment.equals(Enchantments.RIPTIDE) || enchantment.equals(Enchantments.CHANNELING)) {
             return false;
+        }
+        else if(enchantment.equals(Enchantments.MOB_LOOTING)) {
+            return true;
         }
         else {
             return super.canApplyAtEnchantingTable(stack, enchantment);
@@ -164,9 +167,9 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        VaultGearData data = VaultGearData.read(stack);
-        float percentDecrease = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_WINDUP, VaultGearAttributeTypeMerger.floatSum());
-        return (int) (72000 * (1 - percentDecrease));
+        //VaultGearData data = VaultGearData.read(stack);
+        //float percentDecrease = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_WINDUP, VaultGearAttributeTypeMerger.floatSum());
+        return 72000;
     }
 
     @Override
@@ -176,7 +179,7 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
             VaultGearData data = VaultGearData.read(stack);
             float percentDecrease = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_WINDUP, VaultGearAttributeTypeMerger.floatSum());
             int i = this.getUseDuration(stack) - duration;
-            if (i >= (10 * percentDecrease)) {
+            if (i >= (10 * (1 -percentDecrease))) {
                 int j = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_RIPTIDE, VaultGearAttributeTypeMerger.intSum());
                 if (j <= 0 || player.isInWaterOrRain()) {
                     if (!level.isClientSide) {

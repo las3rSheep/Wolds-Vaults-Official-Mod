@@ -29,5 +29,16 @@
   "item.the_vault.scavenger_wutodic_gemstone": "Wutodic Gemstone",
   "item.the_vault.scavenger_echoing_gemstone": "Echoing Gemstone",
   "item.the_vault.scavenger_pogging_gemstone": "Pogging Gemstone",
-  "block.the_vault.sophisticated_treasure_chest": "Sophisticated Treasure Chest"
+  "block.sophisticatedstorage.treasure_chest": "Treasure Chest",
+  "block.sophisticatedstorage.wooden_chest": "Wooden Chest",
+  "block.sophisticatedstorage.ornate_chest": "Ornate Chest",
+  "block.sophisticatedstorage.gilded_chest": "Gilded Chest",
+  "block.sophisticatedstorage.living_chest": "Living Chest",
+  "block.sophisticatedstorage.hardened_chest": "Hardened Chest",
+  "block.sophisticatedstorage.flesh_chest": "Flesh Chest",
+  "block.sophisticatedstorage.enigma_chest": "Enigma Chest",
+  "block.sophisticatedstorage.altar_chest": "Altar Chest",
+  "block.sophisticatedstorage.living_strongbox": "Living Strongbox",
+  "block.sophisticatedstorage.gilded_strongbox": "Gilded Strongbox",
+  "block.sophisticatedstorage.ornate_strongbox": "Ornate Strongbox"
 }

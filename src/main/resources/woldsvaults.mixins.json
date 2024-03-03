@@ -43,14 +43,14 @@
     "MixinVaultRegistry",
     "MixinVaultWand",
     "MixinWildSpawnerTileEntity",
-    "MixinWirelessCraftingTerminalItem",
     "MixinWirelessTerminalItem",
     "ScannerModuleItemAccessor",
     "ThrownTridentAccessor"
   ],
   "client": [
     "MixinBountyScreen",
-    "MixinThrownTridentRenderer"
+    "MixinThrownTridentRenderer",
+    "VaultChestRendererAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

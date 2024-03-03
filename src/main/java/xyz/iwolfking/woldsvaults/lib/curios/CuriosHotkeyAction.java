@@ -24,7 +24,6 @@ public record CuriosHotkeyAction(Predicate<ItemStack> locatable,
        for(int i =0; i < handler.getSlots(); i++) {
            if(locatable.test(handler.getStackInSlot(i))) {
                if(opener.open(player, i)) {
-                   System.out.println("opened curio");
                    return true;
                }
            }
