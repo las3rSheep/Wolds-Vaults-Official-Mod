@@ -1,0 +1,15 @@
+{
+  "parent": "sophisticatedstorage:barrel",
+  "textures": {
+    "top": {
+      "base": "sophisticatedstorage:block/chromatic_barrel_top",
+      "base_open": "sophisticatedstorage:block/chromatic_barrel_top_open"
+    },
+    "side": {
+      "base": "sophisticatedstorage:block/chromatic_barrel_side"
+    },
+    "bottom": {
+      "base": "sophisticatedstorage:block/chromatic_barrel_bottom"
+    }
+  }
+}

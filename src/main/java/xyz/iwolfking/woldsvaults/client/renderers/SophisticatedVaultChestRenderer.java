@@ -85,11 +85,12 @@ public class SophisticatedVaultChestRenderer implements BlockEntityRenderer<Soph
 
             Material tierMaterial = this.getTierMaterial(blockstate.getBlock());
             vertexconsumer = tierMaterial.buffer(bufferSource, RenderType::entityCutout);
-            this.renderBottomAndLid(poseStack, vertexconsumer, lidAngle, packedLight, packedOverlay);
-            if (storageWrapper.getRenderInfo().getItemDisplayRenderInfo().getDisplayItem().isEmpty()) {
-                this.renderLock(poseStack, vertexconsumer, lidAngle, packedLight, packedOverlay);
-            }
+            //this.renderBottomAndLid(poseStack, vertexconsumer, lidAngle, packedLight, packedOverlay);
+//            if (storageWrapper.getRenderInfo().getItemDisplayRenderInfo().getDisplayItem().isEmpty()) {
+//                this.renderLock(poseStack, vertexconsumer, lidAngle, packedLight, packedOverlay);
+//            }
             model.setLidAngle(lidAngle);
+
             model.renderToBuffer(poseStack, vertexconsumer, packedLight, packedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
             poseStack.popPose();
             if (chestEntity.isPacked()) {
@@ -100,7 +101,7 @@ public class SophisticatedVaultChestRenderer implements BlockEntityRenderer<Soph
                 this.renderBottomAndLid(poseStack, consumer, lidAngle, packedLight, packedOverlay);
                 poseStack.popPose();
             } else if (this.shouldRenderDisplayItem(chestEntity.getBlockPos())) {
-                LockRenderer.renderLock(chestEntity, facing, poseStack, bufferSource, packedLight, packedOverlay, 0.3125F, 0.6375F);
+                LockRenderer.renderLock(chestEntity, facing, poseStack, bufferSource, packedLight, packedOverlay, 0.3125F, 0.581875F);
                 this.displayItemRenderer.renderDisplayItem(chestEntity, poseStack, bufferSource, packedLight, packedOverlay);
             }
 

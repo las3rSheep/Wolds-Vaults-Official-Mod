@@ -1,0 +1,15 @@
+{
+  "parent": "sophisticatedstorage:barrel",
+  "textures": {
+    "top": {
+      "base": "sophisticatedstorage:block/driftwood_barrel_top",
+      "base_open": "sophisticatedstorage:block/driftwood_barrel_top_open"
+    },
+    "side": {
+      "base": "sophisticatedstorage:block/driftwood_barrel_side"
+    },
+    "bottom": {
+      "base": "sophisticatedstorage:block/driftwood_barrel_bottom"
+    }
+  }
+}

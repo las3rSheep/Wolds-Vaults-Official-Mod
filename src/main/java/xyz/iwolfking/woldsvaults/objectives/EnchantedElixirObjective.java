@@ -113,7 +113,7 @@ public class EnchantedElixirObjective extends ElixirObjective {
 
     private void generateElixirBreakpointsMap(Listener listener, boolean sendMessage) {
         Random random = new Random();
-        int numberOfBreakpoints = random.nextInt(10, 24);
+        int numberOfBreakpoints = random.nextInt(10, 25);
         if(listener.getPlayer().isPresent()) {
             ElixirGoal goal = (ElixirGoal)((GoalMap)this.get(GOALS)).get(listener.get(Listener.ID));
             List<Float> elixirBreakPointsList = new ArrayList<>();
@@ -127,7 +127,7 @@ public class EnchantedElixirObjective extends ElixirObjective {
                 return;
             }
 
-            if(numberOfBreakpoints > 10 && numberOfBreakpoints < 15) {
+            if(numberOfBreakpoints >= 10 && numberOfBreakpoints < 15) {
                 listener.getPlayer().ifPresent(serverPlayer -> {
                     serverPlayer.displayClientMessage(new TextComponent("You will experience a low number of random events this vault!").withStyle(ChatFormatting.YELLOW), false);
                 });

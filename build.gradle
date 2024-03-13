@@ -199,6 +199,8 @@ dependencies {
     implementation fg.deobf('curse.maven:cofh-core-69162:4801048')
     implementation fg.deobf('curse.maven:sophisticated-storage-619320:4489823')
     implementation fg.deobf('curse.maven:sophisticated-core-618298:4489807')
+    compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
+    runtimeOnly "curse.maven:citadel4-331936:3683009"
     // compile against the JEI API but do not include it at runtime
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
     // at runtime, use the full JEI jar for Forge

@@ -131,7 +131,7 @@ public class EnchantedEventsRegistry {
         register(ARACHNOPHOBIA_EVENT, 16.0, false, false);
         register(GHOSTY_EVENT, 16.0, false, false);
         register(CLOUDSTORAGE_EVENT, 16.0, false, false);
-        register(ZOO_EVENT, 10.0, false, false);
+        register(ZOO_EVENT, 60000.0, false, false);
         register(DWELLER_EVENT, 16.0, false, false);
         register(VOID_ZOO_EVENT, 6.0, false, false);
         register(TURTLES_EVENT, 16.0, false, false);
@@ -226,7 +226,7 @@ public class EnchantedEventsRegistry {
         INSTAKILL_EVENT = new PotionEffectEnchantedEvent("Insta-Kill", "Grants strength x 255", "#ff8c1a",   MobEffects.DAMAGE_BOOST, 600 , 255);
         HYPERSPEED_EVENT = new MultiPotionEffectEnchantedEvent("Hyper-Speed", "Grants speed x 10", "#e6e600",   List.of(MobEffects.MOVEMENT_SPEED, MobEffects.DIG_SPEED), 900, 9);
         BOLSTERED_EVENT = new MultiPotionEffectEnchantedEvent("Barricade", "I feel a lot tougher!", "#804000",  List.of(MobEffects.DAMAGE_RESISTANCE, MobEffects.FIRE_RESISTANCE), 900, 2);
-        CHEMICAL_BATH_EVENT = new MultiPotionEffectEnchantedEvent("Chemical Bath", "A nasty brew of potion effects!", "#333300", List.of(MobEffects.POISON, MobEffects.WITHER, MobEffects.HUNGER, MobEffects.REGENERATION, MobEffects.WEAKNESS, MobEffects.GLOWING, AMEffectRegistry.BUG_PHEROMONES, MobEffects.BLINDNESS), 300, 1);
+        CHEMICAL_BATH_EVENT = new MultiPotionEffectEnchantedEvent("Chemical Bath", "A nasty brew of potion effects!", "#333300", List.of(MobEffects.POISON, MobEffects.WITHER, MobEffects.HUNGER, MobEffects.REGENERATION, MobEffects.WEAKNESS, MobEffects.GLOWING, AMEffectRegistry.BUG_PHEROMONES, MobEffects.BLINDNESS, MobEffects.ABSORPTION, MobEffects.CONFUSION), 300, 1);
         HOLY_BLESSING_EVENT = new MultiPotionEffectEnchantedEvent("Holy Blessing", "A myriad of positive potion effects!", "#ffd966", List.of(MobEffects.GLOWING, MobEffects.REGENERATION, MobEffects.SATURATION, MobEffects.DAMAGE_RESISTANCE, MobEffects.DAMAGE_BOOST, MobEffects.DIG_SPEED, MobEffects.MOVEMENT_SPEED, MobEffects.NIGHT_VISION, MobEffects.FIRE_RESISTANCE), 600, 4);
         COW_EVENT = new SpawnEntityEnchantedEvent("Barnyard Bash", "Attack of the cows", "#666633", new WeightedList<EntityType<?>>().add(ModEntities.AGGRESSIVE_COW, 6.0), new WeightedList<Integer>().add(4, 15).add(6, 12).add(8, 10));
         BAT_EVENT = new SpawnEntityEnchantedEvent("Bat Swarm", "Bats everywhere!?", "#c2c2a3",  new WeightedList<EntityType<?>>().add(EntityType.BAT, 6.0), new WeightedList<Integer>().add(3, 10).add(6, 10));

@@ -32,6 +32,8 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Float> CHANNELING_CHANCE = attr("trident_channeling_chance",
             /* 177 */       VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), (VaultGearModifierReader)ModGearAttributeReaders.percentageReader("Channeling Chance", 12925893), (VaultGearAttributeComparator<Float>)VaultGearAttributeComparator.floatComparator());
 
+    public static final VaultGearAttribute<Boolean> MAGNET_ENDERGIZED = attr("endergized",
+            /* 121 */       VaultGearAttributeType.booleanType(), (ConfigurableAttributeGenerator<Boolean, ?>)ModGearAttributeGenerators.booleanFlag(), (VaultGearModifierReader<Boolean>)ModGearAttributeReaders.booleanReader("Endergized", 46276), VaultGearAttributeComparator.booleanComparator());
     /*     */
     /*     */
     @SubscribeEvent
@@ -42,6 +44,7 @@ public class ModGearAttributes {
                       registry.register(TRIDENT_WINDUP);
                       registry.register(TRIDENT_CHANNELING);
                       registry.register(CHANNELING_CHANCE);
+                      registry.register(MAGNET_ENDERGIZED);
         /*     */   }
     /*     */
     /*     */   public static void registerVanillaAssociations() {

@@ -40,5 +40,11 @@
   "block.sophisticatedstorage.altar_chest": "Altar Chest",
   "block.sophisticatedstorage.living_strongbox": "Living Strongbox",
   "block.sophisticatedstorage.gilded_strongbox": "Gilded Strongbox",
-  "block.sophisticatedstorage.ornate_strongbox": "Ornate Strongbox"
+  "block.sophisticatedstorage.ornate_strongbox": "Ornate Strongbox",
+  "wood_name.sophisticatedstorage.vault_wooden_planks": "Vault Wood",
+  "wood_name.sophisticatedstorage.overgrown": "Overgrown",
+  "wood_name.sophisticatedstorage.chromatic": "Chromatic",
+  "wood_name.sophisticatedstorage.driftwood": "Driftwood",
+  "wood_name.sophisticatedstorage.tenos": "Tenos",
+  "wood_name.sophisticatedstorage.velara": "Velara"
 }

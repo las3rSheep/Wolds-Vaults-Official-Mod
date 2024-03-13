@@ -49,7 +49,7 @@ public enum VaultCakeBlockScannerModule implements BlockScannerModule {
     @OnlyIn(Dist.CLIENT)
     @Override
     public float adjustLocalRange(final float range) {
-        return range * Constants.ORE_MODULE_RADIUS_MULTIPLIER;
+        return range * 0.7F;
     }
 
     @OnlyIn(Dist.CLIENT)

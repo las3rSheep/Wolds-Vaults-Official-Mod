@@ -8,7 +8,6 @@ import li.cil.scannable.client.scanning.ScanResultProviders;
 import li.cil.scannable.client.scanning.filter.BlockCacheScanFilter;
 import li.cil.scannable.client.scanning.filter.BlockScanFilter;
 import li.cil.scannable.client.scanning.filter.BlockTagScanFilter;
-import li.cil.scannable.common.config.Constants;
 import net.minecraft.Util;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -69,7 +68,7 @@ public enum VaultOresBlockScannerModule implements BlockScannerModule {
     @OnlyIn(Dist.CLIENT)
     @Override
     public float adjustLocalRange(final float range) {
-        return range * Constants.ORE_MODULE_RADIUS_MULTIPLIER;
+        return range * 0.7F;
     }
 
     @OnlyIn(Dist.CLIENT)
