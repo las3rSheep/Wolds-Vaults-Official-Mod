@@ -43,14 +43,16 @@
 //import top.theillusivec4.curios.api.SlotContext;
 //import top.theillusivec4.curios.api.type.ISlotType;
 //import top.theillusivec4.curios.api.type.capability.ICurioItem;
+//import xyz.iwolfking.woldsvaults.config.VaultAmuletConfig;
+//import xyz.iwolfking.woldsvaults.items.gear.amulet.VaultAmuletEffect;
 //
 //import javax.annotation.Nonnull;
 //import java.util.*;
 //
 //public class VaultAmuletItem extends BasicItem implements ICurioItem, DataTransferItem, IdentifiableItem, RecyclableItem {
-//    CharmConfig.Size size;
+//    VaultAmuletConfig.Size size;
 //
-//    public VaultAmuletItem(ResourceLocation id, CharmConfig.Size size) {
+//    public VaultAmuletItem(ResourceLocation id, VaultAmuletConfig.Size size) {
 //        super(id, (new Item.Properties()).tab(ModItems.GEAR_GROUP).stacksTo(1));
 //        this.size = size;
 //    }
@@ -78,17 +80,11 @@
 //    }
 //
 //    public int getColor() {
-//        if (this == ModItems.SMALL_CHARM) {
-//            return 11110389;
-//        } else if (this == ModItems.LARGE_CHARM) {
-//            return 8935924;
-//        } else {
-//            return this == ModItems.GRAND_CHARM ? 7551734 : 5640437;
-//        }
+//        return 11110389;
 //    }
 //
-//    public static Optional<CharmEffect<?>> getCharm(ItemStack stack) {
-//        if (!stack.isEmpty() && stack.getItem() instanceof CharmItem) {
+//    public static Optional<VaultAmuletEffect> getCharm(ItemStack stack) {
+//        if (!stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem) {
 //            AttributeGearData data = AttributeGearData.read(stack);
 //            return data.getFirstValue(ModGearAttributes.CHARM_EFFECT);
 //        } else {
@@ -97,7 +93,7 @@
 //    }
 //
 //    public static int getUses(ItemStack stack) {
-//        return !stack.isEmpty() && stack.getItem() instanceof CharmItem ? stack.getOrCreateTag().getInt("vaultUses") : 0;
+//        return !stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem ? stack.getOrCreateTag().getInt("vaultUses") : 0;
 //    }
 //
 //    public static void setUses(ItemStack stack, int uses) {
@@ -115,17 +111,17 @@
 //    }
 //
 //    public static float getValue(ItemStack stack) {
-//        return !stack.isEmpty() && stack.getItem() instanceof CharmItem ? stack.getOrCreateTag().getFloat("charmValue") : 0.0F;
+//        return !stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem ? stack.getOrCreateTag().getFloat("charmValue") : 0.0F;
 //    }
 //
 //    public static void setValue(ItemStack stack, float value) {
-//        if (!stack.isEmpty() && stack.getItem() instanceof CharmItem) {
+//        if (!stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem) {
 //            stack.getOrCreateTag().putFloat("charmValue", value);
 //        }
 //    }
 //
 //    public static boolean hasUsesLeft(ItemStack stack) {
-//        if (!stack.isEmpty() && stack.getItem() instanceof CharmItem) {
+//        if (!stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem) {
 //            return getUses(stack) > getUsedVaults(stack).size();
 //        } else {
 //            return false;
@@ -133,7 +129,7 @@
 //    }
 //
 //    public static List<UUID> getUsedVaults(ItemStack stack) {
-//        if (!stack.isEmpty() && stack.getItem() instanceof CharmItem) {
+//        if (!stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem) {
 //            ListTag list = stack.getOrCreateTag().getList("usedVaults", 10);
 //            List<UUID> ids = new ArrayList();
 //
@@ -151,7 +147,7 @@
 //    }
 //
 //    public static void addUsedVault(ItemStack stack, UUID vaultId) {
-//        if (!stack.isEmpty() && stack.getItem() instanceof CharmItem) {
+//        if (!stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem) {
 //            ListTag list = stack.getOrCreateTag().getList("usedVaults", 10);
 //            CompoundTag tag = new CompoundTag();
 //            tag.putUUID("id", vaultId);
@@ -161,7 +157,7 @@
 //    }
 //
 //    public static void addFreeUsedVault(ItemStack stack, UUID vaultId) {
-//        if (!stack.isEmpty() && stack.getItem() instanceof CharmItem) {
+//        if (!stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem) {
 //            ListTag list = stack.getOrCreateTag().getList("freeUsedVaults", 10);
 //            CompoundTag tag = new CompoundTag();
 //            tag.putUUID("id", vaultId);
@@ -171,11 +167,11 @@
 //    }
 //
 //    public static boolean isUsableInVault(ItemStack stack, UUID vaultId) {
-//        return !stack.isEmpty() && stack.getItem() instanceof CharmItem && vaultId != null;
+//        return !stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem && vaultId != null;
 //    }
 //
 //    public static boolean isIdentified(ItemStack stack) {
-//        if (!stack.isEmpty() && stack.getItem() instanceof CharmItem) {
+//        if (!stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem) {
 //            AttributeGearData data = AttributeGearData.read(stack);
 //            return data.getFirstValue(ModGearAttributes.STATE).orElse(VaultGearState.UNIDENTIFIED) == VaultGearState.IDENTIFIED;
 //        } else {
@@ -192,19 +188,19 @@
 //
 //    public Component getName(ItemStack stack) {
 //        return (Component)(!isIdentified(stack) ? (new TextComponent("Unidentified ")).withStyle(Style.EMPTY.withColor(this.getColor())).append(super.getName(stack).copy()) : (Component)getCharm(stack).map((effect) -> {
-//            CharmConfig.Charm cfg = effect.getCharmConfig();
+//            VaultAmuletConfig.Charm cfg = effect.getCharmConfig();
 //            TextComponent cmp = new TextComponent(cfg.getName());
 //            cmp.withStyle(Style.EMPTY.withColor(cfg.getComponentColor()));
 //            return cmp;
 //        }).orElseGet(() -> {
-//            return super.getName(stack);
+//            return (TextComponent) super.getName(stack);
 //        }));
 //    }
 //
 //    public static String getParticleLoc(ItemStack stack) {
 //        return !isIdentified(stack) ? null : (String)getCharm(stack).map((effect) -> {
 //            return effect.getCharmConfig().getParticleLoc();
-//        }).orElse((Object)null);
+//        }).orElse((String) null);
 //    }
 //
 //    @OnlyIn(Dist.CLIENT)
@@ -224,7 +220,7 @@
 //        });
 //        MutableComponent slotsTooltip = (new TranslatableComponent("curios.slot")).append(": ").withStyle(ChatFormatting.GOLD);
 //        MutableComponent type = new TranslatableComponent("curios.identifier.charm");
-//        MutableComponent type = type.withStyle(ChatFormatting.YELLOW);
+//        type = type.withStyle(ChatFormatting.YELLOW);
 //        slotsTooltip.append(type);
 //        tooltip.add(slotsTooltip);
 //    }
@@ -261,8 +257,8 @@
 //    public void tickRoll(ItemStack stack, Player player) {
 //        AttributeGearData data = AttributeGearData.read(stack);
 //        Item var6 = stack.getItem();
-//        if (var6 instanceof CharmItem charmItem) {
-//            CharmEffect<?> randomTrinket = ModConfigs.CHARM.getRandomTrinketSet(charmItem.size);
+//        if (var6 instanceof VaultAmuletItem charmItem) {
+//            VaultAmuletEffect<?> randomTrinket = ModConfigs.CHARM.getRandomTrinketSet(charmItem.size);
 //            if (randomTrinket != null) {
 //                data.updateAttribute(ModGearAttributes.CHARM_EFFECT, randomTrinket);
 //            }
@@ -273,9 +269,9 @@
 //
 //    public void tickFinishRoll(ItemStack stack, Player player) {
 //        AttributeGearData data = AttributeGearData.read(stack);
-//        Optional<CharmEffect<?>> optCharmEffect = data.getFirstValue(ModGearAttributes.CHARM_EFFECT);
+//        Optional<VaultAmuletEffect<?>> optCharmEffect = data.getFirstValue(ModGearAttributes.CHARM_EFFECT);
 //        if (optCharmEffect.isPresent()) {
-//            CharmEffect<?> trinketEffect = (CharmEffect)optCharmEffect.get();
+//            VaultAmuletEffect<?> trinketEffect = (VaultAmuletEffect)optCharmEffect.get();
 //            setUses(stack, trinketEffect.getCharmConfig().getRandomUses());
 //            setValue(stack, (float)trinketEffect.getCharmConfig().getRandomAffinity() / 100.0F);
 //            data.updateAttribute(ModGearAttributes.STATE, VaultGearState.IDENTIFIED);
@@ -293,7 +289,7 @@
 //
 //    public void curioTick(SlotContext slotContext, ItemStack stack) {
 //        if (isIdentified(stack)) {
-//            super.curioTick(slotContext, stack);
+//            ICurioItem.super.curioTick(slotContext, stack);
 //        }
 //    }
 //
@@ -302,12 +298,12 @@
 //            getCharm(stack).ifPresent((trinketEffect) -> {
 //                trinketEffect.onEquip(slotContext.entity(), stack);
 //            });
-//            super.onEquip(slotContext, prevStack, stack);
+//            ICurioItem.super.onEquip(slotContext, prevStack, stack);
 //        }
 //    }
 //
 //    public void onEquipFromUse(SlotContext slotContext, ItemStack stack) {
-//        super.onEquipFromUse(slotContext, stack);
+//        ICurioItem.super.onEquipFromUse(slotContext, stack);
 //    }
 //
 //    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
@@ -325,7 +321,7 @@
 //            if (!slot.equals(slotContext.identifier())) {
 //                return false;
 //            } else {
-//                return CuriosApi.getSlotHelper() != null && !(Boolean)CuriosApi.getSlotHelper().getSlotType(slot).map(ISlotType::isVisible).orElse(false) ? false : super.canEquip(slotContext, stack);
+//                return (CuriosApi.getSlotHelper() == null || (Boolean) CuriosApi.getSlotHelper().getSlotType(slot).map(ISlotType::isVisible).orElse(false)) && super.canEquip(slotContext, stack);
 //            }
 //        }
 //    }
@@ -335,7 +331,7 @@
 //            getCharm(stack).ifPresent((trinketEffect) -> {
 //                trinketEffect.onUnEquip(slotContext.entity(), stack);
 //            });
-//            super.onUnequip(slotContext, newStack, stack);
+//            ICurioItem.super.onUnequip(slotContext, newStack, stack);
 //        }
 //    }
 //
@@ -347,7 +343,7 @@
 //            }
 //        }
 //
-//        return super.canUnequip(slotContext, stack);
+//        return ICurioItem.super.canUnequip(slotContext, stack);
 //    }
 //
 //    public Optional<UUID> getUuid(ItemStack stack) {

@@ -44,12 +44,14 @@
     "MixinVaultGearWorkbenchConfig",
     "MixinVaultMagnet",
     "MixinVaultRegistry",
+    "MixinVaultShieldItem",
     "MixinVaultWand",
     "MixinWildSpawnerTileEntity",
     "MixinWirelessTerminalItem",
     "MixinWoodenStorageBlockBase",
     "ScannerModuleItemAccessor",
-    "ThrownTridentAccessor"
+    "ThrownTridentAccessor",
+    "VaultAltarTileEntityAccessor"
   ],
   "client": [
     "MixinBountyScreen",

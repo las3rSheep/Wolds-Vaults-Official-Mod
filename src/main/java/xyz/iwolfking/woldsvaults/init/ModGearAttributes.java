@@ -36,6 +36,7 @@ public class ModGearAttributes {
             /* 121 */       VaultGearAttributeType.booleanType(), (ConfigurableAttributeGenerator<Boolean, ?>)ModGearAttributeGenerators.booleanFlag(), (VaultGearModifierReader<Boolean>)ModGearAttributeReaders.booleanReader("Endergized", 46276), VaultGearAttributeComparator.booleanComparator());
     /*     */
     /*     */
+    //public static final VaultGearAttribute<VaultAmuletEffect<?>> VAULT_AMULET_EFFECT = attr("amulet", VaultGearAttributeType.registryType(VaultAmuletEffectRegistry.getRegistry()), ModGearAttributeGenerators.noneGenerator(), ModGearAttributeReaders.none());
     @SubscribeEvent
     /*     */   public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
         /* 326 */     IForgeRegistry<VaultGearAttribute<?>> registry = event.getRegistry();

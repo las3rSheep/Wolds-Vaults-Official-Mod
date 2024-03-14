@@ -33,8 +33,8 @@ public class RunningShoesTrinketEffect extends TrinketEffect<PotionEffectTrinket
     }
 
     public List<VaultGearAttributeInstance<?>> getAttributes() {
-        PotionEffectTrinket.Config cfg = (PotionEffectTrinket.Config)this.getConfig();
-        return Lists.newArrayList(new VaultGearAttributeInstance[]{new VaultGearAttributeInstance(ModGearAttributes.EFFECT, new EffectGearAttribute(cfg.getEffect(), cfg.getAddedAmplifier())),new VaultGearAttributeInstance<>(ModGearAttributes.MOVEMENT_SPEED, 2.0F)});
+        iskallia.vault.gear.trinket.effects.PotionEffectTrinket.Config cfg = (iskallia.vault.gear.trinket.effects.PotionEffectTrinket.Config)this.getConfig();
+        return Lists.newArrayList(new VaultGearAttributeInstance[]{new VaultGearAttributeInstance(ModGearAttributes.EFFECT, new EffectGearAttribute(cfg.getEffect(), cfg.getAddedAmplifier())), new VaultGearAttributeInstance<>(ModGearAttributes.MOVEMENT_SPEED, 2.0F)});
     }
 
     public static class Config extends TrinketEffect.Config {

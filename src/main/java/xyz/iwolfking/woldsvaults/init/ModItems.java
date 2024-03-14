@@ -5,11 +5,13 @@ import iskallia.vault.item.BasicScavengerItem;
 import iskallia.vault.item.ItemVaultCrystalSeal;
 import iskallia.vault.item.LootableItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.items.AltarResetItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultBattleStaffItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultTridentItem;
 
@@ -38,6 +40,8 @@ public class ModItems {
     public static BasicScavengerItem WUTODIC_GEMSTONE;
     public static BasicScavengerItem ECHOING_GEMSTONE;
     public static BasicScavengerItem POGGING_GEMSTONE;
+
+    public static final AltarResetItem ALTAR_DECATALYZER;
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
@@ -54,6 +58,7 @@ public class ModItems {
         registry.register(WUTODIC_GEMSTONE);
         registry.register(ECHOING_GEMSTONE);
         registry.register(POGGING_GEMSTONE);
+        registry.register(ALTAR_DECATALYZER);
        // registry.register(BOW);
 
     }
@@ -72,6 +77,7 @@ public class ModItems {
         WUTODIC_GEMSTONE = new BasicScavengerItem("wutodic_gemstone");
         ECHOING_GEMSTONE = new BasicScavengerItem("echoing_gemstone");
         POGGING_GEMSTONE = new BasicScavengerItem("pogging_gemstone");
+        ALTAR_DECATALYZER = new AltarResetItem(VaultMod.id("altar_recatalyzer"), (new Item.Properties().tab(VAULT_MOD_GROUP).rarity(Rarity.RARE)));
         //BOW = new VaultBowItem(VaultMod.id("bow"), (new Item.Properties().tab(GEAR_GROUP).stacksTo(1)));
     }
 }
