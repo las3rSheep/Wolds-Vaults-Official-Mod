@@ -46,6 +46,7 @@ public class ModGearAttributes {
                       registry.register(TRIDENT_CHANNELING);
                       registry.register(CHANNELING_CHANCE);
                       registry.register(MAGNET_ENDERGIZED);
+                      //registry.register(VAULT_AMULET_EFFECT);
         /*     */   }
     /*     */
     /*     */   public static void registerVanillaAssociations() {

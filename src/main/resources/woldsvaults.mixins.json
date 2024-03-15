@@ -9,6 +9,7 @@
     "HostileDataModelMixin",
     "HostileEventsMixin",
     "MixinAnvilEvents",
+    "MixinBalloonBuddyEntity",
     "MixinBetterCombatAttackRange",
     "MixinClassicListenersLogic",
     "MixinCofhEnchantment",

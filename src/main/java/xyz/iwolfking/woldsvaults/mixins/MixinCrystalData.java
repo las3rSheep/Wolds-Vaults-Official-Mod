@@ -9,7 +9,7 @@ import xyz.iwolfking.woldsvaults.objectives.EnchantedElixirCrystalObjective;
 import xyz.iwolfking.woldsvaults.objectives.HauntedBraziersCrystalObjective;
 import xyz.iwolfking.woldsvaults.objectives.UnhingedScavengerCrystalObjective;
 
-@Mixin(CrystalData.class)
+@Mixin(value = CrystalData.class, remap = false)
 public class MixinCrystalData
 {
 

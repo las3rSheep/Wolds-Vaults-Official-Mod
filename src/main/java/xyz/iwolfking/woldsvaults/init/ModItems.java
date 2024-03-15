@@ -17,7 +17,8 @@ import xyz.iwolfking.woldsvaults.items.gear.VaultTridentItem;
 
 import java.util.Random;
 
-import static iskallia.vault.init.ModItems.*;
+import static iskallia.vault.init.ModItems.GEAR_GROUP;
+import static iskallia.vault.init.ModItems.VAULT_MOD_GROUP;
 
 @Mod.EventBusSubscriber(modid = WoldsVaults.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModItems {
@@ -31,6 +32,8 @@ public class ModItems {
    // public static VaultBowItem BOW;
 
     public static VaultTridentItem TRIDENT;
+
+    //public static VaultAmuletItem VAULT_AMULET;
 
     public static LootableItem GEM_BOX;
     public static LootableItem SUPPLY_BOX;
@@ -59,6 +62,7 @@ public class ModItems {
         registry.register(ECHOING_GEMSTONE);
         registry.register(POGGING_GEMSTONE);
         registry.register(ALTAR_DECATALYZER);
+        //registry.register(VAULT_AMULET);
        // registry.register(BOW);
 
     }
@@ -78,6 +82,7 @@ public class ModItems {
         ECHOING_GEMSTONE = new BasicScavengerItem("echoing_gemstone");
         POGGING_GEMSTONE = new BasicScavengerItem("pogging_gemstone");
         ALTAR_DECATALYZER = new AltarResetItem(VaultMod.id("altar_recatalyzer"), (new Item.Properties().tab(VAULT_MOD_GROUP).rarity(Rarity.RARE)));
+        //VAULT_AMULET = new VaultAmuletItem(VaultMod.id("amulet"), VaultAmuletConfig.Size.SMALL);
         //BOW = new VaultBowItem(VaultMod.id("bow"), (new Item.Properties().tab(GEAR_GROUP).stacksTo(1)));
     }
 }

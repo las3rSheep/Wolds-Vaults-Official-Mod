@@ -126,6 +126,10 @@ public class MixinShopPedestalBlock extends Block implements EntityBlock, GameMa
     }
 
 
+    /**
+     * @author iwolfking
+     * @reason Could not tell you to be honest, but I'm not touching it
+     */
     @Overwrite
     @Nullable
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {

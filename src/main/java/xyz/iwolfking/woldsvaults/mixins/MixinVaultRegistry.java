@@ -10,7 +10,7 @@ import xyz.iwolfking.woldsvaults.objectives.EnchantedElixirObjective;
 import xyz.iwolfking.woldsvaults.objectives.HauntedBraziersObjective;
 import xyz.iwolfking.woldsvaults.objectives.UnhingedScavengerObjective;
 
-@Mixin(VaultRegistry.class)
+@Mixin(value = VaultRegistry.class, remap = false)
 public class MixinVaultRegistry {
 
     private static final SupplierRegistry objectives = new SupplierRegistry()

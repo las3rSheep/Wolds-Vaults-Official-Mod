@@ -13,6 +13,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import samebutdifferent.ecologics.registry.ModMobEffects;
 import vazkii.quark.content.mobs.module.WraithModule;
+import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.objectives.events.*;
 import xyz.iwolfking.woldsvaults.objectives.events.unique.LaCucarachaSpecialEnchantedEvent;
@@ -54,6 +55,7 @@ public class EnchantedEventsRegistry {
     public static final PotionEffectEnchantedEvent DARKNESS_EVENT;
     public static final PotionEffectEnchantedEvent INSTAKILL_EVENT;
     public static final PotionEffectEnchantedEvent LEVITATION_EVENT;
+    public static final PotionEffectEnchantedEvent SHRINKING_EVENT;
 
     public static final MultiPotionEffectEnchantedEvent BOLSTERED_EVENT;
     public static final MultiPotionEffectEnchantedEvent CHEMICAL_BATH_EVENT;
@@ -90,6 +92,8 @@ public class EnchantedEventsRegistry {
     public static final BuffEntityInAreaEnchantedEvent DISAPPEAR_MOBS_EVENT;
     public static final BuffEntityInAreaEnchantedEvent MOB_RESISTANCE_EVENT;
     public static final BuffEntityInAreaEnchantedEvent RANDOM_MOB_BUFFS;
+    public static final BuffEntityInAreaEnchantedEvent MOB_MINIMIZER_EVENT;
+    public static final BuffEntityInAreaEnchantedEvent MOB_MAXIMIZER_EVENT;
 
 
     public static void addEvents() {
@@ -116,6 +120,7 @@ public class EnchantedEventsRegistry {
         register(DARKNESS_EVENT, 14.0, false, false);
         register(INSTAKILL_EVENT, 16.0, false, true);
         register(LEVITATION_EVENT, 12.0, false, false);
+        register(SHRINKING_EVENT, 6.0, false, false);
 
         //Multi-Potion Effect events
         register(BOLSTERED_EVENT, 16.0, false, true);
@@ -131,7 +136,7 @@ public class EnchantedEventsRegistry {
         register(ARACHNOPHOBIA_EVENT, 16.0, false, false);
         register(GHOSTY_EVENT, 16.0, false, false);
         register(CLOUDSTORAGE_EVENT, 16.0, false, false);
-        register(ZOO_EVENT, 60000.0, false, false);
+        register(ZOO_EVENT, 5.0, false, false);
         register(DWELLER_EVENT, 16.0, false, false);
         register(VOID_ZOO_EVENT, 6.0, false, false);
         register(TURTLES_EVENT, 16.0, false, false);
@@ -143,6 +148,8 @@ public class EnchantedEventsRegistry {
         register(DISAPPEAR_MOBS_EVENT, 16.0, false, false);
         register(MOB_RESISTANCE_EVENT, 16.0, false, false);
         register(RANDOM_MOB_BUFFS, 16.0, false, false);
+        register(MOB_MINIMIZER_EVENT, 6.0, false, false);
+        register(MOB_MAXIMIZER_EVENT, 8.0, false, false);
 
         //Item Gift events
         register(WOLD_SANTA_BOX_EVENT, 16.0, true, true);
@@ -257,5 +264,8 @@ public class EnchantedEventsRegistry {
         DISAPPEAR_MOBS_EVENT = new BuffEntityInAreaEnchantedEvent("Mob Invisibility", "Makes mobs in the area around you invisible", "#789DCD", new WeightedList<MobEffectInstance>().add(new MobEffectInstance(MobEffects.INVISIBILITY, 7200, 0 ), 1.0), true, 1, 32);
         MOB_RESISTANCE_EVENT = new BuffEntityInAreaEnchantedEvent("Mob Resistance", "Makes mobs in the area around you much tougher", "#789DCD", new WeightedList<MobEffectInstance>().add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 3600, 5 ), 1.0), true, 1, 32);
         RANDOM_MOB_BUFFS = new BuffEntityInAreaEnchantedEvent("Random Mob Buffs", "Grants random potion effects to nearby mobs", "#789DCD", new WeightedList<MobEffectInstance>().add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 3600, 3 ), 1.0).add(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 3600, 1 ), 1.0).add(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 3600, 2 ), 1.0).add(new MobEffectInstance(MobEffects.REGENERATION, 3600, 4 ), 1.0).add(new MobEffectInstance(MobEffects.HEALTH_BOOST, 3600, 3 ), 1.0).add(new MobEffectInstance(MobEffects.ABSORPTION, 3600, 4 ), 1.0), true, 1, 32);
+        MOB_MINIMIZER_EVENT = new BuffEntityInAreaEnchantedEvent("Mob Minimizer", "Makes nearby mobs eenie weenie", "#789DCD", new WeightedList<MobEffectInstance>().add(new MobEffectInstance(ModEffects.SHRINKING, 3600, 3 ), 1.0), true, 1, 32);
+        MOB_MAXIMIZER_EVENT  = new BuffEntityInAreaEnchantedEvent("Mob Maximizer", "Makes nearby mobs large and in charge", "#789DCD", new WeightedList<MobEffectInstance>().add(new MobEffectInstance(ModEffects.GROWING, 3600, 0 ), 1.0), true, 1, 3);
+        SHRINKING_EVENT = new PotionEffectEnchantedEvent("Shrink Ray", "Honey I shrunk the vaulters", "#ff8c1a",   ModEffects.SHRINKING, 600 , 0);
     }
 }

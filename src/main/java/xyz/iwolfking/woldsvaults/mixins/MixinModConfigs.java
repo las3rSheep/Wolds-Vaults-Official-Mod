@@ -19,5 +19,6 @@ public class MixinModConfigs {
         xyz.iwolfking.woldsvaults.init.ModConfigs.UNHINGED_SCAVENGER = (UnhingedScavengerConfig) (new UnhingedScavengerConfig().readConfig());
         xyz.iwolfking.woldsvaults.init.ModConfigs.HAUNTED_BRAZIERS = (HauntedBraziersConfig) (new HauntedBraziersConfig().readConfig());
         xyz.iwolfking.woldsvaults.init.ModConfigs.ENCHANTED_ELIXIR = (EnchantedElixirConfig) (new EnchantedElixirConfig().readConfig());
+        //xyz.iwolfking.woldsvaults.init.ModConfigs.VAULT_AMULET = (VaultAmuletConfig) (new VaultAmuletConfig().readConfig());
     }
 }

@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.events;
 
 import iskallia.vault.gear.trinket.TrinketEffect;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -11,7 +12,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import xyz.iwolfking.woldsvaults.init.ModBlocks;
 import xyz.iwolfking.woldsvaults.init.ModContainers;
+import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModTrinkets;
+import xyz.iwolfking.woldsvaults.lib.CustomScaleTypes;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegistryEvents {
@@ -43,5 +46,17 @@ public class RegistryEvents {
     @SubscribeEvent
     /*     */   public static void ohRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         /*  74 */     ModBlocks.registerTileEntityRenderers(event);
+        /*     */   }
+
+//    @SubscribeEvent
+//    /*     */   public static void onNewRegistryRegister(NewRegistryEvent event) {
+//                        VaultAmuletEffectRegistry.buildRegistry(event);
+//        /*     */   }
+
+    @SubscribeEvent
+    /*     */   public static void onEffectRegister(RegistryEvent.Register<MobEffect> event) {
+                      CustomScaleTypes.init();
+        /* 118 */     ModEffects.register(event);
+
         /*     */   }
 }

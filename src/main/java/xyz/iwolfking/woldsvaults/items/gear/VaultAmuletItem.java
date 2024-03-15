@@ -1,9 +1,7 @@
 //package xyz.iwolfking.woldsvaults.items.gear;
 //
-//import iskallia.vault.config.CharmConfig;
 //import iskallia.vault.config.VaultRecyclerConfig;
 //import iskallia.vault.gear.VaultGearState;
-//import iskallia.vault.gear.charm.CharmEffect;
 //import iskallia.vault.gear.data.AttributeGearData;
 //import iskallia.vault.gear.item.IdentifiableItem;
 //import iskallia.vault.gear.reader.DecimalModifierReader;
@@ -83,10 +81,10 @@
 //        return 11110389;
 //    }
 //
-//    public static Optional<VaultAmuletEffect> getCharm(ItemStack stack) {
+//    public static Optional<VaultAmuletEffect<?>> getCharm(ItemStack stack) {
 //        if (!stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem) {
 //            AttributeGearData data = AttributeGearData.read(stack);
-//            return data.getFirstValue(ModGearAttributes.CHARM_EFFECT);
+//            return data.getFirstValue(xyz.iwolfking.woldsvaults.init.ModGearAttributes.VAULT_AMULET_EFFECT);
 //        } else {
 //            return Optional.empty();
 //        }
@@ -212,8 +210,8 @@
 //        MutableComponent usesTxt = (new TextComponent("Uses: ")).append(new TextComponent(String.valueOf(remaining)));
 //        tooltip.add(usesTxt);
 //        AttributeGearData data = AttributeGearData.read(stack);
-//        data.getFirstValue(ModGearAttributes.CHARM_EFFECT).ifPresent((charmEffect) -> {
-//            DecimalModifierReader.Percentage<?> percentage = (DecimalModifierReader.Percentage)((CharmEffect.Config)charmEffect.getCharmConfig().getConfig()).getAttribute().getReader();
+//        data.getFirstValue(xyz.iwolfking.woldsvaults.init.ModGearAttributes.VAULT_AMULET_EFFECT).ifPresent((charmEffect) -> {
+//            DecimalModifierReader.Percentage<?> percentage = (DecimalModifierReader.Percentage)((VaultAmuletEffect.Config)charmEffect.getCharmConfig().getConfig()).getAttribute().getReader();
 //            int var10003 = Math.round(getValue(stack) * 100.0F);
 //            tooltip.add((new TextComponent("" + var10003 + "% " + percentage.getModifierName())).setStyle(Style.EMPTY.withColor(percentage.getRgbColor())));
 //            tooltip.add(TextComponent.EMPTY);
@@ -258,9 +256,9 @@
 //        AttributeGearData data = AttributeGearData.read(stack);
 //        Item var6 = stack.getItem();
 //        if (var6 instanceof VaultAmuletItem charmItem) {
-//            VaultAmuletEffect<?> randomTrinket = ModConfigs.CHARM.getRandomTrinketSet(charmItem.size);
+//            VaultAmuletEffect<?> randomTrinket = xyz.iwolfking.woldsvaults.init.ModConfigs.VAULT_AMULET.getRandomTrinketSet(charmItem.size);
 //            if (randomTrinket != null) {
-//                data.updateAttribute(ModGearAttributes.CHARM_EFFECT, randomTrinket);
+//                data.updateAttribute(xyz.iwolfking.woldsvaults.init.ModGearAttributes.VAULT_AMULET_EFFECT, randomTrinket);
 //            }
 //
 //            data.write(stack);
@@ -269,7 +267,7 @@
 //
 //    public void tickFinishRoll(ItemStack stack, Player player) {
 //        AttributeGearData data = AttributeGearData.read(stack);
-//        Optional<VaultAmuletEffect<?>> optCharmEffect = data.getFirstValue(ModGearAttributes.CHARM_EFFECT);
+//        Optional<VaultAmuletEffect<?>> optCharmEffect = data.getFirstValue(xyz.iwolfking.woldsvaults.init.ModGearAttributes.VAULT_AMULET_EFFECT);
 //        if (optCharmEffect.isPresent()) {
 //            VaultAmuletEffect<?> trinketEffect = (VaultAmuletEffect)optCharmEffect.get();
 //            setUses(stack, trinketEffect.getCharmConfig().getRandomUses());
@@ -321,7 +319,7 @@
 //            if (!slot.equals(slotContext.identifier())) {
 //                return false;
 //            } else {
-//                return (CuriosApi.getSlotHelper() == null || (Boolean) CuriosApi.getSlotHelper().getSlotType(slot).map(ISlotType::isVisible).orElse(false)) && super.canEquip(slotContext, stack);
+//                return (CuriosApi.getSlotHelper() == null || (Boolean) CuriosApi.getSlotHelper().getSlotType(slot).map(ISlotType::isVisible).orElse(false)) && ICurioItem.super.canEquip(slotContext, stack);
 //            }
 //        }
 //    }
