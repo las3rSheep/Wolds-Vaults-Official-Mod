@@ -21,5 +21,6 @@ public class MixinMainModDynamicModels {
     private static void initItemAssociations(CallbackInfo ci) {
         REGISTRIES.associate((Item) ModItems.BATTLESTAFF, Battlestaffs.REGISTRY);
         REGISTRIES.associate((Item) ModItems.TRIDENT, Tridents.REGISTRY);
+        //REGISTRIES.associate((Item) ModItems.BOW, Bows.REGISTRY);
     }
 }

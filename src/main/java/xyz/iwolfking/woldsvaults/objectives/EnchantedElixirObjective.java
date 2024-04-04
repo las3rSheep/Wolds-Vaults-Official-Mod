@@ -49,6 +49,9 @@ public class EnchantedElixirObjective extends ElixirObjective {
     private float cascadeIncrease = 0.0F;
     @Override
     public void tickListener(VirtualWorld world, Vault vault, Listener listener) {
+        if(world == null || vault == null || listener == null) {
+            return;
+        }
         if (listener instanceof Runner runner) {
             if (listener.getPriority(this) < 0) {
                 listener.addObjective(vault, this);
@@ -59,7 +62,10 @@ public class EnchantedElixirObjective extends ElixirObjective {
                 }
             }
         }
-        ServerPlayer listenerPlayer = listener.getPlayer().get();
+        ServerPlayer listenerPlayer = listener.getPlayer().orElse(null);
+        if(listenerPlayer == null) {
+            return;
+        }
         ElixirGoal goal = (ElixirGoal)((GoalMap)this.get(GOALS)).get(listener.get(Listener.ID));
         if(elixirBreakpointsMap != null && elixirBreakpointsMap.get(listener.getPlayer().get()) == null) {
             generateElixirBreakpointsMap(listener, false);

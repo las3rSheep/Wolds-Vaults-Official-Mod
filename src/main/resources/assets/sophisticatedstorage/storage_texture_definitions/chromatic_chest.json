@@ -1,6 +1,0 @@
-{
-    "parent": "sophisticatedstorage:chest",
-    "textures": {
-        "base": "sophisticatedstorage:entity/chest/chromatic"
-    }
-}

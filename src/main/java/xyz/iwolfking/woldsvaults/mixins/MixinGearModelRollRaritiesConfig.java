@@ -38,6 +38,7 @@ public abstract class MixinGearModelRollRaritiesConfig extends Config {
 
     @Expose
     private static Map<VaultGearRarity, List<String>> TRIDENT_MODEL_ROLLS;
+//    private static Map<VaultGearRarity, List<String>> BOW_MODEL_ROLLS;
 
 
     @Inject(method = "reset", at = @At("HEAD"))
@@ -49,10 +50,12 @@ public abstract class MixinGearModelRollRaritiesConfig extends Config {
 /* 163 */         .collect(Collectors.toList()));
 
         TRIDENT_MODEL_ROLLS = new HashMap<>();
-        /* 160 */     TRIDENT_MODEL_ROLLS.put(VaultGearRarity.SCRAPPY, (List<String>) Tridents.REGISTRY
-/* 161 */         .getIds().stream()
-/* 162 */         .map(ResourceLocation::toString)
-/* 163 */         .collect(Collectors.toList()));
+        TRIDENT_MODEL_ROLLS.put(VaultGearRarity.SCRAPPY, (List<String>) Tridents.REGISTRY.getIds().stream()
+                .map(ResourceLocation::toString).collect(Collectors.toList()));
+
+//        BOW_MODEL_ROLLS = new HashMap<>();
+//        BOW_MODEL_ROLLS.put(VaultGearRarity.SCRAPPY, (List<String>) Bows.REGISTRY.getIds().stream()
+//                .map(ResourceLocation::toString).collect(Collectors.toList()));
 
     }
 
@@ -64,6 +67,9 @@ public abstract class MixinGearModelRollRaritiesConfig extends Config {
         if(gear instanceof VaultTridentItem) {
                     cir.setReturnValue(TRIDENT_MODEL_ROLLS);
             }
+//        if(gear instanceof VaultBowItem) {
+//            cir.setReturnValue(BOW_MODEL_ROLLS);
+//        }
     }
 
 

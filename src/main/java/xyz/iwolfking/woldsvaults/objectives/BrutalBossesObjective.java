@@ -1,4 +1,6 @@
 package xyz.iwolfking.woldsvaults.objectives;
 
-public class BrutalBossesObjective {
+import iskallia.vault.core.vault.objective.ObeliskObjective;
+
+public class BrutalBossesObjective extends ObeliskObjective {
 }

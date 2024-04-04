@@ -53,7 +53,7 @@ public abstract class MixinEnchanterEnchantSelectorModel {
 
                 while (var6.hasNext()) {
                     Enchantment enchantment = (Enchantment) var6.next();
-                    if (!enchantment.isCurse() && enchantment.canEnchant(input)) {
+                    if (enchantment.canEnchant(input)) {
                         if(input.getItem() instanceof VaultGearItem || input.getItem() instanceof ToolItem || input.getItem().getRegistryName().toString().equals("the_vault:tool")) {
                             if(BannedEnchantmentsData.BANNED_ENCHANT_REGISTRY_NAMES.contains(enchantment.getRegistryName().toString())) {
                                 continue;

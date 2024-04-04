@@ -29,6 +29,7 @@ import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import xyz.iwolfking.woldsvaults.curios.ShardPouchCurio;
 import xyz.iwolfking.woldsvaults.events.RegisterCommandEventHandler;
+import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 
 import java.util.stream.Collectors;
@@ -38,7 +39,7 @@ import java.util.stream.Collectors;
 public class WoldsVaults {
 
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     public static final String MOD_ID = "woldsvaults";
     public WoldsVaults() {
         // Register the setup method for modloading
@@ -53,7 +54,9 @@ public class WoldsVaults {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+        PacketHandler.init();
     }
+
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         // Some example code to dispatch IMC to another mod
@@ -86,6 +89,10 @@ public class WoldsVaults {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
         }
+    }
+
+    public static ResourceLocation id(String name) {
+        return new ResourceLocation("woldsvaults", name);
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID)

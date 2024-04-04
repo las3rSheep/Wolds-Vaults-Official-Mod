@@ -13,6 +13,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.items.gear.amulet.VaultAmuletEffect;
+import xyz.iwolfking.woldsvaults.items.gear.amulet.VaultAmuletEffectRegistry;
 
 import javax.annotation.Nullable;
 
@@ -36,7 +38,7 @@ public class ModGearAttributes {
             /* 121 */       VaultGearAttributeType.booleanType(), (ConfigurableAttributeGenerator<Boolean, ?>)ModGearAttributeGenerators.booleanFlag(), (VaultGearModifierReader<Boolean>)ModGearAttributeReaders.booleanReader("Endergized", 46276), VaultGearAttributeComparator.booleanComparator());
     /*     */
     /*     */
-    //public static final VaultGearAttribute<VaultAmuletEffect<?>> VAULT_AMULET_EFFECT = attr("amulet", VaultGearAttributeType.registryType(VaultAmuletEffectRegistry.getRegistry()), ModGearAttributeGenerators.noneGenerator(), ModGearAttributeReaders.none());
+    public static final VaultGearAttribute<VaultAmuletEffect<?>> VAULT_AMULET_EFFECT = attr("amulet", VaultGearAttributeType.registryType(VaultAmuletEffectRegistry.getRegistry()), ModGearAttributeGenerators.noneGenerator(), ModGearAttributeReaders.none());
     @SubscribeEvent
     /*     */   public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
         /* 326 */     IForgeRegistry<VaultGearAttribute<?>> registry = event.getRegistry();
@@ -46,7 +48,7 @@ public class ModGearAttributes {
                       registry.register(TRIDENT_CHANNELING);
                       registry.register(CHANNELING_CHANCE);
                       registry.register(MAGNET_ENDERGIZED);
-                      //registry.register(VAULT_AMULET_EFFECT);
+                      registry.register(VAULT_AMULET_EFFECT);
         /*     */   }
     /*     */
     /*     */   public static void registerVanillaAssociations() {

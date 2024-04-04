@@ -179,7 +179,7 @@ public class EnchantedEventsRegistry {
         });
     }
 
-    private static void register(BasicEnchantedEvent event, Double weight, boolean isOmega, boolean isPositive) {
+    public static void register(BasicEnchantedEvent event, Double weight, boolean isOmega, boolean isPositive) {
         ENCHANTED_EVENTS.add(event, weight);
         if(isOmega) {
             OMEGA_ENCHANTED_EVENTS.add(event, 1.0);

@@ -2,6 +2,7 @@ package xyz.iwolfking.woldsvaults.init;
 
 import com.mojang.datafixers.types.Type;
 import iskallia.vault.VaultMod;
+import iskallia.vault.block.render.ScavengerAltarRenderer;
 import iskallia.vault.init.ModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
@@ -13,97 +14,69 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.p3pp3rf1y.sophisticatedstorage.SophisticatedStorage;
-import xyz.iwolfking.woldsvaults.blocks.SophisticatedVaultChestBase;
-import xyz.iwolfking.woldsvaults.blocks.VaultSalvagerBlock;
-import xyz.iwolfking.woldsvaults.blocks.tiles.SophisticatedVaultChestEntity;
-import xyz.iwolfking.woldsvaults.blocks.tiles.VaultSalvagerTileEntity;
-import xyz.iwolfking.woldsvaults.client.renderers.SophisticatedVaultChestRenderer;
-import xyz.iwolfking.woldsvaults.items.sophisticated.SophisticatedVaultChestItem;
-import xyz.iwolfking.woldsvaults.items.sophisticated.SophisticatedVaultStorageBlockItem;
+import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.blocks.*;
+import xyz.iwolfking.woldsvaults.blocks.tiles.*;
 
 import java.util.function.Consumer;
 
 public class ModBlocks {
 
     public static final VaultSalvagerBlock VAULT_SALVAGER_BLOCK;
-    public static final SophisticatedVaultChestBase SOPHISTICATED_VAULT_TREASURE_CHEST;
-    public static final SophisticatedVaultChestBase SOPHISTICATED_VAULT_WOODEN_CHEST;
-    public static final SophisticatedVaultChestBase SOPHISTICATED_VAULT_ORNATE_CHEST;
-    public static final SophisticatedVaultChestBase SOPHISTICATED_VAULT_GILDED_CHEST;
-    public static final SophisticatedVaultChestBase SOPHISTICATED_VAULT_LIVING_CHEST;
-    public static final SophisticatedVaultChestBase SOPHISTICATED_VAULT_ALTAR_CHEST;
-    public static final SophisticatedVaultChestBase SOPHISTICATED_VAULT_HARDENED_CHEST;
-    public static final SophisticatedVaultChestBase SOPHISTICATED_VAULT_ENIGMA_CHEST;
-    public static final SophisticatedVaultChestBase SOPHISTICATED_VAULT_FLESH_CHEST;
-    public static final SophisticatedVaultChestBase SOPHISTICATED_VAULT_ORNATE_STRONGBOX;
-    public static final SophisticatedVaultChestBase SOPHISTICATED_VAULT_LIVING_STRONGBOX;
-    public static final SophisticatedVaultChestBase SOPHISTICATED_VAULT_GILDED_STRONGBOX;
-
+    public static final DecoScavengerAltarBlock DECO_SCAVENGER_ALTAR_BLOCK;
+    public static final DecoObeliskBlock DECO_OBELISK_BLOCK;
+    public static final DecoLodestoneBlock DECO_LODESTONE_BLOCK;
+    public static final DecoMonolithBlock DECO_MONOLITH_BLOCK;
 
     public static final BlockEntityType<VaultSalvagerTileEntity> VAULT_SALVAGER_ENTITY;
-    public static final BlockEntityType<SophisticatedVaultChestEntity> SOPHISTICATED_VAULT_CHEST_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<DecoScavengerAltarEntity> DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<DecoObeliskTileEntity> DECO_OBELISK_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<DecoLodestoneTileEntity> DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<DecoMonolithTileEntity> DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+
 
 
 
     static {
         VAULT_SALVAGER_BLOCK = new VaultSalvagerBlock();
-        SOPHISTICATED_VAULT_TREASURE_CHEST = new SophisticatedVaultChestBase(() -> 180, () -> 8);
-        SOPHISTICATED_VAULT_WOODEN_CHEST = new SophisticatedVaultChestBase(() -> 81, () -> 3);
-        SOPHISTICATED_VAULT_ORNATE_CHEST = new SophisticatedVaultChestBase(() -> 120, () -> 4);
-        SOPHISTICATED_VAULT_GILDED_CHEST = new SophisticatedVaultChestBase(() -> 120, () -> 4);
-        SOPHISTICATED_VAULT_LIVING_CHEST = new SophisticatedVaultChestBase(() -> 120, () -> 4);
-        SOPHISTICATED_VAULT_ALTAR_CHEST = new SophisticatedVaultChestBase(() -> 156, () -> 5);
-        SOPHISTICATED_VAULT_HARDENED_CHEST = new SophisticatedVaultChestBase(() -> 81, () -> 3);
-        SOPHISTICATED_VAULT_ENIGMA_CHEST = new SophisticatedVaultChestBase(() -> 156, () -> 5);
-        SOPHISTICATED_VAULT_FLESH_CHEST = new SophisticatedVaultChestBase(() -> 81, () -> 4);
-        SOPHISTICATED_VAULT_GILDED_STRONGBOX = new SophisticatedVaultChestBase(() -> 156, () -> 6);
-        SOPHISTICATED_VAULT_LIVING_STRONGBOX = new SophisticatedVaultChestBase(() -> 156, () -> 6);
-        SOPHISTICATED_VAULT_ORNATE_STRONGBOX = new SophisticatedVaultChestBase(() -> 156, () -> 6);
+        DECO_SCAVENGER_ALTAR_BLOCK = new DecoScavengerAltarBlock();
+        DECO_OBELISK_BLOCK = (DecoObeliskBlock) new DecoObeliskBlock();
+        DECO_LODESTONE_BLOCK = (DecoLodestoneBlock) new DecoLodestoneBlock();
+        DECO_MONOLITH_BLOCK = (DecoMonolithBlock) new DecoMonolithBlock();
         VAULT_SALVAGER_ENTITY = BlockEntityType.Builder.of(VaultSalvagerTileEntity::new, new Block[]{VAULT_SALVAGER_BLOCK}).build((Type)null);
-        SOPHISTICATED_VAULT_CHEST_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(SophisticatedVaultChestEntity::new, new Block[]{SOPHISTICATED_VAULT_TREASURE_CHEST, SOPHISTICATED_VAULT_WOODEN_CHEST, SOPHISTICATED_VAULT_GILDED_CHEST, SOPHISTICATED_VAULT_FLESH_CHEST, SOPHISTICATED_VAULT_ENIGMA_CHEST, SOPHISTICATED_VAULT_LIVING_CHEST, SOPHISTICATED_VAULT_ORNATE_CHEST, SOPHISTICATED_VAULT_HARDENED_CHEST, SOPHISTICATED_VAULT_ALTAR_CHEST, SOPHISTICATED_VAULT_ORNATE_STRONGBOX, SOPHISTICATED_VAULT_LIVING_STRONGBOX, SOPHISTICATED_VAULT_GILDED_STRONGBOX}).build((Type)null);
-
+        DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoScavengerAltarEntity::new, new Block[]{DECO_SCAVENGER_ALTAR_BLOCK}).build((Type)null);
+        DECO_OBELISK_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoObeliskTileEntity::new, new Block[]{DECO_OBELISK_BLOCK}).build((Type)null);
+        DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoLodestoneTileEntity::new, new Block[]{DECO_LODESTONE_BLOCK}).build((Type)null);
+        DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoMonolithTileEntity::new, new Block[]{DECO_MONOLITH_BLOCK}).build((Type)null);
     }
 
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         registerBlock(event, VAULT_SALVAGER_BLOCK, VaultMod.id("vault_salvager"));
-        registerBlock(event, SOPHISTICATED_VAULT_TREASURE_CHEST, new ResourceLocation(SophisticatedStorage.MOD_ID, "treasure_chest"));
-        registerBlock(event, SOPHISTICATED_VAULT_WOODEN_CHEST, new ResourceLocation(SophisticatedStorage.MOD_ID, "wooden_chest"));
-        registerBlock(event, SOPHISTICATED_VAULT_ORNATE_CHEST, new ResourceLocation(SophisticatedStorage.MOD_ID, "ornate_chest"));
-        registerBlock(event, SOPHISTICATED_VAULT_GILDED_CHEST, new ResourceLocation(SophisticatedStorage.MOD_ID, "gilded_chest"));
-        registerBlock(event, SOPHISTICATED_VAULT_LIVING_CHEST, new ResourceLocation(SophisticatedStorage.MOD_ID, "living_chest"));
-        registerBlock(event, SOPHISTICATED_VAULT_ALTAR_CHEST, new ResourceLocation(SophisticatedStorage.MOD_ID, "altar_chest"));
-        registerBlock(event, SOPHISTICATED_VAULT_HARDENED_CHEST, new ResourceLocation(SophisticatedStorage.MOD_ID, "hardened_chest"));
-        registerBlock(event, SOPHISTICATED_VAULT_ENIGMA_CHEST, new ResourceLocation(SophisticatedStorage.MOD_ID, "enigma_chest"));
-        registerBlock(event, SOPHISTICATED_VAULT_FLESH_CHEST, new ResourceLocation(SophisticatedStorage.MOD_ID, "flesh_chest"));
-        registerBlock(event, SOPHISTICATED_VAULT_GILDED_STRONGBOX, new ResourceLocation(SophisticatedStorage.MOD_ID, "gilded_strongbox"));
-        registerBlock(event, SOPHISTICATED_VAULT_LIVING_STRONGBOX, new ResourceLocation(SophisticatedStorage.MOD_ID, "living_strongbox"));
-        registerBlock(event, SOPHISTICATED_VAULT_ORNATE_STRONGBOX, new ResourceLocation(SophisticatedStorage.MOD_ID, "ornate_strongbox"));
+        registerBlock(event, DECO_SCAVENGER_ALTAR_BLOCK, WoldsVaults.id("scavenger_altar"));
+        registerBlock(event, DECO_OBELISK_BLOCK, WoldsVaults.id("obelisk"));
+        registerBlock(event, DECO_LODESTONE_BLOCK, WoldsVaults.id("lodestone"));
+        registerBlock(event, DECO_MONOLITH_BLOCK, WoldsVaults.id("monolith"));
 
     }
     public static void registerTileEntities(RegistryEvent.Register<BlockEntityType<?>> event) {
         registerTileEntity(event, VAULT_SALVAGER_ENTITY, VaultMod.id("vault_salvager_tile_entity"));
-        registerTileEntity(event, SOPHISTICATED_VAULT_CHEST_ENTITY_BLOCK_ENTITY_TYPE, new ResourceLocation(SophisticatedStorage.MOD_ID, "sophisticated_vault_chest_entity"));
+        registerTileEntity(event, DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("scavenger_altar_deco_tile_entity"));
+        registerTileEntity(event, DECO_OBELISK_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("obelisk_deco_tile_entity"));
+        registerTileEntity(event, DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("lodestone_deco_tile_entity"));
+        registerTileEntity(event, DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("monolith_deco_tile_entity"));
     }
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
         registerBlockItem(event, VAULT_SALVAGER_BLOCK);
-        registerSophisticatedBlockItem(event, SOPHISTICATED_VAULT_TREASURE_CHEST);
-        registerSophisticatedBlockItem(event, SOPHISTICATED_VAULT_WOODEN_CHEST);
-        registerSophisticatedBlockItem(event, SOPHISTICATED_VAULT_ORNATE_CHEST);
-        registerSophisticatedBlockItem(event, SOPHISTICATED_VAULT_GILDED_CHEST);
-        registerSophisticatedBlockItem(event, SOPHISTICATED_VAULT_LIVING_CHEST);
-        registerSophisticatedBlockItem(event, SOPHISTICATED_VAULT_ALTAR_CHEST);
-        registerSophisticatedBlockItem(event, SOPHISTICATED_VAULT_HARDENED_CHEST);
-        registerSophisticatedBlockItem(event, SOPHISTICATED_VAULT_ENIGMA_CHEST);
-        registerSophisticatedBlockItem(event, SOPHISTICATED_VAULT_FLESH_CHEST);
-        registerSophisticatedBlockItem(event, SOPHISTICATED_VAULT_ORNATE_STRONGBOX);
-        registerSophisticatedBlockItem(event, SOPHISTICATED_VAULT_GILDED_STRONGBOX);
-        registerSophisticatedBlockItem(event, SOPHISTICATED_VAULT_LIVING_STRONGBOX);
+        registerBlockItem(event, DECO_SCAVENGER_ALTAR_BLOCK);
+        registerBlockItem(event, DECO_OBELISK_BLOCK);
+        registerBlockItem(event, DECO_LODESTONE_BLOCK);
+        registerBlockItem(event, DECO_MONOLITH_BLOCK);
     }
 
     public static void registerTileEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(SOPHISTICATED_VAULT_CHEST_ENTITY_BLOCK_ENTITY_TYPE, SophisticatedVaultChestRenderer::new);
+        event.registerBlockEntityRenderer(DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE, ScavengerAltarRenderer::new);
+        //event.registerBlockEntityRenderer(DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE, DecoLodestoneRenderer::new);
     }
 
 
@@ -145,12 +118,12 @@ public class ModBlocks {
         adjustProperties.accept(properties);
         registerBlockItem(event, block, new BlockItem(block, properties));
     }
-
-    private static void registerSophisticatedBlockItem(RegistryEvent.Register<Item> event, Block block) {
-        SophisticatedVaultStorageBlockItem item = new SophisticatedVaultChestItem(block);
-        item.setRegistryName(block.getRegistryName());
-        event.getRegistry().register(item);
-    }
+//
+//    private static void registerSophisticatedBlockItem(RegistryEvent.Register<Item> event, Block block) {
+//        SophisticatedVaultStorageBlockItem item = new SophisticatedVaultChestItem(block);
+//        item.setRegistryName(block.getRegistryName());
+//        event.getRegistry().register(item);
+//    }
 
     private static void registerBlockItem(RegistryEvent.Register<Item> event, Block block, BlockItem blockItem) {
         blockItem.setRegistryName(block.getRegistryName());
