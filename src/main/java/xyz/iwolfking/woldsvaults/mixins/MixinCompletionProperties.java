@@ -50,6 +50,9 @@ public class MixinCompletionProperties extends TaskProperties {
             case "the_vault:haunted_braziers":
                 var10001 = "haunted_braziers";
                 break;
+            case "the_vault:brutal_bosses":
+                var10001 = "brutal_bosses";
+                break;
             case "the_vault:monolith":
                 var10001 = "monolith";
                 break;

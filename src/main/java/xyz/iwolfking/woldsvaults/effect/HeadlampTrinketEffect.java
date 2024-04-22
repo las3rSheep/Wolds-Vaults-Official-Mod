@@ -17,7 +17,6 @@ import java.util.List;
 public class HeadlampTrinketEffect extends TrinketEffect<PotionEffectTrinket.Config> implements GearAttributeTrinket {
     private final MobEffect effect;
     private final int addedAmplifier;
-
     public HeadlampTrinketEffect(ResourceLocation name, MobEffect effect, int addedAmplifier) {
         super(name);
         this.effect = effect;

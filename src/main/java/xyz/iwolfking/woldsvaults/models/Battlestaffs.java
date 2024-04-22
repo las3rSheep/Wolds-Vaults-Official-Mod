@@ -18,6 +18,7 @@ public class Battlestaffs {
     public static final HandHeldModel BATTLESTAFF_PURPLE;
     public static final HandHeldModel BATTLESTAFF_TERROR;
     public static final HandHeldModel BATTLESTAFF_LIGHT_BLUE;
+    public static final HandHeldModel BATTLESTAFF_LIGHTSABER;
 
     public Battlestaffs() {
     }
@@ -34,6 +35,6 @@ public class Battlestaffs {
         BATTLESTAFF_PURPLE = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/battlestaff/battlestaff_purple"), "Purple Battlestaff")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
         BATTLESTAFF_TERROR = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/battlestaff/battlestaff_terror"), "Terror Battlestaff")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
         BATTLESTAFF_LIGHT_BLUE = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/battlestaff/battlestaff_light_blue"), "Arcane Battlestaff")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-
+        BATTLESTAFF_LIGHTSABER = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/battlestaff/lightsaber"), "Cosmonite's Battlesaber")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
     }
 }

@@ -1,20 +1,20 @@
 package xyz.iwolfking.woldsvaults.events;
 
 import iskallia.vault.gear.trinket.TrinketEffect;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.NewRegistryEvent;
-import xyz.iwolfking.woldsvaults.init.ModBlocks;
-import xyz.iwolfking.woldsvaults.init.ModContainers;
-import xyz.iwolfking.woldsvaults.init.ModEffects;
-import xyz.iwolfking.woldsvaults.init.ModTrinkets;
+import xyz.iwolfking.woldsvaults.init.*;
 import xyz.iwolfking.woldsvaults.items.gear.amulet.VaultAmuletEffectRegistry;
 import xyz.iwolfking.woldsvaults.lib.CustomScaleTypes;
 
@@ -61,4 +61,19 @@ public class RegistryEvents {
         /* 118 */     ModEffects.register(event);
 
         /*     */   }
+
+    @SubscribeEvent
+    /*     */   public static void onEntityRegister(RegistryEvent.Register<EntityType<?>> event) {
+        /* 103 */     ModEntities.register(event);
+        /*     */   }
+
+    @SubscribeEvent
+       public static void onModelRegister(ModelRegistryEvent event) {
+           xyz.iwolfking.woldsvaults.init.client.ModModels.setupRenderLayers();
+       }
+
+    @SubscribeEvent
+    public static void onSoundRegister(RegistryEvent.Register<SoundEvent> event) {
+        ModSounds.registerSounds(event);
+    }
 }

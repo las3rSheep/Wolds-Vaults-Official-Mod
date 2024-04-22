@@ -20,4 +20,5 @@ public interface MixinVaultGearItem extends IForgeItem, VaultGearTooltipItem, Da
     public default boolean shouldPreventAnvilCombination(ItemStack other) {
         return true;
     }
+
 }

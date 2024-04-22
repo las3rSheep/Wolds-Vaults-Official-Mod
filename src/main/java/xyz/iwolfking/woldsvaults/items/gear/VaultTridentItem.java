@@ -148,6 +148,12 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     /*     */   public boolean isRepairable(ItemStack stack) {
         /* 123 */     return false;
         /*     */   }
+
+    @Override
+    public boolean isFireResistant() {
+        return true;
+    }
+
     /*     */
     /*     */
     /*     */   public boolean isDamageable(ItemStack stack) {

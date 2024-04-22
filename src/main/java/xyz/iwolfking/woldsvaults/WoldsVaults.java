@@ -30,6 +30,7 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 import xyz.iwolfking.woldsvaults.curios.ShardPouchCurio;
 import xyz.iwolfking.woldsvaults.events.RegisterCommandEventHandler;
 import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
+import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 
 import java.util.stream.Collectors;
@@ -75,6 +76,7 @@ public class WoldsVaults {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         EnchantedEventsRegistry.addEvents();
+        BrutalBossesRegistry.init();
 
     }
 

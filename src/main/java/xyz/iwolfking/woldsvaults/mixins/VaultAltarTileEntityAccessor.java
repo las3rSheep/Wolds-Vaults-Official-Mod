@@ -12,7 +12,6 @@ public class VaultAltarTileEntityAccessor implements VaultAltarTileEntityInterfa
 
     @Shadow
     private void resetAltar(ServerLevel world) {
-
     }
 
     @Shadow

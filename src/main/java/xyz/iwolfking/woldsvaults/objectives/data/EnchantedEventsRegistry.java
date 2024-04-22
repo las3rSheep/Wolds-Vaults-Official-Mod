@@ -15,9 +15,9 @@ import samebutdifferent.ecologics.registry.ModMobEffects;
 import vazkii.quark.content.mobs.module.WraithModule;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModItems;
-import xyz.iwolfking.woldsvaults.objectives.events.*;
-import xyz.iwolfking.woldsvaults.objectives.events.unique.LaCucarachaSpecialEnchantedEvent;
-import xyz.iwolfking.woldsvaults.objectives.events.unique.PlayerSwapEnchantedEvent;
+import xyz.iwolfking.woldsvaults.objectives.data.events.*;
+import xyz.iwolfking.woldsvaults.objectives.data.events.unique.LaCucarachaSpecialEnchantedEvent;
+import xyz.iwolfking.woldsvaults.objectives.data.events.unique.PlayerSwapEnchantedEvent;
 import xyz.iwolfking.woldsvaults.objectives.lib.BasicEnchantedEvent;
 
 import java.util.List;

@@ -29,6 +29,7 @@ public class MixinRewardConfig {
             OverSizedItemStack coinStack = woldsVaults$getCoinRewardForLevel(vaultLevel, poolId);
             items.add(coinStack);
     }
+    
 
     @Unique
     private static OverSizedItemStack woldsVaults$getCoinRewardForLevel(int vaultLevel, String poolId) {
