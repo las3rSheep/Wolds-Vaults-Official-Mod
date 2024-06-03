@@ -24,7 +24,6 @@
     "MixinEntityTiger",
     "MixinGearModelRollRaritiesConfig",
     "MixinGearRollHelper",
-    "MixinGlacialShatterEffect",
     "MixinInfernalMobsCore",
     "MixinInventoryHotkeyAction",
     "MixinItemShardPouch",

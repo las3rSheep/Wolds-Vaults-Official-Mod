@@ -103,7 +103,7 @@ public class BrutalBossesObjective extends ObeliskObjective {
                         }
                         if(InfernalMobsCore.getMobModifiers(event.getEntityLiving()).getModSize() != 0) {
                             MobModifier modifier = InfernalMobsCore.getMobModifiers(event.getEntityLiving());
-                            String modNames = modifier.getDisplayNames()[0].trim();
+                            String modNames = modifier.getLinkedModNameUntranslated().trim();
                             List<VaultModifier<?>> modifiersForMsg = new ArrayList<>();
                             for (String modName : modNames.split("\\s+")) {
                                 List<VaultModifier<?>> modifiers = ModConfigs.VAULT_MODIFIER_POOLS.getRandom(VaultMod.id("bb_" + modName.toLowerCase()), 0, (RandomSource) JavaRandom.ofNanoTime());

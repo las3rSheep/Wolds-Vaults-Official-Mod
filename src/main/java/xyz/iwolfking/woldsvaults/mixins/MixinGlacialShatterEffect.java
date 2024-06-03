@@ -22,17 +22,16 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(value = GlacialShatterEffect.class, remap = false)
 public class MixinGlacialShatterEffect {
+    /**
+     * @author iwolfking
+     * @reason Make Glacial Shatter do 1/4 of Boss health
+     */
     @Overwrite
-    @SubscribeEvent(
-        priority = EventPriority.HIGHEST
-    )
     public static void on(LivingHurtEvent event) {
         Entity var2 = event.getEntity();
         if (var2 instanceof Mob mob) {
