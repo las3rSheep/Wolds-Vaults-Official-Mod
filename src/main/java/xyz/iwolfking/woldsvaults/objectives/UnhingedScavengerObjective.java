@@ -6,11 +6,13 @@ import iskallia.vault.core.Version;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.data.adapter.basic.EnumAdapter;
 import iskallia.vault.core.data.key.FieldKey;
+import iskallia.vault.core.data.key.SupplierKey;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.event.common.BlockSetEvent;
 import iskallia.vault.core.random.JavaRandom;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.VaultLevel;
+import iskallia.vault.core.vault.objective.Objective;
 import iskallia.vault.core.vault.objective.ScavengerObjective;
 import iskallia.vault.core.vault.objective.scavenger.ScavengeTask;
 import iskallia.vault.core.vault.objective.scavenger.ScavengerGoal;
@@ -40,12 +42,20 @@ public class UnhingedScavengerObjective extends ScavengerObjective {
 
     public static final FieldKey<UnhingedScavengerObjective.Config> CONFIG = (FieldKey)FieldKey.of("config", UnhingedScavengerObjective.Config.class).with(Version.v1_19, Adapters.ofEnum(UnhingedScavengerObjective.Config.class, EnumAdapter.Mode.ORDINAL), DISK.all()).register(FIELDS);;
 
+    public static final SupplierKey<Objective> E_KEY = (SupplierKey)SupplierKey.of("unhinged_scavenger", Objective.class).with(Version.v1_12, UnhingedScavengerObjective::new);
 
-
+    @Override
+    public SupplierKey<Objective> getKey() {
+        return E_KEY;
+    }
     public UnhingedScavengerObjective(float objectiveProbability, Config config) {
         this.set(GOALS, new GoalMap());
         this.set(OBJECTIVE_PROBABILITY, objectiveProbability);
         this.set(CONFIG, config);
+    }
+
+    public UnhingedScavengerObjective() {
+        this.set(GOALS, new GoalMap());
     }
 
     public static UnhingedScavengerObjective of(float objectiveProbability, UnhingedScavengerObjective.Config config) {

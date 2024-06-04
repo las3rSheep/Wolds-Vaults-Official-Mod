@@ -26,7 +26,7 @@ public class EnchantedElixirObjective extends ElixirObjective {
         this.set(GOALS, new GoalMap());
     }
 
-    public static final SupplierKey<Objective> E_KEY = (SupplierKey)SupplierKey.of("enchanted_elixir", Objective.class).with(Version.v1_12, EnchantedElixirObjective::new);;
+    public static final SupplierKey<Objective> E_KEY = (SupplierKey)SupplierKey.of("enchanted_elixir", Objective.class).with(Version.v1_12, EnchantedElixirObjective::new);
 
     public static EnchantedElixirObjective create() {
         return new EnchantedElixirObjective();

@@ -5,7 +5,9 @@ import atomicstryker.infernalmobs.common.MobModifier;
 import iskallia.vault.VaultMod;
 import iskallia.vault.block.ObeliskBlock;
 import iskallia.vault.block.PlaceholderBlock;
+import iskallia.vault.core.Version;
 import iskallia.vault.core.data.compound.UUIDList;
+import iskallia.vault.core.data.key.SupplierKey;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.event.common.BlockSetEvent;
 import iskallia.vault.core.event.common.BlockUseEvent;
@@ -15,6 +17,7 @@ import iskallia.vault.core.vault.Modifiers;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.modifier.spi.VaultModifier;
 import iskallia.vault.core.vault.objective.ObeliskObjective;
+import iskallia.vault.core.vault.objective.Objective;
 import iskallia.vault.core.vault.player.Listeners;
 import iskallia.vault.core.world.data.entity.PartialCompoundNbt;
 import iskallia.vault.core.world.data.tile.PartialBlockState;
@@ -44,10 +47,19 @@ import java.util.function.IntSupplier;
 public class BrutalBossesObjective extends ObeliskObjective {
 
     private final Random random = new Random();
+    public static final SupplierKey<Objective> E_KEY = (SupplierKey)SupplierKey.of("brutal_bosses", Objective.class).with(Version.v1_12, BrutalBossesObjective::new);
+
     public BrutalBossesObjective(int target, IntSupplier wave, float objectiveProbability) {
         super(target, wave, objectiveProbability);
     }
 
+    public BrutalBossesObjective() {
+    }
+
+    @Override
+    public SupplierKey<Objective> getKey() {
+        return E_KEY;
+    }
     public static BrutalBossesObjective of(int target, IntSupplier wave, float objectiveProbability) {
         return new BrutalBossesObjective(target, wave, objectiveProbability);
     }
