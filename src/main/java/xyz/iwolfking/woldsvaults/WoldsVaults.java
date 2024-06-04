@@ -15,7 +15,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -27,6 +29,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.type.capability.ICurio;
+import xyz.iwolfking.woldsvaults.config.forge.OptionsHolder;
 import xyz.iwolfking.woldsvaults.curios.ShardPouchCurio;
 import xyz.iwolfking.woldsvaults.events.RegisterCommandEventHandler;
 import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
@@ -43,6 +46,7 @@ public class WoldsVaults {
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final String MOD_ID = "woldsvaults";
     public WoldsVaults() {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, OptionsHolder.COMMON_SPEC, "woldsvaults-common.toml");
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading

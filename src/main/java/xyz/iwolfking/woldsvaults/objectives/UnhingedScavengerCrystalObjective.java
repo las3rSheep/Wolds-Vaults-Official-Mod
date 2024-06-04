@@ -75,4 +75,9 @@ public class UnhingedScavengerCrystalObjective extends CrystalObjective {
     /*    */   public void readJson(JsonObject json) {
         /* 80 */     this.objectiveProbability = ((Float)Adapters.FLOAT.readJson(json.get("objective_probability")).orElse(Float.valueOf(0.0F))).floatValue();
         /*    */   }
+
+    @Override
+    public void addText(List<Component> tooltip, int minIndex, TooltipFlag flag, float time) {
+        tooltip.add((new TextComponent("Objective: ")).append((new TextComponent("Unhinged Scavenger Hunt")).withStyle(Style.EMPTY.withColor((Integer)this.getColor(time).orElseThrow()))));
+    }
 }

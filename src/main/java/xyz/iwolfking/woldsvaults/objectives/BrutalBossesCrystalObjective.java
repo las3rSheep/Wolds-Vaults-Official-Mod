@@ -48,8 +48,9 @@ public class BrutalBossesCrystalObjective extends CrystalObjective {
         });
     }
 
-    public void addText(List<Component> tooltip, TooltipFlag flag, float time) {
-        tooltip.add((new TextComponent("Objective: ")).append((new TextComponent("Slay the Bosses")).withStyle(Style.EMPTY.withColor((Integer)this.getColor(time).orElseThrow()))));
+    @Override
+    public void addText(List<Component> tooltip, int minIndex, TooltipFlag flag, float time) {
+        tooltip.add((new TextComponent("Objective: ")).append((new TextComponent("Slay the Brutal Bosses")).withStyle(Style.EMPTY.withColor((Integer)this.getColor(time).orElseThrow()))));
     }
 
     public Optional<Integer> getColor(float time) {

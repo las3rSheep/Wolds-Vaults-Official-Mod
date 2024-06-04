@@ -12,6 +12,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.config.forge.OptionsHolder;
 import xyz.iwolfking.woldsvaults.data.FlightCancellationStrings;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
@@ -22,9 +23,14 @@ import java.util.Random;
 public class TickEvents {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if(!OptionsHolder.COMMON.disableFlightInVaults.get()) {
+            return;
+        }
+
         if(!((event.player.tickCount % 20) == 0 || event.player.isCreative())) {
             return;
         }
+
         if(event.side.isClient()) {
             if(ClientVaults.getActive().isPresent() && (event.player.getAbilities().flying)) {
                 stopFlying(event.player);
@@ -32,7 +38,6 @@ public class TickEvents {
         }
 
         if(event.side.isServer()) {
-
             if(ServerVaults.get(event.player.getLevel()).isPresent() && (event.player.getAbilities().flying)) {
                 stopFlying(event.player);
             }

@@ -36,7 +36,8 @@ public class EnchantedElixirCrystalObjective extends CrystalObjective {
         });
     }
 
-    public void addText(List<Component> tooltip, TooltipFlag flag, float time) {
+    @Override
+    public void addText(List<Component> tooltip, int minIndex, TooltipFlag flag, float time) {
         tooltip.add((new TextComponent("Objective: ")).append((new TextComponent("Enchanted Elixir")).withStyle(Style.EMPTY.withColor((Integer)this.getColor(time).orElseThrow()))));
     }
 

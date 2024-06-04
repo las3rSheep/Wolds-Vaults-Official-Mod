@@ -53,6 +53,7 @@
     "MixinVaultMagnet",
     "MixinVaultRegistry",
     "MixinVaultShieldItem",
+    "MixinVaultSnapshot",
     "MixinVaultSwordItem",
     "MixinVaultWand",
     "MixinWildSpawnerTileEntity",
