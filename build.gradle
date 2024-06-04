@@ -178,7 +178,7 @@ dependencies {
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     implementation files('lib/forgified-sgui-1.0.2+1.18.2.jar')
-    implementation fg.deobf('curse.maven:vault-hunters-official-mod-458203:5076087')
+    implementation fg.deobf('curse.maven:vault-hunters-official-mod-458203:5394784')
     implementation fg.deobf('curse.maven:hostile-neural-networks-552574:3717871')
     implementation fg.deobf('curse.maven:placebo-283644:3717788')
     implementation fg.deobf('curse.maven:lightmans-currency-472521:4977514')

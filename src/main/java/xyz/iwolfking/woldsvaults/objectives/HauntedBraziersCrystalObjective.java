@@ -45,9 +45,10 @@ public class HauntedBraziersCrystalObjective extends CrystalObjective {
     }
 
     @Override
-    public void addText(List<Component> tooltip, TooltipFlag flag, float time) {
+    public void addText(List<Component> tooltip, int minIndex, TooltipFlag flag, float time) {
         tooltip.add((new TextComponent("Objective: ")).append((new TextComponent("Light the Haunted Braziers")).withStyle(Style.EMPTY.withColor((Integer)this.getColor(time).orElseThrow()))));
     }
+
 
     @Override
     public Optional<Integer> getColor(float time) {

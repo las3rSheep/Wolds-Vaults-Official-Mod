@@ -6,11 +6,9 @@ import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import iskallia.vault.config.Config;
 import iskallia.vault.config.GearModelRollRaritiesConfig;
 import iskallia.vault.gear.VaultGearRarity;
-import iskallia.vault.gear.item.VaultGearItem;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.extensions.IForgeItem;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -20,7 +18,6 @@ import xyz.iwolfking.woldsvaults.items.gear.VaultTridentItem;
 import xyz.iwolfking.woldsvaults.models.Battlestaffs;
 import xyz.iwolfking.woldsvaults.models.Tridents;
 
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,10 +25,6 @@ import java.util.stream.Collectors;
 
 @Mixin(value = GearModelRollRaritiesConfig.class, remap = false)
 public abstract class MixinGearModelRollRaritiesConfig extends Config {
-
-    @Shadow public abstract Map<VaultGearRarity, List<String>> getRolls(VaultGearItem gear);
-
-    @Shadow @Nullable protected abstract VaultGearRarity getForcedTierRarity(IForgeItem item, ResourceLocation modelId);
 
     @Expose
     private static Map<VaultGearRarity, List<String>> BATTLESTAFF_MODEL_ROLLS;
@@ -60,11 +53,11 @@ public abstract class MixinGearModelRollRaritiesConfig extends Config {
     }
 
     @Inject(method = "getRolls", at = @At("HEAD"), cancellable = true)
-    private void getRollsHook(CallbackInfoReturnable<Map<VaultGearRarity, List<String>>> cir, @Local LocalRef<VaultGearItem> gear) {
-        if (gear instanceof VaultBattleStaffItem)
+    private void getRollsHook(CallbackInfoReturnable<Map<VaultGearRarity, List<String>>> cir, @Local LocalRef<ItemStack> stack) {
+        if (stack instanceof VaultBattleStaffItem)
             /*  49 */       cir.setReturnValue(BATTLESTAFF_MODEL_ROLLS);
 
-        if(gear instanceof VaultTridentItem) {
+        if(stack instanceof VaultTridentItem) {
                     cir.setReturnValue(TRIDENT_MODEL_ROLLS);
             }
 //        if(gear instanceof VaultBowItem) {

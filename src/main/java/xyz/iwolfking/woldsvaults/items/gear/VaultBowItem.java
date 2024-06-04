@@ -44,7 +44,6 @@ import xyz.iwolfking.woldsvaults.models.Bows;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.Set;
 
 public class VaultBowItem extends BowItem implements VaultGearItem, DyeableLeatherItem {
     public VaultBowItem(ResourceLocation id, Properties builder) {
@@ -177,7 +176,7 @@ public class VaultBowItem extends BowItem implements VaultGearItem, DyeableLeath
         VaultGearData gearData = VaultGearData.read(itemStack);
         /*  57 */     VaultGearRarity rarity = gearData.getRarity();
         /*  58 */     EquipmentSlot intendedSlot = getIntendedSlot(itemStack);
-        /*  59 */     Set<ResourceLocation> possibleIds = ModConfigs.GEAR_MODEL_ROLL_RARITIES.getPossibleRolls(this, rarity, intendedSlot);
+        /*  59 */     ResourceLocation possibleIds = ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(this.defaultItem(), gearData, intendedSlot, random);
         /*     */
         /*  61 */     return (ResourceLocation) MiscUtils.getRandomEntry(possibleIds, random);
     }

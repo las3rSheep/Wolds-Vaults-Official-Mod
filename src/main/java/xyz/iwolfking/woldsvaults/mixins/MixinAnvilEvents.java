@@ -8,6 +8,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+//Removed in 0.9.18-u14
+
 @Mixin(value = AnvilEvents.class, remap = false)
 public class MixinAnvilEvents {
 

@@ -50,7 +50,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.Set;
 
 public class VaultTridentItem extends TridentItem implements VaultGearItem, DyeableLeatherItem {
     public VaultTridentItem(ResourceLocation id, Properties builder) {
@@ -64,9 +63,9 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
         /*  56 */     VaultGearData gearData = VaultGearData.read(stack);
         /*  57 */     VaultGearRarity rarity = gearData.getRarity();
         /*  58 */     EquipmentSlot intendedSlot = getIntendedSlot(stack);
-        /*  59 */     Set<ResourceLocation> possibleIds = ModConfigs.GEAR_MODEL_ROLL_RARITIES.getPossibleRolls(this, rarity, intendedSlot);
+        /*  59 */     ResourceLocation possibleIds = ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(this.defaultItem(), gearData, intendedSlot, random);
         /*     */
-        /*  61 */     return (ResourceLocation) MiscUtils.getRandomEntry(possibleIds, random);
+        /*  61 */     return (ResourceLocation) MiscUtils.getRandomEntry(possibleIds);
         /*     */   }
 
 
