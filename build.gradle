@@ -1,4 +1,5 @@
 buildscript {
+    ext.kotlin_version = '1.9.21'
     repositories {
         // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
@@ -6,6 +7,7 @@ buildscript {
     }
     dependencies {
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -16,6 +18,7 @@ plugins {
 }
 
 apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'kotlin'
 
 group = mod_version
 version = mod_group_id
@@ -147,6 +150,22 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    maven {
+        // location of the maven that hosts JEI files before January 2023
+        name = "Progwml6's maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
+    mavenCentral()
 }
 
 dependencies {
@@ -159,7 +178,7 @@ dependencies {
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     implementation files('lib/forgified-sgui-1.0.2+1.18.2.jar')
-    implementation fg.deobf('curse.maven:vault-hunters-official-mod-458203:4879913')
+    implementation fg.deobf('curse.maven:vault-hunters-official-mod-458203:5394784')
     implementation fg.deobf('curse.maven:hostile-neural-networks-552574:3717871')
     implementation fg.deobf('curse.maven:placebo-283644:3717788')
     implementation fg.deobf('curse.maven:lightmans-currency-472521:4977514')
@@ -167,10 +186,35 @@ dependencies {
     implementation fg.deobf('curse.maven:corpse-316582:3694258')
     implementation fg.deobf('curse.maven:open-parties-and-claims-636608:4982642')
     implementation fg.deobf('curse.maven:better-combat-by-daedelus-639842:4428885')
-    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.3"))
+    implementation fg.deobf('curse.maven:cooking-for-blockheads-231484:4065856')
+    implementation fg.deobf('curse.maven:scannable-266784:3738448')
+    implementation fg.deobf('curse.maven:parcool-482378:4944977')
+    implementation fg.deobf('curse.maven:ecologics-570463:4171283')
+    implementation fg.deobf('curse.maven:alexs-mobs-426558:3853078')
+    implementation fg.deobf('curse.maven:the-wild-backport-537901:3988035')
+    implementation fg.deobf('curse.maven:quark-243121:3840125')
+    implementation fg.deobf('curse.maven:applied-energistics-2-223794:4136407')
+    implementation fg.deobf('curse.maven:alexs-cloud-storage-606618:3757407')
+    implementation fg.deobf('curse.maven:ensorcellation-349447:4782920')
+    implementation fg.deobf('curse.maven:cofh-core-69162:4801048')
+    implementation fg.deobf('curse.maven:pehkui-319596:4823461')
+    implementation fg.deobf('curse.maven:angel-ring-333396:4641783')
+    implementation fg.deobf('curse.maven:refined-storage-243076:4902316')
+    implementation fg.deobf('curse.maven:atomicstrykers-infernal-mobs-227875:4149699')
+    implementation fg.deobf('curse.maven:balm-531761:4442615')
+    compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
+    runtimeOnly "curse.maven:citadel4-331936:3683009"
+    // compile against the JEI API but do not include it at runtime
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
+    // at runtime, use the full JEI jar for Forge
+    //runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+
+    compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.3")
     implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.3.3")) {
         jarJar.ranged(it, "[0.3.3,)")
     }
+
+
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
@@ -187,6 +231,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 
 
@@ -229,4 +274,7 @@ tasks.named('jar', Jar).configure {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+kotlin {
+    jvmToolchain(17)
 }

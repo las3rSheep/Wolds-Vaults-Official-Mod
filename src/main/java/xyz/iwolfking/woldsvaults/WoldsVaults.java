@@ -1,26 +1,26 @@
 package xyz.iwolfking.woldsvaults;
 
 import com.mojang.logging.LogUtils;
-import com.sun.jna.platform.unix.solaris.LibKstat;
 import iskallia.vault.init.ModItems;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -29,8 +29,12 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.type.capability.ICurio;
+import xyz.iwolfking.woldsvaults.config.forge.OptionsHolder;
 import xyz.iwolfking.woldsvaults.curios.ShardPouchCurio;
 import xyz.iwolfking.woldsvaults.events.RegisterCommandEventHandler;
+import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
+import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
+import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 
 import java.util.stream.Collectors;
 
@@ -39,9 +43,10 @@ import java.util.stream.Collectors;
 public class WoldsVaults {
 
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     public static final String MOD_ID = "woldsvaults";
     public WoldsVaults() {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, OptionsHolder.COMMON_SPEC, "woldsvaults-common.toml");
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -54,9 +59,9 @@ public class WoldsVaults {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        // Some preinit code
-        LOGGER.info("Wold's Vaults initializing!");
+        PacketHandler.init();
     }
+
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         // Some example code to dispatch IMC to another mod
@@ -74,8 +79,14 @@ public class WoldsVaults {
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
+        EnchantedEventsRegistry.addEvents();
+        BrutalBossesRegistry.init();
 
     }
+
+
+
+
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
     // Event bus for receiving Registry Events)
@@ -84,6 +95,10 @@ public class WoldsVaults {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
         }
+    }
+
+    public static ResourceLocation id(String name) {
+        return new ResourceLocation("woldsvaults", name);
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID)

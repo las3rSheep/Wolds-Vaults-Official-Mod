@@ -35,13 +35,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.NotNull;
 import xyz.iwolfking.woldsvaults.models.Tridents;
 
@@ -50,7 +50,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.Set;
 
 public class VaultTridentItem extends TridentItem implements VaultGearItem, DyeableLeatherItem {
     public VaultTridentItem(ResourceLocation id, Properties builder) {
@@ -64,15 +63,19 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
         /*  56 */     VaultGearData gearData = VaultGearData.read(stack);
         /*  57 */     VaultGearRarity rarity = gearData.getRarity();
         /*  58 */     EquipmentSlot intendedSlot = getIntendedSlot(stack);
-        /*  59 */     Set<ResourceLocation> possibleIds = ModConfigs.GEAR_MODEL_ROLL_RARITIES.getPossibleRolls(this, rarity, intendedSlot);
+        /*  59 */     ResourceLocation possibleIds = ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(this.defaultItem(), gearData, intendedSlot, random);
         /*     */
-        /*  61 */     return (ResourceLocation) MiscUtils.getRandomEntry(possibleIds, random);
+        /*  61 */     return (ResourceLocation) MiscUtils.getRandomEntry(possibleIds);
         /*     */   }
+
+
+
     /*     */
     /*     */
     /*     */   public Optional<? extends DynamicModel<?>> resolveDynamicModel(ItemStack stack, ResourceLocation key) {
         /*  66 */     return Tridents.REGISTRY.get(key);
         /*     */   }
+
     /*     */
     /*     */
     /*     */   @Nullable
@@ -83,13 +86,13 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     /*     */
     /*     */   @NotNull
     /*     */   public VaultGearClassification getClassification(ItemStack stack) {
-        /*  78 */     return VaultGearClassification.SWORD;
+        /*  78 */     return VaultGearClassification.AXE;
         /*     */   }
     /*     */
     /*     */
     /*     */   @Nonnull
     /*     */   public ProficiencyType getCraftingProficiencyType(ItemStack stack) {
-        /*  84 */     return ProficiencyType.SWORD;
+        /*  84 */     return ProficiencyType.AXE;
         /*     */   }
     /*     */
     /*     */
@@ -103,6 +106,20 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     /*     */   public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         /*  96 */     return false;
         /*     */   }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if(enchantment.equals(Enchantments.LOYALTY) || enchantment.equals(Enchantments.RIPTIDE) || enchantment.equals(Enchantments.CHANNELING)) {
+            return false;
+        }
+        else if(enchantment.equals(Enchantments.MOB_LOOTING)) {
+            return true;
+        }
+        else {
+            return super.canApplyAtEnchantingTable(stack, enchantment);
+        }
+    }
+
     /*     */
     /*     */
     /*     */   public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
@@ -130,6 +147,12 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     /*     */   public boolean isRepairable(ItemStack stack) {
         /* 123 */     return false;
         /*     */   }
+
+    @Override
+    public boolean isFireResistant() {
+        return true;
+    }
+
     /*     */
     /*     */
     /*     */   public boolean isDamageable(ItemStack stack) {
@@ -145,21 +168,23 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     /*     */   public Component getName(ItemStack stack) {
         /* 138 */     return VaultGearHelper.getDisplayName(stack, super.getName(stack));
         /*     */   }
+    
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        VaultGearData data = VaultGearData.read(stack);
-        float percentDecrease = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_WINDUP, VaultGearAttributeTypeMerger.floatSum());
-        return (int) (72000 * (1 - percentDecrease));
+        //VaultGearData data = VaultGearData.read(stack);
+        //float percentDecrease = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_WINDUP, VaultGearAttributeTypeMerger.floatSum());
+        return 72000;
     }
 
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int duration) {
         if (entity instanceof Player) {
             Player player = (Player)entity;
+            VaultGearData data = VaultGearData.read(stack);
+            float percentDecrease = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_WINDUP, VaultGearAttributeTypeMerger.floatSum());
             int i = this.getUseDuration(stack) - duration;
-            if (i >= 10) {
-                VaultGearData data = VaultGearData.read(stack);
+            if (i >= (10 * (1 -percentDecrease))) {
                 int j = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_RIPTIDE, VaultGearAttributeTypeMerger.intSum());
                 if (j <= 0 || player.isInWaterOrRain()) {
                     if (!level.isClientSide) {
@@ -237,11 +262,7 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
         /* 157 */     super.appendHoverText(stack, world, tooltip, flag);
         /* 158 */     tooltip.addAll(createTooltip(stack, GearTooltip.itemTooltip()));
         /*     */   }
-    /*     */
-    /*     */
-    /*     */   public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-        /* 163 */     return (ToolActions.SWORD_SWEEP == toolAction);
-        /*     */   }
+
     /*     */ }
 
 

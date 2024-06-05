@@ -36,24 +36,24 @@ public class Tridents {
     }
 
     static {
-        SCRAPPY_4 = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/scrappy_4"), "Scrappy_4")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        SCRAPPY_3 = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/scrappy_3"), "Scrappy_3")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        SCRAPPY_2 = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/scrappy_2"), "Scrappy_2")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        SCRAPPY_1 = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/scrappy_1"), "Scrappy_1")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        CLASSIC = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/vanilla"), "Classic Vanilla")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        GUARDIAN = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/guardian"), "Guardian")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        TRIDENT_PITCHFORK = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/pitchfork"), "Pitchfork")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        TRIDENT_SEABIRD = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/seabird"), "Seabird")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        TRIDENT_CRIMSON = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/crimson"), "Crimson Lance")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        AXOLOTL = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/axolotl"), "Axolotl")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        SCRAPPY_4 = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/scrappy_4"), "Scrappy Trident 4")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        SCRAPPY_3 = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/scrappy_3"), "Scrappy Trident 3")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        SCRAPPY_2 = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/scrappy_2"), "Scrappy Trident 2")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        SCRAPPY_1 = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/scrappy_1"), "Scrappy Trident 1")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        CLASSIC = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/vanilla"), "Classic Vanilla Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        GUARDIAN = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/guardian"), "Guardian Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        TRIDENT_PITCHFORK = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/pitchfork"), "Pitchfork Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        TRIDENT_SEABIRD = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/seabird"), "Seabird Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        TRIDENT_CRIMSON = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/crimson"), "Crimson Lance Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        AXOLOTL = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/axolotl"), "Axolotl Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
         CRYSTAL = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/crystal"), "Crystal Lance")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        EMERALD = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/emerald"), "Emerald")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        GOLDEN = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/golden"), "Golden")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        PRISMARINE = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/prismarine"), "Prismarine")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        PURPLE = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/purple"), "Purple")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        ROYAL = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/royal"), "Royal")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        ORANGE = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/orange"), "Orange")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
-        PINK = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/pink"), "Pink")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        EMERALD = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/emerald"), "Emerald Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        GOLDEN = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/golden"), "Golden Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        PRISMARINE = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/prismarine"), "Prismarine Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        PURPLE = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/purple"), "Purple Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        ROYAL = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/royal"), "Royal Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        ORANGE = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/orange"), "Orange Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
+        PINK = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/pink"), "Pink Trident")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
         PHANTOMGUARD = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/phantomguard"), "Phantomguard Lance")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll()));
     }
 }
