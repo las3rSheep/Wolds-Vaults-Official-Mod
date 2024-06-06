@@ -202,6 +202,9 @@ dependencies {
     implementation fg.deobf('curse.maven:refined-storage-243076:4902316')
     implementation fg.deobf('curse.maven:atomicstrykers-infernal-mobs-227875:4149699')
     implementation fg.deobf('curse.maven:balm-531761:4442615')
+    implementation fg.deobf('curse.maven:secretroomsmod-59652:3764897')
+    implementation fg.deobf("curse.maven:incorporeal-3-616485:3944433")
+    implementation fg.deobf("curse.maven:botania-225643:3936568")
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
     runtimeOnly "curse.maven:citadel4-331936:3683009"
     // compile against the JEI API but do not include it at runtime
