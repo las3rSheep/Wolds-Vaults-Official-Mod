@@ -51,14 +51,15 @@ public abstract class MixinThrownTrident extends AbstractArrow {
 
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     private void tickVaultTrident(CallbackInfo ci) {
-        if(this.tridentItem.getItem() instanceof VaultTridentItem) {
+        if(this.tridentItem != null && this.tridentItem.getItem() instanceof VaultTridentItem) {
             if (this.inGroundTime > 4) {
                 this.dealtDamage = true;
             }
 
             Entity entity = this.getOwner();
+
             int i = VaultGearData.read(this.tridentItem).get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_LOYALTY, VaultGearAttributeTypeMerger.intSum());
-            if (i > 0 && (this.dealtDamage || this.isNoPhysics()) && entity != null) {
+            if (entity != null && i > 0 && (this.dealtDamage || this.isNoPhysics()) ) {
                 if (!this.isAcceptibleReturnOwner()) {
                     if (!this.level.isClientSide && this.pickup == AbstractArrow.Pickup.ALLOWED) {
                         this.spawnAtLocation(this.getPickupItem(), 0.1F);
