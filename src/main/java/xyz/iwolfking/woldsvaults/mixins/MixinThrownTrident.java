@@ -19,7 +19,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ThrownTrident;
@@ -139,7 +138,6 @@ public abstract class MixinThrownTrident extends AbstractArrow {
                 /* 453 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/dweller"), (Entity)entity)) {
                     /* 454 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_DWELLER, VaultGearAttributeTypeMerger.floatSum())).floatValue();
                     /*     */     }
-                f += player.getAttributeValue(Attributes.ATTACK_DAMAGE);
                 f += (f * (1.0F + increasedDamage));
             }
 
