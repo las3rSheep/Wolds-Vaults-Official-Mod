@@ -36,6 +36,7 @@
     "MixinMenuItemLocator",
     "MixinModConfigs",
     "MixinModModels",
+    "MixinPlayer",
     "MixinPlayerInventory",
     "MixinPlayerVaultStats",
     "MixinPlayerVaultStatsData",
