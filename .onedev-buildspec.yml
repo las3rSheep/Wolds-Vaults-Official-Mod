@@ -23,8 +23,10 @@ jobs:
     artifacts: build/libs/*.jar
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
-  - !BranchUpdateTrigger
-    paths: src/main/*
+  - !PullRequestMergeTrigger
+    branches: '*'
+    paths: src/main/ build.gradle gradle.properties
+    projects: WoldsVaultOfficialMod
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
