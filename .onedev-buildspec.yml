@@ -1,7 +1,7 @@
 version: 33
 jobs:
 - name: Build jar
-  jobExecutor: Local-Executor
+  jobExecutor: mainworker
   steps:
   - !CheckoutStep
     name: Checkout
