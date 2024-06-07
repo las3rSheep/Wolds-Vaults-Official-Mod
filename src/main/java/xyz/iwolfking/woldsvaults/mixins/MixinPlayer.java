@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.List;
 
-@Mixin(value = Player.class, remap = false)
+@Mixin(value = Player.class)
 public class MixinPlayer
 {
 

@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.mixins.integrateddynamics;
 
+import iskallia.vault.core.vault.ClientVaults;
 import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -45,7 +46,7 @@ public abstract class MixinClientProxy extends ClientProxyComponent {
         ClientRegistry.registerKeyBinding(TERMINAL_STORAGE_PORTABLE_OPEN);
         keyRegistry.addKeyHandler(TERMINAL_STORAGE_PORTABLE_OPEN, (kb) -> {
             LocalPlayer player = Minecraft.getInstance().player;
-            if(ServerVaults.get(player.getLevel()).isPresent()) {
+            if(ClientVaults.getActive().isPresent() || ServerVaults.get(player.getLevel()).isPresent()) {
                 return;
             }
             ItemLocation found = null;
