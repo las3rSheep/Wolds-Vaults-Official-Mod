@@ -1,6 +1,7 @@
 version: 33
 jobs:
 - name: Build jar
+  jobExecutor: Local-Executor
   steps:
   - !CheckoutStep
     name: Checkout
@@ -23,7 +24,7 @@ jobs:
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
   - !BranchUpdateTrigger
-    paths: build.gradle
+    paths: src/main/*
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
