@@ -1,0 +1,31 @@
+version: 33
+jobs:
+- name: Build jar
+  jobExecutor: mainworker
+  steps:
+  - !CheckoutStep
+    name: Checkout
+    cloneCredential: !DefaultCredential {}
+    withLfs: false
+    withSubmodules: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !CommandStep
+    name: Gradle Build
+    runInContainer: true
+    image: gradle:jdk17-alpine
+    interpreter: !DefaultInterpreter
+      commands: |
+        gradle build
+    useTTY: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !PublishArtifactStep
+    name: Publish Jar
+    artifacts: build/libs/*.jar
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !BranchUpdateTrigger
+    paths: src/main/*
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 3600
