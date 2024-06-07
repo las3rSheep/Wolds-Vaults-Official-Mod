@@ -62,7 +62,8 @@
     "MixinWirelessTerminalItem",
     "ScannerModuleItemAccessor",
     "ThrownTridentAccessor",
-    "VaultAltarTileEntityAccessor"
+    "VaultAltarTileEntityAccessor",
+    "integrateddynamics.MixinClientProxy"
   ],
   "client": [
     "MixinBountyScreen",
