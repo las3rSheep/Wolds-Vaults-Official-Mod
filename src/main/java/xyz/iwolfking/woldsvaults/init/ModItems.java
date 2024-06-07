@@ -96,7 +96,7 @@ public class ModItems {
         registry.register(AUGMENT_BOX);
         registry.register(INSCRIPTION_BOX);
         registry.register(OMEGA_BOX);
-        //registry.register(CATALYST_BOX);
+        registry.register(CATALYST_BOX);
         registry.register(ENIGMA_EGG);
         registry.register(BENITOITE_GEMSTONE);
         registry.register(WUTODIC_GEMSTONE);
@@ -136,7 +136,7 @@ public class ModItems {
         AUGMENT_BOX = new LootableItem(VaultMod.id("augment_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.AUGMENT_BOX.POOL.getRandom(new Random())).get().generateItemStack());
         INSCRIPTION_BOX = new LootableItem(WoldsVaults.id("inscription_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.INSCRIPTION_BOX.POOL.getRandom(new Random())).get().generateItemStack());
         OMEGA_BOX = new LootableItem(WoldsVaults.id("omega_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.OMEGA_BOX.POOL.getRandom(new Random())).get().generateItemStack());
-        //CATALYST_BOX = new LootableItem(WoldsVaults.id("catalyst_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.CATALYST_BOX.POOL.getRandom(new Random())).get().generateItemStack());
+        CATALYST_BOX = new LootableItem(WoldsVaults.id("catalyst_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.CATALYST_BOX.POOL.getRandom(new Random())).get().generateItemStack());
         ENIGMA_EGG = new LootableItem(WoldsVaults.id("enigma_egg"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.ENIGMA_EGG.POOL.getRandom(new Random())).get().generateItemStack());
         BENITOITE_GEMSTONE = new BasicScavengerItem("benitoite_gemstone");
         WUTODIC_GEMSTONE = new BasicScavengerItem("wutodic_gemstone");
