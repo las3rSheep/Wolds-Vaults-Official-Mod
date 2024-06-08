@@ -60,6 +60,7 @@ public class WoldsVaults {
         }
         PacketHandler.init();
         CustomCatalystModelRegistry.registerModels();
+
     }
 
 

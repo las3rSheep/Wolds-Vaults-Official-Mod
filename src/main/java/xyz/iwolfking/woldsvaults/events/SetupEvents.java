@@ -8,6 +8,7 @@ import xyz.iwolfking.woldsvaults.init.ModEntities;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SetupEvents {
     public SetupEvents() {
+
     }
 
     @SubscribeEvent

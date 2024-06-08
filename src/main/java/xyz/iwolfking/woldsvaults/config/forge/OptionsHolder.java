@@ -10,15 +10,20 @@ public class OptionsHolder
     public static class Common
     {
         public final ForgeConfigSpec.ConfigValue<Boolean> disableFlightInVaults;
+        public final ForgeConfigSpec.ConfigValue<Boolean> enableMoteRecipes;
         public final ForgeConfigSpec.ConfigValue<Boolean> enableDebugMode;
         public Common(ForgeConfigSpec.Builder builder)
         {
             builder.push("Vault Settings");
-            this.disableFlightInVaults= builder.comment("Controls whether Creative flight should be blocked while inside a vault.")
+            this.disableFlightInVaults= builder.comment("Controls whether Creative flight should be blocked while inside a vault. (default: true)")
                     .define("disableFlightInVaults", true);
             builder.pop();
+            builder.push("Gameplay Settings");
+            this.enableMoteRecipes= builder.comment("Controls whether Mote of Purity, Sanctity, and Clarity should work in the Crystal Workbench. (default: false)")
+                    .define("enableMoteRecipes", false);
+            builder.pop();
             builder.push("Developer Settings");
-            this.enableDebugMode= builder.comment("Don't recommend turning on unless asked, enables debug messages for development.")
+            this.enableDebugMode= builder.comment("Don't recommend turning on unless asked, enables debug messages for development. (default: false)")
                     .define("enableDebugMode", false);
             builder.pop();
         }

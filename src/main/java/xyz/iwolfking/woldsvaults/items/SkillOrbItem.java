@@ -20,6 +20,8 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public class SkillOrbItem extends BasicItem {
+
+
     public SkillOrbItem(ResourceLocation id) {
         super(id);
     }

@@ -1,10 +1,7 @@
 package xyz.iwolfking.woldsvaults.init;
 
 import iskallia.vault.VaultMod;
-import iskallia.vault.item.BasicMobEggItem;
-import iskallia.vault.item.BasicScavengerItem;
-import iskallia.vault.item.ItemVaultCrystalSeal;
-import iskallia.vault.item.LootableItem;
+import iskallia.vault.item.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -81,6 +78,10 @@ public class ModItems {
     public static final ExpertiseOrbItem EXPERTISE_ORB_ITEM;
     public static final SkillOrbItem SKILL_ORB_ITEM;
 
+    public static BasicItem FRENZY_CAPSTONE;
+    public static BasicItem PROSPEROUS_CAPSTONE;
+    public static BasicItem ALL_SEEING_EYE_CAPSTONE;
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
@@ -120,7 +121,9 @@ public class ModItems {
         registry.register(ROBOT_EGG);
         registry.register(MONSTER_EYE_EGG);
         registry.register(BLUE_BLAZE_EGG);
-        //registry.register(BOW);
+        registry.register(FRENZY_CAPSTONE);
+        registry.register(PROSPEROUS_CAPSTONE);
+        registry.register(ALL_SEEING_EYE_CAPSTONE);
     }
 
     static {
@@ -155,6 +158,9 @@ public class ModItems {
         PRISMATIC_ANGEL_RING = new PrismaticAngelRing();
         EXPERTISE_ORB_ITEM = new ExpertiseOrbItem(WoldsVaults.id("expertise_orb"));
         SKILL_ORB_ITEM = new SkillOrbItem(WoldsVaults.id("skill_orb"));
+        FRENZY_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_frenzy"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        PROSPEROUS_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_prosperous"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        ALL_SEEING_EYE_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_all_seeing_eye"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         //BOW = new VaultBowItem(VaultMod.id("bow"), (new Item.Properties().tab(GEAR_GROUP).stacksTo(1)));
     }
 }

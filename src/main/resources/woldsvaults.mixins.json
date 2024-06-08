@@ -30,6 +30,7 @@
     "scannable.ScannerModuleItemAccessor",
     "secretroomsmod.MixinDelegateWorld",
     "vaulthunters.MixinAngelBlock",
+    "vaulthunters.MixinAnvilRecipes",
     "vaulthunters.MixinClassicListenersLogic",
     "vaulthunters.MixinCompletionProperties",
     "vaulthunters.MixinCrystalData",
