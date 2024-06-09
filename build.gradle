@@ -206,6 +206,7 @@ dependencies {
     implementation fg.deobf("curse.maven:cyclops-core-232758:5262021")
     implementation fg.deobf("curse.maven:sophisticatedcore-618298:4913626")
     implementation fg.deobf("curse.maven:item-borders-513769:3583942")
+    implementation fg.deobf("curse.maven:vaultarhud-1011085:5411126")
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
     runtimeOnly "curse.maven:citadel4-331936:3683009"
     // compile against the JEI API but do not include it at runtime
