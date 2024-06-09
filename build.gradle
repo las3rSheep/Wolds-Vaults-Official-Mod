@@ -209,6 +209,7 @@ dependencies {
     implementation fg.deobf("curse.maven:vaultarhud-1011085:5411126")
     implementation fg.deobf("curse.maven:refinedstorage-243076:4902316")
     implementation fg.deobf("curse.maven:toms-storage-378609:5211203")
+    implementation fg.deobf("curse.maven:cyclops-core-232758:5262021")
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
     runtimeOnly "curse.maven:citadel4-331936:3683009"
     // compile against the JEI API but do not include it at runtime
