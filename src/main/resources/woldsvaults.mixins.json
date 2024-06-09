@@ -27,10 +27,13 @@
     "hostilenetworks.HostileEventsMixin",
     "infernalmobs.MixinInfernalMobsCore",
     "integrateddynamics.MixinClientProxy",
+    "itemborders.MixinItemBorders",
+    "itemborders.integratedterminals.MixinIngredientComponentTerminalStorageHandlerItemStack",
+    "itemborders.refinedstorage.MixinItemGridStack",
+    "itemborders.sophisticatedcore.MixinStorageScreenBase",
     "scannable.MixinScannableItems",
     "scannable.ScannerModuleItemAccessor",
     "secretroomsmod.MixinDelegateWorld",
-    "sophisticatedcore.MixinStorageScreenBase",
     "vaultarhud.MixinScreenValidator",
     "vaulthunters.MixinAngelBlock",
     "vaulthunters.MixinAnvilRecipes",
@@ -72,6 +75,8 @@
   ],
   "client": [
     "MixinThrownTridentRenderer",
+    "itemborders.ae2.MixinAEBaseScreen",
+    "itemborders.tomsstorage.MixinGuiStorageTerminalBase",
     "vaulthunters.MixinBountyScreen",
     "vaulthunters.VaultChestRendererAccessor"
   ],

@@ -11,6 +11,7 @@ public class WoldsVaultsConfig
     {
         public final ForgeConfigSpec.ConfigValue<Boolean> disableFlightInVaults;
         public final ForgeConfigSpec.ConfigValue<Boolean> enableMoteRecipes;
+        public final ForgeConfigSpec.ConfigValue<Boolean> displayItemBordersInTerminals;
         public final ForgeConfigSpec.ConfigValue<Boolean> enableDebugMode;
         public Common(ForgeConfigSpec.Builder builder)
         {
@@ -21,6 +22,12 @@ public class WoldsVaultsConfig
             builder.push("Gameplay Settings");
             this.enableMoteRecipes= builder.comment("Controls whether Mote of Purity, Sanctity, and Clarity should work in the Crystal Workbench. (default: false)")
                     .define("enableMoteRecipes", false);
+            builder.pop();
+            builder.push("Compatability Settings");
+            builder.push("Item Borders");
+            this.displayItemBordersInTerminals= builder.comment("Whether Item Borders from the Item Borders mod should show in terminals like Refined Storage, AE2, etc., this will also cause them to show on the hot-bar. (default: true)")
+                    .define("displayItemBordersInTerminals", true);
+            builder.pop();
             builder.pop();
             builder.push("Developer Settings");
             this.enableDebugMode= builder.comment("Don't recommend turning on unless asked, enables debug messages for development. (default: false)")
