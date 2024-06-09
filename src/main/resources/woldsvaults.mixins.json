@@ -4,6 +4,7 @@
   "package": "xyz.iwolfking.woldsvaults.mixins",
   "compatibilityLevel": "JAVA_8",
   "refmap": "woldsvaults.refmap.json",
+  "plugin": "xyz.iwolfking.woldsvaults.mixins.plugins.WoldMixinPlugin",
   "mixins": [
     "MixinPlayer",
     "MixinPlayerInventory",
@@ -52,6 +53,7 @@
     "vaulthunters.MixinScavengerAltar",
     "vaulthunters.MixinShopPedestalBlock",
     "vaulthunters.MixinSoulboundSnapshot",
+    "sophisticatedcore.MixinStorageScreenBase",
     "vaulthunters.MixinSpiritExtractor",
     "vaulthunters.MixinStatisticsElementContainerScreenData",
     "vaulthunters.MixinVaultAltarIngredientsConfig",
