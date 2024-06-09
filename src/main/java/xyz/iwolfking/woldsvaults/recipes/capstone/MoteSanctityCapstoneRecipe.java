@@ -9,14 +9,14 @@ import iskallia.vault.item.crystal.recipe.AnvilContext;
 import iskallia.vault.item.crystal.recipe.VanillaAnvilRecipe;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.world.item.ItemStack;
-import xyz.iwolfking.woldsvaults.config.forge.OptionsHolder;
+import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 
 public class MoteSanctityCapstoneRecipe extends VanillaAnvilRecipe {
     public MoteSanctityCapstoneRecipe() {
     }
 
     public boolean onSimpleCraft(AnvilContext context) {
-        if(!OptionsHolder.COMMON.enableMoteRecipes.get()) {
+        if(!WoldsVaultsConfig.COMMON.enableMoteRecipes.get()) {
             return false;
         }
         ItemStack primary = context.getInput()[0];

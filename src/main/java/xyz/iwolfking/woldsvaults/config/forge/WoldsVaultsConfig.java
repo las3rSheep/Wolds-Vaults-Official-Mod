@@ -5,7 +5,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Arrays;
 
-public class OptionsHolder
+public class WoldsVaultsConfig
 {
     public static class Common
     {

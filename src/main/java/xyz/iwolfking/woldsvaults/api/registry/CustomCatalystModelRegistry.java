@@ -1,6 +1,6 @@
 package xyz.iwolfking.woldsvaults.api.registry;
 
-import xyz.iwolfking.woldsvaults.config.forge.OptionsHolder;
+import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.init.ModCatalystModels;
 import xyz.iwolfking.woldsvaults.mixins.vaulthunters.MixinInfusedCatalystItem;
 
@@ -21,7 +21,7 @@ public class CustomCatalystModelRegistry {
     public static void registerModels() {
         ModCatalystModels.registerModels();
         MixinInfusedCatalystItem.setModels(MixinInfusedCatalystItem.getModels() +  getSize());
-        if(OptionsHolder.COMMON.enableDebugMode.get()) {
+        if(WoldsVaultsConfig.COMMON.enableDebugMode.get()) {
             System.out.println("Wold's Vaults - Registered " + getSize() + " Custom Catalyst Models.");
         }
     }

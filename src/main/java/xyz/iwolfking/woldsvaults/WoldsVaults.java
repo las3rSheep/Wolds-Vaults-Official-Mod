@@ -27,7 +27,7 @@ import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import xyz.iwolfking.woldsvaults.api.registry.CustomCatalystModelRegistry;
-import xyz.iwolfking.woldsvaults.config.forge.OptionsHolder;
+import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.curios.ShardPouchCurio;
 import xyz.iwolfking.woldsvaults.events.RegisterCommandEventHandler;
 import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
@@ -42,7 +42,7 @@ public class WoldsVaults {
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final String MOD_ID = "woldsvaults";
     public WoldsVaults() {
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, OptionsHolder.COMMON_SPEC, "woldsvaults-common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WoldsVaultsConfig.COMMON_SPEC, "woldsvaults-common.toml");
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -54,7 +54,7 @@ public class WoldsVaults {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        if(OptionsHolder.COMMON.enableDebugMode.get()) {
+        if(WoldsVaultsConfig.COMMON.enableDebugMode.get()) {
             LOGGER.warn("Debug mode is enabled! Please disable this in woldsvaults-common.toml to prevent unnecessary log spam!");
             LOGGER.debug("Initializing FMLCommonSetup events!");
         }
