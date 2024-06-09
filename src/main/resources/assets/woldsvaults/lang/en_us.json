@@ -59,5 +59,8 @@
   "item.woldsvaults.blue_blaze_spawn_egg": "Blue Blaze Spawn Egg",
   "item.woldsvaults.capstone_frenzy": "Frenzy Capstone",
   "item.woldsvaults.capstone_prosperous": "Prosperous Capstone",
-  "item.woldsvaults.capstone_all_seeing_eye": "All Seeing Eye Capstone"
+  "item.woldsvaults.capstone_all_seeing_eye": "All Seeing Eye Capstone",
+  "effect.woldsvaults.reaving": "Reaved",
+  "effect.woldsvaults.shrinking": "Shrinking",
+  "effect.woldsvaults.growing": "Growing"
 }

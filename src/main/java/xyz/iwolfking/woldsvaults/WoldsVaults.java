@@ -29,6 +29,7 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 import xyz.iwolfking.woldsvaults.api.registry.CustomCatalystModelRegistry;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.curios.ShardPouchCurio;
+import xyz.iwolfking.woldsvaults.events.LivingEntityEvents;
 import xyz.iwolfking.woldsvaults.events.RegisterCommandEventHandler;
 import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
 import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
@@ -60,7 +61,7 @@ public class WoldsVaults {
         }
         PacketHandler.init();
         CustomCatalystModelRegistry.registerModels();
-
+        LivingEntityEvents.init();
     }
 
 

@@ -38,6 +38,9 @@ public class ModGearAttributes {
             /* 121 */       VaultGearAttributeType.booleanType(), (ConfigurableAttributeGenerator<Boolean, ?>)ModGearAttributeGenerators.booleanFlag(), (VaultGearModifierReader<Boolean>)ModGearAttributeReaders.booleanReader("Endergized", 46276), VaultGearAttributeComparator.booleanComparator());
     /*     */
     /*     */
+
+    public static final VaultGearAttribute<Float> REAVING_DAMAGE = attr("reaving_damage",
+            VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Bonus Reaving Damage", 12417954), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<VaultAmuletEffect<?>> VAULT_AMULET_EFFECT = attr("amulet", VaultGearAttributeType.registryType(VaultAmuletEffectRegistry.getRegistry()), ModGearAttributeGenerators.noneGenerator(), ModGearAttributeReaders.none());
     @SubscribeEvent
     /*     */   public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
@@ -48,6 +51,7 @@ public class ModGearAttributes {
                       registry.register(TRIDENT_CHANNELING);
                       registry.register(CHANNELING_CHANCE);
                       registry.register(MAGNET_ENDERGIZED);
+                      registry.register(REAVING_DAMAGE);
                       registry.register(VAULT_AMULET_EFFECT);
         /*     */   }
     /*     */
