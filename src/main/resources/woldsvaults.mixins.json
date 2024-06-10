@@ -34,6 +34,7 @@
     "scannable.MixinScannableItems",
     "scannable.ScannerModuleItemAccessor",
     "secretroomsmod.MixinDelegateWorld",
+    "vaultarhud.MixinInventoryHudRender",
     "vaultarhud.MixinScreenValidator",
     "vaulthunters.MixinAngelBlock",
     "vaulthunters.MixinAnvilRecipes",
@@ -79,6 +80,7 @@
     "itemborders.cyclopscore.MixinRenderItemExtendedSlotCount",
     "itemborders.tomsstorage.MixinGuiStorageTerminalBase",
     "vaulthunters.MixinBountyScreen",
+    "vaulthunters.MixinCatalystItemRenderer",
     "vaulthunters.VaultChestRendererAccessor"
   ],
   "injectors": {
