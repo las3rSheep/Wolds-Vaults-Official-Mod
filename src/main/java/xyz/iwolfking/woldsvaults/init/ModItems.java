@@ -1,10 +1,7 @@
 package xyz.iwolfking.woldsvaults.init;
 
 import iskallia.vault.VaultMod;
-import iskallia.vault.item.BasicMobEggItem;
-import iskallia.vault.item.BasicScavengerItem;
-import iskallia.vault.item.ItemVaultCrystalSeal;
-import iskallia.vault.item.LootableItem;
+import iskallia.vault.item.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -17,6 +14,7 @@ import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.config.VaultAmuletConfig;
 import xyz.iwolfking.woldsvaults.items.AltarResetItem;
 import xyz.iwolfking.woldsvaults.items.ExpertiseOrbItem;
+import xyz.iwolfking.woldsvaults.items.SkillOrbItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultAmuletItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultBattleStaffItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultTridentItem;
@@ -78,6 +76,11 @@ public class ModItems {
 
     //Orbs
     public static final ExpertiseOrbItem EXPERTISE_ORB_ITEM;
+    public static final SkillOrbItem SKILL_ORB_ITEM;
+
+    public static BasicItem FRENZY_CAPSTONE;
+    public static BasicItem PROSPEROUS_CAPSTONE;
+    public static BasicItem ALL_SEEING_EYE_CAPSTONE;
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -94,7 +97,7 @@ public class ModItems {
         registry.register(AUGMENT_BOX);
         registry.register(INSCRIPTION_BOX);
         registry.register(OMEGA_BOX);
-        //registry.register(CATALYST_BOX);
+        registry.register(CATALYST_BOX);
         registry.register(ENIGMA_EGG);
         registry.register(BENITOITE_GEMSTONE);
         registry.register(WUTODIC_GEMSTONE);
@@ -112,12 +115,15 @@ public class ModItems {
         registry.register(BLACK_CHROMATIC_STEEL_ANGEL_RING);
         registry.register(PRISMATIC_ANGEL_RING);
         registry.register(EXPERTISE_ORB_ITEM);
+        registry.register(SKILL_ORB_ITEM);
         registry.register(WOLD_EGG);
         registry.register(BOOGIEMAN_EGG);
         registry.register(ROBOT_EGG);
         registry.register(MONSTER_EYE_EGG);
         registry.register(BLUE_BLAZE_EGG);
-        //registry.register(BOW);
+        registry.register(FRENZY_CAPSTONE);
+        registry.register(PROSPEROUS_CAPSTONE);
+        registry.register(ALL_SEEING_EYE_CAPSTONE);
     }
 
     static {
@@ -133,7 +139,7 @@ public class ModItems {
         AUGMENT_BOX = new LootableItem(VaultMod.id("augment_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.AUGMENT_BOX.POOL.getRandom(new Random())).get().generateItemStack());
         INSCRIPTION_BOX = new LootableItem(WoldsVaults.id("inscription_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.INSCRIPTION_BOX.POOL.getRandom(new Random())).get().generateItemStack());
         OMEGA_BOX = new LootableItem(WoldsVaults.id("omega_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.OMEGA_BOX.POOL.getRandom(new Random())).get().generateItemStack());
-        //CATALYST_BOX = new LootableItem(WoldsVaults.id("catalyst_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.CATALYST_BOX.POOL.getRandom(new Random())).get().generateItemStack());
+        CATALYST_BOX = new LootableItem(WoldsVaults.id("catalyst_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.CATALYST_BOX.POOL.getRandom(new Random())).get().generateItemStack());
         ENIGMA_EGG = new LootableItem(WoldsVaults.id("enigma_egg"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.ENIGMA_EGG.POOL.getRandom(new Random())).get().generateItemStack());
         BENITOITE_GEMSTONE = new BasicScavengerItem("benitoite_gemstone");
         WUTODIC_GEMSTONE = new BasicScavengerItem("wutodic_gemstone");
@@ -151,6 +157,10 @@ public class ModItems {
         BLACK_CHROMATIC_STEEL_ANGEL_RING = new BlackChromaticSteelAngelRing();
         PRISMATIC_ANGEL_RING = new PrismaticAngelRing();
         EXPERTISE_ORB_ITEM = new ExpertiseOrbItem(WoldsVaults.id("expertise_orb"));
+        SKILL_ORB_ITEM = new SkillOrbItem(WoldsVaults.id("skill_orb"));
+        FRENZY_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_frenzy"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        PROSPEROUS_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_prosperous"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        ALL_SEEING_EYE_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_all_seeing_eye"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         //BOW = new VaultBowItem(VaultMod.id("bow"), (new Item.Properties().tab(GEAR_GROUP).stacksTo(1)));
     }
 }

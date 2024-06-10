@@ -40,6 +40,7 @@
   "item.the_vault.scavenger_ender_artifact": "Ender Artifact",
   "item.the_vault.altar_recatalyzer": "Altar Recatalyzer",
   "item.woldsvaults.expertise_orb": "Expertise Orb",
+  "item.woldsvaults.skill_orb": "Skill Orb",
   "item.woldsvaults.chromatic_iron_angel_ring": "Chromatic Iron Angel Ring",
   "item.woldsvaults.chromatic_gold_angel_ring": "Chromatic Gold Angel Ring",
   "item.woldsvaults.chromatic_steel_angel_ring": "Chromatic Steel Angel Ring",
@@ -55,5 +56,11 @@
   "item.woldsvaults.boogieman_spawn_egg": "Boogieman Spawn Egg",
   "item.woldsvaults.monster_eye_spawn_egg": "Monster Eye Spawn Egg",
   "item.woldsvaults.robot_spawn_egg": "Robot Spawn Egg",
-  "item.woldsvaults.blue_blaze_spawn_egg": "Blue Blaze Spawn Egg"
+  "item.woldsvaults.blue_blaze_spawn_egg": "Blue Blaze Spawn Egg",
+  "item.woldsvaults.capstone_frenzy": "Frenzy Capstone",
+  "item.woldsvaults.capstone_prosperous": "Prosperous Capstone",
+  "item.woldsvaults.capstone_all_seeing_eye": "All Seeing Eye Capstone",
+  "effect.woldsvaults.reaving": "Reaved",
+  "effect.woldsvaults.shrinking": "Shrinking",
+  "effect.woldsvaults.growing": "Growing"
 }
