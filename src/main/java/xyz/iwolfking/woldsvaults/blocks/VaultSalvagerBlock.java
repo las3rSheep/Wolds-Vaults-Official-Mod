@@ -1,6 +1,5 @@
 package xyz.iwolfking.woldsvaults.blocks;
 
-import iskallia.vault.block.entity.VaultRecyclerTileEntity;
 import iskallia.vault.util.BlockHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -65,7 +64,7 @@ public class VaultSalvagerBlock extends Block implements EntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-            if (blockentity instanceof VaultRecyclerTileEntity) {
+            if (blockentity instanceof VaultSalvagerTileEntity) {
                 VaultSalvagerTileEntity recycler = (VaultSalvagerTileEntity)blockentity;
                 Containers.dropContents(pLevel, pPos, recycler.getInventory());
                 pLevel.updateNeighbourForOutputSignal(pPos, this);

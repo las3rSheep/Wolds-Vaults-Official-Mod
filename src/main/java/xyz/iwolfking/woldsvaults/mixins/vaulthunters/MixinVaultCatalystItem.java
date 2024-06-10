@@ -1,0 +1,42 @@
+package xyz.iwolfking.woldsvaults.mixins.vaulthunters;
+
+import iskallia.vault.config.VaultRecyclerConfig;
+import iskallia.vault.item.InfusedCatalystItem;
+import iskallia.vault.item.gear.DataInitializationItem;
+import iskallia.vault.item.gear.RecyclableItem;
+import iskallia.vault.item.gear.VaultLevelItem;
+import iskallia.vault.item.tool.IManualModelLoading;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.Mixin;
+import xyz.iwolfking.woldsvaults.config.fake.CatalystVaultRecylerConfig;
+
+import java.util.Optional;
+import java.util.UUID;
+
+@Mixin(value = InfusedCatalystItem.class, remap = false)
+public abstract class MixinVaultCatalystItem extends Item implements VaultLevelItem, IManualModelLoading, DataInitializationItem, RecyclableItem {
+    public MixinVaultCatalystItem(Properties p_41383_) {
+        super(p_41383_);
+    }
+
+    @Override
+    public boolean isValidInput(ItemStack itemStack) {
+        return true;
+    }
+
+    @Override
+    public VaultRecyclerConfig.RecyclerOutput getOutput(ItemStack itemStack) {
+        return CatalystVaultRecylerConfig.CATALYST_VAULT_RECYCLER_OUTPUT;
+    }
+
+    @Override
+    public float getResultPercentage(ItemStack itemStack) {
+        return 1.0F;
+    }
+
+    @Override
+    public Optional<UUID> getUuid(ItemStack itemStack) {
+        return Optional.of(UUID.randomUUID());
+    }
+}
