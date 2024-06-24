@@ -19,6 +19,7 @@ import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
+import xyz.iwolfking.woldsvaults.util.WoldEventHelper;
 
 @Mod.EventBusSubscriber(
         modid = WoldsVaults.MOD_ID
@@ -43,8 +44,8 @@ public class LivingEntityEvents {
 
     @SubscribeEvent
     public static void reavingDamage(LivingHurtEvent event) {
-        //Prevent an entity from being reaved more than once.
-        if(event.getEntityLiving().hasEffect(ModEffects.REAVING)) {
+        //Prevent an entity from being reaved more than once or applying to non-melee strikes.
+        if(event.getEntityLiving().hasEffect(ModEffects.REAVING) || !WoldEventHelper.isNormalAttack()) {
             return;
         }
 
@@ -58,7 +59,7 @@ public class LivingEntityEvents {
                 event.getEntityLiving().addEffect(new MobEffectInstance(iskallia.vault.init.ModEffects.NO_AI, 20, 0));
                 event.setAmount(event.getAmount() + (event.getEntityLiving().getMaxHealth() * data.get(ModGearAttributes.REAVING_DAMAGE, VaultGearAttributeTypeMerger.floatSum())));
                 if(ANCHOR_SLAM_SOUND != null) {
-                    WoldsVaults.LOGGER.debug("Anchor Slam Sound was null");
+                    WoldsVaults.LOGGER.debug("Anchor Slam Sound was null, Better Combat mod is missing.");
                 }
                 player.getLevel().playSound(null, event.getEntity(), ANCHOR_SLAM_SOUND, SoundSource.PLAYERS, 1.0F, 1.0F);
             }
