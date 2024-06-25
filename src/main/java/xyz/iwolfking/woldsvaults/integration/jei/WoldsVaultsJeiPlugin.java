@@ -1,7 +1,6 @@
 package xyz.iwolfking.woldsvaults.integration.jei;
 
 import iskallia.vault.init.ModConfigs;
-import iskallia.vault.init.ModItems;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
@@ -26,8 +25,8 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
     }
 
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(ModItems.MYSTERY_EGG), MysteryEggRecipeCategory.RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModItems.MYSTERY_HOSTILE_EGG), MysteryHostileEggRecipeCategory.RECIPE_TYPE);
+        //registration.addRecipeCatalyst(new ItemStack(ModItems.MYSTERY_EGG), MysteryEggRecipeCategory.RECIPE_TYPE);
+        //registration.addRecipeCatalyst(new ItemStack(ModItems.MYSTERY_HOSTILE_EGG), MysteryHostileEggRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.ENIGMA_EGG), EnigmaEggRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.OMEGA_BOX), OmegaBoxRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.GEM_BOX), GemBoxRecipeCategory.RECIPE_TYPE);

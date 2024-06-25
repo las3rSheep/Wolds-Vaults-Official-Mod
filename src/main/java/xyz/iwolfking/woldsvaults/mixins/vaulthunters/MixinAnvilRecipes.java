@@ -9,6 +9,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.recipes.capstone.*;
+import xyz.iwolfking.woldsvaults.recipes.gear.GearPrefixAdderRecipe;
+import xyz.iwolfking.woldsvaults.recipes.gear.GearRepairAdderRecipe;
+import xyz.iwolfking.woldsvaults.recipes.gear.GearSuffixAdderRecipe;
 
 import java.util.List;
 
@@ -26,6 +29,9 @@ public abstract class MixinAnvilRecipes {
         woldsVaults$register(new MoteClarityCapstoneRecipe());
         woldsVaults$register(new MoteSanctityCapstoneRecipe());
         woldsVaults$register(new MotePurityCapstoneRecipe());
+        woldsVaults$register(new GearPrefixAdderRecipe());
+        woldsVaults$register(new GearSuffixAdderRecipe());
+        woldsVaults$register(new GearRepairAdderRecipe());
     }
 
     @Unique

@@ -94,7 +94,7 @@ public class InscriptionBoxRecipeCategory implements IRecipeCategory<Inscription
 
         WeightedList<ProductEntry> entries = ModConfigs.INSCRIPTION_BOX.POOL;
         for(WeightedList.Entry<ProductEntry> entry : entries) {
-            if(entry.value.generateItemStack().equals(stack)) {
+            if(entry.value.getNBT().equals(stack.getTag())) {
                 MutableComponent component = new TextComponent("Chance: ");
                 double chance = ((double) entry.weight / totalWeight) * 100;
                 component.append(String.format("%.2f", chance));

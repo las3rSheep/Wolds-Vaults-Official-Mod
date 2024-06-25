@@ -43,6 +43,7 @@
     "vaulthunters.MixinCrystalData",
     "vaulthunters.MixinEnchanterEnchantSelectorModel",
     "vaulthunters.MixinEnchantmentUtil",
+    "vaulthunters.MixinExperiencedExpertise",
     "vaulthunters.MixinGearModelRollRaritiesConfig",
     "vaulthunters.MixinGearRollHelper",
     "vaulthunters.MixinInfusedCatalystItem",

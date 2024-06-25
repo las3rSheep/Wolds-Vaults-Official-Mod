@@ -4,7 +4,11 @@ package xyz.iwolfking.woldsvaults.mixins.vaulthunters;
 import iskallia.vault.event.event.VaultLevelUpEvent;
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.skill.PlayerVaultStats;
+import iskallia.vault.skill.base.Skill;
+import iskallia.vault.skill.expertise.type.ExperiencedExpertise;
+import iskallia.vault.skill.tree.ExpertiseTree;
 import iskallia.vault.util.NetcodeUtils;
+import iskallia.vault.world.data.PlayerExpertisesData;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -13,6 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
+import java.util.Iterator;
 import java.util.UUID;
 
 @Mixin(value = PlayerVaultStats.class, remap = false)
@@ -34,14 +39,24 @@ public abstract class MixinPlayerVaultStats {
 
     /**
      * @author iwolfking
-     * @reason Modify how expertise points are calculated after level 100
+     * @reason Modify how expertise points are calculated after level 100, Experienced Expertise boosts XP
      */
     @Overwrite
     public void addVaultExp(MinecraftServer server, int exp) {
         int maxLevel = ModConfigs.LEVELS_META.getMaxLevel();
         if (this.getVaultLevel() < maxLevel) {
+            ServerPlayer player = server.getPlayerList().getPlayer(this.uuid);
+            if(player == null) {
+                return;
+            }
             this.exp = Math.max(this.exp, 0);
-            this.exp += exp;
+            ExpertiseTree expertises = PlayerExpertisesData.get(player.getLevel()).getExpertises(player);
+            float increase = 0.0F;
+            ExperiencedExpertise expertise;
+            for(Iterator var5 = expertises.getAll(ExperiencedExpertise.class, Skill::isUnlocked).iterator(); var5.hasNext(); increase += expertise.getIncreasedExpPercentage()) {
+                expertise = (ExperiencedExpertise)var5.next();
+            }
+            this.exp += (int) (exp * (1.0F + increase));
             int initialLevel = this.vaultLevel;
 
             int neededExp;
@@ -65,10 +80,7 @@ public abstract class MixinPlayerVaultStats {
 
             if (this.vaultLevel > initialLevel) {
                 NetcodeUtils.runIfPresent(server, this.uuid, this::fancyLevelUpEffects);
-                ServerPlayer player = server.getPlayerList().getPlayer(this.uuid);
-                if (player != null) {
-                    player.refreshTabListName();
-                }
+                player.refreshTabListName();
 
                 MinecraftForge.EVENT_BUS.post(new VaultLevelUpEvent(player, exp, initialLevel, this.vaultLevel));
             }

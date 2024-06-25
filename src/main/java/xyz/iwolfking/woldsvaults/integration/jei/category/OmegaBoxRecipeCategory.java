@@ -89,22 +89,22 @@ public class OmegaBoxRecipeCategory implements IRecipeCategory<OmegaBoxConfig> {
     {
         double totalWeight = ModConfigs.OMEGA_BOX.POOL.getTotalWeight();
         
-        CompoundTag nbt = stack.getOrCreateTagElement("display");
-        ListTag list = nbt.getList("Lore", 8);
+
 
         WeightedList<ProductEntry> entries = ModConfigs.OMEGA_BOX.POOL;
         for(WeightedList.Entry<ProductEntry> entry : entries) {
-            if(entry.value.generateItemStack().equals(stack)) {
+            if(entry.value.getItem().equals(stack.getItem()) && (stack.getTag() == null || stack.getTag().equals(entry.value.getNBT()))) {
+                CompoundTag nbt = stack.getOrCreateTagElement("display");
+                ListTag list = nbt.getList("Lore", 8);
                 MutableComponent component = new TextComponent("Chance: ");
                 double chance = ((double) entry.weight / totalWeight) * 100;
                 component.append(String.format("%.2f", chance));
                 component.append("%");
                 list.add(StringTag.valueOf(Component.Serializer.toJson(component.withStyle(ChatFormatting.YELLOW))));
+                nbt.put("Lore", list);
             }
         }
 
-
-        nbt.put("Lore", list);
         return stack;
     }
 
