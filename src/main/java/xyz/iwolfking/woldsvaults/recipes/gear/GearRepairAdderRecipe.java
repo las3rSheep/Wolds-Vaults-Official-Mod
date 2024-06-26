@@ -17,7 +17,7 @@ public class GearRepairAdderRecipe extends VanillaAnvilRecipe {
             ItemStack output = primary.copy();
             VaultGearData gear = VaultGearData.read(output);
             int currentRepairSlotCount = gear.getRepairSlots();
-
+            System.out.println(currentRepairSlotCount);
             //If at the max number of slots already, don't allow any more.
             if(currentRepairSlotCount == 5) {
                 return false;
