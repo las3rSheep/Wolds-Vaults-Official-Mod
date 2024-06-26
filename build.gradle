@@ -144,6 +144,7 @@ repositories {
     flatDir {
         dir 'lib'
     }
+    maven { url = "https://jitpack.io" }
     maven {
         url "https://cursemaven.com"
         content {
@@ -212,6 +213,8 @@ dependencies {
     implementation fg.deobf("curse.maven:cyclops-core-232758:5262021")
     implementation fg.deobf("curse.maven:rftoolstorage-350006:4069708")
     implementation fg.deobf("curse.maven:rftoolsbase-326041:4373521")
+    implementation fg.deobf("curse.maven:vault-filters-952507:5457637")
+    implementation fg.deobf("curse.maven:create-328085:4835188")
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
     runtimeOnly "curse.maven:citadel4-331936:3683009"
     // compile against the JEI API but do not include it at runtime
@@ -233,7 +236,10 @@ dependencies {
     jarJar(group: 'eu.pb4', name: 'forgified-sgui', version: '[1.0.2,)') {
         jarJar.pin(it, '1.0.2')
     }
-
+    implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.2.0-beta.5"))
+    implementation(jarJar("com.github.bawnorton.mixinsquared:mixinsquared-forge:0.2.0-beta.5")) {
+        jarJar.ranged(it, "[0.2.0-beta.5,)")
+    }
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
