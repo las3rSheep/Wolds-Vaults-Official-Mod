@@ -31,6 +31,7 @@
     "itemborders.integratedterminals.MixinIngredientComponentTerminalStorageHandlerItemStack",
     "itemborders.refinedstorage.MixinItemGridStack",
     "itemborders.sophisticatedcore.MixinStorageScreenBase",
+    "pnc.MixinDisenchantingPressureRecipe",
     "scannable.MixinScannableItems",
     "scannable.ScannerModuleItemAccessor",
     "secretroomsmod.MixinDelegateWorld",

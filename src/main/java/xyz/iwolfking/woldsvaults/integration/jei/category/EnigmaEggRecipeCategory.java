@@ -23,6 +23,7 @@ import net.minecraft.world.item.ItemStack;
 import xyz.iwolfking.woldsvaults.config.EnigmaEggConfig;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
 import xyz.iwolfking.woldsvaults.init.ModItems;
+import xyz.iwolfking.woldsvaults.util.WoldListHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -75,12 +76,19 @@ public class EnigmaEggRecipeCategory implements IRecipeCategory<EnigmaEggConfig>
     @ParametersAreNonnullByDefault
     public void setRecipe(IRecipeLayoutBuilder builder, EnigmaEggConfig recipe, IFocusGroup focuses) {
         List<ItemStack> itemList = new ArrayList<>();
-        recipe.POOL.forEach(b -> itemList.add(b.value.generateItemStack()));
+        recipe.POOL.forEach(b -> itemList.add(addChanceTooltip(b.value.generateItemStack())));
+        int jei_index = 0;
+        List<List<ItemStack>> batchedList = WoldListHelper.getEvenlySplitList(itemList, 54);
+        System.out.println("Batched List Size: " + batchedList.size());
 
-        int count = itemList.size();
 
-        for(int i = 0; i < count; ++i) {
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 1 + 18 * (i % 9), 1 + 18 * (i / 9)).addItemStack(addChanceTooltip((ItemStack)itemList.get(i)));
+
+        for(int i = 0; i < batchedList.size(); i++) {
+            System.out.println("Adding first stacks");
+            for(ItemStack stack : batchedList.get(i)) {
+                System.out.println(stack.getDescriptionId());
+            }
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 1 + 18 * (i % 9), 1 + 18 * (i / 9)).addItemStacks(batchedList.get(i));
         }
 
     }
@@ -106,5 +114,6 @@ public class EnigmaEggRecipeCategory implements IRecipeCategory<EnigmaEggConfig>
         nbt.put("Lore", list);
         return stack;
     }
+
 
 }

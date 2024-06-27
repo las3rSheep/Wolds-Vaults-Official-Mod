@@ -21,15 +21,10 @@ import java.lang.ref.WeakReference;
 @Mixin(value = VaultFilters.class, remap = false)
 public abstract class MixinVaultFilters {
 
-    @Shadow
-    public static Level getClientLevel() {
-        return null;
-    }
 
     @Shadow @Final public static ThreadLocal<WeakReference<Level>> LEVEL_REF;
 
     /**
-     * @return
      * @author iwolfking
      * @reason Call Create 0.5.1f method
      */
