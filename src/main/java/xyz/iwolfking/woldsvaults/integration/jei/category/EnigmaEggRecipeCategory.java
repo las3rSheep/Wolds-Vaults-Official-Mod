@@ -76,18 +76,12 @@ public class EnigmaEggRecipeCategory implements IRecipeCategory<EnigmaEggConfig>
     @ParametersAreNonnullByDefault
     public void setRecipe(IRecipeLayoutBuilder builder, EnigmaEggConfig recipe, IFocusGroup focuses) {
         List<ItemStack> itemList = new ArrayList<>();
+
         recipe.POOL.forEach(b -> itemList.add(addChanceTooltip(b.value.generateItemStack())));
-        int jei_index = 0;
+
         List<List<ItemStack>> batchedList = WoldListHelper.getEvenlySplitList(itemList, 54);
-        System.out.println("Batched List Size: " + batchedList.size());
-
-
 
         for(int i = 0; i < batchedList.size(); i++) {
-            System.out.println("Adding first stacks");
-            for(ItemStack stack : batchedList.get(i)) {
-                System.out.println(stack.getDescriptionId());
-            }
             builder.addSlot(RecipeIngredientRole.OUTPUT, 1 + 18 * (i % 9), 1 + 18 * (i / 9)).addItemStacks(batchedList.get(i));
         }
 

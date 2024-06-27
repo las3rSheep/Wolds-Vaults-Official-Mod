@@ -40,7 +40,7 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new MysteryEggRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new MysteryHostileEggRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new EnigmaEggRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        //registration.addRecipeCategories(new EnigmaEggRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new OmegaBoxRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new GemBoxRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new SupplyBoxRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
