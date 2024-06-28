@@ -11,6 +11,9 @@ public class WoldMixinCanceller implements MixinCanceller {
         if(s.equals("net.joseph.vaultfilters.mixin.compat.MixinCreateFilteringBehaviour")) {
             return LoadingModList.get().getModFileById("vaultfilters") != null;
         }
+        if(s.equals("dev.attackeight.the_vault_jei.mixin.IntegrationJEIMixin")) {
+            return LoadingModList.get().getModFileById("the_vault_jei") != null;
+        }
         return false;
     }
 }

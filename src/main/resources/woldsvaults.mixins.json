@@ -78,7 +78,8 @@
     "vaulthunters.MixinVaultSwordItem",
     "vaulthunters.MixinVaultWand",
     "vaulthunters.MixinWildSpawnerTileEntity",
-    "vaulthunters.VaultAltarTileEntityAccessor"
+    "vaulthunters.VaultAltarTileEntityAccessor",
+    "vaulthunters.compat.the_vault_jei.MixinIntegrationJEI"
   ],
   "client": [
     "MixinThrownTridentRenderer",
