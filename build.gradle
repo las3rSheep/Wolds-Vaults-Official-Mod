@@ -217,6 +217,7 @@ dependencies {
     implementation fg.deobf("curse.maven:create-328085:4835188")
     implementation fg.deobf("curse.maven:pneumaticcraft-repressurized-281849:4922258")
     implementation fg.deobf("curse.maven:just-enough-vh-1035310:5428032")
+    implementation fg.deobf("curse.maven:dimensional-worldborder-631202:3832850")
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
     runtimeOnly "curse.maven:citadel4-331936:3683009"
     // compile against the JEI API but do not include it at runtime

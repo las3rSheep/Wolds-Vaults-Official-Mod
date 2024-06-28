@@ -19,6 +19,7 @@
     "cloudstorage.MixinBalloonBuddyEntity",
     "cofhcore.MixinCofhEnchantment",
     "cookingforblockheads.MixinKitchenBlock",
+    "dimensional_worldborder.MixinDimensionalWorldborder",
     "dyenamicsandfriends.MixinIncBootstrapForge",
     "ensorcellation.MixinCurseMercyEnchantment",
     "ensorcellation.MixinEnsorcEnchantments",
