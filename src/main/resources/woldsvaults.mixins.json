@@ -49,6 +49,7 @@
     "vaulthunters.MixinEnchantmentUtil",
     "vaulthunters.MixinExperiencedExpertise",
     "vaulthunters.MixinGearModelRollRaritiesConfig",
+    "vaulthunters.MixinGearModificationAction",
     "vaulthunters.MixinGearRollHelper",
     "vaulthunters.MixinInfusedCatalystItem",
     "vaulthunters.MixinItemShardPouch",

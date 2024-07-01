@@ -35,7 +35,10 @@ public abstract class MixinVaultFilters {
                 return VaultFilters::getClientLevel;
             }, () -> {
                 return () -> {
-                    return (Level) ((WeakReference) LEVEL_REF.get()).get();
+                    if(LEVEL_REF.get() != null) {
+                        return (Level) ((WeakReference) LEVEL_REF.get()).get();
+                    }
+                return null;
                 };
             });
         }

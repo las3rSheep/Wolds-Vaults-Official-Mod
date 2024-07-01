@@ -25,6 +25,9 @@ public abstract class SquaredMixinCreateFilteringBehaviour extends BlockEntityBe
 
     @Inject(method = "test(Lnet/minecraft/world/item/ItemStack;)Z", at = @At("HEAD"), cancellable = true)
     public void checkFilter(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+        if(this.blockEntity.getLevel() == null) {
+            return;
+        }
         cir.setReturnValue(isActive.get() || this.filter.isEmpty() || VaultFilters.checkFilter(stack, this.filter.item(),true,this.blockEntity.getLevel()));
     }
 
