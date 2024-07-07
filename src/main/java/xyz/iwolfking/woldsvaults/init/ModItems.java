@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.init;
 import iskallia.vault.VaultMod;
 import iskallia.vault.item.*;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -87,6 +88,8 @@ public class ModItems {
     public static BasicItem WANING_AUGMENTER;
     public static BasicItem REPAIR_AUGMENTER;
 
+    public static VaultBasicFoodItem VAULT_ROCK_CANDY;
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
@@ -132,6 +135,7 @@ public class ModItems {
         registry.register(WAXING_AUGMENTER);
         registry.register(WANING_AUGMENTER);
         registry.register(REPAIR_AUGMENTER);
+        registry.register(VAULT_ROCK_CANDY);
     }
 
     static {
@@ -172,6 +176,7 @@ public class ModItems {
         WAXING_AUGMENTER = new BasicItem(WoldsVaults.id("waxing_augmenter"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         WANING_AUGMENTER = new BasicItem(WoldsVaults.id("waning_augmenter"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         REPAIR_AUGMENTER = new BasicItem(WoldsVaults.id("repair_augmenter"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        VAULT_ROCK_CANDY = new VaultBasicFoodItem(WoldsVaults.id("vault_rock_candy"), (new FoodProperties.Builder()).alwaysEat().fast().nutrition(8).saturationMod(1.4F).build());
         //BOW = new VaultBowItem(VaultMod.id("bow"), (new Item.Properties().tab(GEAR_GROUP).stacksTo(1)));
     }
 }
