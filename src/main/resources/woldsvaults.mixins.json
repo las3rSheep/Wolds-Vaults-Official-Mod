@@ -39,8 +39,6 @@
     "secretroomsmod.MixinDelegateWorld",
     "vaultarhud.MixinInventoryHudRender",
     "vaultarhud.MixinScreenValidator",
-    "vaultfilters.MixinVaultFilters",
-    "vaultfilters.squared.SquaredMixinCreateFilteringBehaviour",
     "vaulthunters.MixinAngelBlock",
     "vaulthunters.MixinAnvilRecipes",
     "vaulthunters.MixinClassicListenersLogic",
