@@ -12,7 +12,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.config.VaultAmuletConfig;
 import xyz.iwolfking.woldsvaults.items.AltarResetItem;
 import xyz.iwolfking.woldsvaults.items.ExpertiseOrbItem;
 import xyz.iwolfking.woldsvaults.items.SkillOrbItem;
@@ -144,7 +143,7 @@ public class ModItems {
         CRYSTAL_SEAL_SPIRITS = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_spirits"));
         CRYSTAL_SEAL_ENCHANTER = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_enchanter"));
         CRYSTAL_SEAL_TITAN = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_titan"));
-        BATTLESTAFF = new VaultBattleStaffItem(VaultMod.id("battlestaff"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
+        BATTLESTAFF =  new VaultBattleStaffItem(VaultMod.id("battlestaff"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         TRIDENT = new VaultTridentItem(VaultMod.id("trident"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         GEM_BOX = new LootableItem(VaultMod.id("gem_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.GEM_BOX.POOL.getRandom(rand).generateItemStack()));
         SUPPLY_BOX = new LootableItem(VaultMod.id("supply_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.SUPPLY_BOX.POOL.getRandom(rand).generateItemStack()));
@@ -162,7 +161,7 @@ public class ModItems {
         ENDER_CRYSTAL = new BasicScavengerItem("ender_crystal");
         ENDER_EYE = new BasicScavengerItem("enderman_eye");
         ALTAR_DECATALYZER = new AltarResetItem(VaultMod.id("altar_recatalyzer"), (new Item.Properties().tab(VAULT_MOD_GROUP).rarity(Rarity.RARE)));
-        VAULT_AMULET = new VaultAmuletItem(VaultMod.id("amulet"), VaultAmuletConfig.Size.SMALL);
+        VAULT_AMULET = new VaultAmuletItem(VaultMod.id("amulet"));
         CHROMATIC_IRON_ANGEL_RING = new ChromaticIronAngelRing();
         CHROMATIC_GOLD_ANGEL_RING= new ChromaticGoldAngelRing();
         CHROMATIC_STEEL_ANGEL_RING = new ChromaticSteelAngelRing();

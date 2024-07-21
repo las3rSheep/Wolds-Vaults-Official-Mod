@@ -143,14 +143,12 @@ public class VaultBattleStaffItem extends SwordItem implements VaultGearItem, Dy
         /*     */   }
     /*     */
     /*     */
-    /*     */   public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected) {
-        /* 148 */     super.inventoryTick(stack, world, entity, itemSlot, isSelected);
-        /* 149 */     if (entity instanceof ServerPlayer) { ServerPlayer player = (ServerPlayer)entity;
-            /* 150 */       vaultGearTick(stack, player); }
-        /*     */
-        /*     */   }
-    /*     */
-    /*     */
+    public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected) {
+            super.inventoryTick(stack, world, entity, itemSlot, isSelected);
+            if (entity instanceof ServerPlayer) { ServerPlayer player = (ServerPlayer)entity;
+                vaultGearTick(stack, player); }
+    }
+
     /*     */   @OnlyIn(Dist.CLIENT)
     /*     */   public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
         /* 157 */     super.appendHoverText(stack, world, tooltip, flag);

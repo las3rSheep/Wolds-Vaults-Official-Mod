@@ -20,15 +20,4 @@ public class MixinCrystalData
     return NullCrystalObjective.INSTANCE;
 }).register("pool",PoolCrystalObjective .class, PoolCrystalObjective::new).register("empty",EmptyCrystalObjective .class, EmptyCrystalObjective::new).register("boss",BossCrystalObjective .class, BossCrystalObjective::new).register("cake",CakeCrystalObjective.class, CakeCrystalObjective::new).register("scavenger",ScavengerCrystalObjective.class, ScavengerCrystalObjective::new).register("speedrun",SpeedrunCrystalObjective.class, SpeedrunCrystalObjective::new).register("monolith",MonolithCrystalObjective.class, MonolithCrystalObjective::new).register("elixir",ElixirCrystalObjective.class, ElixirCrystalObjective::new).register("paradox",ParadoxCrystalObjective.class, ParadoxCrystalObjective::new).register("herald",HeraldCrystalObjective.class, HeraldCrystalObjective::new).register("compound",CompoundCrystalObjective.class, CompoundCrystalObjective::new).register("ascension",AscensionCrystalObjective.class, AscensionCrystalObjective::new).register("unhinged_scavenger", UnhingedScavengerCrystalObjective.class, UnhingedScavengerCrystalObjective::new).register("haunted_braziers", HauntedBraziersCrystalObjective.class, HauntedBraziersCrystalObjective::new).register("enchanted_elixir", EnchantedElixirCrystalObjective.class, EnchantedElixirCrystalObjective::new).register("brutal_bosses", BrutalBossesCrystalObjective.class, BrutalBossesCrystalObjective::new);
     @Shadow public static TypeSupplierAdapter<CrystalObjective> OBJECTIVE = objectives;
-
-    @Shadow private CrystalModifiers modifiers;
-
-    /**
-     * @author iwolfking
-     * @reason Always generate catalyst fragments
-     */
-    @Overwrite
-    public boolean canGenerateCatalystFragments() {
-        return true;
-    }
 }

@@ -27,6 +27,8 @@ import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import xyz.iwolfking.woldsvaults.api.registry.CustomCatalystModelRegistry;
+import xyz.iwolfking.woldsvaults.api.registry.CustomVaultGearRegistry;
+import xyz.iwolfking.woldsvaults.client.init.ModKeybindings;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.curios.ShardPouchCurio;
 import xyz.iwolfking.woldsvaults.events.LivingEntityEvents;
@@ -48,6 +50,7 @@ public class WoldsVaults {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
+        MinecraftForge.EVENT_BUS.register(new ModKeybindings());
 
         MinecraftForge.EVENT_BUS.addListener(RegisterCommandEventHandler::woldsvaults_registerCommandsEvent);
         // Register ourselves for server and other game events we are interested in
@@ -61,6 +64,7 @@ public class WoldsVaults {
         }
         PacketHandler.init();
         CustomCatalystModelRegistry.registerModels();
+        CustomVaultGearRegistry.registerAllGearEntries();
         LivingEntityEvents.init();
     }
 

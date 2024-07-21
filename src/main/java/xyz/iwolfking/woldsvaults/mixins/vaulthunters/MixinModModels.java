@@ -15,6 +15,7 @@ import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.world.level.ItemLike;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import xyz.iwolfking.woldsvaults.api.registry.CustomVaultGearRegistry;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -44,7 +45,7 @@ public class MixinModModels {
             } else {
                 return VaultGearHelper.getGearColor(stack);
             }
-        }, new ItemLike[]{ModItems.HELMET, ModItems.CHESTPLATE, ModItems.LEGGINGS, ModItems.BOOTS, ModItems.AXE, ModItems.SWORD, ModItems.SHIELD, ModItems.IDOL_BENEVOLENT, ModItems.IDOL_OMNISCIENT, ModItems.IDOL_TIMEKEEPER, ModItems.IDOL_MALEVOLENCE, ModItems.MAGNET, ModItems.WAND, ModItems.FOCUS, xyz.iwolfking.woldsvaults.init.ModItems.TRIDENT, xyz.iwolfking.woldsvaults.init.ModItems.BATTLESTAFF});
+        }, CustomVaultGearRegistry.getItemLikes());
         colors.register((stack, tintIndex) -> {
             return tintIndex == 0 ? JewelItem.getColor(stack) : -1;
         }, new ItemLike[]{ModItems.JEWEL});

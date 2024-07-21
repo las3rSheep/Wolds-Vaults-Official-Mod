@@ -1,6 +1,5 @@
 package xyz.iwolfking.woldsvaults.mixins;
 
-import cofh.ensorcellation.init.EnsorcEnchantments;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -18,7 +17,7 @@ import java.util.Map;
 public abstract class MixinEnchantmentHelper {
 
     @Unique
-    private static Map<Enchantment, Integer> MAX_ENCHANTMENT_LEVEL_VALUE_MAP = Map.of(Enchantments.BLOCK_FORTUNE, 5, Enchantments.BLOCK_EFFICIENCY, 7, EnsorcEnchantments.XP_BOOST.get(), 1, EnsorcEnchantments.REACH.get(), 1, EnsorcEnchantments.VITALITY.get(), 3);
+    private static Map<Enchantment, Integer> MAX_ENCHANTMENT_LEVEL_VALUE_MAP = Map.of(Enchantments.BLOCK_FORTUNE, 5, Enchantments.BLOCK_EFFICIENCY, 7);
 
 
     @Shadow
