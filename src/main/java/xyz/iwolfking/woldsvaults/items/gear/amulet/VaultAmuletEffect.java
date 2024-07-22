@@ -6,7 +6,6 @@ import iskallia.vault.core.vault.Vault;
 import iskallia.vault.gear.attribute.VaultGearAttribute;
 import iskallia.vault.gear.attribute.VaultGearAttributeInstance;
 import iskallia.vault.gear.attribute.VaultGearAttributeRegistry;
-import iskallia.vault.item.gear.CharmItem;
 import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,11 +14,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import xyz.iwolfking.woldsvaults.config.VaultAmuletConfig;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
+import xyz.iwolfking.woldsvaults.items.gear.VaultAmuletItem;
 
 import java.util.UUID;
 
-public abstract class VaultAmuletEffect<T> extends ForgeRegistryEntry<VaultAmuletEffect
-        <?>> {
+public abstract class VaultAmuletEffect<T> extends ForgeRegistryEntry<VaultAmuletEffect<?>> {
     public VaultAmuletEffect(ResourceLocation name) {
         this.setRegistryName(name);
     }
@@ -37,11 +36,11 @@ public abstract class VaultAmuletEffect<T> extends ForgeRegistryEntry<VaultAmule
     }
 
     public boolean isUsable(ItemStack trinket, Player player) {
-        if (!CharmItem.isIdentified(trinket)) {
+        if (!VaultAmuletItem.isIdentified(trinket)) {
             return false;
         } else {
             Vault vault = player.level.isClientSide ? (Vault)ClientVaults.getActive().orElse((Vault) null) : (Vault)ServerVaults.get(player.level).orElse((Vault) null);
-            return vault == null ? CharmItem.hasUsesLeft(trinket) : CharmItem.isUsableInVault(trinket, (UUID)vault.get(Vault.ID));
+            return vault == null ? VaultAmuletItem.hasUsesLeft(trinket) : VaultAmuletItem.isUsableInVault(trinket, (UUID)vault.get(Vault.ID));
         }
     }
 

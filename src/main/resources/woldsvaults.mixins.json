@@ -59,6 +59,7 @@
     "vaulthunters.MixinMainModDynamicModels",
     "vaulthunters.MixinManaPylonBuff",
     "vaulthunters.MixinModConfigs",
+    "vaulthunters.MixinModifierWorkbenchCraftMessageAccessor",
     "vaulthunters.MixinModModels",
     "vaulthunters.MixinPlayerVaultStats",
     "vaulthunters.MixinPlayerVaultStatsData",
@@ -81,6 +82,7 @@
     "vaulthunters.MixinVaultSwordItem",
     "vaulthunters.MixinVaultWand",
     "vaulthunters.MixinWildSpawnerTileEntity",
+    "vaulthunters.ModifierWorkbenchCraftMessage",
     "vaulthunters.VaultAltarTileEntityAccessor"
   ],
   "client": [

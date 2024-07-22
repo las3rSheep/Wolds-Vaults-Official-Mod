@@ -66,5 +66,8 @@
   "item.woldsvaults.vault_rock_candy": "Vault Rock Candy",
   "effect.woldsvaults.reaving": "Reaved",
   "effect.woldsvaults.shrinking": "Shrinking",
-  "effect.woldsvaults.growing": "Growing"
+  "effect.woldsvaults.growing": "Growing",
+  "woldsvaults.key.cherish_item": "Cherish Item",
+  "key.woldsvaults.cherish_item": "Cherish Item",
+  "key.woldsvaults.category": "Wold's Vaults"
 }
