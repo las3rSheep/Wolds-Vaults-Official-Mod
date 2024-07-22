@@ -6,6 +6,10 @@ import iskallia.vault.gear.VaultGearModifierHelper;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModGearAttributes;
+import iskallia.vault.skill.base.Skill;
+import iskallia.vault.skill.tree.ExpertiseTree;
+import iskallia.vault.world.data.PlayerExpertisesData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
@@ -14,6 +18,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
 
 import java.util.Random;
 
@@ -26,8 +31,18 @@ public class MixinGearRollHelper {
         if(data.equals(VaultGearData.empty())) {
             return;
         }
-        if ((Boolean) data.getFirstValue(ModGearAttributes.CRAFTED_BY).isPresent() && rand.nextFloat() < ModConfigs.VAULT_GEAR_CRAFTING_CONFIG.getLegendaryModifierChance() + extraLegendaryChance) {
-                  VaultGearModifierHelper.generateLegendaryModifier(stack, rand);
+
+        if ((Boolean) data.getFirstValue(ModGearAttributes.CRAFTED_BY).isPresent() && rand.nextFloat() < ModConfigs.VAULT_GEAR_CRAFTING_CONFIG.getLegendaryModifierChance() + extraLegendaryChance + 100) {
+            ExpertiseTree expertises = PlayerExpertisesData.get((ServerLevel) player.getLevel()).getExpertises(player);
+            CraftsmanExpertise expertise;
+            int craftsmanLevel = 0;
+
+            for (CraftsmanExpertise craftsmanExpertise : expertises.getAll(CraftsmanExpertise.class, Skill::isUnlocked)) {
+                craftsmanLevel = craftsmanExpertise.getCraftsmanLevel();
+            }
+                VaultGearModifierHelper.generateLegendaryModifier(stack, rand);
+
+
         }
     }
 }

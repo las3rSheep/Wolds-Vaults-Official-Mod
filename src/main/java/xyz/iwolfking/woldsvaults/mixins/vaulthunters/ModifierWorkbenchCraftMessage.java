@@ -9,7 +9,10 @@ import iskallia.vault.gear.data.AttributeGearData;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.init.ModGearAttributes;
+import iskallia.vault.skill.base.Skill;
+import iskallia.vault.skill.tree.ExpertiseTree;
 import iskallia.vault.util.InventoryUtil;
+import iskallia.vault.world.data.PlayerExpertisesData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
@@ -17,6 +20,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.network.NetworkEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
 import xyz.iwolfking.woldsvaults.helpers.ModifierWorkbenchMixinHelper;
 
 import java.util.ArrayList;
@@ -26,23 +30,30 @@ import java.util.function.Supplier;
 
 @Mixin(value = iskallia.vault.network.message.ModifierWorkbenchCraftMessage.class, remap = false)
 public class ModifierWorkbenchCraftMessage {
-
-
     /**
-     * @author
-     * @reason
+     * @author iwolfking
+     * @reason Add Craftsman Expertise to Modifier Workbench
      */
     @Overwrite
     public static void handle(iskallia.vault.network.message.ModifierWorkbenchCraftMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
         NetworkEvent.Context context = (NetworkEvent.Context) contextSupplier.get();
+
         context.enqueueWork(() -> {
             ServerPlayer player = context.getSender();
+            ExpertiseTree expertises = PlayerExpertisesData.get(player.getLevel()).getExpertises(player);
+            CraftsmanExpertise expertise;
+            int craftsmanLevel = 0;
+
+            for (CraftsmanExpertise craftsmanExpertise : expertises.getAll(CraftsmanExpertise.class, Skill::isUnlocked)) {
+                craftsmanLevel = craftsmanExpertise.getCraftsmanLevel();
+            }
             BlockPos pos = ((MixinModifierWorkbenchCraftMessageAccessor)(Object)message).getPos();
             BlockEntity tile = player.getLevel().getBlockEntity(pos);
             if (tile instanceof ModifierWorkbenchTileEntity workbenchTile) {
                 ItemStack input = workbenchTile.getInventory().getItem(0);
                 if (!input.isEmpty() && input.getItem() instanceof VaultGearItem && AttributeGearData.hasData(input)) {
                     if (VaultGearData.read(input).isModifiable()) {
+                        int craftsmanLevelCopy = craftsmanLevel;
                         VaultGearWorkbenchConfig.getConfig(input.getItem()).ifPresent((cfg) -> {
                             ItemStack inputCopy = input.copy();
                             VaultGearModifier.AffixType targetAffix = null;
@@ -69,9 +80,8 @@ public class ModifierWorkbenchCraftMessage {
                                 VaultGearData data = VaultGearData.read(inputCopy);
                                 boolean hadCraftedModifiers = ModifierWorkbenchHelper.hasCraftedModifier(inputCopy);
                                 boolean isCrafted = data.getFirstValue(ModGearAttributes.CRAFTED_BY).isPresent();
-                                System.out.println("Was it crafted?: " + isCrafted);
 
-                                if(ModifierWorkbenchMixinHelper.getCraftedModifierCount(inputCopy) > 2 && isCrafted) {
+                                if(ModifierWorkbenchMixinHelper.getCraftedModifierCount(inputCopy) > 2 && isCrafted && craftsmanLevelCopy >= 3) {
                                     ModifierWorkbenchHelper.removeCraftedModifiers(inputCopy);
                                 }
                                 else if(!isCrafted) {
@@ -103,7 +113,7 @@ public class ModifierWorkbenchCraftMessage {
 
                                 cost.addAll(modifierConfig.createCraftingCost(inputCopy));
                                 System.out.println("Checking count to add to cost...");
-                                if (hadCraftedModifiers && (ModifierWorkbenchMixinHelper.getCraftedModifierCount(input) > 2 && isCrafted)) {
+                                if (hadCraftedModifiers && (ModifierWorkbenchMixinHelper.getCraftedModifierCount(input) > 2 && isCrafted && craftsmanLevelCopy >= 3)) {
                                     cost.addAll(cfg.getCostRemoveCraftedModifiers());
                                 }
                                 else if(hadCraftedModifiers && !isCrafted) {
@@ -122,7 +132,7 @@ public class ModifierWorkbenchCraftMessage {
                                         } else {
                                             createdModifier.setCategory(VaultGearModifier.AffixCategory.CRAFTED);
                                             createdModifier.setGameTimeAdded(player.getLevel().getGameTime());
-                                            if(ModifierWorkbenchMixinHelper.getCraftedModifierCount(input) > 2 && isCrafted) {
+                                            if(ModifierWorkbenchMixinHelper.getCraftedModifierCount(input) > 2 && isCrafted && craftsmanLevelCopy >= 3) {
                                                 ModifierWorkbenchHelper.removeCraftedModifiers(input);
                                             }
                                             else if(!isCrafted) {
