@@ -41,12 +41,12 @@ public class ModifierWorkbenchCraftMessage {
         context.enqueueWork(() -> {
             ServerPlayer player = context.getSender();
             ExpertiseTree expertises = PlayerExpertisesData.get(player.getLevel()).getExpertises(player);
-            CraftsmanExpertise expertise;
             int craftsmanLevel = 0;
 
             for (CraftsmanExpertise craftsmanExpertise : expertises.getAll(CraftsmanExpertise.class, Skill::isUnlocked)) {
                 craftsmanLevel = craftsmanExpertise.getCraftsmanLevel();
             }
+            int numberOfAllowedModifiers = craftsmanLevel == 0 ? craftsmanLevel + 1 : craftsmanLevel;
             BlockPos pos = ((MixinModifierWorkbenchCraftMessageAccessor)(Object)message).getPos();
             BlockEntity tile = player.getLevel().getBlockEntity(pos);
             if (tile instanceof ModifierWorkbenchTileEntity workbenchTile) {
@@ -81,7 +81,7 @@ public class ModifierWorkbenchCraftMessage {
                                 boolean hadCraftedModifiers = ModifierWorkbenchHelper.hasCraftedModifier(inputCopy);
                                 boolean isCrafted = data.getFirstValue(ModGearAttributes.CRAFTED_BY).isPresent();
 
-                                if(ModifierWorkbenchMixinHelper.getCraftedModifierCount(inputCopy) > 2 && isCrafted && craftsmanLevelCopy >= 3) {
+                                if(ModifierWorkbenchMixinHelper.getCraftedModifierCount(inputCopy) > numberOfAllowedModifiers && isCrafted) {
                                     ModifierWorkbenchHelper.removeCraftedModifiers(inputCopy);
                                 }
                                 else if(!isCrafted) {
@@ -112,8 +112,7 @@ public class ModifierWorkbenchCraftMessage {
                                 }
 
                                 cost.addAll(modifierConfig.createCraftingCost(inputCopy));
-                                System.out.println("Checking count to add to cost...");
-                                if (hadCraftedModifiers && (ModifierWorkbenchMixinHelper.getCraftedModifierCount(input) > 2 && isCrafted && craftsmanLevelCopy >= 3)) {
+                                if (hadCraftedModifiers && (ModifierWorkbenchMixinHelper.getCraftedModifierCount(input) > numberOfAllowedModifiers && isCrafted)) {
                                     cost.addAll(cfg.getCostRemoveCraftedModifiers());
                                 }
                                 else if(hadCraftedModifiers && !isCrafted) {
@@ -126,13 +125,12 @@ public class ModifierWorkbenchCraftMessage {
                                 if (InventoryUtil.consumeInputs(cost, player.getInventory(), true)) {
                                     if (InventoryUtil.consumeInputs(cost, player.getInventory(), false)) {
                                         boolean isCrafted = VaultGearData.read(input).getFirstValue(ModGearAttributes.CRAFTED_BY).isPresent();
-                                        System.out.println("Was it crafted?: " + isCrafted);
                                         if (createdModifier == null) {
                                                 ModifierWorkbenchHelper.removeCraftedModifiers(input);
                                         } else {
                                             createdModifier.setCategory(VaultGearModifier.AffixCategory.CRAFTED);
                                             createdModifier.setGameTimeAdded(player.getLevel().getGameTime());
-                                            if(ModifierWorkbenchMixinHelper.getCraftedModifierCount(input) > 2 && isCrafted && craftsmanLevelCopy >= 3) {
+                                            if(ModifierWorkbenchMixinHelper.getCraftedModifierCount(input) > numberOfAllowedModifiers && isCrafted) {
                                                 ModifierWorkbenchHelper.removeCraftedModifiers(input);
                                             }
                                             else if(!isCrafted) {

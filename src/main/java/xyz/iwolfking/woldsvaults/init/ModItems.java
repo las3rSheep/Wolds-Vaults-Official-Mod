@@ -12,11 +12,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.config.VaultAmuletConfig;
 import xyz.iwolfking.woldsvaults.items.AltarResetItem;
 import xyz.iwolfking.woldsvaults.items.ExpertiseOrbItem;
 import xyz.iwolfking.woldsvaults.items.SkillOrbItem;
-import xyz.iwolfking.woldsvaults.items.gear.VaultAmuletItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultBattleStaffItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultTridentItem;
 import xyz.iwolfking.woldsvaults.items.rings.*;
@@ -42,7 +40,7 @@ public class ModItems {
 
     public static VaultTridentItem TRIDENT;
 
-    public static VaultAmuletItem VAULT_AMULET;
+    //public static VaultAmuletItem VAULT_AMULET;
 
     public static LootableItem GEM_BOX;
     public static LootableItem SUPPLY_BOX;
@@ -116,7 +114,7 @@ public class ModItems {
         registry.register(ENDER_ARTIFACT);
         registry.register(ENDER_CRYSTAL);
         registry.register(ALTAR_DECATALYZER);
-        registry.register(VAULT_AMULET);
+        //registry.register(VAULT_AMULET);
         registry.register(CHROMATIC_IRON_ANGEL_RING);
         registry.register(CHROMATIC_GOLD_ANGEL_RING);
         registry.register(CHROMATIC_STEEL_ANGEL_RING);
@@ -162,7 +160,7 @@ public class ModItems {
         ENDER_CRYSTAL = new BasicScavengerItem("ender_crystal");
         ENDER_EYE = new BasicScavengerItem("enderman_eye");
         ALTAR_DECATALYZER = new AltarResetItem(VaultMod.id("altar_recatalyzer"), (new Item.Properties().tab(VAULT_MOD_GROUP).rarity(Rarity.RARE)));
-        VAULT_AMULET = new VaultAmuletItem(VaultMod.id("amulet"), VaultAmuletConfig.Size.SMALL);
+        //VAULT_AMULET = new VaultAmuletItem(VaultMod.id("amulet"), VaultAmuletConfig.Size.SMALL);
         CHROMATIC_IRON_ANGEL_RING = new ChromaticIronAngelRing();
         CHROMATIC_GOLD_ANGEL_RING= new ChromaticGoldAngelRing();
         CHROMATIC_STEEL_ANGEL_RING = new ChromaticSteelAngelRing();

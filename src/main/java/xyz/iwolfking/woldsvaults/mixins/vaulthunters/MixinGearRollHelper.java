@@ -28,21 +28,28 @@ public class MixinGearRollHelper {
 
     @Inject(method = "initializeGear(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At("TAIL"))
     private static void addLegendaryModifierToCraftedGear(ItemStack stack, Player player, CallbackInfo ci, @Local VaultGearData data, @Local float extraLegendaryChance) {
+
         if(data.equals(VaultGearData.empty())) {
             return;
         }
 
         if ((Boolean) data.getFirstValue(ModGearAttributes.CRAFTED_BY).isPresent() && rand.nextFloat() < ModConfigs.VAULT_GEAR_CRAFTING_CONFIG.getLegendaryModifierChance() + extraLegendaryChance + 100) {
             ExpertiseTree expertises = PlayerExpertisesData.get((ServerLevel) player.getLevel()).getExpertises(player);
-            CraftsmanExpertise expertise;
             int craftsmanLevel = 0;
 
             for (CraftsmanExpertise craftsmanExpertise : expertises.getAll(CraftsmanExpertise.class, Skill::isUnlocked)) {
                 craftsmanLevel = craftsmanExpertise.getCraftsmanLevel();
             }
+            if(craftsmanLevel > 0) {
                 VaultGearModifierHelper.generateLegendaryModifier(stack, rand);
+            }
 
+        }
 
+        if(data.getFirstValue(ModGearAttributes.GEAR_ROLL_TYPE_POOL).isPresent()) {
+            if(data.getFirstValue(ModGearAttributes.GEAR_ROLL_TYPE_POOL).get().equals("jewel_crafted") && rand.nextFloat() < 0.01F) {
+                VaultGearModifierHelper.generateLegendaryModifier(stack, rand);
+            }
         }
     }
 }

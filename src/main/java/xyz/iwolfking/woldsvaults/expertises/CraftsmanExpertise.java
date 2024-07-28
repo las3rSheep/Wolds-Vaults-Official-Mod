@@ -24,7 +24,6 @@ public class CraftsmanExpertise extends LearnableSkill {
         super.readBits(buffer);
         this.craftsmanLevel = (Integer)Adapters.INT.readBits(buffer).orElseThrow();
     }
-
     public Optional<CompoundTag> writeNbt() {
         return super.writeNbt().map((nbt) -> {
             Adapters.INT.writeNbt(this.craftsmanLevel).ifPresent((tag) -> {
