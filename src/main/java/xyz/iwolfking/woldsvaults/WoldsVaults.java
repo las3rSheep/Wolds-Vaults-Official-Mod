@@ -55,6 +55,8 @@ public class WoldsVaults {
         MinecraftForge.EVENT_BUS.addListener(RegisterCommandEventHandler::woldsvaults_registerCommandsEvent);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        CustomVaultGearRegistry.registerAllGearEntries();
+        ModResearchBypasses.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -64,8 +66,6 @@ public class WoldsVaults {
         }
         PacketHandler.init();
         CustomCatalystModelRegistry.registerModels();
-        CustomVaultGearRegistry.registerAllGearEntries();
-        ModResearchBypasses.init();
         LivingEntityEvents.init();
     }
 

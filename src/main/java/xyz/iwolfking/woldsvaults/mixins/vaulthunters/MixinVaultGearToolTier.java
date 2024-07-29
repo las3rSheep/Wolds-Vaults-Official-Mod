@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import xyz.iwolfking.woldsvaults.api.registry.CustomVaultGearRegistry;
 
 import java.util.Map;
 
@@ -36,13 +37,11 @@ public class MixinVaultGearToolTier {
     @Inject(method = "registerConfigs", at = @At("TAIL"), cancellable = true)
     private static void registerCustomGearConfigs(CallbackInfoReturnable<Map<ResourceLocation, VaultGearTierConfig>> cir) {
         Map<ResourceLocation, VaultGearTierConfig> gearTierConfigMap = cir.getReturnValue();
-//        CustomVaultGearRegistry.getCustomGearEntries().forEach(customVaultGearEntry -> {
-//            gearTierConfigMap.put(customVaultGearEntry.registryItem().getRegistryName(), (new VaultGearTierConfig(ModItems.BATTLESTAFF.getRegistryName()).readConfig()));
-//            gearTierConfigMap.put(customVaultGearEntry.registryItem().getRegistryName(), (new VaultGearTierConfig(ModItems.TRIDENT.getRegistryName()).readConfig()));
-//            gearTierConfigMap.put(customVaultGearEntry.registryItem().getRegistryName(), (new VaultGearTierConfig(ModItems.VAULT_AMULET.getRegistryName()).readConfig()));
-//        });
-        gearTierConfigMap.put(xyz.iwolfking.woldsvaults.init.ModItems.BATTLESTAFF.getRegistryName(), (new VaultGearTierConfig(xyz.iwolfking.woldsvaults.init.ModItems.BATTLESTAFF.getRegistryName()).readConfig()));
-        gearTierConfigMap.put(xyz.iwolfking.woldsvaults.init.ModItems.TRIDENT.getRegistryName(), (new VaultGearTierConfig(xyz.iwolfking.woldsvaults.init.ModItems.TRIDENT.getRegistryName()).readConfig()));
+        CustomVaultGearRegistry.getCustomGearEntries().forEach(customVaultGearEntry -> {
+            gearTierConfigMap.put(customVaultGearEntry.registryItem().getRegistryName(), (new VaultGearTierConfig(customVaultGearEntry.registryItem().getRegistryName()).readConfig()));
+        });
+//        gearTierConfigMap.put(xyz.iwolfking.woldsvaults.init.ModItems.BATTLESTAFF.getRegistryName(), (new VaultGearTierConfig(xyz.iwolfking.woldsvaults.init.ModItems.BATTLESTAFF.getRegistryName()).readConfig()));
+//        gearTierConfigMap.put(xyz.iwolfking.woldsvaults.init.ModItems.TRIDENT.getRegistryName(), (new VaultGearTierConfig(xyz.iwolfking.woldsvaults.init.ModItems.TRIDENT.getRegistryName()).readConfig()));
         cir.setReturnValue(gearTierConfigMap);
     }
 }

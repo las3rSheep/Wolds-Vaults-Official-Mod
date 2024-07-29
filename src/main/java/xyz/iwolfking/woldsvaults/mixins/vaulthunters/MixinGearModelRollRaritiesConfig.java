@@ -60,9 +60,6 @@ public abstract class MixinGearModelRollRaritiesConfig extends Config {
         if(stack instanceof VaultTridentItem) {
                     cir.setReturnValue(TRIDENT_MODEL_ROLLS);
             }
-//        if(gear instanceof VaultBowItem) {
-//            cir.setReturnValue(BOW_MODEL_ROLLS);
-//        }
     }
 
 

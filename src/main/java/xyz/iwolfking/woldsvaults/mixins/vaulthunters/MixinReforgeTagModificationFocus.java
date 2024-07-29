@@ -5,7 +5,8 @@ import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import xyz.iwolfking.woldsvaults.init.ModItems;
+import xyz.iwolfking.woldsvaults.api.registry.CustomVaultGearRegistry;
+import xyz.iwolfking.woldsvaults.api.registry.record.CustomVaultGearEntry;
 
 import java.util.Map;
 
@@ -14,7 +15,8 @@ public class MixinReforgeTagModificationFocus {
     @Shadow @Final private static Map<Item, String> ITEM_TO_NAME;
 
     static {
-        ITEM_TO_NAME.put(ModItems.TRIDENT, "Trident");
-        ITEM_TO_NAME.put(ModItems.BATTLESTAFF, "Battlestaff");
+        for(CustomVaultGearEntry entry : CustomVaultGearRegistry.getCustomGearEntries()) {
+            ITEM_TO_NAME.put(entry.registryItem(), entry.name());
+        }
     }
 }

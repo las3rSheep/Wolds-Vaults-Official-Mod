@@ -224,6 +224,7 @@ dependencies {
     implementation fg.deobf("curse.maven:titanium-287342:5151207")
     implementation fg.deobf("curse.maven:immersive-engineering-231951:4412849")
     implementation fg.deobf("curse.maven:travel-anchors-413234:3741307")
+    implementation fg.deobf("curse.maven:advanced-peripherals-431725:4684137")
     implementation fg.deobf("io.github.noeppi_noeppi.mods:LibX:1.18.2-3.2.2")
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
     runtimeOnly "curse.maven:citadel4-331936:3683009"
