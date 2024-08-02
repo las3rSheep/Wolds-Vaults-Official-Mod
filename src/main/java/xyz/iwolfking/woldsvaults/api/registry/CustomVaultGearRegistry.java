@@ -14,7 +14,7 @@ import java.util.Set;
 public class CustomVaultGearRegistry {
     private static final List<CustomVaultGearEntry> CUSTOM_VAULT_GEAR_ENTRIES = new ArrayList<>();
 
-    public static void addModel(CustomVaultGearEntry entry) {
+    public static void addEntry(CustomVaultGearEntry entry) {
         CUSTOM_VAULT_GEAR_ENTRIES.add(entry);
     }
 
