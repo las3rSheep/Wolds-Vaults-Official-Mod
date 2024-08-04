@@ -16,6 +16,8 @@ import xyz.iwolfking.woldsvaults.items.AltarResetItem;
 import xyz.iwolfking.woldsvaults.items.ExpertiseOrbItem;
 import xyz.iwolfking.woldsvaults.items.SkillOrbItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultBattleStaffItem;
+import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
+import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultTridentItem;
 import xyz.iwolfking.woldsvaults.items.rings.*;
 
@@ -39,6 +41,8 @@ public class ModItems {
     //public static VaultBowItem BOW;
 
     public static VaultTridentItem TRIDENT;
+    public static VaultPlushieItem PLUSHIE;
+    public static VaultLootSackItem LOOT_SACK;
 
     //public static VaultAmuletItem VAULT_AMULET;
 
@@ -98,6 +102,8 @@ public class ModItems {
         registry.register(CRYSTAL_SEAL_TITAN);
         registry.register(BATTLESTAFF);
         registry.register(TRIDENT);
+        registry.register(PLUSHIE);
+        registry.register(LOOT_SACK);
         registry.register(GEM_BOX);
         registry.register(SUPPLY_BOX);
         registry.register(AUGMENT_BOX);
@@ -144,6 +150,8 @@ public class ModItems {
         CRYSTAL_SEAL_TITAN = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_titan"));
         BATTLESTAFF =  new VaultBattleStaffItem(VaultMod.id("battlestaff"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         TRIDENT = new VaultTridentItem(VaultMod.id("trident"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
+        PLUSHIE = new VaultPlushieItem(VaultMod.id("plushie"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
+        LOOT_SACK = new VaultLootSackItem(VaultMod.id("loot_sack"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         GEM_BOX = new LootableItem(VaultMod.id("gem_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.GEM_BOX.POOL.getRandom(rand).generateItemStack()));
         SUPPLY_BOX = new LootableItem(VaultMod.id("supply_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.SUPPLY_BOX.POOL.getRandom(rand).generateItemStack()));
         AUGMENT_BOX = new LootableItem(VaultMod.id("augment_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.AUGMENT_BOX.POOL.getRandom(rand).generateItemStack()));

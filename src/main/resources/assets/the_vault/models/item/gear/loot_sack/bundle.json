@@ -1,0 +1,45 @@
+{
+  "parent": "item/default",
+  "textures": {
+    "bundle": "the_vault:item/gear/loot_sack/bundle",
+    "particle": "#bundle"
+  },
+  "elements": [
+    {
+      "from": [3, 3, 3],
+      "to": [13, 11, 13],
+      "faces": {
+        "north": {"uv": [2.5, 2.5, 5, 4.5], "texture": "#bundle"},
+        "east": {"uv": [0, 2.5, 2.5, 4.5], "texture": "#bundle"},
+        "south": {"uv": [7.5, 2.5, 10, 4.5], "texture": "#bundle"},
+        "west": {"uv": [5, 2.5, 7.5, 4.5], "texture": "#bundle"},
+        "up": {"uv": [5, 2.5, 2.5, 0], "texture": "#bundle"},
+        "down": {"uv": [7.5, 0, 5, 2.5], "texture": "#bundle"}
+      }
+    },
+    {
+      "from": [6, 11, 6],
+      "to": [10, 13, 10],
+      "faces": {
+        "north": {"uv": [5.5, 5.5, 6.5, 6], "texture": "#bundle"},
+        "east": {"uv": [4.5, 5.5, 5.5, 6], "texture": "#bundle"},
+        "south": {"uv": [7.5, 5.5, 8.5, 6], "texture": "#bundle"},
+        "west": {"uv": [6.5, 5.5, 7.5, 6], "texture": "#bundle"},
+        "up": {"uv": [6.5, 5.5, 5.5, 4.5], "texture": "#bundle"},
+        "down": {"uv": [7.5, 4.5, 6.5, 5.5], "texture": "#bundle"}
+      }
+    },
+    {
+      "from": [5, 13, 5],
+      "to": [11, 15, 11],
+      "faces": {
+        "north": {"uv": [1.5, 6, 3, 6.5], "texture": "#bundle"},
+        "east": {"uv": [0, 6, 1.5, 6.5], "texture": "#bundle"},
+        "south": {"uv": [4.5, 6, 6, 6.5], "texture": "#bundle"},
+        "west": {"uv": [3, 6, 4.5, 6.5], "texture": "#bundle"},
+        "up": {"uv": [3, 6, 1.5, 4.5], "texture": "#bundle"},
+        "down": {"uv": [4.5, 4.5, 3, 6], "texture": "#bundle"}
+      }
+    }
+  ]
+}
