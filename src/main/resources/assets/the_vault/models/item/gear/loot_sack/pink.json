@@ -1,7 +1,7 @@
 {
   "parent": "item/default",
   "textures": {
-    "bundle": "the_vault:item/gear/loot_sack/bundle",
+    "bundle": "the_vault:item/gear/loot_sack/pink",
     "particle": "#bundle"
   },
   "elements": [
