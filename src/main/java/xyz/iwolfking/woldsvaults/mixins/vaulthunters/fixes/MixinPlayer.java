@@ -23,7 +23,7 @@ public class MixinPlayer
 
 
     @Unique
-    private final List<Block> AIR_SPEED_IGNORED_BLOCKS = List.of(ModBlocks.WOODEN_CHEST, ModBlocks.ORNATE_CHEST, ModBlocks.GILDED_CHEST, ModBlocks.ENIGMA_CHEST, ModBlocks.LIVING_CHEST, ModBlocks.HARDENED_CHEST, ModBlocks.FLESH_CHEST);
+    private final List<Block> AIR_SPEED_IGNORED_BLOCKS = List.of(ModBlocks.COIN_PILE, ModBlocks.WOODEN_CHEST, ModBlocks.ORNATE_CHEST, ModBlocks.GILDED_CHEST, ModBlocks.ENIGMA_CHEST, ModBlocks.LIVING_CHEST, ModBlocks.HARDENED_CHEST, ModBlocks.FLESH_CHEST);
 
     @Redirect(method = "getDigSpeed", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/player/Player;onGround:Z"))
     private boolean redirectOnGround(Player player, BlockState state, BlockPos pos)

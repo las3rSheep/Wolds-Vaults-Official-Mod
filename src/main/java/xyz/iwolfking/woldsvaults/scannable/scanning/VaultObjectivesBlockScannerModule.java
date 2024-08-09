@@ -7,7 +7,6 @@ import li.cil.scannable.client.scanning.ScanResultProviders;
 import li.cil.scannable.client.scanning.filter.BlockCacheScanFilter;
 import li.cil.scannable.client.scanning.filter.BlockScanFilter;
 import li.cil.scannable.client.scanning.filter.BlockTagScanFilter;
-import li.cil.scannable.common.config.Constants;
 import net.minecraft.Util;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -43,6 +42,7 @@ public enum VaultObjectivesBlockScannerModule implements BlockScannerModule {
         c.add(ModBlocks.CRAKE_PEDESTAL.getRegistryName());
         c.add(ModBlocks.SCAVENGER_ALTAR.getRegistryName());
         c.add(ModBlocks.VAULT_PORTAL.getRegistryName());
+        c.add(ModBlocks.GRID_GATEWAY.getRegistryName());
     });
 
     @Override

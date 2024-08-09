@@ -29,7 +29,7 @@ public class MixinJewelItem {
         VaultGearData data = VaultGearData.read(input);
         AtomicBoolean hasLegendary = new AtomicBoolean(false);
         data.getAllModifierAffixes().forEach(vaultGearModifier -> {
-            if(vaultGearModifier.getCategory().equals(VaultGearModifier.AffixCategory.LEGENDARY)) {
+            if(vaultGearModifier.hasCategory(VaultGearModifier.AffixCategory.LEGENDARY)) {
                 hasLegendary.set(true);
             }
         });

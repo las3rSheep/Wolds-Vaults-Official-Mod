@@ -16,11 +16,10 @@ public class ModifierWorkbenchMixinHelper {
 
             while (modifiers.hasNext()) {
                 VaultGearModifier<?> mod = modifiers.next();
-                if (mod.getCategory() == VaultGearModifier.AffixCategory.CRAFTED) {
+                if (mod.hasCategory(VaultGearModifier.AffixCategory.CRAFTED)) {
                     modCount++;
                 }
             }
-            System.out.println("CRAFTED MOD COUNT: " + modCount);
 
             return modCount;
         }

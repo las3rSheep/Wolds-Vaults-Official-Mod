@@ -20,7 +20,9 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -110,6 +112,16 @@ public class VaultModifierAttribute {
         public MutableComponent getConfigDisplay(VaultGearModifierReader<VaultModifierAttribute> reader, VaultModifierAttribute.Config object) {
             VaultModifier<?> modifier = VaultModifierRegistry.get(object.modifierKey);
             return modifier == null ? null : (new TextComponent(String.valueOf(object.size))).withStyle(reader.getColoredTextStyle()).append(" ").append(modifier.getDisplayName());
+        }
+
+        @Override
+        public Optional<VaultModifierAttribute> getMinimumValue(List<Config> list) {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<VaultModifierAttribute> getMaximumValue(List<Config> list) {
+            return Optional.empty();
         }
     }
 

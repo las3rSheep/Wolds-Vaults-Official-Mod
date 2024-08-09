@@ -27,7 +27,11 @@ public class TickEvents {
             return;
         }
 
-        if(!((event.player.tickCount % 20) == 0 || event.player.isCreative())) {
+        if(!((event.player.tickCount % 20) == 0)) {
+            return;
+        }
+
+        if(event.player.isCreative()) {
             return;
         }
 

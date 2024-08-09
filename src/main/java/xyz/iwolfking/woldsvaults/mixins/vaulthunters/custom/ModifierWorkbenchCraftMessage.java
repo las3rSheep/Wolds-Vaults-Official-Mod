@@ -47,7 +47,7 @@ public class ModifierWorkbenchCraftMessage {
             for (CraftsmanExpertise craftsmanExpertise : expertises.getAll(CraftsmanExpertise.class, Skill::isUnlocked)) {
                 craftsmanLevel = craftsmanExpertise.getCraftsmanLevel();
             }
-            int numberOfAllowedModifiers = craftsmanLevel == 0 ? craftsmanLevel + 1 : craftsmanLevel;
+            int numberOfAllowedModifiers = craftsmanLevel == 0 ? 1 : craftsmanLevel;
             BlockPos pos = ((MixinModifierWorkbenchCraftMessageAccessor)(Object)message).getPos();
             BlockEntity tile = player.getLevel().getBlockEntity(pos);
             if (tile instanceof ModifierWorkbenchTileEntity workbenchTile) {
@@ -129,7 +129,7 @@ public class ModifierWorkbenchCraftMessage {
                                         if (createdModifier == null) {
                                                 ModifierWorkbenchHelper.removeCraftedModifiers(input);
                                         } else {
-                                            createdModifier.setCategory(VaultGearModifier.AffixCategory.CRAFTED);
+                                            createdModifier.addCategory(VaultGearModifier.AffixCategory.CRAFTED);
                                             createdModifier.setGameTimeAdded(player.getLevel().getGameTime());
                                             if(ModifierWorkbenchMixinHelper.getCraftedModifierCount(input) > numberOfAllowedModifiers && isCrafted) {
                                                 ModifierWorkbenchHelper.removeCraftedModifiers(input);
