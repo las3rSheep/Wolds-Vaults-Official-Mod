@@ -72,6 +72,7 @@
     "vaulthunters.custom.MixinWildSpawnerTileEntity",
     "vaulthunters.custom.recycler.MixinVaultCatalystItem",
     "vaulthunters.custom.recycler.MixinVaultGearItem",
+    "vaulthunters.fixes.MixinCollectionQuest",
     "vaulthunters.fixes.MixinPlayer",
     "vaulthunters.fixes.MixinStatisticsElementContainerScreenData",
     "vaulthunters.fixes.MixinVaultPenTileEntity",
@@ -89,7 +90,7 @@
     "vaulthunters.recipes.MixinAnvilRecipes",
     "vaulthunters.research.MixinAttributeResearchBypass",
     "vaulthunters.skills.MixinHealEffectAbility",
-    "vaulthunters.skills.MixinSkill",
+    "vaulthunters.skills.MixinSkill"
   ],
   "client": [
     "MixinThrownTridentRenderer",

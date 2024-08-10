@@ -13,8 +13,6 @@ public class MixinComputerCraftCompatModule {
 
     @Inject(method = "attachPeripheral", at = @At("HEAD"), cancellable = true)
     private void attachPeripheral(AttachCapabilitiesEvent<BlockEntity> ev, CallbackInfo ci) {
-        if(ev.getObject() == null) {
-            ci.cancel();
-        }
+        ci.cancel();
     }
 }
