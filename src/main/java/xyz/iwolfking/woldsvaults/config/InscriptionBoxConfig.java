@@ -3,12 +3,12 @@ package xyz.iwolfking.woldsvaults.config;
 import com.google.gson.annotations.Expose;
 import iskallia.vault.config.Config;
 import iskallia.vault.config.entry.vending.ProductEntry;
-import iskallia.vault.core.util.WeightedList;
+import iskallia.vault.util.data.WeightedList;
 import net.minecraft.world.item.Items;
 
 public class InscriptionBoxConfig extends Config {
     @Expose
-    /* 10 */   public WeightedList<ProductEntry> POOL = new WeightedList<>();
+    public iskallia.vault.util.data.WeightedList<ProductEntry> POOL = new WeightedList();
     /*    */
     /*    */
     /*    */   public String getName() {

@@ -255,7 +255,7 @@ public class HauntedBraziersObjective extends MonolithObjective {
     }
 
     @Override
-    public boolean isActive(Vault vault, Objective objective) {
+    public boolean isActive(VirtualWorld world, Vault vault, Objective objective) {
         if ((Integer)this.get(COUNT) < (Integer)this.get(TARGET)) {
             return objective == this;
         } else {
@@ -268,7 +268,7 @@ public class HauntedBraziersObjective extends MonolithObjective {
                 }
 
                 child = (Objective)var3.next();
-            } while(!child.isActive(vault, objective));
+            } while(!child.isActive(world, vault, objective));
 
             return true;
         }

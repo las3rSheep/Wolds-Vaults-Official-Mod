@@ -2,7 +2,7 @@ package xyz.iwolfking.woldsvaults.api.registry;
 
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.init.ModCatalystModels;
-import xyz.iwolfking.woldsvaults.mixins.vaulthunters.MixinInfusedCatalystItem;
+import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.MixinInfusedCatalystItem;
 
 import java.util.HashMap;
 import java.util.Map;

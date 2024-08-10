@@ -18,6 +18,8 @@
   "item.the_vault.crystal_seal_enchanter": "Seal of the Enchanter",
   "item.the_vault.crystal_seal_titan": "Seal of the Titan",
   "item.the_vault.crystal_seal_monolith": "Seal of the Searcher",
+  "item.the_vault.plushie": "Vault Plushie",
+  "item.the_vault.loot_sack": "Vault Sack",
   "jei.the_vault.completion_crate_unhinged_scavenger_loot": "Unhinged Scavenger Crate",
   "jei.the_vault.completion_crate_haunted_mono_loot": "Haunted Braziers Crate",
   "jei.the_vault.completion_crate_enchanted_elixir_loot": "Enchanted Elixir Crate",
@@ -60,7 +62,14 @@
   "item.woldsvaults.capstone_frenzy": "Frenzy Capstone",
   "item.woldsvaults.capstone_prosperous": "Prosperous Capstone",
   "item.woldsvaults.capstone_all_seeing_eye": "All Seeing Eye Capstone",
+  "item.woldsvaults.waxing_augmenter": "Waxing Augmenter",
+  "item.woldsvaults.waning_augmenter": "Waning Augmenter",
+  "item.woldsvaults.repair_augmenter": "Repair Augmenter",
+  "item.woldsvaults.vault_rock_candy": "Vault Rock Candy",
   "effect.woldsvaults.reaving": "Reaved",
   "effect.woldsvaults.shrinking": "Shrinking",
-  "effect.woldsvaults.growing": "Growing"
+  "effect.woldsvaults.growing": "Growing",
+  "woldsvaults.key.cherish_item": "Cherish Item",
+  "key.woldsvaults.cherish_item": "Cherish Item",
+  "key.woldsvaults.category": "Wold's Vaults"
 }

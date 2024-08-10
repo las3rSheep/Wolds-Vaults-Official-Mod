@@ -46,11 +46,6 @@ public class VaultAmuletEffectRegistry {
         event.create((new RegistryBuilder()).setName(CHARM_REGISTRY_KEY.location()).setType(MiscUtils.cast(VaultAmuletEffect.class)).disableSaving().disableOverrides(), (registry) -> {
             charmRegistry = registry;
         });
-//        event.create((new RegistryBuilder<VaultAmuletEffect<?>>()).setName(CHARM_REGISTRY_KEY.location()).disableSaving().disableOverrides(), (registry) -> {
-//            System.out.println(registry.getRegistryName());
-//            System.out.println(registry.getKeys());
-//            charmRegistry = registry;
-//                });
 
     }
 }

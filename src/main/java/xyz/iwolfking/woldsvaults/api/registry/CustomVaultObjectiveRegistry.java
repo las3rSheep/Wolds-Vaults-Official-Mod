@@ -1,18 +1,42 @@
 package xyz.iwolfking.woldsvaults.api.registry;
 
-import iskallia.vault.core.vault.objective.Objective;
-import iskallia.vault.item.crystal.objective.CrystalObjective;
+import xyz.iwolfking.woldsvaults.api.registry.record.CustomVaultObjectiveEntry;
+import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
+import xyz.iwolfking.woldsvaults.init.ModCustomVaultObjectiveEntries;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomVaultObjectiveRegistry {
 
-    public static final List<Objective> CUSTOM_OBJECTIVES = new ArrayList<>();
-    public static final List<CrystalObjective> CUSTOM_CRYSTAL_OBJECTIVES = new ArrayList<>();;
+    private static final List<CustomVaultObjectiveEntry> CUSTOM_VAULT_OBJECTIVE_ENTRIES = new ArrayList<>();
 
-    public static void register(Objective objective, CrystalObjective crystalObjective) {
-        CUSTOM_OBJECTIVES.add(objective);
-        CUSTOM_CRYSTAL_OBJECTIVES.add(crystalObjective);
+    public static void addEntry(CustomVaultObjectiveEntry entry) {
+        CUSTOM_VAULT_OBJECTIVE_ENTRIES.add(entry);
+    }
+
+    public static int getSize() {
+        return CUSTOM_VAULT_OBJECTIVE_ENTRIES.size();
+    }
+
+    public static void registerAllCustomVaultObjectives() {
+        ModCustomVaultObjectiveEntries.registerCustomObjectives();
+        if(WoldsVaultsConfig.COMMON.enableDebugMode.get()) {
+            System.out.println("Wold's Vaults - Registered " + getSize() + " Custom Vault Objective Entries.");
+        }
+    }
+
+
+    public static List<CustomVaultObjectiveEntry> getCustomVaultObjectiveEntries() {
+        return CUSTOM_VAULT_OBJECTIVE_ENTRIES;
+    }
+
+    public static boolean contains(String id) {
+        for(CustomVaultObjectiveEntry entry : getCustomVaultObjectiveEntries()) {
+            if(id.equals(entry.id())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

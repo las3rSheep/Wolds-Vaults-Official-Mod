@@ -9,7 +9,6 @@ import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.init.ModItems;
 import iskallia.vault.item.BasicItem;
-import iskallia.vault.item.gear.CharmItem;
 import iskallia.vault.item.gear.DataTransferItem;
 import iskallia.vault.item.gear.RecyclableItem;
 import iskallia.vault.util.MiscUtils;
@@ -95,13 +94,13 @@ public class VaultAmuletItem extends BasicItem implements ICurioItem, DataTransf
     }
 
     public static void setUses(ItemStack stack, int uses) {
-        if (!stack.isEmpty() && stack.getItem() instanceof CharmItem) {
+        if (!stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem) {
             stack.getOrCreateTag().putInt("vaultUses", uses);
         }
     }
 
     public static boolean hasValue(ItemStack stack) {
-        if (!stack.isEmpty() && stack.getItem() instanceof CharmItem) {
+        if (!stack.isEmpty() && stack.getItem() instanceof VaultAmuletItem) {
             return stack.hasTag() && stack.getOrCreateTag().contains("charmValue");
         } else {
             return false;
@@ -217,7 +216,7 @@ public class VaultAmuletItem extends BasicItem implements ICurioItem, DataTransf
             tooltip.add(TextComponent.EMPTY);
         });
         MutableComponent slotsTooltip = (new TranslatableComponent("curios.slot")).append(": ").withStyle(ChatFormatting.GOLD);
-        MutableComponent type = new TranslatableComponent("curios.identifier.charm");
+        MutableComponent type = new TranslatableComponent("curios.identifier.necklace");
         type = type.withStyle(ChatFormatting.YELLOW);
         slotsTooltip.append(type);
         tooltip.add(slotsTooltip);
@@ -253,11 +252,15 @@ public class VaultAmuletItem extends BasicItem implements ICurioItem, DataTransf
     }
 
     public void tickRoll(ItemStack stack, Player player) {
+        System.out.println("TICKING...");
         AttributeGearData data = AttributeGearData.read(stack);
         Item var6 = stack.getItem();
         if (var6 instanceof VaultAmuletItem charmItem) {
-            VaultAmuletEffect<?> randomTrinket = xyz.iwolfking.woldsvaults.init.ModConfigs.VAULT_AMULET.getRandomTrinketSet(charmItem.size);
+            System.out.println("IS AMULET");
+            VaultAmuletEffect<?> randomTrinket = xyz.iwolfking.woldsvaults.init.ModConfigs.VAULT_AMULET.getRandomTrinketSet(this.size);
+            System.out.println(randomTrinket);
             if (randomTrinket != null) {
+                System.out.println(randomTrinket.getCharmConfig());
                 data.updateAttribute(xyz.iwolfking.woldsvaults.init.ModGearAttributes.VAULT_AMULET_EFFECT, randomTrinket);
             }
 
@@ -269,6 +272,7 @@ public class VaultAmuletItem extends BasicItem implements ICurioItem, DataTransf
         AttributeGearData data = AttributeGearData.read(stack);
         Optional<VaultAmuletEffect<?>> optCharmEffect = data.getFirstValue(xyz.iwolfking.woldsvaults.init.ModGearAttributes.VAULT_AMULET_EFFECT);
         if (optCharmEffect.isPresent()) {
+            System.out.println("Found effect");
             VaultAmuletEffect<?> trinketEffect = (VaultAmuletEffect)optCharmEffect.get();
             setUses(stack, trinketEffect.getCharmConfig().getRandomUses());
             setValue(stack, (float)trinketEffect.getCharmConfig().getRandomAffinity() / 100.0F);
@@ -315,7 +319,7 @@ public class VaultAmuletItem extends BasicItem implements ICurioItem, DataTransf
         if (!isIdentified(stack)) {
             return false;
         } else {
-            String slot = "charm";
+            String slot = "necklace";
             if (!slot.equals(slotContext.identifier())) {
                 return false;
             } else {

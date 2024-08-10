@@ -144,6 +144,7 @@ repositories {
     flatDir {
         dir 'lib'
     }
+    maven { url = "https://jitpack.io" }
     maven {
         url "https://cursemaven.com"
         content {
@@ -161,6 +162,7 @@ repositories {
         url = "https://maven.blamejared.com/"
     }
     maven { url 'https://maven.fallenbreath.me/releases' }
+    maven { url = 'https://maven.melanx.de/' }
     mavenCentral()
 }
 
@@ -175,7 +177,7 @@ dependencies {
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    implementation fg.deobf('curse.maven:vault-hunters-official-mod-458203:5401569')
+    implementation fg.deobf('curse.maven:vault-hunters-official-mod-458203:5601579')
     implementation fg.deobf('curse.maven:hostile-neural-networks-552574:3717871')
     implementation fg.deobf('curse.maven:placebo-283644:3717788')
     implementation fg.deobf('curse.maven:lightmans-currency-472521:4977514')
@@ -212,6 +214,22 @@ dependencies {
     implementation fg.deobf("curse.maven:cyclops-core-232758:5262021")
     implementation fg.deobf("curse.maven:rftoolstorage-350006:4069708")
     implementation fg.deobf("curse.maven:rftoolsbase-326041:4373521")
+    implementation fg.deobf("curse.maven:vault-filters-952507:5578077")
+    implementation fg.deobf("curse.maven:create-328085:4835188")
+    implementation fg.deobf("curse.maven:pneumaticcraft-repressurized-281849:4922258")
+    implementation fg.deobf("curse.maven:just-enough-vh-1035310:5428032")
+    implementation fg.deobf("curse.maven:dimensional-worldborder-631202:3832850")
+    implementation fg.deobf("curse.maven:immersive-engineering-231951:4412849")
+    implementation fg.deobf("curse.maven:industrial-foregoing-266515:5334842")
+    implementation fg.deobf("curse.maven:titanium-287342:5151207")
+    implementation fg.deobf("curse.maven:immersive-engineering-231951:4412849")
+    implementation fg.deobf("curse.maven:travel-anchors-413234:3741307")
+    implementation fg.deobf("curse.maven:advanced-peripherals-431725:4684137")
+    implementation fg.deobf("curse.maven:toms-storage-378609:5211203")
+    implementation fg.deobf("curse.maven:integrated-dynamics-236307:5262070")
+    implementation fg.deobf("curse.maven:common-capabilities-247007:4987177")
+    implementation fg.deobf("curse.maven:integrated-tunnels-251389:5314661")
+    implementation fg.deobf("io.github.noeppi_noeppi.mods:LibX:1.18.2-3.2.2")
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
     runtimeOnly "curse.maven:citadel4-331936:3683009"
     // compile against the JEI API but do not include it at runtime
@@ -233,7 +251,10 @@ dependencies {
     jarJar(group: 'eu.pb4', name: 'forgified-sgui', version: '[1.0.2,)') {
         jarJar.pin(it, '1.0.2')
     }
-
+    implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.2.0-beta.5"))
+    implementation(jarJar("com.github.bawnorton.mixinsquared:mixinsquared-forge:0.2.0-beta.5")) {
+        jarJar.ranged(it, "[0.2.0-beta.5,)")
+    }
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }

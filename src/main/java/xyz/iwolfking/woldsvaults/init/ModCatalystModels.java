@@ -12,5 +12,6 @@ public class ModCatalystModels {
         CustomCatalystModelRegistry.addModel(19, "prosperous");
         CustomCatalystModelRegistry.addModel(20, "copiously");
         CustomCatalystModelRegistry.addModel(21, "champion_chance");
+        CustomCatalystModelRegistry.addModel(22, "positive_negative");
     }
 }
