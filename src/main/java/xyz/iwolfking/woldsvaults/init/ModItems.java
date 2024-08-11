@@ -15,6 +15,7 @@ import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.items.AltarResetItem;
 import xyz.iwolfking.woldsvaults.items.ExpertiseOrbItem;
 import xyz.iwolfking.woldsvaults.items.SkillOrbItem;
+import xyz.iwolfking.woldsvaults.items.ToolModifierNullifyingItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultBattleStaffItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
@@ -89,6 +90,9 @@ public class ModItems {
     public static BasicItem WAXING_AUGMENTER;
     public static BasicItem WANING_AUGMENTER;
     public static BasicItem REPAIR_AUGMENTER;
+    public static BasicItem CRYSTAL_REINFORCEMENT;
+    public static BasicItem RESONATING_REINFORCEMENT;
+    public static ToolModifierNullifyingItem CHISELING_FOCUS;
 
     public static VaultBasicFoodItem VAULT_ROCK_CANDY;
 
@@ -139,6 +143,9 @@ public class ModItems {
         registry.register(WAXING_AUGMENTER);
         registry.register(WANING_AUGMENTER);
         registry.register(REPAIR_AUGMENTER);
+        registry.register(CRYSTAL_REINFORCEMENT);
+        registry.register(RESONATING_REINFORCEMENT);
+        registry.register(CHISELING_FOCUS);
         registry.register(VAULT_ROCK_CANDY);
     }
 
@@ -182,6 +189,9 @@ public class ModItems {
         WAXING_AUGMENTER = new BasicItem(WoldsVaults.id("waxing_augmenter"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         WANING_AUGMENTER = new BasicItem(WoldsVaults.id("waning_augmenter"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         REPAIR_AUGMENTER = new BasicItem(WoldsVaults.id("repair_augmenter"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        CRYSTAL_REINFORCEMENT = new BasicItem(WoldsVaults.id("crystal_reinforcement"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        RESONATING_REINFORCEMENT = new BasicItem(WoldsVaults.id("resonating_reinforcement"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        CHISELING_FOCUS = new ToolModifierNullifyingItem(WoldsVaults.id("chiseling_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         VAULT_ROCK_CANDY = new VaultBasicFoodItem(WoldsVaults.id("vault_rock_candy"), (new FoodProperties.Builder()).alwaysEat().fast().nutrition(8).saturationMod(1.4F).build());
         //BOW = new VaultBowItem(VaultMod.id("bow"), (new Item.Properties().tab(GEAR_GROUP).stacksTo(1)));
     }

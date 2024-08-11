@@ -12,6 +12,9 @@ import xyz.iwolfking.woldsvaults.recipes.capstone.*;
 import xyz.iwolfking.woldsvaults.recipes.gear.GearPrefixAdderRecipe;
 import xyz.iwolfking.woldsvaults.recipes.gear.GearRepairAdderRecipe;
 import xyz.iwolfking.woldsvaults.recipes.gear.GearSuffixAdderRecipe;
+import xyz.iwolfking.woldsvaults.recipes.tool.OmegaToolCapacityAdderRecipe;
+import xyz.iwolfking.woldsvaults.recipes.tool.ToolCapacityAdderRecipe;
+import xyz.iwolfking.woldsvaults.recipes.tool.ToolModifierNullifierRecipe;
 
 import java.util.List;
 
@@ -32,6 +35,9 @@ public abstract class MixinAnvilRecipes {
         woldsVaults$register(new GearPrefixAdderRecipe());
         woldsVaults$register(new GearSuffixAdderRecipe());
         woldsVaults$register(new GearRepairAdderRecipe());
+        woldsVaults$register(new ToolCapacityAdderRecipe());
+        woldsVaults$register(new OmegaToolCapacityAdderRecipe());
+        woldsVaults$register(new ToolModifierNullifierRecipe());
     }
 
     @Unique

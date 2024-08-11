@@ -13,6 +13,7 @@ public class WoldsVaultsConfig
         public final ForgeConfigSpec.ConfigValue<Boolean> enableMoteRecipes;
         public final ForgeConfigSpec.ConfigValue<Boolean> displayItemBordersInTerminals;
         public final ForgeConfigSpec.ConfigValue<Boolean> enableDebugMode;
+        public final ForgeConfigSpec.ConfigValue<Integer> crystalReinforcementMaxCapacityAdded;
         public Common(ForgeConfigSpec.Builder builder)
         {
             builder.push("Vault Settings");
@@ -22,6 +23,7 @@ public class WoldsVaultsConfig
             builder.push("Gameplay Settings");
             this.enableMoteRecipes= builder.comment("Controls whether Mote of Purity, Sanctity, and Clarity should work in the Crystal Workbench. (default: false)")
                     .define("enableMoteRecipes", false);
+            this.crystalReinforcementMaxCapacityAdded = builder.comment("The max capacity that can be added to a tool with Crystal Reinforcements. (default: 20)").define("crystalReinforcementMaxCapacityAdded", 20);
             builder.pop();
             builder.push("Compatability Settings");
             builder.push("Item Borders");
