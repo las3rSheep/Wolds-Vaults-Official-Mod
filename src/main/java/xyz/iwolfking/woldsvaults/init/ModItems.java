@@ -50,7 +50,6 @@ public class ModItems {
     public static LootableItem GEM_BOX;
     public static LootableItem SUPPLY_BOX;
     public static LootableItem AUGMENT_BOX;
-
     public static LootableItem INSCRIPTION_BOX;
     public static LootableItem OMEGA_BOX;
     public static LootableItem CATALYST_BOX;

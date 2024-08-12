@@ -131,7 +131,7 @@ public class HauntedBraziersObjective extends MonolithObjective {
                                     killBoss.set(KillBossObjective.BOSS_POS, pos);
                                 }
                             }
-                            List<LivingEntity> nearbyEntities = world.getEntitiesOfClass(LivingEntity.class, Objects.requireNonNull(world.getBlockEntity(pos)).getRenderBoundingBox().inflate(20.0D));
+                            List<LivingEntity> nearbyEntities = world.getEntitiesOfClass(LivingEntity.class, Objects.requireNonNull(world.getBlockEntity(pos)).getRenderBoundingBox().inflate(64.0D));
 
                             nearbyEntities.forEach(livingEntity -> {
                                 if(livingEntity.hasEffect(MobEffects.DAMAGE_RESISTANCE) && !(livingEntity instanceof Player)) {
