@@ -41,6 +41,7 @@
     "scannable.MixinScannableItems",
     "scannable.ScannerModuleItemAccessor",
     "secretroomsmod.MixinDelegateWorld",
+    "sophisticatedbackpacks.MixinToolSwapperWrapper",
     "tomsstorage.MixinFilteredInventoryHandler",
     "travel_anchors.MixinTeleportHandler",
     "vaultarhud.MixinInventoryHudRender",
