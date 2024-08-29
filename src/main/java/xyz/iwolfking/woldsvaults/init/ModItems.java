@@ -87,6 +87,9 @@ public class ModItems {
     public static BasicItem FRENZY_CAPSTONE;
     public static BasicItem PROSPEROUS_CAPSTONE;
     public static BasicItem ALL_SEEING_EYE_CAPSTONE;
+    public static BasicItem ENCHANTED_CAPSTONE;
+
+    public static BasicItem VENDOOR_CAPSTONE;
     public static BasicItem WAXING_AUGMENTER;
     public static BasicItem WANING_AUGMENTER;
     public static BasicItem REPAIR_AUGMENTER;
@@ -142,6 +145,8 @@ public class ModItems {
         registry.register(FRENZY_CAPSTONE);
         registry.register(PROSPEROUS_CAPSTONE);
         registry.register(ALL_SEEING_EYE_CAPSTONE);
+        registry.register(ENCHANTED_CAPSTONE);
+        registry.register(VENDOOR_CAPSTONE);
         registry.register(WAXING_AUGMENTER);
         registry.register(WANING_AUGMENTER);
         registry.register(REPAIR_AUGMENTER);
@@ -190,6 +195,8 @@ public class ModItems {
         FRENZY_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_frenzy"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         PROSPEROUS_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_prosperous"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         ALL_SEEING_EYE_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_all_seeing_eye"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        ENCHANTED_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_enchanted"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        VENDOOR_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_vendoors"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         WAXING_AUGMENTER = new BasicItem(WoldsVaults.id("waxing_augmenter"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         WANING_AUGMENTER = new BasicItem(WoldsVaults.id("waning_augmenter"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         REPAIR_AUGMENTER = new BasicItem(WoldsVaults.id("repair_augmenter"), (new Item.Properties()).tab(VAULT_MOD_GROUP));

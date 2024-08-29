@@ -33,6 +33,8 @@ public abstract class MixinAnvilRecipes {
         woldsVaults$register(new MoteClarityCapstoneRecipe());
         woldsVaults$register(new MoteSanctityCapstoneRecipe());
         woldsVaults$register(new MotePurityCapstoneRecipe());
+        woldsVaults$register(new EnchantedCapstoneRecipe());
+        woldsVaults$register(new VendoorCapstoneRecipe());
         woldsVaults$register(new GearPrefixAdderRecipe());
         woldsVaults$register(new GearSuffixAdderRecipe());
         woldsVaults$register(new GearRepairAdderRecipe());
