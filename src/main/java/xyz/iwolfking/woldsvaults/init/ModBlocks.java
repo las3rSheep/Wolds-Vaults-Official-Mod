@@ -17,6 +17,7 @@ import net.minecraftforge.event.RegistryEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.blocks.*;
 import xyz.iwolfking.woldsvaults.blocks.tiles.*;
+import xyz.iwolfking.woldsvaults.client.renderers.DungeonPedestalRenderer;
 import xyz.iwolfking.woldsvaults.client.renderers.SurvivalMobBarrierRenderer;
 
 import java.util.function.Consumer;
@@ -24,6 +25,8 @@ import java.util.function.Consumer;
 public class ModBlocks {
 
     public static final VaultSalvagerBlock VAULT_SALVAGER_BLOCK;
+    public static final IskallianLeavesBlock ISKALLIAN_LEAVES_BLOCK;
+    public static final DungeonPedestalBlock DUNGEON_PEDESTAL_BLOCK;
     public static final DecoScavengerAltarBlock DECO_SCAVENGER_ALTAR_BLOCK;
     public static final DecoObeliskBlock DECO_OBELISK_BLOCK;
     public static final DecoLodestoneBlock DECO_LODESTONE_BLOCK;
@@ -31,6 +34,8 @@ public class ModBlocks {
     public static final SurvivalMobBarrier SURVIVAL_MOB_BARRIER;
 
     public static final BlockEntityType<VaultSalvagerTileEntity> VAULT_SALVAGER_ENTITY;
+    public static final BlockEntityType<IskallianLeavesTileEntity> ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<DungeonPedestalTileEntity> DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoScavengerAltarEntity> DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoObeliskTileEntity> DECO_OBELISK_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoLodestoneTileEntity> DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE;
@@ -42,12 +47,16 @@ public class ModBlocks {
 
     static {
         VAULT_SALVAGER_BLOCK = new VaultSalvagerBlock();
+        ISKALLIAN_LEAVES_BLOCK = new IskallianLeavesBlock();
+        DUNGEON_PEDESTAL_BLOCK = new DungeonPedestalBlock();
         DECO_SCAVENGER_ALTAR_BLOCK = new DecoScavengerAltarBlock();
         DECO_OBELISK_BLOCK = (DecoObeliskBlock) new DecoObeliskBlock();
         DECO_LODESTONE_BLOCK = (DecoLodestoneBlock) new DecoLodestoneBlock();
         DECO_MONOLITH_BLOCK = (DecoMonolithBlock) new DecoMonolithBlock();
         SURVIVAL_MOB_BARRIER = (SurvivalMobBarrier) new SurvivalMobBarrier();
         VAULT_SALVAGER_ENTITY = BlockEntityType.Builder.of(VaultSalvagerTileEntity::new, new Block[]{VAULT_SALVAGER_BLOCK}).build((Type)null);
+        ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(IskallianLeavesTileEntity::new, new Block[]{ISKALLIAN_LEAVES_BLOCK}).build((Type)null);
+        DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DungeonPedestalTileEntity::new, new Block[]{DUNGEON_PEDESTAL_BLOCK}).build((Type)null);
         DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoScavengerAltarEntity::new, new Block[]{DECO_SCAVENGER_ALTAR_BLOCK}).build((Type)null);
         DECO_OBELISK_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoObeliskTileEntity::new, new Block[]{DECO_OBELISK_BLOCK}).build((Type)null);
         DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoLodestoneTileEntity::new, new Block[]{DECO_LODESTONE_BLOCK}).build((Type)null);
@@ -57,6 +66,8 @@ public class ModBlocks {
 
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         registerBlock(event, VAULT_SALVAGER_BLOCK, VaultMod.id("vault_salvager"));
+        registerBlock(event, ISKALLIAN_LEAVES_BLOCK, WoldsVaults.id("iskallian_leaves"));
+        registerBlock(event, DUNGEON_PEDESTAL_BLOCK, WoldsVaults.id("dungeon_pedestal"));
         registerBlock(event, DECO_SCAVENGER_ALTAR_BLOCK, WoldsVaults.id("scavenger_altar"));
         registerBlock(event, DECO_OBELISK_BLOCK, WoldsVaults.id("obelisk"));
         registerBlock(event, DECO_LODESTONE_BLOCK, WoldsVaults.id("lodestone"));
@@ -66,6 +77,8 @@ public class ModBlocks {
     }
     public static void registerTileEntities(RegistryEvent.Register<BlockEntityType<?>> event) {
         registerTileEntity(event, VAULT_SALVAGER_ENTITY, VaultMod.id("vault_salvager_tile_entity"));
+        registerTileEntity(event, ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("iskallian_leaves_tile_entity"));
+        registerTileEntity(event, DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("dungeon_pedestal_tile_entity"));
         registerTileEntity(event, DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("scavenger_altar_deco_tile_entity"));
         registerTileEntity(event, DECO_OBELISK_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("obelisk_deco_tile_entity"));
         registerTileEntity(event, DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("lodestone_deco_tile_entity"));
@@ -75,6 +88,8 @@ public class ModBlocks {
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
         registerBlockItem(event, VAULT_SALVAGER_BLOCK);
+        registerBlockItem(event, ISKALLIAN_LEAVES_BLOCK);
+        registerBlockItem(event, DUNGEON_PEDESTAL_BLOCK);
         registerBlockItem(event, DECO_SCAVENGER_ALTAR_BLOCK);
         registerBlockItem(event, DECO_OBELISK_BLOCK);
         registerBlockItem(event, DECO_LODESTONE_BLOCK);
@@ -85,6 +100,7 @@ public class ModBlocks {
     public static void registerTileEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE, ScavengerAltarRenderer::new);
         event.registerBlockEntityRenderer(SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE, SurvivalMobBarrierRenderer::new);
+        event.registerBlockEntityRenderer(DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE, DungeonPedestalRenderer::new);
         //event.registerBlockEntityRenderer(DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE, DecoLodestoneRenderer::new);
     }
 

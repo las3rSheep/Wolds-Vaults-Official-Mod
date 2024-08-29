@@ -29,8 +29,15 @@ public abstract class MixinLootInfoGroupDefinitionRegistry {
         woldsVaults$register("vendor_pedestal", () -> new ItemStack((ItemLike) ModBlocks.SHOP_PEDESTAL));
         woldsVaults$register("completion_crate_haunted_mono", () -> new ItemStack((ItemLike) ModBlocks.VAULT_CRATE_MONOLITH));
         woldsVaults$register("completion_crate_enchanted_elixir", () -> new ItemStack((ItemLike) ModBlocks.VAULT_CRATE_ELIXIR));
+        woldsVaults$register("completion_crate_bingo_wold", () -> new ItemStack((ItemLike) ModBlocks.VAULT_CRATE_BINGO));
+        woldsVaults$register("completion_crate_bingo_wold_full", () -> new ItemStack((ItemLike) ModBlocks.VAULT_CRATE_BINGO));
         woldsVaults$register("completion_crate_enchanted_brutal_bosses", () -> new ItemStack((ItemLike) ModBlocks.VAULT_CRATE_CHAMPION));
+        woldsVaults$register("completion_crate_ballistic_bingo", () -> new ItemStack((ItemLike) ModBlocks.VAULT_CRATE_BINGO));
+        woldsVaults$register("completion_crate_ballistic_bingo_full", () -> new ItemStack((ItemLike) ModBlocks.VAULT_CRATE_BINGO_FULL));
         woldsVaults$register("brazier_pillage", () -> new ItemStack((ItemLike) ModBlocks.MONOLITH));
+        woldsVaults$register("dungeon_pedestal", () -> new ItemStack((ItemLike) xyz.iwolfking.woldsvaults.init.ModBlocks.DUNGEON_PEDESTAL_BLOCK));
+        woldsVaults$register("treasure_pedestal", () -> new ItemStack((ItemLike) ModBlocks.TREASURE_PEDESTAL));
+        woldsVaults$register("iskallian_leaves", () -> new ItemStack((ItemLike) xyz.iwolfking.woldsvaults.init.ModBlocks.ISKALLIAN_LEAVES_BLOCK));
     }
 
     @Unique

@@ -11,6 +11,9 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.world.item.ItemStack;
 import xyz.iwolfking.woldsvaults.items.ToolModifierNullifyingItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ToolModifierNullifierRecipe extends VanillaAnvilRecipe {
 
 
@@ -27,11 +30,23 @@ public class ToolModifierNullifierRecipe extends VanillaAnvilRecipe {
                 return false;
             }
             VaultGearData gear = ToolGearData.read(output);
+            List<VaultGearModifier<?>> modifiersRemoved = new ArrayList<>();
 
             if(gear.has(attributeToRemove)) {
                 for(VaultGearModifier<?> mod : gear.getModifiers(VaultGearModifier.AffixType.PREFIX)) {
                     if(mod.getAttribute().equals(attributeToRemove)) {
-                        gear.removeModifier(mod);
+                        if(!modifiersRemoved.contains(mod)) {
+                            modifiersRemoved.add(mod);
+                            gear.removeModifier(mod);
+                        }
+                    }
+                }
+                for(VaultGearModifier<?> mod : gear.getModifiers(VaultGearModifier.AffixType.SUFFIX)) {
+                    if(mod.getAttribute().equals(attributeToRemove)) {
+                        if(!modifiersRemoved.contains(mod)) {
+                            modifiersRemoved.add(mod);
+                            gear.removeModifier(mod);
+                        }
                     }
                 }
             }

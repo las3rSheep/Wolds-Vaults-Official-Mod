@@ -103,7 +103,7 @@ public abstract class MixinDisenchantingPressureRecipe extends PressureChamberRe
         ItemStack enchantedBook = new ItemStack(Items.ENCHANTED_BOOK);
         enchantedBook.enchant(Enchantments.BLOCK_FORTUNE, 1);
         enchantedBook.enchant(Enchantments.BLOCK_EFFICIENCY, 1);
-        return ImmutableList.of(Ingredient.of(new ItemStack[]{pick, enchantedBook}), Ingredient.of(new ItemLike[]{Items.BOOK}), Ingredient.of(ModItems.OMEGA_POG));
+        return ImmutableList.of(Ingredient.of(new ItemStack[]{pick, enchantedBook}), Ingredient.of(new ItemLike[]{Items.BOOK}), Ingredient.of(ModItems.ECHO_POG));
     }
 
     /**

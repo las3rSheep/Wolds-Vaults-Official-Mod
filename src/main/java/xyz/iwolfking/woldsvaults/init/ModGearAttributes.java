@@ -20,8 +20,7 @@ import javax.annotation.Nullable;
 
 @Mod.EventBusSubscriber(modid = WoldsVaults.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModGearAttributes {
-    /*     */
-    /*     */
+    public static final VaultGearAttribute<Boolean> ROTATING_TOOL = attr("rotating", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Stylish", 15378160), VaultGearAttributeComparator.booleanComparator());
     public static final VaultGearAttribute<Integer> TRIDENT_LOYALTY = attr("trident_loyalty",
             /* 171 */       VaultGearAttributeType.intType(), (ConfigurableAttributeGenerator<Integer, ?>)ModGearAttributeGenerators.intRange(), (VaultGearModifierReader<Integer>)ModGearAttributeReaders.addedIntReader("Loyalty", 3114911), (VaultGearAttributeComparator<Integer>)VaultGearAttributeComparator.intComparator());
     public static final VaultGearAttribute<Integer> TRIDENT_RIPTIDE = attr("trident_riptide",
@@ -53,6 +52,7 @@ public class ModGearAttributes {
                       registry.register(MAGNET_ENDERGIZED);
                       registry.register(REAVING_DAMAGE);
                       registry.register(VAULT_AMULET_EFFECT);
+                      registry.register(ROTATING_TOOL);
         /*     */   }
     /*     */
     /*     */   public static void registerVanillaAssociations() {

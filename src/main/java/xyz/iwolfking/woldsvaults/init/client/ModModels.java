@@ -11,5 +11,6 @@ import xyz.iwolfking.woldsvaults.init.ModBlocks;
 public class ModModels {
     public static void setupRenderLayers() {
         ItemBlockRenderTypes.setRenderLayer((Block) ModBlocks.SURVIVAL_MOB_BARRIER, RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer((Block) ModBlocks.ISKALLIAN_LEAVES_BLOCK, RenderType.translucent());
     }
 }

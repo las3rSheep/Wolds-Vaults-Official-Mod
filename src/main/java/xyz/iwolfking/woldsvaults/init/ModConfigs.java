@@ -11,6 +11,7 @@ public class ModConfigs {
     public static CatalystBoxConfig CATALYST_BOX;
     public static EnigmaEggConfig ENIGMA_EGG;
     public static UnhingedScavengerConfig UNHINGED_SCAVENGER;
+    public static BallisticBingoConfig BALLISTIC_BINGO_CONFIG;
 
     public static HauntedBraziersConfig HAUNTED_BRAZIERS;
     public static EnchantedElixirConfig ENCHANTED_ELIXIR;
@@ -24,6 +25,7 @@ public class ModConfigs {
         CATALYST_BOX = (CatalystBoxConfig) (new CatalystBoxConfig()).readConfig();
         ENIGMA_EGG = (EnigmaEggConfig) (new EnigmaEggConfig()).readConfig();
         UNHINGED_SCAVENGER = (UnhingedScavengerConfig) (new UnhingedScavengerConfig().readConfig());
+        BALLISTIC_BINGO_CONFIG = (BallisticBingoConfig) (new BallisticBingoConfig().readConfig());
         HAUNTED_BRAZIERS = (HauntedBraziersConfig) (new HauntedBraziersConfig().readConfig());
         ENCHANTED_ELIXIR = (EnchantedElixirConfig) (new EnchantedElixirConfig().readConfig());
         VAULT_AMULET = (VaultAmuletConfig) (new VaultAmuletConfig().readConfig());
