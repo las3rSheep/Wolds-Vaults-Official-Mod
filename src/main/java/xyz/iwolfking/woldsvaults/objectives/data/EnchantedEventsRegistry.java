@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.objectives.data;
 
+import cofh.thermal.core.init.TCoreEntities;
 import com.cursedcauldron.wildbackport.common.registry.WBMobEffects;
 import com.github.alexthe666.alexsmobs.effect.AMEffectRegistry;
 import com.github.alexthe666.alexsmobs.entity.AMEntityRegistry;
@@ -75,6 +76,7 @@ public class EnchantedEventsRegistry {
     public static final SpawnEntityEnchantedEvent ZOO_EVENT;
     public static final SpawnEntityEnchantedEvent VOID_ZOO_EVENT;
     public static final SpawnEntityEnchantedEvent DWELLER_EVENT;
+    public static final SpawnEntityEnchantedEvent THERMAL_EXPANSION;
     public static final SpawnEntityEnchantedEvent LA_CUCARACHA_EVENT;
     public static final GiftItemEnchantedEvent WOLD_SANTA_BOX_EVENT;
     public static final GiftItemEnchantedEvent CONSOLATION_PRIZE;
@@ -135,11 +137,12 @@ public class EnchantedEventsRegistry {
         register(BUNFUNGUS_EVENT, 12.0, false, false);
         register(ARACHNOPHOBIA_EVENT, 16.0, false, false);
         register(GHOSTY_EVENT, 16.0, false, false);
-        register(CLOUDSTORAGE_EVENT, 16.0, false, false);
+        register(CLOUDSTORAGE_EVENT, 8.0, false, false);
         register(ZOO_EVENT, 5.0, false, false);
         register(DWELLER_EVENT, 16.0, false, false);
         register(VOID_ZOO_EVENT, 6.0, false, false);
         register(TURTLES_EVENT, 16.0, false, false);
+        register(THERMAL_EXPANSION, 8.0, false, false);
         register(LA_CUCARACHA_EVENT, 4.0, true, false);
 
         //Mob Buff Events
@@ -248,6 +251,7 @@ public class EnchantedEventsRegistry {
         ZOO_EVENT = new SpawnEntityEnchantedEvent("Escaped Zoo", "Who's Alex anyway?", "#85e085", new WeightedList<EntityType<?>>().add(AMEntityRegistry.CROCODILE.get(), 6.0).add(AMEntityRegistry.GORILLA.get(), 6.0).add(AMEntityRegistry.TIGER.get(), 6.0).add(AMEntityRegistry.ELEPHANT.get(), 4.0).add(AMEntityRegistry.KOMODO_DRAGON.get(), 2.0).add(AMEntityRegistry.SNOW_LEOPARD.get(), 3.0), new WeightedList<Integer>().add(6, 10).add(8, 10));
         VOID_ZOO_EVENT = new SpawnEntityEnchantedEvent("Void Invasion", "Ender what now?", "#bf00ff",  new WeightedList<EntityType<?>>().add(AMEntityRegistry.ENDERIOPHAGE.get(), 12.0).add(AMEntityRegistry.VOID_WORM.get(), 3.0).add(AMEntityRegistry.COSMIC_COD.get(), 4.0).add(AMEntityRegistry.MIMICUBE.get(), 5.0).add(ModEntities.T1_ENDERMAN, 7.0).add(ModEntities.T2_ENDERMAN, 9.0), new WeightedList<Integer>().add(6, 10).add(8, 10));
         DWELLER_EVENT = new SpawnEntityEnchantedEvent("Dweller Duel", "Attack of the dwellers", "#ff6666",  new WeightedList<EntityType<?>>().add(ModEntities.VAULT_FIGHTER_TYPES.get(1), 6.0).add(ModEntities.VAULT_FIGHTER_TYPES.get(2), 6.0).add(ModEntities.VAULT_FIGHTER_TYPES.get(3), 6.0).add(ModEntities.VAULT_FIGHTER_TYPES.get(4), 6.0), new WeightedList<Integer>().add(6, 10).add(10, 10));
+        THERMAL_EXPANSION = new SpawnEntityEnchantedEvent("Thermal Expansion", "Thermally expand these mobs into your face", "#8ab97d",  new WeightedList<EntityType<?>>().add(TCoreEntities.BLITZ.get(), 6.0).add(TCoreEntities.BLIZZ.get(), 6.0).add(TCoreEntities.BASALZ.get(), 6.0), new WeightedList<Integer>().add(6, 10).add(10, 10).add(8, 10));
         LA_CUCARACHA_EVENT = new SpawnEntityEnchantedEvent("La Cucaracha", "Cha Cha Cha", "#ff6666",  new WeightedList<EntityType<?>>().add(AMEntityRegistry.COCKROACH.get(), 6.0), new WeightedList<Integer>().add(2, 10).add(3, 10), AMItemRegistry.MARACA.get().getDefaultInstance());
         WOLD_SANTA_BOX_EVENT = new GiftItemEnchantedEvent("Wold's Box Giveaway", "And they said I wasn't nice", "#4d94ff", new WeightedList<ItemStack>().add(new ItemStack(ModItems.SUPPLY_BOX.asItem(), 1), 4.0).add(new ItemStack(ModItems.GEM_BOX.asItem(), 1), 4.0).add(new ItemStack(iskallia.vault.init.ModItems.MOD_BOX.asItem(), 1), 4.0).add(new ItemStack(iskallia.vault.init.ModItems.MYSTERY_BOX.asItem(), 1), 4.0).add(new ItemStack(ModItems.AUGMENT_BOX), 4.0));
         CONSOLATION_PRIZE = new GiftItemEnchantedEvent("Consolation Prize", "At least you tried...", "#7979d2", new WeightedList<ItemStack>().add(new ItemStack(iskallia.vault.init.ModItems.VELVET.asItem(), 8), 4.0).add(new ItemStack(iskallia.vault.init.ModItems.ORNATE_INGOT.asItem(), 8), 4.0).add(new ItemStack(iskallia.vault.init.ModItems.GILDED_INGOT.asItem(), 8), 4.0).add(new ItemStack(iskallia.vault.init.ModItems.VAULT_MEAT.asItem(), 8), 4.0));

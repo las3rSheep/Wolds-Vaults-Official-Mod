@@ -229,6 +229,7 @@ dependencies {
     implementation fg.deobf("curse.maven:integrated-dynamics-236307:5262070")
     implementation fg.deobf("curse.maven:common-capabilities-247007:4987177")
     implementation fg.deobf("curse.maven:integrated-tunnels-251389:5314661")
+    implementation fg.deobf("curse.maven:thermal-foundation-222880:4788649")
     implementation fg.deobf("io.github.noeppi_noeppi.mods:LibX:1.18.2-3.2.2")
     implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:4950560")
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
