@@ -33,7 +33,12 @@ public class RetroSpawnVaultModifier extends VaultModifier<RetroSpawnVaultModifi
                 if(!((event.player.tickCount % this.properties.getTicksPerCheck()) == 0)) {
                     return;
                 }
+
                 if(event.player.getRandom().nextDouble() < this.properties.getChance()) {
+                    if(!(event.player.getLevel().dimension().equals(world.dimension()))) {
+                        return;
+                    }
+
                     for(int i = 0; i < this.properties.amounts.getRandom(event.player.getRandom()); i++) {
                         doSpawn((VirtualWorld) event.player.level, event.player.getOnPos(), (Random) event.player.getRandom());
                     }

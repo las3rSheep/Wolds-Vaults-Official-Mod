@@ -32,26 +32,18 @@ public class ToolModifierNullifierRecipe extends VanillaAnvilRecipe {
             VaultGearData gear = ToolGearData.read(output);
             List<VaultGearModifier<?>> modifiersRemoved = new ArrayList<>();
 
-            if(gear.has(attributeToRemove)) {
-                for(VaultGearModifier<?> mod : gear.getModifiers(VaultGearModifier.AffixType.PREFIX)) {
-                    if(mod.getAttribute().equals(attributeToRemove)) {
-                        if(!modifiersRemoved.contains(mod)) {
-                            modifiersRemoved.add(mod);
-                            gear.removeModifier(mod);
-                        }
-                    }
-                }
-                for(VaultGearModifier<?> mod : gear.getModifiers(VaultGearModifier.AffixType.SUFFIX)) {
-                    if(mod.getAttribute().equals(attributeToRemove)) {
-                        if(!modifiersRemoved.contains(mod)) {
-                            modifiersRemoved.add(mod);
-                            gear.removeModifier(mod);
-                        }
-                    }
+            for (VaultGearModifier<?> mod : gear.getAllModifierAffixes()) {
+                if (mod.getAttribute().equals(attributeToRemove)) {
+                    modifiersRemoved.add(mod);
                 }
             }
-            else {
+
+            if(modifiersRemoved.isEmpty()) {
                 return false;
+            }
+
+            for(VaultGearModifier<?> mod : modifiersRemoved) {
+                gear.removeModifier(mod);
             }
 
             gear.write(output);
