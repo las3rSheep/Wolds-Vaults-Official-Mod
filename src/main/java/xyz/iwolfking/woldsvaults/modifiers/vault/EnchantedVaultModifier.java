@@ -24,6 +24,10 @@ public class EnchantedVaultModifier extends VaultModifier<EnchantedVaultModifier
                     return;
                 }
 
+                if(!(event.player.getLevel().dimension().equals(world.dimension()))) {
+                    return;
+                }
+
                 if(event.player.getRandom().nextDouble() < this.properties.getChance()) {
                     if(EnchantedEventsRegistry.getEvents().getRandom().isPresent()) {
                         EnchantedEventsRegistry.getEvents().getRandom().get().triggerEvent(event.player.getOnPos(), (ServerPlayer) event.player, vault);

@@ -26,6 +26,7 @@ public class ModBlocks {
 
     public static final VaultSalvagerBlock VAULT_SALVAGER_BLOCK;
     public static final IskallianLeavesBlock ISKALLIAN_LEAVES_BLOCK;
+    public static final HellishSandBlock HELLISH_SAND_BLOCK;
     public static final DungeonPedestalBlock DUNGEON_PEDESTAL_BLOCK;
     public static final DecoScavengerAltarBlock DECO_SCAVENGER_ALTAR_BLOCK;
     public static final DecoObeliskBlock DECO_OBELISK_BLOCK;
@@ -35,6 +36,7 @@ public class ModBlocks {
 
     public static final BlockEntityType<VaultSalvagerTileEntity> VAULT_SALVAGER_ENTITY;
     public static final BlockEntityType<IskallianLeavesTileEntity> ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<HellishSandTileEntity> HELLISH_SAND_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DungeonPedestalTileEntity> DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoScavengerAltarEntity> DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoObeliskTileEntity> DECO_OBELISK_TILE_ENTITY_BLOCK_ENTITY_TYPE;
@@ -48,6 +50,7 @@ public class ModBlocks {
     static {
         VAULT_SALVAGER_BLOCK = new VaultSalvagerBlock();
         ISKALLIAN_LEAVES_BLOCK = new IskallianLeavesBlock();
+        HELLISH_SAND_BLOCK = new HellishSandBlock();
         DUNGEON_PEDESTAL_BLOCK = new DungeonPedestalBlock();
         DECO_SCAVENGER_ALTAR_BLOCK = new DecoScavengerAltarBlock();
         DECO_OBELISK_BLOCK = (DecoObeliskBlock) new DecoObeliskBlock();
@@ -56,6 +59,7 @@ public class ModBlocks {
         SURVIVAL_MOB_BARRIER = (SurvivalMobBarrier) new SurvivalMobBarrier();
         VAULT_SALVAGER_ENTITY = BlockEntityType.Builder.of(VaultSalvagerTileEntity::new, new Block[]{VAULT_SALVAGER_BLOCK}).build((Type)null);
         ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(IskallianLeavesTileEntity::new, new Block[]{ISKALLIAN_LEAVES_BLOCK}).build((Type)null);
+        HELLISH_SAND_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(HellishSandTileEntity::new, new Block[]{HELLISH_SAND_BLOCK}).build((Type)null);
         DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DungeonPedestalTileEntity::new, new Block[]{DUNGEON_PEDESTAL_BLOCK}).build((Type)null);
         DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoScavengerAltarEntity::new, new Block[]{DECO_SCAVENGER_ALTAR_BLOCK}).build((Type)null);
         DECO_OBELISK_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoObeliskTileEntity::new, new Block[]{DECO_OBELISK_BLOCK}).build((Type)null);
@@ -67,6 +71,7 @@ public class ModBlocks {
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         registerBlock(event, VAULT_SALVAGER_BLOCK, VaultMod.id("vault_salvager"));
         registerBlock(event, ISKALLIAN_LEAVES_BLOCK, WoldsVaults.id("iskallian_leaves"));
+        registerBlock(event, HELLISH_SAND_BLOCK, WoldsVaults.id("hellish_sand"));
         registerBlock(event, DUNGEON_PEDESTAL_BLOCK, WoldsVaults.id("dungeon_pedestal"));
         registerBlock(event, DECO_SCAVENGER_ALTAR_BLOCK, WoldsVaults.id("scavenger_altar"));
         registerBlock(event, DECO_OBELISK_BLOCK, WoldsVaults.id("obelisk"));
@@ -78,6 +83,7 @@ public class ModBlocks {
     public static void registerTileEntities(RegistryEvent.Register<BlockEntityType<?>> event) {
         registerTileEntity(event, VAULT_SALVAGER_ENTITY, VaultMod.id("vault_salvager_tile_entity"));
         registerTileEntity(event, ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("iskallian_leaves_tile_entity"));
+        registerTileEntity(event, HELLISH_SAND_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("hellish_sand_tile_entity"));
         registerTileEntity(event, DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("dungeon_pedestal_tile_entity"));
         registerTileEntity(event, DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("scavenger_altar_deco_tile_entity"));
         registerTileEntity(event, DECO_OBELISK_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("obelisk_deco_tile_entity"));
@@ -89,6 +95,7 @@ public class ModBlocks {
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
         registerBlockItem(event, VAULT_SALVAGER_BLOCK);
         registerBlockItem(event, ISKALLIAN_LEAVES_BLOCK);
+        registerBlockItem(event, HELLISH_SAND_BLOCK);
         registerBlockItem(event, DUNGEON_PEDESTAL_BLOCK);
         registerBlockItem(event, DECO_SCAVENGER_ALTAR_BLOCK);
         registerBlockItem(event, DECO_OBELISK_BLOCK);

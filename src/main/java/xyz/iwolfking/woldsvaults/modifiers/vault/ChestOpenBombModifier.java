@@ -29,6 +29,9 @@ public class ChestOpenBombModifier extends VaultModifier<ChestOpenBombModifier.P
 
     public void initServer(VirtualWorld world, Vault vault, ModifierContext context) {
         CommonEvents.PLAYER_MINE.register(context.getUUID(), EventPriority.HIGHEST, (event) -> {
+            if(!(event.getPlayer().getLevel().dimension().equals(world.dimension()))) {
+                return;
+            }
             if(event.getState().getBlock() instanceof VaultChestBlock chestBlock) {
                 BlockEntity chestEntity = world.getBlockEntity(event.getPos());
                 if(chestEntity instanceof VaultChestTileEntity chest) {
