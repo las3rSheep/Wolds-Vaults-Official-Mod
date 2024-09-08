@@ -12,10 +12,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.items.AltarResetItem;
-import xyz.iwolfking.woldsvaults.items.ExpertiseOrbItem;
-import xyz.iwolfking.woldsvaults.items.SkillOrbItem;
-import xyz.iwolfking.woldsvaults.items.ToolModifierNullifyingItem;
+import xyz.iwolfking.woldsvaults.items.*;
 import xyz.iwolfking.woldsvaults.items.gear.VaultBattleStaffItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
@@ -97,6 +94,7 @@ public class ModItems {
     public static BasicItem RESONATING_REINFORCEMENT;
     public static BasicItem STYLISH_FOCUS;
     public static ToolModifierNullifyingItem CHISELING_FOCUS;
+    public static AirMobilityItem ZEPHYR_CHARM;
 
     public static VaultBasicFoodItem VAULT_ROCK_CANDY;
 
@@ -153,6 +151,7 @@ public class ModItems {
         registry.register(CRYSTAL_REINFORCEMENT);
         registry.register(RESONATING_REINFORCEMENT);
         registry.register(CHISELING_FOCUS);
+        registry.register(ZEPHYR_CHARM);
         registry.register(STYLISH_FOCUS);
         registry.register(VAULT_ROCK_CANDY);
     }
@@ -204,6 +203,7 @@ public class ModItems {
         RESONATING_REINFORCEMENT = new BasicItem(WoldsVaults.id("resonating_reinforcement"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         STYLISH_FOCUS = new BasicItem(WoldsVaults.id("stylish_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         CHISELING_FOCUS = new ToolModifierNullifyingItem(WoldsVaults.id("chiseling_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        ZEPHYR_CHARM = new AirMobilityItem(WoldsVaults.id("zephyr_charm"));
         VAULT_ROCK_CANDY = new VaultBasicFoodItem(WoldsVaults.id("vault_rock_candy"), (new FoodProperties.Builder()).alwaysEat().fast().nutrition(8).saturationMod(1.4F).build());
         //BOW = new VaultBowItem(VaultMod.id("bow"), (new Item.Properties().tab(GEAR_GROUP).stacksTo(1)));
     }
