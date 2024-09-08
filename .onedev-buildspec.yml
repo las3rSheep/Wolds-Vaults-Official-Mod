@@ -48,3 +48,20 @@ jobs:
   maxRetries: 3
   retryDelay: 30
   timeout: 3600
+- name: Github Pull Changes
+  jobExecutor: mainworker
+  steps:
+  - !PullRepository
+    name: Github Pull
+    remoteUrl: https://github.com/iwolfking/Wolds-Vaults-Official-Mod
+    refs: refs/heads/* refs/tags/*
+    withLfs: false
+    force: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !ScheduleTrigger
+    cronExpression: 0 1 * * * ?
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 3600
