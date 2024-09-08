@@ -10,5 +10,6 @@ public class ModCustomVaultObjectiveEntries {
         CustomVaultObjectiveRegistry.addEntry(new CustomVaultObjectiveEntry("enchanted_elixir", "Enchanted Elixir", EnchantedElixirCrystalObjective.class, EnchantedElixirCrystalObjective::new, EnchantedElixirObjective.E_KEY));
         CustomVaultObjectiveRegistry.addEntry(new CustomVaultObjectiveEntry("unhinged_scavenger", "Unhinged Scavenger Hunt", UnhingedScavengerCrystalObjective.class, UnhingedScavengerCrystalObjective::new, UnhingedScavengerObjective.E_KEY));
         CustomVaultObjectiveRegistry.addEntry(new CustomVaultObjectiveEntry("haunted_braziers", "Haunted Braziers", HauntedBraziersCrystalObjective.class, HauntedBraziersCrystalObjective::new, HauntedBraziersObjective.E_KEY));
+        CustomVaultObjectiveRegistry.addEntry(new CustomVaultObjectiveEntry("ballistic_bingo", "Ballistic Bingo", BallisticBingoCrystalObjective.class, BallisticBingoCrystalObjective::new, BallisticBingoObjective.KEY));
     }
 }

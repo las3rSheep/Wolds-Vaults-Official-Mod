@@ -119,6 +119,7 @@ public class MixinShopPedestalBlock extends Block implements EntityBlock, GameMa
 
 
 
+
     @Unique
     private boolean woldsVaults$lightmansCurrencyExtract(Player player, ItemStack costStack) {
         CoinValue cValue = CoinValue.fromItemOrValue(costStack.getItem(), costStack.getCount(), 81L);

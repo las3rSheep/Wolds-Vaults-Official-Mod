@@ -31,7 +31,7 @@ public class TickEvents {
             return;
         }
 
-        if(event.player.isCreative()) {
+        if(event.player.isCreative() || event.player.isSpectator()) {
             return;
         }
 

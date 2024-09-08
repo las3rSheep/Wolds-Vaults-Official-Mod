@@ -15,6 +15,7 @@ import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.items.AltarResetItem;
 import xyz.iwolfking.woldsvaults.items.ExpertiseOrbItem;
 import xyz.iwolfking.woldsvaults.items.SkillOrbItem;
+import xyz.iwolfking.woldsvaults.items.ToolModifierNullifyingItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultBattleStaffItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
@@ -37,6 +38,7 @@ public class ModItems {
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_ENCHANTER;
 
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_TITAN;
+    public static ItemVaultCrystalSeal CRYSTAL_SEAL_DOOMSAYER;
     public static VaultBattleStaffItem BATTLESTAFF;
     //public static VaultBowItem BOW;
 
@@ -49,7 +51,6 @@ public class ModItems {
     public static LootableItem GEM_BOX;
     public static LootableItem SUPPLY_BOX;
     public static LootableItem AUGMENT_BOX;
-
     public static LootableItem INSCRIPTION_BOX;
     public static LootableItem OMEGA_BOX;
     public static LootableItem CATALYST_BOX;
@@ -86,9 +87,16 @@ public class ModItems {
     public static BasicItem FRENZY_CAPSTONE;
     public static BasicItem PROSPEROUS_CAPSTONE;
     public static BasicItem ALL_SEEING_EYE_CAPSTONE;
+    public static BasicItem ENCHANTED_CAPSTONE;
+
+    public static BasicItem VENDOOR_CAPSTONE;
     public static BasicItem WAXING_AUGMENTER;
     public static BasicItem WANING_AUGMENTER;
     public static BasicItem REPAIR_AUGMENTER;
+    public static BasicItem CRYSTAL_REINFORCEMENT;
+    public static BasicItem RESONATING_REINFORCEMENT;
+    public static BasicItem STYLISH_FOCUS;
+    public static ToolModifierNullifyingItem CHISELING_FOCUS;
 
     public static VaultBasicFoodItem VAULT_ROCK_CANDY;
 
@@ -100,6 +108,7 @@ public class ModItems {
         registry.register(CRYSTAL_SEAL_SPIRITS);
         registry.register(CRYSTAL_SEAL_ENCHANTER);
         registry.register(CRYSTAL_SEAL_TITAN);
+        registry.register(CRYSTAL_SEAL_DOOMSAYER);
         registry.register(BATTLESTAFF);
         registry.register(TRIDENT);
         registry.register(PLUSHIE);
@@ -136,9 +145,15 @@ public class ModItems {
         registry.register(FRENZY_CAPSTONE);
         registry.register(PROSPEROUS_CAPSTONE);
         registry.register(ALL_SEEING_EYE_CAPSTONE);
+        registry.register(ENCHANTED_CAPSTONE);
+        registry.register(VENDOOR_CAPSTONE);
         registry.register(WAXING_AUGMENTER);
         registry.register(WANING_AUGMENTER);
         registry.register(REPAIR_AUGMENTER);
+        registry.register(CRYSTAL_REINFORCEMENT);
+        registry.register(RESONATING_REINFORCEMENT);
+        registry.register(CHISELING_FOCUS);
+        registry.register(STYLISH_FOCUS);
         registry.register(VAULT_ROCK_CANDY);
     }
 
@@ -148,6 +163,7 @@ public class ModItems {
         CRYSTAL_SEAL_SPIRITS = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_spirits"));
         CRYSTAL_SEAL_ENCHANTER = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_enchanter"));
         CRYSTAL_SEAL_TITAN = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_titan"));
+        CRYSTAL_SEAL_DOOMSAYER = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_doomsayer"));
         BATTLESTAFF =  new VaultBattleStaffItem(VaultMod.id("battlestaff"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         TRIDENT = new VaultTridentItem(VaultMod.id("trident"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         PLUSHIE = new VaultPlushieItem(VaultMod.id("plushie"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
@@ -179,9 +195,15 @@ public class ModItems {
         FRENZY_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_frenzy"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         PROSPEROUS_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_prosperous"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         ALL_SEEING_EYE_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_all_seeing_eye"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        ENCHANTED_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_enchanted"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        VENDOOR_CAPSTONE = new BasicItem(WoldsVaults.id("capstone_vendoors"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         WAXING_AUGMENTER = new BasicItem(WoldsVaults.id("waxing_augmenter"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         WANING_AUGMENTER = new BasicItem(WoldsVaults.id("waning_augmenter"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         REPAIR_AUGMENTER = new BasicItem(WoldsVaults.id("repair_augmenter"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        CRYSTAL_REINFORCEMENT = new BasicItem(WoldsVaults.id("crystal_reinforcement"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        RESONATING_REINFORCEMENT = new BasicItem(WoldsVaults.id("resonating_reinforcement"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        STYLISH_FOCUS = new BasicItem(WoldsVaults.id("stylish_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        CHISELING_FOCUS = new ToolModifierNullifyingItem(WoldsVaults.id("chiseling_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         VAULT_ROCK_CANDY = new VaultBasicFoodItem(WoldsVaults.id("vault_rock_candy"), (new FoodProperties.Builder()).alwaysEat().fast().nutrition(8).saturationMod(1.4F).build());
         //BOW = new VaultBowItem(VaultMod.id("bow"), (new Item.Properties().tab(GEAR_GROUP).stacksTo(1)));
     }

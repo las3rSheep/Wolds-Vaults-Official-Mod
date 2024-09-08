@@ -115,13 +115,18 @@ public class BrutalBossesRegistry {
     }
 
     public static String getRandomMobModifiers() {
+        return getRandomMobModifiers(6, true);
+    }
+
+    public static String getRandomMobModifiers(int count, boolean randomlyFail) {
         StringBuilder modifierList = new StringBuilder();
         Random random = new Random();
 
-        for(int i =0; i < 6; i++) {
-            if(random.nextBoolean()) {
-                modifierList.append(BOSS_MODS_LIST.getRandom().get()).append(" ");
+        for(int i =0; i < count; i++) {
+            if(random.nextBoolean() && randomlyFail) {
+                continue;
             }
+            modifierList.append(BOSS_MODS_LIST.getRandom().get()).append(" ");
         }
 
         if(modifierList.isEmpty()) {

@@ -1,4 +1,4 @@
-version: 33
+version: 35
 jobs:
 - name: Build jar
   jobExecutor: mainworker
@@ -27,6 +27,23 @@ jobs:
     branches: '*'
     paths: src/main/ build.gradle gradle.properties
     projects: WoldsVaultOfficialMod
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 3600
+- name: Github Mirror
+  jobExecutor: mainworker
+  steps:
+  - !PushRepository
+    name: Github Push
+    remoteUrl: https://github.com/iwolfking/Wolds-Vaults-Official-Mod
+    userName: iwolfking
+    passwordSecret: github_access_token
+    force: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !BranchUpdateTrigger {}
+  - !TagCreateTrigger {}
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
