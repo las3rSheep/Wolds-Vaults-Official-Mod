@@ -234,7 +234,7 @@ dependencies {
     implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:4950560")
     implementation fg.deobf("curse.maven:supplementaries-412082:4548315")
     implementation fg.deobf("curse.maven:modular-routers-250294:4984984")
-    implementation fg.deobf("curse.maven:modular-routers-250294:4984984")
+    implementation fg.deobf("curse.maven:emojiful-284324:3732908")
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
     runtimeOnly "curse.maven:citadel4-331936:3683009"
     // compile against the JEI API but do not include it at runtime
