@@ -208,7 +208,7 @@ dependencies {
     implementation fg.deobf("curse.maven:cyclops-core-232758:5262021")
     implementation fg.deobf("curse.maven:sophisticatedcore-618298:4913626")
     implementation fg.deobf("curse.maven:item-borders-513769:3583942")
-    implementation fg.deobf("curse.maven:vaultarhud-1011085:5411126")
+    //implementation fg.deobf("curse.maven:vaultarhud-1011085:5706845")
     implementation fg.deobf("curse.maven:refinedstorage-243076:4902316")
     implementation fg.deobf("curse.maven:toms-storage-378609:5211203")
     implementation fg.deobf("curse.maven:cyclops-core-232758:5262021")
@@ -235,6 +235,7 @@ dependencies {
     implementation fg.deobf("curse.maven:supplementaries-412082:4548315")
     implementation fg.deobf("curse.maven:modular-routers-250294:4984984")
     implementation fg.deobf("curse.maven:emojiful-284324:3732908")
+    implementation fg.deobf("curse.maven:vault-autocrafting-fix-1096429:5695962")
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
     runtimeOnly "curse.maven:citadel4-331936:3683009"
     // compile against the JEI API but do not include it at runtime
@@ -248,6 +249,7 @@ dependencies {
     }
     implementation files('lib/conditional-mixin-forge-0.6.2.jar')
     implementation files('lib/forgified-sgui-1.0.2.jar')
+    implementation files('lib/vaultarhud-1.0.0-1.18.2.jar')
 
     jarJar(group: 'me.fallenbreath', name: 'conditional-mixin-forge', version: '[0.6.2,)') {
         jarJar.pin(it, '0.6.2')
