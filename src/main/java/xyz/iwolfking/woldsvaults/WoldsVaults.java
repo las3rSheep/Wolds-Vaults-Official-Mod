@@ -27,6 +27,7 @@ import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import xyz.iwolfking.woldsvaults.api.registry.CustomCatalystModelRegistry;
+import xyz.iwolfking.woldsvaults.api.registry.CustomInscriptionModelRegistry;
 import xyz.iwolfking.woldsvaults.api.registry.CustomVaultGearRegistry;
 import xyz.iwolfking.woldsvaults.api.registry.CustomVaultObjectiveRegistry;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
@@ -57,6 +58,7 @@ public class WoldsVaults {
         MinecraftForge.EVENT_BUS.addListener(RegisterCommandEventHandler::woldsvaults_registerCommandsEvent);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        CustomInscriptionModelRegistry.registerModels();
         CustomVaultGearRegistry.registerAllGearEntries();
         CustomVaultObjectiveRegistry.registerAllCustomVaultObjectives();
         ModResearchBypasses.init();

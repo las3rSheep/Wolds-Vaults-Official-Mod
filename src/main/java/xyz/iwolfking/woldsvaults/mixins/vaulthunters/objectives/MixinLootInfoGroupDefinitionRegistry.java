@@ -38,6 +38,7 @@ public abstract class MixinLootInfoGroupDefinitionRegistry {
         woldsVaults$register("dungeon_pedestal", () -> new ItemStack((ItemLike) xyz.iwolfking.woldsvaults.init.ModBlocks.DUNGEON_PEDESTAL_BLOCK));
         woldsVaults$register("treasure_pedestal", () -> new ItemStack((ItemLike) ModBlocks.TREASURE_PEDESTAL));
         woldsVaults$register("iskallian_leaves", () -> new ItemStack((ItemLike) xyz.iwolfking.woldsvaults.init.ModBlocks.ISKALLIAN_LEAVES_BLOCK));
+        woldsVaults$register("hellish_sand", () -> new ItemStack((ItemLike) xyz.iwolfking.woldsvaults.init.ModBlocks.HELLISH_SAND_BLOCK));
     }
 
     @Unique

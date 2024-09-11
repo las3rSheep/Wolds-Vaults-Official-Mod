@@ -49,6 +49,7 @@
     "vaultarhud.MixinScreenValidator",
     "vaulthunters.MixinModConfigs",
     "vaulthunters.accessors.MixinInfusedCatalystItem",
+    "vaulthunters.accessors.MixinInscriptionItem",
     "vaulthunters.accessors.MixinScavengerAltar",
     "vaulthunters.altar.MixinVaultAltarIngredientsConfig",
     "vaulthunters.altar.VaultAltarTileEntityAccessor",

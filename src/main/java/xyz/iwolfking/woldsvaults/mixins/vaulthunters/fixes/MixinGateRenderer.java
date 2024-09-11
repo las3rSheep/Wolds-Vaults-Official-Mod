@@ -84,7 +84,7 @@ public abstract class MixinGateRenderer {
                 VaultModifierRegistry.getOpt(stack.getModifierId()).ifPresent((modifier) -> {
                     matrices.pushPose();
                     matrices.translate(0.0, 10.0 * (double) index.get(), 0.0);
-                    String modifierName = modifier.getChatDisplayNameComponent(count).getString();
+                    String modifierName = modifier.getChatDisplayNameComponent(stack.getSize()).getString();
                     modifierName = modifierName.replaceAll(":.*: *", "");
                     Style style = Style.EMPTY.withColor(modifier.getDisplayTextColor());
                     this.renderLine(new TextComponent(modifierName).withStyle(style), true, matrices, pBufferSource, pPackedLight);
