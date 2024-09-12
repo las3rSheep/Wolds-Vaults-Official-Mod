@@ -4,12 +4,14 @@ import appeng.client.gui.me.common.MEStorageScreen;
 import appeng.client.gui.me.items.CraftingTermScreen;
 import cofh.core.client.gui.ContainerScreenCoFH;
 import com.refinedmods.refinedstorage.screen.grid.GridScreen;
+import com.tom.storagemod.gui.GuiStorageTerminalBase;
 import io.iridium.vaultarhud.util.Point;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.*;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.StorageScreenBase;
 import org.cyclops.cyclopscore.client.gui.container.ContainerScreenExtended;
+import org.cyclops.integratedterminals.client.gui.container.ContainerScreenTerminalStorage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,12 +23,14 @@ public class WoldScreenValidator {
     public static final List<Class<? extends Screen>> AE2_SCREENS = Arrays.asList(MEStorageScreen.class, CraftingTermScreen.class);
     public static final List<Class<? extends Screen>> COLOSSALCHEST_SCREENS = Arrays.asList(ContainerScreenExtended.class);
     public static final List<Class<? extends Screen>> THERMAL_SCREENS = Arrays.asList(ContainerScreenCoFH.class);
+    public static final List<Class<? extends Screen>> TOMS_SCREENS = Arrays.asList(GuiStorageTerminalBase.class);
+    public static final List<Class<? extends Screen>> ID_SCREENS = Arrays.asList(ContainerScreenTerminalStorage.class);
 
     public WoldScreenValidator() {
     }
 
     public static boolean isValidScreen(Screen screen) {
-        return isScreenInList(screen, VANILLA_SCREENS) || isScreenInList(screen, RS_SCREENS) || isScreenInList(screen, SOPHISTICATED_BACKPACK_SCREENS) || isScreenInList(screen, AE2_SCREENS) || isScreenInList(screen, COLOSSALCHEST_SCREENS) || isScreenInList(screen, THERMAL_SCREENS);
+        return isScreenInList(screen, VANILLA_SCREENS) || isScreenInList(screen, RS_SCREENS) || isScreenInList(screen, SOPHISTICATED_BACKPACK_SCREENS) || isScreenInList(screen, AE2_SCREENS) || isScreenInList(screen, COLOSSALCHEST_SCREENS) || isScreenInList(screen, THERMAL_SCREENS) || isScreenInList(screen, TOMS_SCREENS) || isScreenInList(screen, ID_SCREENS);
     }
 
     public static boolean isScreenInList(Screen screen, List<Class<? extends Screen>> screenList) {

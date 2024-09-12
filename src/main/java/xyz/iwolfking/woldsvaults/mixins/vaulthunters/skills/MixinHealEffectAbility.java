@@ -26,7 +26,6 @@ public class MixinHealEffectAbility extends AbstractHealAbility {
     protected Ability.ActionResult doAction(SkillContext context) {
         return (Ability.ActionResult) context.getSource().as(ServerPlayer.class).map((player) -> {
             float healed = getFlatLifeHealed();
-            healed *= 0.5F;
             for (ConfiguredModification<IntValueConfig, HealAdditionalHealthModification> mod : (Iterable<ConfiguredModification<IntValueConfig, HealAdditionalHealthModification>>) SpecialAbilityModification.getModifications((LivingEntity)player, HealAdditionalHealthModification.class)) {
                 healed = ((HealAdditionalHealthModification)mod.modification()).adjustHealHealth((IntValueConfig)mod.config(), healed);
              }

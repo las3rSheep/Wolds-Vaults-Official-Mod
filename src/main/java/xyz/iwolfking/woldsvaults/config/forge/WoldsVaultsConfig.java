@@ -7,6 +7,18 @@ import java.util.Arrays;
 
 public class WoldsVaultsConfig
 {
+    public static class Client {
+        public final ForgeConfigSpec.ConfigValue<Boolean> hideEmojisOnCrystalModifiers;
+
+        public Client(ForgeConfigSpec.Builder builder)
+        {
+            builder.push("Display Settings");
+            builder.push("Emojiful");
+            this.hideEmojisOnCrystalModifiers = builder.comment("Whether Emojis should be hidden next to Vault Crystal Modifiers. (default: false)").define("hideEmojisOnVaultModifiers", false);
+            builder.pop();
+            builder.pop();
+        }
+    }
     public static class Common
     {
         public final ForgeConfigSpec.ConfigValue<Boolean> disableFlightInVaults;
@@ -39,13 +51,19 @@ public class WoldsVaultsConfig
     }
 
     public static final Common COMMON;
+    public static final Client CLIENT;
     public static final ForgeConfigSpec COMMON_SPEC;
+    public static final ForgeConfigSpec CLIENT_SPEC;
 
     static //constructor
     {
         Pair<Common, ForgeConfigSpec> commonSpecPair = new ForgeConfigSpec.Builder().configure(Common::new);
         COMMON = commonSpecPair.getLeft();
         COMMON_SPEC = commonSpecPair.getRight();
+
+        Pair<Client, ForgeConfigSpec> clientSpecPair = new ForgeConfigSpec.Builder().configure(Client::new);
+        CLIENT = clientSpecPair.getLeft();
+        CLIENT_SPEC = clientSpecPair.getRight();
     }
 
     public static String getConfigString(String categoryName, String keyName) {
