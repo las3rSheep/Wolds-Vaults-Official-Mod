@@ -78,6 +78,7 @@
     "vaulthunters.custom.MixinWildSpawnerTileEntity",
     "vaulthunters.custom.recycler.MixinVaultCatalystItem",
     "vaulthunters.custom.recycler.MixinVaultGearItem",
+    "vaulthunters.fixes.MixinAttributeSnapshotCalculator",
     "vaulthunters.fixes.MixinBingoTask",
     "vaulthunters.fixes.MixinGateRenderer",
     "vaulthunters.fixes.MixinMonolithRenderer",
