@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.items.*;
+import xyz.iwolfking.woldsvaults.items.fruits.HastyPomegranteItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultBattleStaffItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
@@ -94,6 +95,7 @@ public class ModItems {
     public static BasicItem RESONATING_REINFORCEMENT;
     public static BasicItem STYLISH_FOCUS;
     public static BasicItem UBER_CHAOS_CATALYST;
+    public static HastyPomegranteItem HASTY_POMEGRANATE;
     public static ToolModifierNullifyingItem CHISELING_FOCUS;
     public static AirMobilityItem ZEPHYR_CHARM;
 
@@ -156,6 +158,7 @@ public class ModItems {
         registry.register(STYLISH_FOCUS);
         registry.register(VAULT_ROCK_CANDY);
         registry.register(UBER_CHAOS_CATALYST);
+        registry.register(HASTY_POMEGRANATE);
     }
 
     static {
@@ -205,6 +208,7 @@ public class ModItems {
         RESONATING_REINFORCEMENT = new BasicItem(WoldsVaults.id("resonating_reinforcement"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         STYLISH_FOCUS = new BasicItem(WoldsVaults.id("stylish_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         UBER_CHAOS_CATALYST = new BasicItem(WoldsVaults.id("uber_chaos_catalyst"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        HASTY_POMEGRANATE = new HastyPomegranteItem(WoldsVaults.id("hasty_pomegranate"), 1200);
         CHISELING_FOCUS = new ToolModifierNullifyingItem(WoldsVaults.id("chiseling_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         ZEPHYR_CHARM = new AirMobilityItem(WoldsVaults.id("zephyr_charm"));
         VAULT_ROCK_CANDY = new VaultBasicFoodItem(WoldsVaults.id("vault_rock_candy"), (new FoodProperties.Builder()).alwaysEat().fast().nutrition(8).saturationMod(1.4F).build());
