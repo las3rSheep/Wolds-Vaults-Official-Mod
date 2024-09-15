@@ -93,6 +93,7 @@ public class ModItems {
     public static BasicItem CRYSTAL_REINFORCEMENT;
     public static BasicItem RESONATING_REINFORCEMENT;
     public static BasicItem STYLISH_FOCUS;
+    public static BasicItem UBER_CHAOS_CATALYST;
     public static ToolModifierNullifyingItem CHISELING_FOCUS;
     public static AirMobilityItem ZEPHYR_CHARM;
 
@@ -154,6 +155,7 @@ public class ModItems {
         registry.register(ZEPHYR_CHARM);
         registry.register(STYLISH_FOCUS);
         registry.register(VAULT_ROCK_CANDY);
+        registry.register(UBER_CHAOS_CATALYST);
     }
 
     static {
@@ -202,6 +204,7 @@ public class ModItems {
         CRYSTAL_REINFORCEMENT = new BasicItem(WoldsVaults.id("crystal_reinforcement"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         RESONATING_REINFORCEMENT = new BasicItem(WoldsVaults.id("resonating_reinforcement"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         STYLISH_FOCUS = new BasicItem(WoldsVaults.id("stylish_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        UBER_CHAOS_CATALYST = new BasicItem(WoldsVaults.id("uber_chaos_catalyst"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         CHISELING_FOCUS = new ToolModifierNullifyingItem(WoldsVaults.id("chiseling_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         ZEPHYR_CHARM = new AirMobilityItem(WoldsVaults.id("zephyr_charm"));
         VAULT_ROCK_CANDY = new VaultBasicFoodItem(WoldsVaults.id("vault_rock_candy"), (new FoodProperties.Builder()).alwaysEat().fast().nutrition(8).saturationMod(1.4F).build());
