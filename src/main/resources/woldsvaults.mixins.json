@@ -68,6 +68,7 @@
     "vaulthunters.compat.shardpouchcurio.MixinItemShardPouch",
     "vaulthunters.custom.MixinExperiencedExpertise",
     "vaulthunters.custom.MixinGearRollHelper",
+    "vaulthunters.custom.MixinItemVaultCrystal",
     "vaulthunters.custom.MixinJewelItem",
     "vaulthunters.custom.MixinMagnetItem",
     "vaulthunters.custom.MixinManaPylonBuff",
