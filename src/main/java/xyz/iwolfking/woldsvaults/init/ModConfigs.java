@@ -10,6 +10,7 @@ public class ModConfigs {
     public static OmegaBoxConfig OMEGA_BOX;
     public static CatalystBoxConfig CATALYST_BOX;
     public static EnigmaEggConfig ENIGMA_EGG;
+    public static VaultarBoxConfig VAULTAR_BOX;
     public static UnhingedScavengerConfig UNHINGED_SCAVENGER;
     public static BallisticBingoConfig BALLISTIC_BINGO_CONFIG;
 
@@ -24,6 +25,7 @@ public class ModConfigs {
         OMEGA_BOX = (OmegaBoxConfig) (new OmegaBoxConfig()).readConfig();
         CATALYST_BOX = (CatalystBoxConfig) (new CatalystBoxConfig()).readConfig();
         ENIGMA_EGG = (EnigmaEggConfig) (new EnigmaEggConfig()).readConfig();
+        VAULTAR_BOX = (VaultarBoxConfig) (new VaultarBoxConfig()).readConfig();
         UNHINGED_SCAVENGER = (UnhingedScavengerConfig) (new UnhingedScavengerConfig().readConfig());
         BALLISTIC_BINGO_CONFIG = (BallisticBingoConfig) (new BallisticBingoConfig().readConfig());
         HAUNTED_BRAZIERS = (HauntedBraziersConfig) (new HauntedBraziersConfig().readConfig());
