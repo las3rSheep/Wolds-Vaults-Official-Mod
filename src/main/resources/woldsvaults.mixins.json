@@ -79,6 +79,7 @@
     "vaulthunters.custom.recycler.MixinVaultGearItem",
     "vaulthunters.fixes.MixinBingoTask",
     "vaulthunters.fixes.MixinGateRenderer",
+    "vaulthunters.fixes.MixinKillEntityTask",
     "vaulthunters.fixes.MixinMonolithRenderer",
     "vaulthunters.fixes.MixinPlayer",
     "vaulthunters.fixes.MixinStatisticsElementContainerScreenData",
