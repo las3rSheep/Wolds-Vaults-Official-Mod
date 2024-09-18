@@ -61,10 +61,16 @@ public class WisdomFruitItem extends ItemVaultFruit {
     protected void successEaten(Level level, ServerPlayer sPlayer) {
         if(ServerVaults.get(level).isPresent()) {
             Vault vault = ServerVaults.get(level).get();
-            VaultModifier<?> hunter_modifier = ModConfigs.VAULT_MODIFIER_POOLS.getRandom(VaultMod.id("hunters_enchanted_random"), 0, (RandomSource) JavaRandom.ofNanoTime()).get(0);
-            VaultModifier<?> negative_modifier = ModConfigs.VAULT_MODIFIER_POOLS.getRandom(VaultMod.id("medium_negative"), 0, (RandomSource) JavaRandom.ofNanoTime()).get(0);
-            vault.get(Vault.MODIFIERS).addModifier(hunter_modifier, 1, true, ChunkRandom.any());
-            vault.get(Vault.MODIFIERS).addModifier(negative_modifier, 1, true, ChunkRandom.any());
+            List<VaultModifier<?>> hunter_modifier = ModConfigs.VAULT_MODIFIER_POOLS.getRandom(VaultMod.id("hunters_enchanted_random"), 0, (RandomSource) JavaRandom.ofNanoTime());
+            List<VaultModifier<?>> negative_modifier = ModConfigs.VAULT_MODIFIER_POOLS.getRandom(VaultMod.id("medium_negative"), 0, (RandomSource) JavaRandom.ofNanoTime());
+            for(VaultModifier<?> mod : hunter_modifier) {
+                vault.get(Vault.MODIFIERS).addModifier(mod, 1, true, ChunkRandom.any());
+            }
+
+            for(VaultModifier<?> mod : negative_modifier) {
+                vault.get(Vault.MODIFIERS).addModifier(mod, 1, true, ChunkRandom.any());
+            }
+
         }
 
     }

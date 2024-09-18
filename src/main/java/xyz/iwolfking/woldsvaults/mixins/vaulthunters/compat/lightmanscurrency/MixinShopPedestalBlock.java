@@ -26,7 +26,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
 import org.spongepowered.asm.mixin.*;
 
 import javax.annotation.Nullable;
@@ -72,14 +71,15 @@ public class MixinShopPedestalBlock extends Block implements EntityBlock, GameMa
                             }
                         }
 
+
                         if (!worldIn.isClientSide) {
                             if (!player.isCreative()) {
                                 BlockState inactiveState = (BlockState) state.setValue(ACTIVE, false);
                                 tile.setRemoved();
                                 worldIn.setBlockAndUpdate(pos, inactiveState);
                             }
-
-                            ItemHandlerHelper.giveItemToPlayer(player, c.copy());
+                            //ItemHandlerHelper.giveItemToPlayer(player, c.copy());
+                            popResource(worldIn, pos, c.copy());
                             worldIn.playSound((Player) null, pos, SoundEvents.AMETHYST_BLOCK_STEP, SoundSource.BLOCKS, 1.0F, 1.0F);
                         } else {
                             if (!player.getAbilities().instabuild) {
@@ -136,4 +136,6 @@ public class MixinShopPedestalBlock extends Block implements EntityBlock, GameMa
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return (Boolean) pState.getValue(ACTIVE) ? new ShopPedestalBlockTile(pPos, pState) : null;
     }
+
+
 }
