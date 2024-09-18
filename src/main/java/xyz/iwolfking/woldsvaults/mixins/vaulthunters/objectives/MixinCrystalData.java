@@ -44,12 +44,7 @@ public abstract class MixinCrystalData extends CrystalEntry implements ISerializ
         boolean hasCatalystDenyingModifier = false;
         for(VaultModifierStack modStack : this.modifiers.getList()) {
 
-            if(modStack.getModifierId().equals(VaultMod.id("wooden_cascade"))) {
-                if(modStack.getSize() > 2) {
-                    hasCatalystDenyingModifier = true;
-                }
-            }
-            else if(modStack.getModifierId().equals(VaultMod.id("gilded_cascade"))) {
+            if(modStack.getModifierId().equals(VaultMod.id("gilded_cascade"))) {
                 if(modStack.getSize() > 2) {
                     hasCatalystDenyingModifier = true;
                 }
@@ -58,7 +53,7 @@ public abstract class MixinCrystalData extends CrystalEntry implements ISerializ
             if(modStack.getModifierId().equals(VaultMod.id("prismatic"))) {
                 hasCatalystDenyingModifier = false;
             }
-            if(modStack.getModifierId().equals(VaultMod.id("sparkling"))) {
+            else if(modStack.getModifierId().equals(VaultMod.id("sparkling"))) {
                 hasCatalystDenyingModifier = false;
             }
         }
