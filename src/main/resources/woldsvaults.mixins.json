@@ -24,6 +24,7 @@
     "dyenamicsandfriends.MixinIncBootstrapForge",
     "ensorcellation.MixinCurseMercyEnchantment",
     "ensorcellation.MixinEnsorcEnchantments",
+    "grimoireofgaia.MixinAbstractGaiaEntity",
     "hostilenetworks.HostileCachedModelMixin",
     "hostilenetworks.HostileDataModelMixin",
     "hostilenetworks.HostileEventsMixin",
