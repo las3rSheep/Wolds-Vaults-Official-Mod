@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -24,6 +25,9 @@ public class AirMobilityItem extends BasicItem implements ICurioItem {
     // modify base player attributes :3
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
+        if(slotContext.entity().hasEffect(MobEffects.SLOW_FALLING)) {
+            return;
+        }
         slotContext.entity().setSpeed(0.2F);
         slotContext.entity().flyingSpeed = slotContext.entity().getSpeed() * 0.5F;
     }

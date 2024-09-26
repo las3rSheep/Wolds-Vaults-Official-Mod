@@ -36,13 +36,13 @@ public class TickEvents {
         }
 
         if(event.side.isClient()) {
-            if(ClientVaults.getActive().isPresent() && (event.player.getAbilities().flying)) {
+            if(ClientVaults.getActive().isPresent() && (event.player.getAbilities().flying ||event.player.getAbilities().mayfly)) {
                 stopFlying(event.player);
             }
         }
 
         if(event.side.isServer()) {
-            if(ServerVaults.get(event.player.getLevel()).isPresent() && (event.player.getAbilities().flying)) {
+            if(ServerVaults.get(event.player.getLevel()).isPresent() && (event.player.getAbilities().flying || event.player.getAbilities().mayfly)) {
                 stopFlying(event.player);
             }
         }

@@ -13,6 +13,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.items.*;
+import xyz.iwolfking.woldsvaults.items.fruits.HastyPomegranteItem;
+import xyz.iwolfking.woldsvaults.items.fruits.WisdomFruitItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultBattleStaffItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
@@ -52,6 +54,7 @@ public class ModItems {
     public static LootableItem OMEGA_BOX;
     public static LootableItem CATALYST_BOX;
     public static LootableItem ENIGMA_EGG;
+    public static LootableItem VAULTAR_BOX;
 
     public static BasicScavengerItem BENITOITE_GEMSTONE;
     public static BasicScavengerItem WUTODIC_GEMSTONE;
@@ -93,6 +96,10 @@ public class ModItems {
     public static BasicItem CRYSTAL_REINFORCEMENT;
     public static BasicItem RESONATING_REINFORCEMENT;
     public static BasicItem STYLISH_FOCUS;
+    public static BasicItem MERCY_ORB;
+    public static BasicItem UBER_CHAOS_CATALYST;
+    public static HastyPomegranteItem HASTY_POMEGRANATE;
+    public static WisdomFruitItem WISDOM_FRUIT;
     public static ToolModifierNullifyingItem CHISELING_FOCUS;
     public static AirMobilityItem ZEPHYR_CHARM;
 
@@ -154,6 +161,11 @@ public class ModItems {
         registry.register(ZEPHYR_CHARM);
         registry.register(STYLISH_FOCUS);
         registry.register(VAULT_ROCK_CANDY);
+        registry.register(UBER_CHAOS_CATALYST);
+        registry.register(HASTY_POMEGRANATE);
+        registry.register(VAULTAR_BOX);
+        registry.register(MERCY_ORB);
+        registry.register(WISDOM_FRUIT);
     }
 
     static {
@@ -174,6 +186,7 @@ public class ModItems {
         OMEGA_BOX = new LootableItem(WoldsVaults.id("omega_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.OMEGA_BOX.POOL.getRandom(rand).generateItemStack()));
         CATALYST_BOX = new LootableItem(WoldsVaults.id("catalyst_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.CATALYST_BOX.POOL.getRandom(rand).generateItemStack()));
         ENIGMA_EGG = new LootableItem(WoldsVaults.id("enigma_egg"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.ENIGMA_EGG.POOL.getRandom(rand).generateItemStack()));
+        VAULTAR_BOX = new LootableItem(WoldsVaults.id("vaultar_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.VAULTAR_BOX.POOL.getRandom(rand).generateItemStack()));
         BENITOITE_GEMSTONE = new BasicScavengerItem("benitoite_gemstone");
         WUTODIC_GEMSTONE = new BasicScavengerItem("wutodic_gemstone");
         ECHOING_GEMSTONE = new BasicScavengerItem("echoing_gemstone");
@@ -202,6 +215,10 @@ public class ModItems {
         CRYSTAL_REINFORCEMENT = new BasicItem(WoldsVaults.id("crystal_reinforcement"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         RESONATING_REINFORCEMENT = new BasicItem(WoldsVaults.id("resonating_reinforcement"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         STYLISH_FOCUS = new BasicItem(WoldsVaults.id("stylish_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        MERCY_ORB = new BasicItem(WoldsVaults.id("mercy_orb"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        UBER_CHAOS_CATALYST = new BasicItem(WoldsVaults.id("uber_chaos_catalyst"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        HASTY_POMEGRANATE = new HastyPomegranteItem(WoldsVaults.id("hasty_pomegranate"), 1200);
+        WISDOM_FRUIT = new WisdomFruitItem(WoldsVaults.id("wisdom_fruit"));
         CHISELING_FOCUS = new ToolModifierNullifyingItem(WoldsVaults.id("chiseling_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         ZEPHYR_CHARM = new AirMobilityItem(WoldsVaults.id("zephyr_charm"));
         VAULT_ROCK_CANDY = new VaultBasicFoodItem(WoldsVaults.id("vault_rock_candy"), (new FoodProperties.Builder()).alwaysEat().fast().nutrition(8).saturationMod(1.4F).build());

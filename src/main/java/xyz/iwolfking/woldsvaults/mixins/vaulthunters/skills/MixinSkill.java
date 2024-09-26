@@ -16,6 +16,7 @@ public abstract class MixinSkill extends TypeSupplierAdapter<Skill> {
 
     @Inject(method = "<init>()V", at = @At("RETURN"))
     private void addSkills(CallbackInfo ci) {
+
         this.register("craftsman", CraftsmanExpertise.class, CraftsmanExpertise::new);
     }
 }

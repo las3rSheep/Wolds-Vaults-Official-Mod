@@ -34,12 +34,19 @@ public class RetroSpawnVaultModifier extends VaultModifier<RetroSpawnVaultModifi
                     return;
                 }
 
+
                 if(event.player.getRandom().nextDouble() < this.properties.getChance()) {
                     if(!(event.player.getLevel().dimension().equals(world.dimension()))) {
                         return;
                     }
 
                     for(int i = 0; i < this.properties.amounts.getRandom(event.player.getRandom()); i++) {
+                        int livingEntitiesAroundCount = world.getEntitiesOfClass(LivingEntity.class, new AABB(event.player.getOnPos()).inflate(48)).size();
+
+                        if(this.properties.cap < livingEntitiesAroundCount) {
+                            return;
+                        }
+
                         doSpawn((VirtualWorld) event.player.level, event.player.getOnPos(), (Random) event.player.getRandom());
                     }
                 }
@@ -59,11 +66,15 @@ public class RetroSpawnVaultModifier extends VaultModifier<RetroSpawnVaultModifi
         @Expose
         private final WeightedList<Integer> amounts;
 
-        public Properties(double chance, int ticksPerCheck, WeightedList<CustomEntitySpawnerConfig.SpawnerEntity> entities, WeightedList<Integer> amounts) {
+        @Expose
+        private final int cap;
+
+        public Properties(double chance, int ticksPerCheck, WeightedList<CustomEntitySpawnerConfig.SpawnerEntity> entities, WeightedList<Integer> amounts, int cap) {
             this.chance = chance;
             this.ticksPerCheck = ticksPerCheck;
             this.entities = entities;
             this.amounts = amounts;
+            this.cap = cap;
         }
 
 
@@ -73,6 +84,9 @@ public class RetroSpawnVaultModifier extends VaultModifier<RetroSpawnVaultModifi
         }
         public int getTicksPerCheck() {
             return this.ticksPerCheck;
+        }
+        public int getCap() {
+            return this.cap;
         }
         public WeightedList<Integer>  getAmounts() {
             return this.amounts;
@@ -91,6 +105,7 @@ public class RetroSpawnVaultModifier extends VaultModifier<RetroSpawnVaultModifi
         int x;
         int z;
         int y;
+
         for(spawned = null; spawned == null; spawned = spawnMob(world, pos.getX() + x, pos.getY() + y, pos.getZ() + z, random)) {
             double angle = 6.283185307179586 * random.nextDouble();
             double distance = Math.sqrt(random.nextDouble() * (max * max - min * min) + min * min);
