@@ -238,6 +238,7 @@ dependencies {
     implementation fg.deobf("curse.maven:vault-autocrafting-fix-1096429:5695962")
     implementation fg.deobf("curse.maven:daves-potioneering-639653:4788622")
     implementation fg.deobf("curse.maven:grimoire-of-gaia-228948:5678608")
+    implementation fg.deobf("curse.maven:tropicraft-254794:4616839")
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
     runtimeOnly "curse.maven:citadel4-331936:3683009"
     // compile against the JEI API but do not include it at runtime

@@ -45,6 +45,7 @@
     "supplementaries.MixinFaucetTileEntity",
     "tomsstorage.MixinFilteredInventoryHandler",
     "travel_anchors.MixinTeleportHandler",
+    "tropicraft.MixinEIHEntity",
     "vaultarhud.MixinInventoryHudRender",
     "vaultarhud.MixinScreenValidator",
     "vaulthunters.MixinModConfigs",

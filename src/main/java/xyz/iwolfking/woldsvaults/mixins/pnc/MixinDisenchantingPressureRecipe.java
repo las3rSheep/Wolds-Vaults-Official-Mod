@@ -43,7 +43,7 @@ public abstract class MixinDisenchantingPressureRecipe extends PressureChamberRe
 
         for (int i = 0; i < chamberHandler.getSlots(); ++i) {
             ItemStack stack = chamberHandler.getStackInSlot(i);
-            if(stack.getItem() == ModItems.OMEGA_POG) {
+            if(stack.getItem() == ModItems.ECHO_POG) {
                 pogSlot = i;
             }
             if (stack.getItem() == Items.BOOK) {
@@ -126,7 +126,7 @@ public abstract class MixinDisenchantingPressureRecipe extends PressureChamberRe
      */
     @Overwrite
     public boolean isValidInputItem(ItemStack stack) {
-        return stack.getItem() == ModItems.OMEGA_POG || stack.getItem() == Items.BOOK || stack.getItem() != Items.ENCHANTED_BOOK && EnchantmentHelper.getEnchantments(stack).size() > 0;
+        return stack.getItem() == ModItems.ECHO_POG || stack.getItem() == Items.BOOK || stack.getItem() != Items.ENCHANTED_BOOK && EnchantmentHelper.getEnchantments(stack).size() > 0;
     }
 
 
