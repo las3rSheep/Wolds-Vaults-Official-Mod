@@ -21,7 +21,7 @@ public class MercyEnchantmentAdderRecipe extends VanillaAnvilRecipe {
     public boolean onSimpleCraft(AnvilContext context) {
         ItemStack primary = context.getInput()[0];
         ItemStack secondary = context.getInput()[1];
-        if (primary.getItem() instanceof SwordItem || primary.getItem() instanceof AxeItem || primary.getItem() instanceof ToolItem && secondary.getItem() == ModItems.MERCY_ORB) {
+        if ((primary.getItem() instanceof SwordItem || primary.getItem() instanceof AxeItem || primary.getItem() instanceof ToolItem) && secondary.getItem() == ModItems.MERCY_ORB) {
             ItemStack output = primary.copy();
             Map<Enchantment, Integer> stackEnchMap = EnchantmentHelper.getEnchantments(output);
             if(stackEnchMap.containsKey(EnsorcEnchantments.CURSE_MERCY.get())) {
