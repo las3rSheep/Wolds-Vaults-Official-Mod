@@ -109,7 +109,7 @@
   ],
   "client": [
     "MixinThrownTridentRenderer",
-    "itemborders.ae2.MixinAEBaseScreen",
+    "itemborders.ae2.MixinAEStackRendering",
     "itemborders.cyclopscore.MixinRenderItemExtendedSlotCount",
     "itemborders.tomsstorage.MixinGuiStorageTerminalBase",
     "vaulthunters.accessors.VaultChestRendererAccessor",
