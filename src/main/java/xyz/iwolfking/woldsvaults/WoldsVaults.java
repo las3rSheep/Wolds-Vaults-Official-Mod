@@ -26,15 +26,11 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.type.capability.ICurio;
-import xyz.iwolfking.woldsvaults.api.registry.CustomCatalystModelRegistry;
-import xyz.iwolfking.woldsvaults.api.registry.CustomInscriptionModelRegistry;
-import xyz.iwolfking.woldsvaults.api.registry.CustomVaultGearRegistry;
-import xyz.iwolfking.woldsvaults.api.registry.CustomVaultObjectiveRegistry;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.curios.ShardPouchCurio;
 import xyz.iwolfking.woldsvaults.events.LivingEntityEvents;
 import xyz.iwolfking.woldsvaults.events.RegisterCommandEventHandler;
-import xyz.iwolfking.woldsvaults.init.ModResearchBypasses;
+import xyz.iwolfking.woldsvaults.init.*;
 import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
 import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
@@ -58,9 +54,10 @@ public class WoldsVaults {
         MinecraftForge.EVENT_BUS.addListener(RegisterCommandEventHandler::woldsvaults_registerCommandsEvent);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        CustomInscriptionModelRegistry.registerModels();
-        CustomVaultGearRegistry.registerAllGearEntries();
-        CustomVaultObjectiveRegistry.registerAllCustomVaultObjectives();
+        ModCustomVaultGearEntries.registerGearEntries();
+        ModCustomVaultObjectiveEntries.registerCustomObjectives();
+        ModCatalystModels.registerModels();
+        ModInscriptionModels.registerModels();
         ModResearchBypasses.init();
     }
 
@@ -70,7 +67,7 @@ public class WoldsVaults {
             LOGGER.debug("Initializing FMLCommonSetup events!");
         }
         PacketHandler.init();
-        CustomCatalystModelRegistry.registerModels();
+
         LivingEntityEvents.init();
     }
 

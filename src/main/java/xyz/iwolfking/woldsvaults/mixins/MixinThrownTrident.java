@@ -92,6 +92,9 @@ public abstract class MixinThrownTrident extends AbstractArrow {
     @Inject(method = "onHitEntity", at = @At("HEAD"), cancellable = true)
     private void onHitEntityWithVaultTrident(EntityHitResult p_37573_, CallbackInfo ci) {
         if(this.tridentItem.getItem() instanceof VaultTridentItem) {
+            if(!(p_37573_.getEntity() instanceof LivingEntity)) {
+                ci.cancel();
+            }
             Entity entity = p_37573_.getEntity();
             VaultGearData data = VaultGearData.read(tridentItem);
             Double f = data.get(ModGearAttributes.ATTACK_DAMAGE, VaultGearAttributeTypeMerger.doubleSum());

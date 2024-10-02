@@ -20,6 +20,7 @@ public class Battlestaffs {
     public static final HandHeldModel BATTLESTAFF_LIGHT_BLUE;
     public static final HandHeldModel BATTLESTAFF_LIGHTSABER;
 
+
     public Battlestaffs() {
     }
 

@@ -253,6 +253,7 @@ dependencies {
     implementation files('lib/conditional-mixin-forge-0.6.2.jar')
     implementation files('lib/forgified-sgui-1.0.2.jar')
     implementation files('lib/vaultarhud-1.0.0-1.18.2.jar')
+    implementation files('lib/vaultcrackerlib-1.0.jar')
 
     jarJar(group: 'me.fallenbreath', name: 'conditional-mixin-forge', version: '[0.6.2,)') {
         jarJar.pin(it, '0.6.2')

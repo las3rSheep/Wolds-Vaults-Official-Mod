@@ -35,7 +35,8 @@ public abstract class MixinBountyScreen extends AbstractElementContainerScreen<B
             Map.entry("monolith", new TextComponent("Light the Braziers")),
             Map.entry("elixir", new TextComponent("Gather Elixir")),
             Map.entry("haunted_braziers", new TextComponent("Haunted Braziers")),
-            Map.entry("bingo", new TextComponent("Bingo"))
+            Map.entry("bingo", new TextComponent("Bingo")),
+            Map.entry("ballistic_bingo", new TextComponent("Ballistic Bingo"))
     );
 
 //    static {

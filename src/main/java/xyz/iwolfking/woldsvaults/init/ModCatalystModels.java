@@ -1,6 +1,6 @@
 package xyz.iwolfking.woldsvaults.init;
 
-import xyz.iwolfking.woldsvaults.api.registry.CustomCatalystModelRegistry;
+import xyz.iwolfking.vaultcrackerlib.api.registry.models.CustomCatalystModelRegistry;
 
 public class ModCatalystModels {
     public static void registerModels() {
