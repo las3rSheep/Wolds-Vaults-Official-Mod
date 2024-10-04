@@ -1,7 +1,8 @@
 package xyz.iwolfking.woldsvaults.init;
 
-import xyz.iwolfking.vaultcrackerlib.api.registry.gear.CustomVaultGearRegistry;
-import xyz.iwolfking.vaultcrackerlib.api.registry.generic.records.CustomVaultGearEntry;
+
+import net.minecraftforge.event.RegistryEvent;
+import xyz.iwolfking.vaultcrackerlib.api.registry.gear.CustomVaultGearRegistryEntry;
 import xyz.iwolfking.woldsvaults.config.fake.CustomVaultGearModelRollRaritiesConfig;
 import xyz.iwolfking.woldsvaults.models.Battlestaffs;
 import xyz.iwolfking.woldsvaults.models.LootSacks;
@@ -9,10 +10,15 @@ import xyz.iwolfking.woldsvaults.models.Plushies;
 import xyz.iwolfking.woldsvaults.models.Tridents;
 
 public class ModCustomVaultGearEntries {
-    public static void registerGearEntries() {
-        CustomVaultGearRegistry.addEntry(new CustomVaultGearEntry(ModItems.BATTLESTAFF, "Battlestaff", Battlestaffs.REGISTRY, CustomVaultGearModelRollRaritiesConfig.BATTLESTAFF_MODEL_ROLLS));
-        CustomVaultGearRegistry.addEntry(new CustomVaultGearEntry(ModItems.TRIDENT, "Trident", Tridents.REGISTRY, CustomVaultGearModelRollRaritiesConfig.TRIDENT_MODEL_ROLLS));
-        CustomVaultGearRegistry.addEntry(new CustomVaultGearEntry(ModItems.PLUSHIE, "Plushie", Plushies.REGISTRY, CustomVaultGearModelRollRaritiesConfig.PLUSHIE_MODEL_ROLLS));
-        CustomVaultGearRegistry.addEntry(new CustomVaultGearEntry(ModItems.LOOT_SACK, "Loot Sack", LootSacks.REGISTRY, CustomVaultGearModelRollRaritiesConfig.LOOT_SACKS_MODEL_ROLLS));
+
+    public static final CustomVaultGearRegistryEntry BATTLESTAFF = new CustomVaultGearRegistryEntry("battlestaff", "Battlestaff", ModItems.BATTLESTAFF, Battlestaffs.REGISTRY, CustomVaultGearModelRollRaritiesConfig.BATTLESTAFF_MODEL_ROLLS);
+    public static final CustomVaultGearRegistryEntry TRIDENT = new CustomVaultGearRegistryEntry("trident", "Trident", ModItems.TRIDENT, Tridents.REGISTRY, CustomVaultGearModelRollRaritiesConfig.TRIDENT_MODEL_ROLLS);
+    public static final CustomVaultGearRegistryEntry PLUSHIE = new CustomVaultGearRegistryEntry("plushie", "Plushie", ModItems.PLUSHIE, Plushies.REGISTRY, CustomVaultGearModelRollRaritiesConfig.PLUSHIE_MODEL_ROLLS);
+    public static final CustomVaultGearRegistryEntry LOOT_SACK = new CustomVaultGearRegistryEntry("loot_sack", "Loot Sack", ModItems.LOOT_SACK, LootSacks.REGISTRY, CustomVaultGearModelRollRaritiesConfig.LOOT_SACKS_MODEL_ROLLS);
+    public static void registerGearEntries(RegistryEvent.Register<CustomVaultGearRegistryEntry> event) {
+        event.getRegistry().register(BATTLESTAFF);
+        event.getRegistry().register(TRIDENT);
+        event.getRegistry().register(PLUSHIE);
+        event.getRegistry().register(LOOT_SACK);
     }
 }

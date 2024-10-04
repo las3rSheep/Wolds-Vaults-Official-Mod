@@ -39,11 +39,6 @@ public abstract class MixinBountyScreen extends AbstractElementContainerScreen<B
             Map.entry("ballistic_bingo", new TextComponent("Ballistic Bingo"))
     );
 
-//    static {
-//        for(CustomVaultObjectiveEntry entry : CustomVaultObjectiveRegistry.getCustomVaultObjectiveEntries()) {
-//            OBJECTIVE_NAME.put(entry.id(), new TextComponent(entry.name()));
-//        }
-//    }
 
     public MixinBountyScreen(BountyContainer container, Inventory inventory, Component title, IElementRenderer elementRenderer, ITooltipRendererFactory<AbstractElementContainerScreen<BountyContainer>> tooltipRendererFactory) {
         super(container, inventory, title, elementRenderer, tooltipRendererFactory);
