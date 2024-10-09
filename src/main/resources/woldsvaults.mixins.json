@@ -102,8 +102,7 @@
     "itemborders.tomsstorage.MixinGuiStorageTerminalBase",
     "vaulthunters.accessors.VaultChestRendererAccessor",
     "vaulthunters.fixes.MixinCatalystItemRenderer",
-    "vaulthunters.fixes.MixinToolItemRenderer",
-    "vaulthunters.objectives.MixinBountyScreen"
+    "vaulthunters.fixes.MixinToolItemRenderer"
   ],
   "injectors": {
     "defaultRequire": 1

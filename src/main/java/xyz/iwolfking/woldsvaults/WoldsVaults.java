@@ -65,7 +65,6 @@ public class WoldsVaults {
         MinecraftForge.EVENT_BUS.register(this);
         ModCatalystModels.registerModels();
         ModInscriptionModels.registerModels();
-        ModResearchBypasses.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
