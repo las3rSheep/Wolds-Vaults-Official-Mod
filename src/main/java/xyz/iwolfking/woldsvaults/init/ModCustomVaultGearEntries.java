@@ -2,7 +2,7 @@ package xyz.iwolfking.woldsvaults.init;
 
 
 import net.minecraftforge.event.RegistryEvent;
-import xyz.iwolfking.vaultcrackerlib.api.registry.gear.CustomVaultGearRegistryEntry;
+import xyz.iwolfking.vhapi.api.registry.gear.CustomVaultGearRegistryEntry;
 import xyz.iwolfking.woldsvaults.config.fake.CustomVaultGearModelRollRaritiesConfig;
 import xyz.iwolfking.woldsvaults.models.Battlestaffs;
 import xyz.iwolfking.woldsvaults.models.LootSacks;

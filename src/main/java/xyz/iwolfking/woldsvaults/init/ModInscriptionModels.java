@@ -1,6 +1,6 @@
 package xyz.iwolfking.woldsvaults.init;
 
-import xyz.iwolfking.vaultcrackerlib.api.registry.CustomInscriptionModelRegistry;
+import xyz.iwolfking.vhapi.api.registry.CustomInscriptionModelRegistry;
 
 public class ModInscriptionModels {
     public static void registerModels() {

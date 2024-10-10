@@ -91,7 +91,6 @@
     "vaulthunters.modifiers.MixinVaultModifierTypeRegistry",
     "vaulthunters.objectives.MixinCrystalData",
     "vaulthunters.recipes.MixinAnvilRecipes",
-    "vaulthunters.research.MixinAttributeResearchBypass",
     "vaulthunters.skills.MixinHealEffectAbility",
     "vaulthunters.skills.MixinSkill"
   ],
