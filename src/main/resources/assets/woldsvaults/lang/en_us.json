@@ -93,6 +93,8 @@
   "item.woldsvaults.uber_chaos_catalyst": "Unhinged Vault Rock",
   "item.woldsvaults.vaultar_box": "Vaultar Box",
   "item.woldsvaults.mercy_orb": "Merciful Orb",
+  "block.the_vault.vault_palladium": "Vault Palladium",
+  "block.the_vault.vault_iridium": "Vault Iridium",
   "effect.woldsvaults.reaving": "Reaved",
   "effect.woldsvaults.shrinking": "Shrinking",
   "effect.woldsvaults.growing": "Growing",

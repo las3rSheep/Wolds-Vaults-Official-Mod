@@ -2,8 +2,10 @@ package xyz.iwolfking.woldsvaults.init;
 
 import com.mojang.datafixers.types.Type;
 import iskallia.vault.VaultMod;
+import iskallia.vault.block.CoinPileDecorBlock;
 import iskallia.vault.block.render.ScavengerAltarRenderer;
 import iskallia.vault.init.ModItems;
+import iskallia.vault.item.CoinBlockItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DoubleHighBlockItem;
@@ -34,6 +36,12 @@ public class ModBlocks {
     public static final DecoMonolithBlock DECO_MONOLITH_BLOCK;
     public static final SurvivalMobBarrier SURVIVAL_MOB_BARRIER;
 
+    public static final CoinPileDecorBlock VAULT_PALLADIUM_PILE;
+    public static final CoinPileDecorBlock VAULT_IRIDIUM_PILE;
+    public static BlockItem VAULT_PALLADIUM;
+    public static BlockItem VAULT_IRIDIUM;
+
+
     public static final BlockEntityType<VaultSalvagerTileEntity> VAULT_SALVAGER_ENTITY;
     public static final BlockEntityType<IskallianLeavesTileEntity> ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<HellishSandTileEntity> HELLISH_SAND_TILE_ENTITY_BLOCK_ENTITY_TYPE;
@@ -48,6 +56,10 @@ public class ModBlocks {
 
 
     static {
+        VAULT_PALLADIUM_PILE = new CoinPileDecorBlock();
+        VAULT_IRIDIUM_PILE = new CoinPileDecorBlock();
+        VAULT_PALLADIUM  = new CoinBlockItem(VAULT_PALLADIUM_PILE, new Item.Properties().tab(ModItems.VAULT_MOD_GROUP));
+        VAULT_IRIDIUM  = new CoinBlockItem(VAULT_IRIDIUM_PILE, new Item.Properties().tab(ModItems.VAULT_MOD_GROUP));
         VAULT_SALVAGER_BLOCK = new VaultSalvagerBlock();
         ISKALLIAN_LEAVES_BLOCK = new IskallianLeavesBlock();
         HELLISH_SAND_BLOCK = new HellishSandBlock();
@@ -78,6 +90,8 @@ public class ModBlocks {
         registerBlock(event, DECO_LODESTONE_BLOCK, WoldsVaults.id("lodestone"));
         registerBlock(event, DECO_MONOLITH_BLOCK, WoldsVaults.id("monolith"));
         registerBlock(event, SURVIVAL_MOB_BARRIER, WoldsVaults.id("mob_barrier_red"));
+        registerBlock(event, VAULT_PALLADIUM_PILE, VaultMod.id("vault_palladium"));
+        registerBlock(event, VAULT_IRIDIUM_PILE, VaultMod.id("vault_iridium"));
 
     }
     public static void registerTileEntities(RegistryEvent.Register<BlockEntityType<?>> event) {
@@ -102,6 +116,8 @@ public class ModBlocks {
         registerBlockItem(event, DECO_LODESTONE_BLOCK);
         registerBlockItem(event, DECO_MONOLITH_BLOCK);
         registerBlockItem(event, SURVIVAL_MOB_BARRIER);
+        registerBlockItem(event, VAULT_PALLADIUM_PILE, VAULT_PALLADIUM);
+        registerBlockItem(event, VAULT_IRIDIUM_PILE, VAULT_IRIDIUM);
     }
 
     public static void registerTileEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {

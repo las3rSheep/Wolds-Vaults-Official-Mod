@@ -52,7 +52,7 @@ public class LivingEntityEvents {
     public static void capLightningDamageInVaults(LivingHurtEvent event) {
         if(event.getEntityLiving() instanceof Player player && event.getSource().equals(DamageSource.LIGHTNING_BOLT)) {
             ServerVaults.get(player.level).ifPresent(vault -> {
-                event.setAmount( Math.min(event.getAmount(), player.getMaxHealth() * 0.2F));
+                event.setAmount( Math.min(event.getAmount(), player.getMaxHealth() * 0.1F));
                 player.addEffect(new MobEffectInstance(CoreMobEffects.SHOCKED.get(), 80, 0));
             });
         }

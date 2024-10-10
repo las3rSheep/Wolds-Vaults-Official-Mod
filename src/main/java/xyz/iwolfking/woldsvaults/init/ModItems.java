@@ -102,8 +102,8 @@ public class ModItems {
     public static WisdomFruitItem WISDOM_FRUIT;
     public static ToolModifierNullifyingItem CHISELING_FOCUS;
     public static AirMobilityItem ZEPHYR_CHARM;
-
     public static VaultBasicFoodItem VAULT_ROCK_CANDY;
+
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
