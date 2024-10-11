@@ -39,6 +39,7 @@ public class ModItems {
 
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_TITAN;
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_DOOMSAYER;
+    public static ItemVaultCrystalSeal CRYSTAL_SEAL_ZEALOT;
     public static VaultBattleStaffItem BATTLESTAFF;
     //public static VaultBowItem BOW;
 
@@ -214,6 +215,7 @@ public class ModItems {
         registry.register(GEM_REAGENT_SPARKLETINE);
         registry.register(GEM_REAGENT_UPALINE);
         registry.register(POLTERGEIST_PLUM);
+        registry.register(CRYSTAL_SEAL_ZEALOT);
     }
 
     static {
@@ -223,6 +225,7 @@ public class ModItems {
         CRYSTAL_SEAL_ENCHANTER = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_enchanter"));
         CRYSTAL_SEAL_TITAN = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_titan"));
         CRYSTAL_SEAL_DOOMSAYER = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_doomsayer"));
+        CRYSTAL_SEAL_ZEALOT = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_zealot"));
         BATTLESTAFF =  new VaultBattleStaffItem(VaultMod.id("battlestaff"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         TRIDENT = new VaultTridentItem(VaultMod.id("trident"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         PLUSHIE = new VaultPlushieItem(VaultMod.id("plushie"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
