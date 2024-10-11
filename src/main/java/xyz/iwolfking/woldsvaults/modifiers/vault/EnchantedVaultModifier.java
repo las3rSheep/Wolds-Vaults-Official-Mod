@@ -5,6 +5,7 @@ import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.modifier.spi.ModifierContext;
 import iskallia.vault.core.vault.modifier.spi.VaultModifier;
+import iskallia.vault.core.vault.time.TickClock;
 import iskallia.vault.core.world.storage.VirtualWorld;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,6 +26,10 @@ public class EnchantedVaultModifier extends VaultModifier<EnchantedVaultModifier
                 }
 
                 if(!(event.player.getLevel().dimension().equals(world.dimension()))) {
+                    return;
+                }
+
+                if(vault.get(Vault.CLOCK).has(TickClock.PAUSED)) {
                     return;
                 }
 
