@@ -33,7 +33,7 @@ public class ZealotCrystalObjective extends CrystalObjective {
     public void configure(Vault vault, RandomSource random) {
         int level = ((VaultLevel)vault.get(Vault.LEVEL)).get();
         vault.ifPresent(Vault.OBJECTIVES, (objectives) -> {
-            objectives.add(ZealotObjective.of(this.target.get(random)).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.MONOLITH, "elixir", level, true)).add(VictoryObjective.of(300)));
+            objectives.add(ZealotObjective.of(this.target.get(random), 0).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.MONOLITH, "elixir", level, true)));
             objectives.add(BailObjective.create(true, new ResourceLocation[]{ClassicPortalLogic.EXIT}));
             objectives.add(DeathObjective.create(true));
             objectives.set(Objectives.KEY, CrystalData.OBJECTIVE.getType(this));

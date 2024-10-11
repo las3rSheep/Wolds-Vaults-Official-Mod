@@ -29,6 +29,7 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import xyz.iwolfking.vhapi.api.events.vault.VaultEvents;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 
 import java.util.Iterator;
@@ -42,20 +43,21 @@ public class ZealotObjective extends Objective {
     public static final FieldKey<Integer> COUNT = (FieldKey)FieldKey.of("count", Integer.class).with(Version.v1_0, Adapters.INT_SEGMENTED_3, DISK.all().or(CLIENT.all())).register(FIELDS);
     public static final FieldKey<Integer> TARGET = (FieldKey)FieldKey.of("target", Integer.class).with(Version.v1_0, Adapters.INT_SEGMENTED_3, DISK.all().or(CLIENT.all())).register(FIELDS);
     public static final FieldKey<Integer> BASE_TARGET = (FieldKey)FieldKey.of("base_target", Integer.class).with(Version.v1_25, Adapters.INT_SEGMENTED_3, DISK.all().or(CLIENT.all())).register(FIELDS);
-
+    public static final FieldKey<Float> OBJECTIVE_PROBABILITY = (FieldKey)FieldKey.of("objective_probability", Float.class).with(Version.v1_2, Adapters.FLOAT, DISK.all()).register(FIELDS);
 
 
     protected ZealotObjective() {
     }
 
-    protected ZealotObjective(int target) {
+    protected ZealotObjective(int target, float objectiveProbability) {
         this.set(COUNT, 0);
         this.set(TARGET, target);
         this.set(BASE_TARGET, target);
+        this.set(OBJECTIVE_PROBABILITY, objectiveProbability);
     }
 
-    public static ZealotObjective of(int target) {
-        return new ZealotObjective(target);
+    public static ZealotObjective of(int target, float objectiveProbability) {
+        return new ZealotObjective(target, objectiveProbability);
     }
 
 
@@ -64,6 +66,14 @@ public class ZealotObjective extends Objective {
     }
 
     public void initServer(VirtualWorld world, Vault vault) {
+        CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
+            this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
+                data.setProbability((double)probability);
+            });
+        });
+        VaultEvents.GOD_ALTAR_COMPLETED.in(world).register(this, (data -> {
+            this.set(COUNT, (Integer)this.get(COUNT) + 1);
+        }));
         super.initServer(world, vault);
     }
 

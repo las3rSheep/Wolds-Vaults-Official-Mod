@@ -1,7 +1,6 @@
 package xyz.iwolfking.woldsvaults;
 
 import com.mojang.logging.LogUtils;
-import iskallia.vault.core.vault.VaultRegistry;
 import iskallia.vault.init.ModItems;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -94,10 +93,6 @@ public class WoldsVaults {
     public void onServerStarting(ServerStartingEvent event) {
         EnchantedEventsRegistry.addEvents();
         BrutalBossesRegistry.init();
-        System.out.println("Reading registry");
-        VaultRegistry.OBJECTIVE.getKeys().forEach(supplierKey -> {
-            System.out.println(supplierKey.toString());
-        });
     }
 
 
