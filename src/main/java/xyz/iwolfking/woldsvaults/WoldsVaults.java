@@ -34,7 +34,10 @@ import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.curios.ShardPouchCurio;
 import xyz.iwolfking.woldsvaults.events.LivingEntityEvents;
 import xyz.iwolfking.woldsvaults.events.RegisterCommandEventHandler;
-import xyz.iwolfking.woldsvaults.init.*;
+import xyz.iwolfking.woldsvaults.init.ModCatalystModels;
+import xyz.iwolfking.woldsvaults.init.ModCustomVaultGearEntries;
+import xyz.iwolfking.woldsvaults.init.ModCustomVaultObjectiveEntries;
+import xyz.iwolfking.woldsvaults.init.ModInscriptionModels;
 import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
 import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
@@ -90,7 +93,6 @@ public class WoldsVaults {
     public void onServerStarting(ServerStartingEvent event) {
         EnchantedEventsRegistry.addEvents();
         BrutalBossesRegistry.init();
-
     }
 
 

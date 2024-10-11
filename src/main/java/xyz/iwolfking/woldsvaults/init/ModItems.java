@@ -14,6 +14,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.items.*;
 import xyz.iwolfking.woldsvaults.items.fruits.HastyPomegranteItem;
+import xyz.iwolfking.woldsvaults.items.fruits.PoltergeistPlum;
 import xyz.iwolfking.woldsvaults.items.fruits.WisdomFruitItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultBattleStaffItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
@@ -125,6 +126,7 @@ public class ModItems {
     public static BasicItem GEM_REAGENT_XENIUM;
     public static BasicItem GEM_REAGENT_SPARKLETINE;
     public static BasicItem GEM_REAGENT_TUBIUM;
+    public static PoltergeistPlum POLTERGEIST_PLUM;
 
 
 
@@ -211,6 +213,7 @@ public class ModItems {
         registry.register(GEM_REAGENT_XENIUM);
         registry.register(GEM_REAGENT_SPARKLETINE);
         registry.register(GEM_REAGENT_UPALINE);
+        registry.register(POLTERGEIST_PLUM);
     }
 
     static {
@@ -287,5 +290,6 @@ public class ModItems {
         GEM_REAGENT_UPALINE = new BasicItem(VaultMod.id("gem_reagent_upaline"));
         GEM_REAGENT_XENIUM = new BasicItem(VaultMod.id("gem_reagent_xenium"));
         GEM_REAGENT_SPARKLETINE = new BasicItem(VaultMod.id("gem_reagent_sparkletine"));
+        POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
     }
 }
