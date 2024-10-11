@@ -27,6 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+import xyz.iwolfking.woldsvaults.util.VaultModifierUtils;
 
 import java.util.List;
 import java.util.Random;
@@ -46,10 +47,9 @@ public class PoltergeistPlum extends ItemVaultFruit {
             timeText = String.format("%d minutes", minutes);
         }
 
-        MutableComponent cmp = (new TextComponent("Adds ")).withStyle(ChatFormatting.GRAY).append((new TextComponent(timeText)).withStyle(ChatFormatting.GREEN)).append(" to the Vault timer");
+        MutableComponent cmp = (new TextComponent("Adds ")).withStyle(ChatFormatting.GRAY).append((new TextComponent(timeText)).withStyle(ChatFormatting.GREEN)).append(" to the Vault timer, ").append(new TextComponent("30 seconds ").withStyle(ChatFormatting.GREEN)).append(new TextComponent(" if one has been consumed already.").withStyle(ChatFormatting.GRAY));
         tooltip.add(TextComponent.EMPTY);
         tooltip.add((new TextComponent("Adds")).withStyle(ChatFormatting.GRAY).append((new TextComponent(" 1x Vexation")).withStyle(ChatFormatting.RED)).append(new TextComponent(" to the Vault.").withStyle(ChatFormatting.GRAY)));
-        tooltip.add((new TextComponent("If one has been consumed already, only adds 30 seconds.")).withStyle(ChatFormatting.GRAY));
         tooltip.add(cmp);
         tooltip.add(TextComponent.EMPTY);
         tooltip.add((new TextComponent("Only edible inside a Vault")).withStyle(ChatFormatting.RED));
@@ -74,6 +74,7 @@ public class PoltergeistPlum extends ItemVaultFruit {
                     if (!this.specialOnEaten(level, player, 600)) {
                         return stack;
                     }
+                    this.successEaten(level, player);
                 }
                 else {
                     if (!this.specialOnEaten(level, player, this.extraVaultTicks)) {
@@ -93,7 +94,12 @@ public class PoltergeistPlum extends ItemVaultFruit {
     protected void successEaten(Level level, ServerPlayer sPlayer) {
         if(ServerVaults.get(level).isPresent()) {
             Vault vault = ServerVaults.get(level).get();
-            vault.get(Vault.MODIFIERS).addModifier(VaultModifierRegistry.get(VaultMod.id("vexation")), 1, true, ChunkRandom.any());
+            VaultModifier<?> vexationMod = VaultModifierRegistry.get(VaultMod.id("vexation"));
+            if(vexationMod != null) {
+                VaultModifierUtils.sendModifierAddedMessage(sPlayer, vexationMod, 1);
+                vault.get(Vault.MODIFIERS).addModifier(VaultModifierRegistry.get(VaultMod.id("vexation")), 1, true, ChunkRandom.any());
+            }
+
         }
     }
 

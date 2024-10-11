@@ -12,7 +12,7 @@
           "color": "#237da1",
           "description": "Endless poltergeists await you.",
           "descriptionFormatted": "Endless poltergeists await you.",
-          "icon": "woldsvaults:gui/modifiers/vexation"
+          "icon": "the_vault:gui/modifiers/vexation"
         }
       }
     }
