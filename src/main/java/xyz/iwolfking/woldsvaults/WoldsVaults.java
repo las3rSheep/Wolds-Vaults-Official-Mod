@@ -6,16 +6,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.SlotTypeMessage;
 import xyz.iwolfking.vhapi.api.registry.gear.CustomVaultGearRegistryEntry;
 import xyz.iwolfking.vhapi.api.registry.objective.CustomObjectiveRegistryEntry;
 import xyz.iwolfking.woldsvaults.api.WoldDataLoaders;
@@ -27,8 +23,6 @@ import xyz.iwolfking.woldsvaults.init.ModCustomVaultGearEntries;
 import xyz.iwolfking.woldsvaults.init.ModCustomVaultObjectiveEntries;
 import xyz.iwolfking.woldsvaults.init.ModInscriptionModels;
 import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
-import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
-import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("woldsvaults")
@@ -73,8 +67,8 @@ public class WoldsVaults {
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        EnchantedEventsRegistry.addEvents();
-        BrutalBossesRegistry.init();
+        //EnchantedEventsRegistry.addEvents();
+        //BrutalBossesRegistry.init();
     }
 
 
@@ -84,5 +78,5 @@ public class WoldsVaults {
 
     public static ResourceLocation id(String name) {
         return new ResourceLocation("woldsvaults", name);
-
+    }
 }

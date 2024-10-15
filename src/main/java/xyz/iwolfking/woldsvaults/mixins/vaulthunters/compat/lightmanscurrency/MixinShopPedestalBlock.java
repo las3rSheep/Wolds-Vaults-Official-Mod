@@ -7,6 +7,8 @@ import iskallia.vault.block.entity.ShopPedestalBlockTile;
 import iskallia.vault.container.oversized.OverSizedItemStack;
 import iskallia.vault.event.event.ShopPedestalPriceEvent;
 import iskallia.vault.util.InventoryUtil;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -30,7 +32,11 @@ import org.spongepowered.asm.mixin.*;
 
 import javax.annotation.Nullable;
 import java.util.List;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "lightmanscurrency")
+        }
+)
 @Mixin(value = ShopPedestalBlock.class, remap = false)
 public class MixinShopPedestalBlock extends Block implements EntityBlock, GameMasterBlock {
 

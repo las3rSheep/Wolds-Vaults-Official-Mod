@@ -4,13 +4,20 @@ package xyz.iwolfking.woldsvaults.mixins.vaulthunters.compat.ensorcellation;
 import cofh.ensorcellation.init.EnsorcEnchantments;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.item.gear.VaultSwordItem;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.enchantment.Enchantment;
 import org.spongepowered.asm.mixin.Mixin;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "cofhcore"),
+                @Condition(type = Condition.Type.MOD, value = "ensorcellation"),
+        }
+)
 @Mixin(VaultSwordItem.class)
 public abstract class MixinVaultSwordItem extends SwordItem implements VaultGearItem, DyeableLeatherItem {
     public MixinVaultSwordItem(Tier p_43269_, int p_43270_, float p_43271_, Properties p_43272_) {

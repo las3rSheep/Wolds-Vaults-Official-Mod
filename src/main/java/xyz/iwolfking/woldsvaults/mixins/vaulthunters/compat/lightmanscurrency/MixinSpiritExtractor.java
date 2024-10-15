@@ -6,11 +6,17 @@ import iskallia.vault.container.SpiritExtractorContainer;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.AttributeGearData;
 import iskallia.vault.init.ModGearAttributes;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "lightmanscurrency")
+        }
+)
 @Mixin(SpiritExtractorContainer.class)
 public class MixinSpiritExtractor {
     /**
