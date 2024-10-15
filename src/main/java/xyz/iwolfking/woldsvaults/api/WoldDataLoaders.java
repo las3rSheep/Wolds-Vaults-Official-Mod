@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.api;
 
 import xyz.iwolfking.vhapi.api.lib.config.loaders.box.WeightedProductEntryConfigLoader;
+import xyz.iwolfking.woldsvaults.api.objectives.enchanted_elixir.EnchantedElixirEventLoader;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
 
 public class WoldDataLoaders {
@@ -13,6 +14,7 @@ public class WoldDataLoaders {
     public static final WeightedProductEntryConfigLoader GEM_BOX_LOADER;
     public static final WeightedProductEntryConfigLoader SUPPLY_BOX_LOADER;
     public static final WeightedProductEntryConfigLoader ENIGMA_EGG_LOADER;
+    public static final EnchantedElixirEventLoader ENCHANTED_ELIXIR_EVENT_LOADER;
 
     static {
         AUGMENT_BOX_LOADER = new WeightedProductEntryConfigLoader("vhapi", () -> {
@@ -46,7 +48,7 @@ public class WoldDataLoaders {
         ENIGMA_EGG_LOADER = new WeightedProductEntryConfigLoader("vhapi", () -> {
             return ModConfigs.ENIGMA_EGG.POOL;
         }, "enigma_egg");
-
+        ENCHANTED_ELIXIR_EVENT_LOADER = new EnchantedElixirEventLoader();
     }
 
 }

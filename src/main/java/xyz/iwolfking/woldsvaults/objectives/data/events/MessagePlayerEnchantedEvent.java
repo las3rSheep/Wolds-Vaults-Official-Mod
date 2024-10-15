@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.objectives.data.events;
 
+import com.google.gson.annotations.Expose;
 import iskallia.vault.core.util.WeightedList;
 import iskallia.vault.core.vault.Vault;
 import net.minecraft.core.BlockPos;
@@ -8,7 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import xyz.iwolfking.woldsvaults.objectives.lib.BasicEnchantedEvent;
 
 public class MessagePlayerEnchantedEvent extends BasicEnchantedEvent {
-
+    @Expose
     private final WeightedList<Component> messages;
     protected MessagePlayerEnchantedEvent(String eventName, String eventDescription, String primaryColor, WeightedList<Component> messages) {
         super(eventName, eventDescription, primaryColor);

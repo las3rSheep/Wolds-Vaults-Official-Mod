@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.objectives.data.events;
 
+import com.google.gson.annotations.Expose;
 import iskallia.vault.core.vault.Vault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -9,9 +10,11 @@ import xyz.iwolfking.woldsvaults.objectives.lib.BasicEnchantedEvent;
 
 public class PotionEffectEnchantedEvent extends BasicEnchantedEvent {
 
-
+    @Expose
     private final MobEffect effect;
+    @Expose
     private final Integer effectLevel;
+    @Expose
     private final Integer effectDuration;
 
 

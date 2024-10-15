@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.objectives.data.events;
 
+import com.google.gson.annotations.Expose;
 import iskallia.vault.core.vault.Vault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -10,9 +11,11 @@ import xyz.iwolfking.woldsvaults.objectives.lib.BasicEnchantedEvent;
 import java.util.List;
 
 public class MultiPotionEffectEnchantedEvent extends BasicEnchantedEvent {
-
+    @Expose
     private final List<MobEffect> effects;
+    @Expose
     private final Integer effectLevel;
+    @Expose
     private final Integer effectDuration;
     public MultiPotionEffectEnchantedEvent(String eventName, String eventDescription, String primaryColor, List<MobEffect> effects, Integer duration, Integer level) {
         super(eventName, eventDescription, primaryColor);

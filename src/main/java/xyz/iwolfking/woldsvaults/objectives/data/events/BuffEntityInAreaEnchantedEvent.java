@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.objectives.data.events;
 
+import com.google.gson.annotations.Expose;
 import iskallia.vault.core.util.WeightedList;
 import iskallia.vault.core.vault.Vault;
 import net.minecraft.core.BlockPos;
@@ -13,12 +14,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class BuffEntityInAreaEnchantedEvent extends BasicEnchantedEvent {
-
+    @Expose
     private final WeightedList<MobEffectInstance> effects;
+    @Expose
     private final boolean shouldGrantAllEffects;
-
+    @Expose
     private final int randomEffectCount;
-
+    @Expose
     private final double effectRadius;
 
     public BuffEntityInAreaEnchantedEvent(String eventName, String eventDescription, String primaryColor, WeightedList<MobEffectInstance> effects, boolean shouldGrantAllEffects, int randomEffectCount, double effectRadius) {

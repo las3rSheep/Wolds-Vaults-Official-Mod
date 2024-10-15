@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.objectives.data.events;
 
 import com.github.alexthe666.alexsmobs.entity.EntityCockroach;
+import com.google.gson.annotations.Expose;
 import iskallia.vault.core.random.JavaRandom;
 import iskallia.vault.core.random.RandomSource;
 import iskallia.vault.core.util.WeightedList;
@@ -22,10 +23,11 @@ import xyz.iwolfking.woldsvaults.objectives.lib.BasicEnchantedEvent;
 import javax.annotation.Nullable;
 
 public class SpawnEntityEnchantedEvent extends BasicEnchantedEvent {
-
+    @Expose
     private final WeightedList<EntityType<?>> entities;
+    @Expose
     private final WeightedList<Integer> amounts;
-
+    @Expose
     private final WeightedList<MobEffectInstance> effects;
 
     private final ItemStack heldStack;

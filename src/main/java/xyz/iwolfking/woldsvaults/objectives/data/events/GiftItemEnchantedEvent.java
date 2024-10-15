@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.objectives.data.events;
 
+import com.google.gson.annotations.Expose;
 import iskallia.vault.core.util.WeightedList;
 import iskallia.vault.core.vault.Vault;
 import net.minecraft.ChatFormatting;
@@ -10,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import xyz.iwolfking.woldsvaults.objectives.lib.BasicEnchantedEvent;
 
 public class GiftItemEnchantedEvent extends BasicEnchantedEvent {
-
+    @Expose
     private final WeightedList<ItemStack> items;
     public GiftItemEnchantedEvent(String eventName, String eventDescription, String primaryColor, WeightedList<ItemStack> items) {
         super(eventName, eventDescription, primaryColor);

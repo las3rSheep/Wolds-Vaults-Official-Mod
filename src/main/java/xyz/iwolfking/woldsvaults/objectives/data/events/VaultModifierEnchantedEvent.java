@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.objectives.data.events;
 
+import com.google.gson.annotations.Expose;
 import iskallia.vault.VaultMod;
 import iskallia.vault.core.random.ChunkRandom;
 import iskallia.vault.core.random.JavaRandom;
@@ -27,8 +28,9 @@ import java.util.List;
 
 public class VaultModifierEnchantedEvent extends BasicEnchantedEvent {
 
-
+    @Expose
     private final String modifierString;
+
     public VaultModifierEnchantedEvent(String eventName, String eventDescription, String primaryColor, String modifierString) {
         super(eventName, eventDescription, primaryColor);
         this.modifierString = modifierString;
