@@ -6,6 +6,8 @@ import dev.denismasterherobrine.angelring.config.Configuration;
 import dev.denismasterherobrine.angelring.register.ItemRegistry;
 import dev.denismasterherobrine.angelring.utils.ExperienceUtils;
 import iskallia.vault.world.data.ServerVaults;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
@@ -23,7 +25,11 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.UUID;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "angelring")
+        }
+)
 @Mixin(value = ClassicAngelRingIntegration.class, remap = false)
 public abstract class MixinClassicAngelRingInteraction {
     @Shadow private static int ticksDrained;

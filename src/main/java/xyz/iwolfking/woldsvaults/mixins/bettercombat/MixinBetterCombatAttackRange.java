@@ -4,6 +4,8 @@ import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.init.ModGearAttributes;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.bettercombat.api.WeaponAttributes;
 import net.bettercombat.client.collision.OrientedBoundingBox;
 import net.bettercombat.client.collision.TargetFinder;
@@ -22,7 +24,11 @@ import java.util.List;
 
 import static net.bettercombat.client.collision.TargetFinder.getInitialTargets;
 import static net.bettercombat.client.collision.TargetFinder.getInitialTracingPoint;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "bettercombat")
+        }
+)
 @Mixin(value = TargetFinder.class, remap = false)
 public abstract class MixinBetterCombatAttackRange {
     /**

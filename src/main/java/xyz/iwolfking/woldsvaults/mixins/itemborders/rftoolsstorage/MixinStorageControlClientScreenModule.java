@@ -20,7 +20,8 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 @Restriction(
         require = {
-                @Condition(type = Condition.Type.MOD, value = "itemborders")
+                @Condition(type = Condition.Type.MOD, value = "itemborders"),
+                @Condition(type = Condition.Type.MOD, value = "rftoolsstorage")
         }
 )
 @Mixin(value = StorageControlClientScreenModule.class, remap = false)

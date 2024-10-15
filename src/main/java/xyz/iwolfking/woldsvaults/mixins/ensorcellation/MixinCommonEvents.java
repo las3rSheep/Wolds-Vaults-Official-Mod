@@ -6,6 +6,8 @@ import cofh.ensorcellation.init.EnsorcEnchantments;
 import cofh.lib.util.Constants;
 import cofh.lib.util.Utils;
 import iskallia.vault.block.VaultChestBlock;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -18,7 +20,11 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "ensorcellation")
+        }
+)
 @Mixin(value = CommonEvents.class, remap = false)
 public class MixinCommonEvents {
 

@@ -2,6 +2,8 @@ package xyz.iwolfking.woldsvaults.mixins.supplementaries;
 
 import me.desht.modularrouters.block.ModularRouterBlock;
 import me.desht.modularrouters.block.tile.ModularRouterBlockEntity;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.mehvahdjukaar.supplementaries.common.block.blocks.FaucetBlock;
 import net.mehvahdjukaar.supplementaries.common.block.tiles.FaucetBlockTile;
 import net.minecraft.core.BlockPos;
@@ -17,7 +19,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "supplementaries")
+        }
+)
 @Mixin(value = FaucetBlockTile.class, remap = false)
 public abstract class MixinFaucetTileEntity {
     private static final List<Item> ROUTER_ALLOWED_FLUIDS = List.of(Items.WATER_BUCKET, Items.LAVA_BUCKET);

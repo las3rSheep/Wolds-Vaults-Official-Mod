@@ -3,6 +3,8 @@ package xyz.iwolfking.woldsvaults.mixins.ae2.terminal;
 import appeng.hotkeys.InventoryHotkeyAction;
 import appeng.items.tools.powered.WirelessCraftingTerminalItem;
 import appeng.items.tools.powered.WirelessTerminalItem;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -14,7 +16,11 @@ import org.spongepowered.asm.mixin.Shadow;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.function.Predicate;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "ae2")
+        }
+)
 @Mixin(value = InventoryHotkeyAction.class, remap = false)
 public abstract class MixinInventoryHotkeyAction {
     @Shadow @Final private Predicate<ItemStack> locatable;
