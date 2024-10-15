@@ -2,6 +2,8 @@ package xyz.iwolfking.woldsvaults.mixins.integrateddynamics;
 
 import iskallia.vault.core.vault.ClientVaults;
 import iskallia.vault.world.data.ServerVaults;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -18,7 +20,11 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "integrateddynamics")
+        }
+)
 @Mixin(value = ClientProxy.class, remap = false)
 public abstract class MixinClientProxy extends ClientProxyComponent {
     @Shadow @Final public static KeyMapping TERMINAL_TAB_NEXT;

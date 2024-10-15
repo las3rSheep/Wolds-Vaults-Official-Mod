@@ -4,6 +4,8 @@ package xyz.iwolfking.woldsvaults.mixins.ae2.terminal;
 import appeng.api.implementations.menuobjects.IMenuItem;
 import appeng.api.implementations.menuobjects.ItemMenuHost;
 import appeng.core.AELog;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -15,7 +17,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import top.theillusivec4.curios.api.CuriosApi;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "ae2")
+        }
+)
 @Mixin(targets = "appeng.menu.locator.MenuItemLocator", remap = false)
 public class MixinMenuItemLocator {
     @Shadow @Final private int itemIndex;

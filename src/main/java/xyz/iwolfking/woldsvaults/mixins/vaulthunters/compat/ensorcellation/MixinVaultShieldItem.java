@@ -3,11 +3,18 @@ package xyz.iwolfking.woldsvaults.mixins.vaulthunters.compat.ensorcellation;
 import cofh.ensorcellation.init.EnsorcEnchantments;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.item.gear.VaultShieldItem;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import org.spongepowered.asm.mixin.Mixin;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "cofhcore"),
+                @Condition(type = Condition.Type.MOD, value = "ensorcellation"),
+        }
+)
 @Mixin(value = VaultShieldItem.class, remap = false)
 public abstract class MixinVaultShieldItem   extends ShieldItem implements VaultGearItem {
 

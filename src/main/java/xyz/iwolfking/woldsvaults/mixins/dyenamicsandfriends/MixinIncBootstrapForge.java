@@ -7,6 +7,8 @@ import agency.highlysuspect.incorporeal.block.entity.EnderSoulCoreBlockEntity;
 import agency.highlysuspect.incorporeal.platform.IncBootstrapper;
 import agency.highlysuspect.incorporeal.platform.forge.IncBootstrapForge;
 import agency.highlysuspect.incorporeal.platform.forge.block.entity.EnderSoulCoreItemHandler;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -23,7 +25,11 @@ import vazkii.botania.api.mana.IManaReceiver;
 import vazkii.botania.forge.CapabilityUtil;
 
 import java.util.function.Function;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "incorporeal")
+        }
+)
 @Mixin(value = IncBootstrapForge.class, remap = false)
 public abstract class MixinIncBootstrapForge implements IncBootstrapper {
     /**

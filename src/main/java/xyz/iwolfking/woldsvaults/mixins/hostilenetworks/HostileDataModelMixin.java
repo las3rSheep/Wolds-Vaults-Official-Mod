@@ -1,5 +1,7 @@
 package xyz.iwolfking.woldsvaults.mixins.hostilenetworks;
 
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -21,7 +23,11 @@ import java.util.List;
 
 import static shadows.hostilenetworks.item.DataModelItem.getData;
 import static shadows.hostilenetworks.item.DataModelItem.getStoredModel;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "hostilenetworks")
+        }
+)
 @Mixin(DataModelItem.class)
 public class HostileDataModelMixin {
     /**
