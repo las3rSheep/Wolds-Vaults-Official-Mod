@@ -6,8 +6,8 @@
         "text": "Black Booster Pack"
       },
       "model": {
-        "unopened": "custom_booster_packs:booster_pack/black_pack#inventory",
-        "opened": "custom_booster_packs:booster_pack/black_pack_ripped#inventory"
+        "unopened": "vhapi:booster_pack/black_pack#inventory",
+        "opened": "vhapi:booster_pack/black_pack_ripped#inventory"
       },
       "roll": [
         {
@@ -65,8 +65,8 @@
         "text": "Dungeon Booster Pack"
       },
       "model": {
-        "unopened": "the_vault:booster_pack/dungeon_pack#inventory",
-        "opened": "the_vault:booster_pack/dungeon_pack_ripped#inventory"
+        "unopened": "vhapi:booster_pack/dungeon_pack#inventory",
+        "opened": "vhapi:booster_pack/dungeon_pack_ripped#inventory"
       },
       "roll": [
         {
@@ -170,8 +170,8 @@
         "text": "Champion Booster Pack"
       },
       "model": {
-        "unopened": "the_vault:booster_pack/champion_pack#inventory",
-        "opened": "the_vault:booster_pack/champion_pack_ripped#inventory"
+        "unopened": "vhapi:booster_pack/champion_pack#inventory",
+        "opened": "vhapi:booster_pack/champion_pack_ripped#inventory"
       },
       "roll": [
         {
@@ -283,8 +283,8 @@
         "text": "Treasure Booster Pack"
       },
       "model": {
-        "unopened": "the_vault:booster_pack/treasure_pack#inventory",
-        "opened": "the_vault:booster_pack/treasure_pack_ripped#inventory"
+        "unopened": "vhapi:booster_pack/treasure_pack#inventory",
+        "opened": "vhapi:booster_pack/treasure_pack_ripped#inventory"
       },
       "roll": [
         {
@@ -388,8 +388,8 @@
         "text": "Hellish Booster Pack"
       },
       "model": {
-        "unopened": "the_vault:booster_pack/merchant_pack#inventory",
-        "opened": "the_vault:booster_pack/merchant_pack_ripped#inventory"
+        "unopened": "vhapi:booster_pack/merchant_pack#inventory",
+        "opened": "vhapi:booster_pack/merchant_pack_ripped#inventory"
       },
       "roll": [
         {
@@ -451,8 +451,8 @@
         "text": "Merchant Booster Pack"
       },
       "model": {
-        "unopened": "the_vault:booster_pack/merchant_pack#inventory",
-        "opened": "the_vault:booster_pack/merchant_pack_ripped#inventory"
+        "unopened": "vhapi:booster_pack/merchant_pack#inventory",
+        "opened": "vhapi:booster_pack/merchant_pack_ripped#inventory"
       },
       "roll": [
         {
@@ -514,8 +514,8 @@
         "text": "Lost Booster Pack"
       },
       "model": {
-        "unopened": "the_vault:booster_pack/lost_pack#inventory",
-        "opened": "the_vault:booster_pack/lost_pack_ripped#inventory"
+        "unopened": "vhapi:booster_pack/lost_pack#inventory",
+        "opened": "vhapi:booster_pack/lost_pack_ripped#inventory"
       },
       "roll": [
         {

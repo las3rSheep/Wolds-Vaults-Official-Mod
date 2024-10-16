@@ -6,7 +6,7 @@ import xyz.iwolfking.vhapi.api.lib.loaders.VaultConfigDataLoader;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.api.objectives.enchanted_elixir.config.EnchantedElixirEventConfig;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
-import xyz.iwolfking.woldsvaults.objectives.data.events.VaultModifierEnchantedEvent;
+import xyz.iwolfking.woldsvaults.objectives.data.lib.events.VaultModifierEnchantedEvent;
 import xyz.iwolfking.woldsvaults.objectives.lib.BasicEnchantedEvent;
 
 import java.util.HashMap;

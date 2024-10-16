@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.objectives.data.events;
+package xyz.iwolfking.woldsvaults.objectives.data.lib.events;
 
 import com.github.alexthe666.alexsmobs.entity.EntityCockroach;
 import com.google.gson.annotations.Expose;

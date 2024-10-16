@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.objectives.data.events.unique;
+package xyz.iwolfking.woldsvaults.objectives.data.lib.events.unique;
 
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.player.Listener;

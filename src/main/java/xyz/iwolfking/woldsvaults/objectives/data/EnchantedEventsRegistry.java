@@ -1,24 +1,25 @@
 package xyz.iwolfking.woldsvaults.objectives.data;
 
 import cofh.thermal.core.init.TCoreEntities;
-import com.cursedcauldron.wildbackport.common.registry.WBMobEffects;
 import com.github.alexthe666.alexsmobs.effect.AMEffectRegistry;
 import com.github.alexthe666.alexsmobs.entity.AMEntityRegistry;
 import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
-import com.github.alexthe668.cloudstorage.entity.CSEntityRegistry;
 import iskallia.vault.core.util.WeightedList;
 import iskallia.vault.init.ModEntities;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.fml.loading.LoadingModList;
 import samebutdifferent.ecologics.registry.ModMobEffects;
 import vazkii.quark.content.mobs.module.WraithModule;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModItems;
-import xyz.iwolfking.woldsvaults.objectives.data.events.*;
-import xyz.iwolfking.woldsvaults.objectives.data.events.unique.LaCucarachaSpecialEnchantedEvent;
-import xyz.iwolfking.woldsvaults.objectives.data.events.unique.PlayerSwapEnchantedEvent;
+import xyz.iwolfking.woldsvaults.objectives.data.builtin.events.CloudStorageEvents;
+import xyz.iwolfking.woldsvaults.objectives.data.builtin.events.WildBackportEvents;
+import xyz.iwolfking.woldsvaults.objectives.data.lib.events.*;
+import xyz.iwolfking.woldsvaults.objectives.data.lib.events.unique.LaCucarachaSpecialEnchantedEvent;
+import xyz.iwolfking.woldsvaults.objectives.data.lib.events.unique.PlayerSwapEnchantedEvent;
 import xyz.iwolfking.woldsvaults.objectives.lib.BasicEnchantedEvent;
 
 import java.util.List;
@@ -53,7 +54,6 @@ public class EnchantedEventsRegistry {
     public static final PotionEffectEnchantedEvent SUNBIRD_CURSE_EVENT;
     public static final PotionEffectEnchantedEvent SUNBIRD_BLESSING_EVENT;
     public static final PotionEffectEnchantedEvent CLINGING_EVENT;
-    public static final PotionEffectEnchantedEvent DARKNESS_EVENT;
     public static final PotionEffectEnchantedEvent INSTAKILL_EVENT;
     public static final PotionEffectEnchantedEvent LEVITATION_EVENT;
     public static final PotionEffectEnchantedEvent SHRINKING_EVENT;
@@ -70,7 +70,6 @@ public class EnchantedEventsRegistry {
     public static final SpawnEntityEnchantedEvent BUNFUNGUS_EVENT;
     public static final SpawnEntityEnchantedEvent ARACHNOPHOBIA_EVENT;
     public static final SpawnEntityEnchantedEvent GHOSTY_EVENT;
-    public static final SpawnEntityEnchantedEvent CLOUDSTORAGE_EVENT;
     public static final SpawnEntityEnchantedEvent TNT_EVENT;
     public static final SpawnEntityEnchantedEvent TURTLES_EVENT;
     public static final SpawnEntityEnchantedEvent ZOO_EVENT;
@@ -119,7 +118,6 @@ public class EnchantedEventsRegistry {
         register(SUNBIRD_CURSE_EVENT, 12.0, false, false);
         register(SUNBIRD_BLESSING_EVENT, 12.0, false, true);
         register(CLINGING_EVENT, 12.0, false, false);
-        register(DARKNESS_EVENT, 14.0, false, false);
         register(INSTAKILL_EVENT, 16.0, false, true);
         register(LEVITATION_EVENT, 12.0, false, false);
         register(SHRINKING_EVENT, 6.0, false, false);
@@ -137,7 +135,6 @@ public class EnchantedEventsRegistry {
         register(BUNFUNGUS_EVENT, 12.0, false, false);
         register(ARACHNOPHOBIA_EVENT, 16.0, false, false);
         register(GHOSTY_EVENT, 16.0, false, false);
-        register(CLOUDSTORAGE_EVENT, 8.0, false, false);
         register(ZOO_EVENT, 5.0, false, false);
         register(DWELLER_EVENT, 16.0, false, false);
         register(VOID_ZOO_EVENT, 6.0, false, false);
@@ -168,6 +165,15 @@ public class EnchantedEventsRegistry {
 
         //Unique Events
         register(TELESWAP_EVENT, 12.0, false, false);
+
+        //Events that rely on mods
+        if(LoadingModList.get().getModFileById("wildbackport") != null) {
+            WildBackportEvents.init();
+        }
+
+        if(LoadingModList.get().getModFileById("cloudstorage") != null) {
+            CloudStorageEvents.init();
+        }
 
         ENCHANTED_EVENTS.forEach((basicEnchantedEvent, aDouble) -> {
             if(basicEnchantedEvent instanceof SpawnEntityEnchantedEvent) {
@@ -231,7 +237,6 @@ public class EnchantedEventsRegistry {
         SUNBIRD_CURSE_EVENT = new PotionEffectEnchantedEvent("Curse of the Sunbird", "It seems gravity is higher...", "#804000", AMEffectRegistry.SUNBIRD_CURSE, 1200, 1);
         SUNBIRD_BLESSING_EVENT = new PotionEffectEnchantedEvent("Blessing of the Sunbird", "Glide to safety", "#ff9900", AMEffectRegistry.SUNBIRD_BLESSING, 1800, 0);
         CLINGING_EVENT = new PotionEffectEnchantedEvent("Topsy Turvy", "Walk on ceilings o.o", "#bfff00",   AMEffectRegistry.CLINGING, 1200, 0);
-        DARKNESS_EVENT = new PotionEffectEnchantedEvent("Lights Out", "Who turned out the lights!?", "#1a1a00", WBMobEffects.DARKNESS.get(), 600, 200);
         LEVITATION_EVENT = new PotionEffectEnchantedEvent("Leviosa", "Up up and away", "#b300b3", MobEffects.LEVITATION, 300, 0);
         INSTAKILL_EVENT = new PotionEffectEnchantedEvent("Insta-Kill", "Grants strength x 255", "#ff8c1a",   MobEffects.DAMAGE_BOOST, 600 , 255);
         HYPERSPEED_EVENT = new MultiPotionEffectEnchantedEvent("Hyper-Speed", "Grants speed x 10", "#e6e600",   List.of(MobEffects.MOVEMENT_SPEED, MobEffects.DIG_SPEED), 900, 9);
@@ -245,7 +250,6 @@ public class EnchantedEventsRegistry {
         BUNFUNGUS_EVENT = new SpawnEntityEnchantedEvent("Bunfungus Amongus", "I am Joseph and I like bunnies", "#ffb3b3",  new WeightedList<EntityType<?>>().add(AMEntityRegistry.BUNFUNGUS.get(), 6.0).add(AMEntityRegistry.MUNGUS.get(), 1.0), new WeightedList<Integer>().add(6, 10).add(7, 10).add(3, 6).add(9, 5));
         ARACHNOPHOBIA_EVENT = new SpawnEntityEnchantedEvent("Arachnophobia", "Attack of the spidders", "#0d0033",  new WeightedList<EntityType<?>>().add(ModEntities.VAULT_SPIDER, 6.0).add(ModEntities.VAULT_SPIDER_BABY, 4.0).add(ModEntities.DUNGEON_SPIDER, 2.0), new WeightedList<Integer>().add(6, 10).add(7, 10).add(8, 10));
         GHOSTY_EVENT = new SpawnEntityEnchantedEvent("Happy Halloween", "All ghost costumes this year?", "#ff471a",  new WeightedList<EntityType<?>>().add(WraithModule.wraithType, 6.0), new WeightedList<Integer>().add(8, 10).add(12, 10));
-        CLOUDSTORAGE_EVENT = new SpawnEntityEnchantedEvent("Happy Clood Become Angry Clood", "You will understand my pain", "#e6ffff",  new WeightedList<EntityType<?>>().add(CSEntityRegistry.BLOVIATOR.get(), 6.0), new WeightedList<Integer>().add(1, 10).add(2, 10));
         TNT_EVENT = new SpawnEntityEnchantedEvent("Whoops", "Who left all this tnt around?", "#000000", new WeightedList<EntityType<?>>().add(EntityType.TNT, 6.0), new WeightedList<Integer>().add(8, 10).add(12, 10));
         TURTLES_EVENT = new SpawnEntityEnchantedEvent("Ninja Turtles", "Attack of the turtles", "#40bf40", new WeightedList<EntityType<?>>().add(AMEntityRegistry.ALLIGATOR_SNAPPING_TURTLE.get(), 6.0), new WeightedList<Integer>().add(7, 10).add(9, 10));
         ZOO_EVENT = new SpawnEntityEnchantedEvent("Escaped Zoo", "Who's Alex anyway?", "#85e085", new WeightedList<EntityType<?>>().add(AMEntityRegistry.CROCODILE.get(), 6.0).add(AMEntityRegistry.GORILLA.get(), 6.0).add(AMEntityRegistry.TIGER.get(), 6.0).add(AMEntityRegistry.ELEPHANT.get(), 4.0).add(AMEntityRegistry.KOMODO_DRAGON.get(), 2.0).add(AMEntityRegistry.SNOW_LEOPARD.get(), 3.0), new WeightedList<Integer>().add(6, 10).add(8, 10));

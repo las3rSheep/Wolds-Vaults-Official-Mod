@@ -29,6 +29,9 @@ public class WoldsVaultsConfig
         public final ForgeConfigSpec.ConfigValue<Boolean> enableVaultPlushie;
         public final ForgeConfigSpec.ConfigValue<Boolean> enableVaultLootSack;
 
+        //Objectives
+        //public final ForgeConfigSpec.ConfigValue<Boolean> disableVanillaUnsupportedElixirEvents;
+
         public final ForgeConfigSpec.ConfigValue<Boolean> disableFlightInVaults;
         public final ForgeConfigSpec.ConfigValue<Boolean> enableMoteRecipes;
         public final ForgeConfigSpec.ConfigValue<Boolean> displayItemBordersInTerminals;
@@ -42,6 +45,8 @@ public class WoldsVaultsConfig
             this.enableVaultTrident = builder.comment("Whether to register and enable Vault Trident or not").define("enableVaultTrident", true);
             this.enableVaultPlushie = builder.comment("Whether to register and enable Vault Plushie or not").define("enableVaultPlushie", true);
             this.enableVaultLootSack = builder.comment("Whether to register and enable Vault Loot Sack or not").define("enableVaultLootSack", true);
+            builder.pop();
+            builder.pop();
             builder.push("Vault Settings");
             this.disableFlightInVaults= builder.comment("Controls whether Creative flight should be blocked while inside a vault. (default: true)")
                     .define("disableFlightInVaults", true);

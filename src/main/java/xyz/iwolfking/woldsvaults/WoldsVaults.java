@@ -23,6 +23,8 @@ import xyz.iwolfking.woldsvaults.init.ModCustomVaultGearEntries;
 import xyz.iwolfking.woldsvaults.init.ModCustomVaultObjectiveEntries;
 import xyz.iwolfking.woldsvaults.init.ModInscriptionModels;
 import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
+import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
+import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("woldsvaults")
@@ -67,8 +69,8 @@ public class WoldsVaults {
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        //EnchantedEventsRegistry.addEvents();
-        //BrutalBossesRegistry.init();
+        EnchantedEventsRegistry.addEvents();
+        BrutalBossesRegistry.init();
     }
 
 

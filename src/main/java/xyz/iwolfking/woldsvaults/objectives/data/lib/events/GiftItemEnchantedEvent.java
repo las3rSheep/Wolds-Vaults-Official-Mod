@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.objectives.data.events;
+package xyz.iwolfking.woldsvaults.objectives.data.lib.events;
 
 import com.google.gson.annotations.Expose;
 import iskallia.vault.core.util.WeightedList;
