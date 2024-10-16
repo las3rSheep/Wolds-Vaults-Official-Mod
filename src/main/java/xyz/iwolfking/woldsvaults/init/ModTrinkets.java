@@ -7,6 +7,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.spongepowered.asm.mixin.Unique;
+import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.effect.HeadlampTrinketEffect;
 import xyz.iwolfking.woldsvaults.effect.RunningShoesTrinketEffect;
 
@@ -17,11 +18,16 @@ public class ModTrinkets {
     //@Unique
     private static final RunningShoesTrinketEffect RUNNING_SHOES;
 
-
     public static void init(RegistryEvent.Register<TrinketEffect<?>> event) {
         IForgeRegistry<TrinketEffect<?>> registry = event.getRegistry();
-        registry.register(MINERS_LAMP);
-        registry.register(RUNNING_SHOES);
+        if(WoldsVaultsConfig.COMMON.enableMinersHeadlampTrinket.get()) {
+            registry.register(MINERS_LAMP);
+        }
+
+        if(WoldsVaultsConfig.COMMON.enableRunningShoesTrinket.get()) {
+            registry.register(RUNNING_SHOES);
+        }
+
     }
 
     static {
