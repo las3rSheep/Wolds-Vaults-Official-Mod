@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "EAE",
+    " S "
+  ],
+  "key": {
+    "#": {
+      "item": "the_vault:vault_rock"
+    },
+    "E": {
+      "item": "the_vault:eternal_soul"
+    },
+    "A": {
+      "item": "minecraft:iron_sword"
+    },
+    "S": {
+      "type": "forge:nbt",
+      "item": "the_vault:god_token",
+      "nbt": {
+        "type": "idona"
+      }
+    }
+  },
+  "result": {
+    "item": "woldsvaults:idona_dagger",
+    "count": 1
+  }
+}
