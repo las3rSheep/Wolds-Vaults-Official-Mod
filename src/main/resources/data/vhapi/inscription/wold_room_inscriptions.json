@@ -1,34 +1,5 @@
 {
   "pools": {
-    "the_vault:playzone": [
-      {
-        "level": 0,
-        "pool": [
-          {
-            "value": {
-              "entries": [
-                {
-                  "pool": "the_vault:vault/rooms/omega/playzone",
-                  "count": 1,
-                  "color": 7012096
-                }
-              ],
-              "size": {
-                "type": "uniform",
-                "min": 10,
-                "max": 10
-              },
-              "model": {
-                "type": "uniform",
-                "min": 20,
-                "max": 20
-              }
-            },
-            "weight": 16
-          }
-        ]
-      }
-    ],
     "the_vault:arcade": [
       {
         "level": 0,

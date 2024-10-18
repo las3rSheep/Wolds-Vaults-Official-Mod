@@ -51,31 +51,6 @@
       ]
     },
     {
-      "id": "the_vault:playzone",
-      "output": {
-        "AMOUNT": 1,
-        "ITEM": "the_vault:inscription",
-        "NBT": "{pool:\"the_vault:playzone\", data:{color:7012096,model:20}, display:{Name:'{\"text\":\"Playzone Inscription\",\"color\":\"#6AFF00\"}' }}"
-      },
-      "inputs": [
-        {
-          "AMOUNT": 32,
-          "ITEM": "the_vault:wooden_chest_scroll",
-          "NBT": "{}"
-        },
-        {
-          "AMOUNT": 128,
-          "ITEM": "the_vault:gem_larimar",
-          "NBT": "{}"
-        },
-        {
-          "AMOUNT": 32,
-          "ITEM": "the_vault:inscription_piece",
-          "NBT": "{}"
-        }
-      ]
-    },
-    {
       "id": "the_vault:arcade",
       "output": {
         "AMOUNT": 1,
