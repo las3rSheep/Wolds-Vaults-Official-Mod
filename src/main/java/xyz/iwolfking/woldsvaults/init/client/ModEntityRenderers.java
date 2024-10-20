@@ -6,6 +6,8 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.entities.ghosts.lib.client.GenericEffectWraithRenderer;
 import xyz.iwolfking.woldsvaults.init.ModEntities;
 import xyz.iwolfking.woldsvaults.objectives.data.bosses.client.WoldBossRenderer;
 
@@ -16,5 +18,6 @@ public class ModEntityRenderers {
 
     public static void register(FMLClientSetupEvent event) {
         EntityRenderers.register(ModEntities.WOLD, ctx -> new WoldBossRenderer(ctx, ModModelLayers.FIGHTER));
+        EntityRenderers.register(ModEntities.GREEN_GHOST, ctx -> new GenericEffectWraithRenderer(ctx, WoldsVaults.id("textures/entity/green_ghost.png")));
     }
 }
