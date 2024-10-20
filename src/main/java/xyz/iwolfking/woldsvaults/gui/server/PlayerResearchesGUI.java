@@ -40,9 +40,9 @@ public class PlayerResearchesGUI extends SimpleGui {
     public void updateDisplay() {
         int i = 0;
         List<String> targetResearches = getResearches(target);
-        System.out.println(targetResearches);
+
         for(String research : targetResearches) {
-            System.out.println(research);
+
             PlayerResearchesGUI.DisplayElement RESEARCH_ELEMENT = PlayerResearchesGUI.DisplayElement.of(new GuiElementBuilder(getItemByMod(research))
                     .setName(new TextComponent(research).withStyle(ChatFormatting.GREEN))
                     .addLoreLine(new TextComponent("Unlocked.").withStyle(ChatFormatting.GOLD))
@@ -52,7 +52,7 @@ public class PlayerResearchesGUI extends SimpleGui {
                     }));
             this.setSlot(i, RESEARCH_ELEMENT.element);
             i += 1;
-            System.out.println(i);
+
             if(i >= 54) {
                 return;
             }

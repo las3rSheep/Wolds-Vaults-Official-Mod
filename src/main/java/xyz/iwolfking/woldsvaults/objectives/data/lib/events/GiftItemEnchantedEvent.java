@@ -21,7 +21,6 @@ public class GiftItemEnchantedEvent extends BasicEnchantedEvent {
     @Override
     public void triggerEvent(BlockPos pos, ServerPlayer player, Vault vault) {
         items.getRandom().ifPresent(itemStack -> {
-            System.out.println(itemStack.getDisplayName());
             player.displayClientMessage(new TextComponent("You have been gifted " + itemStack.getCount() + "x ").append(itemStack.getDisplayName()).withStyle(ChatFormatting.GOLD), true);
             player.addItem(itemStack);
         });

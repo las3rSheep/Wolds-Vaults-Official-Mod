@@ -20,12 +20,9 @@ public class PlayerResearchCommand {
     }
 
     private static int openResearchGUI(CommandSourceStack ctx, String target) throws CommandSyntaxException {
-        System.out.println("running research command");
         if (UsernameCache.getMap().containsValue(target)) {
-            System.out.println("Username cache populated, found match.");
             if (ctx.getServer().getProfileCache().get(target).isPresent()) {
                 UUID uuid = ctx.getServer().getProfileCache().get(target).get().getId();
-                System.out.println("uuid: " + uuid);
                 System.out.println(target);
                 PlayerResearchesGUI gui = new PlayerResearchesGUI(ctx.getPlayerOrException(), uuid);
                 gui.updateDisplay();
@@ -35,7 +32,6 @@ public class PlayerResearchCommand {
 
             }
         } else {
-            System.out.println("Failed to find username in cache.");
             MessageFunctions.sendMessage(ctx.getPlayerOrException(), new TextComponent("Could not find a player with that username."));
             return 0;
         }

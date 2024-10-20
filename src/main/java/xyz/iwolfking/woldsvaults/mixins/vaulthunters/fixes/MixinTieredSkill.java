@@ -24,9 +24,6 @@ public abstract class MixinTieredSkill {
     @Overwrite
     public int getSpentLearnPoints(int tier) {
         int points = 0;
-        System.out.println("READING SKILL");
-        System.out.println(maxLearnableTier);
-        System.out.println(tier);
 
         if(tier > getMaxLearnableTier()) {
             tier = getMaxLearnableTier();
@@ -36,7 +33,7 @@ public abstract class MixinTieredSkill {
             points += ((LearnableSkill) this.tiers.get(i)).getLearnPointCost();
         }
 
-        System.out.println("Final points: " + points);
+
 
         return points;
     }

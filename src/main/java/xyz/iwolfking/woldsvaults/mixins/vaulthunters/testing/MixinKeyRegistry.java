@@ -22,14 +22,10 @@ public abstract class MixinKeyRegistry<K extends VersionedKey<? extends K, ? ext
 
     @Overwrite
     public int getIndex(K key, Version version) {
-        System.out.println(key);
-        System.out.println("checking index with key");
         keys.forEach(k -> {
             System.out.println(k.getId());
         });
-        System.out.println(version.getName());
         for(Version mapversion : indexCache.keySet()) {
-            System.out.println(mapversion);
             for(ResourceLocation mapKey : indexCache.get(mapversion).keySet()) {
                 System.out.println(mapKey);
                 System.out.println(indexCache.get(mapversion).get(mapKey));

@@ -24,10 +24,6 @@ public class EnchantedElixirEventLoader extends VaultConfigDataLoader<EnchantedE
                 EnchantedEventsRegistry.register(modifierEnchantedEventEntry.value, ((double)modifierEnchantedEventEntry.weight), modifierEnchantedEventEntry.value.isOmega, modifierEnchantedEventEntry.value.isPositive);
             }
         }
-        for(Map.Entry<BasicEnchantedEvent, Double> eventEntry : EnchantedEventsRegistry.getEvents().entrySet()) {
-            System.out.println(eventEntry.getKey().getEventName());
-            System.out.println(eventEntry.getValue());
-        }
         this.CUSTOM_CONFIGS.clear();
     }
 }
