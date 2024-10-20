@@ -66,20 +66,15 @@ public class MixinShopPedestalBlock extends Block implements EntityBlock, GameMa
         ItemStack c;
         if (var8 instanceof ShopPedestalBlockTile tile) {
             if(ServerVaults.get(worldIn).isPresent()) {
-                System.out.println("Player is in vault.");
                 Optional<Vault> vaultOpt = ServerVaults.get(worldIn);
 
                 if(vaultOpt.isPresent()) {
-                    System.out.println("Vault is present.");
                     Vault vault = vaultOpt.get();
 
                     Objective.ObjList objectives = vault.get(Vault.OBJECTIVES).get(Objectives.LIST);
                     for(Objective obj : objectives) {
-                        System.out.println(obj.getKey());
                         if(obj instanceof ParadoxObjective paradoxObjective) {
-                            System.out.println("Has a Paradox objective.");
                             if(paradoxObjective.get(ParadoxObjective.TYPE).equals(ParadoxObjective.Type.BUILD)) {
-                                System.out.println("Paradox build mode detected.");
                                 return InteractionResult.FAIL;
                             }
                         }
