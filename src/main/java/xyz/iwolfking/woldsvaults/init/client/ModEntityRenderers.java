@@ -19,5 +19,8 @@ public class ModEntityRenderers {
     public static void register(FMLClientSetupEvent event) {
         EntityRenderers.register(ModEntities.WOLD, ctx -> new WoldBossRenderer(ctx, ModModelLayers.FIGHTER));
         EntityRenderers.register(ModEntities.GREEN_GHOST, ctx -> new GenericEffectWraithRenderer(ctx, WoldsVaults.id("textures/entity/green_ghost.png")));
+        EntityRenderers.register(ModEntities.BROWN_GHOST, ctx -> new GenericEffectWraithRenderer(ctx, WoldsVaults.id("textures/entity/brown_ghost.png")));
+        EntityRenderers.register(ModEntities.BLACK_GHOST, ctx -> new GenericEffectWraithRenderer(ctx, WoldsVaults.id("textures/entity/black_ghost.png")));
+        EntityRenderers.register(ModEntities.BLUE_GHOST, ctx -> new GenericEffectWraithRenderer(ctx, WoldsVaults.id("textures/entity/blue_ghost.png")));
     }
 }

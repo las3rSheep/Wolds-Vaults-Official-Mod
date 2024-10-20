@@ -10,6 +10,9 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.entities.ghosts.BlackGhost;
+import xyz.iwolfking.woldsvaults.entities.ghosts.BlueGhost;
+import xyz.iwolfking.woldsvaults.entities.ghosts.BrownGhost;
 import xyz.iwolfking.woldsvaults.entities.ghosts.GreenGhost;
 import xyz.iwolfking.woldsvaults.objectives.data.bosses.WoldBoss;
 
@@ -21,11 +24,17 @@ public class ModEntities {
     private static final Map<EntityType<? extends LivingEntity>, Supplier<AttributeSupplier.Builder>> ATTRIBUTE_BUILDERS = new HashMap<>();
     public static EntityType<WoldBoss> WOLD;
     public static EntityType<GreenGhost> GREEN_GHOST;
+    public static EntityType<BlueGhost> BLUE_GHOST;
+    public static EntityType<BlackGhost> BLACK_GHOST;
+    public static EntityType<BrownGhost> BROWN_GHOST;
 
     public static void register(RegistryEvent.Register<EntityType<?>> event) {
         WOLD = registerLiving("wold", EntityType.Builder.of(WoldBoss::new, MobCategory.MONSTER)
         .sized(1.2F, 3.9F), Zombie::createAttributes, event);
         GREEN_GHOST = registerLivingWV("green_ghost", EntityType.Builder.of(GreenGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new GreenGhost(GREEN_GHOST, level))), GreenGhost::createAttributes, event);
+        BLUE_GHOST = registerLivingWV("blue_ghost", EntityType.Builder.of(BlueGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new BlueGhost(BLUE_GHOST, level))), BlueGhost::createAttributes, event);
+        BLACK_GHOST = registerLivingWV("black_ghost", EntityType.Builder.of(BlackGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new BlackGhost(BLACK_GHOST, level))), BlackGhost::createAttributes, event);
+        BROWN_GHOST = registerLivingWV("brown_ghost", EntityType.Builder.of(BrownGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new BrownGhost(BROWN_GHOST, level))), BrownGhost::createAttributes, event);
 
     }
 
