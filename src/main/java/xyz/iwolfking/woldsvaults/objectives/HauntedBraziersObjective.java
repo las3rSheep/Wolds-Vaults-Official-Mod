@@ -32,10 +32,7 @@ import iskallia.vault.core.world.data.tile.PartialBlockState;
 import iskallia.vault.core.world.data.tile.PartialTile;
 import iskallia.vault.core.world.loot.generator.LootTableGenerator;
 import iskallia.vault.core.world.storage.VirtualWorld;
-import iskallia.vault.init.ModBlocks;
-import iskallia.vault.init.ModConfigs;
-import iskallia.vault.init.ModNetwork;
-import iskallia.vault.init.ModSounds;
+import iskallia.vault.init.*;
 import iskallia.vault.item.gear.DataInitializationItem;
 import iskallia.vault.item.gear.DataTransferItem;
 import iskallia.vault.item.gear.VaultLevelItem;
@@ -58,8 +55,7 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -69,6 +65,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.PacketDistributor;
+import vazkii.quark.content.mobs.entity.Wraith;
 
 import java.util.*;
 
@@ -131,15 +128,11 @@ public class HauntedBraziersObjective extends MonolithObjective {
                                     killBoss.set(KillBossObjective.BOSS_POS, pos);
                                 }
                             }
-                            List<LivingEntity> nearbyEntities = world.getEntitiesOfClass(LivingEntity.class, Objects.requireNonNull(world.getBlockEntity(pos)).getRenderBoundingBox().inflate(64.0D));
+                            List<Wraith> nearbyEntities = world.getEntitiesOfClass(Wraith.class, Objects.requireNonNull(world.getBlockEntity(pos)).getRenderBoundingBox().inflate(64.0D));
 
                             nearbyEntities.forEach(livingEntity -> {
-                                if(livingEntity.hasEffect(MobEffects.DAMAGE_RESISTANCE) && !(livingEntity instanceof Player)) {
-                                    livingEntity.removeEffect(MobEffects.DAMAGE_RESISTANCE);
-
+                                    livingEntity.addEffect(new MobEffectInstance(ModEffects.NO_AI, 60, 0));
                                     livingEntity.hurt(DamageSource.MAGIC,livingEntity.getMaxHealth() / 2);
-                                }
-
                             });
                         }
 
