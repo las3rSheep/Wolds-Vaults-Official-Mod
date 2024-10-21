@@ -8,11 +8,11 @@ import vazkii.quark.base.client.handler.ModelHandler;
 import vazkii.quark.content.mobs.client.model.WraithModel;
 import vazkii.quark.content.mobs.entity.Wraith;
 
-public class GenericEffectWraithRenderer extends MobRenderer<Wraith, WraithModel> {
+public class GenericWraithRenderer extends MobRenderer<Wraith, WraithModel> {
 
     private final ResourceLocation TEXTURE;
 
-    public GenericEffectWraithRenderer(EntityRendererProvider.Context context, ResourceLocation textureLocation) {
+    public GenericWraithRenderer(EntityRendererProvider.Context context, ResourceLocation textureLocation) {
         super(context, ModelHandler.model(ModelHandler.wraith), 0F);
         this.TEXTURE = textureLocation;
     }

@@ -10,10 +10,7 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.entities.ghosts.BlackGhost;
-import xyz.iwolfking.woldsvaults.entities.ghosts.BlueGhost;
-import xyz.iwolfking.woldsvaults.entities.ghosts.BrownGhost;
-import xyz.iwolfking.woldsvaults.entities.ghosts.GreenGhost;
+import xyz.iwolfking.woldsvaults.entities.ghosts.*;
 import xyz.iwolfking.woldsvaults.objectives.data.bosses.WoldBoss;
 
 import java.util.HashMap;
@@ -27,6 +24,12 @@ public class ModEntities {
     public static EntityType<BlueGhost> BLUE_GHOST;
     public static EntityType<BlackGhost> BLACK_GHOST;
     public static EntityType<BrownGhost> BROWN_GHOST;
+    public static EntityType<DarkBlueGhost> DARK_BLUE_GHOST;
+    public static EntityType<DarkRedGhost> DARK_RED_GHOST;
+    public static EntityType<PurpleGhost> PURPLE_GHOST;
+    public static EntityType<RedGhost> RED_GHOST;
+    public static EntityType<YellowGhost> YELLOW_GHOST;
+    public static EntityType<DarkGrayGhost> DARK_GRAY_GHOST;
 
     public static void register(RegistryEvent.Register<EntityType<?>> event) {
         WOLD = registerLiving("wold", EntityType.Builder.of(WoldBoss::new, MobCategory.MONSTER)
@@ -35,7 +38,12 @@ public class ModEntities {
         BLUE_GHOST = registerLivingWV("blue_ghost", EntityType.Builder.of(BlueGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new BlueGhost(BLUE_GHOST, level))), BlueGhost::createAttributes, event);
         BLACK_GHOST = registerLivingWV("black_ghost", EntityType.Builder.of(BlackGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new BlackGhost(BLACK_GHOST, level))), BlackGhost::createAttributes, event);
         BROWN_GHOST = registerLivingWV("brown_ghost", EntityType.Builder.of(BrownGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new BrownGhost(BROWN_GHOST, level))), BrownGhost::createAttributes, event);
-
+        DARK_BLUE_GHOST = registerLivingWV("dark_blue_ghost", EntityType.Builder.of(DarkBlueGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new DarkBlueGhost(DARK_BLUE_GHOST, level))), DarkBlueGhost::createAttributes, event);
+        DARK_RED_GHOST = registerLivingWV("dark_red_ghost", EntityType.Builder.of(DarkRedGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new DarkRedGhost(DARK_RED_GHOST, level))), DarkRedGhost::createAttributes, event);
+        PURPLE_GHOST = registerLivingWV("purple_ghost", EntityType.Builder.of(PurpleGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new PurpleGhost(PURPLE_GHOST, level))), PurpleGhost::createAttributes, event);
+        RED_GHOST = registerLivingWV("red_ghost", EntityType.Builder.of(RedGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new RedGhost(RED_GHOST, level))), RedGhost::createAttributes, event);
+        YELLOW_GHOST = registerLivingWV("yellow_ghost", EntityType.Builder.of(YellowGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new YellowGhost(YELLOW_GHOST, level))), YellowGhost::createAttributes, event);
+        DARK_GRAY_GHOST = registerLivingWV("dark_gray_ghost", EntityType.Builder.of(DarkGrayGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new DarkGrayGhost(DARK_GRAY_GHOST, level))), DarkGrayGhost::createAttributes, event);
     }
 
 

@@ -7,7 +7,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import vazkii.quark.content.mobs.entity.Wraith;
 import xyz.iwolfking.woldsvaults.util.VaultModifierUtils;
@@ -36,11 +35,6 @@ public class VaultModifierWraith extends Wraith {
                 }
 
             }
-
-            double dx = this.getX() - entityIn.getX();
-            double dz = this.getZ() - entityIn.getZ();
-            Vec3 vec = (new Vec3(dx, 0.0, dz)).normalize().add(0.0, 0.5, 0.0).normalize().scale(0.85);
-            this.setDeltaMovement(vec);
         }
 
         return did;

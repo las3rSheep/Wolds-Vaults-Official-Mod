@@ -6,7 +6,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import vazkii.quark.content.mobs.entity.Wraith;
 
@@ -25,16 +24,15 @@ public class MultiGenericEffectWraith extends Wraith {
             if (entityIn instanceof LivingEntity living) {
                 if(effectList != null) {
                     if(!effectList.isEmpty()) {
-                        living.addEffect(effectList.getRandom(random));
+                        MobEffectInstance effect = effectList.getRandom(random);
+                        if(effect != null) {
+                            living.addEffect(new MobEffectInstance(effect));
+                        }
+
                     }
                 }
 
             }
-
-            double dx = this.getX() - entityIn.getX();
-            double dz = this.getZ() - entityIn.getZ();
-            Vec3 vec = (new Vec3(dx, 0.0, dz)).normalize().add(0.0, 0.5, 0.0).normalize().scale(0.85);
-            this.setDeltaMovement(vec);
         }
 
         return did;

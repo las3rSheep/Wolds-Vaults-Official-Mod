@@ -8,6 +8,6 @@ import xyz.iwolfking.woldsvaults.entities.ghosts.lib.GenericEffectWraith;
 
 public class BlueGhost extends GenericEffectWraith {
     public BlueGhost(EntityType<? extends Wraith> type, Level worldIn) {
-        super(type, worldIn, ModEffects.CHILLED, 100, 0);
+        super(type, worldIn, ModEffects.CHILLED, 100, 2);
     }
 }

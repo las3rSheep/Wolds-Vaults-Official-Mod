@@ -15,7 +15,7 @@ public class BlackGhost extends MultiGenericEffectWraith {
 
     static {
         BLACK_GHOST_EFFECTS.add(new MobEffectInstance(MobEffects.BLINDNESS, 60, 0), 8);
-        BLACK_GHOST_EFFECTS.add(new MobEffectInstance(MobEffects.CONFUSION, 120, 0), 8);
+        BLACK_GHOST_EFFECTS.add(new MobEffectInstance(MobEffects.CONFUSION, 200, 0), 8);
         BLACK_GHOST_EFFECTS.add(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 120, 3), 8);
         BLACK_GHOST_EFFECTS.add(new MobEffectInstance(MobEffects.WITHER, 120, 1), 8);
         BLACK_GHOST_EFFECTS.add(new MobEffectInstance(ModEffects.TIMER_ACCELERATION, 60, 1), 8);
