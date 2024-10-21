@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " # ",
+    "M#M",
     "EAE",
-    " S "
+    "MSM"
   ],
   "key": {
     "#": {
@@ -21,6 +21,9 @@
       "nbt": {
         "type": "idona"
       }
+    },
+    "M": {
+      "item": "the_vault:memory_powder"
     }
   },
   "result": {
