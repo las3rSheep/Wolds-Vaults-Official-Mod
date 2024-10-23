@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.api;
 
-import xyz.iwolfking.vhapi.api.lib.config.loaders.box.WeightedProductEntryConfigLoader;
+import xyz.iwolfking.vhapi.api.LoaderRegistry;
+import xyz.iwolfking.vhapi.api.loaders.box.WeightedProductEntryConfigLoader;
 import xyz.iwolfking.woldsvaults.api.objectives.enchanted_elixir.EnchantedElixirEventLoader;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
 
@@ -17,38 +18,51 @@ public class WoldDataLoaders {
     public static final EnchantedElixirEventLoader ENCHANTED_ELIXIR_EVENT_LOADER;
 
     static {
-        AUGMENT_BOX_LOADER = new WeightedProductEntryConfigLoader("vhapi", () -> {
+        AUGMENT_BOX_LOADER = new WeightedProductEntryConfigLoader(() -> {
             return ModConfigs.AUGMENT_BOX.POOL;
         }, "augment_box");
 
-        INSCRIPTION_BOX_LOADER = new WeightedProductEntryConfigLoader("vhapi", () -> {
+        INSCRIPTION_BOX_LOADER = new WeightedProductEntryConfigLoader(() -> {
             return ModConfigs.INSCRIPTION_BOX.POOL;
         }, "inscription_box");
 
-        OMEGA_BOX_LOADER = new WeightedProductEntryConfigLoader("vhapi", () -> {
+        OMEGA_BOX_LOADER = new WeightedProductEntryConfigLoader(() -> {
             return ModConfigs.OMEGA_BOX.POOL;
         }, "omega_box");
 
-        VAULTAR_BOX_LOADER = new WeightedProductEntryConfigLoader("vhapi", () -> {
+        VAULTAR_BOX_LOADER = new WeightedProductEntryConfigLoader(() -> {
             return ModConfigs.VAULTAR_BOX.POOL;
         }, "vaultar_box");
 
-        CATALYST_BOX_LOADER = new WeightedProductEntryConfigLoader("vhapi", () -> {
+        CATALYST_BOX_LOADER = new WeightedProductEntryConfigLoader(() -> {
             return ModConfigs.VAULTAR_BOX.POOL;
         }, "catalyst_box");
 
-        GEM_BOX_LOADER = new WeightedProductEntryConfigLoader("vhapi", () -> {
+        GEM_BOX_LOADER = new WeightedProductEntryConfigLoader(() -> {
             return ModConfigs.GEM_BOX.POOL;
         }, "gem_box");
 
-        SUPPLY_BOX_LOADER = new WeightedProductEntryConfigLoader("vhapi", () -> {
+        SUPPLY_BOX_LOADER = new WeightedProductEntryConfigLoader(() -> {
             return ModConfigs.SUPPLY_BOX.POOL;
         }, "supply_box");
 
-        ENIGMA_EGG_LOADER = new WeightedProductEntryConfigLoader("vhapi", () -> {
+        ENIGMA_EGG_LOADER = new WeightedProductEntryConfigLoader(() -> {
             return ModConfigs.ENIGMA_EGG.POOL;
         }, "enigma_egg");
         ENCHANTED_ELIXIR_EVENT_LOADER = new EnchantedElixirEventLoader();
+
+    }
+
+    public static void initProcessors() {
+        LoaderRegistry.addConfigProcessor(AUGMENT_BOX_LOADER);
+        LoaderRegistry.addConfigProcessor(INSCRIPTION_BOX_LOADER);
+        LoaderRegistry.addConfigProcessor(OMEGA_BOX_LOADER);
+        LoaderRegistry.addConfigProcessor(VAULTAR_BOX_LOADER);
+        LoaderRegistry.addConfigProcessor(CATALYST_BOX_LOADER);
+        LoaderRegistry.addConfigProcessor(GEM_BOX_LOADER);
+        LoaderRegistry.addConfigProcessor(SUPPLY_BOX_LOADER);
+        LoaderRegistry.addConfigProcessor(ENIGMA_EGG_LOADER);
+        LoaderRegistry.addConfigProcessor(ENCHANTED_ELIXIR_EVENT_LOADER);
     }
 
 }

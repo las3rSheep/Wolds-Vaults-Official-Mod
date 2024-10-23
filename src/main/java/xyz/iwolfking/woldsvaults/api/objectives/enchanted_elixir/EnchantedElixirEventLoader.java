@@ -2,19 +2,14 @@ package xyz.iwolfking.woldsvaults.api.objectives.enchanted_elixir;
 
 import iskallia.vault.util.data.WeightedList;
 import xyz.iwolfking.vhapi.api.events.VaultConfigEvent;
-import xyz.iwolfking.vhapi.api.lib.loaders.VaultConfigDataLoader;
-import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.vhapi.api.loaders.lib.core.VaultConfigProcessor;
 import xyz.iwolfking.woldsvaults.api.objectives.enchanted_elixir.config.EnchantedElixirEventConfig;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 import xyz.iwolfking.woldsvaults.objectives.data.lib.events.VaultModifierEnchantedEvent;
-import xyz.iwolfking.woldsvaults.objectives.lib.BasicEnchantedEvent;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class EnchantedElixirEventLoader extends VaultConfigDataLoader<EnchantedElixirEventConfig> {
+public class EnchantedElixirEventLoader extends VaultConfigProcessor<EnchantedElixirEventConfig> {
     public EnchantedElixirEventLoader() {
-        super(new EnchantedElixirEventConfig(), "enchanted_elixir_events", new HashMap<>(), WoldsVaults.MOD_ID);
+        super(new EnchantedElixirEventConfig(), "enchanted_elixir_events");
     }
 
     @Override
