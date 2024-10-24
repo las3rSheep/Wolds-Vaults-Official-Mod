@@ -4,7 +4,9 @@
   "TICK_COUNTER": 30000,
   "NO_EXIT_CHANCE": 10,
   "OBELISK_DROP_CHANCE": 2,
-  "ITEM_BLACKLIST": [],
+  "ITEM_BLACKLIST": [
+    "tiab:time_in_a_bottle"
+  ],
   "BLOCK_BLACKLIST": [
     "supplementaries:book_pile",
     "supplementaries:book_pile_horizontal"
