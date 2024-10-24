@@ -1,0 +1,36 @@
+{
+  "AXE_MODEL_ROLLS": {
+    "SCRAPPY": [],
+    "COMMON": [],
+    "RARE": [],
+    "EPIC": [],
+    "OMEGA": [
+      "vhapi:gear/axe/iskallianchor"
+    ],
+    "UNIQUE": []
+  },
+  "WAND_MODEL_ROLLS": {
+    "SCRAPPY": [],
+    "COMMON": [],
+    "RARE": [],
+    "EPIC": [],
+    "OMEGA": [
+      "vhapi:gear/wand/cat",
+      "vhapi:gear/wand/mustard"
+    ],
+    "UNIQUE": []
+  },
+  "SWORD_MODEL_ROLLS": {
+    "SCRAPPY": [],
+    "COMMON": [],
+    "RARE": [],
+    "EPIC": [],
+    "OMEGA": [
+      "vhapi:gear/sword/hotdog",
+      "vhapi:gear/sword/crystal",
+      "vhapi:gear/sword/cheese",
+      "vhapi:gear/sword/lute"
+    ],
+    "UNIQUE": []
+  }
+}
