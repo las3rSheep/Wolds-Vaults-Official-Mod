@@ -202,8 +202,6 @@ public abstract class MixinThrownTrident extends AbstractArrow {
         }
     }
 
-    @Shadow public abstract boolean isChanneling();
-
     private boolean isVaultTridentChanneling() {
         VaultGearData data = VaultGearData.read(this.tridentItem);
         return data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_CHANNELING, VaultGearAttributeTypeMerger.anyTrue());

@@ -11,6 +11,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.items.*;
 import xyz.iwolfking.woldsvaults.items.fruits.HastyPomegranteItem;
@@ -135,6 +136,9 @@ public class ModItems {
     public static BasicItem IDONA_DAGGER;
     public static BasicItem WENDARR_GEM;
 
+    //Backpack?
+    public static BackpackItem XL_BACKPACK;
+
 
 
     @SubscribeEvent
@@ -225,6 +229,7 @@ public class ModItems {
         registry.register(TOME_OF_TENOS);
         registry.register(POLTERGEIST_PLUM);
         registry.register(CRYSTAL_SEAL_ZEALOT);
+        registry.register(XL_BACKPACK);
     }
 
     static {
@@ -307,5 +312,7 @@ public class ModItems {
         VELARA_APPLE = new BasicItem(WoldsVaults.id("velara_apple"));
         WENDARR_GEM = new BasicItem(WoldsVaults.id("wendarr_gem"));
         POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
+        XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
+        XL_BACKPACK.setRegistryName(WoldsVaults.MOD_ID, "xl_backpack");
     }
 }

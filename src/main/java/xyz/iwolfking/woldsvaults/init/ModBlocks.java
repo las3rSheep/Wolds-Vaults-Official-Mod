@@ -16,6 +16,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlock;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlockEntity;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.blocks.*;
 import xyz.iwolfking.woldsvaults.blocks.tiles.*;
@@ -50,9 +52,10 @@ public class ModBlocks {
     public static final BlockEntityType<DecoLodestoneTileEntity> DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoMonolithTileEntity> DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<SurvivalMobBarrierTileEntity> SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<BackpackBlockEntity> SOPHISTICATED_BACKPACK;
 
 
-
+    public static final BackpackBlock XL_BACKPACK;
 
     static {
         VAULT_PALLADIUM_PILE = new CoinPileDecorBlock();
@@ -68,6 +71,7 @@ public class ModBlocks {
         DECO_LODESTONE_BLOCK = (DecoLodestoneBlock) new DecoLodestoneBlock();
         DECO_MONOLITH_BLOCK = (DecoMonolithBlock) new DecoMonolithBlock();
         SURVIVAL_MOB_BARRIER = (SurvivalMobBarrier) new SurvivalMobBarrier();
+        XL_BACKPACK = new BackpackBlock(12000);
         VAULT_SALVAGER_ENTITY = BlockEntityType.Builder.of(VaultSalvagerTileEntity::new, new Block[]{VAULT_SALVAGER_BLOCK}).build((Type)null);
         ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(IskallianLeavesTileEntity::new, new Block[]{ISKALLIAN_LEAVES_BLOCK}).build((Type)null);
         HELLISH_SAND_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(HellishSandTileEntity::new, new Block[]{HELLISH_SAND_BLOCK}).build((Type)null);
@@ -77,6 +81,7 @@ public class ModBlocks {
         DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoLodestoneTileEntity::new, new Block[]{DECO_LODESTONE_BLOCK}).build((Type)null);
         DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoMonolithTileEntity::new, new Block[]{DECO_MONOLITH_BLOCK}).build((Type)null);
         SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(SurvivalMobBarrierTileEntity::new, new Block[]{SURVIVAL_MOB_BARRIER}).build((Type)null);
+        SOPHISTICATED_BACKPACK = BlockEntityType.Builder.of(BackpackBlockEntity::new, new Block[]{XL_BACKPACK}).build((Type)null);
     }
 
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -91,6 +96,7 @@ public class ModBlocks {
         registerBlock(event, SURVIVAL_MOB_BARRIER, WoldsVaults.id("mob_barrier_red"));
         registerBlock(event, VAULT_PALLADIUM_PILE, VaultMod.id("vault_palladium"));
         registerBlock(event, VAULT_IRIDIUM_PILE, VaultMod.id("vault_iridium"));
+        registerBlock(event, XL_BACKPACK, WoldsVaults.id("xl_backpack"));
 
     }
     public static void registerTileEntities(RegistryEvent.Register<BlockEntityType<?>> event) {
@@ -165,12 +171,7 @@ public class ModBlocks {
         adjustProperties.accept(properties);
         registerBlockItem(event, block, new BlockItem(block, properties));
     }
-//
-//    private static void registerSophisticatedBlockItem(RegistryEvent.Register<Item> event, Block block) {
-//        SophisticatedVaultStorageBlockItem item = new SophisticatedVaultChestItem(block);
-//        item.setRegistryName(block.getRegistryName());
-//        event.getRegistry().register(item);
-//    }
+
 
     private static void registerBlockItem(RegistryEvent.Register<Item> event, Block block, BlockItem blockItem) {
         blockItem.setRegistryName(block.getRegistryName());

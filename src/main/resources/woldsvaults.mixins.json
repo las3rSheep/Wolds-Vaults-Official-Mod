@@ -44,6 +44,7 @@
     "scannable.MixinScannableItems",
     "scannable.ScannerModuleItemAccessor",
     "secretroomsmod.MixinDelegateWorld",
+    "sophisticatedbackpacks.MixinModBlocks",
     "sophisticatedbackpacks.MixinToolSwapperWrapper",
     "sophisticatedstorage.MixinPackingTape",
     "supplementaries.MixinFaucetTileEntity",
