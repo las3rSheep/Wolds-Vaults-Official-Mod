@@ -94,6 +94,7 @@ public abstract class MixinThrownTrident extends AbstractArrow {
         if(this.tridentItem.getItem() instanceof VaultTridentItem) {
             if(!(p_37573_.getEntity() instanceof LivingEntity)) {
                 ci.cancel();
+                return;
             }
             Entity entity = p_37573_.getEntity();
             VaultGearData data = VaultGearData.read(tridentItem);
