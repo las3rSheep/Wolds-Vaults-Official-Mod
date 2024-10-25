@@ -76,6 +76,7 @@
     "vaulthunters.custom.MixinGearRollHelper",
     "vaulthunters.custom.MixinItemVaultCrystal",
     "vaulthunters.custom.MixinJewelItem",
+    "vaulthunters.custom.MixinLootInfoGroupDefinitionRegistry",
     "vaulthunters.custom.MixinMagnetItem",
     "vaulthunters.custom.MixinManaPylonBuff",
     "vaulthunters.custom.MixinPlayerVaultStats",
