@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.objectives.lib;
 
+import com.google.gson.annotations.Expose;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.player.Listener;
 import iskallia.vault.core.vault.player.Listeners;
@@ -16,9 +17,20 @@ import java.util.Iterator;
 import java.util.Random;
 
 public abstract class BasicEnchantedEvent {
-
+    @Expose
     private final String eventName;
+
+    @Expose
     private final String eventDescription;
+
+    @Expose
+    private final String color;
+
+    @Expose
+    public boolean isOmega;
+
+    @Expose
+    public boolean isPositive;
 
     private final TextColor primaryColor;
 
@@ -31,7 +43,8 @@ public abstract class BasicEnchantedEvent {
     protected BasicEnchantedEvent(String eventName, String eventDescription, String primaryColor) {
         this.eventDescription = eventDescription;
         this.eventName = eventName;
-        this.primaryColor = TextColor.parseColor(primaryColor);
+        this.color = primaryColor;
+        this.primaryColor = TextColor.parseColor(color);
     }
 
     public void triggerEvent(BlockPos pos, ServerPlayer player, Vault vault) {

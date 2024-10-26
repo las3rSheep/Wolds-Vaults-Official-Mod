@@ -1,10 +1,13 @@
 package xyz.iwolfking.woldsvaults.events;
 
+import atomicstryker.infernalmobs.common.InfernalMobsCore;
 import cofh.core.init.CoreMobEffects;
 import iskallia.vault.block.CoinPileBlock;
 import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.block.VaultOreBlock;
 import iskallia.vault.core.event.CommonEvents;
+import iskallia.vault.entity.VaultBoss;
+import iskallia.vault.entity.champion.ChampionLogic;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
@@ -50,7 +53,7 @@ public class LivingEntityEvents {
     public static void capLightningDamageInVaults(LivingHurtEvent event) {
         if(event.getEntityLiving() instanceof Player player && event.getSource().equals(DamageSource.LIGHTNING_BOLT)) {
             ServerVaults.get(player.level).ifPresent(vault -> {
-                event.setAmount( Math.min(event.getAmount(), player.getMaxHealth() * 0.2F));
+                event.setAmount( Math.min(event.getAmount(), player.getMaxHealth() * 0.1F));
                 player.addEffect(new MobEffectInstance(CoreMobEffects.SHOCKED.get(), 80, 0));
             });
         }
@@ -63,6 +66,7 @@ public class LivingEntityEvents {
             return;
         }
 
+
         if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
             VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
             if(data != null && data.has(ModGearAttributes.REAVING_DAMAGE)) {
@@ -71,9 +75,17 @@ public class LivingEntityEvents {
                 }
                 event.getEntityLiving().addEffect(new MobEffectInstance(ModEffects.REAVING, Integer.MAX_VALUE, 0));
                 event.getEntityLiving().addEffect(new MobEffectInstance(iskallia.vault.init.ModEffects.NO_AI, 20, 0));
-                event.setAmount(event.getAmount() + (event.getEntityLiving().getMaxHealth() * data.get(ModGearAttributes.REAVING_DAMAGE, VaultGearAttributeTypeMerger.floatSum())));
-                if(ANCHOR_SLAM_SOUND != null) {
+
+                if(ChampionLogic.isChampion(event.getEntityLiving()) || InfernalMobsCore.getMobModifiers(event.getEntityLiving()) != null || event.getEntityLiving() instanceof VaultBoss) {
+                    event.setAmount(event.getAmount() + (event.getEntityLiving().getMaxHealth() * (data.get(ModGearAttributes.REAVING_DAMAGE, VaultGearAttributeTypeMerger.floatSum()) * 0.5F)));
+                }
+                else {
+                    event.setAmount(event.getAmount() + (event.getEntityLiving().getMaxHealth() * data.get(ModGearAttributes.REAVING_DAMAGE, VaultGearAttributeTypeMerger.floatSum())));
+                }
+
+                if(ANCHOR_SLAM_SOUND == null) {
                     WoldsVaults.LOGGER.debug("Anchor Slam Sound was null, Better Combat mod is missing.");
+                    return;
                 }
                 player.getLevel().playSound(null, event.getEntity(), ANCHOR_SLAM_SOUND, SoundSource.PLAYERS, 1.0F, 1.0F);
             }

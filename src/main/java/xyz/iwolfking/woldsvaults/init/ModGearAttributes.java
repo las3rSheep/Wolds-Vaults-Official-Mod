@@ -13,8 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.items.gear.amulet.VaultAmuletEffect;
-import xyz.iwolfking.woldsvaults.items.gear.amulet.VaultAmuletEffectRegistry;
+
 
 import javax.annotation.Nullable;
 
@@ -40,7 +39,7 @@ public class ModGearAttributes {
 
     public static final VaultGearAttribute<Float> REAVING_DAMAGE = attr("reaving_damage",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Bonus Reaving Damage", 12417954), VaultGearAttributeComparator.floatComparator());
-    public static final VaultGearAttribute<VaultAmuletEffect<?>> VAULT_AMULET_EFFECT = attr("amulet", VaultGearAttributeType.registryType(VaultAmuletEffectRegistry.getRegistry()), ModGearAttributeGenerators.noneGenerator(), ModGearAttributeReaders.none());
+
     @SubscribeEvent
     /*     */   public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
         /* 326 */     IForgeRegistry<VaultGearAttribute<?>> registry = event.getRegistry();
@@ -51,7 +50,6 @@ public class ModGearAttributes {
                       registry.register(CHANNELING_CHANCE);
                       registry.register(MAGNET_ENDERGIZED);
                       registry.register(REAVING_DAMAGE);
-                      registry.register(VAULT_AMULET_EFFECT);
                       registry.register(ROTATING_TOOL);
         /*     */   }
     /*     */

@@ -1,0 +1,29 @@
+{
+  "inscriptionRecipes": [
+    {
+      "id": "the_vault:digsite",
+      "output": {
+        "AMOUNT": 1,
+        "ITEM": "the_vault:inscription",
+        "NBT": "{pool:\"the_vault:omega_digsite\", data:{color:7012096,model:6}, display:{Name:'{\"text\":\"Digsite Inscription\",\"color\":\"#6AFF00\"}' }}"
+      },
+      "inputs": [
+        {
+          "AMOUNT": 64,
+          "ITEM": "the_vault:inscription_piece",
+          "NBT": "{}"
+        },
+        {
+          "AMOUNT": 48,
+          "ITEM": "the_vault:gem_echo",
+          "NBT": "{}"
+        },
+        {
+          "AMOUNT": 1,
+          "ITEM": "the_vault:wold_star_chunk",
+          "NBT": "{}"
+        }
+      ]
+    }
+  ]
+}

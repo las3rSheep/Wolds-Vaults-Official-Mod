@@ -1,5 +1,7 @@
 package xyz.iwolfking.woldsvaults.mixins.dimensional_worldborder;
 
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraftforge.event.world.WorldEvent;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Final;
@@ -9,7 +11,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import uk.me.joeclack.dimensionalworldborder.DimensionalWorldBorder;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "dimensionalworldborder")
+        }
+)
 @Mixin(value = DimensionalWorldBorder.class,remap = false)
 public class MixinDimensionalWorldborder {
     @Shadow @Final private static Logger LOGGER;

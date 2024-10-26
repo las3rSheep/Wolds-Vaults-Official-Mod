@@ -5,12 +5,19 @@ import cofh.lib.enchantment.EnchantmentCoFH;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.item.tool.PaxelItem;
 import iskallia.vault.util.EnchantmentUtil;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "cofhcore"),
+                @Condition(type = Condition.Type.MOD, value = "ensorcellation"),
+        }
+)
 @Mixin(value = EnchantmentUtil.class, remap = false)
 public abstract class MixinEnchantmentUtil {
     @Shadow

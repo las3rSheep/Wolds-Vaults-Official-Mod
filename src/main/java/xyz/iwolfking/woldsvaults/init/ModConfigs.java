@@ -16,7 +16,7 @@ public class ModConfigs {
 
     public static HauntedBraziersConfig HAUNTED_BRAZIERS;
     public static EnchantedElixirConfig ENCHANTED_ELIXIR;
-    public static VaultAmuletConfig VAULT_AMULET;
+
     public static void register() {
         GEM_BOX = (GemBoxConfig) (new GemBoxConfig()).readConfig();
         SUPPLY_BOX = (SupplyBoxConfig) (new SupplyBoxConfig()).readConfig();
@@ -30,6 +30,6 @@ public class ModConfigs {
         BALLISTIC_BINGO_CONFIG = (BallisticBingoConfig) (new BallisticBingoConfig().readConfig());
         HAUNTED_BRAZIERS = (HauntedBraziersConfig) (new HauntedBraziersConfig().readConfig());
         ENCHANTED_ELIXIR = (EnchantedElixirConfig) (new EnchantedElixirConfig().readConfig());
-        VAULT_AMULET = (VaultAmuletConfig) (new VaultAmuletConfig().readConfig());
+
     }
 }

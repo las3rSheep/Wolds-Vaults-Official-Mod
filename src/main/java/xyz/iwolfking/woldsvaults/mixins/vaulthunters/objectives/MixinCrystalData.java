@@ -14,8 +14,6 @@ import net.minecraft.nbt.CompoundTag;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import xyz.iwolfking.woldsvaults.api.registry.CustomVaultObjectiveRegistry;
-import xyz.iwolfking.woldsvaults.api.registry.record.CustomVaultObjectiveEntry;
 import xyz.iwolfking.woldsvaults.models.crystal.UnhingedCrystalModel;
 
 @Mixin(value = CrystalData.class, remap = false)
@@ -28,9 +26,9 @@ public abstract class MixinCrystalData extends CrystalEntry implements ISerializ
     @Shadow private CrystalModifiers modifiers;
 
     static {
-        for(CustomVaultObjectiveEntry entry : CustomVaultObjectiveRegistry.getCustomVaultObjectiveEntries()) {
-            OBJECTIVE.register(entry.id(), entry.crystalObjective(), entry.crystalObjectiveSupplier());
-        }
+//        for(CustomVaultObjectiveEntry entry : CustomVaultObjectiveRegistry.getCustomVaultObjectiveEntries()) {
+//            OBJECTIVE.register(entry.id(), entry.crystalObjective(), entry.crystalObjectiveSupplier());
+//        }
 
         MODEL.register("unhinged", UnhingedCrystalModel.class, UnhingedCrystalModel::new);
     }

@@ -6,6 +6,7 @@ import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.modifier.spi.ModifierContext;
 import iskallia.vault.core.vault.modifier.spi.VaultModifier;
+import iskallia.vault.core.vault.time.TickClock;
 import iskallia.vault.core.world.storage.VirtualWorld;
 import iskallia.vault.util.data.WeightedList;
 import net.minecraft.core.BlockPos;
@@ -34,6 +35,9 @@ public class RetroSpawnVaultModifier extends VaultModifier<RetroSpawnVaultModifi
                     return;
                 }
 
+                if(vault.get(Vault.CLOCK).has(TickClock.PAUSED)) {
+                    return;
+                }
 
                 if(event.player.getRandom().nextDouble() < this.properties.getChance()) {
                     if(!(event.player.getLevel().dimension().equals(world.dimension()))) {

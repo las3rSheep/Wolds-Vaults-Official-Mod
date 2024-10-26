@@ -19,7 +19,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 @Restriction(
         require = {
-                @Condition(type = Condition.Type.MOD, value = "itemborders")
+                @Condition(type = Condition.Type.MOD, value = "itemborders"),
+                @Condition(type = Condition.Type.MOD, value = "integratedterminals")
         }
 )
 @Mixin(value = IngredientComponentTerminalStorageHandlerItemStack.class, remap = false)

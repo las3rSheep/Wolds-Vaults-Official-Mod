@@ -5,8 +5,15 @@ import io.github.lightman314.lightmanscurrency.common.money.MoneyUtil;
 import iskallia.vault.block.ShopPedestalBlock;
 import iskallia.vault.block.entity.ShopPedestalBlockTile;
 import iskallia.vault.container.oversized.OverSizedItemStack;
+import iskallia.vault.core.vault.Vault;
+import iskallia.vault.core.vault.objective.Objective;
+import iskallia.vault.core.vault.objective.Objectives;
+import iskallia.vault.core.vault.objective.ParadoxObjective;
 import iskallia.vault.event.event.ShopPedestalPriceEvent;
 import iskallia.vault.util.InventoryUtil;
+import iskallia.vault.world.data.ServerVaults;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -30,7 +37,13 @@ import org.spongepowered.asm.mixin.*;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Optional;
 
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "lightmanscurrency")
+        }
+)
 @Mixin(value = ShopPedestalBlock.class, remap = false)
 public class MixinShopPedestalBlock extends Block implements EntityBlock, GameMasterBlock {
 
@@ -52,6 +65,22 @@ public class MixinShopPedestalBlock extends Block implements EntityBlock, GameMa
         BlockEntity var8 = worldIn.getBlockEntity(pos);
         ItemStack c;
         if (var8 instanceof ShopPedestalBlockTile tile) {
+            if(ServerVaults.get(worldIn).isPresent()) {
+                Optional<Vault> vaultOpt = ServerVaults.get(worldIn);
+
+                if(vaultOpt.isPresent()) {
+                    Vault vault = vaultOpt.get();
+
+                    Objective.ObjList objectives = vault.get(Vault.OBJECTIVES).get(Objectives.LIST);
+                    for(Objective obj : objectives) {
+                        if(obj instanceof ParadoxObjective paradoxObjective) {
+                            if(paradoxObjective.get(ParadoxObjective.TYPE).equals(ParadoxObjective.Type.BUILD)) {
+                                return InteractionResult.FAIL;
+                            }
+                        }
+                    }
+                }
+            }
             if (tile.isInitialized() && handIn == InteractionHand.MAIN_HAND) {
                 c = tile.getOfferStack();
                 if (!c.isEmpty()) {

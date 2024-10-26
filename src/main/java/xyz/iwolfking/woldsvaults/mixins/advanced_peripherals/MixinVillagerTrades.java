@@ -6,6 +6,8 @@ import de.srendi.advancedperipherals.common.setup.Villagers;
 import de.srendi.advancedperipherals.common.village.VillagerTrade;
 import de.srendi.advancedperipherals.common.village.VillagerTrades;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.village.VillagerTradesEvent;
@@ -14,7 +16,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 import java.util.List;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "advanced_peripherals")
+        }
+)
 @Mixin(value = VillagerTrades.class, remap = false)
 public class MixinVillagerTrades {
     /**

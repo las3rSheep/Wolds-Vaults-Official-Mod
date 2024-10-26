@@ -1,0 +1,27 @@
+{
+  "itemRegistryName": "the_vault:battlestaff",
+  "MODEL_ROLLS": {
+    "SCRAPPY": [
+      "the_vault:gear/battlestaff/battlestaff_0"
+    ],
+    "COMMON": [
+      "the_vault:gear/battlestaff/battlestaff_copper",
+      "the_vault:gear/battlestaff/battlestaff_lapis",
+      "the_vault:gear/battlestaff/battlestaff_redstone"
+    ],
+    "RARE": [
+      "the_vault:gear/battlestaff/battlestaff_growing",
+      "the_vault:gear/battlestaff/battlestaff_golden",
+      "the_vault:gear/battlestaff/battlestaff_emerald"
+    ],
+    "EPIC": [
+      "the_vault:gear/battlestaff/battlestaff_diamond",
+      "the_vault:gear/battlestaff/battlestaff_purple",
+      "the_vault:gear/battlestaff/battlestaff_terror"
+    ],
+    "OMEGA": [
+      "the_vault:gear/battlestaff/battlestaff_light_blue"
+    ],
+    "UNIQUE": []
+  }
+}

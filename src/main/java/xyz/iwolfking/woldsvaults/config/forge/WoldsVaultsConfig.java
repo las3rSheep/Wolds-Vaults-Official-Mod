@@ -21,6 +21,19 @@ public class WoldsVaultsConfig
     }
     public static class Common
     {
+        //Features
+        //Items
+        //Gear
+        public final ForgeConfigSpec.ConfigValue<Boolean> enableVaultTrident;
+        public final ForgeConfigSpec.ConfigValue<Boolean> enableVaultBattlestaff;
+        public final ForgeConfigSpec.ConfigValue<Boolean> enableVaultPlushie;
+        public final ForgeConfigSpec.ConfigValue<Boolean> enableVaultLootSack;
+        public final ForgeConfigSpec.ConfigValue<Boolean> enableRunningShoesTrinket;
+        public final ForgeConfigSpec.ConfigValue<Boolean> enableMinersHeadlampTrinket;
+
+        //Objectives
+        //public final ForgeConfigSpec.ConfigValue<Boolean> disableVanillaUnsupportedElixirEvents;
+
         public final ForgeConfigSpec.ConfigValue<Boolean> disableFlightInVaults;
         public final ForgeConfigSpec.ConfigValue<Boolean> enableMoteRecipes;
         public final ForgeConfigSpec.ConfigValue<Boolean> displayItemBordersInTerminals;
@@ -28,6 +41,16 @@ public class WoldsVaultsConfig
         public final ForgeConfigSpec.ConfigValue<Integer> crystalReinforcementMaxCapacityAdded;
         public Common(ForgeConfigSpec.Builder builder)
         {
+            builder.push("Features");
+            builder.push("Items");
+            this.enableVaultBattlestaff = builder.comment("Whether to register and enable Vault Battlestaff or not").define("enableVaultBattlestaff", true);
+            this.enableVaultTrident = builder.comment("Whether to register and enable Vault Trident or not").define("enableVaultTrident", true);
+            this.enableVaultPlushie = builder.comment("Whether to register and enable Vault Plushie or not").define("enableVaultPlushie", true);
+            this.enableVaultLootSack = builder.comment("Whether to register and enable Vault Loot Sack or not").define("enableVaultLootSack", true);
+            this.enableRunningShoesTrinket = builder.comment("Whether to enable the Running Shoes trinket or not").define("enableRunningShoes", true);
+            this.enableMinersHeadlampTrinket = builder.comment("Whether to enable the Miner's Headlamp trinket or not").define("enableMinersHeadlamp", true);
+            builder.pop();
+            builder.pop();
             builder.push("Vault Settings");
             this.disableFlightInVaults= builder.comment("Controls whether Creative flight should be blocked while inside a vault. (default: true)")
                     .define("disableFlightInVaults", true);

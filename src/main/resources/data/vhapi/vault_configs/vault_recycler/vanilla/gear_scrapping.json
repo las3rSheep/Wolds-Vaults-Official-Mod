@@ -1,0 +1,30 @@
+{
+  "OUTPUTS": {
+    "minecraft:diamond_chestplate": {
+      "mainOutput": {
+        "chance": 1.0,
+        "stack": {
+          "item": "minecraft:diamond"
+        },
+        "minCount": 0,
+        "maxCount": 3
+      },
+      "extraOutput1": {
+        "chance": 0.0,
+        "stack": {
+          "item": "minecraft:air"
+        },
+        "minCount": 1,
+        "maxCount": 1
+      },
+      "extraOutput2": {
+        "chance": 0.0,
+        "stack": {
+          "item": "minecraft:air"
+        },
+        "minCount": 1,
+        "maxCount": 1
+      }
+    }
+  }
+}

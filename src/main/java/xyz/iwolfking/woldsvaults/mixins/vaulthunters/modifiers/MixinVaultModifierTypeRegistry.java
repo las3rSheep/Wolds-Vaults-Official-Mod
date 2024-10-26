@@ -21,5 +21,6 @@ public class MixinVaultModifierTypeRegistry {
         MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/chest_break_bomb"), VaultModifierType.of(ChestOpenBombModifier.class, ChestOpenBombModifier.Properties.class, ChestOpenBombModifier::new));
         MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/enchanted_event_chance"), VaultModifierType.of(EnchantedVaultModifier.class, EnchantedVaultModifier.Properties.class, EnchantedVaultModifier::new));
         MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/retro_spawn_modifier"), VaultModifierType.of(RetroSpawnVaultModifier.class, RetroSpawnVaultModifier.Properties.class, RetroSpawnVaultModifier::new));
+        MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/experience_multiplier"), VaultModifierType.of(ExperienceMultiplierModifier.class, ExperienceMultiplierModifier.Properties.class, ExperienceMultiplierModifier::new));
     }
 }

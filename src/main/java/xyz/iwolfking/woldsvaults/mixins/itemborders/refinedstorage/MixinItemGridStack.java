@@ -16,7 +16,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Restriction(
         require = {
-                @Condition(type = Condition.Type.MOD, value = "itemborders")
+                @Condition(type = Condition.Type.MOD, value = "itemborders"),
+                @Condition(type = Condition.Type.MOD, value = "refinedstorage")
         }
 )
 @Mixin(value = ItemGridStack.class, remap = false)

@@ -11,9 +11,11 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.items.*;
 import xyz.iwolfking.woldsvaults.items.fruits.HastyPomegranteItem;
+import xyz.iwolfking.woldsvaults.items.fruits.PoltergeistPlum;
 import xyz.iwolfking.woldsvaults.items.fruits.WisdomFruitItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultBattleStaffItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
@@ -38,6 +40,7 @@ public class ModItems {
 
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_TITAN;
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_DOOMSAYER;
+    public static ItemVaultCrystalSeal CRYSTAL_SEAL_ZEALOT;
     public static VaultBattleStaffItem BATTLESTAFF;
     //public static VaultBowItem BOW;
 
@@ -102,8 +105,41 @@ public class ModItems {
     public static WisdomFruitItem WISDOM_FRUIT;
     public static ToolModifierNullifyingItem CHISELING_FOCUS;
     public static AirMobilityItem ZEPHYR_CHARM;
-
     public static VaultBasicFoodItem VAULT_ROCK_CANDY;
+
+    public static BasicItem CHROMATIC_GOLD_NUGGET;
+    public static BasicItem CHROMATIC_GOLD_INGOT;
+    public static BasicItem SMASHED_VAULT_GEM;
+    public static BasicItem SMASHED_VAULT_GEM_CLUSTER;
+    public static BasicItem WOLD_STAR_CHUNK;
+    public static BasicItem WOLD_STAR;
+    public static BasicItem POG_PRISM;
+    public static BasicItem VAULT_DECO_SCROLL;
+    public static BasicItem ARCANE_ESSENCE;
+    public static BasicItem ARCANE_SHARD;
+    public static BasicItem EXTRAORDINARY_POG_PRISM;
+    public static BasicItem HEART_OF_CHAOS;
+    public static BasicItem GEM_REAGENT_ASHIUM;
+    public static BasicItem GEM_REAGENT_BOMIGNITE;
+    public static BasicItem GEM_REAGENT_UPALINE;
+    public static BasicItem GEM_REAGENT_ISKALLIUM;
+    public static BasicItem GEM_REAGENT_GORGINITE;
+    public static BasicItem GEM_REAGENT_PETEZANITE;
+    public static BasicItem GEM_REAGENT_XENIUM;
+    public static BasicItem GEM_REAGENT_SPARKLETINE;
+    public static BasicItem GEM_REAGENT_TUBIUM;
+    public static PoltergeistPlum POLTERGEIST_PLUM;
+
+    //Zealot items
+    public static BasicItem TOME_OF_TENOS;
+    public static BasicItem VELARA_APPLE;
+    public static BasicItem IDONA_DAGGER;
+    public static BasicItem WENDARR_GEM;
+
+    //Backpack?
+    public static BackpackItem XL_BACKPACK;
+
+
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -166,6 +202,34 @@ public class ModItems {
         registry.register(VAULTAR_BOX);
         registry.register(MERCY_ORB);
         registry.register(WISDOM_FRUIT);
+        registry.register(CHROMATIC_GOLD_NUGGET);
+        registry.register(CHROMATIC_GOLD_INGOT);
+        registry.register(SMASHED_VAULT_GEM);
+        registry.register(SMASHED_VAULT_GEM_CLUSTER);
+        registry.register(WOLD_STAR_CHUNK);
+        registry.register(WOLD_STAR);
+        registry.register(POG_PRISM);
+        registry.register(VAULT_DECO_SCROLL);
+        registry.register(ARCANE_ESSENCE);
+        registry.register(ARCANE_SHARD);
+        registry.register(EXTRAORDINARY_POG_PRISM);
+        registry.register(HEART_OF_CHAOS);
+        registry.register(GEM_REAGENT_GORGINITE);
+        registry.register(GEM_REAGENT_BOMIGNITE);
+        registry.register(GEM_REAGENT_ISKALLIUM);
+        registry.register(GEM_REAGENT_PETEZANITE);
+        registry.register(GEM_REAGENT_TUBIUM);
+        registry.register(GEM_REAGENT_ASHIUM);
+        registry.register(GEM_REAGENT_XENIUM);
+        registry.register(GEM_REAGENT_SPARKLETINE);
+        registry.register(GEM_REAGENT_UPALINE);
+        registry.register(IDONA_DAGGER);
+        registry.register(WENDARR_GEM);
+        registry.register(VELARA_APPLE);
+        registry.register(TOME_OF_TENOS);
+        registry.register(POLTERGEIST_PLUM);
+        registry.register(CRYSTAL_SEAL_ZEALOT);
+        registry.register(XL_BACKPACK);
     }
 
     static {
@@ -175,6 +239,7 @@ public class ModItems {
         CRYSTAL_SEAL_ENCHANTER = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_enchanter"));
         CRYSTAL_SEAL_TITAN = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_titan"));
         CRYSTAL_SEAL_DOOMSAYER = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_doomsayer"));
+        CRYSTAL_SEAL_ZEALOT = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_zealot"));
         BATTLESTAFF =  new VaultBattleStaffItem(VaultMod.id("battlestaff"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         TRIDENT = new VaultTridentItem(VaultMod.id("trident"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         PLUSHIE = new VaultPlushieItem(VaultMod.id("plushie"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
@@ -196,7 +261,6 @@ public class ModItems {
         ENDER_CRYSTAL = new BasicScavengerItem("ender_crystal");
         ENDER_EYE = new BasicScavengerItem("enderman_eye");
         ALTAR_DECATALYZER = new AltarResetItem(VaultMod.id("altar_recatalyzer"), (new Item.Properties().tab(VAULT_MOD_GROUP).rarity(Rarity.RARE)));
-        //VAULT_AMULET = new VaultAmuletItem(VaultMod.id("amulet"), VaultAmuletConfig.Size.SMALL);
         CHROMATIC_IRON_ANGEL_RING = new ChromaticIronAngelRing();
         CHROMATIC_GOLD_ANGEL_RING= new ChromaticGoldAngelRing();
         CHROMATIC_STEEL_ANGEL_RING = new ChromaticSteelAngelRing();
@@ -222,6 +286,33 @@ public class ModItems {
         CHISELING_FOCUS = new ToolModifierNullifyingItem(WoldsVaults.id("chiseling_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         ZEPHYR_CHARM = new AirMobilityItem(WoldsVaults.id("zephyr_charm"));
         VAULT_ROCK_CANDY = new VaultBasicFoodItem(WoldsVaults.id("vault_rock_candy"), (new FoodProperties.Builder()).alwaysEat().fast().nutrition(8).saturationMod(1.4F).build());
-        //BOW = new VaultBowItem(VaultMod.id("bow"), (new Item.Properties().tab(GEAR_GROUP).stacksTo(1)));
+        CHROMATIC_GOLD_NUGGET = new BasicItem(VaultMod.id("chromatic_gold_nugget"));
+        CHROMATIC_GOLD_INGOT = new BasicItem(VaultMod.id("chromatic_gold_ingot"));
+        SMASHED_VAULT_GEM = new BasicItem(VaultMod.id("smashed_vault_gem"));
+        SMASHED_VAULT_GEM_CLUSTER = new BasicItem(VaultMod.id("smashed_vault_gem_cluster"));
+        WOLD_STAR_CHUNK = new BasicItem(VaultMod.id("wold_star_chunk"));
+        WOLD_STAR = new BasicItem(VaultMod.id("wold_star"));
+        POG_PRISM = new BasicItem(VaultMod.id("pog_prism"));
+        VAULT_DECO_SCROLL = new BasicItem(WoldsVaults.id("general_decor_scroll"));
+        ARCANE_ESSENCE = new BasicItem(WoldsVaults.id("arcane_essence"));
+        ARCANE_SHARD = new BasicItem(WoldsVaults.id("arcane_shard"));
+        EXTRAORDINARY_POG_PRISM = new BasicItem(WoldsVaults.id("extraordinary_pog_prism"));
+        HEART_OF_CHAOS = new BasicItem(WoldsVaults.id("heart_of_chaos"));
+        GEM_REAGENT_ASHIUM = new BasicItem(VaultMod.id("gem_reagent_ashium"));
+        GEM_REAGENT_BOMIGNITE = new BasicItem(VaultMod.id("gem_reagent_bomignite"));
+        GEM_REAGENT_GORGINITE = new BasicItem(VaultMod.id("gem_reagent_gorginite"));
+        GEM_REAGENT_PETEZANITE = new BasicItem(VaultMod.id("gem_reagent_petzanite"));
+        GEM_REAGENT_ISKALLIUM = new BasicItem(VaultMod.id("gem_reagent_iskallium"));
+        GEM_REAGENT_TUBIUM = new BasicItem(VaultMod.id("gem_reagent_tubium"));
+        GEM_REAGENT_UPALINE = new BasicItem(VaultMod.id("gem_reagent_upaline"));
+        GEM_REAGENT_XENIUM = new BasicItem(VaultMod.id("gem_reagent_xenium"));
+        GEM_REAGENT_SPARKLETINE = new BasicItem(VaultMod.id("gem_reagent_sparkletine"));
+        TOME_OF_TENOS = new BasicItem(WoldsVaults.id("tome_of_tenos"));
+        IDONA_DAGGER = new BasicItem(WoldsVaults.id("idona_dagger"));
+        VELARA_APPLE = new BasicItem(WoldsVaults.id("velara_apple"));
+        WENDARR_GEM = new BasicItem(WoldsVaults.id("wendarr_gem"));
+        POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
+        XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
+        XL_BACKPACK.setRegistryName(WoldsVaults.MOD_ID, "xl_backpack");
     }
 }

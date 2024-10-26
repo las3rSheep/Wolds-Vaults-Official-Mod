@@ -19,7 +19,6 @@ public record StopFlightMessage(UUID playerUUID) {
     public static void handle(StopFlightMessage message, Supplier<NetworkEvent.Context> context) {
         var player = context.get().getSender();
         if (player != null) {
-            System.out.println("Stopped flight with packet!");
             TickEvents.stopFlying(player);
         }
         context.get().setPacketHandled(true);

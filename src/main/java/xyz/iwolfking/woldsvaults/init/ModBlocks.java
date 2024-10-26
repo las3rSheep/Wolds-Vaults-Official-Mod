@@ -2,8 +2,10 @@ package xyz.iwolfking.woldsvaults.init;
 
 import com.mojang.datafixers.types.Type;
 import iskallia.vault.VaultMod;
+import iskallia.vault.block.CoinPileDecorBlock;
 import iskallia.vault.block.render.ScavengerAltarRenderer;
 import iskallia.vault.init.ModItems;
+import iskallia.vault.item.CoinBlockItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DoubleHighBlockItem;
@@ -14,6 +16,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlock;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlockEntity;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.blocks.*;
 import xyz.iwolfking.woldsvaults.blocks.tiles.*;
@@ -34,6 +38,11 @@ public class ModBlocks {
     public static final DecoMonolithBlock DECO_MONOLITH_BLOCK;
     public static final SurvivalMobBarrier SURVIVAL_MOB_BARRIER;
 
+    public static final CoinPileDecorBlock VAULT_PALLADIUM_PILE;
+    public static final CoinPileDecorBlock VAULT_IRIDIUM_PILE;
+    public static BlockItem VAULT_PALLADIUM;
+    public static BlockItem VAULT_IRIDIUM;
+
     public static final BlockEntityType<VaultSalvagerTileEntity> VAULT_SALVAGER_ENTITY;
     public static final BlockEntityType<IskallianLeavesTileEntity> ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<HellishSandTileEntity> HELLISH_SAND_TILE_ENTITY_BLOCK_ENTITY_TYPE;
@@ -43,11 +52,16 @@ public class ModBlocks {
     public static final BlockEntityType<DecoLodestoneTileEntity> DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoMonolithTileEntity> DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<SurvivalMobBarrierTileEntity> SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<BackpackBlockEntity> SOPHISTICATED_BACKPACK;
 
 
-
+    public static final BackpackBlock XL_BACKPACK;
 
     static {
+        VAULT_PALLADIUM_PILE = new CoinPileDecorBlock();
+        VAULT_IRIDIUM_PILE = new CoinPileDecorBlock();
+        VAULT_PALLADIUM  = new CoinBlockItem(VAULT_PALLADIUM_PILE, new Item.Properties().tab(ModItems.VAULT_MOD_GROUP));
+        VAULT_IRIDIUM  = new CoinBlockItem(VAULT_IRIDIUM_PILE, new Item.Properties().tab(ModItems.VAULT_MOD_GROUP));
         VAULT_SALVAGER_BLOCK = new VaultSalvagerBlock();
         ISKALLIAN_LEAVES_BLOCK = new IskallianLeavesBlock();
         HELLISH_SAND_BLOCK = new HellishSandBlock();
@@ -57,6 +71,7 @@ public class ModBlocks {
         DECO_LODESTONE_BLOCK = (DecoLodestoneBlock) new DecoLodestoneBlock();
         DECO_MONOLITH_BLOCK = (DecoMonolithBlock) new DecoMonolithBlock();
         SURVIVAL_MOB_BARRIER = (SurvivalMobBarrier) new SurvivalMobBarrier();
+        XL_BACKPACK = new BackpackBlock(12000);
         VAULT_SALVAGER_ENTITY = BlockEntityType.Builder.of(VaultSalvagerTileEntity::new, new Block[]{VAULT_SALVAGER_BLOCK}).build((Type)null);
         ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(IskallianLeavesTileEntity::new, new Block[]{ISKALLIAN_LEAVES_BLOCK}).build((Type)null);
         HELLISH_SAND_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(HellishSandTileEntity::new, new Block[]{HELLISH_SAND_BLOCK}).build((Type)null);
@@ -66,6 +81,7 @@ public class ModBlocks {
         DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoLodestoneTileEntity::new, new Block[]{DECO_LODESTONE_BLOCK}).build((Type)null);
         DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoMonolithTileEntity::new, new Block[]{DECO_MONOLITH_BLOCK}).build((Type)null);
         SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(SurvivalMobBarrierTileEntity::new, new Block[]{SURVIVAL_MOB_BARRIER}).build((Type)null);
+        SOPHISTICATED_BACKPACK = BlockEntityType.Builder.of(BackpackBlockEntity::new, new Block[]{XL_BACKPACK}).build((Type)null);
     }
 
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -78,6 +94,9 @@ public class ModBlocks {
         registerBlock(event, DECO_LODESTONE_BLOCK, WoldsVaults.id("lodestone"));
         registerBlock(event, DECO_MONOLITH_BLOCK, WoldsVaults.id("monolith"));
         registerBlock(event, SURVIVAL_MOB_BARRIER, WoldsVaults.id("mob_barrier_red"));
+        registerBlock(event, VAULT_PALLADIUM_PILE, VaultMod.id("vault_palladium"));
+        registerBlock(event, VAULT_IRIDIUM_PILE, VaultMod.id("vault_iridium"));
+        registerBlock(event, XL_BACKPACK, WoldsVaults.id("xl_backpack"));
 
     }
     public static void registerTileEntities(RegistryEvent.Register<BlockEntityType<?>> event) {
@@ -102,6 +121,8 @@ public class ModBlocks {
         registerBlockItem(event, DECO_LODESTONE_BLOCK);
         registerBlockItem(event, DECO_MONOLITH_BLOCK);
         registerBlockItem(event, SURVIVAL_MOB_BARRIER);
+        registerBlockItem(event, VAULT_PALLADIUM_PILE, VAULT_PALLADIUM);
+        registerBlockItem(event, VAULT_IRIDIUM_PILE, VAULT_IRIDIUM);
     }
 
     public static void registerTileEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
@@ -150,12 +171,7 @@ public class ModBlocks {
         adjustProperties.accept(properties);
         registerBlockItem(event, block, new BlockItem(block, properties));
     }
-//
-//    private static void registerSophisticatedBlockItem(RegistryEvent.Register<Item> event, Block block) {
-//        SophisticatedVaultStorageBlockItem item = new SophisticatedVaultChestItem(block);
-//        item.setRegistryName(block.getRegistryName());
-//        event.getRegistry().register(item);
-//    }
+
 
     private static void registerBlockItem(RegistryEvent.Register<Item> event, Block block, BlockItem blockItem) {
         blockItem.setRegistryName(block.getRegistryName());

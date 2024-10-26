@@ -1,0 +1,20 @@
+{
+  "modifiers": {
+    "the_vault:modifier_type/decorator_add": {
+      "the_vault:vexation": {
+        "properties": {
+          "output": "the_vault:custom_entity_spawner{spawnerGroupName: \"champion_vex\"}",
+          "attemptsPerChunk": 1,
+          "requireConditions": false
+        },
+        "display": {
+          "name": "Vexation",
+          "color": "#237da1",
+          "description": "Endless poltergeists await you.",
+          "descriptionFormatted": "Endless poltergeists await you.",
+          "icon": "the_vault:gui/modifiers/vexation"
+        }
+      }
+    }
+  }
+}

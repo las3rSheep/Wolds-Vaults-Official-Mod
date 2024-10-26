@@ -5,6 +5,8 @@ import com.google.common.collect.ImmutableMap;
 import iskallia.vault.init.ModItems;
 import me.desht.pneumaticcraft.common.recipes.machine.PressureChamberRecipeImpl;
 import me.desht.pneumaticcraft.common.recipes.machine.PressureDisenchantingRecipe;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -22,7 +24,11 @@ import org.spongepowered.asm.mixin.Shadow;
 import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "pneumaticcraft")
+        }
+)
 @Mixin(value = PressureDisenchantingRecipe.class, remap = false)
 public abstract class MixinDisenchantingPressureRecipe extends PressureChamberRecipeImpl {
     @Shadow protected abstract boolean blacklisted(ItemStack stack);
@@ -43,7 +49,7 @@ public abstract class MixinDisenchantingPressureRecipe extends PressureChamberRe
 
         for (int i = 0; i < chamberHandler.getSlots(); ++i) {
             ItemStack stack = chamberHandler.getStackInSlot(i);
-            if(stack.getItem() == ModItems.OMEGA_POG) {
+            if(stack.getItem() == ModItems.ECHO_POG) {
                 pogSlot = i;
             }
             if (stack.getItem() == Items.BOOK) {
@@ -126,7 +132,7 @@ public abstract class MixinDisenchantingPressureRecipe extends PressureChamberRe
      */
     @Overwrite
     public boolean isValidInputItem(ItemStack stack) {
-        return stack.getItem() == ModItems.OMEGA_POG || stack.getItem() == Items.BOOK || stack.getItem() != Items.ENCHANTED_BOOK && EnchantmentHelper.getEnchantments(stack).size() > 0;
+        return stack.getItem() == ModItems.ECHO_POG || stack.getItem() == Items.BOOK || stack.getItem() != Items.ENCHANTED_BOOK && EnchantmentHelper.getEnchantments(stack).size() > 0;
     }
 
 

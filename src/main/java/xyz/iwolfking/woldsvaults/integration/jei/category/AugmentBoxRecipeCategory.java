@@ -88,7 +88,7 @@ public class AugmentBoxRecipeCategory implements IRecipeCategory<AugmentBoxConfi
         double totalWeight = ModConfigs.AUGMENT_BOX.POOL.getTotalWeight();
         CompoundTag nbt = stack.getOrCreateTagElement("display");
         ListTag list = nbt.getList("Lore", 8);
-        MutableComponent component = new TextComponent(String.format("Chance: %.2f%%", 1 / totalWeight)).withStyle(ChatFormatting.YELLOW);
+        MutableComponent component = new TextComponent(String.format("Chance: %.2f%%", (1 / totalWeight) * 100)).withStyle(ChatFormatting.YELLOW);
         list.add(StringTag.valueOf(Component.Serializer.toJson(component)));
         nbt.put("Lore", list);
         return stack;

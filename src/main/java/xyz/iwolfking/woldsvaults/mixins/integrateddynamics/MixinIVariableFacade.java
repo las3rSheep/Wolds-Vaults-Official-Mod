@@ -1,6 +1,8 @@
 package xyz.iwolfking.woldsvaults.mixins.integrateddynamics;
 
 import com.simibubi.create.content.logistics.filter.FilterItem;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.joseph.vaultfilters.VaultFilters;
 import net.minecraft.world.item.ItemStack;
 import org.cyclops.commoncapabilities.api.capability.itemhandler.ItemMatch;
@@ -8,7 +10,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "integrateddynamics")
+        }
+)
 @Mixin(value = ItemMatch.class, remap = false)
 public abstract class MixinIVariableFacade {
 

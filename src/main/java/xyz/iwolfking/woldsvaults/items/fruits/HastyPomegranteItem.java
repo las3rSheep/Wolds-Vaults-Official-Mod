@@ -22,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+import xyz.iwolfking.woldsvaults.util.VaultModifierUtils;
 
 import java.util.List;
 import java.util.Random;
@@ -86,7 +87,12 @@ public class HastyPomegranteItem extends ItemVaultFruit {
     protected void successEaten(Level level, ServerPlayer sPlayer) {
         if(ServerVaults.get(level).isPresent()) {
             Vault vault = ServerVaults.get(level).get();
-            vault.get(Vault.MODIFIERS).addModifier(VaultModifierRegistry.get(VaultMod.id("infuriated_mobs")), 2, true, ChunkRandom.any());
+            VaultModifier<?> modifier = VaultModifierRegistry.get(VaultMod.id("infuriated_mobs"));
+            if(modifier != null) {
+                VaultModifierUtils.sendModifierAddedMessage(sPlayer, modifier, 2);
+                vault.get(Vault.MODIFIERS).addModifier(modifier, 2, true, ChunkRandom.any());
+            }
+
         }
 
     }

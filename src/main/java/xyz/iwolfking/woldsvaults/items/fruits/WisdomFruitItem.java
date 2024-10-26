@@ -23,11 +23,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+import xyz.iwolfking.woldsvaults.util.VaultModifierUtils;
 
 import java.util.List;
 import java.util.Random;
 
 public class WisdomFruitItem extends ItemVaultFruit {
+
     private static final Random rand = new Random();
     public WisdomFruitItem(ResourceLocation id) {
         super(id, 0);
@@ -65,10 +67,12 @@ public class WisdomFruitItem extends ItemVaultFruit {
             List<VaultModifier<?>> negative_modifier = ModConfigs.VAULT_MODIFIER_POOLS.getRandom(VaultMod.id("medium_negative"), 0, (RandomSource) JavaRandom.ofNanoTime());
             for(VaultModifier<?> mod : hunter_modifier) {
                 vault.get(Vault.MODIFIERS).addModifier(mod, 1, true, ChunkRandom.any());
+                VaultModifierUtils.sendModifierAddedMessage(sPlayer, mod, 1);
             }
 
             for(VaultModifier<?> mod : negative_modifier) {
                 vault.get(Vault.MODIFIERS).addModifier(mod, 1, true, ChunkRandom.any());
+                VaultModifierUtils.sendModifierAddedMessage(sPlayer, mod, 1);
             }
 
         }

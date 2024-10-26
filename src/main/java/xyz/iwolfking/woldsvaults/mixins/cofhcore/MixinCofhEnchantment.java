@@ -2,6 +2,8 @@ package xyz.iwolfking.woldsvaults.mixins.cofhcore;
 
 import cofh.lib.enchantment.EnchantmentCoFH;
 import iskallia.vault.util.EnchantmentUtil;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -12,7 +14,11 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "cofhcore")
+        }
+)
 @Mixin(value = EnchantmentCoFH.class, remap = false)
 public class MixinCofhEnchantment extends Enchantment{
 
