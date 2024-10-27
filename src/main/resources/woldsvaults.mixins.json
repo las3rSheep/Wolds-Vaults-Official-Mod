@@ -107,6 +107,7 @@
     "itemborders.ae2.MixinAEStackRendering",
     "itemborders.cyclopscore.MixinRenderItemExtendedSlotCount",
     "itemborders.tomsstorage.MixinGuiStorageTerminalBase",
+    "sophisticatedbackpacks.MixinBackpackModel",
     "vaulthunters.accessors.VaultChestRendererAccessor",
     "vaulthunters.fixes.MixinCatalystItemRenderer",
     "vaulthunters.fixes.MixinToolItemRenderer"
