@@ -1,20 +1,5 @@
 {
   "SEALS": {
-    "woldsvaults:crystal_seal_zealot": [
-      {
-        "level": 0,
-        "input": [
-          "the_vault:vault_crystal"
-        ],
-        "objective": {
-          "type": "zealot",
-          "target": {
-            "type": "uniform",
-            "min": 3,
-            "max": 5
-          }
-        }
-      }
-    ]
+
   }
 }

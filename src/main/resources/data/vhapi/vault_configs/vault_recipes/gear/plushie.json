@@ -1,25 +1,5 @@
 {
   "gearRecipes": [
-    {
-      "proficiencyType": "FOCUS",
-      "id": "the_vault:plushie",
-      "output": {
-        "AMOUNT": 1,
-        "ITEM": "the_vault:plushie",
-        "NBT": "{Damage:0}"
-      },
-      "inputs": [
-        {
-          "AMOUNT": 1,
-          "ITEM": "the_vault:vault_gold",
-          "NBT": "{}"
-        },
-        {
-          "AMOUNT": 9,
-          "ITEM": "the_vault:vault_alloy",
-          "NBT": "{}"
-        }
-      ]
-    }
+
   ]
 }

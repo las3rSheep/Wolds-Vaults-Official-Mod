@@ -6,25 +6,8 @@
   "defaultAttributeOverrides": [
   ],
   "entityAttributeOverrides": {
-    "woldsvaults:purple_ghost": [
-      {
-        "NAME": "minecraft:generic.max_health",
-        "VALUE": 5.0,
-        "OPERATOR": "multiply"
-      },
-      {
-        "NAME": "minecraft:generic.attack_damage",
-        "VALUE": 2.0,
-        "OPERATOR": "multiply"
-      }
-    ]
   },
   "entityAffixesData": {
-    "woldsvaults:purple_ghost": [
-      {
-        "value": "{amplifier:0,duration:40,mob_effect:\"the_vault:immortality\",name:\"Immune\",range:10,target:\"mob\",type:\"potion_aura\"}",
-        "weight": 200.0
-      }
-    ]
+
   }
 }

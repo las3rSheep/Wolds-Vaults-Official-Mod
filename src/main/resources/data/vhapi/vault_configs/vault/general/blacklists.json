@@ -5,11 +5,10 @@
   "NO_EXIT_CHANCE": 10,
   "OBELISK_DROP_CHANCE": 2,
   "ITEM_BLACKLIST": [
-    "tiab:time_in_a_bottle"
+
   ],
   "BLOCK_BLACKLIST": [
-    "supplementaries:book_pile",
-    "supplementaries:book_pile_horizontal"
+
   ],
   "VAULT_EXIT_TNL_MIN": 0.5,
   "VAULT_EXIT_TNL_MAX": 1.0
