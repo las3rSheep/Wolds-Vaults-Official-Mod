@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.init;
 
 import xyz.iwolfking.woldsvaults.config.*;
+import xyz.iwolfking.woldsvaults.config.recipes.augment.AugmentRecipesConfig;
 
 public class ModConfigs {
     public static GemBoxConfig GEM_BOX;
@@ -16,6 +17,7 @@ public class ModConfigs {
 
     public static HauntedBraziersConfig HAUNTED_BRAZIERS;
     public static EnchantedElixirConfig ENCHANTED_ELIXIR;
+    public static AugmentRecipesConfig AUGMENT_RECIPES;
 
     public static void register() {
         GEM_BOX = (GemBoxConfig) (new GemBoxConfig()).readConfig();
@@ -30,6 +32,6 @@ public class ModConfigs {
         BALLISTIC_BINGO_CONFIG = (BallisticBingoConfig) (new BallisticBingoConfig().readConfig());
         HAUNTED_BRAZIERS = (HauntedBraziersConfig) (new HauntedBraziersConfig().readConfig());
         ENCHANTED_ELIXIR = (EnchantedElixirConfig) (new EnchantedElixirConfig().readConfig());
-
+        AUGMENT_RECIPES = (AugmentRecipesConfig)(new AugmentRecipesConfig()).readConfig();
     }
 }

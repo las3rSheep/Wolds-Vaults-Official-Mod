@@ -83,6 +83,7 @@
     "vaulthunters.custom.MixinPlayerVaultStatsData",
     "vaulthunters.custom.MixinRewardConfig",
     "vaulthunters.custom.MixinToolItem",
+    "vaulthunters.custom.MixinForgeRecipeTypeEnum",
     "vaulthunters.custom.MixinWildSpawnerTileEntity",
     "vaulthunters.custom.recycler.MixinVaultCatalystItem",
     "vaulthunters.custom.recycler.MixinVaultGearItem",
