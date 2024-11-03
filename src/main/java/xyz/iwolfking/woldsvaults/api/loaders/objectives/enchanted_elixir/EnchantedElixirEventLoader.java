@@ -1,9 +1,9 @@
-package xyz.iwolfking.woldsvaults.api.objectives.enchanted_elixir;
+package xyz.iwolfking.woldsvaults.api.loaders.objectives.enchanted_elixir;
 
 import iskallia.vault.util.data.WeightedList;
 import xyz.iwolfking.vhapi.api.events.VaultConfigEvent;
 import xyz.iwolfking.vhapi.api.loaders.lib.core.VaultConfigProcessor;
-import xyz.iwolfking.woldsvaults.api.objectives.enchanted_elixir.config.EnchantedElixirEventConfig;
+import xyz.iwolfking.woldsvaults.api.loaders.objectives.enchanted_elixir.config.EnchantedElixirEventConfig;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 import xyz.iwolfking.woldsvaults.objectives.data.lib.events.VaultModifierEnchantedEvent;
 

@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.api.objectives.enchanted_elixir.config;
+package xyz.iwolfking.woldsvaults.api.loaders.objectives.enchanted_elixir.config;
 
 import com.google.gson.annotations.Expose;
 import iskallia.vault.config.Config;

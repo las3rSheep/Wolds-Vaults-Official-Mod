@@ -18,6 +18,7 @@ public class ModConfigs {
     public static HauntedBraziersConfig HAUNTED_BRAZIERS;
     public static EnchantedElixirConfig ENCHANTED_ELIXIR;
     public static AugmentRecipesConfig AUGMENT_RECIPES;
+    public static ThemeTooltipsConfig THEME_TOOLTIPS;
 
     public static void register() {
         GEM_BOX = (GemBoxConfig) (new GemBoxConfig()).readConfig();
@@ -33,5 +34,6 @@ public class ModConfigs {
         HAUNTED_BRAZIERS = (HauntedBraziersConfig) (new HauntedBraziersConfig().readConfig());
         ENCHANTED_ELIXIR = (EnchantedElixirConfig) (new EnchantedElixirConfig().readConfig());
         AUGMENT_RECIPES = (AugmentRecipesConfig)(new AugmentRecipesConfig()).readConfig();
+        THEME_TOOLTIPS = (ThemeTooltipsConfig)(new ThemeTooltipsConfig()).readConfig();
     }
 }

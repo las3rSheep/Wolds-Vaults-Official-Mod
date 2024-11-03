@@ -52,7 +52,7 @@ public class WoldsVaults {
         MinecraftForge.EVENT_BUS.register(this);
         ModCatalystModels.registerModels();
         ModInscriptionModels.registerModels();
-        WoldDataLoaders.initProcessors();
+        MinecraftForge.EVENT_BUS.addListener(WoldDataLoaders::initProcessors);
     }
 
     private void setup(final FMLCommonSetupEvent event) {

@@ -5,6 +5,7 @@ import iskallia.vault.container.oversized.OverSizedItemStack;
 import iskallia.vault.core.data.key.ThemeKey;
 import iskallia.vault.gear.crafting.recipe.VaultForgeRecipe;
 import iskallia.vault.item.AugmentItem;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
@@ -14,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import xyz.iwolfking.woldsvaults.data.discovery.ClientThemeDiscoveryData;
 import xyz.iwolfking.woldsvaults.data.discovery.DiscoveredThemesData;
+import xyz.iwolfking.woldsvaults.init.ModConfigs;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +37,11 @@ public class AugmentForgeRecipe extends VaultForgeRecipe {
     public void addCraftingDisplayTooltip(ItemStack result, List<Component> out) {
         Optional<ThemeKey> themeKey = AugmentItem.getTheme(result);
         themeKey.ifPresent(key -> out.add(new TextComponent("Theme: ").append(new TextComponent(key.getName()).withStyle(Style.EMPTY.withColor(key.getColor())))));
+        themeKey.ifPresent(key -> {
+            if(ModConfigs.THEME_TOOLTIPS.tooltips.containsKey(key.getId()) && Screen.hasShiftDown()) {
+                out.add(new TextComponent(ModConfigs.THEME_TOOLTIPS.tooltips.get(key.getId())));
+            }
+        });
     }
 
     @Override

@@ -128,6 +128,7 @@ public class ModItems {
     public static BasicItem GEM_REAGENT_XENIUM;
     public static BasicItem GEM_REAGENT_SPARKLETINE;
     public static BasicItem GEM_REAGENT_TUBIUM;
+    public static BasicItem AUGMENT_PIECE;
     public static PoltergeistPlum POLTERGEIST_PLUM;
 
     //Zealot items
@@ -223,6 +224,7 @@ public class ModItems {
         registry.register(GEM_REAGENT_XENIUM);
         registry.register(GEM_REAGENT_SPARKLETINE);
         registry.register(GEM_REAGENT_UPALINE);
+        registry.register(AUGMENT_PIECE);
         registry.register(IDONA_DAGGER);
         registry.register(WENDARR_GEM);
         registry.register(VELARA_APPLE);
@@ -307,6 +309,7 @@ public class ModItems {
         GEM_REAGENT_UPALINE = new BasicItem(VaultMod.id("gem_reagent_upaline"));
         GEM_REAGENT_XENIUM = new BasicItem(VaultMod.id("gem_reagent_xenium"));
         GEM_REAGENT_SPARKLETINE = new BasicItem(VaultMod.id("gem_reagent_sparkletine"));
+        AUGMENT_PIECE = new BasicItem(WoldsVaults.id("augment_piece"));
         TOME_OF_TENOS = new BasicItem(WoldsVaults.id("tome_of_tenos"));
         IDONA_DAGGER = new BasicItem(WoldsVaults.id("idona_dagger"));
         VELARA_APPLE = new BasicItem(WoldsVaults.id("velara_apple"));

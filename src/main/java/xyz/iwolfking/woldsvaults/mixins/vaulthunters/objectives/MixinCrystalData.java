@@ -10,6 +10,7 @@ import iskallia.vault.item.crystal.data.serializable.ISerializable;
 import iskallia.vault.item.crystal.model.CrystalModel;
 import iskallia.vault.item.crystal.modifiers.CrystalModifiers;
 import iskallia.vault.item.crystal.objective.CrystalObjective;
+import iskallia.vault.item.crystal.theme.CrystalTheme;
 import net.minecraft.nbt.CompoundTag;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -24,6 +25,8 @@ public abstract class MixinCrystalData extends CrystalEntry implements ISerializ
     @Shadow public static TypeSupplierAdapter<CrystalModel> MODEL;
 
     @Shadow private CrystalModifiers modifiers;
+
+    @Shadow private CrystalTheme theme;
 
     static {
 //        for(CustomVaultObjectiveEntry entry : CustomVaultObjectiveRegistry.getCustomVaultObjectiveEntries()) {
@@ -58,4 +61,5 @@ public abstract class MixinCrystalData extends CrystalEntry implements ISerializ
 
         return !hasCatalystDenyingModifier;
     }
+
 }

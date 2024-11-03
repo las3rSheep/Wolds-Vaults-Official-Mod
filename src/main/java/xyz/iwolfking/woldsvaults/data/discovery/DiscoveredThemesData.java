@@ -10,10 +10,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextColor;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -22,6 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.server.ServerLifecycleHooks;
+import xyz.iwolfking.woldsvaults.init.ModConfigs;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -51,9 +49,12 @@ public class DiscoveredThemesData extends SavedData
         MutableComponent playerCt = player.getDisplayName().copy();
         playerCt.setStyle(Style.EMPTY.withColor(TextColor.fromRgb(9974168)));
         MutableComponent themeCmp = new TextComponent(theme.getName());
+        String tooltipHover = ModConfigs.THEME_TOOLTIPS.tooltips.getOrDefault(theme.getId(), "");
+        HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent(tooltipHover));
         themeCmp.setStyle(
                 Style.EMPTY
                         .withColor(theme.getColor())
+                        .withHoverEvent(hoverEvent)
         );
         MiscUtils.broadcast(ct.append(playerCt).append(" has discovered theme: ").append(themeCmp));
     }
