@@ -21,4 +21,5 @@ public class ConfigAugmentRecipe extends ConfigForgeRecipe<AugmentForgeRecipe> {
     }
 
 
+
 }

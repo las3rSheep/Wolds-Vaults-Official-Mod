@@ -10,7 +10,10 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import xyz.iwolfking.woldsvaults.data.discovery.ClientThemeDiscoveryData;
+import xyz.iwolfking.woldsvaults.data.discovery.DiscoveredThemesData;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,5 +35,15 @@ public class AugmentForgeRecipe extends VaultForgeRecipe {
     public void addCraftingDisplayTooltip(ItemStack result, List<Component> out) {
         Optional<ThemeKey> themeKey = AugmentItem.getTheme(result);
         themeKey.ifPresent(key -> out.add(new TextComponent("Theme: ").append(new TextComponent(key.getName()).withStyle(Style.EMPTY.withColor(key.getColor())))));
+    }
+
+    @Override
+    public boolean canCraft(Player player) {
+        if (player instanceof ServerPlayer sPlayer) {
+            DiscoveredThemesData themesData = DiscoveredThemesData.get(sPlayer.getLevel());
+            return themesData.hasDiscovered(sPlayer, this.getId());
+        } else {
+            return ClientThemeDiscoveryData.getDiscoveredThemes().contains(this.getId());
+        }
     }
 }

@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom;
+package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom.enum_extension;
 
 import iskallia.vault.config.recipe.ForgeRecipeType;
 import org.spongepowered.asm.mixin.*;
