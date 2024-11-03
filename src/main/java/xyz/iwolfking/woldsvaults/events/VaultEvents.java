@@ -18,19 +18,16 @@ import xyz.iwolfking.woldsvaults.data.discovery.DiscoveredThemesData;
 public class VaultEvents {
     @SubscribeEvent
     public static void onVaultJoin(VaultJoinEvent event) {
-        ServerPlayer initialPlayer;
 
         ResourceLocation theme = event.getVault().get(Vault.WORLD).get(WorldManager.THEME);
         ThemeKey themeKey = VaultRegistry.THEME.getKey(theme);
 
         if(!event.getPlayers().isEmpty()) {
-            initialPlayer = event.getPlayers().get(0);
-
-            if(!DiscoveredThemesData.get(initialPlayer.server).hasDiscovered(initialPlayer, theme) && themeKey != null) {
-                DiscoveredThemesData.get(initialPlayer.server).discoverThemeAndBroadcast(themeKey, initialPlayer);
+            for(ServerPlayer joinedPlayer : event.getPlayers()) {
+                if(!DiscoveredThemesData.get(joinedPlayer.server).hasDiscovered(joinedPlayer, theme) && themeKey != null) {
+                    DiscoveredThemesData.get(joinedPlayer.server).discoverThemeAndBroadcast(themeKey, joinedPlayer);
+                }
             }
         }
-
-
     }
 }
