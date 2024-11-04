@@ -1,5 +1,7 @@
 package xyz.iwolfking.woldsvaults.init;
 
+import xyz.iwolfking.vhapi.api.data.api.CustomRecyclerOutputs;
+import xyz.iwolfking.vhapi.api.loaders.workstation.lib.CustomVaultRecyclerConfig;
 import xyz.iwolfking.woldsvaults.config.*;
 import xyz.iwolfking.woldsvaults.config.recipes.augment.AugmentRecipesConfig;
 
@@ -19,6 +21,7 @@ public class ModConfigs {
     public static EnchantedElixirConfig ENCHANTED_ELIXIR;
     public static AugmentRecipesConfig AUGMENT_RECIPES;
     public static ThemeTooltipsConfig THEME_TOOLTIPS;
+    public static CustomVaultRecyclerConfig CUSTOM_RECYCLER_CONFIG;
 
     public static void register() {
         GEM_BOX = (GemBoxConfig) (new GemBoxConfig()).readConfig();
@@ -35,5 +38,7 @@ public class ModConfigs {
         ENCHANTED_ELIXIR = (EnchantedElixirConfig) (new EnchantedElixirConfig().readConfig());
         AUGMENT_RECIPES = (AugmentRecipesConfig)(new AugmentRecipesConfig()).readConfig();
         THEME_TOOLTIPS = (ThemeTooltipsConfig)(new ThemeTooltipsConfig()).readConfig();
+        CUSTOM_RECYCLER_CONFIG = (CustomVaultRecyclerConfig) (new CustomVaultRecyclerConfig()).readConfig();
+        CustomRecyclerOutputs.CUSTOM_OUTPUTS.putAll(CUSTOM_RECYCLER_CONFIG.getOutputs());
     }
 }
