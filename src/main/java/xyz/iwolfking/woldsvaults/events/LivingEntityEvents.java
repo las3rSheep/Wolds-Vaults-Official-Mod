@@ -69,7 +69,7 @@ public class LivingEntityEvents {
 
         if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
             VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
-            if(data != null && data.has(ModGearAttributes.REAVING_DAMAGE)) {
+            if(data != null && data.hasAttribute(ModGearAttributes.REAVING_DAMAGE)) {
                 if(WoldsVaultsConfig.COMMON.enableDebugMode.get()) {
                     WoldsVaults.LOGGER.debug("[WOLD'S VAULTS] Added " + (event.getEntityLiving().getMaxHealth() * data.get(ModGearAttributes.REAVING_DAMAGE, VaultGearAttributeTypeMerger.floatSum())) + " bonus reaving damage to attack.");
                 }

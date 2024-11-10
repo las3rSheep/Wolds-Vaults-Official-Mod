@@ -25,7 +25,7 @@ public abstract class MixinToolItemRenderer extends SpecialItemRenderer {
      * @reason Display Reaping correctly.
      */
     @Overwrite
-    public void renderByItem(@NotNull ItemStack stack, @NotNull ItemTransforms.TransformType transformType, @NotNull PoseStack matrices, @NotNull MultiBufferSource buffer, int light, int overlay) {
+    public void m_108829_(@NotNull ItemStack stack, @NotNull ItemTransforms.TransformType transformType, @NotNull PoseStack matrices, @NotNull MultiBufferSource buffer, int light, int overlay) {
         ToolType type = ToolType.of(stack);
         VaultGearData data = VaultGearData.read(stack);
         ToolMaterial material = (ToolMaterial) data.get(ModGearAttributes.TOOL_MATERIAL, VaultGearAttributeTypeMerger.of(() -> {
@@ -35,11 +35,11 @@ public abstract class MixinToolItemRenderer extends SpecialItemRenderer {
         }));
         if (material == null) {
             int total = type == null ? 16 * ToolType.values().length : 16;
-            material = ToolMaterial.values()[(int) (ClientScheduler.INSTANCE.getTickCount() / (long) total) % ToolMaterial.values().length];
+            material = ToolMaterial.values()[(int) (ClientScheduler.INSTANCE.getTick() / (long) total) % ToolMaterial.values().length];
         }
 
-        if ((type == null && ExtendedToolType.of(stack) == null) || data.has(xyz.iwolfking.woldsvaults.init.ModGearAttributes.ROTATING_TOOL)) {
-            type = ToolType.values()[(int) (ClientScheduler.INSTANCE.getTickCount() >> 4) % ToolType.values().length];
+        if ((type == null && ExtendedToolType.of(stack) == null) || data.hasAttribute(xyz.iwolfking.woldsvaults.init.ModGearAttributes.ROTATING_TOOL)) {
+            type = ToolType.values()[(int) (ClientScheduler.INSTANCE.getTick() >> 4) % ToolType.values().length];
         }
         else if(ExtendedToolType.of(stack) != null) {
             ExtendedToolType extendedToolType = ExtendedToolType.of(stack);

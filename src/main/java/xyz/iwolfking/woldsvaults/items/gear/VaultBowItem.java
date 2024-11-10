@@ -2,10 +2,7 @@ package xyz.iwolfking.woldsvaults.items.gear;
 
 import com.google.common.collect.Multimap;
 import iskallia.vault.dynamodel.DynamicModel;
-import iskallia.vault.gear.VaultGearClassification;
-import iskallia.vault.gear.VaultGearHelper;
-import iskallia.vault.gear.VaultGearRarity;
-import iskallia.vault.gear.VaultGearState;
+import iskallia.vault.gear.*;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.crafting.ProficiencyType;
 import iskallia.vault.gear.data.VaultGearData;
@@ -144,10 +141,10 @@ public class VaultBowItem extends BowItem implements VaultGearItem, DyeableLeath
         return ProficiencyType.AXE;
     }
 
-    @Nullable
+    @NotNull
     @Override
-    public EquipmentSlot getIntendedSlot(ItemStack itemStack) {
-        return EquipmentSlot.MAINHAND;
+    public VaultGearType getGearType(ItemStack itemStack) {
+        return null;
     }
 
     @Override
@@ -175,7 +172,7 @@ public class VaultBowItem extends BowItem implements VaultGearItem, DyeableLeath
     public ResourceLocation getRandomModel(ItemStack itemStack, Random random) {
         VaultGearData gearData = VaultGearData.read(itemStack);
         /*  57 */     VaultGearRarity rarity = gearData.getRarity();
-        /*  58 */     EquipmentSlot intendedSlot = getIntendedSlot(itemStack);
+        /*  58 */     EquipmentSlot intendedSlot = getEquipmentSlot(itemStack);
         /*  59 */     ResourceLocation possibleIds = ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(this.defaultItem(), gearData, intendedSlot, random);
         /*     */
         /*  61 */     return (ResourceLocation) MiscUtils.getRandomEntry(possibleIds, random);

@@ -104,7 +104,6 @@
     "vaulthunters.fixes.MixinVaultModifier",
     "vaulthunters.fixes.MixinVaultPenTileEntity",
     "vaulthunters.fixes.bettercombat.MixinAttributeSnapshotCalculatorNoBC",
-    "vaulthunters.fixes.performance.MixinCollectionQuest",
     "vaulthunters.modifiers.MixinVaultModifierTypeRegistry",
     "vaulthunters.objectives.MixinCrystalData",
     "vaulthunters.recipes.MixinAnvilRecipes",

@@ -101,7 +101,7 @@ public class AugmentCraftingTableBlock extends Block implements EntityBlock {
                     });
                 });
                 Containers.dropContents(world, pos, entity.getResultContainer());
-                entity.getInventory().clearContent();
+                entity.getInventory().m_6211_();
                 entity.getResultContainer().clearContent();
                 world.updateNeighbourForOutputSignal(pos, this);
             }

@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.blocks.containers;
 import iskallia.vault.container.spi.ForgeRecipeContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import xyz.iwolfking.woldsvaults.blocks.tiles.AugmentCraftingTableTileEntity;
 import xyz.iwolfking.woldsvaults.init.ModContainers;
@@ -20,5 +21,10 @@ public class AugmentCraftingTableContainer extends ForgeRecipeContainer<AugmentC
 
     public Point getOffset() {
         return new Point(8, 23);
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return false;
     }
 }

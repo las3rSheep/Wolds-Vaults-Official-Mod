@@ -22,6 +22,7 @@ public class MixinForgeRecipeTypeEnum {
         return ModConfigs.AUGMENT_RECIPES;
     });
 
+
     @Invoker("<init>")
     public static ForgeRecipeType enumExpansion$invokeInit(String internalName, int internalId, BiFunction recipeClassCtor, Supplier configSupplier) {
         throw new AssertionError();

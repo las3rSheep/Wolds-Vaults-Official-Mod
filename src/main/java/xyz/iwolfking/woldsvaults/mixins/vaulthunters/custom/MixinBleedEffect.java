@@ -10,14 +10,14 @@ import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(value = BleedEffect.class)
+@Mixin(value = BleedEffect.class, remap = false)
 public class MixinBleedEffect {
     /**
      * @author iwolfking
      * @reason Change Bleed to do a portion of max health per damage tick instead.
      */
     @Overwrite
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public void m_6742_(LivingEntity entity, int amplifier) {
         if (!entity.level.isClientSide && !entity.isDeadOrDying()) {
             MobEffectInstance instance = entity.getEffect(ModEffects.BLEED);
             if (instance != null) {

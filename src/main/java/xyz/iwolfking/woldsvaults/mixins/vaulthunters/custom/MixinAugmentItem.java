@@ -21,7 +21,7 @@ import xyz.iwolfking.woldsvaults.init.ModConfigs;
 import java.util.List;
 import java.util.Optional;
 
-@Mixin(value = AugmentItem.class)
+@Mixin(value = AugmentItem.class, remap = false)
 public abstract class MixinAugmentItem extends Item implements VaultLevelItem, DataTransferItem {
     public MixinAugmentItem(Properties p_41383_) {
         super(p_41383_);
@@ -36,7 +36,7 @@ public abstract class MixinAugmentItem extends Item implements VaultLevelItem, D
      * @author iwolfking
      * @reason Add Theme tooltips
      */
-    @Inject(method = "appendHoverText", at = @At("TAIL"))
+    @Inject(method = "m_7373_", at = @At("TAIL"))
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag advanced, CallbackInfo ci) {
         getTheme(stack).ifPresent(key -> {
             if(ModConfigs.THEME_TOOLTIPS.tooltips.containsKey(key.getId()) && Screen.hasShiftDown()) {

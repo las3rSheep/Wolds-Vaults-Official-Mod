@@ -39,7 +39,7 @@ public class ToolCapacityAdderRecipe extends VanillaAnvilRecipe {
             }
 
             if(toolCapacity < (normalMaxCapacity + WoldsVaultsConfig.COMMON.crystalReinforcementMaxCapacityAdded.get())) {
-                gear.updateAttribute(ModGearAttributes.TOOL_CAPACITY, toolCapacity + 10);
+                //gear.updateAttribute(ModGearAttributes.TOOL_CAPACITY, toolCapacity + 10);
             }
             else {
                 return false;
