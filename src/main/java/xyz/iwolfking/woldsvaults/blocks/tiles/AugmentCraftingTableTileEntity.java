@@ -4,6 +4,7 @@ import iskallia.vault.block.entity.base.ForgeRecipeTileEntity;
 import iskallia.vault.config.recipe.ForgeRecipeType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -19,18 +20,19 @@ public class AugmentCraftingTableTileEntity extends ForgeRecipeTileEntity implem
         super(ModBlocks.AUGMENT_CRAFTING_TABLE_ENTITY, pWorldPosition, pBlockState, 6, new ForgeRecipeType[]{ForgeRecipeType.valueOf("AUGMENT")});
     }
 
-    protected AbstractContainerMenu createMenu(int windowId, Inventory playerInventory) {
-        return new AugmentCraftingTableContainer(windowId, this.getLevel(), this.getBlockPos(), playerInventory);
+    @Override
+    public Component getDisplayName() {
+        return new TextComponent("Augment Assembly Pedestal");
     }
 
     @Override
-    public Component getDisplayName() {
-        return null;
+    protected AbstractContainerMenu createMenu(int i, Inventory inventory) {
+        return new AugmentCraftingTableContainer(i, this.getLevel(), this.getBlockPos(), inventory);
     }
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int windowId, Inventory inventory, Player player) {
-        return new AugmentCraftingTableContainer(windowId, this.getLevel(), this.getBlockPos(), inventory);
+    public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
+        return new AugmentCraftingTableContainer(i, this.getLevel(), this.getBlockPos(), inventory);
     }
 }

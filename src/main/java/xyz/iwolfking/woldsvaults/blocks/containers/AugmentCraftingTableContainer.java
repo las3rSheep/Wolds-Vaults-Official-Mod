@@ -25,6 +25,6 @@ public class AugmentCraftingTableContainer extends ForgeRecipeContainer<AugmentC
 
     @Override
     public boolean stillValid(Player player) {
-        return false;
+        return this.getTile() != null && this.getTile().stillValid(player);
     }
 }
