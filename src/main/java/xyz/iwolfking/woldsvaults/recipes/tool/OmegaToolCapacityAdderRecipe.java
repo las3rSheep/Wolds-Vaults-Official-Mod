@@ -30,7 +30,7 @@ public class OmegaToolCapacityAdderRecipe extends VanillaAnvilRecipe {
             }
 
 
-            //gear.updateAttribute(ModGearAttributes.TOOL_CAPACITY, toolCapacity + 10);
+            gear.createOrReplaceAttributeValue(ModGearAttributes.TOOL_CAPACITY, toolCapacity + 10);
 
             gear.write(output);
             context.setOutput(output);
