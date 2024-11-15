@@ -26,6 +26,14 @@ public class WoldMixinCanceller implements MixinCanceller {
             }
         }
 
+        if(LoadingModList.get().getModFileById("ars_nouveau") != null) {
+            if(s.equals("com.hollingsworth.arsnouveau.common.mixin.elytra.ClientElytraMixin")) {
+                return true;
+            }
+        }
+
+
+
         return false;
     }
 }

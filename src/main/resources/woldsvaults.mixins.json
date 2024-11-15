@@ -96,8 +96,10 @@
     "vaulthunters.custom.recycler.MixinVaultCatalystItem",
     "vaulthunters.custom.recycler.MixinVaultGearItem",
     "vaulthunters.fixes.MixinBingoTask",
+    "vaulthunters.fixes.MixinEntityGroupsConfig",
     "vaulthunters.fixes.MixinGateRenderer",
     "vaulthunters.fixes.MixinKillEntityTask",
+    "vaulthunters.fixes.MixinLootableItem",
     "vaulthunters.fixes.MixinMonolithRenderer",
     "vaulthunters.fixes.MixinPlayer",
     "vaulthunters.fixes.MixinStatisticsElementContainerScreenData",
@@ -108,7 +110,8 @@
     "vaulthunters.objectives.MixinCrystalData",
     "vaulthunters.recipes.MixinAnvilRecipes",
     "vaulthunters.skills.MixinHealEffectAbility",
-    "vaulthunters.skills.MixinSkill"
+    "vaulthunters.skills.MixinSkill",
+    "vaulthunters.testing.MixinLootTable"
   ],
   "client": [
     "MixinThrownTridentRenderer",

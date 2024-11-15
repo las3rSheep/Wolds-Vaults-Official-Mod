@@ -34,6 +34,7 @@ public class Plushies {
     public static final HandHeldModel WARDEN;
     public static final HandHeldModel ARAEVIN;
     public static final HandHeldModel BLAHAJ;
+    public static final HandHeldModel WITCH;
 
     public Plushies() {
     }
@@ -65,5 +66,6 @@ public class Plushies {
         WARDEN = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/warden"), "Wally the Warden")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         ARAEVIN = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/araevin"), "Araevin the Heathen")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         BLAHAJ = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/blahaj"), "Blahaj the Shark")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
+        WITCH = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/witch"), "Walda the Witch")).properties(new DynamicModelProperties()));
     }
 }
