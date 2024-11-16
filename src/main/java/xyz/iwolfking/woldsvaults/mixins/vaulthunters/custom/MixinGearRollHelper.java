@@ -1,22 +1,32 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import iskallia.vault.gear.GearRollHelper;
+import iskallia.vault.gear.VaultGearLegendaryHelper;
+import iskallia.vault.gear.VaultGearModifierHelper;
+import iskallia.vault.gear.attribute.VaultGearModifier;
 import iskallia.vault.gear.data.VaultGearData;
+import iskallia.vault.gear.modification.GearModification;
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModGearAttributes;
+import iskallia.vault.item.gear.VaultArmorItem;
 import iskallia.vault.skill.base.Skill;
 import iskallia.vault.skill.tree.ExpertiseTree;
 import iskallia.vault.world.data.PlayerExpertisesData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
 
+import java.util.List;
 import java.util.Random;
 
 @Mixin(value = GearRollHelper.class, remap = false)
@@ -39,13 +49,37 @@ public class MixinGearRollHelper {
             if(craftsmanLevel > 0) {
                 cir.setReturnValue(true);
             }
-
         }
+    }
 
-        if(data.getFirstValue(ModGearAttributes.GEAR_ROLL_TYPE_POOL).isPresent()) {
-            if(data.getFirstValue(ModGearAttributes.GEAR_ROLL_TYPE_POOL).get().equals("jewel_crafted") && rand.nextFloat() < 0.02F) {
-                cir.setReturnValue(true);
+    @Inject(method = "initializeGear(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At(value = "INVOKE", target = "Liskallia/vault/gear/VaultGearModifierHelper;generateModifiers(Lnet/minecraft/world/item/ItemStack;Ljava/util/Random;)Liskallia/vault/gear/modification/GearModification$Result;", shift = At.Shift.AFTER))
+    private static void initializeGearWithEffects(ItemStack stack, Player player, CallbackInfo ci, @Local VaultGearData data) {
+        //Randomly add a corrupted implicit
+        if(rand.nextFloat() < 0.01F) {
+            GearModification.Result result;
+            if(rand.nextBoolean()) {
+                result = VaultGearModifierHelper.generateCorruptedImplicit(stack, rand);
+            }
+            else {
+                result = VaultGearLegendaryHelper.improveExistingModifier(stack, 1, rand, List.of(VaultGearModifier.AffixCategory.CORRUPTED));
+            }
+
+            if(result.success()) {
+                VaultGearModifierHelper.setGearCorrupted(stack);
             }
         }
+        else if(rand.nextFloat() < 0.03F) {
+            VaultGearModifierHelper.lockRandomAffix(stack, rand);
+        }
+        else if(rand.nextFloat() < 0.03F) {
+            VaultGearModifierHelper.improveGearRarity(stack, rand);
+        }
+        else if(rand.nextFloat() < 0.01F && stack.getItem() instanceof VaultArmorItem armorItem) {
+            if(armorItem.getEquipmentSlot(stack) != null && armorItem.getEquipmentSlot(stack).equals(EquipmentSlot.HEAD)) {
+                VaultGearModifierHelper.createOrReplaceAbilityEnhancementModifier(stack, rand);
+            }
+        }
+
+
     }
 }

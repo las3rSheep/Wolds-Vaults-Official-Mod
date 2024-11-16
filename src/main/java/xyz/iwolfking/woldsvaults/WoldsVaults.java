@@ -24,6 +24,7 @@ import xyz.iwolfking.woldsvaults.events.LivingEntityEvents;
 import xyz.iwolfking.woldsvaults.events.RegisterCommandEventHandler;
 import xyz.iwolfking.woldsvaults.init.*;
 import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
+import xyz.iwolfking.woldsvaults.models.AdditionalModels;
 import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 
@@ -63,6 +64,7 @@ public class WoldsVaults {
         PacketHandler.init();
 
         LivingEntityEvents.init();
+        new AdditionalModels();
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
