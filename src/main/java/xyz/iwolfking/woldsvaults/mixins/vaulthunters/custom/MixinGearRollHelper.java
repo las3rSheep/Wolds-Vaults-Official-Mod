@@ -55,7 +55,7 @@ public class MixinGearRollHelper {
     @Inject(method = "initializeGear(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At(value = "INVOKE", target = "Liskallia/vault/gear/VaultGearModifierHelper;generateModifiers(Lnet/minecraft/world/item/ItemStack;Ljava/util/Random;)Liskallia/vault/gear/modification/GearModification$Result;", shift = At.Shift.AFTER))
     private static void initializeGearWithEffects(ItemStack stack, Player player, CallbackInfo ci, @Local VaultGearData data) {
         //Randomly add a corrupted implicit
-        if(rand.nextFloat() < 0.01F) {
+        if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.01F) {
             GearModification.Result result;
             if(rand.nextBoolean()) {
                 result = VaultGearModifierHelper.generateCorruptedImplicit(stack, rand);
@@ -68,13 +68,13 @@ public class MixinGearRollHelper {
                 VaultGearModifierHelper.setGearCorrupted(stack);
             }
         }
-        else if(rand.nextFloat() < 0.03F) {
+        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.03F) {
             VaultGearModifierHelper.lockRandomAffix(stack, rand);
         }
-        else if(rand.nextFloat() < 0.03F) {
+        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.03F) {
             VaultGearModifierHelper.improveGearRarity(stack, rand);
         }
-        else if(rand.nextFloat() < 0.01F && stack.getItem() instanceof VaultArmorItem armorItem) {
+        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.01F && stack.getItem() instanceof VaultArmorItem armorItem) {
             if(armorItem.getEquipmentSlot(stack) != null && armorItem.getEquipmentSlot(stack).equals(EquipmentSlot.HEAD)) {
                 VaultGearModifierHelper.createOrReplaceAbilityEnhancementModifier(stack, rand);
             }
