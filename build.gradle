@@ -142,7 +142,7 @@ repositories {
     //     dir 'libs'
     // }
     flatDir {
-        dir 'lib'
+        dir 'libs'
     }
     maven { url = "https://jitpack.io" }
     maven {
@@ -256,10 +256,10 @@ dependencies {
     implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.3.3")) {
         jarJar.ranged(it, "[0.3.3,)")
     }
-    implementation files('lib/conditional-mixin-forge-0.6.2.jar')
-    implementation files('lib/forgified-sgui-1.0.2.jar')
-    implementation files('lib/vaultarhud-1.0.0-1.18.2.jar')
-    implementation fg.deobf(files('lib/the_vault-1.18.2-3.15.2.3636.jar'))
+    implementation files('libs/conditional-mixin-forge-0.6.2.jar')
+    implementation files('libs/forgified-sgui-1.0.2.jar')
+    implementation files('libs/vaultarhud-1.0.0-1.18.2.jar')
+    implementation fg.deobf(files('libs/the_vault-1.18.2-3.15.2.3636.jar'))
 
     jarJar(group: 'me.fallenbreath', name: 'conditional-mixin-forge', version: '[0.6.2,)') {
         jarJar.pin(it, '0.6.2')

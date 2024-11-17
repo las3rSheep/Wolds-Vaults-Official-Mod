@@ -7,7 +7,9 @@
     "OMEGA": [
       "vhapi:gear/axe/iskallianchor"
     ],
-    "UNIQUE": []
+    "UNIQUE": [
+      "the_vault:gear/axe/leviathan"
+    ]
   },
   "WAND_MODEL_ROLLS": {
     "SCRAPPY": [],

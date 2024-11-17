@@ -112,6 +112,7 @@
     "vaulthunters.recipes.MixinAnvilRecipes",
     "vaulthunters.skills.MixinHealEffectAbility",
     "vaulthunters.skills.MixinSkill",
+    "vaulthunters.testing.CrystalConfigAccessor",
     "vaulthunters.testing.MixinLootTable"
   ],
   "client": [

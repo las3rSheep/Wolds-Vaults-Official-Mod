@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults;
 
 import com.mojang.logging.LogUtils;
+import iskallia.vault.item.crystal.CrystalData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,6 +28,7 @@ import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
 import xyz.iwolfking.woldsvaults.models.AdditionalModels;
 import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
+import xyz.iwolfking.woldsvaults.objectives.speedrun.SpeedrunCrystalObjective;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("woldsvaults")
@@ -65,6 +67,7 @@ public class WoldsVaults {
 
         LivingEntityEvents.init();
         new AdditionalModels();
+        CrystalData.OBJECTIVE.register("brb_speedrun", SpeedrunCrystalObjective.class, SpeedrunCrystalObjective::new);
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

@@ -9,7 +9,6 @@ import iskallia.vault.item.crystal.CrystalEntry;
 import iskallia.vault.item.crystal.data.serializable.ISerializable;
 import iskallia.vault.item.crystal.model.CrystalModel;
 import iskallia.vault.item.crystal.modifiers.CrystalModifiers;
-import iskallia.vault.item.crystal.objective.CrystalObjective;
 import iskallia.vault.item.crystal.theme.CrystalTheme;
 import net.minecraft.nbt.CompoundTag;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,7 +20,6 @@ import xyz.iwolfking.woldsvaults.models.crystal.UnhingedCrystalModel;
 public abstract class MixinCrystalData extends CrystalEntry implements ISerializable<CompoundTag, JsonObject>
 {
 
-    @Shadow public static TypeSupplierAdapter<CrystalObjective> OBJECTIVE;
     @Shadow public static TypeSupplierAdapter<CrystalModel> MODEL;
 
     @Shadow private CrystalModifiers modifiers;
