@@ -16,6 +16,7 @@
     "ae2.terminal.MixinWirelessTerminalItem",
     "alexsmobs.MixinEntityTiger",
     "angelrings.MixinAbstractRingCurio",
+    "ars_nouveau.MixinReactiveEnchantment",
     "bettercombat.MixinBetterCombatAttackRange",
     "cloudstorage.MixinBalloonBuddyEntity",
     "cofhcore.MixinCofhEnchantment",
