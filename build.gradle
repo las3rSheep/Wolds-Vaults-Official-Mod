@@ -244,6 +244,7 @@ dependencies {
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:5865552")
     implementation fg.deobf("curse.maven:occultism-361026:4729072")
     implementation fg.deobf("curse.maven:ars-nouveau-401955:4543053")
+    implementation fg.deobf("curse.maven:open-parties-and-claims-636608:4982642")
     //implementation fg.deobf("curse.maven:vault-hunters-api-1118899:5800243")
     compileOnly "curse.maven:citadel4-331936:3683009" // change to 3548061
     runtimeOnly "curse.maven:citadel4-331936:3683009"
@@ -259,7 +260,7 @@ dependencies {
     implementation files('libs/conditional-mixin-forge-0.6.2.jar')
     implementation files('libs/forgified-sgui-1.0.2.jar')
     implementation files('libs/vaultarhud-1.0.0-1.18.2.jar')
-    implementation fg.deobf(files('libs/the_vault-1.18.2-3.15.2.3636.jar'))
+    implementation fg.deobf(files('libs/the_vault-1.18.2-3.15.2.3661.jar'))
 
     jarJar(group: 'me.fallenbreath', name: 'conditional-mixin-forge', version: '[0.6.2,)') {
         jarJar.pin(it, '0.6.2')
