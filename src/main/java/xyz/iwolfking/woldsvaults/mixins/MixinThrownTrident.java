@@ -191,7 +191,6 @@ public abstract class MixinThrownTrident extends AbstractArrow {
                     }
                     EffectCloudEntity cloudEntity = new EffectCloudEntity(attacker.getLevel(), blockpos.getX(), blockpos.getY(), blockpos.getZ());
                     ((EffectCloudAttribute) cloud).apply(cloudEntity);
-                    //cloudEntity.setRadius(AreaOfEffectHelper.adjustAreaOfEffect(attacker, cloudEntity.getRadius()));
                     cloudEntity.setOwner(attacker);
                      attacker.getLevel().addFreshEntity((Entity)cloudEntity);
             });

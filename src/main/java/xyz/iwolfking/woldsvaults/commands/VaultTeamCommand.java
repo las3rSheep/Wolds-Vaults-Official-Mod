@@ -1,45 +1,62 @@
 package xyz.iwolfking.woldsvaults.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import xyz.iwolfking.woldsvaults.teams.data.VaultTeamsData;
-import xyz.iwolfking.woldsvaults.teams.lib.VaultTeam;
-import xyz.iwolfking.woldsvaults.util.MessageFunctions;
 
 public class VaultTeamCommand {
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("vault_team").then(Commands.argument("command", StringArgumentType.string()).then(Commands.argument("team", StringArgumentType.string()).then(Commands.argument("target", EntityArgument.player()).executes(AddCommand -> openResearchGUI(AddCommand.getSource(),
-                StringArgumentType.getString(AddCommand, "command"),
-                StringArgumentType.getString(AddCommand, "team"),
-                EntityArgument.getEntity(AddCommand, "player")
-        ))))));
+
+    public VaultTeamCommand() {
     }
 
-    private static int openResearchGUI(CommandSourceStack ctx, String command, String team, Entity target) throws CommandSyntaxException {
-        if(command.equals("add")) {
-            try {
-                VaultTeam godTeam = VaultTeam.valueOf(team);
-                if (target instanceof Player player) {
-                    VaultTeamsData.get(player.getServer()).addTeamMember(player, godTeam);
-                    MessageFunctions.sendMessage(ctx.getPlayerOrException(), new TextComponent("Added player to team."));
-                } else {
-                    throw new IllegalArgumentException();
-                }
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+        dispatcher.register(Commands.literal("team_admin")
+                .then(Commands.literal("add")
+                        .then(Commands.argument("target", StringArgumentType.string())
+                                .then(((Commands.argument("amount", IntegerArgumentType.integer())
+                                        .executes((p_137341_) -> {
+                                            addPoints(p_137341_.getSource(), StringArgumentType.getString(p_137341_, "target"), IntegerArgumentType.getInteger(p_137341_, "amount"));
+                                            return 0;
+                                        }))))))
+                .then(Commands.literal("set").then(Commands.argument("target", StringArgumentType.string())
+                        .then((Commands.argument("amount", IntegerArgumentType.integer())
+                                .executes((p_137341_) -> {
+                                    setPoints(p_137341_.getSource(), StringArgumentType.getString(p_137341_, "target"), IntegerArgumentType.getInteger(p_137341_, "amount"));
+                                    return 0;
+                                })))))
+                .then(Commands.literal("remove").then(Commands.argument("target", StringArgumentType.string())
+                        .then((Commands.argument("amount", IntegerArgumentType.integer())
+                                .executes((p_137341_) -> {
+                                    removePoints(p_137341_.getSource(), StringArgumentType.getString(p_137341_, "target"), IntegerArgumentType.getInteger(p_137341_, "amount"));
+                                    return 0;
+                                })))))
+                .then(Commands.literal("get").then(Commands.argument("target", StringArgumentType.string())
+                                .executes((p_137341_) -> {
+                                    getPoints(p_137341_.getSource(), StringArgumentType.getString(p_137341_, "target"));
+                                    return 0;
+                                }))));
+    }
 
-            } catch (IllegalArgumentException e) {
-                MessageFunctions.sendMessage(ctx.getPlayerOrException(), new TextComponent("Could not find a team/player with that name."));
-                return 0;
-            }
-        }
 
-        return 1;
+    private static void addPoints(CommandSourceStack context, String team, int points) {
+        VaultTeamsData.get(context.getServer()).addPointsToTeam(team, points);
+    }
 
+    private static void setPoints(CommandSourceStack context, String team, int points) {
+        VaultTeamsData.get(context.getServer()).setPointsForTeam(team, points);
+    }
+
+    private static void removePoints(CommandSourceStack context, String team, int points) {
+        VaultTeamsData.get(context.getServer()).removePointsFromTeam(team, points);
+    }
+
+    private static void getPoints(CommandSourceStack context, String team) throws CommandSyntaxException {
+        int points = VaultTeamsData.get(context.getServer()).getPointsForTeam(team);
+        context.getPlayerOrException().displayClientMessage(new TextComponent(team + " has " + points + " points."), false);
     }
 }
