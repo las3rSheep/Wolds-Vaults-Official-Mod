@@ -92,6 +92,7 @@ public class ModItems {
     public static BasicItem ALL_SEEING_EYE_CAPSTONE;
     public static BasicItem ENCHANTED_CAPSTONE;
     public static BasicItem COMMUNITY_TOKEN;
+    public static BasicItem RESEARCH_TOKEN;
 
     public static BasicItem VENDOOR_CAPSTONE;
     public static BasicItem WAXING_AUGMENTER;
@@ -234,6 +235,7 @@ public class ModItems {
         registry.register(CRYSTAL_SEAL_ZEALOT);
         registry.register(XL_BACKPACK);
         registry.register(COMMUNITY_TOKEN);
+        registry.register(RESEARCH_TOKEN);
     }
 
     static {
@@ -317,6 +319,7 @@ public class ModItems {
         VELARA_APPLE = new BasicItem(WoldsVaults.id("velara_apple"));
         WENDARR_GEM = new BasicItem(WoldsVaults.id("wendarr_gem"));
         COMMUNITY_TOKEN = new BasicItem(WoldsVaults.id("community_token"));
+        RESEARCH_TOKEN = new ResearchTokenItem(WoldsVaults.id("research_token"), new Item.Properties().stacksTo(1));
         POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
         XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
         XL_BACKPACK.setRegistryName(WoldsVaults.MOD_ID, "xl_backpack");
