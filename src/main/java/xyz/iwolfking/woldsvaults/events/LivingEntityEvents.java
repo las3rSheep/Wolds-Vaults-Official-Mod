@@ -8,14 +8,20 @@ import iskallia.vault.block.VaultOreBlock;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.entity.VaultBoss;
 import iskallia.vault.entity.champion.ChampionLogic;
+import iskallia.vault.event.ActiveFlags;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
+import iskallia.vault.skill.base.Skill;
+import iskallia.vault.skill.talent.type.JavelinConductTalent;
+import iskallia.vault.skill.tree.TalentTree;
 import iskallia.vault.util.calc.PlayerStat;
+import iskallia.vault.world.data.PlayerTalentsData;
 import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -37,6 +43,8 @@ import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
 import xyz.iwolfking.woldsvaults.util.WoldEventHelper;
+
+import java.util.Iterator;
 
 @Mod.EventBusSubscriber(
         modid = WoldsVaults.MOD_ID
@@ -64,6 +72,21 @@ public class LivingEntityEvents {
         //Prevent an entity from being reaved more than once or applying to non-melee strikes.
         if(event.getEntityLiving().hasEffect(ModEffects.REAVING) || !WoldEventHelper.isNormalAttack()) {
             return;
+        }
+
+        boolean hasConduct = false;
+        if (ActiveFlags.IS_JAVELIN_ATTACKING.isSet()) {
+            if (event.getEntityLiving() instanceof ServerPlayer sPlayer) {
+                TalentTree talents = PlayerTalentsData.get(sPlayer.getLevel()).getTalents(sPlayer);
+
+                for(Iterator var7 = talents.getAll(JavelinConductTalent.class, Skill::isUnlocked).iterator(); var7.hasNext(); hasConduct = true) {
+                    JavelinConductTalent talent = (JavelinConductTalent)var7.next();
+                }
+            }
+
+            if (!hasConduct) {
+                return;
+            }
         }
 
 
