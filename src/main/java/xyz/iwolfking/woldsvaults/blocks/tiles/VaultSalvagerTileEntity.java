@@ -40,6 +40,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.minecraftforge.network.PacketDistributor;
+import xyz.iwolfking.vhapi.api.data.api.CustomRecyclerOutputs;
 import xyz.iwolfking.woldsvaults.blocks.containers.VaultSalvagerContainer;
 import xyz.iwolfking.woldsvaults.init.ModBlocks;
 import xyz.iwolfking.woldsvaults.lib.SimpleOversizedSidedContainer;
@@ -174,9 +175,8 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
             if (var3 instanceof RecyclableItem) {
                 RecyclableItem recyclableItem = (RecyclableItem)var3;
                 return recyclableItem.getOutput(input);
-            } else {
-                return null;
             }
+            else return CustomRecyclerOutputs.CUSTOM_OUTPUTS.getOrDefault(input.getItem().getRegistryName(), null);
         }
     }
 
@@ -195,6 +195,12 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
 
                 });
             }
+            else {
+                UUID uuid = UUID.randomUUID();
+                if ((this.gearIdProcessing == null || !this.gearIdProcessing.equals(uuid)) && this.canCraft()) {
+                    this.startProcess((Level)null, uuid);
+                }
+            }
         }
     }
 
@@ -202,9 +208,8 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
         Item var3 = input.getItem();
         if (var3 instanceof RecyclableItem recyclableItem) {
             return recyclableItem.isValidInput(input);
-        } else {
-            return false;
         }
+        else return CustomRecyclerOutputs.CUSTOM_OUTPUTS.containsKey(input.getItem().getRegistryName());
     }
 
     public float getResultPercentage(ItemStack input) {
@@ -212,7 +217,13 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
         if (var3 instanceof RecyclableItem recyclableItem) {
             return recyclableItem.getResultPercentage(input);
         } else {
-            return 0.0F;
+            if(CustomRecyclerOutputs.CUSTOM_OUTPUTS.containsKey(input.getItem().getRegistryName())) {
+                return 1.0F;
+            }
+            else {
+                return 0.0F;
+            }
+
         }
     }
 
@@ -354,6 +365,9 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
                     if (var4 instanceof RecyclableItem) {
                         RecyclableItem recyclableItem = (RecyclableItem)var4;
                         return recyclableItem.isValidInput(stack);
+                    }
+                    else {
+                        return CustomRecyclerOutputs.CUSTOM_OUTPUTS.containsKey(stack.getItem().getRegistryName());
                     }
                 }
 
