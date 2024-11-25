@@ -9,7 +9,9 @@ import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.modification.GearModification;
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModGearAttributes;
+import iskallia.vault.item.gear.CharmItem;
 import iskallia.vault.item.gear.VaultArmorItem;
+import iskallia.vault.item.tool.JewelItem;
 import iskallia.vault.skill.base.Skill;
 import iskallia.vault.skill.tree.ExpertiseTree;
 import iskallia.vault.world.data.PlayerExpertisesData;
@@ -54,6 +56,11 @@ public class MixinGearRollHelper {
 
     @Inject(method = "initializeGear(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At(value = "INVOKE", target = "Liskallia/vault/gear/VaultGearModifierHelper;generateModifiers(Lnet/minecraft/world/item/ItemStack;Ljava/util/Random;)Liskallia/vault/gear/modification/GearModification$Result;", shift = At.Shift.AFTER))
     private static void initializeGearWithEffects(ItemStack stack, Player player, CallbackInfo ci, @Local VaultGearData data) {
+        //Don't need to process jewels and other kinds of gear.
+        if(stack.getItem() instanceof JewelItem || stack.getItem() instanceof CharmItem) {
+            return;
+        }
+
         //Randomly add a corrupted implicit
         if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.01F) {
             GearModification.Result result;
