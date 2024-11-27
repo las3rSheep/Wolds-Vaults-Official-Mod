@@ -26,6 +26,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import xyz.iwolfking.woldsvaults.api.helper.WoldGearModifierHelper;
 import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
 
 import java.util.List;
@@ -74,9 +75,12 @@ public class MixinGearRollHelper {
             if(result.success()) {
                 VaultGearModifierHelper.setGearCorrupted(stack);
             }
-        }
+
         else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.03F) {
             VaultGearModifierHelper.lockRandomAffix(stack, rand);
+        }
+        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.02F) {
+                WoldGearModifierHelper.addUnusualModifier(stack, player.level.getGameTime(), rand);
         }
         else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.03F) {
             VaultGearModifierHelper.improveGearRarity(stack, rand);

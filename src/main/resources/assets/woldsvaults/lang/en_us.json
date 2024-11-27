@@ -156,5 +156,8 @@
   "effect.woldsvaults.growing": "Growing",
   "woldsvaults.key.cherish_item": "Cherish Item",
   "key.woldsvaults.cherish_item": "Cherish Item",
-  "key.woldsvaults.category": "Wold's Vaults"
+  "key.woldsvaults.category": "Wold's Vaults",
+  "the_vault.gear_modification.add_unusual_modifier.description": "Add unusual modifier",
+  "the_vault.gear_modification.add_unusual_modifier.no_modifiers": "No additional modifiers available",
+  "the_vault.gear_modification.add_unusual_modifier.full": "You cannot add more unusual modifiers to this gear piece"
 }
