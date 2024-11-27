@@ -41,6 +41,7 @@ public class ModItems {
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_TITAN;
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_DOOMSAYER;
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_ZEALOT;
+    public static ItemVaultCrystalSeal CRYSTAL_SEAL_WARRIOR;
     public static VaultBattleStaffItem BATTLESTAFF;
     //public static VaultBowItem BOW;
 
@@ -86,6 +87,8 @@ public class ModItems {
     //Orbs
     public static final ExpertiseOrbItem EXPERTISE_ORB_ITEM;
     public static final SkillOrbItem SKILL_ORB_ITEM;
+
+    public static final BasicItem ECCENTRIC_FOCUS;
 
     public static BasicItem FRENZY_CAPSTONE;
     public static BasicItem PROSPEROUS_CAPSTONE;
@@ -153,6 +156,7 @@ public class ModItems {
         registry.register(CRYSTAL_SEAL_ENCHANTER);
         registry.register(CRYSTAL_SEAL_TITAN);
         registry.register(CRYSTAL_SEAL_DOOMSAYER);
+        registry.register(CRYSTAL_SEAL_WARRIOR);
         registry.register(BATTLESTAFF);
         registry.register(TRIDENT);
         registry.register(PLUSHIE);
@@ -236,6 +240,7 @@ public class ModItems {
         registry.register(XL_BACKPACK);
         registry.register(COMMUNITY_TOKEN);
         registry.register(RESEARCH_TOKEN);
+        registry.register(ECCENTRIC_FOCUS);
     }
 
     static {
@@ -246,6 +251,7 @@ public class ModItems {
         CRYSTAL_SEAL_TITAN = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_titan"));
         CRYSTAL_SEAL_DOOMSAYER = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_doomsayer"));
         CRYSTAL_SEAL_ZEALOT = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_zealot"));
+        CRYSTAL_SEAL_WARRIOR = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_warrior"));
         BATTLESTAFF =  new VaultBattleStaffItem(VaultMod.id("battlestaff"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         TRIDENT = new VaultTridentItem(VaultMod.id("trident"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         PLUSHIE = new VaultPlushieItem(VaultMod.id("plushie"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
@@ -318,6 +324,7 @@ public class ModItems {
         IDONA_DAGGER = new BasicItem(WoldsVaults.id("idona_dagger"));
         VELARA_APPLE = new BasicItem(WoldsVaults.id("velara_apple"));
         WENDARR_GEM = new BasicItem(WoldsVaults.id("wendarr_gem"));
+        ECCENTRIC_FOCUS = new BasicItem(WoldsVaults.id("eccentric_focus"));
         COMMUNITY_TOKEN = new BasicItem(WoldsVaults.id("community_token"));
         RESEARCH_TOKEN = new ResearchTokenItem(WoldsVaults.id("research_token"), new Item.Properties().stacksTo(1));
         POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));

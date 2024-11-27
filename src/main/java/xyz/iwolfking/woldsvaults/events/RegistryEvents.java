@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.events;
 
+import iskallia.vault.gear.modification.GearModification;
 import iskallia.vault.gear.trinket.TrinketEffect;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
@@ -8,17 +9,11 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.p3pp3rf1y.sophisticatedbackpacks.api.CapabilityBackpackWrapper;
-import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlockEntity;
-import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
-import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.BackpackWrapper;
-import net.p3pp3rf1y.sophisticatedcore.util.WorldHelper;
 import xyz.iwolfking.woldsvaults.init.*;
 import xyz.iwolfking.woldsvaults.lib.CustomScaleTypes;
 
@@ -78,5 +73,9 @@ public class RegistryEvents {
         ModSounds.registerSounds(event);
     }
 
+    @SubscribeEvent
+    public static void onModificationRegistry(RegistryEvent.Register<GearModification> event) {
+        ModGearModifications.init(event);
+    }
 
 }

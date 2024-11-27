@@ -32,6 +32,12 @@ public class WoldMixinCanceller implements MixinCanceller {
             }
         }
 
+        if(LoadingModList.get().getModFileById("the_vault") != null) {
+            if(s.equals("iskallia.vault.mixin.MixinWorldChunk")) {
+                return true;
+            }
+        }
+
 
 
         return false;
