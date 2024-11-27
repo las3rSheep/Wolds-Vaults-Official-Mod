@@ -65,17 +65,16 @@ public class MixinGearRollHelper {
         //Randomly add a corrupted implicit
         if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.01F) {
             GearModification.Result result;
-            if(rand.nextBoolean()) {
+            if (rand.nextBoolean()) {
                 result = VaultGearModifierHelper.generateCorruptedImplicit(stack, rand);
-            }
-            else {
+            } else {
                 result = VaultGearLegendaryHelper.improveExistingModifier(stack, 1, rand, List.of(VaultGearModifier.AffixCategory.CORRUPTED));
             }
 
-            if(result.success()) {
+            if (result.success()) {
                 VaultGearModifierHelper.setGearCorrupted(stack);
             }
-
+        }
         else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.03F) {
             VaultGearModifierHelper.lockRandomAffix(stack, rand);
         }
@@ -90,7 +89,5 @@ public class MixinGearRollHelper {
                 VaultGearModifierHelper.createOrReplaceAbilityEnhancementModifier(stack, rand);
             }
         }
-
-
     }
 }
