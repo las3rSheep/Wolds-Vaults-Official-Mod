@@ -10,7 +10,6 @@
 
     ],
     "COMMON": [
-      "the_vault:gear/plushie/iskall",
       "the_vault:gear/plushie/hrry",
       "the_vault:gear/plushie/sparklez",
       "the_vault:gear/plushie/llama",
@@ -18,7 +17,7 @@
     ],
     "RARE": [
       "the_vault:gear/plushie/caigan",
-      "the_vault:gear/plushie/squish",
+      "the_vault:gear/plushie/dearliest",
       "the_vault:gear/plushie/frog",
       "the_vault:gear/plushie/panda",
       "the_vault:gear/plushie/turtle",
@@ -38,6 +37,8 @@
       "the_vault:gear/plushie/dweller",
       "the_vault:gear/plushie/blahaj"
     ],
-    "UNIQUE": []
+    "UNIQUE": [
+      "the_vault:gear/plushie/witch"
+    ]
   }
 }

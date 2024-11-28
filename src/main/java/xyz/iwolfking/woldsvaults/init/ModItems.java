@@ -41,6 +41,7 @@ public class ModItems {
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_TITAN;
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_DOOMSAYER;
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_ZEALOT;
+    public static ItemVaultCrystalSeal CRYSTAL_SEAL_WARRIOR;
     public static VaultBattleStaffItem BATTLESTAFF;
     //public static VaultBowItem BOW;
 
@@ -87,10 +88,14 @@ public class ModItems {
     public static final ExpertiseOrbItem EXPERTISE_ORB_ITEM;
     public static final SkillOrbItem SKILL_ORB_ITEM;
 
+    public static final BasicItem ECCENTRIC_FOCUS;
+
     public static BasicItem FRENZY_CAPSTONE;
     public static BasicItem PROSPEROUS_CAPSTONE;
     public static BasicItem ALL_SEEING_EYE_CAPSTONE;
     public static BasicItem ENCHANTED_CAPSTONE;
+    public static BasicItem COMMUNITY_TOKEN;
+    public static BasicItem RESEARCH_TOKEN;
 
     public static BasicItem VENDOOR_CAPSTONE;
     public static BasicItem WAXING_AUGMENTER;
@@ -128,6 +133,7 @@ public class ModItems {
     public static BasicItem GEM_REAGENT_XENIUM;
     public static BasicItem GEM_REAGENT_SPARKLETINE;
     public static BasicItem GEM_REAGENT_TUBIUM;
+    public static BasicItem AUGMENT_PIECE;
     public static PoltergeistPlum POLTERGEIST_PLUM;
 
     //Zealot items
@@ -150,6 +156,7 @@ public class ModItems {
         registry.register(CRYSTAL_SEAL_ENCHANTER);
         registry.register(CRYSTAL_SEAL_TITAN);
         registry.register(CRYSTAL_SEAL_DOOMSAYER);
+        registry.register(CRYSTAL_SEAL_WARRIOR);
         registry.register(BATTLESTAFF);
         registry.register(TRIDENT);
         registry.register(PLUSHIE);
@@ -223,6 +230,7 @@ public class ModItems {
         registry.register(GEM_REAGENT_XENIUM);
         registry.register(GEM_REAGENT_SPARKLETINE);
         registry.register(GEM_REAGENT_UPALINE);
+        registry.register(AUGMENT_PIECE);
         registry.register(IDONA_DAGGER);
         registry.register(WENDARR_GEM);
         registry.register(VELARA_APPLE);
@@ -230,6 +238,9 @@ public class ModItems {
         registry.register(POLTERGEIST_PLUM);
         registry.register(CRYSTAL_SEAL_ZEALOT);
         registry.register(XL_BACKPACK);
+        registry.register(COMMUNITY_TOKEN);
+        registry.register(RESEARCH_TOKEN);
+        registry.register(ECCENTRIC_FOCUS);
     }
 
     static {
@@ -240,6 +251,7 @@ public class ModItems {
         CRYSTAL_SEAL_TITAN = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_titan"));
         CRYSTAL_SEAL_DOOMSAYER = new ItemVaultCrystalSeal(VaultMod.id("crystal_seal_doomsayer"));
         CRYSTAL_SEAL_ZEALOT = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_zealot"));
+        CRYSTAL_SEAL_WARRIOR = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_warrior"));
         BATTLESTAFF =  new VaultBattleStaffItem(VaultMod.id("battlestaff"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         TRIDENT = new VaultTridentItem(VaultMod.id("trident"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         PLUSHIE = new VaultPlushieItem(VaultMod.id("plushie"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
@@ -307,10 +319,14 @@ public class ModItems {
         GEM_REAGENT_UPALINE = new BasicItem(VaultMod.id("gem_reagent_upaline"));
         GEM_REAGENT_XENIUM = new BasicItem(VaultMod.id("gem_reagent_xenium"));
         GEM_REAGENT_SPARKLETINE = new BasicItem(VaultMod.id("gem_reagent_sparkletine"));
+        AUGMENT_PIECE = new BasicItem(WoldsVaults.id("augment_piece"));
         TOME_OF_TENOS = new BasicItem(WoldsVaults.id("tome_of_tenos"));
         IDONA_DAGGER = new BasicItem(WoldsVaults.id("idona_dagger"));
         VELARA_APPLE = new BasicItem(WoldsVaults.id("velara_apple"));
         WENDARR_GEM = new BasicItem(WoldsVaults.id("wendarr_gem"));
+        ECCENTRIC_FOCUS = new BasicItem(WoldsVaults.id("eccentric_focus"));
+        COMMUNITY_TOKEN = new BasicItem(WoldsVaults.id("community_token"));
+        RESEARCH_TOKEN = new ResearchTokenItem(WoldsVaults.id("research_token"), new Item.Properties().stacksTo(1));
         POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
         XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
         XL_BACKPACK.setRegistryName(WoldsVaults.MOD_ID, "xl_backpack");

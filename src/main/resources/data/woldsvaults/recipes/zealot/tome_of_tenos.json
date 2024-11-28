@@ -10,10 +10,12 @@
       "item": "the_vault:vault_rock"
     },
     "E": {
-      "item": "minecraft:lapis_lazuli"
+      "item": "the_vault:wutodic_mass"
     },
     "A": {
-      "item": "minecraft:book"
+      "type": "forge:nbt",
+      "item": "the_vault:augment",
+      "nbt": {"theme": "the_vault:classic_vault_tenos_normal"}
     },
     "S": {
       "type": "forge:nbt",
@@ -23,7 +25,7 @@
       }
     },
     "M": {
-      "item": "the_vault:memory_powder"
+      "item": "the_vault:memory_shard"
     }
   },
   "result": {

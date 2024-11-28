@@ -10,10 +10,12 @@
       "item": "the_vault:vault_rock"
     },
     "E": {
-      "item": "the_vault:vault_essence"
+      "item": "the_vault:wutodic_mass"
     },
     "A": {
-      "item": "minecraft:clock"
+      "type": "forge:nbt",
+      "item": "the_vault:augment",
+      "nbt": {"theme": "the_vault:classic_vault_wendarr_normal"}
     },
     "S": {
       "type": "forge:nbt",
@@ -23,7 +25,7 @@
       }
     },
     "M": {
-      "item": "the_vault:memory_powder"
+      "item": "the_vault:memory_shard"
     }
   },
   "result": {

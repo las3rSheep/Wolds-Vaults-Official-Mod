@@ -46,6 +46,8 @@ public class MixinVaultAltarIngredientsConfig {
             new AbstractMap.SimpleEntry<String, String>("immersiveengineering", "Immersive Engineering"),
             new AbstractMap.SimpleEntry<String, String>("thermal", "Thermal Expansion"),
             new AbstractMap.SimpleEntry<String, String>("create", "Create"),
+            new AbstractMap.SimpleEntry<String, String>("occultism", "Occultism"),
+            new AbstractMap.SimpleEntry<String, String>("ars_nouveau", "Ars Nouveau"),
             new AbstractMap.SimpleEntry<String, String>("createaddition", "Create Crafts and Additions"),
             new AbstractMap.SimpleEntry<String, String>("industrialforegoing", "Industrial Foregoing"),
             new AbstractMap.SimpleEntry<String, String>("hostilenetworks", "Hostile Neural Networks"),
@@ -55,6 +57,8 @@ public class MixinVaultAltarIngredientsConfig {
 
 
     );
+
+
     @Unique
     private Map<String, AltarIngredientEntry> woldsVaults$getEntriesWithModFilter(int vaultLevel, ServerPlayer player) {
         Optional<Map<String, WeightedList<AltarIngredientEntry>>> pool = this.LEVELS.getForLevel(vaultLevel);

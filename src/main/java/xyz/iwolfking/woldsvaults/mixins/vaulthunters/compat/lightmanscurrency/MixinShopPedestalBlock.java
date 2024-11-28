@@ -35,7 +35,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.items.CapabilityItemHandler;
 import org.spongepowered.asm.mixin.*;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +44,7 @@ import java.util.Optional;
         }
 )
 @Mixin(value = ShopPedestalBlock.class, remap = false)
-public class MixinShopPedestalBlock extends Block implements EntityBlock, GameMasterBlock {
+public abstract class MixinShopPedestalBlock extends Block implements EntityBlock, GameMasterBlock {
 
 
     @Shadow @Final public static BooleanProperty ACTIVE;
@@ -61,7 +60,7 @@ public class MixinShopPedestalBlock extends Block implements EntityBlock, GameMa
      * @reason Handle shop pedestal to extend coin definitions
      */
     @Overwrite
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public InteractionResult m_6227_(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         BlockEntity var8 = worldIn.getBlockEntity(pos);
         ItemStack c;
         if (var8 instanceof ShopPedestalBlockTile tile) {
@@ -154,17 +153,4 @@ public class MixinShopPedestalBlock extends Block implements EntityBlock, GameMa
         CoinValue cValue = CoinValue.fromItemOrValue(costStack.getItem(), costStack.getCount(), 81L);
         return (MoneyUtil.ProcessPayment(player.getInventory(), player, cValue));
     }
-
-
-    /**
-     * @author iwolfking
-     * @reason Could not tell you to be honest, but I'm not touching it
-     */
-    @Overwrite
-    @Nullable
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return (Boolean) pState.getValue(ACTIVE) ? new ShopPedestalBlockTile(pPos, pState) : null;
-    }
-
-
 }

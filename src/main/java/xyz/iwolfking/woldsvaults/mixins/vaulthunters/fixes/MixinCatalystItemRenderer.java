@@ -18,7 +18,7 @@ public class MixinCatalystItemRenderer extends SpecialItemRenderer {
      * @reason Fix Infused Vault Catalyst with no model being invisible
      */
     @Overwrite
-    public void renderByItem(@NotNull ItemStack stack, @NotNull ItemTransforms.@NotNull TransformType transformType, @NotNull PoseStack matrices, @NotNull MultiBufferSource buffer, int light, int overlay) {
+    public void m_108829_(@NotNull ItemStack stack, @NotNull ItemTransforms.@NotNull TransformType transformType, @NotNull PoseStack matrices, @NotNull MultiBufferSource buffer, int light, int overlay) {
         int model = stack.getTag() == null ? -1 : stack.getTag().getInt("model");
         model = (model == -1) ? 0 : model;
         if (model >= 0) {

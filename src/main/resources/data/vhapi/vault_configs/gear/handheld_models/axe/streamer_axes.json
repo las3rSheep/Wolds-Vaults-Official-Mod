@@ -2,7 +2,7 @@
   "MODELS": [
     {
       "id": "vhapi:gear/axe/iskallianchor",
-      "displayName": "Iskallianchor",
+      "displayName": "Woldianchor",
       "discoverOnRoll": true,
       "allowTransmogrification": true
     }
