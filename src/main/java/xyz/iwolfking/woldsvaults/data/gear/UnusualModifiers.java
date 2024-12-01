@@ -23,8 +23,13 @@ public class UnusualModifiers {
     private static VaultGearTierConfig.AttributeGroup NON_SACK_SUFFIX = new VaultGearTierConfig.AttributeGroup();
     private static VaultGearTierConfig.AttributeGroup SACK_SUFFIX = new VaultGearTierConfig.AttributeGroup();
     private static VaultGearTierConfig.AttributeGroup SACK_PREFIX = new VaultGearTierConfig.AttributeGroup();
+    private static VaultGearTierConfig.AttributeGroup JEWEL_SUFFIX = new VaultGearTierConfig.AttributeGroup();
 
     static {
+
+        JEWEL_SUFFIX.add(UnusualModifierLib.HEALING_EFFECTIVENESS);
+        JEWEL_SUFFIX.add(UnusualModifierLib.MANA_REGEN);
+
         AXE_MODIFIERS_PREFIX.add(UnusualModifierLib.REACH);
         AXE_MODIFIERS_PREFIX.add(UnusualModifierLib.MOVEMENT_SPEED);
         AXE_MODIFIERS_PREFIX.add(UnusualModifierLib.RESISTANCE);
