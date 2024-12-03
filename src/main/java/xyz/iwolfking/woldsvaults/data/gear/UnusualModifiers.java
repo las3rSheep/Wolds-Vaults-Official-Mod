@@ -103,9 +103,9 @@ public class UnusualModifiers {
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("helmet"), ARMOR_MODIFIERS_SUFFIX);
         UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("chestplate"), ARMOR_MODIFIERS_PREFIX);
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("chestplate"), ARMOR_MODIFIERS_SUFFIX);
-        UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("leggings"), ARMOR_MODIFIERS_PREFIX);
+        UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("leggings"), ARMOR_MODIFIERS_PREFIX);
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("leggings"), ARMOR_MODIFIERS_SUFFIX);
-        UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("boots"), ARMOR_MODIFIERS_PREFIX);
+        UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("boots"), ARMOR_MODIFIERS_PREFIX);
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("boots"), ARMOR_MODIFIERS_SUFFIX);
 
         NON_SACK_PREFIX.add(UnusualModifierLib.REACH);
