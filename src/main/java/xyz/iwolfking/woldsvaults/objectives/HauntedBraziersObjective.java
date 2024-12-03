@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
+import implementslegend.mod.vaultfaster.event.ObjectiveTemplateEvent;
 import iskallia.vault.VaultMod;
 import iskallia.vault.block.MonolithBlock;
 import iskallia.vault.block.PlaceholderBlock;
@@ -64,6 +65,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.loading.LoadingModList;
 import net.minecraftforge.network.PacketDistributor;
 import vazkii.quark.content.mobs.entity.Wraith;
 
@@ -102,6 +104,7 @@ public class HauntedBraziersObjective extends MonolithObjective {
                 data.setProbability((double)probability);
             });
         });
+
         CommonEvents.BLOCK_USE.in(world).at(BlockUseEvent.Phase.HEAD).of(ModBlocks.MONOLITH).register(this, (data) -> {
             if (data.getHand() != InteractionHand.MAIN_HAND) {
                 data.setResult(InteractionResult.SUCCESS);
@@ -209,14 +212,20 @@ public class HauntedBraziersObjective extends MonolithObjective {
                 }
             }
         });
-        CommonEvents.BLOCK_SET.at(BlockSetEvent.Type.RETURN).in(world).register(this, (data) -> {
-            PartialTile target = PartialTile.of(PartialBlockState.of(ModBlocks.PLACEHOLDER), PartialCompoundNbt.empty());
-            target.getState().set(PlaceholderBlock.TYPE, iskallia.vault.block.PlaceholderBlock.Type.OBJECTIVE);
-            if (target.isSubsetOf(PartialTile.of(data.getState()))) {
-                data.getWorld().setBlock(data.getPos(), ModBlocks.MONOLITH.defaultBlockState(), 3);
-            }
+        if(LoadingModList.get().getModFileById("vaultfaster") != null) {
+            ObjectiveTemplateEvent.INSTANCE.registerObjectiveTemplate((Objective)this, vault);
+        }
+        else {
+            CommonEvents.BLOCK_SET.at(BlockSetEvent.Type.RETURN).in(world).register(this, (data) -> {
+                PartialTile target = PartialTile.of(PartialBlockState.of(ModBlocks.PLACEHOLDER), PartialCompoundNbt.empty());
+                target.getState().set(PlaceholderBlock.TYPE, iskallia.vault.block.PlaceholderBlock.Type.OBJECTIVE);
+                if (target.isSubsetOf(PartialTile.of(data.getState()))) {
+                    data.getWorld().setBlock(data.getPos(), ModBlocks.MONOLITH.defaultBlockState(), 3);
+                }
 
-        });
+            });
+        }
+
         CommonEvents.MONOLITH_UPDATE.register(this, (data) -> {
             if (data.getWorld() == world) {
                 if (!data.getEntity().isGenerated() || data.getEntity().isOverStacking() != (Integer)this.get(COUNT) >= (Integer)this.get(TARGET) && data.getState().getValue(MonolithBlock.STATE) == MonolithBlock.State.EXTINGUISHED) {

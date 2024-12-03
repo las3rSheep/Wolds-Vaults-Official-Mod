@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.objectives;
 
+import implementslegend.mod.vaultfaster.event.ObjectiveTemplateEvent;
 import iskallia.vault.block.DivineAltarBlock;
 import iskallia.vault.block.PlaceholderBlock;
 import iskallia.vault.block.entity.ScavengerAltarTileEntity;
@@ -32,6 +33,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fml.loading.LoadingModList;
 import xyz.iwolfking.woldsvaults.config.UnhingedScavengerConfig;
 
 import java.util.Iterator;
@@ -71,14 +73,20 @@ public class UnhingedScavengerObjective extends ScavengerObjective {
                 data.setProbability((double)probability);
             });
         });
-        CommonEvents.BLOCK_SET.at(BlockSetEvent.Type.RETURN).in(world).register(this, (data) -> {
-            PartialTile target = PartialTile.of(PartialBlockState.of(ModBlocks.PLACEHOLDER), PartialCompoundNbt.empty());
-            target.getState().set(PlaceholderBlock.TYPE, iskallia.vault.block.PlaceholderBlock.Type.OBJECTIVE);
-            if (target.isSubsetOf(PartialTile.of(data.getState()))) {
-                data.getWorld().setBlock(data.getPos(), ModBlocks.SCAVENGER_ALTAR.defaultBlockState(), 3);
-            }
+        if(LoadingModList.get().getModFileById("vaultfaster") != null) {
+            ObjectiveTemplateEvent.INSTANCE.registerObjectiveTemplate((Objective)this, vault);
+        }
+        else {
+            CommonEvents.BLOCK_SET.at(BlockSetEvent.Type.RETURN).in(world).register(this, (data) -> {
+                PartialTile target = PartialTile.of(PartialBlockState.of(ModBlocks.PLACEHOLDER), PartialCompoundNbt.empty());
+                target.getState().set(PlaceholderBlock.TYPE, iskallia.vault.block.PlaceholderBlock.Type.OBJECTIVE);
+                if (target.isSubsetOf(PartialTile.of(data.getState()))) {
+                    data.getWorld().setBlock(data.getPos(), ModBlocks.SCAVENGER_ALTAR.defaultBlockState(), 3);
+                }
 
-        });
+            });
+        }
+
         CommonEvents.SCAVENGER_ALTAR_CONSUME.register(this, (data) -> {
             if (data.getLevel() == world && ((ScavengerAltarTileEntity)data.getTile()).getItemPlacedBy() != null) {
                 Listener listener = ((Listeners)vault.get(Vault.LISTENERS)).get(((ScavengerAltarTileEntity)data.getTile()).getItemPlacedBy());

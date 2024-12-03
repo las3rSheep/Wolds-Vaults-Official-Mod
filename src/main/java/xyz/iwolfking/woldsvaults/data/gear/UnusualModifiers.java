@@ -27,9 +27,15 @@ public class UnusualModifiers {
 
     static {
 
-        JEWEL_SUFFIX.add(UnusualModifierLib.HEALING_EFFECTIVENESS);
-        JEWEL_SUFFIX.add(UnusualModifierLib.MANA_REGEN);
+        JEWEL_SUFFIX.add(UnusualModifierLib.HEALING_EFFECTIVENESS_JEWEL);
+        JEWEL_SUFFIX.add(UnusualModifierLib.MANA_REGEN_JEWEL);
+        JEWEL_SUFFIX.add(UnusualModifierLib.KNOCKBACK_RESISTANCE_JEWEL);
+        JEWEL_SUFFIX.add(UnusualModifierLib.RESISTANCE_JEWEL);
+        JEWEL_SUFFIX.add(UnusualModifierLib.MOVEMENT_SPEED_JEWEL);
+        JEWEL_SUFFIX.add(UnusualModifierLib.COOLDOWN_REDUCTION_JEWEL);
+        JEWEL_SUFFIX.add(UnusualModifierLib.DURABILITY_WEAR_REDUCTION_JEWEL);
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("jewel"), JEWEL_SUFFIX);
+
         AXE_MODIFIERS_PREFIX.add(UnusualModifierLib.REACH);
         AXE_MODIFIERS_PREFIX.add(UnusualModifierLib.MOVEMENT_SPEED);
         AXE_MODIFIERS_PREFIX.add(UnusualModifierLib.RESISTANCE);
@@ -84,7 +90,7 @@ public class UnusualModifiers {
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("sword"), SWORD_MODIFIERS_SUFFIX);
         UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("battlestaff"), SWORD_MODIFIERS_PREFIX);
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("battlestaff"), SWORD_MODIFIERS_SUFFIX);
-        UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("trident"), SWORD_MODIFIERS_PREFIX);
+        UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("trident"), SWORD_MODIFIERS_PREFIX);
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("trident"), SWORD_MODIFIERS_SUFFIX);
 
         ARMOR_MODIFIERS_PREFIX.add(UnusualModifierLib.MOVEMENT_SPEED);

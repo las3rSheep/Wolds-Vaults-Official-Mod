@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
+import implementslegend.mod.vaultfaster.event.ObjectiveTemplateEvent;
 import iskallia.vault.client.gui.helper.LightmapHelper;
 import iskallia.vault.core.Version;
 import iskallia.vault.core.data.adapter.Adapters;
@@ -16,6 +17,7 @@ import iskallia.vault.core.vault.objective.Objective;
 import iskallia.vault.core.vault.player.Listener;
 import iskallia.vault.core.vault.player.Runner;
 import iskallia.vault.core.world.storage.VirtualWorld;
+import iskallia.vault.core.world.template.DynamicTemplate;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -29,6 +31,7 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.loading.LoadingModList;
 import xyz.iwolfking.vhapi.api.events.vault.VaultEvents;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 
@@ -66,6 +69,9 @@ public class ZealotObjective extends Objective {
     }
 
     public void initServer(VirtualWorld world, Vault vault) {
+        if(LoadingModList.get().getModFileById("vaultfaster") != null) {
+            ObjectiveTemplateEvent.INSTANCE.registerObjectiveTemplate((Objective)this, vault, new DynamicTemplate());
+        }
         CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
             this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
                 data.setProbability((double)probability);

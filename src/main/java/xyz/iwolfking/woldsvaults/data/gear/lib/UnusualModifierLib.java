@@ -28,6 +28,14 @@ public class UnusualModifierLib {
     public static VaultGearTierConfig.ModifierTierGroup COOLDOWN_REDUCTION = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("cooldown_reduction"), "ModCooldownReduction", VaultMod.id("mod_cooldown_unusual"));
 
 
+    //Jewel Suffixes
+    public static VaultGearTierConfig.ModifierTierGroup COOLDOWN_REDUCTION_JEWEL = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("cooldown_reduction"), "ModCooldownReduction", VaultMod.id("mod_cooldown_unusual"));
+    public static VaultGearTierConfig.ModifierTierGroup MANA_REGEN_JEWEL = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("cooldown_reduction"), "ModCooldownReduction", VaultMod.id("mod_cooldown_unusual"));
+    public static VaultGearTierConfig.ModifierTierGroup RESISTANCE_JEWEL = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("cooldown_reduction"), "ModCooldownReduction", VaultMod.id("mod_cooldown_unusual"));
+    public static VaultGearTierConfig.ModifierTierGroup MOVEMENT_SPEED_JEWEL = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("cooldown_reduction"), "ModCooldownReduction", VaultMod.id("mod_cooldown_unusual"));
+    public static VaultGearTierConfig.ModifierTierGroup KNOCKBACK_RESISTANCE_JEWEL = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("cooldown_reduction"), "ModCooldownReduction", VaultMod.id("mod_cooldown_unusual"));
+    public static VaultGearTierConfig.ModifierTierGroup HEALING_EFFECTIVENESS_JEWEL = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("cooldown_reduction"), "ModCooldownReduction", VaultMod.id("mod_cooldown_unusual"));
+    public static VaultGearTierConfig.ModifierTierGroup DURABILITY_WEAR_REDUCTION_JEWEL = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("cooldown_reduction"), "ModCooldownReduction", VaultMod.id("mod_cooldown_unusual"));
 
     //Suffixes
     public static VaultGearTierConfig.ModifierTierGroup AXE_BLEED_CLOUD = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("effect_cloud"), "ModOnHitAddition", VaultMod.id("mod_bleed_cloud_unusual"));
@@ -170,5 +178,26 @@ public class UnusualModifierLib {
         AXE_BLEED_CLOUD.add(new VaultGearTierConfig.ModifierTier<>(0, 10, BLEED_0));
         AXE_BLEED_CLOUD.add(new VaultGearTierConfig.ModifierTier<>(32, 10, BLEED_1));
         AXE_BLEED_CLOUD.add(new VaultGearTierConfig.ModifierTier<>(64, 10, BLEED_2));
+
+        COOLDOWN_REDUCTION_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(0, 10, new FloatAttributeGenerator.Range(0.005F, 0.01F, 0.001F)));
+        COOLDOWN_REDUCTION_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(65, 10, new FloatAttributeGenerator.Range(0.01F, 0.02F, 0.001F)));
+
+        MANA_REGEN_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(0, 10, new FloatAttributeGenerator.Range(0.01F, 0.02F, 0.001F)));
+        MANA_REGEN_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(65, 10, new FloatAttributeGenerator.Range(0.02F, 0.04F, 0.001F)));
+
+        RESISTANCE_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(0, 10, new FloatAttributeGenerator.Range(0.005F, 0.01F, 0.001F)));
+        RESISTANCE_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(65, 10, new FloatAttributeGenerator.Range(0.01F, 0.02F, 0.001F)));
+
+        MOVEMENT_SPEED_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(0, 10, new FloatAttributeGenerator.Range(0.01F, 0.02F, 0.001F)));
+        MOVEMENT_SPEED_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(65, 10, new FloatAttributeGenerator.Range(0.02F, 0.04F, 0.001F)));
+
+        KNOCKBACK_RESISTANCE_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(0, 10, new FloatAttributeGenerator.Range(0.01F, 0.03F, 0.001F)));
+        KNOCKBACK_RESISTANCE_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(65, 10, new FloatAttributeGenerator.Range(0.03F, 0.04F, 0.001F)));
+
+        HEALING_EFFECTIVENESS_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(0, 10, new FloatAttributeGenerator.Range(0.01F, 0.02F, 0.001F)));
+        HEALING_EFFECTIVENESS_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(65, 10, new FloatAttributeGenerator.Range(0.02F, 0.04F, 0.001F)));
+
+        DURABILITY_WEAR_REDUCTION_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(0, 10, new FloatAttributeGenerator.Range(0.01F, 0.03F, 0.001F)));
+        DURABILITY_WEAR_REDUCTION_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(65, 10, new FloatAttributeGenerator.Range(0.03F, 0.05F, 0.001F)));
     }
 }

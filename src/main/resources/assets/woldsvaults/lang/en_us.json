@@ -159,5 +159,11 @@
   "key.woldsvaults.category": "Wold's Vaults",
   "the_vault.gear_modification.add_unusual_modifier.description": "Add unusual modifier",
   "the_vault.gear_modification.add_unusual_modifier.no_modifiers": "No additional modifiers available",
-  "the_vault.gear_modification.add_unusual_modifier.full": "You cannot add more unusual modifiers to this gear piece"
+  "the_vault.gear_modification.add_unusual_modifier.full": "You cannot add more unusual modifiers to this gear piece",
+  "create.item_attributes.has_unusual": "has an unusual modifier",
+  "create.item_attributes.has_unusual.inverted": "doesn't have an unusual modifier",
+  "create.item_attributes.unusual_prefix": "has an unusual \"%1$s\" prefix",
+  "create.item_attributes.unusual_prefix.inverted": "doesn't have an unusual \"%1$s\" prefix",
+  "create.item_attributes.unusual_suffix": "has an unusual \"%1$s\" suffix",
+  "create.item_attributes.unusual_suffix.inverted": "doesn't have an unusual \"%1$s\" suffix"
 }
