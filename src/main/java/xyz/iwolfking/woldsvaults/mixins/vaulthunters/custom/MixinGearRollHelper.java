@@ -65,7 +65,6 @@ public class MixinGearRollHelper {
 
         if(stack.getItem() instanceof JewelItem) {
             if(player == null) {
-                System.out.println("Player was null and is jewel");
                 return;
             }
             ExpertiseTree expertises = PlayerExpertisesData.get((ServerLevel) player.getLevel()).getExpertises(player);
@@ -75,13 +74,12 @@ public class MixinGearRollHelper {
                 jewelerLevel = jewelExpertise.getSpentLearnPoints();
             }
             if(!(jewelerLevel > 0)) {
-                System.out.println("Player doesn't have jeweler");
                 return;
             }
         }
 
         //Randomly add a corrupted implicit
-        if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.7F) {
+        if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.02F) {
             GearModification.Result result;
             if (rand.nextBoolean()) {
                 result = VaultGearModifierHelper.generateCorruptedImplicit(stack, rand);
@@ -94,19 +92,19 @@ public class MixinGearRollHelper {
             }
         }
         //Randomly frozen (if not a jewel)
-        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.7F) {
+        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.02F) {
             if(stack.getItem() instanceof JewelItem) {
                 return;
             }
             VaultGearModifierHelper.lockRandomAffix(stack, rand);
         }
         //Randomly add unusual
-        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.7F) {
-            VaultGearModifierHelper.removeRandomModifier(stack, rand);
-                WoldGearModifierHelper.addUnusualModifier(stack, player.level.getGameTime(), rand);
+        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.03F) {
+            WoldGearModifierHelper.removeRandomModifierAlways(stack, rand);
+            WoldGearModifierHelper.addUnusualModifier(stack, player.level.getGameTime(), rand);
         }
         //Randomly improve gear rarity (if not a jewel)
-        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.7F) {
+        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.04F) {
             if(stack.getItem() instanceof JewelItem) {
                 return;
             }

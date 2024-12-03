@@ -38,10 +38,14 @@ import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
 import xyz.iwolfking.woldsvaults.util.WoldEventHelper;
 
+import java.util.Random;
+
 @Mod.EventBusSubscriber(
         modid = WoldsVaults.MOD_ID
 )
 public class LivingEntityEvents {
+
+    private static final Random random = new Random();
 
     private static SoundEvent ANCHOR_SLAM_SOUND = null;
 
@@ -148,6 +152,15 @@ public class LivingEntityEvents {
                     ItemStack offHand = event.getPlayer().getOffhandItem();
                     if (!ServerVaults.get(world).isEmpty() || !(offHand.getItem() instanceof VaultGearItem)) {
                         if (offHand.getItem() instanceof VaultLootSackItem) {
+
+                            if(event.getState().getBlock() instanceof VaultChestBlock chestBlock) {
+                                if(chestBlock.hasStepBreaking()) {
+                                    if(random.nextFloat() < 0.75F) {
+                                        return;
+                                    }
+                                }
+                            }
+
                             int damage = (int)CommonEvents.PLAYER_STAT.invoke(PlayerStat.DURABILITY_DAMAGE, player, 1.0F).getValue();
                             if (damage <= 1) {
                                 damage = 1;

@@ -91,4 +91,22 @@ public class WoldGearModifierHelper {
             }
         }
     }
+
+    public static GearModification.Result removeRandomModifierAlways(ItemStack stack, Random random) {
+        VaultGearData data = VaultGearData.read(stack);
+            List<VaultGearModifier<?>> affixes = new ArrayList();
+            affixes.addAll(data.getModifiers(VaultGearModifier.AffixType.PREFIX));
+            affixes.addAll(data.getModifiers(VaultGearModifier.AffixType.SUFFIX));
+            affixes.removeIf((modifier) -> {
+                return !modifier.hasNoCategoryMatching(VaultGearModifier.AffixCategory::cannotBeModifiedByArtisanFoci);
+            });
+            if (affixes.isEmpty()) {
+                return GearModification.Result.makeActionError("no_modifiers", new Component[0]);
+            } else {
+                VaultGearModifier<?> randomMod = (VaultGearModifier) MiscUtils.getRandomEntry(affixes, random);
+                data.removeModifier(randomMod);
+                data.write(stack);
+                return GearModification.Result.makeSuccess();
+            }
+    }
 }
