@@ -70,6 +70,10 @@ public class LivingEntityEvents {
             return;
         }
 
+        if(event.getSource().isProjectile()) {
+            return;
+        }
+
 //        boolean hasConduct = false;
 //        if (ActiveFlags.IS_JAVELIN_ATTACKING.isSet()) {
 //            if (event.getEntityLiving() instanceof ServerPlayer sPlayer) {
