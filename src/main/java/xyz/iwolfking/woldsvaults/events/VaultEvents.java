@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import virtuoel.pehkui.api.ScaleTypes;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.data.discovery.DiscoveredThemesData;
 
@@ -24,10 +25,12 @@ public class VaultEvents {
 
         if(!event.getPlayers().isEmpty()) {
             for(ServerPlayer joinedPlayer : event.getPlayers()) {
+                ScaleTypes.BASE.getScaleData(joinedPlayer).setScale(1.0F);
                 if(!DiscoveredThemesData.get(joinedPlayer.server).hasDiscovered(joinedPlayer, theme) && themeKey != null) {
                     DiscoveredThemesData.get(joinedPlayer.server).discoverThemeAndBroadcast(themeKey, joinedPlayer);
                 }
             }
         }
+
     }
 }
