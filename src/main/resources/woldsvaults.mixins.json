@@ -104,6 +104,7 @@
     "vaulthunters.custom.recycler.MixinVaultCatalystItem",
     "vaulthunters.custom.recycler.MixinVaultGearItem",
     "vaulthunters.fixes.MixinBingoTask",
+    "vaulthunters.fixes.MixinClassicLootLogic",
     "vaulthunters.fixes.MixinDynamicModelRegistry",
     "vaulthunters.fixes.MixinEntityGroupsConfig",
     "vaulthunters.fixes.MixinGateRenderer",
