@@ -8,6 +8,7 @@ import iskallia.vault.block.VaultOreBlock;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.entity.VaultBoss;
 import iskallia.vault.entity.champion.ChampionLogic;
+import iskallia.vault.entity.entity.elite.*;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
@@ -74,22 +75,6 @@ public class LivingEntityEvents {
             return;
         }
 
-//        boolean hasConduct = false;
-//        if (ActiveFlags.IS_JAVELIN_ATTACKING.isSet()) {
-//            if (event.getEntityLiving() instanceof ServerPlayer sPlayer) {
-//                TalentTree talents = PlayerTalentsData.get(sPlayer.getLevel()).getTalents(sPlayer);
-//
-//                for(Iterator var7 = talents.getAll(JavelinConductTalent.class, Skill::isUnlocked).iterator(); var7.hasNext(); hasConduct = true) {
-//                    JavelinConductTalent talent = (JavelinConductTalent)var7.next();
-//                }
-//            }
-//
-//            if (!hasConduct) {
-//                return;
-//            }
-//        }
-
-
         if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
             VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
             if(data != null && data.hasAttribute(ModGearAttributes.REAVING_DAMAGE)) {
@@ -99,7 +84,7 @@ public class LivingEntityEvents {
                 event.getEntityLiving().addEffect(new MobEffectInstance(ModEffects.REAVING, Integer.MAX_VALUE, 0));
                 event.getEntityLiving().addEffect(new MobEffectInstance(iskallia.vault.init.ModEffects.NO_AI, 20, 0));
 
-                if(ChampionLogic.isChampion(event.getEntityLiving()) || InfernalMobsCore.getMobModifiers(event.getEntityLiving()) != null || event.getEntityLiving() instanceof VaultBoss) {
+                if(ChampionLogic.isChampion(event.getEntityLiving()) || InfernalMobsCore.getMobModifiers(event.getEntityLiving()) != null || event.getEntityLiving() instanceof VaultBoss || event.getEntityLiving() instanceof EliteDrownedEntity || event.getEntityLiving() instanceof EliteWitherSkeleton || event.getEntityLiving() instanceof EliteEndermanEntity || event.getEntityLiving() instanceof EliteHuskEntity || event.getEntityLiving() instanceof EliteSpiderEntity || event.getEntityLiving() instanceof  EliteStrayEntity || event.getEntityLiving() instanceof  EliteZombieEntity || event.getEntityLiving() instanceof EliteWitchEntity) {
                     event.setAmount(event.getAmount() + (event.getEntityLiving().getMaxHealth() * (data.get(ModGearAttributes.REAVING_DAMAGE, VaultGearAttributeTypeMerger.floatSum()) * 0.5F)));
                 }
                 else {

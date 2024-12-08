@@ -113,7 +113,6 @@ public class BrutalBossesObjective extends ObeliskObjective {
                 Wave[] var3 = (Wave[])this.get(WAVES);
                 int var4 = var3.length;
 
-
                 for(int var5 = 0; var5 < var4; ++var5) {
                     Wave wave = var3[var5];
                     if (((UUIDList)wave.get(BrutalBossesObjective.Wave.MOBS)).remove(event.getEntity().getUUID())) {

@@ -9,6 +9,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.entities.ghosts.lib.client.GenericWraithRenderer;
 import xyz.iwolfking.woldsvaults.init.ModEntities;
+import xyz.iwolfking.woldsvaults.items.gear.rang.VaultRangRenderer;
 import xyz.iwolfking.woldsvaults.objectives.data.bosses.client.WoldBossRenderer;
 
 @OnlyIn(Dist.CLIENT)
@@ -28,5 +29,6 @@ public class ModEntityRenderers {
         EntityRenderers.register(ModEntities.PURPLE_GHOST, ctx -> new GenericWraithRenderer(ctx, WoldsVaults.id("textures/entity/purple_ghost.png")));
         EntityRenderers.register(ModEntities.YELLOW_GHOST, ctx -> new GenericWraithRenderer(ctx, WoldsVaults.id("textures/entity/yellow_ghost.png")));
         EntityRenderers.register(ModEntities.RED_GHOST, ctx -> new GenericWraithRenderer(ctx, WoldsVaults.id("textures/entity/red_ghost.png")));
+        EntityRenderers.register(ModEntities.VAULT_RANG, VaultRangRenderer::new);
     }
 }

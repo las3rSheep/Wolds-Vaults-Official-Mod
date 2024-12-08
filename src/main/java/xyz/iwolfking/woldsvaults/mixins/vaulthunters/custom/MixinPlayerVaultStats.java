@@ -57,7 +57,7 @@ public abstract class MixinPlayerVaultStats {
                 expertise = (ExperiencedExpertise)var5.next();
             }
             float multipler = ModConfigs.LEVELS_META.getExpMultiplier();
-            this.exp += (int) (exp * (1.0F + increase * multipler));
+            this.exp += (int) (exp * (1.0F + increase) * multipler);
             int initialLevel = this.vaultLevel;
 
             int neededExp;

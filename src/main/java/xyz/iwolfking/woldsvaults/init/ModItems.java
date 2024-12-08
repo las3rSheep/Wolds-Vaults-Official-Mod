@@ -17,10 +17,7 @@ import xyz.iwolfking.woldsvaults.items.*;
 import xyz.iwolfking.woldsvaults.items.fruits.HastyPomegranteItem;
 import xyz.iwolfking.woldsvaults.items.fruits.PoltergeistPlum;
 import xyz.iwolfking.woldsvaults.items.fruits.WisdomFruitItem;
-import xyz.iwolfking.woldsvaults.items.gear.VaultBattleStaffItem;
-import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
-import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
-import xyz.iwolfking.woldsvaults.items.gear.VaultTridentItem;
+import xyz.iwolfking.woldsvaults.items.gear.*;
 import xyz.iwolfking.woldsvaults.items.rings.*;
 
 import java.util.Random;
@@ -145,6 +142,7 @@ public class ModItems {
     //Backpack?
     public static BackpackItem XL_BACKPACK;
 
+    public static VaultRangItem RANG;
 
 
     @SubscribeEvent
@@ -241,6 +239,7 @@ public class ModItems {
         registry.register(COMMUNITY_TOKEN);
         registry.register(RESEARCH_TOKEN);
         registry.register(ECCENTRIC_FOCUS);
+        registry.register(RANG);
     }
 
     static {
@@ -330,5 +329,6 @@ public class ModItems {
         POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
         XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
         XL_BACKPACK.setRegistryName(WoldsVaults.MOD_ID, "xl_backpack");
+        RANG = new VaultRangItem(VaultMod.id("rang"));
     }
 }

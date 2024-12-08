@@ -87,7 +87,7 @@ public class UnusualModifierLib {
         ITEM_QUANTITY.add(new VaultGearTierConfig.ModifierTier<>(22, 10, new FloatAttributeGenerator.Range(0.07F, 0.12F, 0.01F)));
         ITEM_QUANTITY.add(new VaultGearTierConfig.ModifierTier<>(45, 10, new FloatAttributeGenerator.Range(0.13F, 0.18F, 0.01F)));
         ITEM_QUANTITY.add(new VaultGearTierConfig.ModifierTier<>(72, 10, new FloatAttributeGenerator.Range(0.19F, 0.25F, 0.01F)));
-        ITEM_RARITY.add(new VaultGearTierConfig.ModifierTier<>(0, 10, new FloatAttributeGenerator.Range(0.04F, 0.9F, 0.01F)));
+        ITEM_RARITY.add(new VaultGearTierConfig.ModifierTier<>(0, 10, new FloatAttributeGenerator.Range(0.04F, 0.09F, 0.01F)));
         ITEM_RARITY.add(new VaultGearTierConfig.ModifierTier<>(22, 10, new FloatAttributeGenerator.Range(0.1F, 0.14F, 0.01F)));
         ITEM_RARITY.add(new VaultGearTierConfig.ModifierTier<>(45, 10, new FloatAttributeGenerator.Range(0.15F, 0.18F, 0.01F)));
         ITEM_RARITY.add(new VaultGearTierConfig.ModifierTier<>(72, 10, new FloatAttributeGenerator.Range(0.19F, 0.23F, 0.01F)));

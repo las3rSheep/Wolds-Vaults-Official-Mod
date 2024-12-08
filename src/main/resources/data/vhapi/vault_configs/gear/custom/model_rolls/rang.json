@@ -1,0 +1,17 @@
+{
+  "itemRegistryName": "the_vault:rang",
+  "MODEL_ROLLS": {
+    "SCRAPPY": [
+      "the_vault:gear/rang/wooden"
+    ],
+    "COMMON": [
+    ],
+    "RARE": [
+    ],
+    "EPIC": [
+    ],
+    "OMEGA": [
+    ],
+    "UNIQUE": []
+  }
+}

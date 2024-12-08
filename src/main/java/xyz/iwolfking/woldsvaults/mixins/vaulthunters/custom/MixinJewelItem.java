@@ -77,7 +77,12 @@ public abstract class MixinJewelItem extends Item implements VaultGearItem, Data
     @Overwrite
     public void initialize(ItemStack stack, RandomSource random) {
         if(player != null) {
+            System.out.println("Player wasn't null");
             this.instantIdentify(player, stack);
+        }
+        else {
+            System.out.println("Player was null");
+            this.instantIdentify(null, stack);
         }
 
     }

@@ -26,7 +26,6 @@ public class UnusualModifiers {
     private static VaultGearTierConfig.AttributeGroup JEWEL_SUFFIX = new VaultGearTierConfig.AttributeGroup();
 
     static {
-
         JEWEL_SUFFIX.add(UnusualModifierLib.HEALING_EFFECTIVENESS_JEWEL);
         JEWEL_SUFFIX.add(UnusualModifierLib.MANA_REGEN_JEWEL);
         JEWEL_SUFFIX.add(UnusualModifierLib.KNOCKBACK_RESISTANCE_JEWEL);
