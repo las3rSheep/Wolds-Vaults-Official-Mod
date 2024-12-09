@@ -92,6 +92,7 @@
     "vaulthunters.custom.MixinPlayerVaultStats",
     "vaulthunters.custom.MixinPlayerVaultStatsData",
     "vaulthunters.custom.MixinRewardConfig",
+    "vaulthunters.custom.MixinSpecialAbilityModificationRegistry",
     "vaulthunters.custom.MixinToolItem",
     "vaulthunters.custom.MixinWildSpawnerTileEntity",
     "vaulthunters.custom.artisan.MixinArtisanStationContainer",
@@ -125,10 +126,10 @@
     "vaulthunters.performance.MixinGearStackingTalent",
     "vaulthunters.recipes.MixinAnvilRecipes",
     "vaulthunters.skills.MixinHealEffectAbility",
+    "vaulthunters.skills.MixinResistanceHelper",
     "vaulthunters.skills.MixinSkill",
     "vaulthunters.testing.CrystalConfigAccessor",
-    "vaulthunters.testing.MixinLootTable",
-    "vaulthunters.skills.MixinResistanceHelper"
+    "vaulthunters.testing.MixinLootTable"
   ],
   "client": [
     "MixinThrownTridentRenderer",
