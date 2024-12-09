@@ -7,8 +7,6 @@ import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
 
 public class ModSkills {
     public static void register(Skill.Adapter adapter) {
-        adapter.register("craftsman", CraftsmanExpertise.class, CraftsmanExpertise::new);
-        adapter.register("colossus", ColossusAbility.class,ColossusAbility::new);
-        adapter.register("sneaky_getaway", SneakyGetawayAbility.class,SneakyGetawayAbility::new);
+
     }
 }

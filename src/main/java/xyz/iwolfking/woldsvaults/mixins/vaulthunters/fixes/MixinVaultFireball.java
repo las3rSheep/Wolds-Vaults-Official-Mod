@@ -30,7 +30,7 @@ public abstract class MixinVaultFireball extends AbstractArrow {
     @Shadow public abstract VaultFireball.FireballType getFireballType();
 
 
-    @Redirect(method = "explode", at = @At(value = "INVOKE_ASSIGN",target = "Liskallia/vault/util/calc/AreaOfEffectHelper;adjustAreaOfEffectKey(Lnet/minecraft/world/entity/LivingEntity;Ljava/lang/String;F)F"))
+    @Redirect(method = "explode", at = @At(value = "INVOKE",target = "Liskallia/vault/util/calc/AreaOfEffectHelper;adjustAreaOfEffectKey(Lnet/minecraft/world/entity/LivingEntity;Ljava/lang/String;F)F"))
     public float explode(LivingEntity entity, String abilityKey, float range) {
         if(entity instanceof Player player) {
             return AreaOfEffectHelper.adjustAreaOfEffectKey(player, this.getFireballType().getAbilityName(), woldsVaults_Dev$getRadius());
