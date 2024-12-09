@@ -135,8 +135,7 @@ public class SneakyGetawayAbility extends InstantManaAbility {
                 }
                 //set scale
                 ScaleData scaleData = scaleType.getScaleData(player);
-                scaleData.setTargetScale(size);
-                scaleData.setScaleTickDelay(scaleData.getScaleTickDelay());
+                scaleData.setScale(size);
                 AttributeInstance speedAtt = player.getAttribute(Attributes.MOVEMENT_SPEED);
                 if (speedAtt != null && size != 0) {
                     //adapt the speed
