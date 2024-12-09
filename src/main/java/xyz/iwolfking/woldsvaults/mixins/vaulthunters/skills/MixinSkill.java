@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
+import xyz.iwolfking.woldsvaults.init.ModSkills;
 
 @Mixin(targets = "iskallia/vault/skill/base/Skill$Adapter", remap = false)
 public abstract class MixinSkill extends TypeSupplierAdapter<Skill> {
@@ -16,7 +16,7 @@ public abstract class MixinSkill extends TypeSupplierAdapter<Skill> {
 
     @Inject(method = "<init>()V", at = @At("RETURN"))
     private void addSkills(CallbackInfo ci) {
-
-        this.register("craftsman", CraftsmanExpertise.class, CraftsmanExpertise::new);
+        Skill.Adapter instance = (Skill.Adapter) (Object) this;
+        ModSkills.register(instance);
     }
 }

@@ -127,7 +127,8 @@
     "vaulthunters.skills.MixinHealEffectAbility",
     "vaulthunters.skills.MixinSkill",
     "vaulthunters.testing.CrystalConfigAccessor",
-    "vaulthunters.testing.MixinLootTable"
+    "vaulthunters.testing.MixinLootTable",
+    "vaulthunters.skills.MixinResistanceHelper"
   ],
   "client": [
     "MixinThrownTridentRenderer",

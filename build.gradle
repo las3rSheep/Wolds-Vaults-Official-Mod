@@ -209,7 +209,7 @@ dependencies {
     implementation fg.deobf("curse.maven:cyclops-core-232758:5262021")
     implementation fg.deobf("curse.maven:sophisticatedcore-618298:4913626")
     implementation fg.deobf("curse.maven:item-borders-513769:3583942")
-    //implementation fg.deobf("curse.maven:vaultarhud-1011085:5706845")
+    implementation fg.deobf("curse.maven:vaultarhud-1011085:5706845")
     implementation fg.deobf("curse.maven:refinedstorage-243076:4902316")
     implementation fg.deobf("curse.maven:toms-storage-378609:5211203")
     implementation fg.deobf("curse.maven:cyclops-core-232758:5262021")
