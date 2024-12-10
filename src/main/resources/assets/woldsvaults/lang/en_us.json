@@ -154,6 +154,7 @@
   "block.woldsvaults.xl_backpack": "Beeg Backpack",
   "item.the_vault.trident": "Vault Trident",
   "item.the_vault.battlestaff": "Vault Battlestaff",
+  "item.woldsvaults.layout_manipulator": "Etched Vault Layout",
   "effect.woldsvaults.reaving": "Reaved",
   "effect.woldsvaults.shrinking": "Shrinking",
   "effect.woldsvaults.growing": "Growing",
@@ -168,5 +169,14 @@
   "create.item_attributes.unusual_prefix": "has an unusual \"%1$s\" prefix",
   "create.item_attributes.unusual_prefix.inverted": "doesn't have an unusual \"%1$s\" prefix",
   "create.item_attributes.unusual_suffix": "has an unusual \"%1$s\" suffix",
-  "create.item_attributes.unusual_suffix.inverted": "doesn't have an unusual \"%1$s\" suffix"
+  "create.item_attributes.unusual_suffix.inverted": "doesn't have an unusual \"%1$s\" suffix",
+  "create.item_attributes.offering_items": "is an Offering with a Guaranteed \"%1$s\"",
+  "create.item_attributes.offering_items.inverted": "isn't an Offering with a Guaranteed \"%1$s\"",
+  "create.item_attributes.offering_modifier": "has a \"%1$s\" Offering modifier",
+  "create.item_attributes.offering_modifier.inverted": "doesn't have a \"%1$s\" Offering modifier",
+  "create.item_attributes.rotten_offering": "is a rotten Offering",
+  "create.item_attributes.rotten_offering.inverted": "isn't a rotten Offering",
+  "entity.the_vault.black_widow_boss": "Black Widow Boss",
+  "entity.the_vault.boogieman_boss": "Boogieman Boss",
+  "entity.the_vault.golem_boss": "Golem Boss"
 }

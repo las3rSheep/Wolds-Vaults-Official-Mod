@@ -139,6 +139,9 @@ public class ModItems {
     public static BasicItem IDONA_DAGGER;
     public static BasicItem WENDARR_GEM;
 
+    //Crystal Modification Items
+    public static LayoutModificationItem LAYOUT_MANIPULATOR;
+
     //Backpack?
     public static BackpackItem XL_BACKPACK;
 
@@ -240,6 +243,7 @@ public class ModItems {
         registry.register(RESEARCH_TOKEN);
         registry.register(ECCENTRIC_FOCUS);
         registry.register(RANG);
+        registry.register(LAYOUT_MANIPULATOR);
     }
 
     static {
@@ -330,5 +334,6 @@ public class ModItems {
         XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
         XL_BACKPACK.setRegistryName(WoldsVaults.MOD_ID, "xl_backpack");
         RANG = new VaultRangItem(VaultMod.id("rang"));
+        LAYOUT_MANIPULATOR = new LayoutModificationItem(VAULT_MOD_GROUP, WoldsVaults.id("layout_manipulator"));
     }
 }

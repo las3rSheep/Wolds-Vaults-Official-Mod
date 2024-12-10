@@ -61,7 +61,12 @@
     "vaultarhud.MixinInventoryHudRender",
     "vaultarhud.MixinScreenValidator",
     "vaulthunters.MixinModConfigs",
+    "vaulthunters.accessors.ClassicCircleCrystalLayoutAccessor",
+    "vaulthunters.accessors.ClassicInfiniteCrystalLayoutAccessor",
+    "vaulthunters.accessors.ClassicPolygonCrystalLayoutAccessor",
+    "vaulthunters.accessors.ClassicSpiralCrystalLayoutAccessor",
     "vaulthunters.accessors.DynamicModelAccessor",
+    "vaulthunters.accessors.InventoryUtilItemAccessAccessor",
     "vaulthunters.accessors.MixinInfusedCatalystItem",
     "vaulthunters.accessors.MixinScavengerAltar",
     "vaulthunters.accessors.VaultGearTierConfigAccessor",
@@ -110,6 +115,7 @@
     "vaulthunters.fixes.MixinEntityGroupsConfig",
     "vaulthunters.fixes.MixinGateRenderer",
     "vaulthunters.fixes.MixinGearScoreHelper",
+    "vaulthunters.fixes.MixinInventoryUtil",
     "vaulthunters.fixes.MixinJewelCraftingRecipe",
     "vaulthunters.fixes.MixinLootableItem",
     "vaulthunters.fixes.MixinMixinWorldChunk",
@@ -142,6 +148,7 @@
     "vaulthunters.custom.MixinAugmentItem",
     "vaulthunters.custom.MixinCrystalTheme",
     "vaulthunters.fixes.MixinCatalystItemRenderer",
+    "vaulthunters.fixes.MixinOfferingItemRenderer",
     "vaulthunters.fixes.MixinToolItemRenderer"
   ],
   "injectors": {
