@@ -91,6 +91,10 @@ public class UnusualModifiers {
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("battlestaff"), SWORD_MODIFIERS_SUFFIX);
         UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("trident"), SWORD_MODIFIERS_PREFIX);
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("trident"), SWORD_MODIFIERS_SUFFIX);
+        UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("rang"), SWORD_MODIFIERS_PREFIX);
+        UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("rang"), SWORD_MODIFIERS_SUFFIX);
+
+
 
         ARMOR_MODIFIERS_PREFIX.add(UnusualModifierLib.MOVEMENT_SPEED);
         ARMOR_MODIFIERS_PREFIX.add(UnusualModifierLib.DAMAGE_BABY);
