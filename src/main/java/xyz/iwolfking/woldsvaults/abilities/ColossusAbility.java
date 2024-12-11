@@ -118,7 +118,7 @@ public class ColossusAbility extends InstantManaAbility {
             bus = Mod.EventBusSubscriber.Bus.FORGE
     )
     public static class ColossusEffect extends MobEffect {
-        private static final UUID COLOSSUS_BALANCE_UUID = UUID.fromString("146c1348-4391-4f5a-84dd-3787bd8f679e");
+        private static final UUID COLOSSUS_SPEED_BALANCE_UUID = UUID.fromString("146c1348-4391-4f5a-84dd-3787bd8f679e");
         private final ScaleType scaleType;
 
         public ColossusEffect(MobEffectCategory mobEffectCategory, int i, ScaleType scaleType, ResourceLocation id) {
@@ -146,7 +146,7 @@ public class ColossusAbility extends InstantManaAbility {
                 //adapt speed
                 AttributeInstance speedAtt = player.getAttribute(Attributes.MOVEMENT_SPEED);
                 if (speedAtt != null && size != 0) {
-                    speedAtt.addTransientModifier(new AttributeModifier(COLOSSUS_BALANCE_UUID,"ColossusSpeedBalance",(1/size), AttributeModifier.Operation.MULTIPLY_TOTAL));
+                    speedAtt.addTransientModifier(new AttributeModifier(COLOSSUS_SPEED_BALANCE_UUID,"ColossusSpeedBalance",(1/size), AttributeModifier.Operation.MULTIPLY_TOTAL));
                 }
 
             }
@@ -163,7 +163,7 @@ public class ColossusAbility extends InstantManaAbility {
                 //reenable the speed
                 AttributeInstance speedAtt = player.getAttribute(Attributes.MOVEMENT_SPEED);
                 if (speedAtt != null) {
-                    speedAtt.removeModifier(COLOSSUS_BALANCE_UUID);
+                    speedAtt.removeModifier(COLOSSUS_SPEED_BALANCE_UUID);
                 }
                 //continue cooldown
                 PlayerAbilitiesData.setAbilityOnCooldown(player, ColossusAbility.class);
