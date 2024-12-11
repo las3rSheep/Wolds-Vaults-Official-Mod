@@ -36,7 +36,7 @@ public abstract class MixinTemplateProcessorModifier extends VaultModifier<Templ
                     if (((TemplateProcessorModifierPropertiesAccessor)this.properties).getWhitelist() != null && !((TemplateProcessorModifierPropertiesAccessor)this.properties).getWhitelist().test(tile)) {
                         return tile;
                     }
-                    else if (((TemplateProcessorModifierPropertiesAccessor)properties).getBlacklist().test(tile)) {
+                    else if (((TemplateProcessorModifierPropertiesAccessor)properties).getBlacklist() != null && ((TemplateProcessorModifierPropertiesAccessor)properties).getBlacklist().test(tile)) {
                         return tile;
                     } else if (ctx.getRandom(tile.getPos()).nextFloat() >= this.properties.getProbability()) {
                         return tile;
