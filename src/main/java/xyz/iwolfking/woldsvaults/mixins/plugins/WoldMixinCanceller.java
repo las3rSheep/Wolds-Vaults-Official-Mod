@@ -38,6 +38,12 @@ public class WoldMixinCanceller implements MixinCanceller {
             }
         }
 
+        if(LoadingModList.get().getModFileById("vaultfaster") != null) {
+            if(s.equals("implementslegend.mod.vaultfaster.mixin.MixinTemplateProcessorModifier")) {
+                return true;
+            }
+        }
+
 
 
         return false;
