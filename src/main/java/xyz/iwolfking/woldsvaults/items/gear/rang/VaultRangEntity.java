@@ -161,7 +161,6 @@ public class VaultRangEntity extends Projectile {
             }
 
             if(tries-- <= 0) {
-                (new RuntimeException("Vault Rang hit way too much, this shouldn't happen")).printStackTrace();
                 return;
             }
         }

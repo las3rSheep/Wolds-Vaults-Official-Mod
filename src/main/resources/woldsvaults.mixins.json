@@ -138,6 +138,7 @@
     "vaulthunters.skills.MixinHealEffectAbility",
     "vaulthunters.skills.MixinResistanceHelper",
     "vaulthunters.skills.MixinSkill",
+    "vaulthunters.skills.modifications.MixinIceBoltChunkAbility",
     "vaulthunters.testing.CrystalConfigAccessor",
     "vaulthunters.testing.MixinLootTable"
   ],
