@@ -114,8 +114,9 @@ public class SneakyGetawayAbility extends InstantManaAbility {
 
     public static class SneakyGetawayEffect extends MobEffect {
         private final ScaleType scaleType;
-        private static final UUID SNEAKY_GETAWAY_BALANCE_UUID = UUID.fromString("146c1348-4391-4f5a-84dd-3787bd8f679e");
-        private static final UUID SNEAKY_GETAWAY_ADDITION_UUID = UUID.fromString("42171e94-3ecd-4ca2-ac3f-2aa4c7cb125b");
+        private static final UUID SNEAKY_GETAWAY_SPEED_BALANCE_UUID = UUID.fromString("146c1348-4391-4f5a-84dd-3787bd8f679e");
+        private static final UUID SNEAKY_GETAWAY_SPEED_ADDITION_UUID = UUID.fromString("42171e94-3ecd-4ca2-ac3f-2aa4c7cb125b");
+        private static final UUID SNEAKY_GETAWAY_JUMP_BALANCE_UUID = UUID.fromString("87c5f0ad-2e5f-40e0-9be4-481108e78835");
         public SneakyGetawayEffect(MobEffectCategory mobEffectCategory, int i, ScaleType scaleType, ResourceLocation id) {
             super(mobEffectCategory, i);
             this.scaleType = scaleType;
@@ -139,9 +140,14 @@ public class SneakyGetawayAbility extends InstantManaAbility {
                 AttributeInstance speedAtt = player.getAttribute(Attributes.MOVEMENT_SPEED);
                 if (speedAtt != null && size != 0) {
                     //adapt the speed
-                    speedAtt.addTransientModifier(new AttributeModifier(SNEAKY_GETAWAY_BALANCE_UUID,"SneakyGetawaySpeedBalance",(1/size), AttributeModifier.Operation.MULTIPLY_TOTAL));
+                    speedAtt.addTransientModifier(new AttributeModifier(SNEAKY_GETAWAY_SPEED_BALANCE_UUID,"SneakyGetawaySpeedBalance",(1/size), AttributeModifier.Operation.MULTIPLY_TOTAL));
                     //add to the speed
-                    speedAtt.addTransientModifier(new AttributeModifier(SNEAKY_GETAWAY_ADDITION_UUID,"SneakyGetawaySpeedAddition",speedPercentAdded, AttributeModifier.Operation.ADDITION));
+                    speedAtt.addTransientModifier(new AttributeModifier(SNEAKY_GETAWAY_SPEED_ADDITION_UUID,"SneakyGetawaySpeedAddition",speedPercentAdded, AttributeModifier.Operation.ADDITION));
+                }
+                AttributeInstance jumpAtt = player.getAttribute(Attributes.JUMP_STRENGTH);
+                if (jumpAtt != null && size != 0) {
+                    //balance the jump
+                    jumpAtt.addTransientModifier(new AttributeModifier(SNEAKY_GETAWAY_JUMP_BALANCE_UUID,"SneakyGetawayJumpBalance",(1/size), AttributeModifier.Operation.MULTIPLY_TOTAL));
                 }
 
             }
@@ -157,8 +163,13 @@ public class SneakyGetawayAbility extends InstantManaAbility {
                 //reset speed
                 AttributeInstance speedAtt = player.getAttribute(Attributes.MOVEMENT_SPEED);
                 if (speedAtt != null) {
-                    speedAtt.removeModifier(SNEAKY_GETAWAY_BALANCE_UUID);
-                    speedAtt.removeModifier(SNEAKY_GETAWAY_ADDITION_UUID);
+                    speedAtt.removeModifier(SNEAKY_GETAWAY_SPEED_BALANCE_UUID);
+                    speedAtt.removeModifier(SNEAKY_GETAWAY_SPEED_ADDITION_UUID);
+                }
+                //reset jump
+                AttributeInstance jumpAtt = player.getAttribute(Attributes.JUMP_STRENGTH);
+                if (jumpAtt != null) {
+                    jumpAtt.removeModifier(SNEAKY_GETAWAY_JUMP_BALANCE_UUID);
                 }
                 //continue cooldown
                 PlayerAbilitiesData.setAbilityOnCooldown(player, SneakyGetawayAbility.class);
