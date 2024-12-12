@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.iwolfking.woldsvaults.modifiers.gear.special.FireballModification;
 import xyz.iwolfking.woldsvaults.modifiers.gear.special.GlacialBlastModification;
 
 @Mixin(value = SpecialAbilityModificationRegistry.class, remap = false)
@@ -19,5 +20,6 @@ public abstract class MixinSpecialAbilityModificationRegistry {
     @Inject(method = "init", at = @At("TAIL"))
     private static void init(CallbackInfo ci) {
         register(new GlacialBlastModification());
+        register(new FireballModification());
     }
 }

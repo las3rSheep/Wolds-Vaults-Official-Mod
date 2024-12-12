@@ -33,6 +33,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
+import xyz.iwolfking.woldsvaults.data.HexEffects;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
@@ -96,6 +97,32 @@ public class LivingEntityEvents {
                     return;
                 }
                 player.getLevel().playSound(null, event.getEntity(), ANCHOR_SLAM_SOUND, SoundSource.PLAYERS, 1.0F, 1.0F);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void hexingHit(LivingHurtEvent event) {
+        //Prevent an entity from being reaved more than once or applying to non-melee strikes.
+        if(!WoldEventHelper.isNormalAttack()) {
+            return;
+        }
+
+        if(event.getSource().isProjectile()) {
+            return;
+        }
+
+        if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
+            VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
+            if(data.hasAttribute(ModGearAttributes.HEXING_CHANCE)) {
+                if(player.level.random.nextFloat() <= data.get(ModGearAttributes.HEXING_CHANCE, VaultGearAttributeTypeMerger.floatSum())) {
+                    MobEffectInstance instance = HexEffects.HEX_EFFECTS.getRandom(player.getRandom());
+                    if(instance == null){
+                        return;
+                    }
+
+                    event.getEntityLiving().addEffect(new MobEffectInstance(instance));
+                }
             }
         }
     }

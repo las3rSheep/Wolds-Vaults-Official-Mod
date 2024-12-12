@@ -3,9 +3,7 @@ package xyz.iwolfking.woldsvaults.mixins.vaulthunters.skills;
 import iskallia.vault.init.ModAbilityLabelBindings;
 import iskallia.vault.skill.ability.component.AbilityLabelFormatters;
 import iskallia.vault.skill.ability.effect.spi.core.InstantManaAbility;
-import iskallia.vault.skill.base.Skill;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -34,7 +32,7 @@ public abstract class MixinModAbilityLabelBindings {
 
         ));
         ModAbilityLabelBindings.register(SneakyGetawayAbility.class, Map.of(
-                "additionalResistance",
+                "speed",
                 ability -> AbilityLabelFormatters.percentRounded(ability.getSpeedPercentAdded()),
                 "size",
                 ability -> AbilityLabelFormatters.percentRounded(ability.getSize()),

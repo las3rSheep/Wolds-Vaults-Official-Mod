@@ -34,7 +34,8 @@
       "vhapi:gear/sword/lute"
     ],
     "UNIQUE": [
-      "the_vault:gear/sword/everfrost"
+      "the_vault:gear/sword/everfrost",
+      "the_vault:gear/sword/everflame"
     ]
   }
 }

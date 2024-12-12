@@ -14,6 +14,8 @@ public class AdditionalModels {
     public static final PlainItemModel HEART_MAGNET;
     public static final PlainItemModel TREASURE_MAGNET;
     public static final HandHeldModel EVERFROST;
+    public static final HandHeldModel EVERFLAME;
+    public static final HandHeldModel HEXBLADE;
 
     static {
        LEVIATHAN_AXE = (HandHeldModel) ModDynamicModels.Axes.REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/axe/leviathan"), "Leviathan")).properties(new DynamicModelProperties()));
@@ -22,5 +24,7 @@ public class AdditionalModels {
        HEART_MAGNET = ModDynamicModels.Magnets.REGISTRY_MAGNETS.register(new PlainItemModel(VaultMod.id("magnets/heart_magnet"), "Heart Magnet")).properties(new DynamicModelProperties());
        TREASURE_MAGNET = ModDynamicModels.Magnets.REGISTRY_MAGNETS.register(new PlainItemModel(VaultMod.id("magnets/treasure_magnet"), "Treasure Seeker's Magnet")).properties(new DynamicModelProperties());
        EVERFROST = ModDynamicModels.Swords.REGISTRY.register(new HandHeldModel(VaultMod.id("gear/sword/everfrost"), "Everfrost")).properties(new DynamicModelProperties());
+       EVERFLAME = ModDynamicModels.Swords.REGISTRY.register(new HandHeldModel(VaultMod.id("gear/sword/everflame"), "Everflame")).properties(new DynamicModelProperties());
+       HEXBLADE = ModDynamicModels.Swords.REGISTRY.register(new HandHeldModel(VaultMod.id("gear/sword/hexblade"), "Hexblade")).properties(new DynamicModelProperties());
     }
 }

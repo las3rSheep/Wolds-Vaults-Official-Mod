@@ -23,14 +23,17 @@ public class GlacialBlastModification extends IntRangeModification {
     @Nullable
     public MutableComponent getDisplay(SpecialAbilityGearAttribute<?, IntValue> instance, Style style, VaultGearModifier.AffixType type) {
         MutableComponent valueDisplay = this.getValueDisplay((IntValue)instance.getValue());
-        return valueDisplay == null ? null : (new TextComponent("")).append(type.getAffixPrefixComponent(true)).append("Glacial Blast applies Hypothermia");
+        return valueDisplay == null ? null : (new TextComponent("")).append(type.getAffixPrefixComponent(true)).append("Glacial Blast is ").append(valueDisplay.withStyle(instance.getHighlightStyle())).setStyle(instance.getTextStyle()).append("X times more likely to shatter");
     }
+
 
     public void serializeTextElements(JsonArray out, SpecialAbilityGearAttribute<?, IntValue> instance, VaultGearModifier.AffixType type) {
         MutableComponent valueDisplay = this.getValueDisplay((IntValue)instance.getValue());
         if (valueDisplay != null) {
             out.add(type.getAffixPrefix(true));
-            out.add("Glacial Blast applies Hypothermia");
+            out.add("Glacial Blast is ");
+            out.add(valueDisplay.getString());
+            out.add("X more likely to shatter");
         }
     }
 }

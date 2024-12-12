@@ -16,7 +16,6 @@ import iskallia.vault.skill.ability.effect.spi.AbstractIceBoltAbility;
 import iskallia.vault.skill.ability.effect.spi.core.Ability;
 import iskallia.vault.skill.base.SkillContext;
 import iskallia.vault.util.AABBHelper;
-import iskallia.vault.util.effect.ScheduledEffectHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -65,26 +64,23 @@ public abstract class MixinIceBoltChunkAbility  extends AbstractIceBoltAbility {
                 }).range(1000.0), player, AABBHelper.create(pos, radius));
                 Iterator var6 = nearbyEntities.iterator();
 
-                int hypothermia = 0;
+                int hypothermia = 1;
                 for(ConfiguredModification<GlacialBlastModification, IntRangeConfig, IntValue> mod : SpecialAbilityModification.getModifications(player, GlacialBlastModification.class)) {
                     hypothermia = mod.value().getValue();
+                }
+                if(hypothermia < 1) {
+                    hypothermia = 1;
                 }
 
                 while (var6.hasNext()) {
                     LivingEntity nearbyEntity = (LivingEntity) var6.next();
-                    if(hypothermia > 0) {
-                        if (!nearbyEntity.hasEffect(ModEffects.HYPOTHERMIA)) {
-                            ScheduledEffectHelper.invalidateAll(nearbyEntity, ModEffects.HYPOTHERMIA);
-                            ScheduledEffectHelper.scheduleEffect(nearbyEntity, ModEffects.HYPOTHERMIA.timedInstance(0, 400, true), this.getDurationTicks(player));
-                            setAbilityData(nearbyEntity, 40, player.getUUID());
-                        }
-                    }
-                    else {
-                        nearbyEntity.addEffect(new MobEffectInstance(ModEffects.CHILLED, this.getDurationTicks(player), this.getAmplifier(), false, false, false));
-                    }
+
+
+                    nearbyEntity.addEffect(new MobEffectInstance(ModEffects.CHILLED, this.getDurationTicks(player), this.getAmplifier(), false, false, false));
+
 
                     CommonEvents.ENTITY_STUNNED.invoke(new EntityStunnedEvent.Data(player, nearbyEntity));
-                    if (player.level.random.nextFloat() <= this.glacialChance) {
+                    if (player.level.random.nextFloat() <= (this.glacialChance * hypothermia)) {
                         nearbyEntity.removeEffect(ModEffects.GLACIAL_SHATTER);
                         nearbyEntity.addEffect(new MobEffectInstance(ModEffects.GLACIAL_SHATTER, this.getDurationTicks(player), this.getAmplifier()));
                         player.level.playSound((Player) null, pos.x, pos.y, pos.z, SoundEvents.GLASS_BREAK, SoundSource.BLOCKS, 0.25F, 0.65F);
