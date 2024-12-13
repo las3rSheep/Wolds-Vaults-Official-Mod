@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import iskallia.vault.dynamodel.DynamicModel;
 import iskallia.vault.gear.VaultGearClassification;
 import iskallia.vault.gear.VaultGearHelper;
+import iskallia.vault.gear.VaultGearState;
 import iskallia.vault.gear.VaultGearType;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.crafting.ProficiencyType;
@@ -166,5 +167,13 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
             items.add(this.defaultItem());
         }
 
+    }
+
+    public boolean isDamageable(ItemStack stack) {
+        return VaultGearData.read(stack).getState() == VaultGearState.IDENTIFIED;
+    }
+
+    public int getMaxDamage(ItemStack stack) {
+        return (Integer)VaultGearData.read(stack).get(ModGearAttributes.DURABILITY, VaultGearAttributeTypeMerger.intSum());
     }
 }

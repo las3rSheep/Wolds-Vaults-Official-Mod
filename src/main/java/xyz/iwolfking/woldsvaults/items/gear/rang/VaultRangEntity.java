@@ -238,7 +238,7 @@ public class VaultRangEntity extends Projectile {
                         VaultRangLogic.setActiveRang(null);
 
                         owner.attackStrengthTicker = ticksSinceLastSwing;
-
+                        getStack().hurt(1, level.random, null);
                         setStack(owner.getMainHandItem());
                         owner.setItemInHand(InteractionHand.MAIN_HAND, prev);
                         owner.getAttributes().addTransientAttributeModifiers(modifiers);
@@ -250,7 +250,6 @@ public class VaultRangEntity extends Projectile {
                         manager.addTransientAttributeModifiers(modifiers);
 
                         ItemStack stack = getStack();
-                        stack.hurt(1, level.random, null);
                         setStack(stack);
                         hit.hurt(new IndirectEntityDamageSource("player", this, this).setProjectile(),
                                 (float) manager.getValue(Attributes.ATTACK_DAMAGE));

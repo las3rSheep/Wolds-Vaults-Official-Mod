@@ -57,6 +57,7 @@ public class UnusualModifiers {
         AXE_MODIFIERS_SUFFIX.add(UnusualModifierLib.DURABILITY_WEAR_REDUCTION);
         AXE_MODIFIERS_SUFFIX.add(UnusualModifierLib.ABILITY_POWER_PERCENTILE);
         AXE_MODIFIERS_SUFFIX.add(UnusualModifierLib.HEALING_EFFECTIVENESS);
+        AXE_MODIFIERS_SUFFIX.add(UnusualModifierLib.HEXING_HIT);
         UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("axe"), AXE_MODIFIERS_PREFIX);
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("axe"), AXE_MODIFIERS_SUFFIX);
 
@@ -85,6 +86,7 @@ public class UnusualModifiers {
         SWORD_MODIFIERS_SUFFIX.add(UnusualModifierLib.DURABILITY_WEAR_REDUCTION);
         SWORD_MODIFIERS_SUFFIX.add(UnusualModifierLib.ABILITY_POWER_PERCENTILE);
         SWORD_MODIFIERS_SUFFIX.add(UnusualModifierLib.HEALING_EFFECTIVENESS);
+        SWORD_MODIFIERS_SUFFIX.add(UnusualModifierLib.HEXING_HIT);
         UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("sword"), SWORD_MODIFIERS_PREFIX);
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("sword"), SWORD_MODIFIERS_SUFFIX);
         UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("battlestaff"), SWORD_MODIFIERS_PREFIX);

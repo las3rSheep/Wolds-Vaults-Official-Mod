@@ -28,6 +28,7 @@ public class UnusualModifierLib {
     public static VaultGearTierConfig.ModifierTierGroup COOLDOWN_REDUCTION = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("cooldown_reduction"), "ModCooldownReduction", VaultMod.id("mod_cooldown_unusual"));
 
 
+
     //Jewel Suffixes
     public static VaultGearTierConfig.ModifierTierGroup COOLDOWN_REDUCTION_JEWEL = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("cooldown_reduction"), "ModCooldownReduction", VaultMod.id("mod_cooldown_unusual"));
     public static VaultGearTierConfig.ModifierTierGroup MANA_REGEN_JEWEL = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("cooldown_reduction"), "ModCooldownReduction", VaultMod.id("mod_cooldown_unusual"));
@@ -52,7 +53,7 @@ public class UnusualModifierLib {
     public static VaultGearTierConfig.ModifierTierGroup ABILITY_POWER_PERCENTILE = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("ability_power_percent"), "ModResistance", VaultMod.id("mod_ability_increase_unusual"));
     public static VaultGearTierConfig.ModifierTierGroup EFFECT_DURATION = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("effect_duration"), "ModCooldownReduction", VaultMod.id("mod_effect_duration_unusual"));
     public static VaultGearTierConfig.ModifierTierGroup HEALING_EFFECTIVENESS = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("healing_effectiveness"), "ModHealthEff", VaultMod.id("mod_health_eff_unusual"));
-
+    public static VaultGearTierConfig.ModifierTierGroup HEXING_HIT = new VaultGearTierConfig.ModifierTierGroup(VaultMod.id("hexing_chance"), "ModOnHitType", VaultMod.id("mod_hexing_chance_unusual"));
     static {
         //Effect Clouds
         EffectCloudAttribute.CloudConfig BLEED_0 = new EffectCloudAttribute.CloudConfig("Bleed", new ResourceLocation("minecraft:empty"), 80, 4.0F, 3080192, false, 0.02F);
@@ -178,6 +179,11 @@ public class UnusualModifierLib {
         AXE_BLEED_CLOUD.add(new VaultGearTierConfig.ModifierTier<>(0, 10, BLEED_0));
         AXE_BLEED_CLOUD.add(new VaultGearTierConfig.ModifierTier<>(32, 10, BLEED_1));
         AXE_BLEED_CLOUD.add(new VaultGearTierConfig.ModifierTier<>(64, 10, BLEED_2));
+        HEXING_HIT.add(new VaultGearTierConfig.ModifierTier<>(0, 4, new FloatAttributeGenerator.Range(0.02F, 0.04F, 0.01F)));
+        HEXING_HIT.add(new VaultGearTierConfig.ModifierTier<>(20, 4, new FloatAttributeGenerator.Range(0.05F, 0.07F, 0.01F)));
+        HEXING_HIT.add(new VaultGearTierConfig.ModifierTier<>(40, 4, new FloatAttributeGenerator.Range(0.07F, 0.08F, 0.01F)));
+        HEXING_HIT.add(new VaultGearTierConfig.ModifierTier<>(60, 4, new FloatAttributeGenerator.Range(0.09F, 0.1F, 0.01F)));
+        HEXING_HIT.add(new VaultGearTierConfig.ModifierTier<>(85, 4, new FloatAttributeGenerator.Range(0.11F, 0.12F, 0.01F)));
 
         COOLDOWN_REDUCTION_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(0, 10, new FloatAttributeGenerator.Range(0.005F, 0.01F, 0.001F)));
         COOLDOWN_REDUCTION_JEWEL.add(new VaultGearTierConfig.ModifierTier<>(65, 10, new FloatAttributeGenerator.Range(0.01F, 0.02F, 0.001F)));

@@ -122,6 +122,8 @@
     "vaulthunters.fixes.MixinLootableItem",
     "vaulthunters.fixes.MixinMixinWorldChunk",
     "vaulthunters.fixes.MixinMonolithRenderer",
+    "vaulthunters.fixes.MixinOfferingBossCrystalObjective",
+    "vaulthunters.fixes.MixinOfferingBossTileEntity",
     "vaulthunters.fixes.MixinOfferingItem",
     "vaulthunters.fixes.MixinPlayer",
     "vaulthunters.fixes.MixinStatisticsElementContainerScreenData",
