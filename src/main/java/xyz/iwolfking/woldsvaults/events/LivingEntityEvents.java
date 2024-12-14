@@ -13,11 +13,14 @@ import iskallia.vault.entity.entity.elite.*;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
+import iskallia.vault.gear.trinket.TrinketHelper;
+import iskallia.vault.gear.trinket.effects.MultiJumpTrinket;
 import iskallia.vault.util.calc.PlayerStat;
 import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -27,6 +30,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -188,6 +192,28 @@ public class LivingEntityEvents {
                             });
                         }
                     }
+                }
+            }
+        }
+    }
+
+    /**
+     * Handles the reduction/cancellation of fall damage for players with the Feather Trinket equipped.
+     * <p>
+     * If the player has an active and usable {@code MultiJumpTrinket}:
+     * - Fall damage is canceled if the fall distance is less than 5.0 blocks to prevent damage ticking when taking no damage.
+     * - Otherwise, the fall distance is reduced by 2.0 blocks to mitigate fall damage.
+     * <p>
+     * Called whenever a LivingEntity falls
+     */
+    @SubscribeEvent
+    public static void multiJumpTrinketFallReductionEvent(LivingFallEvent event) {
+        if(event.getEntityLiving() instanceof ServerPlayer player) {
+            if (!TrinketHelper.getTrinkets(player, MultiJumpTrinket.class).stream().noneMatch((trinket) -> trinket.isUsable(player))) {
+                if(event.getDistance() < 5.0F) {
+                    event.setCanceled(true);
+                } else {
+                    event.setDistance(event.getDistance() - 2.0F);
                 }
             }
         }
