@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.iwolfking.woldsvaults.events.client.KeyInputEvents;
 
 @Mixin(value = MultiJumpTrinket.class, remap = false)
 public class MixinMultiJumpTrinket {
@@ -26,7 +27,9 @@ public class MixinMultiJumpTrinket {
             require = 1
     )
     private void afterResetJumpCount(Player player, CallbackInfo ci) {
-        clientIsJumpHeld = false;
+        if(KeyInputEvents.isFeatherFixEnabled) {
+            clientIsJumpHeld = false;
+        }
     }
 
 }
