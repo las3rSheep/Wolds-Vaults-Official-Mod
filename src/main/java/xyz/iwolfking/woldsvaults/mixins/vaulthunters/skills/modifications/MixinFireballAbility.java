@@ -17,6 +17,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import xyz.iwolfking.woldsvaults.modifiers.gear.special.FireballModification;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 @Mixin(value = FireballAbility.class, remap = false)
 public class MixinFireballAbility {
 
@@ -34,12 +37,20 @@ public class MixinFireballAbility {
             player.level.addFreshEntity(fireball);
             for(ConfiguredModification<FireballModification, FloatRangeConfig, FloatValue> mod : SpecialAbilityModification.getModifications(player, FireballModification.class)) {
                 if(player.level.random.nextFloat() <= mod.value().getValue()) {
-                    VaultFireball fireball2 = new VaultFireball(player.level, player);
-                    fireball2.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.0F, 0.0F);
-                    fireball2.pickup = AbstractArrow.Pickup.DISALLOWED;
-                    fireball2.setType(VaultFireball.FireballType.BASE);
-                    player.level.addFreshEntity(fireball2);
-                    player.level.playSound((Player) null, player, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
+                    Timer timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            VaultFireball fireball2 = new VaultFireball(player.level, player);
+                            fireball2.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.0F, 0.0F);
+                            fireball2.pickup = AbstractArrow.Pickup.DISALLOWED;
+                            fireball2.setType(VaultFireball.FireballType.BASE);
+                            player.level.addFreshEntity(fireball2);
+                            player.level.playSound((Player) null, player, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
+                            timer.cancel();
+                        }
+                    }, 2000, 10000);
+
                 }
             }
             player.level.playSound((Player) null, player, SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);

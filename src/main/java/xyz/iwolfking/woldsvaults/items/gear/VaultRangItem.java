@@ -55,6 +55,7 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
 
     public VaultRangItem(ResourceLocation id) {
         super(id);
+
     }
 
 

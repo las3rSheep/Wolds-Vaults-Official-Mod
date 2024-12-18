@@ -184,5 +184,6 @@
   "create.item_attributes.etched_layout_value.inverted": "isn't an Etched Vault Layout with a value of \"%1$s\"",
   "entity.the_vault.black_widow_boss": "Black Widow Boss",
   "entity.the_vault.boogieman_boss": "Boogieman Boss",
-  "entity.the_vault.golem_boss": "Golem Boss"
+  "entity.the_vault.golem_boss": "Golem Boss",
+  "key.the_vault.quickselect.colossus": "Select and use ability: Colossus"
 }

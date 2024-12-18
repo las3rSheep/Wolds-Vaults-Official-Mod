@@ -47,6 +47,7 @@
     "occultism.MixinRemoteStorageAccessor",
     "openpac.MixinHostileEntityProtectionHelper",
     "pnc.MixinDisenchantingPressureRecipe",
+    "qolhunters.MixinTreasureDoorRenderer",
     "quark.MixinAncientTomesModule",
     "scannable.MixinScannableItems",
     "scannable.ScannerModuleItemAccessor",
@@ -145,7 +146,9 @@
     "vaulthunters.skills.modifications.MixinFireballAbility",
     "vaulthunters.skills.modifications.MixinIceBoltChunkAbility",
     "vaulthunters.testing.CrystalConfigAccessor",
-    "vaulthunters.testing.MixinLootTable"
+    "vaulthunters.testing.MixinLootTable",
+    "vaulthunters.testing.MixinPlayerEvents",
+    "vaulthunters.testing.MixinTickClock"
   ],
   "client": [
     "MixinThrownTridentRenderer",
