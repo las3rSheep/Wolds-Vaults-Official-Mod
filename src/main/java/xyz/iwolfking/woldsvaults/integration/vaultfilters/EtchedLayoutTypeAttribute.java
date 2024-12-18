@@ -1,8 +1,8 @@
 package xyz.iwolfking.woldsvaults.integration.vaultfilters;
 
+import iskallia.vault.util.StringUtils;
 import net.joseph.vaultfilters.attributes.abstracts.StringAttribute;
 import net.minecraft.world.item.ItemStack;
-import org.codehaus.plexus.util.StringUtils;
 import xyz.iwolfking.woldsvaults.items.LayoutModificationItem;
 
 public class EtchedLayoutTypeAttribute extends StringAttribute {
@@ -14,7 +14,7 @@ public class EtchedLayoutTypeAttribute extends StringAttribute {
     public String getValue(ItemStack itemStack) {
         if(itemStack.getItem() instanceof LayoutModificationItem) {
             if(itemStack.getOrCreateTag().contains("layout")) {
-               return StringUtils.capitalise(itemStack.getOrCreateTag().getString("layout"));
+               return StringUtils.convertToTitleCase(itemStack.getOrCreateTag().getString("layout"));
             }
         }
         return "";
