@@ -131,6 +131,7 @@
     "vaulthunters.fixes.MixinStatisticsElementContainerScreenData",
     "vaulthunters.fixes.MixinVaultChestTileEntity",
     "vaulthunters.fixes.MixinVaultFireball",
+    "vaulthunters.fixes.MixinVaultGearModifierHelper",
     "vaulthunters.fixes.MixinVaultModifier",
     "vaulthunters.fixes.MixinVaultPenTileEntity",
     "vaulthunters.fixes.bettercombat.MixinAttributeSnapshotCalculatorNoBC",
