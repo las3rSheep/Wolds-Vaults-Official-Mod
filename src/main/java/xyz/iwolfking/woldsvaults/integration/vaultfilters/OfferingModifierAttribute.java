@@ -16,7 +16,7 @@ public class OfferingModifierAttribute extends StringAttribute {
                return OfferingItem.getModifierName(itemStack.getOrCreateTag().getString("Modifier")).getString();
             }
         }
-        return "";
+        return null;
     }
 
     @Override

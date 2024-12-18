@@ -16,7 +16,7 @@ public class EtchedLayoutTunnelAttribute extends IntAttribute {
                return itemStack.getOrCreateTag().getInt("tunnel");
             }
         }
-        return 0;
+        return null;
     }
 
     @Override
