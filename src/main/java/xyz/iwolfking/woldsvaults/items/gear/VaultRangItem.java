@@ -81,7 +81,6 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
         AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(playerIn);
         float velocity = snapshot.getAttributeValue(ModGearAttributes.VELOCITY, VaultGearAttributeTypeMerger.floatSum()) * 100;
         Double attackSpeed = snapshot.getAttributeValue(ModGearAttributes.ATTACK_SPEED, VaultGearAttributeTypeMerger.doubleSum());
-        System.out.println(attackSpeed);
         Vec3 pos = playerIn.position();
         worldIn.playSound(null, pos.x, pos.y, pos.z, QuarkSounds.ENTITY_PICKARANG_THROW, SoundSource.NEUTRAL, 0.5F + velocity * 0.14F, 0.4F / (worldIn.random.nextFloat() * 0.4F + 0.8F));
 
