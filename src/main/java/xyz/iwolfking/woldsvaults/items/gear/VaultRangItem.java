@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.items.gear;
 
+import cofh.ensorcellation.init.EnsorcEnchantments;
 import com.google.common.collect.Multimap;
 import iskallia.vault.dynamodel.DynamicModel;
 import iskallia.vault.gear.VaultGearClassification;
@@ -35,6 +36,8 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -175,5 +178,15 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
 
     public int getMaxDamage(ItemStack stack) {
         return (Integer)VaultGearData.read(stack).get(ModGearAttributes.DURABILITY, VaultGearAttributeTypeMerger.intSum());
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if(enchantment.equals(Enchantments.UNBREAKING) || enchantment.equals(Enchantments.MOB_LOOTING) || enchantment.equals(EnsorcEnchantments.SOULBOUND.get())) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

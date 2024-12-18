@@ -11,7 +11,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import org.spongepowered.asm.mixin.Mixin;
 @Restriction(
         require = {
-                @Condition(type = Condition.Type.MOD, value = "cofhcore"),
+                @Condition(type = Condition.Type.MOD, value = "cofh_core"),
                 @Condition(type = Condition.Type.MOD, value = "ensorcellation"),
         }
 )

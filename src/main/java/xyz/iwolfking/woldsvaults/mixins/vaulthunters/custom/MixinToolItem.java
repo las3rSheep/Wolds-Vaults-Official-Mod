@@ -69,4 +69,5 @@ public abstract class MixinToolItem extends TieredItem implements VaultGearItem,
             cir.setReturnValue((new TranslatableComponent(material.getDescription())).append(" ").append(new TranslatableComponent(extendedToolType.getDescription())));
         }
     }
+
 }

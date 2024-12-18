@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 @Restriction(
         require = {
-                @Condition(type = Condition.Type.MOD, value = "cofhcore"),
+                @Condition(type = Condition.Type.MOD, value = "cofh_core"),
                 @Condition(type = Condition.Type.MOD, value = "ensorcellation"),
         }
 )
