@@ -126,4 +126,52 @@ public abstract class MixinVaultGearModifierHelper {
 
         return null;
     }
+
+    /**
+     * @author
+     * @reason
+     */
+    @Overwrite
+    public static GearModification.Result reForgeOutcomeOfRandomModifier(ItemStack stack, long worldGameTime, Random random) {
+        VaultGearData data = VaultGearData.read(stack);
+        if (!data.isModifiable()) {
+            return GearModification.Result.errorUnmodifiable();
+        } else {
+            List<Tuple<VaultGearModifier<?>, WeightedList<VaultGearTierConfig.ModifierOutcome<?>>>> modifierReplacements = getAvailableModifierConfigurationOutcomes(data, stack, true);
+            modifierReplacements.removeIf((tpl) -> {
+                if(tpl.getA().hasCategory(VaultGearModifier.AffixCategory.valueOf("UNUSUAL"))){
+                    return true;
+                }
+                return ((WeightedList) tpl.getB()).size() <= 1;
+            });
+            if (modifierReplacements.isEmpty()) {
+                return GearModification.Result.makeActionError("no_modifiers", new Component[0]);
+            } else {
+                Tuple<VaultGearModifier<?>, WeightedList<VaultGearTierConfig.ModifierOutcome<?>>> potentialReplacements = (Tuple) MiscUtils.getRandomEntry(modifierReplacements);
+                if (potentialReplacements == null) {
+                    return GearModification.Result.errorInternal();
+                } else {
+                    VaultGearTierConfig.ModifierOutcome<?> replacement = (VaultGearTierConfig.ModifierOutcome) ((WeightedList) potentialReplacements.getB()).getRandom(random).orElse((Object) null);
+                    if (replacement == null) {
+                        return GearModification.Result.errorInternal();
+                    } else {
+                        VaultGearModifier existing = (VaultGearModifier) potentialReplacements.getA();
+                        VaultGearModifier newModifier = replacement.makeModifier(random);
+                        VaultGearAttributeComparator comparator = existing.getAttribute().getAttributeComparator();
+                        if (comparator != null && comparator.compare(existing.getValue(), newModifier.getValue()) == 0) {
+                            return reForgeOutcomeOfRandomModifier(stack, worldGameTime, random);
+                        } else {
+                            data.getAllModifierAffixes().forEach(VaultGearModifier::resetGameTimeAdded);
+                            existing.setValue(newModifier.getValue());
+                            existing.setRolledTier(newModifier.getRolledTier());
+                            existing.setGameTimeAdded(worldGameTime);
+                            existing.clearCategories();
+                            data.write(stack);
+                            return GearModification.Result.makeSuccess();
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
