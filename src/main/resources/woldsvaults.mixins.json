@@ -92,6 +92,7 @@
     "vaulthunters.custom.MixinBleedEffect",
     "vaulthunters.custom.MixinCustomSpawnerTileEntity",
     "vaulthunters.custom.MixinExperiencedExpertise",
+    "vaulthunters.custom.MixinFrenzyModifier",
     "vaulthunters.custom.MixinGearRollHelper",
     "vaulthunters.custom.MixinItemVaultCrystal",
     "vaulthunters.custom.MixinJewelItem",
