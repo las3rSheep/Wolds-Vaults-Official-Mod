@@ -135,9 +135,9 @@ public class UnusualModifierLib {
         CRITICAL_HIT_MITIGATION.add(new VaultGearTierConfig.ModifierTier<>(0, 10, new FloatAttributeGenerator.Range(0.05F, 0.1F, 0.01F)));
         CRITICAL_HIT_MITIGATION.add(new VaultGearTierConfig.ModifierTier<>(35, 10, new FloatAttributeGenerator.Range(0.11F, 0.2F, 0.01F)));
         CRITICAL_HIT_MITIGATION.add(new VaultGearTierConfig.ModifierTier<>(65, 10, new FloatAttributeGenerator.Range(0.21F, 0.25F, 0.01F)));
-        LUCKY_HIT_CHANCE.add(new VaultGearTierConfig.ModifierTier<>(25, 10, new FloatAttributeGenerator.Range(0.04F, 0.06F, 0.01F)));
-        LUCKY_HIT_CHANCE.add(new VaultGearTierConfig.ModifierTier<>(50, 10, new FloatAttributeGenerator.Range(0.07F, 0.08F, 0.01F)));
-        LUCKY_HIT_CHANCE.add(new VaultGearTierConfig.ModifierTier<>(75, 10, new FloatAttributeGenerator.Range(0.09F, 0.1F, 0.01F)));
+        LUCKY_HIT_CHANCE.add(new VaultGearTierConfig.ModifierTier<>(25, 10, new FloatAttributeGenerator.Range(0.01F, 0.02F, 0.01F)));
+        LUCKY_HIT_CHANCE.add(new VaultGearTierConfig.ModifierTier<>(50, 10, new FloatAttributeGenerator.Range(0.03F, 0.04F, 0.01F)));
+        LUCKY_HIT_CHANCE.add(new VaultGearTierConfig.ModifierTier<>(75, 10, new FloatAttributeGenerator.Range(0.05F, 0.06F, 0.01F)));
         KNOCKBACK_RESISTANCE.add(new VaultGearTierConfig.ModifierTier<>(0, 10, new FloatAttributeGenerator.Range(0.05F, 0.1F, 0.01F)));
         KNOCKBACK_RESISTANCE.add(new VaultGearTierConfig.ModifierTier<>(15, 10, new FloatAttributeGenerator.Range(0.11F, 0.14F, 0.01F)));
         KNOCKBACK_RESISTANCE.add(new VaultGearTierConfig.ModifierTier<>(30, 10, new FloatAttributeGenerator.Range(0.15F, 0.19F, 0.01F)));

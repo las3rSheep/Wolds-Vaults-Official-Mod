@@ -40,6 +40,9 @@ public abstract class MixinVaultGearModifierHelper {
                 List<Tuple<VaultGearModifier<?>, WeightedList<VaultGearTierConfig.ModifierOutcome<?>>>> modifierReplacements = getAvailableModifierConfigurationOutcomes(data, stack, true);
                 modifierReplacements.removeIf((tpl) -> {
                     VaultGearModifier<?> existing = (VaultGearModifier) tpl.getA();
+                    if(existing.hasCategory(VaultGearModifier.AffixCategory.valueOf("UNUSUAL"))) {
+                        return true;
+                    }
                     VaultGearAttributeComparator comparator = existing.getAttribute().getAttributeComparator();
                     if (comparator == null) {
                         return true;
