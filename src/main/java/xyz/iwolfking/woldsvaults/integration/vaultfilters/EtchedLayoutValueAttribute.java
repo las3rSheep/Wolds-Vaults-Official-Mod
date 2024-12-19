@@ -16,7 +16,7 @@ public class EtchedLayoutValueAttribute extends IntAttribute {
                return itemStack.getOrCreateTag().getInt("value");
             }
         }
-        return 0;
+        return null;
     }
 
     @Override

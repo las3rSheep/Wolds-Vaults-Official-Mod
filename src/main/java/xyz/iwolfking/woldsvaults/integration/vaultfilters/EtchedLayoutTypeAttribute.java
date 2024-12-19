@@ -17,7 +17,7 @@ public class EtchedLayoutTypeAttribute extends StringAttribute {
                return StringUtils.convertToTitleCase(itemStack.getOrCreateTag().getString("layout"));
             }
         }
-        return "";
+        return null;
     }
 
     @Override
