@@ -23,6 +23,7 @@ public class ModConfigs {
     public static ThemeTooltipsConfig THEME_TOOLTIPS;
     public static CustomVaultRecyclerConfig CUSTOM_RECYCLER_CONFIG;
     public static EternalAttributesConfig ETERNAL_ATTRIBUTES;
+    public static GreedVaultAltarIngredientsConfig GREED_VAULT_ALTAR_INGREDIENTS;
 
     public static void register() {
         GEM_BOX = (GemBoxConfig) (new GemBoxConfig()).readConfig();
@@ -42,5 +43,6 @@ public class ModConfigs {
         CUSTOM_RECYCLER_CONFIG = (CustomVaultRecyclerConfig) (new CustomVaultRecyclerConfig()).readConfig();
         CustomRecyclerOutputs.CUSTOM_OUTPUTS.putAll(CUSTOM_RECYCLER_CONFIG.getOutputs());
         ETERNAL_ATTRIBUTES = (new EternalAttributesConfig()).readConfig();
+        GREED_VAULT_ALTAR_INGREDIENTS = (new GreedVaultAltarIngredientsConfig()).readConfig();
     }
 }
