@@ -48,6 +48,9 @@ public class ModGearAttributes {
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Returning Damage", 8833629), VaultGearAttributeComparator.floatComparator());
 
     public static final VaultGearAttribute<String> THEME = attr("vault_theme", VaultGearAttributeType.stringType(), xyz.iwolfking.woldsvaults.init.ModGearAttributeGenerators.stringValue(), xyz.iwolfking.woldsvaults.init.ModGearAttributeReaders.themeReader("Vault Theme", 888888, "Theme: %s"));
+    public static final VaultGearAttribute<String> OBJECTIVE = attr("vault_objective", VaultGearAttributeType.stringType(), xyz.iwolfking.woldsvaults.init.ModGearAttributeGenerators.stringValue(), xyz.iwolfking.woldsvaults.init.ModGearAttributeReaders.objectiveReader("Vault Objective", 888888, "Objective: %s"));
+    public static final VaultGearAttribute<Float> MOB_HEALTH = attr("mob_health",
+            VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mob Health", 8833629), VaultGearAttributeComparator.floatComparator());
 
 
     @SubscribeEvent
@@ -65,6 +68,8 @@ public class ModGearAttributes {
                       registry.register(RETURNING_DAMAGE);
                       registry.register(HEXING_CHANCE);
                       registry.register(THEME);
+                      registry.register(OBJECTIVE);
+                      registry.register(MOB_HEALTH);
         /*     */   }
     /*     */
     /*     */   public static void registerVanillaAssociations() {

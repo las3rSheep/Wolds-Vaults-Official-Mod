@@ -16,17 +16,14 @@ import java.util.Optional;
 
 @Mixin(value = ModifierContext.class, remap = false)
 public abstract class MixinModifierContext extends DataObject<ModifierContext> implements MixinModifierContextAccessor {
-    @Unique
-    private static final FieldKey<Float> VALUE;
-    @Shadow @Final public static FieldRegistry FIELDS;
 
-    static {
-        VALUE = FieldKey.of("value", Float.class).with(Version.v1_5, Adapters.FLOAT, DISK.all().or(CLIENT.all())).register(FIELDS);
-    }
+    @Shadow @Final public static FieldRegistry FIELDS;
+    @Unique
+    private static FieldKey<Float> VALUE = FieldKey.of("value", Float.class).with(Version.v1_5, Adapters.FLOAT, DISK.all().or(CLIENT.all())).register(FIELDS);
 
     @Override
     public Optional<Float> woldsVaults_Dev$getValue() {
-        return this.get(VALUE).describeConstable();
+        return Optional.of(this.get(VALUE));
     }
 
     @Override
