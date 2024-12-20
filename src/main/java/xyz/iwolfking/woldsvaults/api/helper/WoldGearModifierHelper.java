@@ -32,7 +32,9 @@ public class WoldGearModifierHelper {
             boolean hasUnusual = false;
             for(VaultGearModifier modifier : data.getModifiers(VaultGearModifier.AffixType.PREFIX)) {
                 hasUnusual = modifier.getCategories().contains(VaultGearModifier.AffixCategory.valueOf("UNUSUAL"));
-                break;
+                if(hasUnusual) {
+                    break;
+                }
             }
 
             if(hasUnusual) {
@@ -41,7 +43,9 @@ public class WoldGearModifierHelper {
 
             for(VaultGearModifier modifier : data.getModifiers(VaultGearModifier.AffixType.SUFFIX)) {
                 hasUnusual = modifier.getCategories().contains(VaultGearModifier.AffixCategory.valueOf("UNUSUAL"));
-                break;
+                if(hasUnusual) {
+                    break;
+                }
             }
 
             if(hasUnusual) {
