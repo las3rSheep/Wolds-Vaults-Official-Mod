@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 
-
 import javax.annotation.Nullable;
 
 @Mod.EventBusSubscriber(modid = WoldsVaults.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -33,9 +32,7 @@ public class ModGearAttributes {
             /* 177 */       VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), (VaultGearModifierReader)ModGearAttributeReaders.percentageReader("Channeling Chance", 12925893), (VaultGearAttributeComparator<Float>)VaultGearAttributeComparator.floatComparator());
 
     public static final VaultGearAttribute<Boolean> MAGNET_ENDERGIZED = attr("endergized",
-            /* 121 */       VaultGearAttributeType.booleanType(), (ConfigurableAttributeGenerator<Boolean, ?>)ModGearAttributeGenerators.booleanFlag(), (VaultGearModifierReader<Boolean>)ModGearAttributeReaders.booleanReader("Endergized", 46276), VaultGearAttributeComparator.booleanComparator());
-    /*     */
-    /*     */
+                VaultGearAttributeType.booleanType(), (ConfigurableAttributeGenerator<Boolean, ?>)ModGearAttributeGenerators.booleanFlag(), (VaultGearModifierReader<Boolean>)ModGearAttributeReaders.booleanReader("Endergized", 46276), VaultGearAttributeComparator.booleanComparator());
 
     public static final VaultGearAttribute<Float> REAVING_DAMAGE = attr("reaving_damage",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Bonus Reaving Damage", 12417954), VaultGearAttributeComparator.floatComparator());
@@ -49,6 +46,9 @@ public class ModGearAttributes {
 
     public static final VaultGearAttribute<Float> RETURNING_DAMAGE = attr("returning_damage",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Returning Damage", 8833629), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<String> THEME = attr("vault_theme", VaultGearAttributeType.stringType(), xyz.iwolfking.woldsvaults.init.ModGearAttributeGenerators.stringValue(), xyz.iwolfking.woldsvaults.init.ModGearAttributeReaders.themeReader("Vault Theme", 888888, "Theme: %s"));
+
 
     @SubscribeEvent
     /*     */   public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
@@ -64,6 +64,7 @@ public class ModGearAttributes {
                       registry.register(PIERCING);
                       registry.register(RETURNING_DAMAGE);
                       registry.register(HEXING_CHANCE);
+                      registry.register(THEME);
         /*     */   }
     /*     */
     /*     */   public static void registerVanillaAssociations() {
