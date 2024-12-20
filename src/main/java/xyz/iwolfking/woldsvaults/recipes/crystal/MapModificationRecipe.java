@@ -82,6 +82,16 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
                     }
             }
 
+            for(VaultGearModifier<?> mod : mapData.getModifiers(VaultGearModifier.AffixType.SUFFIX)) {
+                VaultModifier<?> vaultMod = VaultModifierRegistry.get(mod.getModifierIdentifier());
+                if(vaultMod instanceof SettableValueVaultModifier<?> settableValueVaultModifier) {
+                    settableValueVaultModifier.properties().setValue((Float) mod.getValue());
+                    VaultModifierStack stack = new VaultModifierStack(settableValueVaultModifier, 1);
+                    data.getModifiers().add(stack);
+                }
+            }
+
+
 
             data.write(output);
             context.setOutput(output);
