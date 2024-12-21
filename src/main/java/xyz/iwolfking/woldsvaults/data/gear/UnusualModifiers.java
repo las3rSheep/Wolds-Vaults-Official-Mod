@@ -20,8 +20,10 @@ public class UnusualModifiers {
     private static VaultGearTierConfig.AttributeGroup ARMOR_MODIFIERS_PREFIX = new VaultGearTierConfig.AttributeGroup();
     private static VaultGearTierConfig.AttributeGroup ARMOR_MODIFIERS_SUFFIX = new VaultGearTierConfig.AttributeGroup();
     private static VaultGearTierConfig.AttributeGroup NON_SACK_PREFIX = new VaultGearTierConfig.AttributeGroup();
+    private static VaultGearTierConfig.AttributeGroup PLUSHIE_PREFIX = new VaultGearTierConfig.AttributeGroup();
     private static VaultGearTierConfig.AttributeGroup NON_SACK_SUFFIX = new VaultGearTierConfig.AttributeGroup();
     private static VaultGearTierConfig.AttributeGroup SACK_SUFFIX = new VaultGearTierConfig.AttributeGroup();
+    private static VaultGearTierConfig.AttributeGroup PLUSHIE_SUFFIX = new VaultGearTierConfig.AttributeGroup();
     private static VaultGearTierConfig.AttributeGroup SACK_PREFIX = new VaultGearTierConfig.AttributeGroup();
     private static VaultGearTierConfig.AttributeGroup JEWEL_SUFFIX = new VaultGearTierConfig.AttributeGroup();
 
@@ -116,16 +118,16 @@ public class UnusualModifiers {
         NON_SACK_PREFIX.add(UnusualModifierLib.REACH);
         NON_SACK_PREFIX.add(UnusualModifierLib.MOVEMENT_SPEED);
         NON_SACK_PREFIX.add(UnusualModifierLib.RESISTANCE);
-        NON_SACK_PREFIX.add(UnusualModifierLib.DAMAGE_INCREASE);
         NON_SACK_PREFIX.add(UnusualModifierLib.DAMAGE_BABY);
         NON_SACK_PREFIX.add(UnusualModifierLib.LEECH);
-        NON_SACK_PREFIX.add(UnusualModifierLib.CRITICAL_HIT_MITIGATION);
-        NON_SACK_PREFIX.add(UnusualModifierLib.ABILITY_POWER);
         NON_SACK_PREFIX.add(UnusualModifierLib.MANA_ADDITIVE);
         NON_SACK_PREFIX.add(UnusualModifierLib.MANA_REGEN);
         NON_SACK_PREFIX.add(UnusualModifierLib.COOLDOWN_REDUCTION);
-        NON_SACK_PREFIX.add(UnusualModifierLib.CHAINING);
         NON_SACK_PREFIX.add(UnusualModifierLib.AXE_CLEAVE);
+        PLUSHIE_PREFIX.addAll(NON_SACK_PREFIX);
+        NON_SACK_PREFIX.add(UnusualModifierLib.ABILITY_POWER);
+        NON_SACK_PREFIX.add(UnusualModifierLib.CHAINING);
+        NON_SACK_PREFIX.add(UnusualModifierLib.CRITICAL_HIT_MITIGATION);
         NON_SACK_SUFFIX.add(UnusualModifierLib.ITEM_QUANTITY);
         NON_SACK_SUFFIX.add(UnusualModifierLib.ITEM_RARITY);
         NON_SACK_SUFFIX.add(UnusualModifierLib.COPIOUSLY);
@@ -135,10 +137,12 @@ public class UnusualModifiers {
         NON_SACK_SUFFIX.add(UnusualModifierLib.KINETIC_IMMUNITY);
         NON_SACK_SUFFIX.add(UnusualModifierLib.KNOCKBACK_RESISTANCE);
         NON_SACK_SUFFIX.add(UnusualModifierLib.DURABILITY_WEAR_REDUCTION);
-        NON_SACK_SUFFIX.add(UnusualModifierLib.ABILITY_POWER_PERCENTILE);
         NON_SACK_SUFFIX.add(UnusualModifierLib.HEALING_EFFECTIVENESS);
-        UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("plushie"), NON_SACK_PREFIX);
-        UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("plushie"), NON_SACK_SUFFIX);
+        PLUSHIE_SUFFIX.addAll(NON_SACK_PREFIX);
+        NON_SACK_SUFFIX.add(UnusualModifierLib.ABILITY_POWER_PERCENTILE);
+        NON_SACK_PREFIX.add(UnusualModifierLib.DAMAGE_INCREASE);
+        UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("plushie"), PLUSHIE_PREFIX);
+        UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("plushie"), PLUSHIE_SUFFIX);
         UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("focus"), NON_SACK_PREFIX);
         UNUSUAL_MODIFIERS_MAP_SUFFIX.put(VaultMod.id("focus"), NON_SACK_SUFFIX);
         UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("wand"), NON_SACK_PREFIX);
