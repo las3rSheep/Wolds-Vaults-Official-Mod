@@ -32,10 +32,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.DyeableLeatherItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -56,9 +53,8 @@ import java.util.Random;
 
 public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLeatherItem {
 
-    public VaultRangItem(ResourceLocation id) {
-        super(id);
-
+    public VaultRangItem(ResourceLocation id,  Item.Properties properties) {
+        super(id, properties);
     }
 
 

@@ -147,7 +147,6 @@ public class ModItems {
 
     public static VaultRangItem RANG;
 
-    public static BasicItem GREEDY_VAULT_ROCK;
 
 
     @SubscribeEvent
@@ -246,7 +245,6 @@ public class ModItems {
         registry.register(ECCENTRIC_FOCUS);
         registry.register(RANG);
         registry.register(LAYOUT_MANIPULATOR);
-        registry.register(GREEDY_VAULT_ROCK);
     }
 
     static {
@@ -332,12 +330,11 @@ public class ModItems {
         WENDARR_GEM = new BasicItem(WoldsVaults.id("wendarr_gem"));
         ECCENTRIC_FOCUS = new BasicItem(WoldsVaults.id("eccentric_focus"));
         COMMUNITY_TOKEN = new BasicItem(WoldsVaults.id("community_token"));
-        GREEDY_VAULT_ROCK = new BasicItem(WoldsVaults.id("greedy_vault_rock"));
         RESEARCH_TOKEN = new ResearchTokenItem(WoldsVaults.id("research_token"), new Item.Properties().stacksTo(1));
         POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
         XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
         XL_BACKPACK.setRegistryName(WoldsVaults.MOD_ID, "xl_backpack");
-        RANG = new VaultRangItem(VaultMod.id("rang"));
+        RANG = new VaultRangItem(VaultMod.id("rang"), new Item.Properties().stacksTo(1));
         LAYOUT_MANIPULATOR = new LayoutModificationItem(VAULT_MOD_GROUP, WoldsVaults.id("layout_manipulator"));
     }
 }
