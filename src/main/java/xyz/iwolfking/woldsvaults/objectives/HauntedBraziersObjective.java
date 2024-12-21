@@ -68,6 +68,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.loading.LoadingModList;
 import net.minecraftforge.network.PacketDistributor;
 import vazkii.quark.content.mobs.entity.Wraith;
+import xyz.iwolfking.woldsvaults.util.VaultModifierUtils;
 
 import java.util.*;
 
@@ -99,6 +100,15 @@ public class HauntedBraziersObjective extends MonolithObjective {
 
     @Override
     public void initServer(VirtualWorld world, Vault vault) {
+        boolean hasGeneratedModifiers = false;
+        for(VaultModifier<?> modifier : vault.get(Vault.MODIFIERS).getModifiers()) {
+            if(modifier.getId().equals(VaultMod.id("normalized"))) {
+                hasGeneratedModifiers = true;
+            }
+        }
+        if(!hasGeneratedModifiers) {
+            VaultModifierUtils.addModifier(vault, VaultMod.id("normalized"), 1);
+        }
         CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
             this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
                 data.setProbability((double)probability);
