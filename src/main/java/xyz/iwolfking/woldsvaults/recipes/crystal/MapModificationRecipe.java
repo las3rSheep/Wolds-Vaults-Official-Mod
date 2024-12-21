@@ -44,6 +44,7 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
 
             String themeId = mapData.getFirstValue(ModGearAttributes.THEME).orElse(null);
             String objectiveId = mapData.getFirstValue(ModGearAttributes.OBJECTIVE).orElse(null);
+            String difficultyId = mapData.getFirstValue(ModGearAttributes.VAULT_DIFFICULTY).orElse(null);
 
             if(themeId != null) {
                 CrystalTheme theme = new ValueCrystalTheme(new ResourceLocation(themeId));
@@ -73,13 +74,25 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
                 return false;
             }
 
+            if(difficultyId != null) {
+                VaultModifier<?> mod = VaultModifierRegistry.get(VaultMod.id(difficultyId.toLowerCase()));
+                if(mod != null) {
+                    VaultModifierStack stack = new VaultModifierStack(mod, 1);
+                    data.getModifiers().add(stack);
+                }
+            }
+
             for(VaultGearModifier<?> mod : mapData.getModifiers(VaultGearModifier.AffixType.PREFIX)) {
-                    VaultModifier<?> vaultMod = VaultModifierRegistry.get(mod.getModifierIdentifier());
-                    if(vaultMod instanceof SettableValueVaultModifier<?> settableValueVaultModifier) {
+                VaultModifier<?> vaultMod = VaultModifierRegistry.get(mod.getModifierIdentifier());
+                if(vaultMod instanceof SettableValueVaultModifier<?> settableValueVaultModifier) {
                         settableValueVaultModifier.properties().setValue((Float) mod.getValue());
                         VaultModifierStack stack = new VaultModifierStack(settableValueVaultModifier, 1);
                         data.getModifiers().add(stack);
-                    }
+                }
+                else if(vaultMod != null) {
+                    VaultModifierStack stack = new VaultModifierStack(vaultMod, 1);
+                    data.getModifiers().add(stack);
+                }
             }
 
             for(VaultGearModifier<?> mod : mapData.getModifiers(VaultGearModifier.AffixType.SUFFIX)) {
@@ -87,6 +100,10 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
                 if(vaultMod instanceof SettableValueVaultModifier<?> settableValueVaultModifier) {
                     settableValueVaultModifier.properties().setValue((Float) mod.getValue());
                     VaultModifierStack stack = new VaultModifierStack(settableValueVaultModifier, 1);
+                    data.getModifiers().add(stack);
+                }
+                else if(vaultMod != null) {
+                    VaultModifierStack stack = new VaultModifierStack(vaultMod, 1);
                     data.getModifiers().add(stack);
                 }
             }

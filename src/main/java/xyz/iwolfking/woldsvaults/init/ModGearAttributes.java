@@ -34,6 +34,7 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Boolean> MAGNET_ENDERGIZED = attr("endergized",
                 VaultGearAttributeType.booleanType(), (ConfigurableAttributeGenerator<Boolean, ?>)ModGearAttributeGenerators.booleanFlag(), (VaultGearModifierReader<Boolean>)ModGearAttributeReaders.booleanReader("Endergized", 46276), VaultGearAttributeComparator.booleanComparator());
 
+
     public static final VaultGearAttribute<Float> REAVING_DAMAGE = attr("reaving_damage",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Bonus Reaving Damage", 12417954), VaultGearAttributeComparator.floatComparator());
 
@@ -44,13 +45,19 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Integer> PIERCING = attr("piercing",
             VaultGearAttributeType.intType(), (ConfigurableAttributeGenerator<Integer, ?>)ModGearAttributeGenerators.intRange(), (VaultGearModifierReader<Integer>)ModGearAttributeReaders.addedIntReader("Piercing", 8847359), (VaultGearAttributeComparator<Integer>)VaultGearAttributeComparator.intComparator());
 
+
     public static final VaultGearAttribute<Float> RETURNING_DAMAGE = attr("returning_damage",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Returning Damage", 8833629), VaultGearAttributeComparator.floatComparator());
 
     public static final VaultGearAttribute<String> THEME = attr("vault_theme", VaultGearAttributeType.stringType(), xyz.iwolfking.woldsvaults.init.ModGearAttributeGenerators.stringValue(), xyz.iwolfking.woldsvaults.init.ModGearAttributeReaders.themeReader("Vault Theme", 888888, "Theme: %s"));
     public static final VaultGearAttribute<String> OBJECTIVE = attr("vault_objective", VaultGearAttributeType.stringType(), xyz.iwolfking.woldsvaults.init.ModGearAttributeGenerators.stringValue(), xyz.iwolfking.woldsvaults.init.ModGearAttributeReaders.objectiveReader("Vault Objective", 888888, "Objective: %s"));
+    public static final VaultGearAttribute<String> STATIC_PLACEHOLDER_MODIFIER = attr("static_modifier", VaultGearAttributeType.stringType(), xyz.iwolfking.woldsvaults.init.ModGearAttributeGenerators.stringValue(), xyz.iwolfking.woldsvaults.init.ModGearAttributeReaders.staticPlaceholderReader("Unknown Crystal Modifier", 888888, "%s"));
+    public static final VaultGearAttribute<String> VAULT_DIFFICULTY = attr("vault_difficulty", VaultGearAttributeType.stringType(), xyz.iwolfking.woldsvaults.init.ModGearAttributeGenerators.stringValue(), xyz.iwolfking.woldsvaults.init.ModGearAttributeReaders.difficultyReader("Unknown Difficulty", 888888, "%s"));
     public static final VaultGearAttribute<Float> MOB_HEALTH = attr("mob_health",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mob Health", 8833629), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> GROUPED_QUANTITY = attr("grouped_quantity",
+            VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Item Quantity and Rarity", 8833629), VaultGearAttributeComparator.floatComparator());
+
 
 
     @SubscribeEvent
@@ -70,6 +77,9 @@ public class ModGearAttributes {
                       registry.register(THEME);
                       registry.register(OBJECTIVE);
                       registry.register(MOB_HEALTH);
+                      registry.register(GROUPED_QUANTITY);
+                      registry.register(STATIC_PLACEHOLDER_MODIFIER);
+                      registry.register(VAULT_DIFFICULTY);
         /*     */   }
     /*     */
     /*     */   public static void registerVanillaAssociations() {

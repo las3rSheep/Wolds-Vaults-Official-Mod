@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import xyz.iwolfking.woldsvaults.modifiers.vault.*;
+import xyz.iwolfking.woldsvaults.modifiers.vault.map.modifiers.GroupedSettableModifier;
 import xyz.iwolfking.woldsvaults.modifiers.vault.map.modifiers.LootItemQuantityModifierSettable;
 import xyz.iwolfking.woldsvaults.modifiers.vault.map.modifiers.LootItemRarityModifierSettable;
 import xyz.iwolfking.woldsvaults.modifiers.vault.map.modifiers.MobAttributeModifierSettable;
@@ -29,5 +30,6 @@ public class MixinVaultModifierTypeRegistry {
         MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/loot_item_quantity_settable"), VaultModifierType.of(LootItemQuantityModifierSettable.class, LootItemQuantityModifierSettable.Properties.class, LootItemQuantityModifierSettable::new));
         MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/loot_item_rarity_settable"), VaultModifierType.of(LootItemRarityModifierSettable.class, LootItemRarityModifierSettable.Properties.class, LootItemRarityModifierSettable::new));
         MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/mob_attribute_settable"), VaultModifierType.of(MobAttributeModifierSettable.class, MobAttributeModifierSettable.Properties.class, MobAttributeModifierSettable::new));
+        MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/grouped_settable"), VaultModifierType.of(GroupedSettableModifier.class, GroupedSettableModifier.Properties.class, GroupedSettableModifier::new));
     }
 }

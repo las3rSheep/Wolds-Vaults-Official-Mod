@@ -118,4 +118,9 @@ public class VaultMapItem extends BasicItem implements VaultGearItem {
         super.appendHoverText(stack, world, tooltip, flag);
         tooltip.addAll(this.createTooltip(stack, GearTooltip.itemTooltip()));
     }
+
+    @Override
+    public void addRepairTooltip(List<Component> tooltip, int usedRepairs, int totalRepairs) {
+
+    }
 }
