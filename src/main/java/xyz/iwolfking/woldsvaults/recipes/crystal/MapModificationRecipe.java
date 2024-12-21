@@ -14,6 +14,7 @@ import iskallia.vault.item.crystal.objective.CrystalObjective;
 import iskallia.vault.item.crystal.recipe.AnvilContext;
 import iskallia.vault.item.crystal.recipe.VanillaAnvilRecipe;
 import iskallia.vault.item.crystal.theme.CrystalTheme;
+import iskallia.vault.item.crystal.theme.PoolCrystalTheme;
 import iskallia.vault.item.crystal.theme.ValueCrystalTheme;
 import iskallia.vault.item.data.InscriptionData;
 import mezz.jei.api.registration.IRecipeRegistration;
@@ -45,11 +46,16 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
             VaultGearData mapData = VaultGearData.read(secondary);
 
             String themeId = mapData.getFirstValue(ModGearAttributes.THEME).orElse(null);
+            String themePoolId = mapData.getFirstValue(ModGearAttributes.THEME_POOL).orElse(null);
             String objectiveId = mapData.getFirstValue(ModGearAttributes.OBJECTIVE).orElse(null);
             String difficultyId = mapData.getFirstValue(ModGearAttributes.VAULT_DIFFICULTY).orElse(null);
 
             if(themeId != null) {
                 CrystalTheme theme = new ValueCrystalTheme(new ResourceLocation(themeId));
+                data.setTheme(theme);
+            }
+            else if(themePoolId != null) {
+                CrystalTheme theme = new PoolCrystalTheme(new ResourceLocation(themePoolId));
                 data.setTheme(theme);
             }
             else {
@@ -84,39 +90,8 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
                 }
             }
 
-            for(VaultGearModifier<?> mod : mapData.getModifiers(VaultGearModifier.AffixType.PREFIX)) {
-                VaultModifier<?> vaultMod = VaultModifierRegistry.get(mod.getModifierIdentifier());
-                if(vaultMod instanceof SettableValueVaultModifier<?> settableValueVaultModifier) {
-                        settableValueVaultModifier.properties().setValue((Float) mod.getValue());
-
-                        if(vaultMod instanceof InscriptionCrystalModifierSettable inscriptionCrystalModifierSettable) {
-                            InscriptionData inscriptionData = inscriptionCrystalModifierSettable.properties().getData();
-                            inscriptionData.apply(context.getPlayer().orElse(null), output, data);
-                        }
-                        else {
-                            VaultModifierStack stack = new VaultModifierStack(settableValueVaultModifier, 1);
-                            data.getModifiers().add(stack);
-                        }
-
-                }
-                else if(vaultMod != null) {
-                    VaultModifierStack stack = new VaultModifierStack(vaultMod, 1);
-                    data.getModifiers().add(stack);
-                }
-            }
-
-            for(VaultGearModifier<?> mod : mapData.getModifiers(VaultGearModifier.AffixType.SUFFIX)) {
-                VaultModifier<?> vaultMod = VaultModifierRegistry.get(mod.getModifierIdentifier());
-                if(vaultMod instanceof SettableValueVaultModifier<?> settableValueVaultModifier) {
-                    settableValueVaultModifier.properties().setValue((Float) mod.getValue());
-                    VaultModifierStack stack = new VaultModifierStack(settableValueVaultModifier, 1);
-                    data.getModifiers().add(stack);
-                }
-                else if(vaultMod != null) {
-                    VaultModifierStack stack = new VaultModifierStack(vaultMod, 1);
-                    data.getModifiers().add(stack);
-                }
-            }
+            applySpecialModifiers(data, mapData, VaultGearModifier.AffixType.PREFIX, context, output);
+            applySpecialModifiers(data, mapData, VaultGearModifier.AffixType.SUFFIX, context, output);
 
 
 
@@ -136,5 +111,29 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
     @Override
     public void onRegisterJEI(IRecipeRegistration iRecipeRegistration) {
 
+    }
+
+    public static boolean applySpecialModifiers(CrystalData data, VaultGearData mapData, VaultGearModifier.AffixType affixType, AnvilContext context, ItemStack output) {
+        for(VaultGearModifier<?> mod : mapData.getModifiers(affixType)) {
+            VaultModifier<?> vaultMod = VaultModifierRegistry.get(mod.getModifierIdentifier());
+            if(vaultMod instanceof SettableValueVaultModifier<?> settableValueVaultModifier) {
+                settableValueVaultModifier.properties().setValue((Float) mod.getValue());
+
+                if(vaultMod instanceof InscriptionCrystalModifierSettable inscriptionCrystalModifierSettable) {
+                    InscriptionData inscriptionData = inscriptionCrystalModifierSettable.properties().getData();
+                    inscriptionData.apply(context.getPlayer().orElse(null), output, data);
+                }
+                else {
+                    VaultModifierStack stack = new VaultModifierStack(settableValueVaultModifier, 1);
+                    data.getModifiers().add(stack);
+                }
+
+            }
+            else if(vaultMod != null) {
+                VaultModifierStack stack = new VaultModifierStack(vaultMod, 1);
+                data.getModifiers().add(stack);
+            }
+        }
+        return true;
     }
 }

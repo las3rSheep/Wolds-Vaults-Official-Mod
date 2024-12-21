@@ -7,6 +7,11 @@ public class ModGearAttributeReaders {
         return new ThemeModifierReader(modifierName, rgbColor, format);
     }
 
+    public static ThemePoolModifierReader themePoolReader(String modifierName, int rgbColor, String format) {
+        return new ThemePoolModifierReader(modifierName, rgbColor, format);
+    }
+
+
     public static ObjectiveModifierReader objectiveReader(String modifierName, int rgbColor, String format) {
         return new ObjectiveModifierReader(modifierName, rgbColor, format);
     }
