@@ -29,7 +29,7 @@ public class StaticPlaceholderReader extends VaultGearModifierReader<String> {
     @Nonnull
     public MutableComponent getValueDisplay(String value) {
         if(VaultModifierRegistry.get(new ResourceLocation(value)) != null) {
-            return new TextComponent("").append(new TextComponent(VaultModifierRegistry.get(new ResourceLocation(value)).getDisplayName()).withStyle(Style.EMPTY.withColor(VaultModifierRegistry.get(new ResourceLocation(value)).getDisplayTextColor())));
+            return new TextComponent("").append(new TextComponent(VaultModifierRegistry.get(new ResourceLocation(value)).getDisplayDescription()).withStyle(Style.EMPTY.withColor(VaultModifierRegistry.get(new ResourceLocation(value)).getDisplayTextColor())));
         }
         else {
             return new TextComponent("Invalid Vault Modifier").withStyle(ChatFormatting.RED);
@@ -39,5 +39,10 @@ public class StaticPlaceholderReader extends VaultGearModifierReader<String> {
 
     protected void serializeTextElements(JsonArray out, VaultGearAttributeInstance<String> instance, VaultGearModifier.AffixType type) {
         out.add(this.format.formatted(this.getModifierName(), instance.getValue()));
+    }
+
+
+    private String getCleanedName(String name) {
+        return "+ " + name.replaceAll(":.*: *", "");
     }
 }

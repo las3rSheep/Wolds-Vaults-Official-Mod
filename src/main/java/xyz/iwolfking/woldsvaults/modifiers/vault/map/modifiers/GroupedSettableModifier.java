@@ -35,7 +35,6 @@ public class GroupedSettableModifier extends SettableValueVaultModifier<GroupedS
         }
 
         public List<VaultModifier<?>> getChildren() {
-            System.out.println("Getting children");
             List<VaultModifier<?>> result = new ArrayList();
             Iterator var2 = this.children.entrySet().iterator();
 
@@ -45,12 +44,10 @@ public class GroupedSettableModifier extends SettableValueVaultModifier<GroupedS
                 VaultModifierRegistry.getOpt(new ResourceLocation((String)entry.getKey())).ifPresent((modifier) -> {
                     for(int i = 0; i < (Integer)entry.getValue(); ++i) {
                         if(modifier instanceof SettableValueVaultModifier<?> settableValueVaultModifier) {
-                            System.out.println("Adding settable modifier");
                             settableValueVaultModifier.properties().setValue(getValue());
                             result.add(settableValueVaultModifier);
                         }
                         else {
-                            System.out.println("Adding normal modifier");
                             result.add(modifier);
                         }
                     }

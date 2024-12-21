@@ -15,6 +15,7 @@ import iskallia.vault.item.crystal.recipe.AnvilContext;
 import iskallia.vault.item.crystal.recipe.VanillaAnvilRecipe;
 import iskallia.vault.item.crystal.theme.CrystalTheme;
 import iskallia.vault.item.crystal.theme.ValueCrystalTheme;
+import iskallia.vault.item.data.InscriptionData;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -22,6 +23,7 @@ import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.items.gear.VaultMapItem;
 import xyz.iwolfking.woldsvaults.modifiers.vault.lib.SettableValueVaultModifier;
+import xyz.iwolfking.woldsvaults.modifiers.vault.map.modifiers.InscriptionCrystalModifierSettable;
 
 public class MapModificationRecipe extends VanillaAnvilRecipe {
     @Override
@@ -86,8 +88,16 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
                 VaultModifier<?> vaultMod = VaultModifierRegistry.get(mod.getModifierIdentifier());
                 if(vaultMod instanceof SettableValueVaultModifier<?> settableValueVaultModifier) {
                         settableValueVaultModifier.properties().setValue((Float) mod.getValue());
-                        VaultModifierStack stack = new VaultModifierStack(settableValueVaultModifier, 1);
-                        data.getModifiers().add(stack);
+
+                        if(vaultMod instanceof InscriptionCrystalModifierSettable inscriptionCrystalModifierSettable) {
+                            InscriptionData inscriptionData = inscriptionCrystalModifierSettable.properties().getData();
+                            inscriptionData.apply(context.getPlayer().orElse(null), output, data);
+                        }
+                        else {
+                            VaultModifierStack stack = new VaultModifierStack(settableValueVaultModifier, 1);
+                            data.getModifiers().add(stack);
+                        }
+
                 }
                 else if(vaultMod != null) {
                     VaultModifierStack stack = new VaultModifierStack(vaultMod, 1);
