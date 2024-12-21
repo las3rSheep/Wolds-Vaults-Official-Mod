@@ -110,6 +110,7 @@
     "vaulthunters.custom.artisan.MixinArtisanStationContainer",
     "vaulthunters.custom.artisan.MixinArtisanStationTileEntity",
     "vaulthunters.custom.data.MixinClientDiscoveredEntriesData",
+    "vaulthunters.custom.difficulty_lock.MixinCakeObjective",
     "vaulthunters.custom.enum_extension.MixinAffixCategoryEnum",
     "vaulthunters.custom.enum_extension.MixinDiscoveredEntriesMessageEnum",
     "vaulthunters.custom.enum_extension.MixinForgeRecipeTypeEnum",

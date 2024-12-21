@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.objectives;
 
 import implementslegend.mod.vaultfaster.event.ObjectiveTemplateEvent;
+import iskallia.vault.VaultMod;
 import iskallia.vault.block.DivineAltarBlock;
 import iskallia.vault.block.PlaceholderBlock;
 import iskallia.vault.block.entity.ScavengerAltarTileEntity;
@@ -14,6 +15,7 @@ import iskallia.vault.core.event.common.BlockSetEvent;
 import iskallia.vault.core.random.JavaRandom;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.VaultLevel;
+import iskallia.vault.core.vault.modifier.spi.VaultModifier;
 import iskallia.vault.core.vault.objective.Objective;
 import iskallia.vault.core.vault.objective.ScavengerObjective;
 import iskallia.vault.core.vault.objective.scavenger.ScavengeTask;
@@ -35,6 +37,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fml.loading.LoadingModList;
 import xyz.iwolfking.woldsvaults.config.UnhingedScavengerConfig;
+import xyz.iwolfking.woldsvaults.util.VaultModifierUtils;
 
 import java.util.Iterator;
 import java.util.List;
@@ -68,6 +71,17 @@ public class UnhingedScavengerObjective extends ScavengerObjective {
 
     @Override
     public void initServer(VirtualWorld world, Vault vault) {
+        boolean hasGeneratedModifiers = false;
+        for(VaultModifier<?> modifier : vault.get(Vault.MODIFIERS).getModifiers()) {
+            if(modifier.getId().equals(VaultMod.id("normalized"))) {
+                hasGeneratedModifiers = true;
+            }
+        }
+
+        if(!hasGeneratedModifiers) {
+            VaultModifierUtils.addModifier(vault, VaultMod.id("normalized"), 1);
+        }
+
         CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
             this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
                 data.setProbability((double)probability);

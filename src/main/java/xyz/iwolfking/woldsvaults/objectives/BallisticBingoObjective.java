@@ -41,6 +41,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import xyz.iwolfking.woldsvaults.util.VaultModifierUtils;
 
 import java.util.Iterator;
 import java.util.List;
@@ -102,6 +103,18 @@ public class BallisticBingoObjective extends BingoObjective {
     }
 
     public void initServer(VirtualWorld world, Vault vault) {
+        boolean hasGeneratedModifiers = false;
+        for(VaultModifier<?> modifier : vault.get(Vault.MODIFIERS).getModifiers()) {
+            if(modifier.getId().equals(VaultMod.id("normalized"))) {
+                hasGeneratedModifiers = true;
+            }
+        }
+
+        if(!hasGeneratedModifiers) {
+            VaultModifierUtils.addModifier(vault, VaultMod.id("normalized"), 1);
+        }
+
+
         CommonEvents.LISTENER_JOIN.register(this, (data) -> {
             if (data.getVault() == vault) {
                 Listener patt3500$temp = data.getListener();
