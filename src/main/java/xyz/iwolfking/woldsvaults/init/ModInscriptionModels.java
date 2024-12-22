@@ -9,5 +9,7 @@ public class ModInscriptionModels {
         CustomInscriptionModelRegistry.addModel(18, "arcade");
         CustomInscriptionModelRegistry.addModel(19, "hellish_digsite");
         CustomInscriptionModelRegistry.addModel(20, "playzone");
+        CustomInscriptionModelRegistry.addModel(99, "raid");
+        CustomInscriptionModelRegistry.addModel(100, "lab");
     }
 }

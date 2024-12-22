@@ -56,7 +56,8 @@ public abstract class MixinPlayerVaultStats {
             for(Iterator var5 = expertises.getAll(ExperiencedExpertise.class, Skill::isUnlocked).iterator(); var5.hasNext(); increase += expertise.getIncreasedExpPercentage()) {
                 expertise = (ExperiencedExpertise)var5.next();
             }
-            this.exp += (int) (exp * (1.0F + increase));
+            float multipler = ModConfigs.LEVELS_META.getExpMultiplier();
+            this.exp += (int) (exp * (1.0F + increase) * multipler);
             int initialLevel = this.vaultLevel;
 
             int neededExp;

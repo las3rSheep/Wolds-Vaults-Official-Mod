@@ -7,16 +7,15 @@ import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.block.VaultOreBlock;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.entity.VaultBoss;
+import iskallia.vault.entity.boss.VaultBossEntity;
 import iskallia.vault.entity.champion.ChampionLogic;
-import iskallia.vault.event.ActiveFlags;
+import iskallia.vault.entity.entity.elite.*;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
-import iskallia.vault.skill.base.Skill;
-import iskallia.vault.skill.talent.type.JavelinConductTalent;
-import iskallia.vault.skill.tree.TalentTree;
+import iskallia.vault.gear.trinket.TrinketHelper;
+import iskallia.vault.gear.trinket.effects.MultiJumpTrinket;
 import iskallia.vault.util.calc.PlayerStat;
-import iskallia.vault.world.data.PlayerTalentsData;
 import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -31,6 +30,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -38,18 +38,21 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
+import xyz.iwolfking.woldsvaults.data.HexEffects;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
 import xyz.iwolfking.woldsvaults.util.WoldEventHelper;
 
-import java.util.Iterator;
+import java.util.Random;
 
 @Mod.EventBusSubscriber(
         modid = WoldsVaults.MOD_ID
 )
 public class LivingEntityEvents {
+
+    private static final Random random = new Random();
 
     private static SoundEvent ANCHOR_SLAM_SOUND = null;
 
@@ -74,21 +77,9 @@ public class LivingEntityEvents {
             return;
         }
 
-        boolean hasConduct = false;
-        if (ActiveFlags.IS_JAVELIN_ATTACKING.isSet()) {
-            if (event.getEntityLiving() instanceof ServerPlayer sPlayer) {
-                TalentTree talents = PlayerTalentsData.get(sPlayer.getLevel()).getTalents(sPlayer);
-
-                for(Iterator var7 = talents.getAll(JavelinConductTalent.class, Skill::isUnlocked).iterator(); var7.hasNext(); hasConduct = true) {
-                    JavelinConductTalent talent = (JavelinConductTalent)var7.next();
-                }
-            }
-
-            if (!hasConduct) {
-                return;
-            }
+        if(event.getSource().isProjectile()) {
+            return;
         }
-
 
         if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
             VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
@@ -99,7 +90,7 @@ public class LivingEntityEvents {
                 event.getEntityLiving().addEffect(new MobEffectInstance(ModEffects.REAVING, Integer.MAX_VALUE, 0));
                 event.getEntityLiving().addEffect(new MobEffectInstance(iskallia.vault.init.ModEffects.NO_AI, 20, 0));
 
-                if(ChampionLogic.isChampion(event.getEntityLiving()) || InfernalMobsCore.getMobModifiers(event.getEntityLiving()) != null || event.getEntityLiving() instanceof VaultBoss) {
+                if(ChampionLogic.isChampion(event.getEntityLiving()) || InfernalMobsCore.getMobModifiers(event.getEntityLiving()) != null || event.getEntityLiving() instanceof VaultBoss || event.getEntityLiving() instanceof VaultBossEntity || event.getEntityLiving() instanceof EliteDrownedEntity || event.getEntityLiving() instanceof EliteWitherSkeleton || event.getEntityLiving() instanceof EliteEndermanEntity || event.getEntityLiving() instanceof EliteHuskEntity || event.getEntityLiving() instanceof EliteSpiderEntity || event.getEntityLiving() instanceof  EliteStrayEntity || event.getEntityLiving() instanceof  EliteZombieEntity || event.getEntityLiving() instanceof EliteWitchEntity) {
                     event.setAmount(event.getAmount() + (event.getEntityLiving().getMaxHealth() * (data.get(ModGearAttributes.REAVING_DAMAGE, VaultGearAttributeTypeMerger.floatSum()) * 0.5F)));
                 }
                 else {
@@ -111,6 +102,32 @@ public class LivingEntityEvents {
                     return;
                 }
                 player.getLevel().playSound(null, event.getEntity(), ANCHOR_SLAM_SOUND, SoundSource.PLAYERS, 1.0F, 1.0F);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void hexingHit(LivingHurtEvent event) {
+        //Prevent an entity from being reaved more than once or applying to non-melee strikes.
+        if(!WoldEventHelper.isNormalAttack()) {
+            return;
+        }
+
+        if(event.getSource().isProjectile()) {
+            return;
+        }
+
+        if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
+            VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
+            if(data.hasAttribute(ModGearAttributes.HEXING_CHANCE)) {
+                if(player.level.random.nextFloat() <= data.get(ModGearAttributes.HEXING_CHANCE, VaultGearAttributeTypeMerger.floatSum())) {
+                    MobEffectInstance instance = HexEffects.HEX_EFFECTS.getRandom(player.getRandom());
+                    if(instance == null){
+                        return;
+                    }
+
+                    event.getEntityLiving().addEffect(new MobEffectInstance(instance));
+                }
             }
         }
     }
@@ -156,6 +173,15 @@ public class LivingEntityEvents {
                     ItemStack offHand = event.getPlayer().getOffhandItem();
                     if (!ServerVaults.get(world).isEmpty() || !(offHand.getItem() instanceof VaultGearItem)) {
                         if (offHand.getItem() instanceof VaultLootSackItem) {
+
+                            if(event.getState().getBlock() instanceof VaultChestBlock chestBlock) {
+                                if(chestBlock.hasStepBreaking()) {
+                                    if(random.nextFloat() < 0.75F) {
+                                        return;
+                                    }
+                                }
+                            }
+
                             int damage = (int)CommonEvents.PLAYER_STAT.invoke(PlayerStat.DURABILITY_DAMAGE, player, 1.0F).getValue();
                             if (damage <= 1) {
                                 damage = 1;
@@ -166,6 +192,28 @@ public class LivingEntityEvents {
                             });
                         }
                     }
+                }
+            }
+        }
+    }
+
+    /**
+     * Handles the reduction/cancellation of fall damage for players with the Feather Trinket equipped.
+     * <p>
+     * If the player has an active and usable {@code MultiJumpTrinket}:
+     * - Fall damage is canceled if the fall distance is less than 5.0 blocks to prevent damage ticking when taking no damage.
+     * - Otherwise, the fall distance is reduced by 2.0 blocks to mitigate fall damage.
+     * <p>
+     * Called whenever a LivingEntity falls
+     */
+    @SubscribeEvent
+    public static void multiJumpTrinketFallReductionEvent(LivingFallEvent event) {
+        if(event.getEntityLiving() instanceof ServerPlayer player) {
+            if (!TrinketHelper.getTrinkets(player, MultiJumpTrinket.class).stream().noneMatch((trinket) -> trinket.isUsable(player))) {
+                if(event.getDistance() < 5.0F) {
+                    event.setCanceled(true);
+                } else {
+                    event.setDistance(event.getDistance() - 2.0F);
                 }
             }
         }

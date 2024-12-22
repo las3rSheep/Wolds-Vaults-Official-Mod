@@ -2,6 +2,7 @@ package xyz.iwolfking.woldsvaults.objectives;
 
 import atomicstryker.infernalmobs.common.InfernalMobsCore;
 import atomicstryker.infernalmobs.common.MobModifier;
+import implementslegend.mod.vaultfaster.event.ObjectiveTemplateEvent;
 import iskallia.vault.VaultMod;
 import iskallia.vault.block.ObeliskBlock;
 import iskallia.vault.block.PlaceholderBlock;
@@ -36,9 +37,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.fml.loading.LoadingModList;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
 import xyz.iwolfking.woldsvaults.objectives.data.bosses.WoldBoss;
+import xyz.iwolfking.woldsvaults.util.VaultModifierUtils;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -66,6 +69,18 @@ public class BrutalBossesObjective extends ObeliskObjective {
 
     @Override
     public void initServer(VirtualWorld world, Vault vault) {
+        boolean hasGeneratedModifiers = false;
+        for(VaultModifier<?> modifier : vault.get(Vault.MODIFIERS).getModifiers()) {
+            if(modifier.getId().equals(VaultMod.id("normalized"))) {
+                hasGeneratedModifiers = true;
+            }
+        }
+
+        if(!hasGeneratedModifiers) {
+            VaultModifierUtils.addModifier(vault, VaultMod.id("normalized"), 1);
+        }
+
+
         CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
             this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
                 data.setProbability((double)probability);
@@ -90,22 +105,26 @@ public class BrutalBossesObjective extends ObeliskObjective {
                 }
             }
         });
-        CommonEvents.BLOCK_SET.at(BlockSetEvent.Type.RETURN).in(world).register(this, (data) -> {
-            PartialTile target = PartialTile.of(PartialBlockState.of(ModBlocks.PLACEHOLDER), PartialCompoundNbt.empty());
-            target.getState().set(PlaceholderBlock.TYPE, iskallia.vault.block.PlaceholderBlock.Type.OBJECTIVE);
-            if (target.isSubsetOf(PartialTile.of(data.getState()))) {
-                BlockState lower = (BlockState)((BlockState)ModBlocks.OBELISK.defaultBlockState().setValue(ObeliskBlock.HALF, DoubleBlockHalf.LOWER)).setValue(ObeliskBlock.FILLED, false);
-                BlockState upper = (BlockState)((BlockState)ModBlocks.OBELISK.defaultBlockState().setValue(ObeliskBlock.HALF, DoubleBlockHalf.UPPER)).setValue(ObeliskBlock.FILLED, false);
-                data.getWorld().setBlock(data.getPos(), lower, 3);
-                data.getWorld().setBlock(data.getPos().above(), upper, 3);
-            }
+        if(LoadingModList.get().getModFileById("vaultfaster") != null) {
+            ObjectiveTemplateEvent.INSTANCE.registerObjectiveTemplate((Objective)this, vault);
+        }
+        else {
+            CommonEvents.BLOCK_SET.at(BlockSetEvent.Type.RETURN).in(world).register(this, (data) -> {
+                PartialTile target = PartialTile.of(PartialBlockState.of(ModBlocks.PLACEHOLDER), PartialCompoundNbt.empty());
+                target.getState().set(PlaceholderBlock.TYPE, iskallia.vault.block.PlaceholderBlock.Type.OBJECTIVE);
+                if (target.isSubsetOf(PartialTile.of(data.getState()))) {
+                    BlockState lower = (BlockState)((BlockState)ModBlocks.OBELISK.defaultBlockState().setValue(ObeliskBlock.HALF, DoubleBlockHalf.LOWER)).setValue(ObeliskBlock.FILLED, false);
+                    BlockState upper = (BlockState)((BlockState)ModBlocks.OBELISK.defaultBlockState().setValue(ObeliskBlock.HALF, DoubleBlockHalf.UPPER)).setValue(ObeliskBlock.FILLED, false);
+                    data.getWorld().setBlock(data.getPos(), lower, 3);
+                    data.getWorld().setBlock(data.getPos().above(), upper, 3);
+                }
 
-        });
+            });
+        }
         CommonEvents.ENTITY_DEATH.register(this, (event) -> {
             if (event.getEntity().level == world) {
                 Wave[] var3 = (Wave[])this.get(WAVES);
                 int var4 = var3.length;
-
 
                 for(int var5 = 0; var5 < var4; ++var5) {
                     Wave wave = var3[var5];

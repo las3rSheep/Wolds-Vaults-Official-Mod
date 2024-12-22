@@ -1,0 +1,26 @@
+{
+  "itemRegistryName": "the_vault:rang",
+  "MODEL_ROLLS": {
+    "SCRAPPY": [
+      "the_vault:gear/rang/wooden",
+      "the_vault:gear/rang/stone"
+    ],
+    "COMMON": [
+      "the_vault:gear/rang/crimson",
+      "the_vault:gear/rang/diamond"
+    ],
+    "RARE": [
+      "the_vault:gear/rang/gold"
+    ],
+    "EPIC": [
+      "the_vault:gear/rang/amethyst"
+    ],
+    "OMEGA": [
+      "the_vault:gear/rang/emerald",
+      "the_vault:gear/rang/ourorangos"
+    ],
+    "UNIQUE": [
+      "the_vault:gear/rang/trirang"
+    ]
+  }
+}

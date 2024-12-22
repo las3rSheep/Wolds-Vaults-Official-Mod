@@ -5,6 +5,7 @@ import iskallia.vault.block.entity.DemagnetizerTileEntity;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.AttributeGearData;
 import iskallia.vault.gear.data.VaultGearData;
+import iskallia.vault.gear.item.CuriosGearItem;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.trinket.TrinketHelper;
 import iskallia.vault.gear.trinket.effects.EnderAnchorTrinket;
@@ -25,12 +26,17 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 import java.util.Optional;
 
 @Mixin(value = MagnetItem.class, remap = false)
-public abstract class MixinMagnetItem {
+public abstract class MixinMagnetItem extends Item implements VaultGearItem, CuriosGearItem, ICurioItem {
+    public MixinMagnetItem(Properties p_41383_) {
+        super(p_41383_);
+    }
+
     @Shadow
     public static Optional<ItemStack> getMagnet(LivingEntity entity) {
         return Optional.empty();
@@ -97,4 +103,5 @@ public abstract class MixinMagnetItem {
 
         }
     }
+
 }

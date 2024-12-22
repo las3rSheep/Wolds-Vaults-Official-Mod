@@ -40,6 +40,16 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Float> REAVING_DAMAGE = attr("reaving_damage",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Bonus Reaving Damage", 12417954), VaultGearAttributeComparator.floatComparator());
 
+    public static final VaultGearAttribute<Float> HEXING_CHANCE = attr("hexing_chance",
+            VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Hexing Chance", 11468966), VaultGearAttributeComparator.floatComparator());
+
+
+    public static final VaultGearAttribute<Integer> PIERCING = attr("piercing",
+            VaultGearAttributeType.intType(), (ConfigurableAttributeGenerator<Integer, ?>)ModGearAttributeGenerators.intRange(), (VaultGearModifierReader<Integer>)ModGearAttributeReaders.addedIntReader("Piercing", 8847359), (VaultGearAttributeComparator<Integer>)VaultGearAttributeComparator.intComparator());
+
+    public static final VaultGearAttribute<Float> RETURNING_DAMAGE = attr("returning_damage",
+            VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Returning Damage", 8833629), VaultGearAttributeComparator.floatComparator());
+
     @SubscribeEvent
     /*     */   public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
         /* 326 */     IForgeRegistry<VaultGearAttribute<?>> registry = event.getRegistry();
@@ -51,6 +61,9 @@ public class ModGearAttributes {
                       registry.register(MAGNET_ENDERGIZED);
                       registry.register(REAVING_DAMAGE);
                       registry.register(ROTATING_TOOL);
+                      registry.register(PIERCING);
+                      registry.register(RETURNING_DAMAGE);
+                      registry.register(HEXING_CHANCE);
         /*     */   }
     /*     */
     /*     */   public static void registerVanillaAssociations() {

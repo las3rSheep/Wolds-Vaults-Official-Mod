@@ -24,6 +24,13 @@ public class VaultModifierUtils {
         player.displayClientMessage(modifier.getChatDisplayNameComponent(stackSize).copy().append(MODIFIER_ADDED_SUFFIX), false);
     }
 
+    public static void addModifier(Vault vault, ResourceLocation modifier, int count) {
+        VaultModifier<?> vaultModifier = VaultModifierRegistry.get(modifier);
+        if(vaultModifier != null) {
+            vault.get(Vault.MODIFIERS).addModifier(vaultModifier, count, true, ChunkRandom.any());
+        }
+    }
+
     public static void addModifierFromPool(Vault vault, ResourceLocation modifierPool) {
         List<VaultModifier<?>> modifiers = ModConfigs.VAULT_MODIFIER_POOLS.getRandom(modifierPool, 0, (RandomSource) JavaRandom.ofNanoTime());
 

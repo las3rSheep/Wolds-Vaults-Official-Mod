@@ -67,6 +67,7 @@ public class WoldsVaults {
 
         LivingEntityEvents.init();
         new AdditionalModels();
+        ModVaultFilterAttributes.initAttributes();
         CrystalData.OBJECTIVE.register("brb_speedrun", SpeedrunCrystalObjective.class, SpeedrunCrystalObjective::new);
     }
 

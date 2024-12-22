@@ -178,6 +178,7 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     //implementation fg.deobf('curse.maven:vault-hunters-official-mod-458203:5621637')
+    implementation fg.deobf("curse.maven:vaultfaster-988487:5923993")
     implementation fg.deobf('curse.maven:hostile-neural-networks-552574:3717871')
     implementation fg.deobf('curse.maven:placebo-283644:3717788')
     implementation fg.deobf('curse.maven:lightmans-currency-472521:4977514')
@@ -208,13 +209,13 @@ dependencies {
     implementation fg.deobf("curse.maven:cyclops-core-232758:5262021")
     implementation fg.deobf("curse.maven:sophisticatedcore-618298:4913626")
     implementation fg.deobf("curse.maven:item-borders-513769:3583942")
-    //implementation fg.deobf("curse.maven:vaultarhud-1011085:5706845")
+    implementation fg.deobf("curse.maven:vaultarhud-1011085:5706845")
     implementation fg.deobf("curse.maven:refinedstorage-243076:4902316")
     implementation fg.deobf("curse.maven:toms-storage-378609:5211203")
     implementation fg.deobf("curse.maven:cyclops-core-232758:5262021")
     implementation fg.deobf("curse.maven:rftoolstorage-350006:4069708")
     implementation fg.deobf("curse.maven:rftoolsbase-326041:4373521")
-    implementation fg.deobf("curse.maven:vault-filters-952507:5578077")
+    implementation fg.deobf("curse.maven:vault-filters-952507:5925682")
     implementation fg.deobf("curse.maven:create-328085:4835188")
     implementation fg.deobf("curse.maven:pneumaticcraft-repressurized-281849:4922258")
     implementation fg.deobf("curse.maven:just-enough-vh-1035310:5428032")
@@ -240,7 +241,7 @@ dependencies {
     implementation fg.deobf("curse.maven:daves-potioneering-639653:4788622")
     implementation fg.deobf("curse.maven:grimoire-of-gaia-228948:5678608")
     implementation fg.deobf("curse.maven:tropicraft-254794:4616839")
-    implementation fg.deobf("curse.maven:qol-hunters-1093452:5800172")
+
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:5865552")
     implementation fg.deobf("curse.maven:occultism-361026:4729072")
     implementation fg.deobf("curse.maven:ars-nouveau-401955:4543053")
@@ -262,7 +263,7 @@ dependencies {
     }
     implementation files('libs/conditional-mixin-forge-0.6.2.jar')
     implementation files('libs/forgified-sgui-1.0.2.jar')
-    implementation files('libs/vaultarhud-1.0.0-1.18.2.jar')
+    implementation files('libs/QOL Hunters-0.29.0-1.18.2.jar')
     //implementation fg.deobf(files('libs/the_vault-1.18.2-3.15.2.3661.jar'))
     implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:5925633")
     jarJar(group: 'me.fallenbreath', name: 'conditional-mixin-forge', version: '[0.6.2,)') {

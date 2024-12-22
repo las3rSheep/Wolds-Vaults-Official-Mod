@@ -13,6 +13,7 @@ import iskallia.vault.item.gear.CharmItem;
 import iskallia.vault.item.gear.VaultArmorItem;
 import iskallia.vault.item.tool.JewelItem;
 import iskallia.vault.skill.base.Skill;
+import iskallia.vault.skill.expertise.type.JewelExpertise;
 import iskallia.vault.skill.tree.ExpertiseTree;
 import iskallia.vault.world.data.PlayerExpertisesData;
 import net.minecraft.server.level.ServerLevel;
@@ -58,12 +59,27 @@ public class MixinGearRollHelper {
     @Inject(method = "initializeGear(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At(value = "INVOKE", target = "Liskallia/vault/gear/VaultGearModifierHelper;generateModifiers(Lnet/minecraft/world/item/ItemStack;Ljava/util/Random;)Liskallia/vault/gear/modification/GearModification$Result;", shift = At.Shift.AFTER))
     private static void initializeGearWithEffects(ItemStack stack, Player player, CallbackInfo ci, @Local VaultGearData data) {
         //Don't need to process jewels and other kinds of gear.
-        if(stack.getItem() instanceof JewelItem || stack.getItem() instanceof CharmItem) {
+        if(stack.getItem() instanceof CharmItem) {
             return;
         }
 
+        if(stack.getItem() instanceof JewelItem) {
+            if(player == null) {
+                return;
+            }
+            ExpertiseTree expertises = PlayerExpertisesData.get((ServerLevel) player.getLevel()).getExpertises(player);
+            int jewelerLevel = 0;
+
+            for (JewelExpertise jewelExpertise : expertises.getAll(JewelExpertise.class, Skill::isUnlocked)) {
+                jewelerLevel = jewelExpertise.getSpentLearnPoints();
+            }
+            if(!(jewelerLevel > 0)) {
+                return;
+            }
+        }
+
         //Randomly add a corrupted implicit
-        if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.01F) {
+        if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.02F) {
             GearModification.Result result;
             if (rand.nextBoolean()) {
                 result = VaultGearModifierHelper.generateCorruptedImplicit(stack, rand);
@@ -75,15 +91,26 @@ public class MixinGearRollHelper {
                 VaultGearModifierHelper.setGearCorrupted(stack);
             }
         }
-        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.03F) {
+        //Randomly frozen (if not a jewel)
+        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.02F) {
+            if(stack.getItem() instanceof JewelItem) {
+                return;
+            }
             VaultGearModifierHelper.lockRandomAffix(stack, rand);
         }
-        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.02F) {
-                WoldGearModifierHelper.addUnusualModifier(stack, player.level.getGameTime(), rand);
-        }
+        //Randomly add unusual
         else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.03F) {
+            WoldGearModifierHelper.removeRandomModifierAlways(stack, rand);
+            WoldGearModifierHelper.addUnusualModifier(stack, player.level.getGameTime(), rand);
+        }
+        //Randomly improve gear rarity (if not a jewel)
+        else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.04F) {
+            if(stack.getItem() instanceof JewelItem) {
+                return;
+            }
             VaultGearModifierHelper.improveGearRarity(stack, rand);
         }
+        //Randomly add ability enhancement (non functional atm)
         else if(data.getFirstValue(ModGearAttributes.IS_LOOT).orElse(false) && rand.nextFloat() < 0.01F && stack.getItem() instanceof VaultArmorItem armorItem) {
             if(armorItem.getEquipmentSlot(stack) != null && armorItem.getEquipmentSlot(stack).equals(EquipmentSlot.HEAD)) {
                 VaultGearModifierHelper.createOrReplaceAbilityEnhancementModifier(stack, rand);

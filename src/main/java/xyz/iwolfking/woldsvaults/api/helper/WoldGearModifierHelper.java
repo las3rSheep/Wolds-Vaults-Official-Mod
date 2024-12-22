@@ -32,10 +32,20 @@ public class WoldGearModifierHelper {
             boolean hasUnusual = false;
             for(VaultGearModifier modifier : data.getModifiers(VaultGearModifier.AffixType.PREFIX)) {
                 hasUnusual = modifier.getCategories().contains(VaultGearModifier.AffixCategory.valueOf("UNUSUAL"));
+                if(hasUnusual) {
+                    break;
+                }
+            }
+
+            if(hasUnusual) {
+                return GearModification.Result.makeActionError("full", new Component[0]);
             }
 
             for(VaultGearModifier modifier : data.getModifiers(VaultGearModifier.AffixType.SUFFIX)) {
                 hasUnusual = modifier.getCategories().contains(VaultGearModifier.AffixCategory.valueOf("UNUSUAL"));
+                if(hasUnusual) {
+                    break;
+                }
             }
 
             if(hasUnusual) {
@@ -90,5 +100,23 @@ public class WoldGearModifierHelper {
 
             }
         }
+    }
+
+    public static GearModification.Result removeRandomModifierAlways(ItemStack stack, Random random) {
+        VaultGearData data = VaultGearData.read(stack);
+            List<VaultGearModifier<?>> affixes = new ArrayList();
+            affixes.addAll(data.getModifiers(VaultGearModifier.AffixType.PREFIX));
+            affixes.addAll(data.getModifiers(VaultGearModifier.AffixType.SUFFIX));
+            affixes.removeIf((modifier) -> {
+                return !modifier.hasNoCategoryMatching(VaultGearModifier.AffixCategory::cannotBeModifiedByArtisanFoci);
+            });
+            if (affixes.isEmpty()) {
+                return GearModification.Result.makeActionError("no_modifiers", new Component[0]);
+            } else {
+                VaultGearModifier<?> randomMod = (VaultGearModifier) MiscUtils.getRandomEntry(affixes, random);
+                data.removeModifier(randomMod);
+                data.write(stack);
+                return GearModification.Result.makeSuccess();
+            }
     }
 }

@@ -11,9 +11,7 @@ import iskallia.vault.task.counter.TaskCounter;
 import iskallia.vault.task.source.EntityTaskSource;
 import iskallia.vault.task.source.TaskSource;
 import net.minecraft.nbt.Tag;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LightningBolt;
 import net.minecraftforge.eventbus.api.EventPriority;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -31,24 +29,16 @@ public abstract class MixinKillEntityTask extends ProgressConfiguredTask<Integer
     @Overwrite
     public void onAttach(TaskContext context) {
         CommonEvents.ENTITY_DROPS.register(this, EventPriority.HIGHEST, (event) -> {
-            if (this.parent == null || this.parent.isCompleted()) {
+            if (this.parent == null || this.parent.hasActiveChildren()) {
                 Entity attacker = event.getSource().getEntity();
                 if (attacker != null && !attacker.getLevel().isClientSide()) {
-                    TaskSource patt1250$temp = context.getSource();
-                    if (patt1250$temp instanceof EntityTaskSource) {
-                        EntityTaskSource entitySource = (EntityTaskSource) patt1250$temp;
+                    TaskSource patt1256$temp = context.getSource();
+                    if (patt1256$temp instanceof EntityTaskSource) {
+                        EntityTaskSource entitySource = (EntityTaskSource)patt1256$temp;
                         if (attacker.getLevel() == event.getEntity().getLevel()) {
                             if (entitySource.matches(attacker)) {
-                                if (((KillEntityTask.Config) this.getConfig()).filter.test(event.getEntity())) {
+                                if (((KillEntityTask.Config)this.getConfig()).filter.test(event.getEntity())) {
                                     this.counter.onAdd(1, context);
-                                }
-                            }
-                            else if(attacker instanceof LightningBolt bolt) {
-                                ServerPlayer player = bolt.getCause();
-                                if(player != null && entitySource.matches(player)) {
-                                    if (((KillEntityTask.Config) this.getConfig()).filter.test(event.getEntity())) {
-                                        this.counter.onAdd(1, context);
-                                    }
                                 }
                             }
                         }
