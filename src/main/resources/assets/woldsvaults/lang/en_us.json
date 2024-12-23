@@ -188,5 +188,8 @@
   "entity.the_vault.boogieman_boss": "Boogieman Boss",
   "entity.the_vault.golem_boss": "Golem Boss",
   "key.the_vault.quickselect.colossus": "Select and use ability: Colossus",
-  "item.woldsvaults.pogominium_ingot": "POG-ominium Ingot"
+  "item.woldsvaults.pogominium_ingot": "POG-ominium Ingot",
+  "item.woldsvaults.infused_driftwood": "Infused Driftwood",
+  "block.woldsvaults.infused_driftwood_planks": "Infused Driftwood Planks"
+
 }

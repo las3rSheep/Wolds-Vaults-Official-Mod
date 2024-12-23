@@ -150,6 +150,7 @@ public class ModItems {
 
     public static BasicItem GREEDY_VAULT_ROCK;
     public static BasicItem POGOMINIUM_INGOT;
+    public static BasicItem INFUSED_DRIFTWOOD;
 
 
     @SubscribeEvent
@@ -251,6 +252,7 @@ public class ModItems {
         registry.register(LAYOUT_MANIPULATOR);
         registry.register(GREEDY_VAULT_ROCK);
         registry.register(POGOMINIUM_INGOT);
+        registry.register(INFUSED_DRIFTWOOD);
     }
 
     static {
@@ -338,6 +340,7 @@ public class ModItems {
         COMMUNITY_TOKEN = new BasicItem(WoldsVaults.id("community_token"));
         GREEDY_VAULT_ROCK = new BasicItem(WoldsVaults.id("greedy_vault_rock"));
         POGOMINIUM_INGOT = new BasicItem(WoldsVaults.id("pogominium_ingot"));
+        INFUSED_DRIFTWOOD = new BasicItem(WoldsVaults.id("infused_driftwood"));
         RESEARCH_TOKEN = new ResearchTokenItem(WoldsVaults.id("research_token"), new Item.Properties().stacksTo(1));
         POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
         XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);

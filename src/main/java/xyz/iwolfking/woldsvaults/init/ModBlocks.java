@@ -12,8 +12,10 @@ import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlock;
@@ -61,7 +63,10 @@ public class ModBlocks {
 
     public static final BackpackBlock XL_BACKPACK;
 
+    public static final Block INFUSED_DRIFTWOOD_PLANKS;
+
     static {
+        INFUSED_DRIFTWOOD_PLANKS = new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS));
         VAULT_PALLADIUM_PILE = new CoinPileDecorBlock();
         VAULT_IRIDIUM_PILE = new CoinPileDecorBlock();
         VAULT_PALLADIUM  = new CoinBlockItem(VAULT_PALLADIUM_PILE, new Item.Properties().tab(ModItems.VAULT_MOD_GROUP));
@@ -104,6 +109,7 @@ public class ModBlocks {
         registerBlock(event, VAULT_IRIDIUM_PILE, VaultMod.id("vault_iridium"));
         registerBlock(event, XL_BACKPACK, WoldsVaults.id("xl_backpack"));
         registerBlock(event, AUGMENT_CRAFTING_TABLE, WoldsVaults.id("augment_crafting_table"));
+        registerBlock(event, INFUSED_DRIFTWOOD_PLANKS, WoldsVaults.id("infused_driftwood_planks"));
 
     }
     public static void registerTileEntities(RegistryEvent.Register<BlockEntityType<?>> event) {
@@ -130,6 +136,7 @@ public class ModBlocks {
         registerBlockItem(event, DECO_MONOLITH_BLOCK);
         registerBlockItem(event, SURVIVAL_MOB_BARRIER);
         registerBlockItem(event, AUGMENT_CRAFTING_TABLE);
+        registerBlockItem(event, INFUSED_DRIFTWOOD_PLANKS);
         registerBlockItem(event, VAULT_PALLADIUM_PILE, VAULT_PALLADIUM);
         registerBlockItem(event, VAULT_IRIDIUM_PILE, VAULT_IRIDIUM);
     }
