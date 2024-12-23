@@ -16,19 +16,19 @@ public class ValueProperty {
 
     public int apply(int value, ModifierContext context) {
         return ((MixinModifierContextAccessor)context).woldsVaults_Dev$getValue().map((x) -> {
-            return (int)((double)x * this.value + (float)value);
+            return (int)((double)x * this.value);
         }).orElse(value);
     }
 
     public float apply(float value, ModifierContext context) {
         return ((MixinModifierContextAccessor)context).woldsVaults_Dev$getValue().map((x) -> {
-            return (float)((double)x * this.value + (float)value);
+            return (float)((double)x * this.value);
         }).orElse(value);
     }
 
     public double apply(double value, ModifierContext context) {
         return ((MixinModifierContextAccessor)context).woldsVaults_Dev$getValue().map((x) -> {
-            return (double)x * this.value + value;
+            return (double)x * this.value;
         }).orElse(value);
     }
 

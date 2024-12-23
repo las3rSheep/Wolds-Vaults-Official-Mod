@@ -35,8 +35,14 @@ public abstract class SettableValueVaultModifier<P extends SettableValueVaultMod
             return this.value.getValue();
         }
 
+        //TODO: Fix issues with getting value from context.
         public float getValue(ModifierContext context) {
-            return this.value != null ? this.value.apply(0F, context) : 0F;
+            if(context != null) {
+                return this.value != null ? this.value.apply(this.value.getValue(), context) : 0F;
+            }
+            else {
+                return this.getValue();
+            }
         }
 
         public void setValue(Float val) {

@@ -56,6 +56,16 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<String> VAULT_DIFFICULTY = attr("vault_difficulty", VaultGearAttributeType.stringType(), xyz.iwolfking.woldsvaults.init.ModGearAttributeGenerators.stringValue(), xyz.iwolfking.woldsvaults.init.ModGearAttributeReaders.difficultyReader("Unknown Difficulty", 888888, "%s"));
     public static final VaultGearAttribute<Float> MOB_HEALTH = attr("mob_health",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mob Health", 8833629), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> MOB_DAMAGE = attr("mob_damage",
+            VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mob Damage", 8833629), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> MOB_SPEED = attr("mob_speed",
+            VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mob Speed", 8833629), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> MOB_CRIT = attr("mob_crit",
+            VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mob Critical Strike Chance", 8833629), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> MOB_KBR = attr("mob_kbr",
+            VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mob Knockback Resistance", 8833629), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> MOB_HEALTH_AND_DAMAGE = attr("mob_health_and_damage",
+            VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mob Health and Damage", 8833629), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<Float> GROUPED_QUANTITY = attr("grouped_quantity",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Item Quantity and Rarity", 8833629), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<Float> INSCRIPTION = attr("inscription",
@@ -78,8 +88,14 @@ public class ModGearAttributes {
                       registry.register(RETURNING_DAMAGE);
                       registry.register(HEXING_CHANCE);
                       registry.register(THEME);
+                      registry.register(THEME_POOL);
                       registry.register(OBJECTIVE);
                       registry.register(MOB_HEALTH);
+                      registry.register(MOB_DAMAGE);
+                      registry.register(MOB_CRIT);
+                      registry.register(MOB_SPEED);
+                      registry.register(MOB_KBR);
+                      registry.register(MOB_HEALTH_AND_DAMAGE);
                       registry.register(GROUPED_QUANTITY);
                       registry.register(STATIC_PLACEHOLDER_MODIFIER);
                       registry.register(VAULT_DIFFICULTY);

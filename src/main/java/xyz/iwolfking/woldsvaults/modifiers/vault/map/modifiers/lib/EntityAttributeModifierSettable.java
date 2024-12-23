@@ -167,7 +167,7 @@ public class EntityAttributeModifierSettable<P extends SettableValueVaultModifie
 
         private static class Constants {
             public static final IVaultModifierTextFormatter<EntityAttributeModifierSettable.Properties> DESCRIPTION_FORMATTER_ADDITIVE = (t, p, s) -> {
-                return t.formatted(Mth.floor(Math.abs(p.getValue() * (double)s)));
+                return t.formatted(Mth.floor(Math.abs(p.getValue() * (double)s * 100.0)));
             };
             public static final IVaultModifierTextFormatter<EntityAttributeModifierSettable.Properties> DESCRIPTION_FORMATTER_ADDITIVE_PERCENTILE = (t, p, s) -> {
                 return t.formatted((int)(Math.abs(p.getValue()) * (double)s * 100.0));
