@@ -24,6 +24,7 @@ import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.items.gear.VaultMapItem;
 import xyz.iwolfking.woldsvaults.modifiers.vault.lib.SettableValueVaultModifier;
+import xyz.iwolfking.woldsvaults.modifiers.vault.map.modifiers.GreedyVaultModifier;
 import xyz.iwolfking.woldsvaults.modifiers.vault.map.modifiers.InscriptionCrystalModifierSettable;
 
 public class MapModificationRecipe extends VanillaAnvilRecipe {
@@ -31,6 +32,7 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
     public boolean onSimpleCraft(AnvilContext context) {
         ItemStack primary = context.getInput()[0];
         ItemStack secondary = context.getInput()[1];
+        boolean hasGreedy = false;
         if (primary.getItem() instanceof VaultCrystalItem crystal && secondary.getItem() == ModItems.MAP) {
             ItemStack output = primary.copy();
             CrystalData data = CrystalData.read(output);
@@ -40,6 +42,20 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
             }
 
             if(!(secondary.getItem() instanceof VaultMapItem map)) {
+                return false;
+            }
+
+            for(VaultModifierStack modifierStack : data.getModifiers()) {
+                if(modifierStack.getModifier() instanceof GreedyVaultModifier) {
+                    hasGreedy = true;
+                }
+            }
+
+            if(data.getProperties().getLevel().isPresent() && data.getProperties().getLevel().get() < 100) {
+                return false;
+            }
+
+            if(!hasGreedy) {
                 return false;
             }
 

@@ -248,7 +248,7 @@ public class ModItems {
         registry.register(RANG);
         registry.register(MAP);
         registry.register(LAYOUT_MANIPULATOR);
-       // registry.register(GREEDY_VAULT_ROCK);
+        registry.register(GREEDY_VAULT_ROCK);
     }
 
     static {
