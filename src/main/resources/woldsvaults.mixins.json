@@ -105,6 +105,8 @@
     "vaulthunters.custom.MixinRewardConfig",
     "vaulthunters.custom.MixinSpecialAbilityModificationRegistry",
     "vaulthunters.custom.MixinToolItem",
+    "vaulthunters.custom.MixinVaultGearHelper",
+    "vaulthunters.custom.MixinVaultGearTierConfig",
     "vaulthunters.custom.MixinVaultModifierStack",
     "vaulthunters.custom.MixinWildSpawnerTileEntity",
     "vaulthunters.custom.artisan.MixinArtisanStationContainer",

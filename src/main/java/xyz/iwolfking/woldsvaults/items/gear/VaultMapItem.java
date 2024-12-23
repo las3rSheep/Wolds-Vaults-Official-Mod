@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.items.gear;
 import com.google.common.collect.Multimap;
 import iskallia.vault.gear.VaultGearClassification;
 import iskallia.vault.gear.VaultGearHelper;
+import iskallia.vault.gear.VaultGearState;
 import iskallia.vault.gear.VaultGearType;
 import iskallia.vault.gear.crafting.ProficiencyType;
 import iskallia.vault.gear.data.VaultGearData;
@@ -12,6 +13,8 @@ import iskallia.vault.init.ModConfigs;
 import iskallia.vault.item.BasicItem;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -29,12 +32,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 
 import java.util.List;
 import java.util.Random;
 
 public class VaultMapItem extends BasicItem implements VaultGearItem {
 
+    Random rand = new Random();
 
     public VaultMapItem(ResourceLocation id, Properties properties) {
         super(id, properties);
@@ -65,6 +70,21 @@ public class VaultMapItem extends BasicItem implements VaultGearItem {
         EquipmentSlot intendedSlot = this.getEquipmentSlot(stack);
         return ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(stack, gearData, intendedSlot, random);
     }
+
+    @Override
+    public void tickRoll(ItemStack stack, @Nullable Player player) {
+        VaultGearData data = VaultGearData.read(stack);
+        int tier;
+        if (data.getState() != VaultGearState.IDENTIFIED) {
+            tier = data.getFirstValue(ModGearAttributes.MAP_TIER).orElse(-1);
+            if(tier == -1) {
+                data.createOrReplaceAttributeValue(ModGearAttributes.MAP_TIER, rand.nextInt(0, 10));
+            }
+            data.write(stack);
+        }
+        VaultGearItem.super.tickRoll(stack, player);
+    }
+
 
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
         if (this.allowdedIn(group)) {
@@ -122,5 +142,41 @@ public class VaultMapItem extends BasicItem implements VaultGearItem {
     @Override
     public void addRepairTooltip(List<Component> tooltip, int usedRepairs, int totalRepairs) {
 
+    }
+
+    @Override
+    public void addTooltipItemLevel(VaultGearData data, ItemStack stack, List<Component> tooltip, VaultGearState state) {
+        if(data.hasAttribute(ModGearAttributes.MAP_TIER)) {
+            int tier = data.getFirstValue(ModGearAttributes.MAP_TIER).orElse(0);
+            tooltip.add(new TextComponent("Tier: ").append(new TextComponent(String.valueOf(tier)).withStyle(Style.EMPTY.withColor(getTierColor(tier)))));
+        }
+        else if(stack.getOrCreateTag().contains("the_vault:map_tier")) {
+            int tier = stack.getOrCreateTag().getInt("the_vault:map_tier");
+            if(tier == -1) {
+                tooltip.add(new TextComponent("Tier: ").append(new TextComponent("???").withStyle(Style.EMPTY.withColor(7247291))));
+            }
+            else {
+                tooltip.add(new TextComponent("Tier: ").append(new TextComponent(String.valueOf(tier)).withStyle(Style.EMPTY.withColor(getTierColor(tier)))));
+            }
+        }
+        else {
+            tooltip.add(new TextComponent("Tier: ").append(new TextComponent("???").withStyle(Style.EMPTY.withColor(7247291))));
+        }
+    }
+
+
+    public int getTierColor(int tier) {
+        return switch (tier) {
+            case 9 -> 7877375;
+            case 8 -> 9974527;
+            case 7 -> 9974403;
+            case 6 -> 9974337;
+            case 5 -> 3307654;
+            case 4 -> 3295110;
+            case 3 -> 3295017;
+            case 2 -> 3374592;
+            case 1 -> 9240575;
+            default -> 14352383;
+        };
     }
 }
