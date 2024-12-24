@@ -6,11 +6,14 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.init.ModBlocks;
 import xyz.iwolfking.woldsvaults.init.ModItems;
+import xyz.iwolfking.woldsvaults.init.ModRecipeTypes;
 import xyz.iwolfking.woldsvaults.integration.jei.category.*;
 
 import java.util.List;
@@ -34,6 +37,7 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.INSCRIPTION_BOX), InscriptionBoxRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.CATALYST_BOX), CatalystBoxRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModItems.VAULTAR_BOX), VaultarBoxRecipeCategory.RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.VAULT_INFUSER_BLOCK), InfuserCraftingCategory.UID);
     }
 
     @Override
@@ -48,10 +52,17 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
         registration.addRecipeCategories(new InscriptionBoxRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new CatalystBoxRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new VaultarBoxRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new InfuserCraftingCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
+        var world = Minecraft.getInstance().level;
+
+        if (world != null) {
+            var manager = world.getRecipeManager();
+            registration.addRecipes(manager.byType(ModRecipeTypes.INFUSER).values(), InfuserCraftingCategory.UID);
+        }
         registration.addRecipes(MysteryEggRecipeCategory.RECIPE_TYPE, List.of(ModConfigs.MYSTERY_EGG));
         registration.addRecipes(MysteryHostileEggRecipeCategory.RECIPE_TYPE, List.of(ModConfigs.MYSTERY_HOSTILE_EGG));
         registration.addRecipes(EnigmaEggRecipeCategory.RECIPE_TYPE, List.of(xyz.iwolfking.woldsvaults.init.ModConfigs.ENIGMA_EGG));
@@ -62,5 +73,6 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
         registration.addRecipes(InscriptionBoxRecipeCategory.RECIPE_TYPE, List.of(xyz.iwolfking.woldsvaults.init.ModConfigs.INSCRIPTION_BOX));
         registration.addRecipes(CatalystBoxRecipeCategory.RECIPE_TYPE, List.of(xyz.iwolfking.woldsvaults.init.ModConfigs.CATALYST_BOX));
         registration.addRecipes(VaultarBoxRecipeCategory.RECIPE_TYPE, List.of(xyz.iwolfking.woldsvaults.init.ModConfigs.VAULTAR_BOX));
+
     }
 }

@@ -7,6 +7,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -32,6 +33,11 @@ public class RegistryEvents {
     @SubscribeEvent
     public static void onTileEntityRegister(RegistryEvent.Register<BlockEntityType<?>> event) {
         ModBlocks.registerTileEntities(event);
+    }
+
+
+    public static void onRegisterSerializers(RegistryEvent.Register<RecipeSerializer<?>> event) {
+        ModRecipeSerializers.onRegisterSerializers(event);
     }
 
     @SubscribeEvent

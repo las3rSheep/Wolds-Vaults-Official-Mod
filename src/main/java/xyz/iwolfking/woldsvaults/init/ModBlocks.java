@@ -39,6 +39,7 @@ public class ModBlocks {
     public static final DecoLodestoneBlock DECO_LODESTONE_BLOCK;
     public static final DecoMonolithBlock DECO_MONOLITH_BLOCK;
     public static final SurvivalMobBarrier SURVIVAL_MOB_BARRIER;
+    public static final VaultInfuserBlock VAULT_INFUSER_BLOCK;
 
     public static final CoinPileDecorBlock VAULT_PALLADIUM_PILE;
     public static final CoinPileDecorBlock VAULT_IRIDIUM_PILE;
@@ -55,6 +56,7 @@ public class ModBlocks {
     public static final BlockEntityType<DecoMonolithTileEntity> DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<SurvivalMobBarrierTileEntity> SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<BackpackBlockEntity> SOPHISTICATED_BACKPACK;
+    public static final BlockEntityType<VaultInfuserTileEntity> VAULT_INFUSER_TILE_ENTITY_BLOCK_ENTITY_TYPE;
 
     //Workstations
     public static final AugmentCraftingTableBlock AUGMENT_CRAFTING_TABLE;
@@ -81,6 +83,7 @@ public class ModBlocks {
         DECO_MONOLITH_BLOCK = (DecoMonolithBlock) new DecoMonolithBlock();
         SURVIVAL_MOB_BARRIER = (SurvivalMobBarrier) new SurvivalMobBarrier();
         XL_BACKPACK = new BackpackBlock(12000);
+        VAULT_INFUSER_BLOCK = new VaultInfuserBlock();
         AUGMENT_CRAFTING_TABLE = new AugmentCraftingTableBlock();
         VAULT_SALVAGER_ENTITY = BlockEntityType.Builder.of(VaultSalvagerTileEntity::new, new Block[]{VAULT_SALVAGER_BLOCK}).build((Type)null);
         ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(IskallianLeavesTileEntity::new, new Block[]{ISKALLIAN_LEAVES_BLOCK}).build((Type)null);
@@ -91,6 +94,7 @@ public class ModBlocks {
         DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoLodestoneTileEntity::new, new Block[]{DECO_LODESTONE_BLOCK}).build((Type)null);
         DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoMonolithTileEntity::new, new Block[]{DECO_MONOLITH_BLOCK}).build((Type)null);
         SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(SurvivalMobBarrierTileEntity::new, new Block[]{SURVIVAL_MOB_BARRIER}).build((Type)null);
+        VAULT_INFUSER_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(VaultInfuserTileEntity::new, new Block[]{VAULT_INFUSER_BLOCK}).build((Type)null);
         SOPHISTICATED_BACKPACK = BlockEntityType.Builder.of(BackpackBlockEntity::new, new Block[]{XL_BACKPACK}).build((Type)null);
         AUGMENT_CRAFTING_TABLE_ENTITY = BlockEntityType.Builder.of(AugmentCraftingTableTileEntity::new, new Block[]{AUGMENT_CRAFTING_TABLE}).build(null);
     }
@@ -110,6 +114,7 @@ public class ModBlocks {
         registerBlock(event, XL_BACKPACK, WoldsVaults.id("xl_backpack"));
         registerBlock(event, AUGMENT_CRAFTING_TABLE, WoldsVaults.id("augment_crafting_table"));
         registerBlock(event, INFUSED_DRIFTWOOD_PLANKS, WoldsVaults.id("infused_driftwood_planks"));
+        registerBlock(event, VAULT_INFUSER_BLOCK, WoldsVaults.id("vault_infuser"));
 
     }
     public static void registerTileEntities(RegistryEvent.Register<BlockEntityType<?>> event) {
@@ -123,6 +128,7 @@ public class ModBlocks {
         registerTileEntity(event, DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("monolith_deco_tile_entity"));
         registerTileEntity(event, SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("mob_barrier_entity"));
         registerTileEntity(event, AUGMENT_CRAFTING_TABLE_ENTITY, WoldsVaults.id("augment_table_entity"));
+        registerTileEntity(event, VAULT_INFUSER_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("vault_infuser_entity"));
     }
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
@@ -137,6 +143,7 @@ public class ModBlocks {
         registerBlockItem(event, SURVIVAL_MOB_BARRIER);
         registerBlockItem(event, AUGMENT_CRAFTING_TABLE);
         registerBlockItem(event, INFUSED_DRIFTWOOD_PLANKS);
+        registerBlockItem(event, VAULT_INFUSER_BLOCK);
         registerBlockItem(event, VAULT_PALLADIUM_PILE, VAULT_PALLADIUM);
         registerBlockItem(event, VAULT_IRIDIUM_PILE, VAULT_IRIDIUM);
     }
