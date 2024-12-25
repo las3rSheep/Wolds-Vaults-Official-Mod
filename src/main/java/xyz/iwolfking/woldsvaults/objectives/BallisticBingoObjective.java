@@ -110,11 +110,10 @@ public class BallisticBingoObjective extends BingoObjective {
             }
         }
 
+
         if(!hasGeneratedModifiers) {
             VaultModifierUtils.addModifier(vault, VaultMod.id("normalized"), 1);
         }
-
-
         CommonEvents.LISTENER_JOIN.register(this, (data) -> {
             if (data.getVault() == vault) {
                 Listener patt3500$temp = data.getListener();

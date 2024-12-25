@@ -16,6 +16,7 @@ public class CustomVaultGearModelRollRaritiesConfig {
     public static final Map<VaultGearRarity, List<String>> PLUSHIE_MODEL_ROLLS = new HashMap<>();
     public static final Map<VaultGearRarity, List<String>> LOOT_SACKS_MODEL_ROLLS = new HashMap<>();
     public static final Map<VaultGearRarity, List<String>> RANG_MODEL_ROLLS = new HashMap<>();
+    public static final Map<VaultGearRarity, List<String>> MAP_MODEL_ROLLS = new HashMap<>();
 
     static {
         BATTLESTAFF_MODEL_ROLLS.put(VaultGearRarity.SCRAPPY, (List<String>) Battlestaffs.REGISTRY
@@ -29,6 +30,8 @@ public class CustomVaultGearModelRollRaritiesConfig {
         LOOT_SACKS_MODEL_ROLLS.put(VaultGearRarity.SCRAPPY, (List<String>) LootSacks.REGISTRY.getIds().stream()
                 .map(ResourceLocation::toString).collect(Collectors.toList()));
         RANG_MODEL_ROLLS.put(VaultGearRarity.SCRAPPY, (List<String>) Rangs.REGISTRY.getIds().stream()
+                .map(ResourceLocation::toString).collect(Collectors.toList()));
+        MAP_MODEL_ROLLS.put(VaultGearRarity.SCRAPPY, (List<String>) Maps.REGISTRY.getIds().stream()
                 .map(ResourceLocation::toString).collect(Collectors.toList()));
     }
 

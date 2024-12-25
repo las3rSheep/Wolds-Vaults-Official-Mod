@@ -155,6 +155,7 @@
   "block.woldsvaults.xl_backpack": "Beeg Backpack",
   "item.the_vault.trident": "Vault Trident",
   "item.the_vault.battlestaff": "Vault Battlestaff",
+  "item.the_vault.map": "Vault Map",
   "item.woldsvaults.layout_manipulator": "Etched Vault Layout",
   "effect.woldsvaults.reaving": "Reaved",
   "effect.woldsvaults.shrinking": "Shrinking",
@@ -186,5 +187,9 @@
   "entity.the_vault.black_widow_boss": "Black Widow Boss",
   "entity.the_vault.boogieman_boss": "Boogieman Boss",
   "entity.the_vault.golem_boss": "Golem Boss",
-  "key.the_vault.quickselect.colossus": "Select and use ability: Colossus"
+  "key.the_vault.quickselect.colossus": "Select and use ability: Colossus",
+  "item.woldsvaults.pogominium_ingot": "POG-ominium Ingot",
+  "item.woldsvaults.infused_driftwood": "Infused Driftwood",
+  "block.woldsvaults.infused_driftwood_planks": "Infused Driftwood Planks"
+
 }
