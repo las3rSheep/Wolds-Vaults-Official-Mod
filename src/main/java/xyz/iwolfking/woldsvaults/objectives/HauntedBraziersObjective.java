@@ -106,9 +106,11 @@ public class HauntedBraziersObjective extends MonolithObjective {
                 hasGeneratedModifiers = true;
             }
         }
+
         if(!hasGeneratedModifiers) {
             VaultModifierUtils.addModifier(vault, VaultMod.id("normalized"), 1);
         }
+
         CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
             this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
                 data.setProbability((double)probability);

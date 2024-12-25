@@ -53,9 +53,8 @@ import java.util.Random;
 
 public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLeatherItem {
 
-    public VaultRangItem(ResourceLocation id, Item.Properties properties) {
+    public VaultRangItem(ResourceLocation id,  Item.Properties properties) {
         super(id, properties);
-
     }
 
 

@@ -77,6 +77,7 @@ public class UnhingedScavengerObjective extends ScavengerObjective {
                 hasGeneratedModifiers = true;
             }
         }
+
         if(!hasGeneratedModifiers) {
             VaultModifierUtils.addModifier(vault, VaultMod.id("normalized"), 1);
         }

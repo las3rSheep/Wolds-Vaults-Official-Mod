@@ -139,6 +139,7 @@ public class UnusualModifiers {
         NON_SACK_SUFFIX.add(UnusualModifierLib.DURABILITY_WEAR_REDUCTION);
         NON_SACK_SUFFIX.add(UnusualModifierLib.HEALING_EFFECTIVENESS);
         PLUSHIE_SUFFIX.addAll(NON_SACK_SUFFIX);
+
         NON_SACK_SUFFIX.add(UnusualModifierLib.ABILITY_POWER_PERCENTILE);
         NON_SACK_PREFIX.add(UnusualModifierLib.DAMAGE_INCREASE);
         UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("plushie"), PLUSHIE_PREFIX);

@@ -109,6 +109,8 @@ public class BallisticBingoObjective extends BingoObjective {
                 hasGeneratedModifiers = true;
             }
         }
+
+
         if(!hasGeneratedModifiers) {
             VaultModifierUtils.addModifier(vault, VaultMod.id("normalized"), 1);
         }

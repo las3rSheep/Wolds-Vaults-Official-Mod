@@ -63,7 +63,7 @@ public abstract class MixinVaultAltarTileEntity extends BlockEntity {
                 }
             }
 
-            if(input != null && input.getItem().getRegistryName().equals(ModItems.GREEDY_VAULT_ROCK.getRegistryName())) {
+            if(input != null && input.getItem().getRegistryName().equals(ModItems.ECCENTRIC_FOCUS.getRegistryName())) {
                 this.recipe = PlayerVaultAltarDataHelper.generateGreedRecipe(player, this.worldPosition, true);
             }
             else {

@@ -148,9 +148,11 @@ public class ModItems {
     public static VaultRangItem RANG;
     public static VaultMapItem MAP;
 
+
     public static BasicItem GREEDY_VAULT_ROCK;
     public static BasicItem POGOMINIUM_INGOT;
     public static BasicItem INFUSED_DRIFTWOOD;
+
 
 
     @SubscribeEvent
@@ -338,9 +340,11 @@ public class ModItems {
         WENDARR_GEM = new BasicItem(WoldsVaults.id("wendarr_gem"));
         ECCENTRIC_FOCUS = new BasicItem(WoldsVaults.id("eccentric_focus"));
         COMMUNITY_TOKEN = new BasicItem(WoldsVaults.id("community_token"));
+
         GREEDY_VAULT_ROCK = new BasicItem(WoldsVaults.id("greedy_vault_rock"));
         POGOMINIUM_INGOT = new BasicItem(WoldsVaults.id("pogominium_ingot"));
         INFUSED_DRIFTWOOD = new BasicItem(WoldsVaults.id("infused_driftwood"));
+
         RESEARCH_TOKEN = new ResearchTokenItem(WoldsVaults.id("research_token"), new Item.Properties().stacksTo(1));
         POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
         XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
