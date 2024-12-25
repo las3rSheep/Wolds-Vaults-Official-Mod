@@ -1,6 +1,6 @@
 {
   "type": "woldsvaults:infuser",
-  "powerCost": 0,
+  "infuseDuration": 40,
   "inputCount": 4,
   "ingredient": {
     "item": "the_vault:vault_essence"

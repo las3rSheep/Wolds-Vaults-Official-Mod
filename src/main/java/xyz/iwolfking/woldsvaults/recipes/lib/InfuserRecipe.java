@@ -21,21 +21,16 @@ public class InfuserRecipe implements Recipe<Container> {
     private final ItemStack output;
     private final int inputCount;
     private final Ingredient catalyst;
-    private final int powerCost;
-    private final int powerRate;
+    private final int infuseDuration;
 
-    public InfuserRecipe(ResourceLocation recipeId, Ingredient input, ItemStack output, int inputCount, Ingredient catalyst, int powerCost) {
-        this(recipeId, input, output, inputCount, catalyst, powerCost, 0);
-    }
 
-    public InfuserRecipe(ResourceLocation recipeId, Ingredient input, ItemStack output, int inputCount, Ingredient catalyst, int powerCost, int powerRate) {
+    public InfuserRecipe(ResourceLocation recipeId, Ingredient input, ItemStack output, int inputCount, Ingredient catalyst, int infuseDuration) {
         this.recipeId = recipeId;
         this.inputs = NonNullList.of(Ingredient.EMPTY, input);
         this.output = output;
         this.inputCount = inputCount;
         this.catalyst = catalyst;
-        this.powerCost = powerCost;
-        this.powerRate = powerRate;
+        this.infuseDuration = infuseDuration;
     }
 
     public boolean canCraftInDimensions(int width, int height) {
@@ -100,14 +95,11 @@ public class InfuserRecipe implements Recipe<Container> {
     }
 
 
-    public int getPowerCost() {
-        return this.powerCost;
+    public int getInfuseDuration() {
+        return this.infuseDuration;
     }
 
 
-    public int getPowerRate() {
-        return this.powerRate;
-    }
 
     public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<InfuserRecipe> {
         @Override
@@ -116,10 +108,9 @@ public class InfuserRecipe implements Recipe<Container> {
             var output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
             int inputCount = GsonHelper.getAsInt(json, "inputCount", 10000);
             var catalyst = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "catalyst"));
-            int powerCost = GsonHelper.getAsInt(json, "powerCost");
-            int powerRate = GsonHelper.getAsInt(json, "powerRate", 0);
+            int infuseDuration = GsonHelper.getAsInt(json, "infuseDuration");
 
-            return new InfuserRecipe(recipeId, input, output, inputCount, catalyst, powerCost, powerRate);
+            return new InfuserRecipe(recipeId, input, output, inputCount, catalyst, infuseDuration);
         }
 
         @Override
@@ -128,10 +119,9 @@ public class InfuserRecipe implements Recipe<Container> {
             var output = buffer.readItem();
             int inputCount = buffer.readInt();
             var catalyst = Ingredient.fromNetwork(buffer);
-            int powerCost = buffer.readInt();
-            int powerRate = buffer.readInt();
+            int infuseDuration = buffer.readInt();
 
-            return new InfuserRecipe(recipeId, input, output, inputCount, catalyst, powerCost, powerRate);
+            return new InfuserRecipe(recipeId, input, output, inputCount, catalyst, infuseDuration);
         }
 
         @Override
@@ -140,8 +130,7 @@ public class InfuserRecipe implements Recipe<Container> {
             buffer.writeItem(recipe.output);
             buffer.writeInt(recipe.inputCount);
             recipe.catalyst.toNetwork(buffer);
-            buffer.writeInt(recipe.powerCost);
-            buffer.writeInt(recipe.powerRate);
+            buffer.writeInt(recipe.infuseDuration);
         }
     }
 }

@@ -6,11 +6,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.SlotItemHandler;
 import xyz.iwolfking.woldsvaults.data.recipes.CachedInfuserRecipeData;
 
-public class CatalystSlot extends SlotItemHandler {
+public class InfuserIngredientSlot extends SlotItemHandler {
     private final BaseItemStackHandler inventory;
     private final int index;
 
-    public CatalystSlot(BaseItemStackHandler inventory, int index, int xPosition, int yPosition) {
+    public InfuserIngredientSlot(BaseItemStackHandler inventory, int index, int xPosition, int yPosition) {
         super(inventory, index, xPosition, yPosition);
         this.inventory = inventory;
         this.index = index;
@@ -23,8 +23,8 @@ public class CatalystSlot extends SlotItemHandler {
 
     @Override
     public boolean mayPlace(ItemStack stack) {
-        System.out.println(CachedInfuserRecipeData.getCatalysts().contains(stack.getItem()));
-        return CachedInfuserRecipeData.getCatalysts().contains(stack.getItem());
+        System.out.println(CachedInfuserRecipeData.getIngredients().contains(stack.getItem()));
+        return CachedInfuserRecipeData.getIngredients().contains(stack.getItem());
     }
 
     @Override

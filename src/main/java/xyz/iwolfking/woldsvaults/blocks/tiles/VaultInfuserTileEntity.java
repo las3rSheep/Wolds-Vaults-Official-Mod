@@ -18,10 +18,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.EnergyStorage;
-import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import xyz.iwolfking.woldsvaults.blocks.containers.VaultInfuserContainer;
+import xyz.iwolfking.woldsvaults.data.recipes.CachedInfuserRecipeData;
 import xyz.iwolfking.woldsvaults.init.ModBlocks;
 import xyz.iwolfking.woldsvaults.init.ModRecipeTypes;
 import xyz.iwolfking.woldsvaults.recipes.lib.InfuserRecipe;
@@ -29,21 +29,22 @@ import xyz.iwolfking.woldsvaults.recipes.lib.InfuserRecipe;
 public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements MenuProvider {
     private final BaseItemStackHandler inventory;
     private final BaseItemStackHandler recipeInventory;
-    private final EnergyStorage energy;
-    private final LazyOptional<IEnergyStorage> capability = LazyOptional.of(this::getEnergy);
     private InfuserRecipe recipe;
     private ItemStack materialStack = ItemStack.EMPTY;
     private int materialCount;
     private int progress;
     private boolean ejecting = false;
-    private int oldEnergy;
     private boolean inputLimit = true;
+    private final LazyOptional<IItemHandler> capability = LazyOptional.of(this::getInventory);
 
     public VaultInfuserTileEntity(BlockPos pos, BlockState state) {
         super(ModBlocks.VAULT_INFUSER_TILE_ENTITY_BLOCK_ENTITY_TYPE, pos, state);
         this.inventory = createInventoryHandler(null);
         this.recipeInventory = new BaseItemStackHandler(2);
-        this.energy = new EnergyStorage(1000000);
+        if(CachedInfuserRecipeData.shouldCache() && this.level != null) {
+            CachedInfuserRecipeData.cacheCatalysts(this.level);
+            CachedInfuserRecipeData.cacheIngredients(this.level);
+        }
     }
 
     @Override
@@ -58,7 +59,6 @@ public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements M
         this.materialStack = ItemStack.of(tag.getCompound("MaterialStack"));
         this.progress = tag.getInt("Progress");
         this.ejecting = tag.getBoolean("Ejecting");
-        this.energy.deserializeNBT(tag.get("Energy"));
         this.inputLimit = tag.getBoolean("InputLimit");
     }
 
@@ -69,16 +69,14 @@ public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements M
         tag.put("MaterialStack", this.materialStack.serializeNBT());
         tag.putInt("Progress", this.progress);
         tag.putBoolean("Ejecting", this.ejecting);
-        tag.putInt("Energy", this.energy.getEnergyStored());
         tag.putBoolean("InputLimit", this.inputLimit);
     }
 
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
-        if (!this.isRemoved() && cap == CapabilityEnergy.ENERGY) {
-            return CapabilityEnergy.ENERGY.orEmpty(cap, this.capability);
+        if (!this.isRemoved() && cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.orEmpty(cap, this.capability);
         }
-
         return super.getCapability(cap, side);
     }
 
@@ -128,19 +126,20 @@ public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements M
                 }
             }
 
-            if (tile.recipe != null && tile.getEnergy().getEnergyStored() > 0) {
+            if (tile.recipe != null) {
                 if (tile.materialCount >= tile.recipe.getInputCount()) {
-                    if (tile.progress >= tile.recipe.getPowerCost()) {
+                    if (tile.progress >= tile.recipe.getInfuseDuration()) {
                         var result = tile.recipe.assemble(tile.inventory);
 
                         if (StackHelper.canCombineStacks(result, output)) {
                             tile.updateResult(result);
                             tile.progress = 0;
                             tile.materialCount -= tile.recipe.getInputCount();
-
+                            catalyst.shrink(1);
                             if (tile.materialCount <= 0) {
                                 tile.materialStack = ItemStack.EMPTY;
                             }
+                            mark = true;
                         }
                     } else {
                         tile.process(tile.recipe);
@@ -172,12 +171,6 @@ public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements M
             }
         }
 
-        if (tile.oldEnergy != tile.energy.getEnergyStored()) {
-            tile.oldEnergy = tile.energy.getEnergyStored();
-            if (!mark)
-                mark = true;
-        }
-
         if (mark) {
             tile.markDirtyAndDispatch();
         }
@@ -187,13 +180,15 @@ public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements M
         var inventory = new BaseItemStackHandler(3, onContentsChanged);
 
         inventory.setOutputSlots(0);
-        inventory.setSlotValidator((slot, stack) -> slot == 1);
+        inventory.setSlotValidator((slot, stack) -> {
+
+            if(slot == 1 && CachedInfuserRecipeData.getIngredients().contains(stack.getItem())) {
+                return true;
+            }
+            else return slot == 2 && CachedInfuserRecipeData.getCatalysts().contains(stack.getItem());
+        });
 
         return inventory;
-    }
-
-    public EnergyStorage getEnergy() {
-        return this.energy;
     }
 
     public ItemStack getMaterialStack() {
@@ -220,7 +215,7 @@ public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements M
     }
 
     public boolean isLimitingInput() {
-        return false;
+        return this.inputLimit;
     }
 
     public void toggleInputLimit() {
@@ -241,10 +236,11 @@ public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements M
     }
 
     public int getEnergyRequired() {
-        if (this.hasRecipe())
-            return this.recipe.getPowerCost();
-
         return 0;
+    }
+
+    public int getInfuseDuration() {
+        return this.recipe.getInfuseDuration();
     }
 
     public int getMaterialsRequired() {
@@ -255,13 +251,12 @@ public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements M
     }
 
     private void process(InfuserRecipe recipe) {
-        int extract = recipe.getPowerRate();
-        int difference = recipe.getPowerCost() - this.progress;
+        int extract = 1;
+        int difference = recipe.getInfuseDuration() - this.progress;
         if (difference < extract)
             extract = difference;
 
-        int extracted = this.energy.extractEnergy(extract, false);
-        this.progress += extracted;
+        this.progress += extract;
     }
 
     private void updateResult(ItemStack stack) {

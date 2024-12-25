@@ -8,6 +8,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.blocks.containers.lib.infuser.EjectModeSwitchButton;
+import xyz.iwolfking.woldsvaults.blocks.containers.lib.infuser.InputLimitSwitchButton;
 import xyz.iwolfking.woldsvaults.blocks.tiles.VaultInfuserTileEntity;
 
 import java.util.ArrayList;
@@ -29,8 +31,8 @@ public class VaultInfuserScreen extends BaseContainerScreen<VaultInfuserContaine
         int y = this.getGuiTop();
         var pos = this.getMenu().getPos();
 
-//        this.addRenderableWidget(new EjectModeSwitchButton(x + 69, y + 30, pos));
-//        this.addRenderableWidget(new InputLimitSwitchButton(x + 91, y + 74, pos, this::isLimitingInput));
+        this.addRenderableWidget(new EjectModeSwitchButton(x + 69, y + 30, pos));
+        this.addRenderableWidget(new InputLimitSwitchButton(x + 91, y + 74, pos, this::isLimitingInput));
 
         this.tile = this.getTileEntity();
     }
@@ -41,11 +43,6 @@ public class VaultInfuserScreen extends BaseContainerScreen<VaultInfuserContaine
         int y = this.getGuiTop();
 
         super.render(matrix, mouseX, mouseY, partialTicks);
-
-        if (mouseX > x + 7 && mouseX < x + 20 && mouseY > y + 17 && mouseY < y + 94) {
-            var text = new TextComponent(number(this.getEnergyStored()) + " / " + number(this.getMaxEnergyStored()) + " FE");
-            this.renderTooltip(matrix, text, mouseX, mouseY);
-        }
 
         if (mouseX > x + 60 && mouseX < x + 85 && mouseY > y + 74 && mouseY < y + 83) {
             List<Component> tooltip = new ArrayList<>();
@@ -97,9 +94,6 @@ public class VaultInfuserScreen extends BaseContainerScreen<VaultInfuserContaine
         int x = this.getGuiLeft();
         int y = this.getGuiTop();
 
-        int i1 = this.getEnergyBarScaled(78);
-
-        this.blit(stack, x + 7, y + 95 - i1, 178, 78 - i1, 15, i1 + 1);
 
         if (this.hasRecipe()) {
             if (this.getMaterialCount() > 0 && this.getMaterialsRequired() > 0) {
@@ -107,7 +101,7 @@ public class VaultInfuserScreen extends BaseContainerScreen<VaultInfuserContaine
                 this.blit(stack, x + 60, y + 74, 194, 19, i2 + 1, 10);
             }
 
-            if (this.getProgress() > 0 && this.getEnergyRequired() > 0) {
+            if (this.getProgress() > 0 && this.getInfuseDuration() > 0) {
                 int i2 = this.getProgressBarScaled(24);
                 this.blit(stack, x + 96, y + 47, 194, 0, i2 + 1, 16);
             }
@@ -190,19 +184,7 @@ public class VaultInfuserScreen extends BaseContainerScreen<VaultInfuserContaine
         return this.tile.getMaterialCount();
     }
 
-    public int getEnergyStored() {
-        if (this.tile == null)
-            return 0;
 
-        return this.tile.getEnergy().getEnergyStored();
-    }
-
-    public int getMaxEnergyStored() {
-        if (this.tile == null)
-            return 0;
-
-        return this.tile.getEnergy().getMaxEnergyStored();
-    }
 
     public int getEnergyRequired() {
         if (this.tile == null)
@@ -211,6 +193,14 @@ public class VaultInfuserScreen extends BaseContainerScreen<VaultInfuserContaine
         return this.tile.getEnergyRequired();
     }
 
+    public int getInfuseDuration() {
+        if (this.tile == null)
+            return 0;
+
+        return this.tile.getInfuseDuration();
+    }
+
+
     public int getMaterialsRequired() {
         if (this.tile == null)
             return 0;
@@ -218,11 +208,6 @@ public class VaultInfuserScreen extends BaseContainerScreen<VaultInfuserContaine
         return this.tile.getMaterialsRequired();
     }
 
-    public int getEnergyBarScaled(int pixels) {
-        int i = this.getEnergyStored();
-        int j = this.getMaxEnergyStored();
-        return (int) (j != 0 && i != 0 ? (long) i * pixels / j : 0);
-    }
 
     public int getMaterialBarScaled(int pixels) {
         int i = Mth.clamp(this.getMaterialCount(), 0, this.getMaterialsRequired());
@@ -232,7 +217,6 @@ public class VaultInfuserScreen extends BaseContainerScreen<VaultInfuserContaine
 
     public int getProgressBarScaled(int pixels) {
         int i = this.getProgress();
-        int j = this.getEnergyRequired();
-        return (int) (j != 0 && i != 0 ? (long) i * pixels / j : 0);
+        return (int) (this.getInfuseDuration() != 0 && i != 0 ? (long) i * pixels / this.getInfuseDuration() : 0);
     }
 }

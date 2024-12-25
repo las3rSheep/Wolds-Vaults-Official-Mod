@@ -17,8 +17,6 @@ import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.init.ModBlocks;
 import xyz.iwolfking.woldsvaults.recipes.lib.InfuserRecipe;
 
-import java.text.NumberFormat;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,12 +59,6 @@ public class InfuserCraftingCategory implements IRecipeCategory<InfuserRecipe> {
 
     @Override
     public List<Component> getTooltipStrings(InfuserRecipe recipe, double mouseX, double mouseY) {
-        if (mouseX > 1 && mouseX < 14 && mouseY > 1 && mouseY < 78) {
-            return Arrays.asList(
-                    new TextComponent(NumberFormat.getInstance().format(recipe.getPowerCost()) + " FE"),
-                    new TextComponent(NumberFormat.getInstance().format(recipe.getPowerRate()) + " FE/t")
-            );
-        }
 
         if (mouseX > 54 && mouseX < 78 && mouseY > 58 && mouseY < 68) {
             return Collections.singletonList(new TextComponent(String.valueOf(recipe.getInputCount())));
