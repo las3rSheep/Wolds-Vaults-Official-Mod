@@ -50,10 +50,10 @@ public class MixinModConfigs {
 
         //Add new gear roll types
         VaultGearTypeConfig.RollType mythicRoll = new VaultGearTypeConfig.RollType(new WeightedList<>(Map.of(VaultGearRarity.valueOf("MYTHIC"), 1)));
-        ((VaultGearRollTypeConfigRollTypeAccessor)mythicRoll).setColor(3);
+        ((VaultGearRollTypeConfigRollTypeAccessor)mythicRoll).setColor(15597727);
 
         VaultGearTypeConfig.RollType sacredRoll = new VaultGearTypeConfig.RollType(new WeightedList<>(Map.of(VaultGearRarity.valueOf("SACRED"), 1)));
-        ((VaultGearRollTypeConfigRollTypeAccessor)sacredRoll).setColor(3);
+        ((VaultGearRollTypeConfigRollTypeAccessor)sacredRoll).setColor(13631559);
 
         ((VaultGearRollTypeConfigAccessor)ModConfigs.VAULT_GEAR_TYPE_CONFIG).getRolls().put("Mythic", mythicRoll);
         ((VaultGearRollTypeConfigAccessor)ModConfigs.VAULT_GEAR_TYPE_CONFIG).getRolls().put("Sacred", sacredRoll);
