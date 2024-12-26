@@ -152,6 +152,7 @@ public class ModItems {
     public static BasicItem GREEDY_VAULT_ROCK;
     public static BasicItem POGOMINIUM_INGOT;
     public static BasicItem INFUSED_DRIFTWOOD;
+    public static BasicItem SPARK_OF_INSPIRATION;
 
 
 
@@ -255,6 +256,7 @@ public class ModItems {
         registry.register(GREEDY_VAULT_ROCK);
         registry.register(POGOMINIUM_INGOT);
         registry.register(INFUSED_DRIFTWOOD);
+        registry.register(SPARK_OF_INSPIRATION);
     }
 
     static {
@@ -344,6 +346,7 @@ public class ModItems {
         GREEDY_VAULT_ROCK = new BasicItem(WoldsVaults.id("greedy_vault_rock"));
         POGOMINIUM_INGOT = new BasicItem(WoldsVaults.id("pogominium_ingot"));
         INFUSED_DRIFTWOOD = new BasicItem(WoldsVaults.id("infused_driftwood"));
+        SPARK_OF_INSPIRATION = new BasicItem(WoldsVaults.id("spark_of_inspiration"));
 
         RESEARCH_TOKEN = new ResearchTokenItem(WoldsVaults.id("research_token"), new Item.Properties().stacksTo(1));
         POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
