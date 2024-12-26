@@ -50,6 +50,7 @@
     "quark.MixinAncientTomesModule",
     "scannable.MixinScannableItems",
     "scannable.ScannerModuleItemAccessor",
+    "second_chance.MixinSecondChance",
     "secretroomsmod.MixinDelegateWorld",
     "sophisticatedbackpacks.MixinModBlocks",
     "sophisticatedbackpacks.MixinToolSwapperWrapper",
