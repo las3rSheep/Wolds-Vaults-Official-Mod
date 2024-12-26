@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.recipes.capstone.*;
 import xyz.iwolfking.woldsvaults.recipes.crystal.LayoutModificationRecipe;
 import xyz.iwolfking.woldsvaults.recipes.crystal.MapModificationRecipe;
+import xyz.iwolfking.woldsvaults.recipes.gear.GearEtchingRecipe;
 import xyz.iwolfking.woldsvaults.recipes.gear.GearRepairAdderRecipe;
 import xyz.iwolfking.woldsvaults.recipes.gear.MercyEnchantmentAdderRecipe;
 import xyz.iwolfking.woldsvaults.recipes.tool.OmegaToolCapacityAdderRecipe;
@@ -44,6 +45,7 @@ public abstract class MixinAnvilRecipes {
         woldsVaults$register(new MercyEnchantmentAdderRecipe());
         woldsVaults$register(new LayoutModificationRecipe());
         woldsVaults$register(new MapModificationRecipe());
+        woldsVaults$register(new GearEtchingRecipe());
     }
 
     @Unique
