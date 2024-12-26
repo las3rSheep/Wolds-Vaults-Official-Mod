@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.recipes;
 
+import iskallia.vault.etching.set.GolemSet;
 import iskallia.vault.item.crystal.recipe.AnvilRecipe;
 import iskallia.vault.item.crystal.recipe.AnvilRecipes;
 import org.spongepowered.asm.mixin.Mixin;

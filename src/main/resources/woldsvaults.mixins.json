@@ -119,6 +119,7 @@
     "vaulthunters.custom.enum_extension.MixinForgeRecipeTypeEnum",
     "vaulthunters.custom.enum_extension.MixinModifierAffixTagGroupEnum",
     "vaulthunters.custom.enum_extension.MixinVaultRarityEnum",
+    "vaulthunters.custom.etching.MixinRiftSet",
     "vaulthunters.custom.recycler.MixinVaultCatalystItem",
     "vaulthunters.custom.recycler.MixinVaultGearItem",
     "vaulthunters.fixes.MixinBingoTask",
