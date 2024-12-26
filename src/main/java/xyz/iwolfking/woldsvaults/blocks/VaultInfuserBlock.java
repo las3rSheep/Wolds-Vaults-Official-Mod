@@ -26,8 +26,13 @@ import xyz.iwolfking.woldsvaults.init.ModBlocks;
 public class VaultInfuserBlock extends BaseTileEntityBlock {
     private static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-    public VaultInfuserBlock() {
+
+
+    private final int processingSpeed;
+
+    public VaultInfuserBlock(int processingSpeed) {
         super(Material.METAL, SoundType.METAL, 5.0F, 10.0F, true);
+        this.processingSpeed = processingSpeed;
     }
 
     @Override
@@ -74,6 +79,10 @@ public class VaultInfuserBlock extends BaseTileEntityBlock {
     @Override
     public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
         return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
+    }
+
+    public int getProcessingSpeed() {
+        return processingSpeed;
     }
 
     @Override

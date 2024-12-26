@@ -116,6 +116,7 @@
     "vaulthunters.custom.enum_extension.MixinDiscoveredEntriesMessageEnum",
     "vaulthunters.custom.enum_extension.MixinForgeRecipeTypeEnum",
     "vaulthunters.custom.enum_extension.MixinModifierAffixTagGroupEnum",
+    "vaulthunters.custom.enum_extension.MixinVaultRarityEnum",
     "vaulthunters.custom.recycler.MixinVaultCatalystItem",
     "vaulthunters.custom.recycler.MixinVaultGearItem",
     "vaulthunters.fixes.MixinBingoTask",

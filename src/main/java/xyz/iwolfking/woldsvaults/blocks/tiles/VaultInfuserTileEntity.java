@@ -15,11 +15,13 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import xyz.iwolfking.woldsvaults.blocks.VaultInfuserBlock;
 import xyz.iwolfking.woldsvaults.blocks.containers.VaultInfuserContainer;
 import xyz.iwolfking.woldsvaults.data.recipes.CachedInfuserRecipeData;
 import xyz.iwolfking.woldsvaults.init.ModBlocks;
@@ -35,6 +37,7 @@ public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements M
     private int progress;
     private boolean ejecting = false;
     private boolean inputLimit = true;
+    private final int processingSpeed;
     private final LazyOptional<IItemHandler> capability = LazyOptional.of(this::getInventory);
 
     public VaultInfuserTileEntity(BlockPos pos, BlockState state) {
@@ -45,6 +48,14 @@ public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements M
             CachedInfuserRecipeData.cacheCatalysts(this.level);
             CachedInfuserRecipeData.cacheIngredients(this.level);
         }
+        Block block = (VaultInfuserBlock) state.getBlock();
+        if(block instanceof VaultInfuserBlock vaultInfuserBlock && vaultInfuserBlock.getProcessingSpeed() != 0) {
+            processingSpeed = vaultInfuserBlock.getProcessingSpeed();
+        }
+        else {
+            processingSpeed = 1;
+        }
+
     }
 
     @Override
@@ -101,6 +112,8 @@ public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements M
 
         if (tile.recipe == null || !tile.recipe.matches(tile.recipeInventory)) {
             tile.recipe = (InfuserRecipe) level.getRecipeManager().getRecipeFor(ModRecipeTypes.INFUSER, tile.recipeInventory.toIInventory(), level).orElse(null);
+            tile.progress = 0;
+            mark = true;
         }
 
         if (!level.isClientSide()) {
@@ -251,7 +264,7 @@ public class VaultInfuserTileEntity extends BaseInventoryTileEntity implements M
     }
 
     private void process(InfuserRecipe recipe) {
-        int extract = 1;
+        int extract = this.processingSpeed;
         int difference = recipe.getInfuseDuration() - this.progress;
         if (difference < extract)
             extract = difference;

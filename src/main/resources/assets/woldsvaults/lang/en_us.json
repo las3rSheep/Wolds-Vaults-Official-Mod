@@ -190,6 +190,9 @@
   "key.the_vault.quickselect.colossus": "Select and use ability: Colossus",
   "item.woldsvaults.pogominium_ingot": "POG-ominium Ingot",
   "item.woldsvaults.infused_driftwood": "Infused Driftwood",
-  "block.woldsvaults.infused_driftwood_planks": "Infused Driftwood Planks"
+  "block.woldsvaults.infused_driftwood_planks": "Infused Driftwood Planks",
+  "container.woldsvaults.infuser": "Vault Infuser",
+  "block.woldsvaults.chromatic_iron_vault_infuser": "Chromatic Iron Vault Infuser",
+  "jei.category.woldsvaults.infuser": "Vault Infuser"
 
 }
