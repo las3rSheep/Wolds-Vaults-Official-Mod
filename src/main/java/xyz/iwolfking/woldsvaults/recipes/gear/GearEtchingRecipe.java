@@ -1,7 +1,10 @@
 package xyz.iwolfking.woldsvaults.recipes.gear;
 
 import iskallia.vault.config.EtchingConfig;
+import iskallia.vault.etching.EtchingHelper;
 import iskallia.vault.etching.EtchingSet;
+import iskallia.vault.etching.set.DryadSet;
+import iskallia.vault.gear.VaultGearClassification;
 import iskallia.vault.gear.data.AttributeGearData;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
@@ -21,7 +24,7 @@ public class GearEtchingRecipe extends VanillaAnvilRecipe {
     public boolean onSimpleCraft(AnvilContext context) {
         ItemStack primary = context.getInput()[0];
         ItemStack secondary = context.getInput()[1];
-        if (primary.getItem() instanceof VaultGearItem && secondary.getItem() == ModItems.ETCHING) {
+        if (primary.getItem() instanceof VaultGearItem gearItem && secondary.getItem() == ModItems.ETCHING) {
             ItemStack output = primary.copy();
             AttributeGearData data = AttributeGearData.read(secondary);
             VaultGearData gear = VaultGearData.read(primary);
@@ -32,6 +35,10 @@ public class GearEtchingRecipe extends VanillaAnvilRecipe {
             }
 
             if(!gear.isModifiable()) {
+                return false;
+            }
+
+            if(!gearItem.getClassification(primary).equals(VaultGearClassification.ARMOR)) {
                 return false;
             }
 
