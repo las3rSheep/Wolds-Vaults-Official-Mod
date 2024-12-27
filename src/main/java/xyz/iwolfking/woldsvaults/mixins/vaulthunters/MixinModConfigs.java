@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.data.gear.UnusualModifiers;
 import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.VaultGearRollTypeConfigAccessor;
+import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.VaultGearRollTypeConfigRollTypeAccessor;
 import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.VaultGearTierConfigAccessor;
 
 import java.util.Map;

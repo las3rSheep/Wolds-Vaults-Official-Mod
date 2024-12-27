@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.mixins.vaulthunters;
+package xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors;
 
 import iskallia.vault.config.gear.VaultGearTypeConfig;
 import org.spongepowered.asm.mixin.Mixin;
