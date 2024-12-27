@@ -107,33 +107,32 @@ public class SpawnEntityEnchantedEvent extends BasicEnchantedEvent {
         }
 
         BlockState state = world.getBlockState(new BlockPos(x, y - 1, z));
-        if (!state.isValidSpawn(world, new BlockPos(x, y - 1, z), entity.getType())) {
+        if (entity == null || !state.isValidSpawn(world, new BlockPos(x, y - 1, z), entity.getType())) {
             return null;
-        } else {
-            AABB entityBox = entity.getType().getAABB(x + 0.5, y, z + 0.5);
-            if (!world.noCollision(entityBox)) {
-                return null;
-            } else {
-                entity.moveTo(x + 0.5F, y + 0.2F,z + 0.5F, (float)(random.nextDouble() * 2.0 * Math.PI), 0.0F);
-               // entity.finalizeSpawn(world, new DifficultyInstance(Difficulty.PEACEFUL, 13000L, 0L, 0.0F), MobSpawnType.STRUCTURE, (SpawnGroupData)null, (CompoundTag)null);
-                if(!heldStack.equals(ItemStack.EMPTY)) {
-                    if(entity instanceof EntityCockroach roach) {
-                        roach.setMaracas(true);
-                    }
-                    else {
-                        entity.setItemSlot(EquipmentSlot.MAINHAND, heldStack);
-                    }
-
-                }
-                if(!effects.isEmpty()) {
-                    effects.forEach((mobEffectInstance, aDouble) -> {
-                        ((LivingEntity)entity).addEffect(mobEffectInstance);
-                    });
-                }
-                world.addWithUUID(entity);
-
-                return (LivingEntity) entity;
-            }
         }
+        AABB entityBox = entity.getType().getAABB(x + 0.5, y, z + 0.5);
+        if (!world.noCollision(entityBox)) {
+            return null;
+        }
+        entity.moveTo(x + 0.5F, y + 0.2F,z + 0.5F, (float)(random.nextDouble() * 2.0 * Math.PI), 0.0F);
+       // entity.finalizeSpawn(world, new DifficultyInstance(Difficulty.PEACEFUL, 13000L, 0L, 0.0F), MobSpawnType.STRUCTURE, (SpawnGroupData)null, (CompoundTag)null);
+        if(!heldStack.equals(ItemStack.EMPTY)) {
+            if(entity instanceof EntityCockroach roach) {
+                roach.setMaracas(true);
+            }
+            else {
+                entity.setItemSlot(EquipmentSlot.MAINHAND, heldStack);
+            }
+
+        }
+        if(!effects.isEmpty()) {
+            effects.forEach((mobEffectInstance, aDouble) -> {
+                ((LivingEntity)entity).addEffect(mobEffectInstance);
+            });
+        }
+        world.addWithUUID(entity);
+
+        return (LivingEntity) entity;
+
     }
 }

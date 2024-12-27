@@ -58,6 +58,7 @@ public class MysteryHostileEggRecipeCategory implements IRecipeCategory<MysteryH
     }
 
     @Nonnull
+    @Override
     public RecipeType<MysteryHostileEggConfig> getRecipeType() {
         return RECIPE_TYPE;
     }
@@ -72,6 +73,7 @@ public class MysteryHostileEggRecipeCategory implements IRecipeCategory<MysteryH
         return this.getRecipeType().getRecipeClass();
     }
 
+    @Override
     @ParametersAreNonnullByDefault
     public void setRecipe(IRecipeLayoutBuilder builder, MysteryHostileEggConfig recipe, IFocusGroup focuses) {
         List<ItemStack> itemList = new ArrayList<>();

@@ -150,7 +150,7 @@ public class BallisticBingoObjective extends BingoObjective {
                                 counter.get("targetPlayerContribution", Adapters.DOUBLE).ifPresent(contribution -> {
                                     if (counter.getBaseTarget() instanceof Integer base) {
                                         int additional = Math.max(this.getOr(JOINED, 0) - 1, 0);
-                                        counter.setTarget(base + additional * contribution * base);
+                                        counter.setTarget((int)(base + additional * contribution * base));
                                     }
                                 });
                             }

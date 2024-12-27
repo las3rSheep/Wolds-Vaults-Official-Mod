@@ -58,6 +58,7 @@ public class OmegaBoxRecipeCategory implements IRecipeCategory<OmegaBoxConfig> {
     }
 
     @Nonnull
+    @Override
     public RecipeType<OmegaBoxConfig> getRecipeType() {
         return this.RECIPE_TYPE;
     }
@@ -72,6 +73,7 @@ public class OmegaBoxRecipeCategory implements IRecipeCategory<OmegaBoxConfig> {
         return this.getRecipeType().getRecipeClass();
     }
 
+    @Override
     @ParametersAreNonnullByDefault
     public void setRecipe(IRecipeLayoutBuilder builder, OmegaBoxConfig recipe, IFocusGroup focuses) {
         List<ItemStack> itemList = new ArrayList<>();

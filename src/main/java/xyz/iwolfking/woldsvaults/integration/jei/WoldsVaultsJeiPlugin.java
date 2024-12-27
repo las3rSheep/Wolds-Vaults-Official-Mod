@@ -11,16 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.init.ModItems;
-import xyz.iwolfking.woldsvaults.integration.jei.category.AugmentBoxRecipeCategory;
-import xyz.iwolfking.woldsvaults.integration.jei.category.CatalystBoxRecipeCategory;
-import xyz.iwolfking.woldsvaults.integration.jei.category.EnigmaEggRecipeCategory;
-import xyz.iwolfking.woldsvaults.integration.jei.category.GemBoxRecipeCategory;
-import xyz.iwolfking.woldsvaults.integration.jei.category.InscriptionBoxRecipeCategory;
-import xyz.iwolfking.woldsvaults.integration.jei.category.MysteryEggRecipeCategory;
-import xyz.iwolfking.woldsvaults.integration.jei.category.MysteryHostileEggRecipeCategory;
-import xyz.iwolfking.woldsvaults.integration.jei.category.OmegaBoxRecipeCategory;
-import xyz.iwolfking.woldsvaults.integration.jei.category.SupplyBoxRecipeCategory;
-import xyz.iwolfking.woldsvaults.integration.jei.category.VaultarBoxRecipeCategory;
+import xyz.iwolfking.woldsvaults.integration.jei.category.*;
 
 import java.util.List;
 

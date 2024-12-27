@@ -2,21 +2,7 @@ package xyz.iwolfking.woldsvaults.init;
 
 import xyz.iwolfking.vhapi.api.data.api.CustomRecyclerOutputs;
 import xyz.iwolfking.vhapi.api.loaders.workstation.lib.CustomVaultRecyclerConfig;
-import xyz.iwolfking.woldsvaults.config.AugmentBoxConfig;
-import xyz.iwolfking.woldsvaults.config.BallisticBingoConfig;
-import xyz.iwolfking.woldsvaults.config.CatalystBoxConfig;
-import xyz.iwolfking.woldsvaults.config.EnchantedElixirConfig;
-import xyz.iwolfking.woldsvaults.config.EnigmaEggConfig;
-import xyz.iwolfking.woldsvaults.config.EternalAttributesConfig;
-import xyz.iwolfking.woldsvaults.config.GemBoxConfig;
-import xyz.iwolfking.woldsvaults.config.GreedVaultAltarIngredientsConfig;
-import xyz.iwolfking.woldsvaults.config.HauntedBraziersConfig;
-import xyz.iwolfking.woldsvaults.config.InscriptionBoxConfig;
-import xyz.iwolfking.woldsvaults.config.OmegaBoxConfig;
-import xyz.iwolfking.woldsvaults.config.SupplyBoxConfig;
-import xyz.iwolfking.woldsvaults.config.ThemeTooltipsConfig;
-import xyz.iwolfking.woldsvaults.config.UnhingedScavengerConfig;
-import xyz.iwolfking.woldsvaults.config.VaultarBoxConfig;
+import xyz.iwolfking.woldsvaults.config.*;
 import xyz.iwolfking.woldsvaults.config.recipes.augment.AugmentRecipesConfig;
 
 public class ModConfigs {

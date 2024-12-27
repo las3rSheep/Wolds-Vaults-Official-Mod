@@ -33,15 +33,13 @@ public class DecoMonolithTileEntity extends MonolithTileEntity {
                 Random random = this.getLevel().getRandom();
                 Vec3 offset;
                 if (random.nextInt(5) == 0) {
-                    offset = new Vec3(random.nextDouble() / 3.0 * (random.nextBoolean() ? 1 : -1), 0.0, random.nextDouble() / 3.0 *
-                        (random.nextBoolean() ? 1 : -1));
+                    offset = new Vec3(random.nextDouble() / 3.0 * (random.nextBoolean() ? 1 : -1), 0.0, random.nextDouble() / 3.0 * (random.nextBoolean() ? 1 : -1));
                     this.getLevel().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.5 + offset.x, pos.getY() + random.nextDouble() * 0.15000000596046448 + 0.550000011920929, pos.getZ() + 0.5 + offset.z, offset.x / 120.0, random.nextDouble() * -0.005 + 0.075, offset.z / 120.0);
                 }
 
                 if (random.nextInt(2) == 0) {
                     offset = new Vec3(random.nextDouble() / 9.0 * (random.nextBoolean() ? 1 : -1), 0.0, random.nextDouble() / 9.0 * (random.nextBoolean() ? 1 : -1));
-                    this.getLevel().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.5 + offset.x,
-                        pos.getY() + 1.5499999523162842 + random.nextDouble() * 0.15000000596046448, pos.getZ() + 0.5 + offset.z, offset.x / 120.0, random.nextDouble() * -0.005 + 0.075, offset.z / 120.0);
+                    this.getLevel().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.5 + offset.x, pos.getY() + 1.5499999523162842 + random.nextDouble() * 0.15000000596046448, pos.getZ() + 0.5 + offset.z, offset.x / 120.0, random.nextDouble() * -0.005 + 0.075, offset.z / 120.0);
                 }
 
                 if (random.nextInt(15) == 0) {

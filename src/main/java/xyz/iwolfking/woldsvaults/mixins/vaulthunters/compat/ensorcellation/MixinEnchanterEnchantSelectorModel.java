@@ -58,16 +58,12 @@ public abstract class MixinEnchanterEnchantSelectorModel {
 
                 for (Enchantment enchantment : ForgeRegistries.ENCHANTMENTS) {
                     if (!enchantment.isCurse() && enchantment.canEnchant(input)) {
-                        if (input.getItem() instanceof VaultGearItem || input.getItem() instanceof ToolItem ||
-                            input.getItem().getRegistryName().toString().equals("the_vault:tool")) {
-                            if (BannedEnchantmentsData.BANNED_ENCHANT_REGISTRY_NAMES.contains(
-                                enchantment.getRegistryName().toString())) {
+                        if (input.getItem() instanceof VaultGearItem || input.getItem() instanceof ToolItem || input.getItem().getRegistryName().toString().equals("the_vault:tool")) {
+                            if (BannedEnchantmentsData.BANNED_ENCHANT_REGISTRY_NAMES.contains(enchantment.getRegistryName().toString())) {
                                 continue;
                             }
                         } else {
-                            if (BannedEnchantmentsData.BANNED_ENCHANT_REGISTRY_NAMES.contains(
-                                enchantment.getRegistryName().toString()) &&
-                                !enchantment.getRegistryName().toString().equals("minecraft:mending")) {
+                            if (BannedEnchantmentsData.BANNED_ENCHANT_REGISTRY_NAMES.contains(enchantment.getRegistryName().toString()) && !enchantment.getRegistryName().toString().equals("minecraft:mending")) {
                                 continue;
                             }
                         }

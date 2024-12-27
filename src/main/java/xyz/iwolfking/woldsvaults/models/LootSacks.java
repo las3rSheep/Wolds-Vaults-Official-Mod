@@ -6,7 +6,7 @@ import iskallia.vault.dynamodel.model.item.HandHeldModel;
 import iskallia.vault.dynamodel.registry.DynamicModelRegistry;
 
 public class LootSacks {
-    public static final DynamicModelRegistry<HandHeldModel> REGISTRY = new DynamicModelRegistry();
+    public static final DynamicModelRegistry<HandHeldModel> REGISTRY = new DynamicModelRegistry<>();
 
     public static final HandHeldModel BUNDLE;
     public static final HandHeldModel GRAY;

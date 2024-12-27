@@ -40,7 +40,7 @@ public abstract class MixinKeyRegistry<K extends VersionedKey<? extends K, ? ext
             }
         }
         this.ensureCacheIsPresent(version);
-        return (Integer) ((Map) this.indexCache.get(version)).getOrDefault(key.getId(), -1);
+        return this.indexCache.get(version).getOrDefault(key.getId(), -1);
     }
 
     @Shadow public abstract K getKey(ResourceLocation id);

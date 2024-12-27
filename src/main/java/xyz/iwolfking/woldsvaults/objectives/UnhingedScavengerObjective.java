@@ -43,8 +43,7 @@ public class UnhingedScavengerObjective extends ScavengerObjective {
 
     public static final FieldKey<UnhingedScavengerObjective.Config> CONFIG = FieldKey.of("config", UnhingedScavengerObjective.Config.class).with(Version.v1_19, Adapters.ofEnum(UnhingedScavengerObjective.Config.class, EnumAdapter.Mode.ORDINAL), DISK.all()).register(FIELDS);
 
-    public static final SupplierKey<Objective> E_KEY =
-        SupplierKey.of("unhinged_scavenger", Objective.class).with(Version.v1_12, UnhingedScavengerObjective::new);
+    public static final SupplierKey<Objective> E_KEY = SupplierKey.of("unhinged_scavenger", Objective.class).with(Version.v1_12, UnhingedScavengerObjective::new);
 
     @Override
     public SupplierKey<Objective> getKey() {

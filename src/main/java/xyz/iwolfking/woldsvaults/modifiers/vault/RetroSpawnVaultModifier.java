@@ -116,7 +116,7 @@ public class RetroSpawnVaultModifier extends VaultModifier<RetroSpawnVaultModifi
             double distance = Math.sqrt(random.nextDouble() * (max * max - min * min) + min * min);
             x = (int)Math.ceil(distance * Math.cos(angle));
             z = (int)Math.ceil(distance * Math.sin(angle));
-            double xzRadius = Math.sqrt((x * x + z * z));
+            double xzRadius = Math.sqrt(x * x + z * z);
             double yRange = Math.sqrt(max * max - xzRadius * xzRadius);
             y = random.nextInt((int)Math.ceil(yRange) * 2 + 1) - (int)Math.ceil(yRange);
         }
@@ -137,17 +137,16 @@ public class RetroSpawnVaultModifier extends VaultModifier<RetroSpawnVaultModifi
         }
 
         BlockState state = world.getBlockState(new BlockPos(x, y - 1, z));
-        if (!state.isValidSpawn(world, new BlockPos(x, y - 1, z), entity.getType())) {
+        if (entity == null || !state.isValidSpawn(world, new BlockPos(x, y - 1, z), entity.getType())) {
             return null;
-        } else {
-            AABB entityBox = entity.getType().getAABB(x + 0.5, y, z + 0.5);
-            if (!world.noCollision(entityBox)) {
-                return null;
-            } else {
-                entity.moveTo(x + 0.5F, y + 0.2F, z + 0.5F, (float)(random.nextDouble() * 2.0 * Math.PI), 0.0F);
-                world.addWithUUID(entity);
-                return (LivingEntity) entity;
-            }
         }
+        AABB entityBox = entity.getType().getAABB(x + 0.5, y, z + 0.5);
+        if (!world.noCollision(entityBox)) {
+            return null;
+        }
+        entity.moveTo(x + 0.5F, y + 0.2F, z + 0.5F, (float)(random.nextDouble() * 2.0 * Math.PI), 0.0F);
+        world.addWithUUID(entity);
+        return (LivingEntity) entity;
+
     }
 }

@@ -11,16 +11,12 @@ import iskallia.vault.client.gui.framework.element.SlotsElement;
 import iskallia.vault.client.gui.framework.render.ScreenTooltipRenderer;
 import iskallia.vault.client.gui.framework.screen.AbstractElementContainerScreen;
 import iskallia.vault.client.gui.framework.spatial.Spatials;
-import iskallia.vault.client.gui.framework.spatial.spi.IMutableSpatial;
 import iskallia.vault.client.gui.framework.text.LabelTextStyle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Inventory;
-import xyz.iwolfking.woldsvaults.blocks.tiles.VaultSalvagerTileEntity;
-
-import java.util.Objects;
 
 public class VaultSalvagerScreen  extends AbstractElementContainerScreen<VaultSalvagerContainer> {
     private final Inventory playerInventory;

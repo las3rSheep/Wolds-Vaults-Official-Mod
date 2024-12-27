@@ -10,16 +10,7 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.entities.ghosts.BlackGhost;
-import xyz.iwolfking.woldsvaults.entities.ghosts.BlueGhost;
-import xyz.iwolfking.woldsvaults.entities.ghosts.BrownGhost;
-import xyz.iwolfking.woldsvaults.entities.ghosts.DarkBlueGhost;
-import xyz.iwolfking.woldsvaults.entities.ghosts.DarkGrayGhost;
-import xyz.iwolfking.woldsvaults.entities.ghosts.DarkRedGhost;
-import xyz.iwolfking.woldsvaults.entities.ghosts.GreenGhost;
-import xyz.iwolfking.woldsvaults.entities.ghosts.PurpleGhost;
-import xyz.iwolfking.woldsvaults.entities.ghosts.RedGhost;
-import xyz.iwolfking.woldsvaults.entities.ghosts.YellowGhost;
+import xyz.iwolfking.woldsvaults.entities.ghosts.*;
 import xyz.iwolfking.woldsvaults.items.gear.rang.VaultRangEntity;
 import xyz.iwolfking.woldsvaults.objectives.data.bosses.WoldBoss;
 

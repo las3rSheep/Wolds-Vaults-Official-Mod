@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class IskallianLeavesTileEntity extends LootableTileEntity implements TemplateTagContainer {
     private static final Random rand = new Random();
-    private final List<String> templateTags = new ArrayList();
+    private final List<String> templateTags = new ArrayList<>();
 
     public IskallianLeavesTileEntity(BlockPos pos, BlockState state) {
         super(ModBlocks.ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE, pos, state);

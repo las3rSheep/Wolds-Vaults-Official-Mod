@@ -70,12 +70,12 @@ public abstract class MixinThrownTrident extends AbstractArrow {
                 } else {
                     this.setNoPhysics(true);
                     Vec3 vec3 = entity.getEyePosition().subtract(this.position());
-                    this.setPosRaw(this.getX(), this.getY() + vec3.y * 0.015D * (double)i, this.getZ());
+                    this.setPosRaw(this.getX(), this.getY() + vec3.y * 0.015D * i, this.getZ());
                     if (this.level.isClientSide) {
                         this.yOld = this.getY();
                     }
 
-                    double d0 = 0.05D * (double)i;
+                    double d0 = 0.05D * i;
                     this.setDeltaMovement(this.getDeltaMovement().scale(0.95D).add(vec3.normalize().scale(d0)));
                     if (this.clientSideReturnTridentTickCount == 0) {
                         this.playSound(SoundEvents.TRIDENT_RETURN, 10.0F, 1.0F);
