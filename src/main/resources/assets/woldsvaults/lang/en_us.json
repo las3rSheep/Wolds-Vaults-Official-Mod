@@ -184,6 +184,8 @@
   "create.item_attributes.etched_layout_tunnel.inverted": "isn't an Etched Vault Layout with a tunnel span of \"%1$s\"",
   "create.item_attributes.etched_layout_value": "is an Etched Vault Layout with a value of \"%1$s\"",
   "create.item_attributes.etched_layout_value.inverted": "isn't an Etched Vault Layout with a value of \"%1$s\"",
+  "create.item_attributes.etching_set": "has a \"%1$s\" Etching",
+  "create.item_attributes.etching_set.inverted": "doesn't have a \"%1$s\" Etching",
   "entity.the_vault.black_widow_boss": "Black Widow Boss",
   "entity.the_vault.boogieman_boss": "Boogieman Boss",
   "entity.the_vault.golem_boss": "Golem Boss",

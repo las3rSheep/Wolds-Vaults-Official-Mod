@@ -13,5 +13,6 @@ public class ModVaultFilterAttributes {
         new EtchedLayoutTypeAttribute("Infinite").register(EtchedLayoutTypeAttribute::new);
         new EtchedLayoutTunnelAttribute(1).register(EtchedLayoutTunnelAttribute::new);
         new EtchedLayoutValueAttribute(1).register(EtchedLayoutValueAttribute::new);
+        new EtchingSetAttribute("").register(EtchingSetAttribute::new);
     }
 }
