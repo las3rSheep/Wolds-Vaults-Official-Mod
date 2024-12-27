@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Restriction(
         require = {
                 @Condition(type = Condition.Type.MOD, value = "itemborders"),
-                @Condition(type = Condition.Type.MOD, value = "tomsstorage")
+                @Condition(type = Condition.Type.MOD, value = "toms_storage")
         }
 )
 @Mixin(value = GuiStorageTerminalBase.class, remap = false)
