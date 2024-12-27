@@ -35,11 +35,7 @@ public class VaultSalvagerScreen  extends AbstractElementContainerScreen<VaultSa
         inventoryName.withStyle(Style.EMPTY.withColor(-12632257));
         this.addElement(new LabelElement<>(Spatials.positionXY(8, 71), inventoryName, LabelTextStyle.defaultStyle()).layout((screen, gui, parent, world) -> world.translateXY(gui)));
         this.addElement(new SlotsElement<>(this).layout((screen, gui, parent, world) -> world.positionXY(gui)));
-        IMutableSpatial var10003 = Spatials.positionXY(16, 50);
-        ProgressElement.ProgressTextures var10004 = ScreenTextures.PROGRESS_ARROW;
-        VaultSalvagerTileEntity var10005 = this.getMenu().getTileEntity();
-        Objects.requireNonNull(var10005);
-        this.addElement(new ProgressElement<>(var10003, var10004, var10005::getProgressPercent).layout((screen, gui, parent, world) -> world.translateXY(gui)));
+        this.addElement(new ProgressElement<>(Spatials.positionXY(16, 50), ScreenTextures.PROGRESS_ARROW, this.getMenu().getTileEntity()::getProgressPercent).layout((screen, gui, parent, world) -> world.translateXY(gui)));
     }
 
     @Override

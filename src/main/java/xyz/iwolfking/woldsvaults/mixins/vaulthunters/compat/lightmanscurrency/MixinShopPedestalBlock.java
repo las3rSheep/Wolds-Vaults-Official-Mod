@@ -64,9 +64,8 @@ public abstract class MixinShopPedestalBlock extends Block implements EntityBloc
      */
     @Overwrite(remap = true) @Override
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        BlockEntity var8 = worldIn.getBlockEntity(pos);
         ItemStack c;
-        if (var8 instanceof ShopPedestalBlockTile tile) {
+        if (worldIn.getBlockEntity(pos) instanceof ShopPedestalBlockTile tile) {
             if(ServerVaults.get(worldIn).isPresent()) {
                 Optional<Vault> vaultOpt = ServerVaults.get(worldIn);
 

@@ -38,7 +38,7 @@ public abstract class MixinAugmentItem extends Item implements VaultLevelItem, D
      */
     @Inject(method = "appendHoverText", at = @At("TAIL"), remap = true)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag advanced, CallbackInfo ci) {
-        var theme = getTheme(stack);
+        Optional<ThemeKey> theme = getTheme(stack);
         if(theme == null)
             return;
         theme.ifPresent(key -> {

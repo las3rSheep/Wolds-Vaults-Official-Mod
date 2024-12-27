@@ -119,11 +119,7 @@ public class BrutalBossesObjective extends ObeliskObjective {
         }
         CommonEvents.ENTITY_DEATH.register(this, event -> {
             if (event.getEntity().level == world) {
-                Wave[] var3 = this.get(WAVES);
-                int var4 = var3.length;
-
-                for (int var5 = 0; var5 < var4; ++var5) {
-                    Wave wave = var3[var5];
+                for (Wave wave : this.get(WAVES)) {
                     if (wave.get(BrutalBossesObjective.Wave.MOBS).remove(event.getEntity().getUUID())) {
                         if(random.nextBoolean()) {
                             event.getEntity().spawnAtLocation(ModItems.ENIGMA_EGG);

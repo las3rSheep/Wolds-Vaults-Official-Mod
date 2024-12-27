@@ -103,22 +103,16 @@ public class ZealotObjective extends Objective {
 
     @OnlyIn(Dist.CLIENT)
     public boolean render(Vault vault, PoseStack matrixStack, Window window, float partialTicks, Player player) {
-        int current;
-        FormattedCharSequence var10001;
-        float var10002;
         if (this.get(COUNT) >= this.get(TARGET)) {
-            current = window.getGuiScaledWidth() / 2;
+            int midX = window.getGuiScaledWidth() / 2;
             Font font = Minecraft.getInstance().font;
             MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
             Component txt = (new TextComponent("The gods are pleased, you may exit when ready.")).withStyle(ChatFormatting.GOLD);
-            var10001 = txt.getVisualOrderText();
-            var10002 = current - font.width(txt) / 2.0F;
-            Objects.requireNonNull(font);
-            font.drawInBatch(var10001, var10002, 9.0F, -1, true, matrixStack.last().pose(), buffer, false, 0, LightmapHelper.getPackedFullbrightCoords());
+            font.drawInBatch(txt.getVisualOrderText(), midX - font.width(txt) / 2.0F, 9.0F, -1, true, matrixStack.last().pose(), buffer, false, 0, LightmapHelper.getPackedFullbrightCoords());
             buffer.endBatch();
             return true;
         } else {
-            current = this.get(COUNT);
+            int current = this.get(COUNT);
             int total = this.get(TARGET);
             Component txt = (new TextComponent(String.valueOf(current))).withStyle(ChatFormatting.WHITE).append((new TextComponent(" / ")).withStyle(ChatFormatting.WHITE)).append((new TextComponent(String.valueOf(total))).withStyle(ChatFormatting.WHITE));
             int midX = window.getGuiScaledWidth() / 2;
@@ -139,10 +133,7 @@ public class ZealotObjective extends Objective {
             MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
             matrixStack.pushPose();
             matrixStack.scale(0.6F, 0.6F, 0.6F);
-            var10001 = txt.getVisualOrderText();
-            var10002 = midX / 0.6F - font.width(txt) / 2.0F;
-            Objects.requireNonNull(font);
-            font.drawInBatch(var10001, var10002, (9 + 22), -1, true, matrixStack.last().pose(), buffer, false, 0, LightmapHelper.getPackedFullbrightCoords());
+            font.drawInBatch(txt.getVisualOrderText(), midX / 0.6F - font.width(txt) / 2.0F, (9 + 22), -1, true, matrixStack.last().pose(), buffer, false, 0, LightmapHelper.getPackedFullbrightCoords());
             buffer.endBatch();
             matrixStack.popPose();
             return true;

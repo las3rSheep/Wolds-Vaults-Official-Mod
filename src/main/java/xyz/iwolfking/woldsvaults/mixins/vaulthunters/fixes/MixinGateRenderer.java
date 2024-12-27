@@ -101,9 +101,7 @@ public abstract class MixinGateRenderer {
             for (ItemStack stack : entity.getCost()) {
                 matrices.translate(0.0, 45.0, 0.0);
                 ChatFormatting color = this.check(items, stack.copy(), true) && this.check(items, stack.copy(), false) ? ChatFormatting.WHITE : ChatFormatting.RED;
-                MutableComponent var10002 = stack.getHoverName().copy().withStyle(color);
-                String var10005 = stack.getCount() < 10 ? " " : "";
-                this.renderItemLine(stack, var10002, (new TextComponent(var10005 + stack.getCount())).withStyle(color), true, matrices, pBufferSource, pPackedLight);
+                this.renderItemLine(stack, stack.getHoverName().copy().withStyle(color), (new TextComponent(stack.getCount() < 10 ? " " : "" + stack.getCount())).withStyle(color), true, matrices, pBufferSource, pPackedLight);
             }
 
             matrices.popPose();

@@ -39,12 +39,8 @@ public class HellishSandTileEntity extends LootableTileEntity implements Templat
     private static void clientTick(Level level, BlockPos pos, BlockState state, HellishSandTileEntity tile) {
         if (rand.nextInt(14) == 0) {
             boolean hasEmptyBlockAround = false;
-            Direction[] var5 = Direction.values();
-            int var6 = var5.length;
 
-            int color;
-            for(color = 0; color < var6; ++color) {
-                Direction dir = var5[color];
+            for (Direction dir : Direction.values()) {
                 BlockPos offsetPos = pos.relative(dir);
                 if (level.isEmptyBlock(offsetPos)) {
                     hasEmptyBlockAround = true;
