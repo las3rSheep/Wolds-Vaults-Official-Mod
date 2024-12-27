@@ -3,11 +3,15 @@ package xyz.iwolfking.woldsvaults.abilities;
 import com.google.gson.JsonObject;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.net.BitBuffer;
+import iskallia.vault.init.ModParticles;
 import iskallia.vault.skill.ability.effect.spi.core.Ability;
 import iskallia.vault.skill.ability.effect.spi.core.HoldManaAbility;
 import iskallia.vault.skill.base.SkillContext;
 import java.util.Optional;
+
+//import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -35,6 +39,14 @@ public class LevitateAbility extends HoldManaAbility {
         return this.levitateStrength;
     }
 
+    protected void doParticles(SkillContext context) {
+        context.getSource()
+                .as(ServerPlayer.class)
+                .ifPresent(
+                        player -> ((ServerLevel)player.level).sendParticles(ModParticles.NOVA_CLOUD.get(), player.getX(), player.getY(), player.getZ(), 2, 0.2, 0.5, 0.2, 0.05)
+                );
+    }
+
     @Override
     public Ability.TickResult doActiveTick(SkillContext context) {
         return context.getSource().as(ServerPlayer.class).map(player -> {
@@ -43,6 +55,7 @@ public class LevitateAbility extends HoldManaAbility {
             if (result != Ability.TickResult.COOLDOWN) {
                 MobEffectInstance newEffect = new MobEffectInstance(MobEffects.LEVITATION, 2, levitateStrength, false, false, true);
                 player.addEffect(newEffect);
+                doParticles(context);
             }
 
             return result;
