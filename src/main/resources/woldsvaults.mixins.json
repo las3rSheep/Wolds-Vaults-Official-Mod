@@ -119,6 +119,7 @@
     "vaulthunters.fixes.MixinBingoTask",
     "vaulthunters.fixes.MixinClassicLootLogic",
     "vaulthunters.fixes.MixinDynamicModelRegistry",
+    "vaulthunters.fixes.MixinEliteZombie",
     "vaulthunters.fixes.MixinEntityGroupsConfig",
     "vaulthunters.fixes.MixinGateRenderer",
     "vaulthunters.fixes.MixinGearScoreHelper",
