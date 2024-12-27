@@ -11,7 +11,16 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.init.ModItems;
-import xyz.iwolfking.woldsvaults.integration.jei.category.*;
+import xyz.iwolfking.woldsvaults.integration.jei.category.AugmentBoxRecipeCategory;
+import xyz.iwolfking.woldsvaults.integration.jei.category.CatalystBoxRecipeCategory;
+import xyz.iwolfking.woldsvaults.integration.jei.category.EnigmaEggRecipeCategory;
+import xyz.iwolfking.woldsvaults.integration.jei.category.GemBoxRecipeCategory;
+import xyz.iwolfking.woldsvaults.integration.jei.category.InscriptionBoxRecipeCategory;
+import xyz.iwolfking.woldsvaults.integration.jei.category.MysteryEggRecipeCategory;
+import xyz.iwolfking.woldsvaults.integration.jei.category.MysteryHostileEggRecipeCategory;
+import xyz.iwolfking.woldsvaults.integration.jei.category.OmegaBoxRecipeCategory;
+import xyz.iwolfking.woldsvaults.integration.jei.category.SupplyBoxRecipeCategory;
+import xyz.iwolfking.woldsvaults.integration.jei.category.VaultarBoxRecipeCategory;
 
 import java.util.List;
 
@@ -25,6 +34,7 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
         return WoldsVaults.id("wolds_jei_integration");
     }
 
+    @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.ENIGMA_EGG), EnigmaEggRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.OMEGA_BOX), OmegaBoxRecipeCategory.RECIPE_TYPE);

@@ -18,8 +18,8 @@ import xyz.iwolfking.woldsvaults.init.ModItems;
 @Mod.EventBusSubscriber(value = {Dist.CLIENT}, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModModels {
     public static void setupRenderLayers() {
-        ItemBlockRenderTypes.setRenderLayer((Block) ModBlocks.SURVIVAL_MOB_BARRIER, RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer((Block) ModBlocks.ISKALLIAN_LEAVES_BLOCK, RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.SURVIVAL_MOB_BARRIER, RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.ISKALLIAN_LEAVES_BLOCK, RenderType.translucent());
     }
 
 

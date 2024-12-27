@@ -32,9 +32,6 @@ public abstract class MixinBalloonBuddyEntity extends TamableAnimal implements L
         if(ServerVaults.get(this.getUUID()).isPresent() && this.getPersonality() == BalloonFace.SCARY) {
             return;
         }
-        else {
-            super.tick();
-        }
-
+        super.tick();
     }
 }

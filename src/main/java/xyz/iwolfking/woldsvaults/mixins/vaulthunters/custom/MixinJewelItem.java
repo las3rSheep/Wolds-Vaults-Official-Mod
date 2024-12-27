@@ -49,7 +49,7 @@ public abstract class MixinJewelItem extends Item implements VaultGearItem, Data
      * @author iwolfking
      * @reason Return a gemstone always when a jewel has a legendary
      */
-    @Overwrite
+    @Overwrite @Override
     public VaultRecyclerConfig.RecyclerOutput getOutput(ItemStack input) {
         VaultGearData data = VaultGearData.read(input);
         AtomicBoolean hasLegendary = new AtomicBoolean(false);

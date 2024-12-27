@@ -17,7 +17,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import xyz.iwolfking.woldsvaults.api.helper.PlayerVaultAltarDataHelper;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,14 +47,10 @@ public abstract class MixinVaultAltarTileEntity extends BlockEntity {
         if (this.level != null && this.owner.equals(player.getUUID())) {
             ServerLevel serverLevel = (ServerLevel) this.level;
             List<BlockPos> altarPositions = PlayerVaultAltarData.get(serverLevel).getAltars(player.getUUID());
-            Iterator var5 = altarPositions.iterator();
-
-            while (var5.hasNext()) {
-                BlockPos altarPosition = (BlockPos) var5.next();
+            for (BlockPos altarPosition: altarPositions) {
                 if (serverLevel.isLoaded(altarPosition)) {
                     BlockEntity te = serverLevel.getBlockEntity(altarPosition);
-                    if (te instanceof VaultAltarTileEntity) {
-                        VaultAltarTileEntity altar = (VaultAltarTileEntity) te;
+                    if (te instanceof VaultAltarTileEntity altar) {
                         if (altar.getAltarState() == VaultAltarTileEntity.AltarState.INFUSING) {
                             return InteractionResult.FAIL;
                         }

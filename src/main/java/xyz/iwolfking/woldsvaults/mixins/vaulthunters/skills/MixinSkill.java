@@ -10,7 +10,7 @@ import xyz.iwolfking.woldsvaults.abilities.ColossusAbility;
 import xyz.iwolfking.woldsvaults.abilities.SneakyGetawayAbility;
 import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
 
-@Mixin(targets = "iskallia/vault/skill/base/Skill$Adapter", remap = false)
+@Mixin(value = Skill.Adapter.class, remap = false)
 public class MixinSkill extends TypeSupplierAdapter<Skill> {
 
 

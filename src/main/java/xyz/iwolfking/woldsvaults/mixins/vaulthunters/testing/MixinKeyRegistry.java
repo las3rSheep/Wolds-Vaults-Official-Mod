@@ -15,11 +15,19 @@ import java.util.Map;
 public abstract class MixinKeyRegistry<K extends VersionedKey<? extends K, ? extends T>, T> {
     @Shadow protected List<K> keys;
 
+    /**
+     * @author
+     * @reason
+     */
     @Overwrite
     public int getIndex(ResourceLocation id, Version version) {
         return this.getIndex(this.getKey(id), version);
     }
 
+    /**
+     * @author
+     * @reason
+     */
     @Overwrite
     public int getIndex(K key, Version version) {
         keys.forEach(k -> {

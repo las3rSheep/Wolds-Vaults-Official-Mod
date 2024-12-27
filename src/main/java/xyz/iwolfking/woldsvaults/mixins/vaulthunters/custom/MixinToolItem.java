@@ -47,8 +47,7 @@ public abstract class MixinToolItem extends TieredItem implements VaultGearItem,
         for (ExtendedToolType type : extendedToolTypes) {
             consumer.accept(new ModelResourceLocation("the_vault:tool/%s/handle#inventory.".formatted(type.getId())));
 
-            ToolMaterial[] var6 = ToolMaterial.values();
-            for (ToolMaterial material : var6) {
+            for (ToolMaterial material : ToolMaterial.values()) {
                 consumer.accept(new ModelResourceLocation("the_vault:tool/%s/head/%s#inventory".formatted(type.getId(), material.getId())));
             }
         }
@@ -59,7 +58,7 @@ public abstract class MixinToolItem extends TieredItem implements VaultGearItem,
      * @author iwolfking
      * @reason Add custom tool names
      */
-    @Inject(method = "m_7626_", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getName", at = @At("HEAD"), cancellable = true, remap = true)
     public void getName(ItemStack stack, CallbackInfoReturnable<Component> cir) {
         ToolType type = ToolType.of(stack);
         ToolMaterial material = getMaterial(stack);
