@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.abilities.ColossusAbility;
+import xyz.iwolfking.woldsvaults.abilities.LevitateAbility;
 import xyz.iwolfking.woldsvaults.abilities.SneakyGetawayAbility;
 
 import java.util.Map;
@@ -41,6 +42,11 @@ public abstract class MixinModAbilityLabelBindings {
                 ability -> AbilityLabelFormatters.integer((int) ability.getManaCost()),
                 "duration",
                 ability -> AbilityLabelFormatters.ticks(ability.getDurationTicks())
+
+        ));
+        ModAbilityLabelBindings.register(LevitateAbility.class, Map.of(
+                "levitateSpeed",
+                ability -> AbilityLabelFormatters.decimal(ability.getLevitateSpeed())
 
         ));
     }
