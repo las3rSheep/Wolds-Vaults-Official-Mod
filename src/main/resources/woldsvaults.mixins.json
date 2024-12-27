@@ -139,6 +139,7 @@
     "vaulthunters.fixes.MixinVaultModifier",
     "vaulthunters.fixes.MixinVaultPenTileEntity",
     "vaulthunters.fixes.bettercombat.MixinAttributeSnapshotCalculatorNoBC",
+    "vaulthunters.fixes.bettercombat.MixinGearAttributeEvents",
     "vaulthunters.gear.MixinModDynamicModels",
     "vaulthunters.modifiers.MixinVaultModifierTypeRegistry",
     "vaulthunters.objectives.MixinCrystalData",
