@@ -72,6 +72,8 @@ public class ModGearAttributes {
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), xyz.iwolfking.woldsvaults.init.ModGearAttributeReaders.inscriptionReader("Guaranteed Special Rooms", 8833629, "%s"), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<Integer> MAP_TIER = attr("map_tier",
             VaultGearAttributeType.intType(), (ConfigurableAttributeGenerator<Integer, ?>)ModGearAttributeGenerators.intRange(), (VaultGearModifierReader<Integer>)ModGearAttributeReaders.addedIntReader("Tier", 8847359), (VaultGearAttributeComparator<Integer>)VaultGearAttributeComparator.intComparator());
+    public static final VaultGearAttribute<Boolean> DIVINE = attr("divine",
+            VaultGearAttributeType.booleanType(), (ConfigurableAttributeGenerator<Boolean, ?>)ModGearAttributeGenerators.booleanFlag(), (VaultGearModifierReader<Boolean>)ModGearAttributeReaders.booleanReader("Divine", 46276), VaultGearAttributeComparator.booleanComparator());
 
 
 
@@ -103,6 +105,7 @@ public class ModGearAttributes {
                       registry.register(VAULT_DIFFICULTY);
                       registry.register(INSCRIPTION);
                       registry.register(MAP_TIER);
+                      registry.register(DIVINE);
        }
     public static void registerVanillaAssociations() {
     }

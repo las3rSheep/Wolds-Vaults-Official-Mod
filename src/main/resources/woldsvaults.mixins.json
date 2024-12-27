@@ -93,6 +93,7 @@
     "vaulthunters.compat.lightmanscurrency.MixinSpiritExtractor",
     "vaulthunters.compat.lightmanscurrency.MixinTradeCommand",
     "vaulthunters.custom.MixinBleedEffect",
+    "vaulthunters.custom.MixinCorruptGearModification",
     "vaulthunters.custom.MixinCustomSpawnerTileEntity",
     "vaulthunters.custom.MixinExperiencedExpertise",
     "vaulthunters.custom.MixinGearRollHelper",
