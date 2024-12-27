@@ -46,8 +46,8 @@ public abstract class MixinThrownTrident extends AbstractArrow {
 
     private static Random random = new Random();
 
-    protected MixinThrownTrident(EntityType<? extends AbstractArrow> p_36721_, Level p_36722_) {
-        super(p_36721_, p_36722_);
+    protected MixinThrownTrident(EntityType<? extends AbstractArrow> pEntityType, Level pLevel) {
+        super(pEntityType, pLevel);
     }
 
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
@@ -91,13 +91,13 @@ public abstract class MixinThrownTrident extends AbstractArrow {
 
     }
     @Inject(method = "onHitEntity", at = @At("HEAD"), cancellable = true)
-    private void onHitEntityWithVaultTrident(EntityHitResult p_37573_, CallbackInfo ci) {
+    private void onHitEntityWithVaultTrident(EntityHitResult pResult, CallbackInfo ci) {
         if(this.tridentItem.getItem() instanceof VaultTridentItem) {
-            if(!(p_37573_.getEntity() instanceof LivingEntity)) {
+            if(!(pResult.getEntity() instanceof LivingEntity)) {
                 ci.cancel();
                 return;
             }
-            Entity entity = p_37573_.getEntity();
+            Entity entity = pResult.getEntity();
             VaultGearData data = VaultGearData.read(tridentItem);
             Double f = data.get(ModGearAttributes.ATTACK_DAMAGE, VaultGearAttributeTypeMerger.doubleSum());
 

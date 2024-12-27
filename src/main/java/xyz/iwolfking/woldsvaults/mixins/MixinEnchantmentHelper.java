@@ -20,7 +20,7 @@ public abstract class MixinEnchantmentHelper {
 
 
     @Shadow
-    public static int getItemEnchantmentLevel(Enchantment p_44844_, ItemStack p_44845_) {
+    public static int getItemEnchantmentLevel(Enchantment pEnchantment, ItemStack pStack) {
         return 0;
     }
 

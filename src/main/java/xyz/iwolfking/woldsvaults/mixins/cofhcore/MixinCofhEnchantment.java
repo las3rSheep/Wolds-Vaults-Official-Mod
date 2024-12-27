@@ -21,8 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = EnchantmentCoFH.class, remap = false)
 public class MixinCofhEnchantment extends Enchantment{
 
-    protected MixinCofhEnchantment(Rarity p_44676_, EnchantmentCategory p_44677_, EquipmentSlot[] p_44678_) {
-        super(p_44676_, p_44677_, p_44678_);
+    protected MixinCofhEnchantment(Enchantment.Rarity rarityIn, EnchantmentCategory typeIn, EquipmentSlot[] slots) {
+        super(rarityIn, typeIn, slots);
     }
 
     @Inject(

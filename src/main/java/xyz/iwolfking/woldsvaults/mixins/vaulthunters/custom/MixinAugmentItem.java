@@ -23,8 +23,9 @@ import java.util.Optional;
 
 @Mixin(value = AugmentItem.class, remap = false)
 public abstract class MixinAugmentItem extends Item implements VaultLevelItem, DataTransferItem {
-    public MixinAugmentItem(Properties p_41383_) {
-        super(p_41383_);
+
+    public MixinAugmentItem(Properties pProperties) {
+        super(pProperties);
     }
 
     @Shadow

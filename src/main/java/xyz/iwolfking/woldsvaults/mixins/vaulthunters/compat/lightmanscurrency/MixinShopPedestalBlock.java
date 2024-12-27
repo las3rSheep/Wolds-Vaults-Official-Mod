@@ -52,10 +52,9 @@ public abstract class MixinShopPedestalBlock extends Block implements EntityBloc
 
     @Shadow @Final public static BooleanProperty ACTIVE;
 
-    public MixinShopPedestalBlock(Properties p_49795_) {
-        super(p_49795_);
+    public MixinShopPedestalBlock(Properties pProperties) {
+        super(pProperties);
     }
-
 
 
     /**

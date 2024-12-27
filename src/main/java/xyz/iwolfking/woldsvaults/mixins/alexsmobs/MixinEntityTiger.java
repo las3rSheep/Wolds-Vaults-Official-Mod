@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public abstract class MixinEntityTiger {
 
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;addEffect(Lnet/minecraft/world/effect/MobEffectInstance;)Z"))
-    private boolean overrideEffects(LivingEntity instance, MobEffectInstance p_21165_) {
+    private boolean overrideEffects(LivingEntity instance, MobEffectInstance pEffectInstance) {
         return false;
     }
 

@@ -178,8 +178,8 @@ public class WoldBossRenderer extends LivingEntityRenderer<LivingEntity, Humanoi
 
 
     @Override
-    protected void scale(LivingEntity p_115314_, PoseStack poseStack, float p_115316_) {
-        super.scale(p_115314_, poseStack, p_115316_);
-        poseStack.scale(2.0F, 2.0F, 2.0F);
+    protected void scale(LivingEntity pLivingEntity, PoseStack pMatrixStack, float pPartialTickTime) {
+        super.scale(pLivingEntity, pMatrixStack, pPartialTickTime);
+        pMatrixStack.scale(2.0F, 2.0F, 2.0F);
     }
 }

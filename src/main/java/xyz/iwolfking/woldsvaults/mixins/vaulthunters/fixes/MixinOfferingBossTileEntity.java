@@ -16,8 +16,8 @@ import xyz.iwolfking.woldsvaults.helpers.OfferingPillarHelper;
 @Mixin(value = OfferingPillarTileEntity.class, remap = false)
 public abstract class MixinOfferingBossTileEntity extends BlockEntity {
 
-    public MixinOfferingBossTileEntity(BlockEntityType<?> p_155228_, BlockPos p_155229_, BlockState p_155230_) {
-        super(p_155228_, p_155229_, p_155230_);
+    public MixinOfferingBossTileEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
+        super(pType, pPos, pBlockState);
     }
 
     /**

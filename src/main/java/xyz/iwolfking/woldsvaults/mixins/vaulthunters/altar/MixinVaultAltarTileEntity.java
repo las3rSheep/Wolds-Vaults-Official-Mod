@@ -26,8 +26,8 @@ public abstract class MixinVaultAltarTileEntity extends BlockEntity {
     @Shadow private VaultAltarTileEntity.AltarState altarState;
     @Shadow private AltarInfusionRecipe recipe;
 
-    public MixinVaultAltarTileEntity(BlockEntityType<?> p_155228_, BlockPos p_155229_, BlockState p_155230_) {
-        super(p_155228_, p_155229_, p_155230_);
+    public MixinVaultAltarTileEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
+        super(pType, pPos, pBlockState);
     }
 
     @Shadow protected abstract void updateDisplayedIndex(AltarInfusionRecipe infusionRecipe);

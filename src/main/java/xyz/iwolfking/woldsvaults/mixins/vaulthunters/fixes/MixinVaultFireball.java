@@ -22,8 +22,8 @@ import java.util.Iterator;
 
 @Mixin(value = VaultFireball.class, remap = false)
 public abstract class MixinVaultFireball extends AbstractArrow {
-    protected MixinVaultFireball(EntityType<? extends AbstractArrow> p_36721_, Level p_36722_) {
-        super(p_36721_, p_36722_);
+    protected MixinVaultFireball(EntityType<? extends AbstractArrow> entityType, Level level) {
+        super(entityType, level);
     }
 
     @Shadow public abstract VaultFireball.FireballType getFireballType();

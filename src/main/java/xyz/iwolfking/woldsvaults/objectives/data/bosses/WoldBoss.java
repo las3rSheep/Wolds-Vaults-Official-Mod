@@ -34,8 +34,8 @@ public class WoldBoss extends Zombie implements VaultBoss {
     public final ServerBossEvent bossInfo;
     public RegenAfterAWhile<WoldBoss> regenAfterAWhile;
 
-    public WoldBoss(EntityType<? extends Zombie> p_34271_, Level p_34272_) {
-        super(p_34271_, p_34272_);
+    public WoldBoss(EntityType<? extends Zombie> pEntityType, Level pLevel) {
+        super(pEntityType, pLevel);
         this.bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.PURPLE, BossEvent.BossBarOverlay.PROGRESS);
         this.regenAfterAWhile = new RegenAfterAWhile<>(this);
     }

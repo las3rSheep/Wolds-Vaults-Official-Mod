@@ -32,8 +32,8 @@ public abstract class MixinToolItem extends TieredItem implements VaultGearItem,
         return null;
     }
 
-    public MixinToolItem(Tier p_43308_, Properties p_43309_) {
-        super(p_43308_, p_43309_);
+    public MixinToolItem(Tier pTier, Properties pProperties) {
+        super(pTier, pProperties);
     }
 
     /**

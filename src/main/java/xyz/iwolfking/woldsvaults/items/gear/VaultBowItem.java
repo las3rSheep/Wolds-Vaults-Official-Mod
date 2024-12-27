@@ -59,12 +59,12 @@ public class VaultBowItem extends BowItem implements VaultGearItem, DyeableLeath
        }
 
     @Override
-    public void releaseUsing(ItemStack p_40667_, Level p_40668_, LivingEntity p_40669_, int p_40670_) {
-        if (p_40669_ instanceof Player player) {
-            boolean flag = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, p_40667_) > 0;
-            ItemStack itemstack = player.getProjectile(p_40667_);
-            int i = this.getUseDuration(p_40667_) - p_40670_;
-            i = ForgeEventFactory.onArrowLoose(p_40667_, p_40668_, player, i, !itemstack.isEmpty() || flag);
+    public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving, int pTimeLeft) {
+        if (pEntityLiving instanceof Player player) {
+            boolean flag = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, pStack) > 0;
+            ItemStack itemstack = player.getProjectile(pStack);
+            int i = this.getUseDuration(pStack) - pTimeLeft;
+            i = ForgeEventFactory.onArrowLoose(pStack, pLevel, player, i, !itemstack.isEmpty() || flag);
             if (i < 0) {
                 return;
             }
@@ -76,41 +76,41 @@ public class VaultBowItem extends BowItem implements VaultGearItem, DyeableLeath
 
                 float f = getPowerForTime(i);
                 if (!(f < 0.1)) {
-                    boolean flag1 = player.getAbilities().instabuild || itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, p_40667_, player);
-                    if (!p_40668_.isClientSide) {
+                    boolean flag1 = player.getAbilities().instabuild || itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, pStack, player);
+                    if (!pLevel.isClientSide) {
                         ArrowItem arrowitem = (ArrowItem)(itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
-                        AbstractArrow abstractarrow = arrowitem.createArrow(p_40668_, itemstack, player);
+                        AbstractArrow abstractarrow = arrowitem.createArrow(pLevel, itemstack, player);
                         abstractarrow = this.customArrow(abstractarrow);
                         abstractarrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, f * 3.0F, 1.0F);
                         if (f == 1.0F) {
                             abstractarrow.setCritArrow(true);
                         }
 
-                        int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, p_40667_);
+                        int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, pStack);
                         if (j > 0) {
                             abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() + j * 0.5 + 0.5);
                         }
 
-                        int k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, p_40667_);
+                        int k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, pStack);
                         if (k > 0) {
                             abstractarrow.setKnockback(k);
                         }
 
-                        if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, p_40667_) > 0) {
+                        if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, pStack) > 0) {
                             abstractarrow.setSecondsOnFire(100);
                         }
 
-                        p_40667_.hurtAndBreak(1, player, (p_40665_) -> {
+                        pStack.hurtAndBreak(1, player, (p_40665_) -> {
                             p_40665_.broadcastBreakEvent(player.getUsedItemHand());
                         });
                         if (flag1 || player.getAbilities().instabuild && (itemstack.is(Items.SPECTRAL_ARROW) || itemstack.is(Items.TIPPED_ARROW))) {
                             abstractarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                         }
 
-                        p_40668_.addFreshEntity(abstractarrow);
+                        pLevel.addFreshEntity(abstractarrow);
                     }
 
-                    p_40668_.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (p_40668_.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    pLevel.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
                     if (!flag1 && !player.getAbilities().instabuild) {
                         itemstack.shrink(1);
                         if (itemstack.isEmpty()) {
@@ -125,13 +125,13 @@ public class VaultBowItem extends BowItem implements VaultGearItem, DyeableLeath
     }
 
     @Override
-    public int getUseDuration(ItemStack p_40680_) {
-        return super.getUseDuration(p_40680_);
+    public int getUseDuration(ItemStack pStack) {
+        return super.getUseDuration(pStack);
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level p_40672_, Player p_40673_, InteractionHand p_40674_) {
-        return VaultGearHelper.rightClick(p_40672_, p_40673_, p_40674_, super.use(p_40672_, p_40673_, p_40674_));
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
+        return VaultGearHelper.rightClick(pLevel, pPlayer, pHand, super.use(pLevel, pPlayer, pHand));
     }
 
     @Override

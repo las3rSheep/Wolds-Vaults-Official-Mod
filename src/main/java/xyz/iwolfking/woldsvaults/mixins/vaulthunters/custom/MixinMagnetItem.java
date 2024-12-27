@@ -32,8 +32,9 @@ import java.util.Optional;
 
 @Mixin(value = MagnetItem.class, remap = false)
 public abstract class MixinMagnetItem extends Item implements VaultGearItem, CuriosGearItem, ICurioItem {
-    public MixinMagnetItem(Properties p_41383_) {
-        super(p_41383_);
+
+    public MixinMagnetItem(Properties pProperties) {
+        super(pProperties);
     }
 
     @Shadow
