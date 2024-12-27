@@ -2,7 +2,6 @@ package xyz.iwolfking.woldsvaults.mixins.vaulthunters.skills;
 
 import iskallia.vault.init.ModAbilityLabelBindings;
 import iskallia.vault.skill.ability.component.AbilityLabelFormatters;
-import iskallia.vault.skill.ability.effect.spi.core.InstantManaAbility;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -26,7 +25,7 @@ public abstract class MixinModAbilityLabelBindings {
                 "cooldown",
                 ability -> AbilityLabelFormatters.ticks(ability.getCooldownTicks()),
                 "manaCost",
-                ability -> AbilityLabelFormatters.integer((int) ((InstantManaAbility)ability).getManaCost()),
+                ability -> AbilityLabelFormatters.integer((int) ability.getManaCost()),
                 "duration",
                 ability -> AbilityLabelFormatters.ticks(ability.getDurationTicks())
 
@@ -39,7 +38,7 @@ public abstract class MixinModAbilityLabelBindings {
                 "cooldown",
                 ability -> AbilityLabelFormatters.ticks(ability.getCooldownTicks()),
                 "manaCost",
-                ability -> AbilityLabelFormatters.integer((int) ((InstantManaAbility)ability).getManaCost()),
+                ability -> AbilityLabelFormatters.integer((int) ability.getManaCost()),
                 "duration",
                 ability -> AbilityLabelFormatters.ticks(ability.getDurationTicks())
 
