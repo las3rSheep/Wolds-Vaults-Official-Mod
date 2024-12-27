@@ -2,11 +2,7 @@ package xyz.iwolfking.woldsvaults.config.fake;
 
 import iskallia.vault.gear.VaultGearRarity;
 import net.minecraft.resources.ResourceLocation;
-import xyz.iwolfking.woldsvaults.models.Battlestaffs;
-import xyz.iwolfking.woldsvaults.models.LootSacks;
-import xyz.iwolfking.woldsvaults.models.Plushies;
-import xyz.iwolfking.woldsvaults.models.Rangs;
-import xyz.iwolfking.woldsvaults.models.Tridents;
+import xyz.iwolfking.woldsvaults.models.*;
 
 import java.util.HashMap;
 import java.util.List;
