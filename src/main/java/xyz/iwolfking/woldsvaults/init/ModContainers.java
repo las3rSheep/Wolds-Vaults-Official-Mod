@@ -26,8 +26,9 @@ public class ModContainers {
             BlockPos pos = buffer.readBlockPos();
             return new AugmentCraftingTableContainer(windowId, world, pos, inventory);
         });
+     
         VAULT_INFUSER_CONTAINER = IForgeMenuType.create(VaultInfuserContainer::create);
-        event.getRegistry().registerAll(new MenuType[]{(MenuType)VAULT_SALVAGER_CONTAINER.setRegistryName("vault_salvager_container"), AUGMENT_CRAFTING_TABLE_CONTAINER.setRegistryName("augment_crafting_table"), VAULT_INFUSER_CONTAINER.setRegistryName("vault_infuser")});
+        event.getRegistry().registerAll(new MenuType[]{VAULT_SALVAGER_CONTAINER.setRegistryName("vault_salvager_container"), AUGMENT_CRAFTING_TABLE_CONTAINER.setRegistryName("augment_crafting_table"), VAULT_INFUSER_CONTAINER.setRegistryName("vault_infuser")});
 
 
     }
