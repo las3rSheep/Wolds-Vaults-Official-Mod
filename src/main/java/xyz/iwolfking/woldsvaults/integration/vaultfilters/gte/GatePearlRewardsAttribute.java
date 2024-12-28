@@ -1,18 +1,14 @@
 package xyz.iwolfking.woldsvaults.integration.vaultfilters.gte;
 
-import iskallia.vault.item.OfferingItem;
 import iskallia.vault.util.StringUtils;
 import net.joseph.vaultfilters.attributes.abstracts.StringListAttribute;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
+
 import net.minecraft.world.item.ItemStack;
 import shadows.gateways.gate.Gateway;
 import shadows.gateways.gate.Reward;
 import shadows.gateways.item.GatePearlItem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class GatePearlRewardsAttribute extends StringListAttribute {
