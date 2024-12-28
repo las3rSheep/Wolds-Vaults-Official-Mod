@@ -15,12 +15,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import shadows.gateways.entity.GatewayEntity;
-import shadows.gateways.gate.Gateway;
 import shadows.gateways.item.GatePearlItem;
 import xyz.iwolfking.woldsvaults.api.helper.GTEHelper;
 
@@ -32,7 +29,7 @@ public class GatewayChannelingBlock extends Block {
 
     public GatewayChannelingBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(USED, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(USED, false));
     }
 
     @Override
@@ -89,7 +86,7 @@ public class GatewayChannelingBlock extends Block {
                 if (!player.isCreative()) {
                     stack.shrink(1);
                 }
-                state.setValue(USED, true);
+                world.setBlockAndUpdate(pos, state.setValue(USED, true));
                 return InteractionResult.CONSUME;
             }
         }
