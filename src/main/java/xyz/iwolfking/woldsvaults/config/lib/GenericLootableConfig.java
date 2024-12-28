@@ -1,23 +1,27 @@
-package xyz.iwolfking.woldsvaults.config;
+package xyz.iwolfking.woldsvaults.config.lib;
 
 import com.google.gson.annotations.Expose;
 import iskallia.vault.config.Config;
 import iskallia.vault.config.entry.vending.ProductEntry;
 import iskallia.vault.util.data.WeightedList;
-import net.minecraft.world.item.Items;
 
-public class AugmentBoxConfig extends Config {
+public class GenericLootableConfig extends Config {
+    private final String name;
+
     @Expose
     public WeightedList<ProductEntry> POOL = new WeightedList<>();
 
-
-    public String getName() {
-        return "augment_box";
+    public GenericLootableConfig(String name) {
+        this.name = name;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
 
+    @Override
     protected void reset() {
-        this.POOL.add(new ProductEntry(Items.APPLE, 8, null), 3);
-        this.POOL.add(new ProductEntry(Items.GOLDEN_APPLE, 1, null), 1);
+
     }
 }

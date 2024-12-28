@@ -60,6 +60,7 @@ public class ModItems {
     public static LootableItem CATALYST_BOX;
     public static LootableItem ENIGMA_EGG;
     public static LootableItem VAULTAR_BOX;
+    public static LootableItem EXQUISITE_BOX;
 
     public static BasicScavengerItem BENITOITE_GEMSTONE;
     public static BasicScavengerItem WUTODIC_GEMSTONE;
