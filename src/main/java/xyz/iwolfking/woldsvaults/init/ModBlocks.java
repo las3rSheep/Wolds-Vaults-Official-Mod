@@ -39,6 +39,7 @@ public class ModBlocks {
     public static final DecoMonolithBlock DECO_MONOLITH_BLOCK;
     public static final SurvivalMobBarrier SURVIVAL_MOB_BARRIER;
     public static final VaultInfuserBlock VAULT_INFUSER_BLOCK;
+    public static final GatewayChannelingBlock GATEWAY_CHANNELING_BLOCK;
 
     public static final CoinPileDecorBlock VAULT_PALLADIUM_PILE;
     public static final CoinPileDecorBlock VAULT_IRIDIUM_PILE;
@@ -84,6 +85,7 @@ public class ModBlocks {
         XL_BACKPACK = new BackpackBlock(12000);
         VAULT_INFUSER_BLOCK = new VaultInfuserBlock(1);
         AUGMENT_CRAFTING_TABLE = new AugmentCraftingTableBlock();
+        GATEWAY_CHANNELING_BLOCK = new GatewayChannelingBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK));
         VAULT_SALVAGER_ENTITY = BlockEntityType.Builder.of(VaultSalvagerTileEntity::new, VAULT_SALVAGER_BLOCK).build(null);
         ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(IskallianLeavesTileEntity::new, ISKALLIAN_LEAVES_BLOCK).build(null);
         HELLISH_SAND_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(HellishSandTileEntity::new, HELLISH_SAND_BLOCK).build(null);
@@ -114,6 +116,7 @@ public class ModBlocks {
         registerBlock(event, AUGMENT_CRAFTING_TABLE, WoldsVaults.id("augment_crafting_table"));
         registerBlock(event, INFUSED_DRIFTWOOD_PLANKS, WoldsVaults.id("infused_driftwood_planks"));
         registerBlock(event, VAULT_INFUSER_BLOCK, WoldsVaults.id("chromatic_iron_vault_infuser"));
+        registerBlock(event, GATEWAY_CHANNELING_BLOCK, WoldsVaults.id("gateway_channeling_block"));
 
     }
     public static void registerTileEntities(RegistryEvent.Register<BlockEntityType<?>> event) {
@@ -143,6 +146,7 @@ public class ModBlocks {
         registerBlockItem(event, AUGMENT_CRAFTING_TABLE);
         registerBlockItem(event, INFUSED_DRIFTWOOD_PLANKS);
         registerBlockItem(event, VAULT_INFUSER_BLOCK);
+        registerBlockItem(event, GATEWAY_CHANNELING_BLOCK);
         registerBlockItem(event, VAULT_PALLADIUM_PILE, VAULT_PALLADIUM);
         registerBlockItem(event, VAULT_IRIDIUM_PILE, VAULT_IRIDIUM);
     }

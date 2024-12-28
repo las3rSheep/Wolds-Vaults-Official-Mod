@@ -29,6 +29,7 @@
     "ensorcellation.MixinCommonEvents",
     "ensorcellation.MixinCurseMercyEnchantment",
     "ensorcellation.MixinEnsorcEnchantments",
+    "gatewaystoeternity.MixinGatePearlItem",
     "grimoireofgaia.MixinAbstractGaiaEntity",
     "hostilenetworks.HostileCachedModelMixin",
     "hostilenetworks.HostileDataModelMixin",
