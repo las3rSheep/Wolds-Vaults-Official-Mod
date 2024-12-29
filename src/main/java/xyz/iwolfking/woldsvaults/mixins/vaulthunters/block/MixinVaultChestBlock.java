@@ -1,12 +1,10 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.block;
 
 import iskallia.vault.block.entity.VaultChestTileEntity;
-import iskallia.vault.config.gear.VaultGearTierConfig;
 import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -17,17 +15,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gameevent.GameEvent;
-import org.checkerframework.checker.units.qual.A;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
-import java.util.Random;
 
 
 @Mixin(value = VaultChestBlock.class, remap = false)
