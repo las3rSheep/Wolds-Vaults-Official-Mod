@@ -1,7 +1,5 @@
-
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.block;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import iskallia.vault.block.entity.VaultChestTileEntity;
 import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
@@ -25,7 +23,6 @@ import java.util.function.Supplier;
 
 
 @Mixin(value = VaultChestBlock.class, remap = false)
-@ParametersAreNonnullByDefault
 public class MixinVaultChestBlock extends ChestBlock {
 
     public MixinVaultChestBlock(Properties p_51490_, Supplier<BlockEntityType<? extends ChestBlockEntity>> p_51491_) {
