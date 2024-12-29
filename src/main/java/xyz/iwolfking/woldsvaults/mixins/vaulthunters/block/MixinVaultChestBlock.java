@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
@@ -57,10 +58,12 @@ public class MixinVaultChestBlock extends ChestBlock {
                         chest.setItem(slot, ItemStack.EMPTY);
                         if (dismantle_chance >= 1.0F) {
                             dismantle_chance -= 1.0F;
+                            this.spawnDestroyParticles(world, player, pos, state);
                         } else if (dismantle_chance > 0.0F) {
-                            if (dismantle_chance > Math.random()) {
+                            if (dismantle_chance < Math.random()) {
                                 break;
                             }
+                            this.spawnDestroyParticles(world, player, pos, state);
                             dismantle_chance = 0.0F;
                         } else {
                             break;
@@ -68,7 +71,6 @@ public class MixinVaultChestBlock extends ChestBlock {
                     }
                 }
             }
-
         }
     }
     /*@Inject(method = "playerDestroy", at = @At(value = "INVOKE", target = "Liskallia/vault/block/entity/VaultChestTileEntity;setItem(ILnet/minecraft/world/item/ItemStack;)V"))
