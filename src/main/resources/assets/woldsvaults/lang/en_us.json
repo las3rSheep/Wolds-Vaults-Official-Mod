@@ -203,6 +203,7 @@
   "container.woldsvaults.infuser": "Vault Infuser",
   "block.woldsvaults.chromatic_iron_vault_infuser": "Chromatic Iron Vault Infuser",
   "jei.category.woldsvaults.infuser": "Vault Infuser",
-  "item.woldsvaults.vault_diamond_nugget": "Vault Diamond Nugget"
+  "item.woldsvaults.vault_diamond_nugget": "Vault Diamond Nugget",
+  "block.woldsvaults.gateway_channeling_block": "Gateway Channeling Beacon"
 
 }
