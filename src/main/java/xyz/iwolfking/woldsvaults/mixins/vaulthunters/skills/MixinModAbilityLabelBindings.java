@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.iwolfking.woldsvaults.abilities.ChainMinerAbility;
 import xyz.iwolfking.woldsvaults.abilities.ColossusAbility;
 import xyz.iwolfking.woldsvaults.abilities.LevitateAbility;
 import xyz.iwolfking.woldsvaults.abilities.SneakyGetawayAbility;
@@ -44,6 +45,11 @@ public abstract class MixinModAbilityLabelBindings {
                 ability -> AbilityLabelFormatters.ticks(ability.getDurationTicks())
 
         ));
+        ModAbilityLabelBindings.register(ChainMinerAbility.class, Map.of(
+                "blocks",
+                ability -> AbilityLabelFormatters.integer(ability.getUnmodifiedBlockLimit()),
+                "distance",
+                ability -> AbilityLabelFormatters.integer(ability.getRange())
         ModAbilityLabelBindings.register(LevitateAbility.class, Map.of(
                 "levitateSpeed",
                 ability -> AbilityLabelFormatters.decimal(ability.getLevitateSpeed())
