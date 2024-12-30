@@ -15,6 +15,7 @@ public class ModConfigs {
     public static GenericLootableConfig CATALYST_BOX;
     public static GenericLootableConfig ENIGMA_EGG;
     public static GenericLootableConfig VAULTAR_BOX;
+    public static GenericLootableConfig EXQUISITE_BOX;
 
     public static UnhingedScavengerConfig UNHINGED_SCAVENGER;
     public static BallisticBingoConfig BALLISTIC_BINGO_CONFIG;
@@ -40,7 +41,7 @@ public class ModConfigs {
         CATALYST_BOX = new GenericLootableConfig("catalyst_box").readConfig();
         ENIGMA_EGG = new GenericLootableConfig("enigma_egg").readConfig();
         VAULTAR_BOX = new GenericLootableConfig("vaultar_box").readConfig();
-        VAULTAR_BOX = new GenericLootableConfig("exquisite_box").readConfig();
+        EXQUISITE_BOX = new GenericLootableConfig("exquisite_box").readConfig();
         UNHINGED_SCAVENGER = new UnhingedScavengerConfig().readConfig();
         BALLISTIC_BINGO_CONFIG = new BallisticBingoConfig().readConfig();
         HAUNTED_BRAZIERS = new HauntedBraziersConfig().readConfig();

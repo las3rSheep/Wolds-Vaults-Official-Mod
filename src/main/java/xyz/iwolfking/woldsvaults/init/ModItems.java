@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.api.lib.item.MultiLootableItem;
 import xyz.iwolfking.woldsvaults.items.*;
 import xyz.iwolfking.woldsvaults.items.fruits.HastyPomegranteItem;
 import xyz.iwolfking.woldsvaults.items.fruits.PoltergeistPlum;
@@ -60,7 +61,7 @@ public class ModItems {
     public static LootableItem CATALYST_BOX;
     public static LootableItem ENIGMA_EGG;
     public static LootableItem VAULTAR_BOX;
-    public static LootableItem EXQUISITE_BOX;
+    public static MultiLootableItem EXQUISITE_BOX;
 
     public static BasicScavengerItem BENITOITE_GEMSTONE;
     public static BasicScavengerItem WUTODIC_GEMSTONE;
@@ -264,6 +265,7 @@ public class ModItems {
         registry.register(INFUSED_DRIFTWOOD);
         registry.register(SPARK_OF_INSPIRATION);
         registry.register(VAULT_DIAMOND_NUGGET);
+        registry.register(EXQUISITE_BOX);
     }
 
     static {
@@ -287,6 +289,7 @@ public class ModItems {
         CATALYST_BOX = new LootableItem(WoldsVaults.id("catalyst_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.CATALYST_BOX.POOL.getRandom(rand).generateItemStack()));
         ENIGMA_EGG = new LootableItem(WoldsVaults.id("enigma_egg"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.ENIGMA_EGG.POOL.getRandom(rand).generateItemStack()));
         VAULTAR_BOX = new LootableItem(WoldsVaults.id("vaultar_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.VAULTAR_BOX.POOL.getRandom(rand).generateItemStack()));
+        EXQUISITE_BOX = new MultiLootableItem(WoldsVaults.id("exquisite_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.EXQUISITE_BOX.POOL.getRandom(rand).generateItemStack()), 3);
         BENITOITE_GEMSTONE = new BasicScavengerItem("benitoite_gemstone");
         WUTODIC_GEMSTONE = new BasicScavengerItem("wutodic_gemstone");
         ECHOING_GEMSTONE = new BasicScavengerItem("echoing_gemstone");
