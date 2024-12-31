@@ -6,6 +6,7 @@ import iskallia.vault.block.CoinPileBlock;
 import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.block.VaultOreBlock;
 import iskallia.vault.core.event.CommonEvents;
+import iskallia.vault.core.event.common.PlayerStatEvent;
 import iskallia.vault.entity.VaultBoss;
 import iskallia.vault.entity.boss.VaultBossEntity;
 import iskallia.vault.entity.champion.ChampionLogic;
@@ -22,6 +23,8 @@ import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.trinket.TrinketHelper;
 import iskallia.vault.gear.trinket.effects.MultiJumpTrinket;
+import iskallia.vault.snapshot.AttributeSnapshot;
+import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.calc.PlayerStat;
 import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.core.Registry;
@@ -137,6 +140,34 @@ public class LivingEntityEvents {
                 else {
                     event.setAmount(event.getAmount() + ((event.getEntityLiving().getMaxHealth() - event.getEntityLiving().getHealth()) * data.get(ModGearAttributes.EXECUTION_DAMAGE, VaultGearAttributeTypeMerger.floatSum())));
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void thornsScalingDamage(LivingHurtEvent event) {
+        //Prevent an entity from being reaved more than once or applying to non-melee strikes.
+        if(!WoldEventHelper.isNormalAttack()) {
+            return;
+        }
+
+        if(event.getSource().isProjectile()) {
+            return;
+        }
+
+        if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
+            VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
+            if(data != null && event.getEntity() instanceof LivingEntity livingEntity) {
+                AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(livingEntity);
+                float thornsScalingPercent = snapshot.getAttributeValue(ModGearAttributes.THORNS_SCALING_DAMAGE, VaultGearAttributeTypeMerger.floatSum());
+                if(thornsScalingPercent <= 0F) {
+                    return;
+                }
+
+                float thornsDamage = CommonEvents.PLAYER_STAT.invoke(PlayerStat.THORNS_DAMAGE_FLAT, livingEntity, snapshot.getAttributeValue(iskallia.vault.init.ModGearAttributes.THORNS_DAMAGE_FLAT, VaultGearAttributeTypeMerger.floatSum())).getValue();
+
+                event.setAmount(event.getAmount() + (thornsDamage * thornsScalingPercent));
+
             }
         }
     }
