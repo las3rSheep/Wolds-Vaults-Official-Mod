@@ -2,6 +2,7 @@ package xyz.iwolfking.woldsvaults.init;
 
 import iskallia.vault.VaultMod;
 import iskallia.vault.gear.attribute.VaultGearAttribute;
+import iskallia.vault.gear.attribute.VaultGearAttributeRegistry;
 import iskallia.vault.gear.attribute.config.ConfigurableAttributeGenerator;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeType;
 import iskallia.vault.gear.comparator.VaultGearAttributeComparator;
@@ -38,10 +39,11 @@ public class ModGearAttributes {
 
     public static final VaultGearAttribute<Float> RETURNING_DAMAGE = attr("returning_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Returning Damage", 8833629), VaultGearAttributeComparator.floatComparator());
 
-    public static final VaultGearAttribute<Float> DISMANTLE_CHANCE = attr("dismantle_chance", VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Dismantling Chance", 13388311), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> DISMANTLE_CHANCE = attr("dismantle_chance", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Dismantling Chance", 13388311), VaultGearAttributeComparator.floatComparator());
 
-    public static final VaultGearAttribute<Float> EXECUTION_DAMAGE = attr("execution_damage", VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Execution Damage", 10302464), VaultGearAttributeComparator.floatComparator());
-    public static final VaultGearAttribute<Float> THORNS_SCALING_DAMAGE = attr("thorns_scaling_damage", VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Thorns Scaling", 10302464), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> EXECUTION_DAMAGE = attr("execution_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Execution Damage", 10302464), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<Float> THORNS_SCALING_DAMAGE = attr("thorns_scaling_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Thorns Scaling", 537088), VaultGearAttributeComparator.floatComparator());
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
@@ -72,6 +74,6 @@ public class ModGearAttributes {
 
 
     private static <T> VaultGearAttribute<T> attr(String name, VaultGearAttributeType<T> type,ConfigurableAttributeGenerator<T, ?> generator,VaultGearModifierReader<T> reader,@Nullable VaultGearAttributeComparator<T> comparator) {
-        return new VaultGearAttribute(VaultMod.id(name), type, generator, reader, comparator);
+        return new VaultGearAttribute<>(VaultMod.id(name), type, generator, reader, comparator);
     }
 }

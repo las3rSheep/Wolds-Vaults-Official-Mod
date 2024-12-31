@@ -26,6 +26,7 @@ import iskallia.vault.gear.trinket.effects.MultiJumpTrinket;
 import iskallia.vault.snapshot.AttributeSnapshot;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.calc.PlayerStat;
+import iskallia.vault.util.calc.ThornsHelper;
 import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -37,9 +38,11 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -56,6 +59,7 @@ import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
 import xyz.iwolfking.woldsvaults.util.WoldEventHelper;
 
 import java.util.Random;
+import java.util.function.BiConsumer;
 
 @Mod.EventBusSubscriber(
         modid = WoldsVaults.MOD_ID
@@ -134,12 +138,8 @@ public class LivingEntityEvents {
                     WoldsVaults.LOGGER.debug("[WOLD'S VAULTS] Added " + ((event.getEntityLiving().getMaxHealth() - event.getEntityLiving().getHealth()) * data.get(ModGearAttributes.EXECUTION_DAMAGE, VaultGearAttributeTypeMerger.floatSum())) + " bonus execution damage to attack.");
                 }
 
-                if(ChampionLogic.isChampion(event.getEntityLiving()) || InfernalMobsCore.getMobModifiers(event.getEntityLiving()) != null || event.getEntityLiving() instanceof VaultBoss || event.getEntityLiving() instanceof VaultBossEntity || event.getEntityLiving() instanceof EliteDrownedEntity || event.getEntityLiving() instanceof EliteWitherSkeleton || event.getEntityLiving() instanceof EliteEndermanEntity || event.getEntityLiving() instanceof EliteHuskEntity || event.getEntityLiving() instanceof EliteSpiderEntity || event.getEntityLiving() instanceof  EliteStrayEntity || event.getEntityLiving() instanceof  EliteZombieEntity || event.getEntityLiving() instanceof EliteWitchEntity) {
-                    event.setAmount(event.getAmount() + (event.getEntityLiving().getMaxHealth() * (data.get(ModGearAttributes.EXECUTION_DAMAGE, VaultGearAttributeTypeMerger.floatSum()) * 0.75F)));
-                }
-                else {
-                    event.setAmount(event.getAmount() + ((event.getEntityLiving().getMaxHealth() - event.getEntityLiving().getHealth()) * data.get(ModGearAttributes.EXECUTION_DAMAGE, VaultGearAttributeTypeMerger.floatSum())));
-                }
+                event.setAmount(event.getAmount() + ((event.getEntityLiving().getMaxHealth() - event.getEntityLiving().getHealth()) * data.get(ModGearAttributes.EXECUTION_DAMAGE, VaultGearAttributeTypeMerger.floatSum())));
+
             }
         }
     }
@@ -157,15 +157,13 @@ public class LivingEntityEvents {
 
         if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
             VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
-            if(data != null && event.getEntity() instanceof LivingEntity livingEntity) {
-                AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(livingEntity);
-                float thornsScalingPercent = snapshot.getAttributeValue(ModGearAttributes.THORNS_SCALING_DAMAGE, VaultGearAttributeTypeMerger.floatSum());
+            if(data != null) {
+                float thornsScalingPercent = AttributeSnapshotHelper.getInstance().getSnapshot(player).getAttributeValue(ModGearAttributes.THORNS_SCALING_DAMAGE, VaultGearAttributeTypeMerger.floatSum());
                 if(thornsScalingPercent <= 0F) {
                     return;
                 }
 
-                float thornsDamage = CommonEvents.PLAYER_STAT.invoke(PlayerStat.THORNS_DAMAGE_FLAT, livingEntity, snapshot.getAttributeValue(iskallia.vault.init.ModGearAttributes.THORNS_DAMAGE_FLAT, VaultGearAttributeTypeMerger.floatSum())).getValue();
-
+                float thornsDamage = ThornsHelper.getAdditionalThornsFlatDamage(player);
                 event.setAmount(event.getAmount() + (thornsDamage * thornsScalingPercent));
 
             }
@@ -271,6 +269,18 @@ public class LivingEntityEvents {
                 } else {
                     event.setDistance(event.getDistance() - 2.0F);
                 }
+            }
+        }
+    }
+
+    private static void withSnapshot(LivingEvent event, boolean serverOnly, BiConsumer<LivingEntity, AttributeSnapshot> fn) {
+        withSnapshot(event.getEntityLiving(), serverOnly, fn);
+    }
+
+    private static void withSnapshot(LivingEntity entity, boolean serverOnly, BiConsumer<LivingEntity, AttributeSnapshot> fn) {
+        if (AttributeSnapshotHelper.canHaveSnapshot(entity)) {
+            if (!serverOnly || !entity.getCommandSenderWorld().isClientSide()) {
+                fn.accept(entity, AttributeSnapshotHelper.getInstance().getSnapshot(entity));
             }
         }
     }
