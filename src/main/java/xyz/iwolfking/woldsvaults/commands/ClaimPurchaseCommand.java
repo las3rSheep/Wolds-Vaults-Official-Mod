@@ -6,7 +6,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.TextComponent;
-//import xyz.iwolfking.woldsvaults.gui.server.ClaimBlockCategoryGui;
+import xyz.iwolfking.woldsvaults.gui.server.ClaimBlockCategoryGui;
 
 public class ClaimPurchaseCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -14,10 +14,10 @@ public class ClaimPurchaseCommand {
     }
 
     private static int openClaimShop(CommandContext<CommandSourceStack> commandSourceStackCommandContext) throws CommandSyntaxException {
-//        ClaimBlockCategoryGui gui = new ClaimBlockCategoryGui(commandSourceStackCommandContext.getSource().getPlayerOrException());
-//        gui.updateDisplay();
-//        gui.setTitle(new TextComponent("Claim Shop"));
-//        gui.open();
+        ClaimBlockCategoryGui gui = new ClaimBlockCategoryGui(commandSourceStackCommandContext.getSource().getPlayerOrException());
+        gui.updateDisplay();
+        gui.setTitle(new TextComponent("Claim Shop"));
+        gui.open();
         return 0;
     }
 }

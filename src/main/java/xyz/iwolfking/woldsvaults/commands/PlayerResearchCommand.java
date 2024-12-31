@@ -7,7 +7,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.MessageArgument;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.common.UsernameCache;
-//import xyz.iwolfking.woldsvaults.gui.server.PlayerResearchesGUI;
+import xyz.iwolfking.woldsvaults.gui.server.PlayerResearchesGUI;
 import xyz.iwolfking.woldsvaults.util.MessageFunctions;
 
 import java.util.UUID;
@@ -24,10 +24,10 @@ public class PlayerResearchCommand {
             if (ctx.getServer().getProfileCache().get(target).isPresent()) {
                 UUID uuid = ctx.getServer().getProfileCache().get(target).get().getId();
                 System.out.println(target);
-//                PlayerResearchesGUI gui = new PlayerResearchesGUI(ctx.getPlayerOrException(), uuid);
-//                gui.updateDisplay();
-//                gui.setTitle(new TextComponent(target + "'s Researches"));
-//                gui.open();
+                PlayerResearchesGUI gui = new PlayerResearchesGUI(ctx.getPlayerOrException(), uuid);
+                gui.updateDisplay();
+                gui.setTitle(new TextComponent(target + "'s Researches"));
+                gui.open();
                 return 0;
 
             }
