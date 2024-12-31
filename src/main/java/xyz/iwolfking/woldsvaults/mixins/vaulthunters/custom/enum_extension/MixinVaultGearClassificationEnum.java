@@ -14,7 +14,7 @@ import java.util.function.Function;
 public abstract class MixinVaultGearClassificationEnum {
     @Shadow
     @Final
-    @Mutable
+    @Mutable @SuppressWarnings("target")
     private static VaultGearClassification [] $VALUES;
 
     @Shadow public abstract int getModifierCount(VaultGearRarity rarity);

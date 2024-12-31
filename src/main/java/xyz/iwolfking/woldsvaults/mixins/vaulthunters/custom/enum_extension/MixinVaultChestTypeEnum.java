@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class MixinVaultChestTypeEnum {
     @Shadow
     @Final
-    @Mutable
+    @Mutable @SuppressWarnings("target")
     private static VaultChestType[] $VALUES;
 
     @Invoker("<init>")
