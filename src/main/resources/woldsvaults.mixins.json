@@ -123,6 +123,7 @@
     "vaulthunters.custom.enum_extension.MixinForgeRecipeTypeEnum",
     "vaulthunters.custom.enum_extension.MixinModifierAffixTagGroupEnum",
     "vaulthunters.custom.enum_extension.MixinVaultChestTypeEnum",
+    "vaulthunters.custom.enum_extension.MixinVaultGearClassificationEnum",
     "vaulthunters.custom.enum_extension.MixinVaultRarityEnum",
     "vaulthunters.custom.etching.MixinAssassinSet",
     "vaulthunters.custom.etching.MixinDragonSet",
