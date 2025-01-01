@@ -53,6 +53,7 @@ public class VaultMapItem extends BasicItem implements VaultGearItem {
 
     @NotNull
     @Override
+    @SuppressWarnings({"removal", "deprecation"})
     public ProficiencyType getCraftingProficiencyType(ItemStack itemStack) {
         return ProficiencyType.UNKNOWN;
     }

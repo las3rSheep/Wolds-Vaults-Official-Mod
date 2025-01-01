@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class MixinVaultRarityEnum {
     @Shadow
     @Final
-    @Mutable
+    @Mutable @SuppressWarnings("target")
     private static VaultGearRarity[] $VALUES;
 
 
