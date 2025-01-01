@@ -157,6 +157,7 @@
     "vaulthunters.skills.MixinModAbilityLabelBindings",
     "vaulthunters.skills.MixinResistanceHelper",
     "vaulthunters.skills.MixinSkill",
+    "vaulthunters.skills.modifications.MixinAbstractVeinMinerAbility",
     "vaulthunters.skills.modifications.MixinFireballAbility",
     "vaulthunters.skills.modifications.MixinIceBoltChunkAbility",
     "vaulthunters.testing.CrystalConfigAccessor",

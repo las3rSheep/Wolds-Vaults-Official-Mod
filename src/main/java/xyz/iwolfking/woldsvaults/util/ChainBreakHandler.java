@@ -11,11 +11,11 @@ import iskallia.vault.network.message.EffectMessage;
 
 import java.util.*;
 
+import iskallia.vault.util.BlockBreakHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Block;
@@ -30,9 +30,8 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.PacketDistributor;
-import org.jetbrains.annotations.NotNull;
 
-public abstract class ChainBreakHandler {
+public abstract class ChainBreakHandler extends BlockBreakHandler {
     private static final List<IItemDamageHandler> DAMAGE_HANDLER_LIST = new ArrayList<IItemDamageHandler>() {};
 
     private static IItemDamageHandler getDamageHandler(ItemStack itemStack) {
@@ -44,12 +43,6 @@ public abstract class ChainBreakHandler {
 
         return DefaultItemDamageHandler.INSTANCE;
     }
-
-    protected abstract int getBlockLimit(Player var1);
-
-    protected abstract ItemStack getMiningItemProxy(Player var1);
-
-    protected abstract boolean shouldVoid(ServerLevel var1, ServerPlayer var2, BlockState var3);
 
     protected abstract int getRange();
 
@@ -80,6 +73,7 @@ public abstract class ChainBreakHandler {
             } else if (limit <= 0) {
                 return false;
             } else {
+                boolean showChain = range > 1;
                 boolean heldItemStartedEmpty = heldItem.isEmpty();
                 Set<BlockPos> traversedBlocks = new HashSet<>();
                 Queue<BlockPos> positionQueue = new LinkedList<>();
@@ -103,7 +97,9 @@ public abstract class ChainBreakHandler {
                                     break;
                                 }
 
-                                ModNetwork.CHANNEL.send(PacketDistributor.ALL.noArg(), new ChainingParticleMessage(List.of(Vec3.atCenterOf(headPos),Vec3.atCenterOf(offset))));
+                                if (showChain)
+                                    ModNetwork.CHANNEL.send(PacketDistributor.ALL.noArg(), new ChainingParticleMessage(List.of(Vec3.atCenterOf(headPos),Vec3.atCenterOf(offset))));
+
                                 positionQueue.add(offset);
                                 traversedBlocks.add(offset);
                             }
