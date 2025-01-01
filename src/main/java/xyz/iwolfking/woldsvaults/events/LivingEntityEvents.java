@@ -7,6 +7,7 @@ import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.block.VaultOreBlock;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.event.common.PlayerStatEvent;
+import iskallia.vault.core.vault.time.TickClock;
 import iskallia.vault.entity.VaultBoss;
 import iskallia.vault.entity.boss.VaultBossEntity;
 import iskallia.vault.entity.champion.ChampionLogic;
