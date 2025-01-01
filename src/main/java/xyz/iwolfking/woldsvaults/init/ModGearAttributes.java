@@ -45,6 +45,8 @@ public class ModGearAttributes {
 
     public static final VaultGearAttribute<Float> THORNS_SCALING_DAMAGE = attr("thorns_scaling_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Thorns Scaling", 537088), VaultGearAttributeComparator.floatComparator());
 
+    public static final VaultGearAttribute<Boolean> TREASURE_AFFINITY = attr("treasure_affinity", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Treasure Affinity", 11481611), VaultGearAttributeComparator.booleanComparator());
+
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
         IForgeRegistry<VaultGearAttribute<?>> registry = event.getRegistry();
@@ -62,6 +64,7 @@ public class ModGearAttributes {
         registry.register(DISMANTLE_CHANCE);
         registry.register(EXECUTION_DAMAGE);
         registry.register(THORNS_SCALING_DAMAGE);
+        registry.register(TREASURE_AFFINITY);
     }
 
     public static void registerVanillaAssociations() {
