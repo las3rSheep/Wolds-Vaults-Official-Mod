@@ -47,8 +47,8 @@ public abstract class MixinModAbilityLabelBindings {
                 ability -> AbilityLabelFormatters.integer(ability.getUnmodifiedBlockLimit()),
                 "distance",
                 ability -> AbilityLabelFormatters.integer(ability.getRange())
+  
         ));
-
         ModAbilityLabelBindings.register(LevitateAbility.class, Map.of(
                 "levitateSpeed",
                 ability -> AbilityLabelFormatters.decimal(ability.getLevitateSpeed())

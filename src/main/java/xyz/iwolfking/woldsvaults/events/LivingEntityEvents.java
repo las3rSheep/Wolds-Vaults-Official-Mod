@@ -6,6 +6,7 @@ import iskallia.vault.block.CoinPileBlock;
 import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.block.VaultOreBlock;
 import iskallia.vault.core.event.CommonEvents;
+import iskallia.vault.core.event.common.PlayerStatEvent;
 import iskallia.vault.entity.VaultBoss;
 import iskallia.vault.entity.boss.VaultBossEntity;
 import iskallia.vault.entity.champion.ChampionLogic;
@@ -22,7 +23,10 @@ import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.trinket.TrinketHelper;
 import iskallia.vault.gear.trinket.effects.MultiJumpTrinket;
+import iskallia.vault.snapshot.AttributeSnapshot;
+import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.calc.PlayerStat;
+import iskallia.vault.util.calc.ThornsHelper;
 import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -34,9 +38,11 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -53,6 +59,7 @@ import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
 import xyz.iwolfking.woldsvaults.util.WoldEventHelper;
 
 import java.util.Random;
+import java.util.function.BiConsumer;
 
 @Mod.EventBusSubscriber(
         modid = WoldsVaults.MOD_ID
@@ -109,6 +116,56 @@ public class LivingEntityEvents {
                     return;
                 }
                 player.getLevel().playSound(null, event.getEntity(), ANCHOR_SLAM_SOUND, SoundSource.PLAYERS, 1.0F, 1.0F);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void executionDamage(LivingHurtEvent event) {
+        //Prevent an entity from being reaved more than once or applying to non-melee strikes.
+        if(!WoldEventHelper.isNormalAttack()) {
+            return;
+        }
+
+        if(event.getSource().isProjectile()) {
+            return;
+        }
+
+        if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
+            VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
+            if(data != null && data.hasAttribute(ModGearAttributes.EXECUTION_DAMAGE)) {
+                if(WoldsVaultsConfig.COMMON.enableDebugMode.get()) {
+                    WoldsVaults.LOGGER.debug("[WOLD'S VAULTS] Added " + ((event.getEntityLiving().getMaxHealth() - event.getEntityLiving().getHealth()) * data.get(ModGearAttributes.EXECUTION_DAMAGE, VaultGearAttributeTypeMerger.floatSum())) + " bonus execution damage to attack.");
+                }
+
+                event.setAmount(event.getAmount() + ((event.getEntityLiving().getMaxHealth() - event.getEntityLiving().getHealth()) * data.get(ModGearAttributes.EXECUTION_DAMAGE, VaultGearAttributeTypeMerger.floatSum())));
+
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void thornsScalingDamage(LivingHurtEvent event) {
+        //Prevent an entity from being reaved more than once or applying to non-melee strikes.
+        if(!WoldEventHelper.isNormalAttack()) {
+            return;
+        }
+
+        if(event.getSource().isProjectile()) {
+            return;
+        }
+
+        if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
+            VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
+            if(data != null) {
+                float thornsScalingPercent = AttributeSnapshotHelper.getInstance().getSnapshot(player).getAttributeValue(ModGearAttributes.THORNS_SCALING_DAMAGE, VaultGearAttributeTypeMerger.floatSum());
+                if(thornsScalingPercent <= 0F) {
+                    return;
+                }
+
+                float thornsDamage = ThornsHelper.getAdditionalThornsFlatDamage(player);
+                event.setAmount(event.getAmount() + (thornsDamage * thornsScalingPercent));
+
             }
         }
     }
@@ -212,6 +269,18 @@ public class LivingEntityEvents {
                 } else {
                     event.setDistance(event.getDistance() - 2.0F);
                 }
+            }
+        }
+    }
+
+    private static void withSnapshot(LivingEvent event, boolean serverOnly, BiConsumer<LivingEntity, AttributeSnapshot> fn) {
+        withSnapshot(event.getEntityLiving(), serverOnly, fn);
+    }
+
+    private static void withSnapshot(LivingEntity entity, boolean serverOnly, BiConsumer<LivingEntity, AttributeSnapshot> fn) {
+        if (AttributeSnapshotHelper.canHaveSnapshot(entity)) {
+            if (!serverOnly || !entity.getCommandSenderWorld().isClientSide()) {
+                fn.accept(entity, AttributeSnapshotHelper.getInstance().getSnapshot(entity));
             }
         }
     }
