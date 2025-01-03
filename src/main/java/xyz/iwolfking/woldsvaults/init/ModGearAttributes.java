@@ -47,6 +47,8 @@ public class ModGearAttributes {
 
     public static final VaultGearAttribute<Boolean> TREASURE_AFFINITY = attr("treasure_affinity", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Treasure Affinity", 16749824), VaultGearAttributeComparator.booleanComparator());
 
+    public static final VaultGearAttribute<Boolean> BREACHING = attr("breaching", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Breaching", 10031431), VaultGearAttributeComparator.booleanComparator());
+
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
         IForgeRegistry<VaultGearAttribute<?>> registry = event.getRegistry();
@@ -65,6 +67,7 @@ public class ModGearAttributes {
         registry.register(EXECUTION_DAMAGE);
         registry.register(THORNS_SCALING_DAMAGE);
         registry.register(TREASURE_AFFINITY);
+        registry.register(BREACHING);
     }
 
     public static void registerVanillaAssociations() {
