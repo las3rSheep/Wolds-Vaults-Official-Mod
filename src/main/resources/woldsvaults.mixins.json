@@ -65,6 +65,7 @@
     "vaultarhud.MixinInventoryHudRender",
     "vaultarhud.MixinScreenValidator",
     "vaultfaster.fixes.MixinTemplateProcessorModifier",
+    "hexal.MixinBlockEntitySlipway",
     "vaulthunters.MixinModConfigs",
     "vaulthunters.accessors.ClassicCircleCrystalLayoutAccessor",
     "vaulthunters.accessors.ClassicInfiniteCrystalLayoutAccessor",
