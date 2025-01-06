@@ -6,16 +6,28 @@ import iskallia.vault.block.CoinPileBlock;
 import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.block.VaultOreBlock;
 import iskallia.vault.core.event.CommonEvents;
+import iskallia.vault.core.event.common.PlayerStatEvent;
+import iskallia.vault.core.vault.time.TickClock;
 import iskallia.vault.entity.VaultBoss;
 import iskallia.vault.entity.boss.VaultBossEntity;
 import iskallia.vault.entity.champion.ChampionLogic;
-import iskallia.vault.entity.entity.elite.*;
+import iskallia.vault.entity.entity.elite.EliteDrownedEntity;
+import iskallia.vault.entity.entity.elite.EliteEndermanEntity;
+import iskallia.vault.entity.entity.elite.EliteHuskEntity;
+import iskallia.vault.entity.entity.elite.EliteSpiderEntity;
+import iskallia.vault.entity.entity.elite.EliteStrayEntity;
+import iskallia.vault.entity.entity.elite.EliteWitchEntity;
+import iskallia.vault.entity.entity.elite.EliteWitherSkeleton;
+import iskallia.vault.entity.entity.elite.EliteZombieEntity;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.trinket.TrinketHelper;
 import iskallia.vault.gear.trinket.effects.MultiJumpTrinket;
+import iskallia.vault.snapshot.AttributeSnapshot;
+import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.calc.PlayerStat;
+import iskallia.vault.util.calc.ThornsHelper;
 import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -27,9 +39,11 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -46,6 +60,7 @@ import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
 import xyz.iwolfking.woldsvaults.util.WoldEventHelper;
 
 import java.util.Random;
+import java.util.function.BiConsumer;
 
 @Mod.EventBusSubscriber(
         modid = WoldsVaults.MOD_ID
@@ -107,6 +122,56 @@ public class LivingEntityEvents {
     }
 
     @SubscribeEvent
+    public static void executionDamage(LivingHurtEvent event) {
+        //Prevent an entity from being reaved more than once or applying to non-melee strikes.
+        if(!WoldEventHelper.isNormalAttack()) {
+            return;
+        }
+
+        if(event.getSource().isProjectile()) {
+            return;
+        }
+
+        if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
+            VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
+            if(data != null && data.hasAttribute(ModGearAttributes.EXECUTION_DAMAGE)) {
+                if(WoldsVaultsConfig.COMMON.enableDebugMode.get()) {
+                    WoldsVaults.LOGGER.debug("[WOLD'S VAULTS] Added " + ((event.getEntityLiving().getMaxHealth() - event.getEntityLiving().getHealth()) * data.get(ModGearAttributes.EXECUTION_DAMAGE, VaultGearAttributeTypeMerger.floatSum())) + " bonus execution damage to attack.");
+                }
+
+                event.setAmount(event.getAmount() + ((event.getEntityLiving().getMaxHealth() - event.getEntityLiving().getHealth()) * data.get(ModGearAttributes.EXECUTION_DAMAGE, VaultGearAttributeTypeMerger.floatSum())));
+
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void thornsScalingDamage(LivingHurtEvent event) {
+        //Prevent an entity from being reaved more than once or applying to non-melee strikes.
+        if(!WoldEventHelper.isNormalAttack()) {
+            return;
+        }
+
+        if(event.getSource().isProjectile()) {
+            return;
+        }
+
+        if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
+            VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
+            if(data != null) {
+                float thornsScalingPercent = AttributeSnapshotHelper.getInstance().getSnapshot(player).getAttributeValue(ModGearAttributes.THORNS_SCALING_DAMAGE, VaultGearAttributeTypeMerger.floatSum());
+                if(thornsScalingPercent <= 0F) {
+                    return;
+                }
+
+                float thornsDamage = ThornsHelper.getAdditionalThornsFlatDamage(player);
+                event.setAmount(event.getAmount() + (thornsDamage * thornsScalingPercent));
+
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void hexingHit(LivingHurtEvent event) {
         //Prevent an entity from being reaved more than once or applying to non-melee strikes.
         if(!WoldEventHelper.isNormalAttack()) {
@@ -138,9 +203,7 @@ public class LivingEntityEvents {
     public static void onDamageTotem(LivingHurtEvent event) {
         Level world = event.getEntity().getCommandSenderWorld();
         if (!world.isClientSide() && world instanceof ServerLevel) {
-            LivingEntity var3 = event.getEntityLiving();
-            if (var3 instanceof Player) {
-                Player player = (Player)var3;
+            if (event.getEntityLiving() instanceof Player player) {
                 if (!event.getSource().isBypassArmor()) {
                     ItemStack offHand = event.getEntityLiving().getOffhandItem();
                     if (!ServerVaults.get(world).isEmpty() || !(offHand.getItem() instanceof VaultGearItem)) {
@@ -150,9 +213,7 @@ public class LivingEntityEvents {
                                 damage = 1;
                             }
 
-                            offHand.hurtAndBreak(damage, event.getEntityLiving(), (entity) -> {
-                                entity.broadcastBreakEvent(EquipmentSlot.OFFHAND);
-                            });
+                            offHand.hurtAndBreak(damage, event.getEntityLiving(), entity -> entity.broadcastBreakEvent(EquipmentSlot.OFFHAND));
                         }
                     }
                 }
@@ -167,30 +228,24 @@ public class LivingEntityEvents {
 
         Level world = event.getPlayer().getCommandSenderWorld();
         if (!world.isClientSide() && world instanceof ServerLevel) {
-            LivingEntity var3 = event.getPlayer();
-            if (var3 instanceof Player player) {
-                if (event.getState().getBlock() instanceof VaultChestBlock || event.getState().getBlock() instanceof CoinPileBlock || event.getState().getBlock() instanceof VaultOreBlock) {
-                    ItemStack offHand = event.getPlayer().getOffhandItem();
-                    if (!ServerVaults.get(world).isEmpty() || !(offHand.getItem() instanceof VaultGearItem)) {
-                        if (offHand.getItem() instanceof VaultLootSackItem) {
-
-                            if(event.getState().getBlock() instanceof VaultChestBlock chestBlock) {
-                                if(chestBlock.hasStepBreaking()) {
-                                    if(random.nextFloat() < 0.75F) {
-                                        return;
-                                    }
+            if (event.getState().getBlock() instanceof VaultChestBlock || event.getState().getBlock() instanceof CoinPileBlock || event.getState().getBlock() instanceof VaultOreBlock) {
+                ItemStack offHand = event.getPlayer().getOffhandItem();
+                if (!ServerVaults.get(world).isEmpty() || !(offHand.getItem() instanceof VaultGearItem)) {
+                    if (offHand.getItem() instanceof VaultLootSackItem) {
+                        if(event.getState().getBlock() instanceof VaultChestBlock chestBlock) {
+                            if(chestBlock.hasStepBreaking()) {
+                                if(random.nextFloat() < 0.75F) {
+                                    return;
                                 }
                             }
-
-                            int damage = (int)CommonEvents.PLAYER_STAT.invoke(PlayerStat.DURABILITY_DAMAGE, player, 1.0F).getValue();
-                            if (damage <= 1) {
-                                damage = 1;
-                            }
-
-                            offHand.hurtAndBreak(damage, event.getPlayer(), (entity) -> {
-                                entity.broadcastBreakEvent(EquipmentSlot.OFFHAND);
-                            });
                         }
+
+                        int damage = (int)CommonEvents.PLAYER_STAT.invoke(PlayerStat.DURABILITY_DAMAGE, event.getPlayer(), 1.0F).getValue();
+                        if (damage <= 1) {
+                            damage = 1;
+                        }
+
+                        offHand.hurtAndBreak(damage, event.getPlayer(), entity -> entity.broadcastBreakEvent(EquipmentSlot.OFFHAND));
                     }
                 }
             }
@@ -209,12 +264,24 @@ public class LivingEntityEvents {
     @SubscribeEvent
     public static void multiJumpTrinketFallReductionEvent(LivingFallEvent event) {
         if(event.getEntityLiving() instanceof ServerPlayer player) {
-            if (!TrinketHelper.getTrinkets(player, MultiJumpTrinket.class).stream().noneMatch((trinket) -> trinket.isUsable(player))) {
+            if (TrinketHelper.getTrinkets(player, MultiJumpTrinket.class).stream().anyMatch(trinket -> trinket.isUsable(player))) {
                 if(event.getDistance() < 5.0F) {
                     event.setCanceled(true);
                 } else {
                     event.setDistance(event.getDistance() - 2.0F);
                 }
+            }
+        }
+    }
+
+    private static void withSnapshot(LivingEvent event, boolean serverOnly, BiConsumer<LivingEntity, AttributeSnapshot> fn) {
+        withSnapshot(event.getEntityLiving(), serverOnly, fn);
+    }
+
+    private static void withSnapshot(LivingEntity entity, boolean serverOnly, BiConsumer<LivingEntity, AttributeSnapshot> fn) {
+        if (AttributeSnapshotHelper.canHaveSnapshot(entity)) {
+            if (!serverOnly || !entity.getCommandSenderWorld().isClientSide()) {
+                fn.accept(entity, AttributeSnapshotHelper.getInstance().getSnapshot(entity));
             }
         }
     }
