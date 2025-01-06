@@ -48,7 +48,6 @@ public class MixinVaultChestBlock extends ChestBlock {
             if (te instanceof VaultChestTileEntity chest) {
                 VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
                 if(data == null) return;
-
                 boolean hasBreach = data.hasAttribute(ModGearAttributes.BREACHING);
                 float dismantle_chance = 0.0F;
 
@@ -78,17 +77,10 @@ public class MixinVaultChestBlock extends ChestBlock {
                         }
                     }
                 }
-
-                if(hasBreach) {
+                if(hasBreach || chest.isEmpty()) {
                     world.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
                 }
-
             }
         }
     }
-    /*@Inject(method = "playerDestroy", at = @At(value = "INVOKE", target = "Liskallia/vault/block/entity/VaultChestTileEntity;setItem(ILnet/minecraft/world/item/ItemStack;)V"))
-    private void calculateDismantle(CallbackInfo info) {
-        System.out.println("A1 I'm not doing this");
-        WoldsVaults.LOGGER.info("pengo nooo, why would you do this to me");
-    }*/
 }
