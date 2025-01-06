@@ -6,6 +6,7 @@ import iskallia.vault.block.entity.VaultChestTileEntity;
 import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
+import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.player.Player;
@@ -48,14 +49,9 @@ public class MixinVaultChestBlock extends ChestBlock {
             if (te instanceof VaultChestTileEntity chest) {
                 VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
                 if(data == null) return;
-
                 boolean hasBreach = data.hasAttribute(ModGearAttributes.BREACHING);
                 float dismantle_chance = 0.0F;
-
-                if(data.hasAttribute(ModGearAttributes.DISMANTLE_CHANCE)) {
-                    dismantle_chance = data.get(ModGearAttributes.DISMANTLE_CHANCE, VaultGearAttributeTypeMerger.floatSum());
-                }
-
+                dismantle_chance = AttributeSnapshotHelper.getInstance().getSnapshot(player).getAttributeValue(ModGearAttributes.DISMANTLE_CHANCE, VaultGearAttributeTypeMerger.floatSum());
                 for(int slot = 0; slot < chest.getContainerSize(); ++slot) {
                     ItemStack invStack = chest.getItem(slot);
                     if (!invStack.isEmpty()) {
@@ -78,17 +74,10 @@ public class MixinVaultChestBlock extends ChestBlock {
                         }
                     }
                 }
-
-                if(hasBreach) {
+                if(hasBreach || chest.isEmpty()) {
                     world.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
                 }
-
             }
         }
     }
-    /*@Inject(method = "playerDestroy", at = @At(value = "INVOKE", target = "Liskallia/vault/block/entity/VaultChestTileEntity;setItem(ILnet/minecraft/world/item/ItemStack;)V"))
-    private void calculateDismantle(CallbackInfo info) {
-        System.out.println("A1 I'm not doing this");
-        WoldsVaults.LOGGER.info("pengo nooo, why would you do this to me");
-    }*/
 }
