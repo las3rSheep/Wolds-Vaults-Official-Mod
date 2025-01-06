@@ -6,6 +6,7 @@ import iskallia.vault.block.entity.VaultChestTileEntity;
 import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
+import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.player.Player;
@@ -50,11 +51,7 @@ public class MixinVaultChestBlock extends ChestBlock {
                 if(data == null) return;
                 boolean hasBreach = data.hasAttribute(ModGearAttributes.BREACHING);
                 float dismantle_chance = 0.0F;
-
-                if(data.hasAttribute(ModGearAttributes.DISMANTLE_CHANCE)) {
-                    dismantle_chance = data.get(ModGearAttributes.DISMANTLE_CHANCE, VaultGearAttributeTypeMerger.floatSum());
-                }
-
+                dismantle_chance = AttributeSnapshotHelper.getInstance().getSnapshot(player).getAttributeValue(ModGearAttributes.DISMANTLE_CHANCE, VaultGearAttributeTypeMerger.floatSum());
                 for(int slot = 0; slot < chest.getContainerSize(); ++slot) {
                     ItemStack invStack = chest.getItem(slot);
                     if (!invStack.isEmpty()) {
