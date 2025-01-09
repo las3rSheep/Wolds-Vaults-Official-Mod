@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.data;
+package xyz.iwolfking.woldsvaults.data.enchantments;
 
 import java.util.List;
 

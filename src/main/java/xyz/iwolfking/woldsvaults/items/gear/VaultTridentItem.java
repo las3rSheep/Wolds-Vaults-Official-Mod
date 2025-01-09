@@ -48,6 +48,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+import xyz.iwolfking.woldsvaults.data.enchantments.AllowedEnchantmentsData;
 import xyz.iwolfking.woldsvaults.models.Tridents;
 
 import javax.annotation.Nonnull;
@@ -118,7 +119,7 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
         if (enchantment.equals(Enchantments.LOYALTY) || enchantment.equals(Enchantments.RIPTIDE) ||
             enchantment.equals(Enchantments.CHANNELING)) {
             return false;
-        } else if (enchantment.equals(Enchantments.MOB_LOOTING)) {
+        } else if (enchantment.equals(Enchantments.MOB_LOOTING) || AllowedEnchantmentsData.isAllowedUtilityEnchantment(enchantment)) {
             return true;
         } else {
             return super.canApplyAtEnchantingTable(stack, enchantment);
