@@ -12,8 +12,6 @@ public class AllowedEnchantmentsData {
     public static final Set<Enchantment> allowedUtilityEnchantments = Set.of(ModEnchantments.MONEY_MENDING.get(), EnsorcEnchantments.SOULBOUND.get());
 
     public static boolean isAllowedUtilityEnchantment(Enchantment enchantment) {
-        if(allowedUtilityEnchantments.contains(enchantment)) {
-            return true;
-        }
+        return allowedUtilityEnchantments.contains(enchantment);
     }
 }
