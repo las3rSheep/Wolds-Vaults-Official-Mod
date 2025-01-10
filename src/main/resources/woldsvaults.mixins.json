@@ -94,6 +94,7 @@
     "vaulthunters.custom.MixinCustomSpawnerTileEntity",
     "vaulthunters.custom.MixinExperiencedExpertise",
     "vaulthunters.custom.MixinFrenzyModifier",
+    "vaulthunters.custom.MixinGearAttributeEvents",
     "vaulthunters.custom.MixinGearRollHelper",
     "vaulthunters.custom.MixinItemVaultCrystal",
     "vaulthunters.custom.MixinJewelItem",
