@@ -159,6 +159,7 @@
   "effect.woldsvaults.reaving": "Reaved",
   "effect.woldsvaults.shrinking": "Shrinking",
   "effect.woldsvaults.growing": "Growing",
+  "effect.woldsvaults.safer_space": "Safer Space",
   "woldsvaults.key.cherish_item": "Cherish Item",
   "key.woldsvaults.cherish_item": "Cherish Item",
   "key.woldsvaults.category": "Wold's Vaults",
@@ -188,5 +189,6 @@
   "entity.the_vault.black_widow_boss": "Black Widow Boss",
   "entity.the_vault.boogieman_boss": "Boogieman Boss",
   "entity.the_vault.golem_boss": "Golem Boss",
-  "key.the_vault.quickselect.colossus": "Select and use ability: Colossus"
+  "key.the_vault.quickselect.colossus": "Select and use ability: Colossus",
+  "woldsvaults.subtitle.saferspaces_proc": "Safer Spaces activated!"
 }
