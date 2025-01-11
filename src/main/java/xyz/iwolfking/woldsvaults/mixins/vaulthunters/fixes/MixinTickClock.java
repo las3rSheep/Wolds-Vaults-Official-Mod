@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.mixins.vaulthunters.testing;
+package xyz.iwolfking.woldsvaults.mixins.vaulthunters.fixes;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

@@ -2,6 +2,8 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.block;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.llamalad7.mixinextras.sugar.Local;
 import iskallia.vault.block.entity.VaultChestTileEntity;
 import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
@@ -19,8 +21,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -41,7 +46,7 @@ public class MixinVaultChestBlock extends ChestBlock {
     @Overwrite
     public void playerDestroy(Level world, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity te, ItemStack stack) {
         VaultChestBlock thisInstance = ((VaultChestBlock) (Object) this);
-        if (!thisInstance.hasStepBreaking()) {
+        if (!thisInstance.hasStepBreaking() || (te instanceof VaultChestTileEntity chest && !chest.isVaultChest())) {
             super.playerDestroy(world, player, pos, state, te, stack);
         } else {
             player.awardStat(Stats.BLOCK_MINED.get(thisInstance));
@@ -79,5 +84,15 @@ public class MixinVaultChestBlock extends ChestBlock {
                 }
             }
         }
+    }
+
+    @Redirect(method = "onDestroyedByPlayer",
+            at = @At(value = "INVOKE",
+                    target = "Liskallia/vault/block/VaultChestBlock;hasStepBreaking()Z"),
+            remap = false)
+    private boolean fixOnDestroyedByPlayer(VaultChestBlock instance, @Local BlockEntity te)
+    {
+        // Only Vault Chests (with loot data) should have step breaking
+        return instance.hasStepBreaking() && te instanceof VaultChestTileEntity chest && chest.isVaultChest();
     }
 }

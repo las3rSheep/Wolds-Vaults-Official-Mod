@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.mixins.vaulthunters.fixes;
+package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom;
 
 import iskallia.vault.config.entry.LevelEntryList;
 import iskallia.vault.core.vault.Vault;
