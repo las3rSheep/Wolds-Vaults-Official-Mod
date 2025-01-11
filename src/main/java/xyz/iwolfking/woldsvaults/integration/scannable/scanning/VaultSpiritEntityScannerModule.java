@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.scannable.scanning;
+package xyz.iwolfking.woldsvaults.integration.scannable.scanning;
 
 import li.cil.scannable.api.scanning.EntityScannerModule;
 import li.cil.scannable.api.scanning.ScanResultProvider;
@@ -6,7 +6,7 @@ import li.cil.scannable.client.scanning.ScanResultProviders;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
-import xyz.iwolfking.woldsvaults.scannable.filters.VaultSpiritScanFilter;
+import xyz.iwolfking.woldsvaults.integration.scannable.filters.VaultSpiritScanFilter;
 
 import java.util.function.Predicate;
 

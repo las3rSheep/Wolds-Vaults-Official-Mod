@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.scannable.scanning;
+package xyz.iwolfking.woldsvaults.integration.scannable.scanning;
 
 import iskallia.vault.init.ModBlocks;
 import li.cil.scannable.api.scanning.BlockScannerModule;
@@ -18,27 +18,22 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITagManager;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public enum VaultChestsRawBlockScannerModule implements BlockScannerModule {
+public enum VaultCakeBlockScannerModule implements BlockScannerModule {
     INSTANCE;
 
     private Predicate<BlockState> filter;
 
-    public static Set<ResourceLocation> vaultBlocks = Util.make(new HashSet<>(), c -> {
-        c.add(ModBlocks.FLESH_CHEST.getRegistryName());
-        c.add(ModBlocks.HARDENED_CHEST.getRegistryName());
-        c.add(ModBlocks.ENIGMA_CHEST.getRegistryName());
-    });
+    public static Set<ResourceLocation> vaultBlocks = Util.make(new HashSet<>(), c -> c.add(ModBlocks.CAKE.getRegistryName()));
 
     @Override
     public int getEnergyCost(final ItemStack module) {
-        return 350;
+        return 2500;
     }
 
     @OnlyIn(Dist.CLIENT)

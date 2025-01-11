@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.scannable.filters;
+package xyz.iwolfking.woldsvaults.integration.scannable.filters;
 
 import iskallia.vault.entity.entity.SpiritEntity;
 import net.minecraft.world.entity.Entity;

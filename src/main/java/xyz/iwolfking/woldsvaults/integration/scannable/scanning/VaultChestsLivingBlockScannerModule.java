@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.scannable.scanning;
+package xyz.iwolfking.woldsvaults.integration.scannable.scanning;
 
 import iskallia.vault.init.ModBlocks;
 import li.cil.scannable.api.scanning.BlockScannerModule;

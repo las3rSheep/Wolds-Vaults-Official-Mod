@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.scannable.scanning;
+package xyz.iwolfking.woldsvaults.integration.scannable.scanning;
 
 import iskallia.vault.init.ModBlocks;
 import li.cil.scannable.api.scanning.BlockScannerModule;
@@ -25,15 +25,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public enum VaultDoorsBlockScannerModule implements BlockScannerModule {
+public enum VaultTreasureDoorsBlockScannerModule implements BlockScannerModule {
     INSTANCE;
 
     private Predicate<BlockState> filter;
 
     public static Set<ResourceLocation> vaultDoorBlocks = Util.make(new HashSet<>(), c -> {
         c.add(ModBlocks.TREASURE_DOOR.getRegistryName());
-        c.add(ModBlocks.DUNGEON_DOOR.getRegistryName());
-        c.add(ModBlocks.VENDOR_DOOR.getRegistryName());
     });
 
 

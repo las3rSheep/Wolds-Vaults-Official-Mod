@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.scannable.scanning;
+package xyz.iwolfking.woldsvaults.integration.scannable.scanning;
 
 import iskallia.vault.init.ModBlocks;
 import li.cil.scannable.api.scanning.BlockScannerModule;
@@ -25,19 +25,19 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public enum VaultChestsGildedBlockScannerModule implements BlockScannerModule {
+public enum VaultDungeonDoorsBlockScannerModule implements BlockScannerModule {
     INSTANCE;
 
     private Predicate<BlockState> filter;
 
-    public static Set<ResourceLocation> vaultBlocks = Util.make(new HashSet<>(), c -> {
-        c.add(ModBlocks.GILDED_CHEST.getRegistryName());
-        c.add(ModBlocks.GILDED_STRONGBOX.getRegistryName());
+    public static Set<ResourceLocation> vaultDoorBlocks = Util.make(new HashSet<>(), c -> {
+        c.add(ModBlocks.DUNGEON_DOOR.getRegistryName());
     });
+
 
     @Override
     public int getEnergyCost(final ItemStack module) {
-        return 500;
+        return 1000;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -66,7 +66,7 @@ public enum VaultChestsGildedBlockScannerModule implements BlockScannerModule {
         }
 
         final List<Predicate<BlockState>> filters = new ArrayList<>();
-        for (final ResourceLocation location : vaultBlocks) {
+        for (final ResourceLocation location : vaultDoorBlocks) {
             final Block block = ForgeRegistries.BLOCKS.getValue(location);
             if (block != null) {
                 filters.add(new BlockScanFilter(block));
@@ -74,7 +74,7 @@ public enum VaultChestsGildedBlockScannerModule implements BlockScannerModule {
         }
         final ITagManager<Block> tags = ForgeRegistries.BLOCKS.tags();
         if (tags != null) {
-            for (final ResourceLocation location : vaultBlocks) {
+            for (final ResourceLocation location : vaultDoorBlocks) {
                 final TagKey<Block> tag = TagKey.create(Registry.BLOCK_REGISTRY, location);
                 if (tags.isKnownTagName(tag)) {
                     filters.add(new BlockTagScanFilter(tag));

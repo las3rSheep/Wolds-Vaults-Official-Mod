@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.scannable.scanning;
+package xyz.iwolfking.woldsvaults.integration.scannable.scanning;
 
 import iskallia.vault.init.ModBlocks;
 import li.cil.scannable.api.scanning.BlockScannerModule;
@@ -25,16 +25,19 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public enum VaultCoinStacksBlockScannerModule implements BlockScannerModule {
+public enum VaultChestsTreasureBlockScannerModule implements BlockScannerModule {
     INSTANCE;
 
     private Predicate<BlockState> filter;
 
-    public static Set<ResourceLocation> vaultBlocks = Util.make(new HashSet<>(), c -> c.add(ModBlocks.COIN_PILE.getRegistryName()));
+    public static Set<ResourceLocation> vaultBlocks = Util.make(new HashSet<>(), c -> {
+        c.add(ModBlocks.TREASURE_CHEST.getRegistryName());
+        c.add(ModBlocks.ALTAR_CHEST.getRegistryName());
+    });
 
     @Override
     public int getEnergyCost(final ItemStack module) {
-        return 250;
+        return 500;
     }
 
     @OnlyIn(Dist.CLIENT)

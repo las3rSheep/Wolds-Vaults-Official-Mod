@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.scannable.scanning;
+package xyz.iwolfking.woldsvaults.integration.scannable.scanning;
 
 import iskallia.vault.init.ModBlocks;
 import li.cil.scannable.api.scanning.BlockScannerModule;
@@ -25,16 +25,29 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public enum VaultChestsWoodenBlockScannerModule implements BlockScannerModule {
+public enum VaultObjectivesBlockScannerModule implements BlockScannerModule {
     INSTANCE;
 
     private Predicate<BlockState> filter;
 
-    public static Set<ResourceLocation> vaultBlocks = Util.make(new HashSet<>(), c -> c.add(ModBlocks.WOODEN_CHEST.getRegistryName()));
+    public static Set<ResourceLocation> vaultBlocks = Util.make(new HashSet<>(), c -> {
+        c.add(ModBlocks.MONOLITH.getRegistryName());
+        c.add(ModBlocks.GOD_ALTAR.getRegistryName());
+        c.add(ModBlocks.LODESTONE.getRegistryName());
+        c.add(ModBlocks.OBELISK.getRegistryName());
+        c.add(ModBlocks.ALCHEMY_ARCHIVE.getRegistryName());
+        c.add(ModBlocks.MODIFIER_DISCOVERY.getRegistryName());
+        c.add(ModBlocks.ENHANCEMENT_ALTAR.getRegistryName());
+        c.add(ModBlocks.SHOP_PEDESTAL.getRegistryName());
+        c.add(ModBlocks.CRAKE_PEDESTAL.getRegistryName());
+        c.add(ModBlocks.SCAVENGER_ALTAR.getRegistryName());
+        c.add(ModBlocks.VAULT_PORTAL.getRegistryName());
+        c.add(ModBlocks.GRID_GATEWAY.getRegistryName());
+    });
 
     @Override
     public int getEnergyCost(final ItemStack module) {
-        return 500;
+        return 2500;
     }
 
     @OnlyIn(Dist.CLIENT)
