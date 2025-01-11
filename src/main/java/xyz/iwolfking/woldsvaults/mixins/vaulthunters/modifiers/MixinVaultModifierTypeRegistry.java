@@ -23,5 +23,6 @@ public class MixinVaultModifierTypeRegistry {
         MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/retro_spawn_modifier"), VaultModifierType.of(RetroSpawnVaultModifier.class, RetroSpawnVaultModifier.Properties.class, RetroSpawnVaultModifier::new));
         MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/experience_multiplier"), VaultModifierType.of(ExperienceMultiplierModifier.class, ExperienceMultiplierModifier.Properties.class, ExperienceMultiplierModifier::new));
         MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/difficulty_lock"), VaultModifierType.of(DifficultyLockModifier.class, DifficultyLockModifier.Properties.class, DifficultyLockModifier::new));
+        MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/blacklist_removal"), VaultModifierType.of(RemoveBlacklistModifier.class, RemoveBlacklistModifier.Properties.class, RemoveBlacklistModifier::new));
     }
 }
