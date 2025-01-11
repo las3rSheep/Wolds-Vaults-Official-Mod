@@ -125,6 +125,7 @@
     "vaulthunters.fixes.MixinGateRenderer",
     "vaulthunters.fixes.MixinGearScoreHelper",
     "vaulthunters.fixes.MixinInventoryUtil",
+    "MixinItemEntity",
     "vaulthunters.fixes.MixinJewelCraftingRecipe",
     "vaulthunters.fixes.MixinLootableItem",
     "vaulthunters.fixes.MixinMixinWorldChunk",
