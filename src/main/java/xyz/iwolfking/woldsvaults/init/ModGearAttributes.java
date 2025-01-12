@@ -2,6 +2,7 @@ package xyz.iwolfking.woldsvaults.init;
 
 import iskallia.vault.VaultMod;
 import iskallia.vault.gear.attribute.VaultGearAttribute;
+import iskallia.vault.gear.attribute.VaultGearAttributeRegistry;
 import iskallia.vault.gear.attribute.config.ConfigurableAttributeGenerator;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeType;
 import iskallia.vault.gear.comparator.VaultGearAttributeComparator;
@@ -38,6 +39,16 @@ public class ModGearAttributes {
 
     public static final VaultGearAttribute<Float> RETURNING_DAMAGE = attr("returning_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Returning Damage", 8833629), VaultGearAttributeComparator.floatComparator());
 
+    public static final VaultGearAttribute<Float> DISMANTLE_CHANCE = attr("dismantle_chance", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Dismantling Chance", 13388311), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<Float> EXECUTION_DAMAGE = attr("execution_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Execution Damage", 10302464), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<Float> THORNS_SCALING_DAMAGE = attr("thorns_scaling_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Thorns Scaling", 3134464), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<Boolean> TREASURE_AFFINITY = attr("treasure_affinity", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Treasure Affinity", 16749824), VaultGearAttributeComparator.booleanComparator());
+
+    public static final VaultGearAttribute<Boolean> BREACHING = attr("breaching", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Breaching", 10031431), VaultGearAttributeComparator.booleanComparator());
+
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
         IForgeRegistry<VaultGearAttribute<?>> registry = event.getRegistry();
@@ -52,6 +63,11 @@ public class ModGearAttributes {
         registry.register(PIERCING);
         registry.register(RETURNING_DAMAGE);
         registry.register(HEXING_CHANCE);
+        registry.register(DISMANTLE_CHANCE);
+        registry.register(EXECUTION_DAMAGE);
+        registry.register(THORNS_SCALING_DAMAGE);
+        registry.register(TREASURE_AFFINITY);
+        registry.register(BREACHING);
     }
 
     public static void registerVanillaAssociations() {
@@ -64,6 +80,6 @@ public class ModGearAttributes {
 
 
     private static <T> VaultGearAttribute<T> attr(String name, VaultGearAttributeType<T> type,ConfigurableAttributeGenerator<T, ?> generator,VaultGearModifierReader<T> reader,@Nullable VaultGearAttributeComparator<T> comparator) {
-        return new VaultGearAttribute(VaultMod.id(name), type, generator, reader, comparator);
+        return new VaultGearAttribute<>(VaultMod.id(name), type, generator, reader, comparator);
     }
 }
