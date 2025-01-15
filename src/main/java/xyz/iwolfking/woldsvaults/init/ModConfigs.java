@@ -24,6 +24,7 @@ public class ModConfigs {
     public static CustomVaultRecyclerConfig CUSTOM_RECYCLER_CONFIG;
     public static EternalAttributesConfig ETERNAL_ATTRIBUTES;
     public static GreedVaultAltarIngredientsConfig GREED_VAULT_ALTAR_INGREDIENTS;
+    public static WeaponTypesConfig WEAPON_TYPES;
 
     public static void register() {
         GEM_BOX = new GemBoxConfig().readConfig();
@@ -44,5 +45,6 @@ public class ModConfigs {
         CustomRecyclerOutputs.CUSTOM_OUTPUTS.putAll(CUSTOM_RECYCLER_CONFIG.getOutputs());
         ETERNAL_ATTRIBUTES = new EternalAttributesConfig().readConfig();
         GREED_VAULT_ALTAR_INGREDIENTS = new GreedVaultAltarIngredientsConfig().readConfig();
+        WEAPON_TYPES = new WeaponTypesConfig().readConfig();
     }
 }
