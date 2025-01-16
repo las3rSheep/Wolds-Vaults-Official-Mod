@@ -33,7 +33,8 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Float> REAVING_DAMAGE = attr("reaving_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Bonus Reaving Damage", 12417954), VaultGearAttributeComparator.floatComparator());
 
     public static final VaultGearAttribute<Float> HEXING_CHANCE = attr("hexing_chance", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Hexing Chance", 11468966), VaultGearAttributeComparator.floatComparator());
-
+    public static final VaultGearAttribute<Float> ECHOING_CHANCE = attr("echoing_chance", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Echoing Chance", 6886199), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> ECHOING_DAMAGE = attr("echoing_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Increased Echoing Damage", 6886199), VaultGearAttributeComparator.floatComparator());
 
     public static final VaultGearAttribute<Integer> PIERCING = attr("piercing", VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.addedIntReader("Piercing", 8847359), VaultGearAttributeComparator.intComparator());
 
@@ -64,6 +65,8 @@ public class ModGearAttributes {
         registry.register(PIERCING);
         registry.register(RETURNING_DAMAGE);
         registry.register(HEXING_CHANCE);
+        registry.register(ECHOING_CHANCE);
+        registry.register(ECHOING_DAMAGE);
         registry.register(DISMANTLE_CHANCE);
         registry.register(EXECUTION_DAMAGE);
         registry.register(THORNS_SCALING_DAMAGE);
