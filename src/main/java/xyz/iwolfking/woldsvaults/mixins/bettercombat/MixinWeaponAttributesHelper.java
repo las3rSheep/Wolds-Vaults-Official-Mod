@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.mixins.bettercombat;
 
+import iskallia.vault.gear.data.GearDataCache;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import net.bettercombat.api.AttributesContainer;
@@ -33,16 +34,19 @@ public abstract class MixinWeaponAttributesHelper {
 
     @Inject(method = "readFromNBT", at = @At("HEAD"), cancellable = true)
     private static void setWeaponTypeFromModifier(ItemStack itemStack, CallbackInfoReturnable<WeaponAttributes> cir) {
-        ItemStackNBTWeaponAttributes attributedItemStack = (ItemStackNBTWeaponAttributes)((Object) itemStack);
+            ItemStackNBTWeaponAttributes attributedItemStack = (ItemStackNBTWeaponAttributes)((Object) itemStack);
 
-        WeaponAttributes cachedAttributes = attributedItemStack.getWeaponAttributes();
+            WeaponAttributes cachedAttributes = attributedItemStack.getWeaponAttributes();
             if (cachedAttributes != null) {
                 cir.setReturnValue(cachedAttributes);
                 return;
             }
 
-            if(itemStack.getItem() instanceof VaultGearItem) {
+            GearDataCache cache = GearDataCache.of(itemStack);
+
+            if(itemStack.getItem() instanceof VaultGearItem && cache.hasAttribute(ModGearAttributes.WEAPON_TYPE)) {
                 VaultGearData data = VaultGearData.read(itemStack);
+
                 String weaponTypeKey = data.getFirstValue(ModGearAttributes.WEAPON_TYPE).orElse(null);
                 if(weaponTypeKey != null) {
                     ResourceLocation itemId = Registry.ITEM.getKey(itemStack.getItem());
