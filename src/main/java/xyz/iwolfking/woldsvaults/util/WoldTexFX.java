@@ -1,12 +1,12 @@
 package xyz.iwolfking.woldsvaults.util;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import iskallia.vault.gear.attribute.VaultGearAttributeInstance;
 import iskallia.vault.gear.attribute.VaultGearModifier;
 import iskallia.vault.gear.reader.VaultGearModifierReader;
 import iskallia.vault.util.TextComponentUtils;
 
-import java.lang.invoke.TypeDescriptor;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -19,6 +19,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraftforge.fml.LogicalSide;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class WoldTexFX {
@@ -90,7 +92,8 @@ public class WoldTexFX {
         return pCmp.append(cmp).append(sCmp);
     }
 
-    public static class FancyReader<T> extends VaultGearModifierReader<T> {
+    //base fancy reader
+    public abstract static class FancyReader<T> extends VaultGearModifierReader<T> {
 
         public FancyReader(VaultGearModifierReader<T> reader) {
             super(reader.getModifierName(), reader.getRgbColor());
@@ -100,16 +103,28 @@ public class WoldTexFX {
 
         @Nullable
         public MutableComponent getDisplay(VaultGearAttributeInstance<T> instance, VaultGearModifier.AffixType type) {
-            return reader == null ? null : reader.getDisplay(instance, type);
+            return reader.getDisplay(instance, type);
         }
 
         @Override
         public @Nullable MutableComponent getValueDisplay(T t) {
-            return reader == null ? null : reader.getValueDisplay(t);
+            return reader.getValueDisplay(t);
+        }
+
+        @NotNull
+        public JsonObject serializeDisplay(VaultGearAttributeInstance<T> instance, VaultGearModifier.AffixType type) {
+            return reader.serializeDisplay(instance, type);
+        }
+
+        @Override
+        public MutableComponent formatConfigDisplay(LogicalSide side, Component configRange) {
+            return reader.formatConfigDisplay(side, configRange);
         }
 
         protected void serializeTextElements(JsonArray out, VaultGearAttributeInstance<T> instance, VaultGearModifier.AffixType type) {}
     }
+
+    //reader to add a corrupted obfuscation effect
     public static class Corrupted<T> extends FancyReader<T> {
 
         public Corrupted(VaultGearModifierReader<T> reader) {
@@ -127,6 +142,7 @@ public class WoldTexFX {
         }
     }
 
+    //reader to a legendary-like shimmer effect
     public static class Shimmer<T> extends FancyReader<T> {
 
         public Shimmer(VaultGearModifierReader<T> reader) {
@@ -144,6 +160,7 @@ public class WoldTexFX {
         }
     }
 
+    //reader to add prefixes and suffixes
     public static class Enclose<T> extends FancyReader<T> {
 
         public Enclose(Style style, VaultGearModifierReader<T> reader) {
@@ -174,6 +191,7 @@ public class WoldTexFX {
         }
     }
 
+    //reader to replace text completely (this will end up hiding numbers)
     public static class Fresh<T> extends FancyReader<T> {
         public Fresh(String text, VaultGearModifierReader<T> reader) {
             this(text, null, reader);
@@ -195,7 +213,7 @@ public class WoldTexFX {
                 return null;
 
             if(style == null)
-                return new TextComponent(text).setStyle(super.getDisplay(instance, affixType).getStyle());
+                return new TextComponent(text).setStyle(reader.getDisplay(instance, affixType).getStyle());
             else
                 return new TextComponent(text).setStyle(style);
         }
