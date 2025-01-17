@@ -55,7 +55,7 @@ public class MixinGearAttributeEvents {
 
                     attacked.removeEffect(ModEffects.SAFER_SPACE);
                     if(currentAmp > 0)
-                        attacked.addEffect(new MobEffectInstance(ModEffects.SAFER_SPACE, safeDuration, currentAmp-1, false, true, true));
+                        attacked.addEffect(new MobEffectInstance(ModEffects.SAFER_SPACE, safeDuration+unsafeDuration, currentAmp-1, false, true, true));
                     attacked.addEffect(new MobEffectInstance(ModEffects.SAFER_SPACE, unsafeDuration, 255, false, false, false));
 
                     if(attacked instanceof Player player)
