@@ -2,7 +2,8 @@ package xyz.iwolfking.woldsvaults.events;
 
 public enum WoldActiveFlags {
     IS_REAVING_ATTACKING,
-    IS_ECHOING_ATTACKING;
+    IS_ECHOING_ATTACKING,
+    IS_USING_SAFER_SPACE;
 
     private final ThreadLocal<Integer> activeReferences = ThreadLocal.withInitial(() -> 0);
 
@@ -27,5 +28,26 @@ public enum WoldActiveFlags {
     }
     public synchronized void pop() {
         this.activeReferences.set(this.activeReferences.get() - 1);
+    }
+
+    public synchronized void trySet(boolean goalState) {
+        if(goalState)
+            this.tryPush();
+        else
+            this.tryPop();
+    }
+
+    public synchronized boolean tryPush() {
+        if (this.isSet())
+            return false;
+        this.push();
+        return true;
+    }
+
+    public synchronized boolean tryPop() {
+        if (!this.isSet())
+            return false;
+        this.pop();
+        return true;
     }
 }
