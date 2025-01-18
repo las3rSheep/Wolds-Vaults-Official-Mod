@@ -4,6 +4,7 @@ import iskallia.vault.VaultMod;
 import iskallia.vault.gear.attribute.VaultGearAttribute;
 import iskallia.vault.gear.attribute.VaultGearAttributeRegistry;
 import iskallia.vault.gear.attribute.config.ConfigurableAttributeGenerator;
+import iskallia.vault.gear.attribute.custom.effect.EffectGearAttribute;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeType;
 import iskallia.vault.gear.comparator.VaultGearAttributeComparator;
 import iskallia.vault.gear.reader.VaultGearModifierReader;
@@ -14,6 +15,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.util.UniqueEffectGearAttribute;
 
 import javax.annotation.Nullable;
 
@@ -33,7 +35,8 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Float> REAVING_DAMAGE = attr("reaving_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Bonus Reaving Damage", 12417954), VaultGearAttributeComparator.floatComparator());
 
     public static final VaultGearAttribute<Float> HEXING_CHANCE = attr("hexing_chance", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Hexing Chance", 11468966), VaultGearAttributeComparator.floatComparator());
-
+    public static final VaultGearAttribute<Float> ECHOING_CHANCE = attr("echoing_chance", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Echoing Chance", 6886199), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> ECHOING_DAMAGE = attr("echoing_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Increased Echoing Damage", 6886199), VaultGearAttributeComparator.floatComparator());
 
     public static final VaultGearAttribute<Integer> PIERCING = attr("piercing", VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.addedIntReader("Piercing", 8847359), VaultGearAttributeComparator.intComparator());
 
@@ -49,6 +52,7 @@ public class ModGearAttributes {
 
     public static final VaultGearAttribute<Boolean> BREACHING = attr("breaching", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Breaching", 10031431), VaultGearAttributeComparator.booleanComparator());
     public static final VaultGearAttribute<String> WEAPON_TYPE = attr("weapon_type", VaultGearAttributeType.stringType(), xyz.iwolfking.woldsvaults.init.ModGearAttributeGenerators.stringValue(), xyz.iwolfking.woldsvaults.init.ModGearAttributeReaders.weaponTypeReader("Weapon Type", 888888, "Type: %s"));
+    public static final VaultGearAttribute<EffectGearAttribute> UNIQUE_EFFECT = attr("unique_effect", EffectGearAttribute.type(), EffectGearAttribute.generator(), UniqueEffectGearAttribute.reader());
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
@@ -64,12 +68,15 @@ public class ModGearAttributes {
         registry.register(PIERCING);
         registry.register(RETURNING_DAMAGE);
         registry.register(HEXING_CHANCE);
+        registry.register(ECHOING_CHANCE);
+        registry.register(ECHOING_DAMAGE);
         registry.register(DISMANTLE_CHANCE);
         registry.register(EXECUTION_DAMAGE);
         registry.register(THORNS_SCALING_DAMAGE);
         registry.register(TREASURE_AFFINITY);
         registry.register(BREACHING);
         registry.register(WEAPON_TYPE);
+        registry.register(UNIQUE_EFFECT);
     }
 
     public static void registerVanillaAssociations() {

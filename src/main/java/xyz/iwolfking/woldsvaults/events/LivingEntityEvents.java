@@ -19,6 +19,7 @@ import iskallia.vault.entity.entity.elite.EliteStrayEntity;
 import iskallia.vault.entity.entity.elite.EliteWitchEntity;
 import iskallia.vault.entity.entity.elite.EliteWitherSkeleton;
 import iskallia.vault.entity.entity.elite.EliteZombieEntity;
+import iskallia.vault.event.ActiveFlags;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
@@ -26,6 +27,7 @@ import iskallia.vault.gear.trinket.TrinketHelper;
 import iskallia.vault.gear.trinket.effects.MultiJumpTrinket;
 import iskallia.vault.snapshot.AttributeSnapshot;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
+import iskallia.vault.util.calc.EffectDurationHelper;
 import iskallia.vault.util.calc.PlayerStat;
 import iskallia.vault.util.calc.ThornsHelper;
 import iskallia.vault.world.data.ServerVaults;
@@ -53,6 +55,7 @@ import net.minecraftforge.fml.common.Mod;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.data.HexEffects;
+import xyz.iwolfking.woldsvaults.effect.mobeffects.EchoingPotionEffect;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
@@ -192,6 +195,76 @@ public class LivingEntityEvents {
                     }
 
                     event.getEntityLiving().addEffect(new MobEffectInstance(instance));
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void echoingHit(LivingHurtEvent event) {
+
+        if(event.getSource().isProjectile()) {
+            return;
+        }
+
+        if(WoldActiveFlags.IS_ECHOING_ATTACKING.isSet() && (ActiveFlags.IS_AOE_ATTACKING.isSet() || ActiveFlags.IS_CHAINING_ATTACKING.isSet())){
+            return;
+        }
+
+
+        if(ActiveFlags.IS_DOT_ATTACKING.isSet()
+        || ActiveFlags.IS_LEECHING.isSet()
+        //|| ActiveFlags.IS_AOE_ATTACKING.isSet()
+        || ActiveFlags.IS_REFLECT_ATTACKING.isSet()
+        //|| ActiveFlags.IS_TOTEM_ATTACKING.isSet()
+        || ActiveFlags.IS_CHARMED_ATTACKING.isSet()
+        || ActiveFlags.IS_EFFECT_ATTACKING.isSet()
+        //|| ActiveFlags.IS_JAVELIN_ATTACKING.isSet()
+        || ActiveFlags.IS_SMITE_ATTACKING.isSet()
+        //|| ActiveFlags.IS_SMITE_BASE_ATTACKING.isSet()
+        //|| ActiveFlags.IS_CHAINING_ATTACKING.isSet()
+        //|| ActiveFlags.IS_THORNS_REFLECTING.isSet()
+        //|| ActiveFlags.IS_FIRESHOT_ATTACKING.isSet()
+        //|| ActiveFlags.IS_GLACIAL_SHATTER_ATTACKING.isSet()
+        || ActiveFlags.IS_AP_ATTACKING.isSet()
+        ){
+            return;
+        }
+
+        if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
+            VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
+            if(data.hasAttribute(ModGearAttributes.ECHOING_CHANCE)) {
+                float chance = data.get(ModGearAttributes.ECHOING_CHANCE, VaultGearAttributeTypeMerger.floatSum());
+                if (WoldActiveFlags.IS_ECHOING_ATTACKING.isSet())
+                    chance = (float) Math.sqrt(chance);
+
+                if(player.level.random.nextFloat() <= chance) {
+                    EchoingPotionEffect newEffect = (EchoingPotionEffect) ModEffects.ECHOING;
+
+                    if (WoldActiveFlags.IS_ECHOING_ATTACKING.isSet() && event.getEntityLiving().hasEffect(ModEffects.ECHOING)) {
+                        newEffect = (EchoingPotionEffect) event.getEntityLiving().getEffect(ModEffects.ECHOING).getEffect();
+                        ////[[DEBUG]]
+                        //WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Added a {} damage echo to attack from a previous echo.", newEffect.getDamage());
+                    }
+                    else {
+                        newEffect.setDamage(event.getAmount());
+                        newEffect.setAttacker(player);
+                        newEffect.setSource(event.getSource());
+                    }
+
+                    float damage = newEffect.getDamage() * 0.667f;
+
+                    if(data.hasAttribute(ModGearAttributes.ECHOING_DAMAGE))
+                        damage *= 1 + data.get(ModGearAttributes.ECHOING_DAMAGE, VaultGearAttributeTypeMerger.floatSum());
+
+                    if(damage > 1.0f) {
+                        newEffect.setDamage(damage);
+                        int duration = EffectDurationHelper.adjustEffectDurationFloor(player, 1) * 10;
+                        event.getEntityLiving().addEffect(new MobEffectInstance(newEffect, duration, 0));
+
+                        ////[[DEBUG]]
+                        //WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Added a {} damage echo to attack.", damage);
+                    }
                 }
             }
         }
