@@ -24,6 +24,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModSounds;
+import xyz.iwolfking.woldsvaults.mixins.LivingEntityAccessor;
 
 @Mixin (value = GearAttributeEvents.class, remap = false)
 public class MixinGearAttributeEvents {
@@ -49,6 +50,9 @@ public class MixinGearAttributeEvents {
                     CommonEvents.ENTITY_DAMAGE_BLOCK.invoke(new EntityDamageBlockEvent.Data(true, damageSource, attacked));
                 else {
                     event.setCanceled(true);
+                    ((LivingEntityAccessor)attacked).setLastHurt(6.9f*currentAmp);
+                    attacked.invulnerableTime = attacked.invulnerableDuration;
+
                     CommonEvents.ENTITY_DAMAGE_BLOCK.invoke(new EntityDamageBlockEvent.Data(false, damageSource, attacked));
                     int unsafeDuration = (int) (200*(1.0f-blockChance));
                     int safeDuration = currentSpace.getDuration();

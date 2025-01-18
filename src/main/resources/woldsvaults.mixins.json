@@ -76,6 +76,7 @@
     "vaulthunters.accessors.ClassicSpiralCrystalLayoutAccessor",
     "vaulthunters.accessors.DynamicModelAccessor",
     "vaulthunters.accessors.InventoryUtilItemAccessAccessor",
+    "LivingEntityAccessor",
     "vaulthunters.accessors.MixinInfusedCatalystItem",
     "vaulthunters.accessors.MixinScavengerAltar",
     "vaulthunters.accessors.PlayerVaultAltarDataAccessor",
