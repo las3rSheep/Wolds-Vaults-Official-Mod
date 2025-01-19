@@ -22,6 +22,7 @@
     "ars_nouveau.MixinReactiveEnchantment",
     "bettercombat.MixinBetterCombatAttackRange",
     "bettercombat.MixinWeaponAttributesHelper",
+    "bettercombat.MixinWeaponRegistry",
     "cloudstorage.MixinBalloonBuddyEntity",
     "cofhcore.MixinCofhEnchantment",
     "cookingforblockheads.MixinKitchenBlock",

@@ -48,7 +48,7 @@ public abstract class MixinWeaponAttributesHelper {
                 VaultGearData data = VaultGearData.read(itemStack);
 
                 String weaponTypeKey = data.getFirstValue(ModGearAttributes.WEAPON_TYPE).orElse(null);
-                if(weaponTypeKey != null) {
+                if(weaponTypeKey != null && !weaponTypeKey.equals("None")) {
                     ResourceLocation itemId = Registry.ITEM.getKey(itemStack.getItem());
 
                     try {
