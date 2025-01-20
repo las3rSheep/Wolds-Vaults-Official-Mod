@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.api.gear.actions.unusual;
+package xyz.iwolfking.woldsvaults.api.gear.actions.modifications.unusual;
 
 import iskallia.vault.VaultMod;
 import iskallia.vault.gear.modification.GearModification;

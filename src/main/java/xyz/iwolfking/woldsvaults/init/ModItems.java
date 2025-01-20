@@ -90,6 +90,7 @@ public class ModItems {
     public static final SkillOrbItem SKILL_ORB_ITEM;
 
     public static final BasicItem ECCENTRIC_FOCUS;
+    public static final BasicItem WEAPON_TYPE_FOCUS;
 
     public static BasicItem FRENZY_CAPSTONE;
     public static BasicItem PROSPEROUS_CAPSTONE;
@@ -183,7 +184,6 @@ public class ModItems {
         registry.register(ENDER_ARTIFACT);
         registry.register(ENDER_CRYSTAL);
         registry.register(ALTAR_DECATALYZER);
-        //registry.register(VAULT_AMULET);
         registry.register(CHROMATIC_IRON_ANGEL_RING);
         registry.register(CHROMATIC_GOLD_ANGEL_RING);
         registry.register(CHROMATIC_STEEL_ANGEL_RING);
@@ -249,6 +249,7 @@ public class ModItems {
         registry.register(ECCENTRIC_FOCUS);
         registry.register(RANG);
         registry.register(LAYOUT_MANIPULATOR);
+        registry.register(WEAPON_TYPE_FOCUS);
     }
 
     static {
@@ -340,5 +341,6 @@ public class ModItems {
         XL_BACKPACK.setRegistryName(WoldsVaults.MOD_ID, "xl_backpack");
         RANG = new VaultRangItem(VaultMod.id("rang"), new Item.Properties().stacksTo(1).tab(VAULT_MOD_GROUP));
         LAYOUT_MANIPULATOR = new LayoutModificationItem(VAULT_MOD_GROUP, WoldsVaults.id("layout_manipulator"));
+        WEAPON_TYPE_FOCUS = new BasicItem(WoldsVaults.id("accoutre_focus"));
     }
 }

@@ -20,16 +20,19 @@ import xyz.iwolfking.woldsvaults.init.ModItems;
 @Mixin(value = VaultArtisanStationTileEntity.class, remap = false)
 public abstract class MixinArtisanStationTileEntity extends BlockEntity {
     @Shadow @Final @Mutable
-    private OverSizedInventory inventory = new OverSizedInventory.FilteredInsert(17, this, this::canInsertInput);
+    private OverSizedInventory inventory = new OverSizedInventory.FilteredInsert(18, this, this::canInsertInput);
 
     public MixinArtisanStationTileEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
         super(pType, pPos, pBlockState);
     }
 
     @Inject(method = "canInsertInput", at = @At("HEAD"),cancellable = true)
-    private void addEccentricFocus(int slot, ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+    private void addNewFoci(int slot, ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         if(slot == 16) {
             cir.setReturnValue(stack.is(ModItems.ECCENTRIC_FOCUS));
+        }
+        if(slot == 17) {
+            cir.setReturnValue(stack.is(ModItems.WEAPON_TYPE_FOCUS));
         }
     }
 
