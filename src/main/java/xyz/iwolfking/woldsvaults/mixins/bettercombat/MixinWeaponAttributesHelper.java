@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 
@@ -44,7 +45,7 @@ public abstract class MixinWeaponAttributesHelper {
 
             GearDataCache cache = GearDataCache.of(itemStack);
 
-            if(itemStack.getItem() instanceof VaultGearItem && cache.hasAttribute(ModGearAttributes.WEAPON_TYPE)) {
+            if(itemStack.getItem() instanceof VaultGearItem && cache.hasAttribute(ModGearAttributes.WEAPON_TYPE) && !WoldsVaultsConfig.COMMON.weaponsShouldntBeBetter.get()) {
                 VaultGearData data = VaultGearData.read(itemStack);
 
                 String weaponTypeKey = data.getFirstValue(ModGearAttributes.WEAPON_TYPE).orElse(null);

@@ -41,6 +41,7 @@ public class WoldsVaultsConfig
         public final ForgeConfigSpec.ConfigValue<Boolean> enableDebugMode;
         public final ForgeConfigSpec.ConfigValue<Integer> crystalReinforcementMaxCapacityAdded;
         public final ForgeConfigSpec.ConfigValue<Boolean> disableWanderingWispSpawning;
+        public final ForgeConfigSpec.ConfigValue<Boolean> weaponsShouldntBeBetter;
         public Common(ForgeConfigSpec.Builder builder)
         {
             builder.push("Features");
@@ -63,8 +64,8 @@ public class WoldsVaultsConfig
             this.enableMoteRecipes= builder.comment("Controls whether Mote of Purity, Sanctity, and Clarity should work in the Crystal Workbench. (default: false)")
                     .define("enableMoteRecipes", false);
             this.crystalReinforcementMaxCapacityAdded = builder.comment("The max capacity that can be added to a tool with Crystal Reinforcements. (default: 20)").define("crystalReinforcementMaxCapacityAdded", 20);
-            this.disableWanderingWispSpawning = builder.comment("Controls whether or not wandering wisps should spawn (default: true)")
-                    .define("disableWanderingWispSpawning", true);
+            this.disableWanderingWispSpawning = builder.comment("Controls whether or not wandering wisps should spawn (default: true)").define("disableWanderingWispSpawning", true);
+            this.weaponsShouldntBeBetter = builder.comment("Whether Better Combat should be disabled for weapons or not (default: false)").define("weaponsShouldntBeBetter", false);
             builder.pop();
             builder.push("Compatability Settings");
             builder.push("Item Borders");
