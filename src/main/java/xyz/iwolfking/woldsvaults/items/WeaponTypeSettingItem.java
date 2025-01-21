@@ -8,7 +8,6 @@ import iskallia.vault.gear.attribute.VaultGearAttributeInstance;
 import iskallia.vault.gear.attribute.VaultGearAttributeRegistry;
 import iskallia.vault.gear.attribute.VaultGearModifier;
 import iskallia.vault.gear.reader.VaultGearModifierReader;
-import iskallia.vault.init.ModConfigs;
 import iskallia.vault.item.BasicItem;
 import iskallia.vault.item.gear.DataInitializationItem;
 import net.minecraft.ChatFormatting;
@@ -24,6 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+import xyz.iwolfking.woldsvaults.init.ModConfigs;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.modifiers.vault.readers.WeaponTypeReader;
 
@@ -46,6 +46,10 @@ public class WeaponTypeSettingItem extends BasicItem{
         return "";
     }
 
+    public String displayAllowedValues(String type) {
+        return ModConfigs.WEAPON_TYPES.WEAPON_TYPES_MAP.get(type).displayAllowedTypes();
+    }
+
     public static ItemStack create(String tag) {
         ItemStack stack = new ItemStack(ModItems.WEAPON_TYPE_SETTER);
         stack.getOrCreateTag().putString("modifier", tag);
@@ -59,11 +63,13 @@ public class WeaponTypeSettingItem extends BasicItem{
         String display = getModifierTagString(stack);
         MutableComponent text = (new TextComponent("Combine with a Vault Weapon in an Anvil to set the Weapon Type to ")).withStyle(ChatFormatting.GRAY).append((new TextComponent(display).append(new TextComponent(".").withStyle(ChatFormatting.GRAY))));
         tooltip.add(text);
+        tooltip.add(new TextComponent(displayAllowedValues(getModifierTagString(stack))));
     }
 
     @Override
     public @NotNull Component getName(@NotNull ItemStack stack) {
-        return new TextComponent("Weapon Augmenter").append(" - " + getModifierTagString(stack));
+        String weaponType = getModifierTagString(stack);
+        return new TextComponent("Weapon Augmenter").append(" - " + weaponType + " " + ModConfigs.WEAPON_TYPES.WEAPON_TYPES_MAP.get(weaponType).displayAllowedTypes());
     }
 
     @Override
