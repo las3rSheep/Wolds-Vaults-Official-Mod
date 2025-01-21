@@ -69,7 +69,7 @@ public class WeaponTypeSettingItem extends BasicItem{
     @Override
     public @NotNull Component getName(@NotNull ItemStack stack) {
         String weaponType = getModifierTagString(stack);
-        return new TextComponent("Weapon Augmenter").append(" - " + weaponType + " " + ModConfigs.WEAPON_TYPES.WEAPON_TYPES_MAP.get(weaponType).displayAllowedTypes());
+        return new TextComponent("Weapon Augmenter").append(" - " + weaponType);
     }
 
     @Override
