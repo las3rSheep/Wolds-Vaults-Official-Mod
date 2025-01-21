@@ -3,9 +3,12 @@ package xyz.iwolfking.woldsvaults.mixins.bettercombat;
 import iskallia.vault.gear.data.GearDataCache;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.bettercombat.api.AttributesContainer;
 import net.bettercombat.api.WeaponAttributes;
 import net.bettercombat.api.WeaponAttributesHelper;
+import net.bettercombat.client.collision.TargetFinder;
 import net.bettercombat.logic.ItemStackNBTWeaponAttributes;
 import net.bettercombat.logic.WeaponRegistry;
 import net.minecraft.core.Registry;
@@ -25,6 +28,11 @@ import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import java.io.Reader;
 import java.io.StringReader;
 
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "bettercombat")
+        }
+)
 @Mixin(value = WeaponAttributesHelper.class, remap = false)
 public abstract class MixinWeaponAttributesHelper {
     @Shadow
