@@ -70,6 +70,7 @@ import xyz.iwolfking.woldsvaults.api.data.HexEffects;
 import xyz.iwolfking.woldsvaults.api.data.discovery.DiscoveredRecipesData;
 import xyz.iwolfking.woldsvaults.effect.mobeffects.EchoingPotionEffect;
 import xyz.iwolfking.woldsvaults.effect.mobeffects.PercentBurnEffect;
+import xyz.iwolfking.woldsvaults.effect.mobeffects.SaferSpacePotionEffect;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import xyz.iwolfking.woldsvaults.items.TrinketPouchItem;
@@ -78,6 +79,8 @@ import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultTridentItem;
 import xyz.iwolfking.woldsvaults.objectives.data.bosses.WoldBoss;
 import xyz.iwolfking.woldsvaults.api.util.WoldEventHelper;
+import xyz.iwolfking.woldsvaults.lib.network.PacketHandler;
+import xyz.iwolfking.woldsvaults.util.WoldEventHelper;
 
 import java.util.Random;
 import java.util.function.BiConsumer;
@@ -640,4 +643,91 @@ public class LivingEntityEvents {
         }
     }
 
+    @SubscribeEvent()
+    public static void onSafeSpaceAdded(PotionEvent.PotionAddedEvent event) {
+
+        if(!(event.getEntityLiving() instanceof ServerPlayer)) {
+            return;
+        }
+
+        MobEffectInstance effect = event.getPotionEffect();
+
+        if(!(effect.getEffect() instanceof SaferSpacePotionEffect)
+        ||  event.getOldPotionEffect() != null)
+            return;
+
+        PacketHandler.makeSaferSpaceParticles(event.getEntityLiving());
+
+//        Level level = Minecraft.getInstance().level;
+//        if (level != null) {
+//            ParticleEngine pe = Minecraft.getInstance().particleEngine;
+//            LocalPlayer e = (LocalPlayer) event.getEntityLiving();
+//            for (int i = 0; i < 1; i++) {
+//                if (pe.createParticle(
+//                        ModParticles.SAFERSPACE_CUBE.get(),
+//                        e.getX(),
+//                        e.getY() + 1,
+//                        e.getZ(),
+//                        0,
+//                        0,
+//                        0
+//                ) instanceof SaferSpaceParticle p) {
+//                    p.setTarget(e);
+//                }
+//            }
+//        }
+
+    }
+
+    @SubscribeEvent()
+    public static void onSafeSpaceRemove(PotionEvent.PotionRemoveEvent event) {
+
+//        if(event.getEntityLiving().getLevel().isClientSide) {
+//            WoldsVaults.LOGGER.debug("remove client");
+//            return;
+//        }
+//        else
+//            WoldsVaults.LOGGER.debug("remove server");
+
+//        MobEffectInstance effect = event.getPotionEffect();
+//
+//        if( effect == null
+//        || !effect.getEffect().equals(ModEffects.SAFER_SPACE)
+//        || !effect.isVisible())
+//            return;
+//
+//        while(effect != null) {
+//            if(effect.getAmplifier() == -1)
+//                return;
+//            effect = ((MobEffectInstanceAccessor)effect).getHiddenEffect();
+//        }
+//
+//        PacketHandler.makeSaferSpaceParticles(event.getEntityLiving());
+    }
+
+    @SubscribeEvent()
+    public static void onSafeSpaceExpire(PotionEvent.PotionExpiryEvent event) {
+
+        if(event.getEntityLiving().getLevel().isClientSide) {
+            WoldsVaults.LOGGER.debug("expire client");
+            return;
+        }
+        else
+            WoldsVaults.LOGGER.debug("expire server");
+
+//        MobEffectInstance effect = event.getPotionEffect();
+//
+//        if( effect == null
+//        || !effect.getEffect().equals(ModEffects.SAFER_SPACE)
+//        || !effect.isVisible())
+//            return;
+//
+//        while(effect != null) {
+//            if(effect.getAmplifier() == -1)
+//                return;
+//            effect = ((MobEffectInstanceAccessor)effect).getHiddenEffect();
+//        }
+//
+//        PacketHandler.makeSaferSpaceParticles(event.getEntityLiving());
+    }
 }
