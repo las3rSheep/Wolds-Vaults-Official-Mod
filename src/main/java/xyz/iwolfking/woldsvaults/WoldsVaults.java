@@ -45,6 +45,8 @@ public class WoldsVaults {
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModParticles.register(modEventBus);
+
         modEventBus.addGenericListener(CustomObjectiveRegistryEntry.class, ModCustomVaultObjectiveEntries::registerCustomObjectives);
         modEventBus.addGenericListener(CustomVaultGearRegistryEntry.class, ModCustomVaultGearEntries::registerGearEntries);
 

@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -76,6 +77,11 @@ public class RegistryEvents {
     @SubscribeEvent
     public static void onModificationRegistry(RegistryEvent.Register<GearModification> event) {
         ModGearModifications.init(event);
+    }
+
+    @SubscribeEvent
+    public static void onParticleRegister(final ParticleFactoryRegisterEvent event) {
+        ModParticles.registerFactories(event);
     }
 
 }

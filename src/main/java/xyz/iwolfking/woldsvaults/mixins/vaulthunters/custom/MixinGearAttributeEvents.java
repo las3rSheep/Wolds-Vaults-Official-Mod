@@ -58,9 +58,12 @@ public class MixinGearAttributeEvents {
                     int safeDuration = currentSpace.getDuration();
 
                     attacked.removeEffect(ModEffects.SAFER_SPACE);
-                    if(currentAmp > 0)
-                        attacked.addEffect(new MobEffectInstance(ModEffects.SAFER_SPACE, safeDuration+unsafeDuration, currentAmp-1, false, true, true));
-                    attacked.addEffect(new MobEffectInstance(ModEffects.SAFER_SPACE, unsafeDuration, 255, false, false, false));
+                    attacked.addEffect(new MobEffectInstance(ModEffects.SAFER_SPACE, unsafeDuration, 255, false, false, false,
+                      currentAmp > 0 ? new MobEffectInstance(ModEffects.SAFER_SPACE, safeDuration+unsafeDuration, currentAmp-1, false, true, true)
+                                     : null ));
+//                    attacked.addEffect(new MobEffectInstance(ModEffects.SAFER_SPACE, unsafeDuration, 255, false, false, false));
+//                    if(currentAmp > 0)
+//                        attacked.addEffect(new MobEffectInstance(ModEffects.SAFER_SPACE, safeDuration+unsafeDuration, currentAmp-1, false, true, true));
 
                     if(attacked instanceof Player player)
                         player.playNotifySound(ModSounds.SAFERSPACES_PROC, SoundSource.PLAYERS, 0.4f, 1.0f);

@@ -8,8 +8,6 @@ import iskallia.vault.gear.reader.VaultGearModifierReader;
 
 import javax.annotation.Nullable;
 
-import iskallia.vault.gear.tooltip.ModifierCategoryTooltip;
-import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
