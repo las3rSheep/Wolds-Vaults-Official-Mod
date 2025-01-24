@@ -26,6 +26,7 @@
     "MixinShieldItem",
     "MixinTagLoader",
     "MixinThrownTrident",
+    "MobEffectInstanceAccessor",
     "ThrownTridentAccessor",
     "accessors.SheepAccessor",
     "advanced_peripherals.MixinVillagerTrades",

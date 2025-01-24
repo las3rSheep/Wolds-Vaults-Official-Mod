@@ -66,6 +66,8 @@ public class WoldsVaults {
 
         modEventBus.register(new ModRecipeSerializers());
 
+        ModParticles.register(modEventBus);
+
         modEventBus.addGenericListener(CustomObjectiveRegistryEntry.class, ModCustomVaultObjectiveEntries::registerCustomObjectives);
         modEventBus.addGenericListener(CustomVaultGearRegistryEntry.class, ModCustomVaultGearEntries::registerGearEntries);
 
