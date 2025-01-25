@@ -2,6 +2,7 @@ package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom;
 
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.event.common.EntityDamageBlockEvent;
+import iskallia.vault.event.ActiveFlags;
 import iskallia.vault.event.GearAttributeEvents;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
@@ -19,9 +20,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModSounds;
 import xyz.iwolfking.woldsvaults.mixins.LivingEntityAccessor;
@@ -59,8 +64,8 @@ public class MixinGearAttributeEvents {
 
                     attacked.removeEffect(ModEffects.SAFER_SPACE);
                     if(currentAmp > 0)
-                        attacked.addEffect(new MobEffectInstance(ModEffects.SAFER_SPACE, safeDuration+unsafeDuration, currentAmp-1, false, true, true));
-                    attacked.addEffect(new MobEffectInstance(ModEffects.SAFER_SPACE, unsafeDuration, 255, false, false, false));
+                        attacked.addEffect(new MobEffectInstance(ModEffects.SAFER_SPACE, safeDuration+unsafeDuration, currentAmp-1, true, true, true));
+                    attacked.addEffect(new MobEffectInstance(ModEffects.SAFER_SPACE, unsafeDuration, 255, true, false, false));
 
                     if(attacked instanceof Player player)
                         player.playNotifySound(ModSounds.SAFERSPACES_PROC, SoundSource.PLAYERS, 0.4f, 1.0f);
@@ -92,7 +97,28 @@ public class MixinGearAttributeEvents {
                     }
                 }
             }
-
         }
     }
+
+
+    /**
+     * @author aida
+     * @reason add activeflag checks to cleave
+     */
+    @Inject(method = "triggerAoEAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/damagesource/DamageSource;getEntity()Lnet/minecraft/world/entity/Entity;", shift = At.Shift.AFTER), cancellable = true)
+    private static void triggerAoEAttack(LivingHurtEvent event, CallbackInfo ci) {
+        if(ActiveFlags.IS_SMITE_ATTACKING.isSet() && !ActiveFlags.IS_SMITE_BASE_ATTACKING.isSet())
+            ci.cancel();
+    }
+
+
+//    /**
+//     * @return
+//     * @author aida
+//     * @reason chain falloff reduction stat
+//     */
+//    @Overwrite
+//    private static float lambda$triggerChainAttack$10(Level level, LivingEntity attacked, LivingEntity attacker, LivingHurtEvent event, CallbackInfo ci) {
+//        return value;
+//    }
 }

@@ -27,7 +27,7 @@ public class MixinGrantedEffectHelper {
                                 || activeEffect.getAmplifier() < amplifier
                                 || activeEffect.getAmplifier() == amplifier && activeEffect.getDuration() <= 259) {
                             boolean beVisible = effect instanceof SaferSpacePotionEffect;
-                            entity.addEffect(new MobEffectInstance(effect, 339, amplifier, false, beVisible, beVisible));
+                            entity.addEffect(new MobEffectInstance(effect, 339, amplifier, true, beVisible, beVisible));
                         }
                     }
                 }

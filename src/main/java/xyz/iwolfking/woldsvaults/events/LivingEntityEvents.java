@@ -214,19 +214,19 @@ public class LivingEntityEvents {
 
         if(ActiveFlags.IS_DOT_ATTACKING.isSet()
         || ActiveFlags.IS_LEECHING.isSet()
-        //|| ActiveFlags.IS_AOE_ATTACKING.isSet()
+//        || ActiveFlags.IS_AOE_ATTACKING.isSet()
         || ActiveFlags.IS_REFLECT_ATTACKING.isSet()
-        //|| ActiveFlags.IS_TOTEM_ATTACKING.isSet()
+//        || ActiveFlags.IS_TOTEM_ATTACKING.isSet()
         || ActiveFlags.IS_CHARMED_ATTACKING.isSet()
         || ActiveFlags.IS_EFFECT_ATTACKING.isSet()
-        //|| ActiveFlags.IS_JAVELIN_ATTACKING.isSet()
+//        || ActiveFlags.IS_JAVELIN_ATTACKING.isSet()
         || ActiveFlags.IS_SMITE_ATTACKING.isSet()
-        //|| ActiveFlags.IS_SMITE_BASE_ATTACKING.isSet()
-        //|| ActiveFlags.IS_CHAINING_ATTACKING.isSet()
-        //|| ActiveFlags.IS_THORNS_REFLECTING.isSet()
-        //|| ActiveFlags.IS_FIRESHOT_ATTACKING.isSet()
-        //|| ActiveFlags.IS_GLACIAL_SHATTER_ATTACKING.isSet()
-        || ActiveFlags.IS_AP_ATTACKING.isSet()
+//        || ActiveFlags.IS_SMITE_BASE_ATTACKING.isSet()
+//        || ActiveFlags.IS_CHAINING_ATTACKING.isSet()
+//        || ActiveFlags.IS_THORNS_REFLECTING.isSet()
+//        || ActiveFlags.IS_FIRESHOT_ATTACKING.isSet()
+//        || ActiveFlags.IS_GLACIAL_SHATTER_ATTACKING.isSet()
+//        || ActiveFlags.IS_AP_ATTACKING.isSet()
         ){
             return;
         }
