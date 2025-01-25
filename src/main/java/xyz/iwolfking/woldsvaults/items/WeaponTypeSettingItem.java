@@ -75,7 +75,7 @@ public class WeaponTypeSettingItem extends BasicItem{
     @Override
     public void fillItemCategory(CreativeModeTab category, @NotNull NonNullList<ItemStack> items) {
         if (category.equals(iskallia.vault.init.ModItems.VAULT_MOD_GROUP)) {
-            items.add(create("Sword"));
+            //items.add(create("Sword"));
         }
     }
 }

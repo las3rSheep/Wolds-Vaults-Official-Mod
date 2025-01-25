@@ -29,6 +29,7 @@ public class SetWeaponTypeFocusRecipe  extends VanillaAnvilRecipe {
             ItemStack output = primary.copy();
             VaultGearData gear = VaultGearData.read(output);
 
+
             if(!gearItem.isIntendedForSlot(primary, EquipmentSlot.MAINHAND)) {
                 return false;
             }
