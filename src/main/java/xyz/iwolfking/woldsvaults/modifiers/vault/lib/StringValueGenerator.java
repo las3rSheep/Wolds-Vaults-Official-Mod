@@ -18,8 +18,8 @@ public class StringValueGenerator extends ConstantObjectGenerator<String, String
     }
 
     @Nullable
-    public MutableComponent getConfigDisplay(VaultGearModifierReader<Boolean> reader, BooleanFlagGenerator.BooleanFlag object) {
-        return (new TextComponent(reader.getModifierName())).withStyle(reader.getColoredTextStyle());
+    public MutableComponent getConfigDisplay(VaultGearModifierReader<String> reader, StringValueGenerator.StringValue object) {
+        return (new TextComponent(reader.getModifierName()).append(": ").append(object.get())).withStyle(reader.getColoredTextStyle());
     }
 
     public Optional<Float> getRollPercentage(String value, List<StringValue> configurations) {
