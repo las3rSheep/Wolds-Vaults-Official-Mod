@@ -301,6 +301,7 @@
     "vaulthunters.fixes.MixinCurioContainerHandler",
     "vaulthunters.fixes.MixinDeathObjective",
     "vaulthunters.fixes.MixinDeckRecipeTaskData",
+    "vaulthunters.fixes.MixinDecoratorAddModifier",
     "vaulthunters.fixes.MixinDynamicModelRegistry",
     "vaulthunters.fixes.MixinEliteZombie",
     "vaulthunters.fixes.MixinEntityGroupsConfig",
