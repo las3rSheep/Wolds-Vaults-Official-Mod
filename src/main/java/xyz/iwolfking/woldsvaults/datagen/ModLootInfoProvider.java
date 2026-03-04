@@ -50,6 +50,10 @@ public class ModLootInfoProvider extends AbstractLootInfoProvider {
             mapChest("Gilded", builder);
             mapChest("Treasure", builder);
 
+            builder.lootInfo(VaultMod.id("treasure_pedestal_map"), "Treasure Pedestal (Map)", map -> {
+                map.put(VaultMod.id("treasure_chest_stand_map"), 100);
+            });
+
             completionCrate("brutal_bosses", builder);
             completionCrate("unhinged_scavenger", builder);
             completionCrate("haunted_braziers", builder);
@@ -97,7 +101,7 @@ public class ModLootInfoProvider extends AbstractLootInfoProvider {
     }
 
     public void mapChest(String chestType, Builder builder) {
-        builder.lootInfo(VaultMod.id(chestType.toLowerCase() + "_chest_map"), chestType + " Chests (Map)", map -> {
+        builder.lootInfo(VaultMod.id(chestType.toLowerCase() + "_chest_map"), chestType + " Chest (Map)", map -> {
             map.put(VaultMod.id(chestType.toLowerCase() + "_chest_map"), 100);
         });
     }

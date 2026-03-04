@@ -188,6 +188,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("jei.the_vault.ornate_chest_map_loot", "Ornate Chest (Map)");
         add("jei.the_vault.wooden_chest_map_loot", "Wooden Chest (Map)");
         add("jei.the_vault.treasure_chest_map_loot", "Treasure Chest (Map)");
+        add("jei.the_vault.treasure_pedestal_map_loot", "Treasure Pedestal (Map)");
         add("jei.the_vault.gilded_barrel_loot", "Gilded Barrel");
         add("jei.the_vault.ornate_barrel_loot", "Ornate Barrel");
         add("jei.the_vault.living_barrel_loot", "Living Barrel");
