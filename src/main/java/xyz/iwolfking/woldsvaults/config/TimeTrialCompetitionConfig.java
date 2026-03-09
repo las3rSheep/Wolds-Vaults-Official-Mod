@@ -26,6 +26,9 @@ public class TimeTrialCompetitionConfig extends Config {
     public ResourceLocation REWARD_CRATE_LOOT_TABLE;
 
     @Expose
+    public boolean useRandomSeed;
+
+    @Expose
     public boolean enabled;
 
 
@@ -37,6 +40,7 @@ public class TimeTrialCompetitionConfig extends Config {
     @Override
     protected void reset() {
         RESET_DAY_OF_WEEK = DayOfWeek.MONDAY;
+        this.useRandomSeed = true;
         OBJECTIVE_WEIGHTS.add("elixir", 15);
         OBJECTIVE_WEIGHTS.add("enchanted_elixir", 5);
         OBJECTIVE_WEIGHTS.add("monolith", 10);
