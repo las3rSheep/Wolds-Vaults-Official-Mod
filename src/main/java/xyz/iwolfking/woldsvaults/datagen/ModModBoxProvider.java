@@ -31,6 +31,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.cyclops.integrateddynamics.RegistryEntries;
 import org.cyclops.integratedtunnels.part.PartTypes;
 import shadows.hostilenetworks.Hostile;
+import sonar.fluxnetworks.register.RegistryBlocks;
+import sonar.fluxnetworks.register.RegistryItems;
 import xyz.iwolfking.vhapi.api.datagen.boxes.AbstractModBoxProvider;
 import xyz.iwolfking.vhapi.api.loaders.box.MappedWeightedProductEntryConfigLoader;
 import xyz.iwolfking.vhapi.api.loaders.box.lib.MappedWeightedProductEntryConfig;
@@ -265,6 +267,19 @@ public class ModModBoxProvider extends AbstractModBoxProvider {
                 productEntryListBuilder.add(MekanismItems.REINFORCED_ALLOY.get(), 4, 12, null, 20);
                 productEntryListBuilder.add(MekanismItems.INFUSED_ALLOY.get(), 16, 16, null, 35);
                 productEntryListBuilder.add(MekanismItems.FREE_RUNNERS.get(), 1, 1, null, 2);
+            });
+        });
+
+        add("fluxnetworks", builder -> {
+            builder.addModBox("Flux Networks", productEntryListBuilder -> {
+                productEntryListBuilder.add(RegistryItems.FLUX_DUST, 16, 64, null, 70);
+                productEntryListBuilder.add(RegistryItems.FLUX_CORE, 4, 4, null, 60);
+                productEntryListBuilder.add(RegistryBlocks.FLUX_PLUG.asItem(), 1, 1, null, 20);
+                productEntryListBuilder.add(RegistryBlocks.FLUX_POINT.asItem(), 1, 1, null, 40);
+                productEntryListBuilder.add(RegistryBlocks.FLUX_CONTROLLER.asItem(), 1, 1, null, 1);
+                productEntryListBuilder.add(RegistryBlocks.BASIC_FLUX_STORAGE.asItem(), 1, 1, null, 20);
+                productEntryListBuilder.add(RegistryBlocks.HERCULEAN_FLUX_STORAGE.asItem(), 1, 1, null, 10);
+                productEntryListBuilder.add(RegistryBlocks.GARGANTUAN_FLUX_STORAGE.asItem(), 1, 1, null, 2);
             });
         });
 
