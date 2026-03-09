@@ -134,6 +134,7 @@ public class ModUniqueGearProvider extends AbstractUniqueGearProvider {
                 .description("chests be broken the same way as ", "$text")
                 .description("Wooden ", "$wooden")
                 .description("chests (break in one go)", "$text")
+                .uncraftable()
                 .modelType("JEWEL")
                 .slotType(UniqueCodexConfig.IntroductionPage.SlotType.JEWEL)
                 .build()
