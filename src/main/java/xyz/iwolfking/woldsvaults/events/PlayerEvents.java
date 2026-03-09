@@ -18,6 +18,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -34,6 +35,7 @@ import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.api.util.GameruleHelper;
 import xyz.iwolfking.woldsvaults.blocks.DollDismantlingBlock;
 import xyz.iwolfking.woldsvaults.init.ModGameRules;
+import xyz.iwolfking.woldsvaults.items.ItemScavengerPouch;
 import xyz.iwolfking.woldsvaults.items.filter_necklace.FilterNecklaceItem;
 
 @Mod.EventBusSubscriber(
@@ -105,6 +107,20 @@ public class PlayerEvents {
             }
         }
 
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onItemPickup(EntityItemPickupEvent event) {
+        Player player = event.getPlayer();
+        if(player != null) {
+            Inventory inventory = player.getInventory();
+            ItemStack stack = event.getItem().getItem();
+            if(ItemScavengerPouch.interceptPlayerInventoryItemAddition(inventory, stack)) {
+                event.getItem().setItem(ItemStack.EMPTY);
+                event.setCanceled(true);
+                player.level.playSound(null, player.blockPosition(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2F, (player.level.random.nextFloat() - player.level.random.nextFloat()) * 1.4F + 2.0F);
+            }
+        }
     }
 
     private static void sendDisabledMessage(ItemStack item) {
