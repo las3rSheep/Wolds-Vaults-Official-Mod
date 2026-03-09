@@ -236,6 +236,21 @@ public class DollDismantlingTileEntity extends BlockEntity
 
         // Load energy data from NBT
         this.energyStorage.receiveEnergy(tag.getInt(DollDismantlingTileEntity.ENERGY), false);
+
+        ItemStack dollStack = this.inventory.getStackInSlot(0);
+
+        if (!dollStack.isEmpty() && this.level instanceof ServerLevel)
+        {
+            CompoundTag dollTag = dollStack.getOrCreateTag();
+
+            VaultDollItem.getDollUUID(dollTag).ifPresent(uuid ->
+            {
+                if(this.getLevel() instanceof ServerLevel serverLevel) {
+                    DollLootData lootData = DollLootData.get(serverLevel, uuid);
+                    this.extractionHandler.setDollLootData(lootData);
+                }
+            });
+        }
     }
 
 
