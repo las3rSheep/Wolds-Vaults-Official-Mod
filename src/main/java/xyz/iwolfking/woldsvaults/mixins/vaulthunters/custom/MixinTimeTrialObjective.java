@@ -51,15 +51,15 @@ public abstract class MixinTimeTrialObjective {
                         int completionTime = clock.get(TickClock.LOGICAL_TIME);
                         String objectiveName = VaultUtils.getMainObjectiveKey(vault);
 
-                        int bestEverTime = PlayerTimeTrialData.get().getBestTime(serverPlayer, objectiveName);
-                        if(bestEverTime > completionTime) {
-                            if(bestEverTime == Integer.MAX_VALUE) {
-                                MessageUtils.broadcastMessage(serverPlayer.getLevel(), new TranslatableComponent("vault_objective.woldsvaults.time_trial_player_best", serverPlayer.getDisplayName(), objectiveName, TimeUtils.formatTime(bestEverTime), "No time recorded"));
-                            }
-                            else {
-                                MessageUtils.broadcastMessage(serverPlayer.getLevel(), new TranslatableComponent("vault_objective.woldsvaults.time_trial_player_best", serverPlayer.getDisplayName(), objectiveName,  TimeUtils.formatTime(completionTime), TimeUtils.formatTime(bestEverTime)));
-                            }
-                        }
+//                        int bestEverTime = PlayerTimeTrialData.get().getBestTime(serverPlayer, objectiveName);
+//                        if(bestEverTime > completionTime) {
+//                            if(bestEverTime == Integer.MAX_VALUE) {
+//                                MessageUtils.broadcastMessage(serverPlayer.getLevel(), new TranslatableComponent("vault_objective.woldsvaults.time_trial_player_best", serverPlayer.getDisplayName(), objectiveName, TimeUtils.formatTime(bestEverTime)));
+//                            }
+//                            else {
+//                                MessageUtils.broadcastMessage(serverPlayer.getLevel(), new TranslatableComponent("vault_objective.woldsvaults.time_trial_player_best", serverPlayer.getDisplayName(), objectiveName,  TimeUtils.formatTime(bestEverTime)));
+//                            }
+//                        }
 
 
                         // Record the player's time

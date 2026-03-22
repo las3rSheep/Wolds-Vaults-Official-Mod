@@ -101,9 +101,9 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
             plutoDeckModifier.modifierRolls.put("lesser", variant("Lesser Pluto Core", FloatRoll.ofUniform(0.2F, 0.2F), 13618375, "woldsvaults:deck_cores/pluto_deck_core_lesser#inventory"));
             plutoDeckModifier.modifierRolls.put("greater", variant("Greater Pluto Core", FloatRoll.ofUniform(0.5F, 0.75F), 16769382, "woldsvaults:deck_cores/pluto_deck_core_greater#inventory"));
 
-            GroupSynergyDeckModifier.Config premiumCoreModifier = new GroupSynergyDeckModifier.Config(FloatRoll.ofUniform(0.1F, 0.2F), List.of("Deluxe"), List.of(), true);
-            premiumCoreModifier.modifierRolls.put("lesser", variant("Lesser Premium Core", FloatRoll.ofUniform(0.1F, 0.1F), 13618375, "woldsvaults:deck_cores/premium_deck_core_lesser#inventory"));
-            premiumCoreModifier.modifierRolls.put("greater", variant("Greater Premium Core", FloatRoll.ofUniform(0.2F, 0.4F), 16769382, "woldsvaults:deck_cores/premium_deck_core_greater#inventory"));
+            GroupSynergyDeckModifier.Config premiumCoreModifier = new GroupSynergyDeckModifier.Config(FloatRoll.ofUniform(0.05F, 0.1F), List.of("Deluxe"), List.of(), true);
+            premiumCoreModifier.modifierRolls.put("lesser", variant("Lesser Premium Core", FloatRoll.ofUniform(0.05F, 0.05F), 13618375, "woldsvaults:deck_cores/premium_deck_core_lesser#inventory"));
+            premiumCoreModifier.modifierRolls.put("greater", variant("Greater Premium Core", FloatRoll.ofUniform(0.15F, 0.2F), 16769382, "woldsvaults:deck_cores/premium_deck_core_greater#inventory"));
 
 
             builder.addCore("arsenal", GlobalDeckModifier::new, arsenalModifierConfig, "Arsenal Core", 13618375,"woldsvaults:deck_cores/arsenal_deck_core#inventory");
