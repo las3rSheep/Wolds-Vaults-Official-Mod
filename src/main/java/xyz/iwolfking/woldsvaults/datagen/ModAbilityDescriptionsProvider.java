@@ -23,9 +23,9 @@ public class ModAbilityDescriptionsProvider extends AbstractAbilityDescriptionsP
                 jsonElements.add(JsonDescription.simple("Attack Damage ", "$damage"));
                 jsonElements.add(JsonDescription.simple("scaled damage in a "));
                 jsonElements.add(JsonDescription.simple("radius ", "$radius"));
-                jsonElements.add(JsonDescription.simple("and activating all "));
+                jsonElements.add(JsonDescription.simple("and activating a random "));
                 jsonElements.add(JsonDescription.simple("Effect Cloud ", "$heal"));
-                jsonElements.add(JsonDescription.simple("attributes you have equipped."));
+                jsonElements.add(JsonDescription.simple("attribute you have equipped."));
                 jsonElements.add(castAbility());
             }, current -> {
                 current.add("damage");

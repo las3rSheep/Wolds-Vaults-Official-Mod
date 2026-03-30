@@ -27,7 +27,7 @@
           "color": "$radius"
         },
         {
-          "text": "and activating all ",
+          "text": "and activating a random ",
           "color": "$text"
         },
         {
@@ -35,7 +35,7 @@
           "color": "$heal"
         },
         {
-          "text": "attributes you have equipped.",
+          "text": "attribute you have equipped.",
           "color": "$text"
         },
         {
