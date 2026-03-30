@@ -30,7 +30,6 @@ public abstract class MixinCardDeckContainerMenu extends Slot {
 
     @Inject(method = "mayPlace", at = @At(value = "HEAD"), cancellable = true, remap = true)
     private void specialArcanePlacementForNitwit(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        System.out.println(container.getClass());
         if(container instanceof CardDeckContainer || container.getClass().getName().contains("DeckContainerWrapper")) {
             CardDeck deck;
             if(container instanceof CardDeckContainer cardDeckContainer) {

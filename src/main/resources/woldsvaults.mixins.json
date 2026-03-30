@@ -240,6 +240,7 @@
     "vaulthunters.custom.MixinPlayerVaultStatsData",
     "vaulthunters.custom.MixinPylonBlock",
     "vaulthunters.custom.MixinRecoveryCost",
+    "vaulthunters.custom.MixinResearchTree",
     "vaulthunters.custom.MixinRewardConfig",
     "vaulthunters.custom.MixinRoyaleDraftContainer",
     "vaulthunters.custom.MixinRoyalePresetConfig",
