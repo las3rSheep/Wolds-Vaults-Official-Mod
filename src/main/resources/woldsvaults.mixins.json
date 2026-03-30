@@ -362,7 +362,6 @@
     "MixinAnvilScreen",
     "MixinItemRenderer",
     "MixinThrownTridentRenderer",
-    "ae2.terminal.MixinMEStorageScreen",
     "bettercombat.MixinWeaponRegistry",
     "inventoryhud.MixinCuriosRenderer",
     "inventoryhud.MixinInventoryHudRenderer",

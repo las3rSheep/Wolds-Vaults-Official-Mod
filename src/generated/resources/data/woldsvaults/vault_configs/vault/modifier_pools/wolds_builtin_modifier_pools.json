@@ -1299,6 +1299,71 @@
         ]
       }
     ],
+    "the_vault:omega_positive": [
+      {
+        "level": 0,
+        "entries": [
+          {
+            "min": 1,
+            "max": 1,
+            "pool": [
+              {
+                "value": "the_vault:tailwind",
+                "weight": 1
+              },
+              {
+                "value": "the_vault:hoard",
+                "weight": 1
+              },
+              {
+                "value": "the_vault:treasure",
+                "weight": 1
+              },
+              {
+                "value": "the_vault:soul_surge",
+                "weight": 1
+              },
+              {
+                "value": "the_vault:prismatic",
+                "weight": 1
+              },
+              {
+                "value": "the_vault:champion_chance",
+                "weight": 1
+              },
+              {
+                "value": "the_vault:soul_boost",
+                "weight": 1
+              },
+              {
+                "value": "the_vault:looters_dream",
+                "weight": 1
+              },
+              {
+                "value": "the_vault:phoenix",
+                "weight": 1
+              },
+              {
+                "value": "the_vault:fortuitous",
+                "weight": 1
+              },
+              {
+                "value": "the_vault:ultimate_regeneration",
+                "weight": 1
+              },
+              {
+                "value": "the_vault:opulent_ores",
+                "weight": 1
+              },
+              {
+                "value": "the_vault:perfect_ores",
+                "weight": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "the_vault:medium_positive": [
       {
         "level": 0,

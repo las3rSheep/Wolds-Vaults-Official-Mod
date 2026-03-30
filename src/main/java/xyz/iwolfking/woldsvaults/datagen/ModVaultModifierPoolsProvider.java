@@ -452,6 +452,26 @@ public class ModVaultModifierPoolsProvider extends AbstractVaultModifierPoolsPro
                     )
             );
 
+            b.pool(VaultMod.id("omega_positive").toString(), pool ->
+                    pool.level(0, entries ->
+                            entries.entry(1, 1, e -> {
+                                e.add("the_vault:tailwind", 1);
+                                e.add("the_vault:hoard", 1);
+                                e.add("the_vault:treasure", 1);
+                                e.add("the_vault:soul_surge", 1);
+                                e.add("the_vault:prismatic", 1);
+                                e.add("the_vault:champion_chance", 1);
+                                e.add("the_vault:soul_boost", 1);
+                                e.add("the_vault:looters_dream", 1);
+                                e.add("the_vault:phoenix", 1);
+                                e.add("the_vault:fortuitous", 1);
+                                e.add("the_vault:ultimate_regeneration", 1);
+                                e.add("the_vault:opulent_ores", 1);
+                                e.add("the_vault:perfect_ores", 1);
+                            })
+                    )
+            );
+
             b.pool(VaultMod.id("medium_positive").toString(), pool ->
                     pool.level(0, entries ->
                             entries.entry(1, 1, e -> {
