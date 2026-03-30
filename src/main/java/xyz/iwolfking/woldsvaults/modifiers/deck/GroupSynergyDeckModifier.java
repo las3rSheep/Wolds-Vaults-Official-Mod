@@ -50,7 +50,7 @@ public class GroupSynergyDeckModifier extends DeckModifier<GroupSynergyDeckModif
             }
         }
 
-        boolean applies = config.boostGroups.isEmpty() || card.getGroups().stream().anyMatch(config.boostGroups::contains);
+        boolean applies = (config.boostGroups.isEmpty() || card.getGroups().stream().anyMatch(config.boostGroups::contains)) && card.getGroups().stream().noneMatch(config.boostGroups::contains);
         if (!applies || countX == 0) return 1.0F;
 
         float bonus = config.forEveryCardInGroup ? countX * this.getModifierValue() : this.getModifierValue();
@@ -66,7 +66,7 @@ public class GroupSynergyDeckModifier extends DeckModifier<GroupSynergyDeckModif
                 .append(new TextComponent(String.format(Locale.ROOT, "%.1f%% ", this.getModifierValue() * 100.0F)).withStyle(ChatFormatting.WHITE))
                 .append(new TranslatableComponent("deck.woldsvaults.group_synergy_modifier",
                         new TextComponent(String.join(", ", config.synergyGroups)).withStyle(ChatFormatting.GOLD),
-                        new TextComponent(config.boostGroups.isEmpty() ? "all" : String.join(", ", config.boostGroups)).withStyle(ChatFormatting.GREEN),
+                        new TextComponent(config.boostGroups.isEmpty() ? "non-Deluxe" : String.join(", ", config.boostGroups)).withStyle(ChatFormatting.GREEN),
                         config.forEveryCardInGroup ? "for each " : "if you have a "
                 ));
 
