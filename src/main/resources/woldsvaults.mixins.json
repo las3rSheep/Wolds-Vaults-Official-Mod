@@ -118,6 +118,7 @@
     "vaulthunters.accessors.ClientEventsAccessor",
     "vaulthunters.accessors.CompoundCrystalLayoutAccessor",
     "vaulthunters.accessors.DamageOnHitTalentAccessor",
+    "vaulthunters.accessors.DeckContainerWrapperAccessor",
     "vaulthunters.accessors.DynamicModelAccessor",
     "vaulthunters.accessors.EffectOnHitTalentAccessor",
     "vaulthunters.accessors.GearAttributeSkillAccessor",
