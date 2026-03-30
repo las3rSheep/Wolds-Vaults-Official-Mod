@@ -23,6 +23,6 @@ public class ModVaultFilterAttributes {
         new AlchemyItemAttribute(true).register(AlchemyItemAttribute::new);
         new CatalystItemAttribute(true).register(CatalystItemAttribute::new);
         new AlchemyIngredientTypeAttribute("Negative").register(AlchemyIngredientTypeAttribute::new);
-
+        new VaultDollCompletedAttribute(true).register(VaultDollCompletedAttribute::new);
     }
 }

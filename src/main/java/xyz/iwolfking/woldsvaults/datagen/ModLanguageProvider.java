@@ -15,6 +15,7 @@ import xyz.iwolfking.woldsvaults.init.*;
 import xyz.iwolfking.woldsvaults.integration.vaultfilters.AlchemyIngredientTypeAttribute;
 import xyz.iwolfking.woldsvaults.integration.vaultfilters.AlchemyItemAttribute;
 import xyz.iwolfking.woldsvaults.integration.vaultfilters.CatalystItemAttribute;
+import xyz.iwolfking.woldsvaults.integration.vaultfilters.VaultDollCompletedAttribute;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 
 import java.util.LinkedHashMap;
@@ -368,6 +369,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("the_vault.gear_modification.freeze_all.no_modifiers", "There are no modifiers to freeze");
         add("the_vault.gear_modification.freeze_all.frozen", "There is already a frozen modifier");
         add("item.the_vault.companion", "Companion");
+        add(new VaultDollCompletedAttribute(true), "is a completed Vault Doll", "is not a completed Vault Doll");
         add("create.item_attributes.has_unusual", "has an unusual modifier");
         add("create.item_attributes.has_unusual.inverted", "doesn't have an unusual modifier");
         add("create.item_attributes.has_divine", "is Divine");
