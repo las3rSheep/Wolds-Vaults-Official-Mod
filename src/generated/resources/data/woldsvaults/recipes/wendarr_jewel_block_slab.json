@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "the_vault:wendarr_jewel_block"
+    }
+  },
+  "result": {
+    "item": "woldsvaults:wendarr_jewel_block_slab"
+  }
+}

@@ -19,6 +19,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
@@ -849,6 +850,53 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .save(pFinishedRecipeConsumer);
         });
 
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.TENOS_PLANKS_SLAB, iskallia.vault.init.ModBlocks.TENOS_PLANKS);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.TENOS_BRICKS_SLAB, iskallia.vault.init.ModBlocks.TENOS_BRICK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.TENOS_BRICK_CHISELED_SLAB, iskallia.vault.init.ModBlocks.TENOS_CHISELED_BRICK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.TENOS_DARK_SMOOTH_BRICKS_SLAB, iskallia.vault.init.ModBlocks.TENOS_DARK_SMOOTH_BLOCK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.TENOS_LIGHT_SMOOTH_BRICKS_SLAB, iskallia.vault.init.ModBlocks.TENOS_LIGHT_SMOOTH_BLOCK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.TENOS_GEM_BLOCK_SLAB, iskallia.vault.init.ModBlocks.TENOS_GEM_BLOCK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.TENOS_PLANKS_STAIRS, iskallia.vault.init.ModBlocks.TENOS_PLANKS);
+        stairs(pFinishedRecipeConsumer, ModBlocks.TENOS_BRICKS_STAIRS, iskallia.vault.init.ModBlocks.TENOS_BRICK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.TENOS_BRICK_CHISELED_STAIRS, iskallia.vault.init.ModBlocks.TENOS_CHISELED_BRICK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.TENOS_DARK_SMOOTH_BRICKS_STAIRS, iskallia.vault.init.ModBlocks.TENOS_DARK_SMOOTH_BLOCK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.TENOS_LIGHT_SMOOTH_BRICKS_STAIRS, iskallia.vault.init.ModBlocks.TENOS_LIGHT_SMOOTH_BLOCK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.TENOS_GEM_BLOCK_STAIRS, iskallia.vault.init.ModBlocks.TENOS_GEM_BLOCK);
+
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.VELARA_BRICKS_SLAB, iskallia.vault.init.ModBlocks.VELARA_BRICK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.VELARA_BRICK_CHISELED_SLAB, iskallia.vault.init.ModBlocks.VELARA_CHISELED_BRICK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.VELARA_DARK_SMOOTH_BRICKS_SLAB, iskallia.vault.init.ModBlocks.VELARA_DARK_SMOOTH_BLOCK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.VELARA_LIGHT_SMOOTH_BRICKS_SLAB, iskallia.vault.init.ModBlocks.VELARA_LIGHT_SMOOTH_BLOCK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.VELARA_GEM_BLOCK_SLAB, iskallia.vault.init.ModBlocks.VELARA_GEM_BLOCK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.VELARA_BRICKS_STAIRS, iskallia.vault.init.ModBlocks.VELARA_BRICK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.VELARA_BRICK_CHISELED_STAIRS, iskallia.vault.init.ModBlocks.VELARA_CHISELED_BRICK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.VELARA_DARK_SMOOTH_BRICKS_STAIRS, iskallia.vault.init.ModBlocks.VELARA_DARK_SMOOTH_BLOCK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.VELARA_GEM_BLOCK_STAIRS, iskallia.vault.init.ModBlocks.VELARA_GEM_BLOCK);
+
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.WENDARR_BRICKS_SLAB, iskallia.vault.init.ModBlocks.WENDARR_BRICK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.WENDARR_BRICK_CHISELED_SLAB, iskallia.vault.init.ModBlocks.WENDARR_CHISELED_BRICK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.WENDARR_DARK_SMOOTH_BRICKS_SLAB, iskallia.vault.init.ModBlocks.WENDARR_DARK_SMOOTH_BLOCK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.WENDARR_LIGHT_SMOOTH_BRICKS_SLAB, iskallia.vault.init.ModBlocks.WENDARR_LIGHT_SMOOTH_BLOCK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.WENDARR_GEM_BLOCK_SLAB, iskallia.vault.init.ModBlocks.WENDARR_GEM_BLOCK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.WENDARR_JEWEL_BLOCK_SLAB, iskallia.vault.init.ModBlocks.WENDARR_JEWEL_BLOCK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.WENDARR_BRICKS_STAIRS, iskallia.vault.init.ModBlocks.WENDARR_BRICK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.WENDARR_BRICK_CHISELED_STAIRS, iskallia.vault.init.ModBlocks.WENDARR_CHISELED_BRICK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.WENDARR_DARK_SMOOTH_BRICKS_STAIRS, iskallia.vault.init.ModBlocks.WENDARR_DARK_SMOOTH_BLOCK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.WENDARR_LIGHT_SMOOTH_BRICKS_STAIRS, iskallia.vault.init.ModBlocks.WENDARR_LIGHT_SMOOTH_BLOCK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.WENDARR_JEWEL_BLOCK_STAIRS, iskallia.vault.init.ModBlocks.WENDARR_JEWEL_BLOCK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.WENDARR_GEM_BLOCK_STAIRS, iskallia.vault.init.ModBlocks.WENDARR_GEM_BLOCK);
+
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.IDONA_BRICKS_SLAB, iskallia.vault.init.ModBlocks.IDONA_BRICK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.IDONA_BRICK_CHISELED_SLAB, iskallia.vault.init.ModBlocks.IDONA_CHISELED_BRICK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.IDONA_DARK_SMOOTH_BRICKS_SLAB, iskallia.vault.init.ModBlocks.IDONA_DARK_SMOOTH_BLOCK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.IDONA_LIGHT_SMOOTH_BRICKS_SLAB, iskallia.vault.init.ModBlocks.IDONA_LIGHT_SMOOTH_BLOCK);
+        slabRecipe(pFinishedRecipeConsumer, ModBlocks.IDONA_GEM_BLOCK_SLAB, iskallia.vault.init.ModBlocks.IDONA_GEM_BLOCK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.IDONA_BRICKS_STAIRS, iskallia.vault.init.ModBlocks.IDONA_BRICK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.IDONA_BRICK_CHISELED_STAIRS, iskallia.vault.init.ModBlocks.IDONA_CHISELED_BRICK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.IDONA_DARK_SMOOTH_BRICKS_STAIRS, iskallia.vault.init.ModBlocks.IDONA_DARK_SMOOTH_BLOCK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.IDONA_LIGHT_SMOOTH_BRICKS_STAIRS, iskallia.vault.init.ModBlocks.IDONA_LIGHT_SMOOTH_BLOCK);
+        stairs(pFinishedRecipeConsumer, ModBlocks.IDONA_GEM_BLOCK_STAIRS, iskallia.vault.init.ModBlocks.IDONA_GEM_BLOCK);
+
         compactingRecipe(ModBlocks.SILVER_SCRAP_BLOCK, iskallia.vault.init.ModItems.SILVER_SCRAP, pFinishedRecipeConsumer);
         compactingRecipe(ModBlocks.VAULT_ESSENCE_BLOCK, iskallia.vault.init.ModItems.VAULT_ESSENCE, pFinishedRecipeConsumer);
         compactingRecipe(ModBlocks.CARBON_BLOCK, iskallia.vault.init.ModItems.CARBON, pFinishedRecipeConsumer);
@@ -922,6 +970,28 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_" + gemItem.getRegistryName().getPath(), has(gemItem))
                 .save(finishedRecipe, WoldsVaults.id(recipeId));
     }
+
+    private void slabRecipe(Consumer<FinishedRecipe> finishedRecipe, Block block, ItemLike ingredient) {
+        ShapedRecipeBuilder.shaped(block)
+                .define('X', ingredient)
+                .pattern("XXX")
+                .unlockedBy("has_" + ingredient.asItem().getRegistryName().getPath(), has(ingredient))
+                .save(finishedRecipe, block.getRegistryName());
+        stonecutterResultFromBase(finishedRecipe, block, ingredient, 2);
+    }
+
+    private void stairs( Consumer<FinishedRecipe> finishedRecipe, Block block, ItemLike ingredient) {
+        ShapedRecipeBuilder.shaped(block)
+                .define('X', ingredient)
+                .pattern("X  ")
+                .pattern("XX ")
+                .pattern("XXX")
+                .unlockedBy("has_" + ingredient.asItem().getRegistryName().getPath(), has(ingredient))
+                .save(finishedRecipe, block.getRegistryName());
+        stonecutterResultFromBase(finishedRecipe, block, ingredient);
+
+    }
+
 
     private void compactingRecipe(Block result, Item input, Consumer<FinishedRecipe> finishedRecipe) {
         ShapelessRecipeBuilder.shapeless(result, 1)

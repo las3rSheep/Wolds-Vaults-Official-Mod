@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "woldsvaults:tenos_dark_smooth_bricks_slab"
+    ]
+  },
+  "criteria": {
+    "has_tenos_dark_smooth_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "the_vault:tenos_dark_smooth_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "woldsvaults:tenos_dark_smooth_bricks_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tenos_dark_smooth_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

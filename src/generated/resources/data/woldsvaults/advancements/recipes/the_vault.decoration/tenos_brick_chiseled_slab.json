@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "woldsvaults:tenos_brick_chiseled_slab"
+    ]
+  },
+  "criteria": {
+    "has_tenos_brick_chiseled": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "the_vault:tenos_brick_chiseled"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "woldsvaults:tenos_brick_chiseled_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tenos_brick_chiseled",
+      "has_the_recipe"
+    ]
+  ]
+}

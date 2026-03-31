@@ -7,9 +7,7 @@ import iskallia.vault.init.ModItems;
 import iskallia.vault.item.CoinBlockItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -111,11 +109,63 @@ public class ModBlocks {
     public static final Block INFUSED_DRIFTWOOD_PLANKS;
     public static final Block NULLITE_ORE;
 
-    //Decorative Blocks
+    //Decorative Blocks -- Missing Vault Decoration
     public static final VaultGemStairsBlock WUTODIE_STAIRS;
     public static final VaultGemSlabBlock WUTODIE_SLAB;
     public static final VaultGemWallBlock WUTODIE_WALL;
     public static final VaultGemBlock WUTODIE;
+
+    //God Deco -- Tenos
+    public static final SlabBlock TENOS_PLANKS_SLAB;
+    public static final StairBlock TENOS_PLANKS_STAIRS;
+    public static final SlabBlock TENOS_BRICKS_SLAB;
+    public static final StairBlock TENOS_BRICKS_STAIRS;
+    public static final SlabBlock TENOS_BRICK_CHISELED_SLAB;
+    public static final StairBlock TENOS_BRICK_CHISELED_STAIRS;
+    public static final SlabBlock TENOS_DARK_SMOOTH_BRICKS_SLAB;
+    public static final StairBlock TENOS_DARK_SMOOTH_BRICKS_STAIRS;
+    public static final SlabBlock TENOS_LIGHT_SMOOTH_BRICKS_SLAB;
+    public static final StairBlock TENOS_LIGHT_SMOOTH_BRICKS_STAIRS;
+    public static final SlabBlock TENOS_GEM_BLOCK_SLAB;
+    public static final StairBlock TENOS_GEM_BLOCK_STAIRS;
+
+    //God Deco -- Velara
+    public static final SlabBlock VELARA_BRICKS_SLAB;
+    public static final StairBlock VELARA_BRICKS_STAIRS;
+    public static final SlabBlock VELARA_BRICK_CHISELED_SLAB;
+    public static final StairBlock VELARA_BRICK_CHISELED_STAIRS;
+    public static final SlabBlock VELARA_DARK_SMOOTH_BRICKS_SLAB;
+    public static final StairBlock VELARA_DARK_SMOOTH_BRICKS_STAIRS;
+    public static final SlabBlock VELARA_LIGHT_SMOOTH_BRICKS_SLAB;
+    public static final StairBlock VELARA_LIGHT_SMOOTH_BRICKS_STAIRS;
+    public static final SlabBlock VELARA_GEM_BLOCK_SLAB;
+    public static final StairBlock VELARA_GEM_BLOCK_STAIRS;
+
+    //God Deco -- Wendarr
+    public static final SlabBlock WENDARR_BRICKS_SLAB;
+    public static final StairBlock WENDARR_BRICKS_STAIRS;
+    public static final SlabBlock WENDARR_BRICK_CHISELED_SLAB;
+    public static final StairBlock WENDARR_BRICK_CHISELED_STAIRS;
+    public static final SlabBlock WENDARR_DARK_SMOOTH_BRICKS_SLAB;
+    public static final StairBlock WENDARR_DARK_SMOOTH_BRICKS_STAIRS;
+    public static final SlabBlock WENDARR_LIGHT_SMOOTH_BRICKS_SLAB;
+    public static final StairBlock WENDARR_LIGHT_SMOOTH_BRICKS_STAIRS;
+    public static final SlabBlock WENDARR_GEM_BLOCK_SLAB;
+    public static final StairBlock WENDARR_GEM_BLOCK_STAIRS;
+    public static final SlabBlock WENDARR_JEWEL_BLOCK_SLAB;
+    public static final StairBlock WENDARR_JEWEL_BLOCK_STAIRS;
+
+    //God Deco -- Idona
+    public static final SlabBlock IDONA_BRICKS_SLAB;
+    public static final StairBlock IDONA_BRICKS_STAIRS;
+    public static final SlabBlock IDONA_BRICK_CHISELED_SLAB;
+    public static final StairBlock IDONA_BRICK_CHISELED_STAIRS;
+    public static final SlabBlock IDONA_DARK_SMOOTH_BRICKS_SLAB;
+    public static final StairBlock IDONA_DARK_SMOOTH_BRICKS_STAIRS;
+    public static final SlabBlock IDONA_LIGHT_SMOOTH_BRICKS_SLAB;
+    public static final StairBlock IDONA_LIGHT_SMOOTH_BRICKS_STAIRS;
+    public static final SlabBlock IDONA_GEM_BLOCK_SLAB;
+    public static final StairBlock IDONA_GEM_BLOCK_STAIRS;
 
     public static final Map<DyeColor, Block> COLORED_UNOBTANIUMS = new LinkedHashMap<>();
     public static final Block RAINBOW_UNOBTANIUM;
@@ -213,6 +263,55 @@ public class ModBlocks {
             }
         });
         CUSTOM_VAULT_CRATES.put("time_trial_reward", new VaultCrateBlock());
+
+        TENOS_PLANKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB));
+        TENOS_BRICKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        TENOS_BRICK_CHISELED_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        TENOS_DARK_SMOOTH_BRICKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        TENOS_LIGHT_SMOOTH_BRICKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        TENOS_GEM_BLOCK_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        TENOS_PLANKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.TENOS_PLANKS.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS));
+        TENOS_BRICKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.TENOS_BRICK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        TENOS_BRICK_CHISELED_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.TENOS_CHISELED_BRICK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        TENOS_DARK_SMOOTH_BRICKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.TENOS_DARK_SMOOTH_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        TENOS_LIGHT_SMOOTH_BRICKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.TENOS_LIGHT_SMOOTH_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        TENOS_GEM_BLOCK_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.TENOS_GEM_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+
+        VELARA_BRICKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        VELARA_BRICK_CHISELED_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        VELARA_DARK_SMOOTH_BRICKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        VELARA_LIGHT_SMOOTH_BRICKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        VELARA_BRICKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.VELARA_BRICK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        VELARA_BRICK_CHISELED_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.VELARA_CHISELED_BRICK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        VELARA_DARK_SMOOTH_BRICKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.VELARA_DARK_SMOOTH_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        VELARA_LIGHT_SMOOTH_BRICKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.VELARA_LIGHT_SMOOTH_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        VELARA_GEM_BLOCK_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        VELARA_GEM_BLOCK_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.VELARA_GEM_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+
+        IDONA_BRICKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        IDONA_BRICK_CHISELED_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        IDONA_DARK_SMOOTH_BRICKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        IDONA_LIGHT_SMOOTH_BRICKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        IDONA_BRICKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.IDONA_BRICK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        IDONA_BRICK_CHISELED_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.IDONA_CHISELED_BRICK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        IDONA_DARK_SMOOTH_BRICKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.IDONA_DARK_SMOOTH_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        IDONA_LIGHT_SMOOTH_BRICKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.IDONA_LIGHT_SMOOTH_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        IDONA_GEM_BLOCK_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        IDONA_GEM_BLOCK_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.IDONA_GEM_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+
+        WENDARR_BRICKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        WENDARR_BRICK_CHISELED_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        WENDARR_DARK_SMOOTH_BRICKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        WENDARR_LIGHT_SMOOTH_BRICKS_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        WENDARR_BRICKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.WENDARR_BRICK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        WENDARR_BRICK_CHISELED_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.WENDARR_CHISELED_BRICK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        WENDARR_DARK_SMOOTH_BRICKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.WENDARR_DARK_SMOOTH_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        WENDARR_LIGHT_SMOOTH_BRICKS_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.WENDARR_LIGHT_SMOOTH_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        WENDARR_GEM_BLOCK_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_SLAB));
+        WENDARR_GEM_BLOCK_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.WENDARR_GEM_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        WENDARR_JEWEL_BLOCK_SLAB = new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+        WENDARR_JEWEL_BLOCK_STAIRS = new StairBlock(iskallia.vault.init.ModBlocks.WENDARR_JEWEL_BLOCK.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICK_STAIRS));
+
     }
 
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -274,6 +373,56 @@ public class ModBlocks {
         CUSTOM_VAULT_CRATES.forEach((objective, crateBlock) -> {
             registerBlock(event, crateBlock, WoldsVaults.id("vault_crate_" + objective));
         });
+
+        registerBlock(event, TENOS_PLANKS_SLAB, WoldsVaults.id("tenos_planks_slab"));
+        registerBlock(event, TENOS_BRICKS_SLAB, WoldsVaults.id("tenos_bricks_slab"));
+        registerBlock(event, TENOS_BRICK_CHISELED_SLAB, WoldsVaults.id("tenos_brick_chiseled_slab"));
+        registerBlock(event, TENOS_DARK_SMOOTH_BRICKS_SLAB, WoldsVaults.id("tenos_dark_smooth_bricks_slab"));
+        registerBlock(event, TENOS_LIGHT_SMOOTH_BRICKS_SLAB, WoldsVaults.id("tenos_light_smooth_bricks_slab"));
+        registerBlock(event, TENOS_GEM_BLOCK_SLAB, WoldsVaults.id("tenos_gem_block_slab"));
+        registerBlock(event, TENOS_PLANKS_STAIRS, WoldsVaults.id("tenos_planks_stairs"));
+        registerBlock(event, TENOS_BRICKS_STAIRS, WoldsVaults.id("tenos_bricks_stairs"));
+        registerBlock(event, TENOS_BRICK_CHISELED_STAIRS, WoldsVaults.id("tenos_bricks_chiseled_stairs"));
+        registerBlock(event, TENOS_DARK_SMOOTH_BRICKS_STAIRS, WoldsVaults.id("tenos_dark_smooth_bricks_stairs"));
+        registerBlock(event, TENOS_LIGHT_SMOOTH_BRICKS_STAIRS, WoldsVaults.id("tenos_light_smooth_bricks_stairs"));
+        registerBlock(event, TENOS_GEM_BLOCK_STAIRS, WoldsVaults.id("tenos_gem_block_stairs"));
+
+        registerBlock(event, VELARA_BRICKS_SLAB, WoldsVaults.id("velara_bricks_slab"));
+        registerBlock(event, VELARA_BRICK_CHISELED_SLAB, WoldsVaults.id("velara_brick_chiseled_slab"));
+        registerBlock(event, VELARA_DARK_SMOOTH_BRICKS_SLAB, WoldsVaults.id("velara_dark_smooth_bricks_slab"));
+        registerBlock(event, VELARA_LIGHT_SMOOTH_BRICKS_SLAB, WoldsVaults.id("velara_light_smooth_bricks_slab"));
+        registerBlock(event, VELARA_BRICKS_STAIRS, WoldsVaults.id("velara_bricks_stairs"));
+        registerBlock(event, VELARA_BRICK_CHISELED_STAIRS, WoldsVaults.id("velara_bricks_chiseled_stairs"));
+        registerBlock(event, VELARA_DARK_SMOOTH_BRICKS_STAIRS, WoldsVaults.id("velara_dark_smooth_bricks_stairs"));
+        registerBlock(event, VELARA_LIGHT_SMOOTH_BRICKS_STAIRS, WoldsVaults.id("velara_light_smooth_bricks_stairs"));
+        registerBlock(event, VELARA_GEM_BLOCK_SLAB, WoldsVaults.id("velara_gem_block_slab"));
+        registerBlock(event, VELARA_GEM_BLOCK_STAIRS, WoldsVaults.id("velara_gem_block_stairs"));
+
+        registerBlock(event, IDONA_BRICKS_SLAB, WoldsVaults.id("idona_bricks_slab"));
+        registerBlock(event, IDONA_BRICK_CHISELED_SLAB, WoldsVaults.id("idona_brick_chiseled_slab"));
+        registerBlock(event, IDONA_DARK_SMOOTH_BRICKS_SLAB, WoldsVaults.id("idona_dark_smooth_bricks_slab"));
+        registerBlock(event, IDONA_LIGHT_SMOOTH_BRICKS_SLAB, WoldsVaults.id("idona_light_smooth_bricks_slab"));
+        registerBlock(event, IDONA_BRICKS_STAIRS, WoldsVaults.id("idona_bricks_stairs"));
+        registerBlock(event, IDONA_BRICK_CHISELED_STAIRS, WoldsVaults.id("idona_bricks_chiseled_stairs"));
+        registerBlock(event, IDONA_DARK_SMOOTH_BRICKS_STAIRS, WoldsVaults.id("idona_dark_smooth_bricks_stairs"));
+        registerBlock(event, IDONA_LIGHT_SMOOTH_BRICKS_STAIRS, WoldsVaults.id("idona_light_smooth_bricks_stairs"));
+        registerBlock(event, IDONA_GEM_BLOCK_SLAB, WoldsVaults.id("idona_gem_block_slab"));
+        registerBlock(event, IDONA_GEM_BLOCK_STAIRS, WoldsVaults.id("idona_gem_block_stairs"));
+
+
+        registerBlock(event, WENDARR_BRICKS_SLAB, WoldsVaults.id("wendarr_bricks_slab"));
+        registerBlock(event, WENDARR_BRICK_CHISELED_SLAB, WoldsVaults.id("wendarr_brick_chiseled_slab"));
+        registerBlock(event, WENDARR_DARK_SMOOTH_BRICKS_SLAB, WoldsVaults.id("wendarr_dark_smooth_bricks_slab"));
+        registerBlock(event, WENDARR_LIGHT_SMOOTH_BRICKS_SLAB, WoldsVaults.id("wendarr_light_smooth_bricks_slab"));
+        registerBlock(event, WENDARR_BRICKS_STAIRS, WoldsVaults.id("wendarr_bricks_stairs"));
+        registerBlock(event, WENDARR_BRICK_CHISELED_STAIRS, WoldsVaults.id("wendarr_bricks_chiseled_stairs"));
+        registerBlock(event, WENDARR_DARK_SMOOTH_BRICKS_STAIRS, WoldsVaults.id("wendarr_dark_smooth_bricks_stairs"));
+        registerBlock(event, WENDARR_LIGHT_SMOOTH_BRICKS_STAIRS, WoldsVaults.id("wendarr_light_smooth_bricks_stairs"));
+        registerBlock(event, WENDARR_GEM_BLOCK_SLAB, WoldsVaults.id("wendarr_gem_block_slab"));
+        registerBlock(event, WENDARR_GEM_BLOCK_STAIRS, WoldsVaults.id("wendarr_gem_block_stairs"));
+        registerBlock(event, WENDARR_JEWEL_BLOCK_SLAB, WoldsVaults.id("wendarr_jewel_block_slab"));
+        registerBlock(event, WENDARR_JEWEL_BLOCK_STAIRS, WoldsVaults.id("wendarr_jewel_block_stairs"));
+
     }
 
     public static void registerTileEntities(RegistryEvent.Register<BlockEntityType<?>> event) {
@@ -360,6 +509,54 @@ public class ModBlocks {
         CUSTOM_VAULT_CRATES.forEach((objective, crateBlock) -> {
             registerBlockItem(event, crateBlock, 1, properties -> properties.tab(ModCreativeTabs.WOLDS_VAULTS).fireResistant());
         });
+
+        registerBlockItem(event, TENOS_PLANKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, TENOS_BRICKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, TENOS_BRICK_CHISELED_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, TENOS_DARK_SMOOTH_BRICKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, TENOS_LIGHT_SMOOTH_BRICKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, TENOS_GEM_BLOCK_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, TENOS_PLANKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, TENOS_BRICKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, TENOS_BRICK_CHISELED_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, TENOS_DARK_SMOOTH_BRICKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, TENOS_LIGHT_SMOOTH_BRICKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, TENOS_GEM_BLOCK_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+
+        registerBlockItem(event, VELARA_BRICKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, VELARA_BRICK_CHISELED_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, VELARA_DARK_SMOOTH_BRICKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, VELARA_LIGHT_SMOOTH_BRICKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, VELARA_BRICKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, VELARA_BRICK_CHISELED_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, VELARA_DARK_SMOOTH_BRICKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, VELARA_LIGHT_SMOOTH_BRICKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, VELARA_GEM_BLOCK_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, VELARA_GEM_BLOCK_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+
+        registerBlockItem(event, WENDARR_BRICKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, WENDARR_BRICK_CHISELED_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, WENDARR_DARK_SMOOTH_BRICKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, WENDARR_LIGHT_SMOOTH_BRICKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, WENDARR_BRICKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, WENDARR_BRICK_CHISELED_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, WENDARR_DARK_SMOOTH_BRICKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, WENDARR_LIGHT_SMOOTH_BRICKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, WENDARR_JEWEL_BLOCK_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, WENDARR_JEWEL_BLOCK_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, WENDARR_GEM_BLOCK_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, WENDARR_GEM_BLOCK_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+
+        registerBlockItem(event, IDONA_BRICKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, IDONA_BRICK_CHISELED_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, IDONA_DARK_SMOOTH_BRICKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, IDONA_LIGHT_SMOOTH_BRICKS_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, IDONA_BRICKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, IDONA_BRICK_CHISELED_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, IDONA_DARK_SMOOTH_BRICKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, IDONA_LIGHT_SMOOTH_BRICKS_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, IDONA_GEM_BLOCK_STAIRS, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
+        registerBlockItem(event, IDONA_GEM_BLOCK_SLAB, 64, properties -> properties.tab(ModItems.VAULT_DECOR_GROUP));
     }
 
     public static void registerTileEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {

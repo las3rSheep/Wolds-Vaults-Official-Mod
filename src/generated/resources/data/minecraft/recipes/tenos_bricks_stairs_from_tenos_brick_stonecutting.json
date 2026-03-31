@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "the_vault:tenos_brick"
+  },
+  "result": "woldsvaults:tenos_bricks_stairs",
+  "count": 1
+}

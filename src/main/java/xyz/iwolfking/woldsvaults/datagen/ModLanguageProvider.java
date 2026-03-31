@@ -489,6 +489,55 @@ public class ModLanguageProvider extends LanguageProvider {
         add("woldsvaults.tropical_gate", "Tropical Getaway");
         add("woldsvaults.cloud_gate", "Cloudy Day");
 
+        add(ModBlocks.TENOS_PLANKS_SLAB, "Tenos Planks Slab");
+        add(ModBlocks.TENOS_BRICKS_SLAB, "Tenos Bricks Slab");
+        add(ModBlocks.TENOS_BRICK_CHISELED_SLAB, "Tenos Chiseled Bricks Slab");
+        add(ModBlocks.TENOS_DARK_SMOOTH_BRICKS_SLAB, "Tenos Dark Smooth Bricks Slab");
+        add(ModBlocks.TENOS_LIGHT_SMOOTH_BRICKS_SLAB, "Tenos Light Smooth Bricks Slab");
+        add(ModBlocks.TENOS_GEM_BLOCK_SLAB, "Tenos Gem Block Slab");
+        add(ModBlocks.TENOS_PLANKS_STAIRS, "Tenos Planks Stairs");
+        add(ModBlocks.TENOS_BRICKS_STAIRS, "Tenos Bricks Stairs");
+        add(ModBlocks.TENOS_BRICK_CHISELED_STAIRS, "Tenos Chiseled Bricks Stairs");
+        add(ModBlocks.TENOS_DARK_SMOOTH_BRICKS_STAIRS, "Tenos Dark Smooth Bricks Stairs");
+        add(ModBlocks.TENOS_LIGHT_SMOOTH_BRICKS_STAIRS, "Tenos Light Smooth Bricks Stairs");
+        add(ModBlocks.TENOS_GEM_BLOCK_STAIRS, "Tenos Gem Block Stairs");
+
+        add(ModBlocks.VELARA_BRICKS_SLAB, "Velara Bricks Slab");
+        add(ModBlocks.VELARA_BRICK_CHISELED_SLAB, "Velara Chiseled Bricks Slab");
+        add(ModBlocks.VELARA_DARK_SMOOTH_BRICKS_SLAB, "Velara Dark Smooth Bricks Slab");
+        add(ModBlocks.VELARA_LIGHT_SMOOTH_BRICKS_SLAB, "Velara Light Smooth Bricks Slab");
+        add(ModBlocks.VELARA_BRICKS_STAIRS, "Velara Bricks Stairs");
+        add(ModBlocks.VELARA_BRICK_CHISELED_STAIRS, "Velara Chiseled Bricks Stairs");
+        add(ModBlocks.VELARA_DARK_SMOOTH_BRICKS_STAIRS, "Velara Dark Smooth Bricks Stairs");
+        add(ModBlocks.VELARA_LIGHT_SMOOTH_BRICKS_STAIRS, "Velara Light Smooth Bricks Stairs");
+        add(ModBlocks.VELARA_GEM_BLOCK_SLAB, "Velara Gem Block Slab");
+        add(ModBlocks.VELARA_GEM_BLOCK_STAIRS, "Velara Gem Block Stairs");
+
+        add(ModBlocks.WENDARR_BRICKS_SLAB, "Wendarr Bricks Slab");
+        add(ModBlocks.WENDARR_BRICK_CHISELED_SLAB, "Wendarr Chiseled Bricks Slab");
+        add(ModBlocks.WENDARR_DARK_SMOOTH_BRICKS_SLAB, "Wendarr Dark Smooth Bricks Slab");
+        add(ModBlocks.WENDARR_LIGHT_SMOOTH_BRICKS_SLAB, "Wendarr Light Smooth Bricks Slab");
+        add(ModBlocks.WENDARR_BRICKS_STAIRS, "Wendarr Bricks Stairs");
+        add(ModBlocks.WENDARR_BRICK_CHISELED_STAIRS, "Wendarr Chiseled Bricks Stairs");
+        add(ModBlocks.WENDARR_DARK_SMOOTH_BRICKS_STAIRS, "Wendarr Dark Smooth Bricks Stairs");
+        add(ModBlocks.WENDARR_LIGHT_SMOOTH_BRICKS_STAIRS, "Wendarr Light Smooth Bricks Stairs");
+        add(ModBlocks.WENDARR_JEWEL_BLOCK_SLAB, "Wendarr Jewel Block Slab");
+        add(ModBlocks.WENDARR_GEM_BLOCK_SLAB, "Wendarr Gem Block Slab");
+        add(ModBlocks.WENDARR_JEWEL_BLOCK_STAIRS, "Wendarr Jewel Block Stairs");
+        add(ModBlocks.WENDARR_GEM_BLOCK_STAIRS, "Wendarr Gem Block Stairs");
+
+        add(ModBlocks.IDONA_BRICKS_SLAB, "Idona Bricks Slab");
+        add(ModBlocks.IDONA_BRICK_CHISELED_SLAB, "Idona Chiseled Bricks Slab");
+        add(ModBlocks.IDONA_DARK_SMOOTH_BRICKS_SLAB, "Idona Dark Smooth Bricks Slab");
+        add(ModBlocks.IDONA_LIGHT_SMOOTH_BRICKS_SLAB, "Idona Light Smooth Bricks Slab");
+        add(ModBlocks.IDONA_BRICKS_STAIRS, "Idona Bricks Stairs");
+        add(ModBlocks.IDONA_BRICK_CHISELED_STAIRS, "Idona Chiseled Bricks Stairs");
+        add(ModBlocks.IDONA_DARK_SMOOTH_BRICKS_STAIRS, "Idona Dark Smooth Bricks Stairs");
+        add(ModBlocks.IDONA_LIGHT_SMOOTH_BRICKS_STAIRS, "Idona Light Smooth Bricks Stairs");
+        add(ModBlocks.IDONA_GEM_BLOCK_STAIRS, "Idona Gem Block Stairs");
+        add(ModBlocks.IDONA_GEM_BLOCK_SLAB, "Idona Gem Block Slab");
+
+
 
         ModItems.COLORED_UNOBTANIUMS.forEach(((dyeColor, basicItem) -> {
             add(basicItem, StringUtils.convertToTitleCase(dyeColor.getSerializedName()) + " Unobtanium");

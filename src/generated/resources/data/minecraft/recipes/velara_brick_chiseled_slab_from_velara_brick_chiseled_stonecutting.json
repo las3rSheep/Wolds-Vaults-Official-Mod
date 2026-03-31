@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "the_vault:velara_brick_chiseled"
+  },
+  "result": "woldsvaults:velara_brick_chiseled_slab",
+  "count": 2
+}

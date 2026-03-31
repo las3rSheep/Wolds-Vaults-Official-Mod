@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "woldsvaults:block/velara_bricks_slab_top"
+    },
+    "type=bottom": {
+      "model": "woldsvaults:block/velara_bricks_slab"
+    },
+    "type=double": {
+      "model": "the_vault:block/decoration/velara_brick"
+    }
+  }
+}

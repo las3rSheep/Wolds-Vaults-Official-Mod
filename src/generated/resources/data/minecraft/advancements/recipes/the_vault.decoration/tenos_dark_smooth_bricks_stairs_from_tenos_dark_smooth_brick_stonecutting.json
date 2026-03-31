@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:tenos_dark_smooth_bricks_stairs_from_tenos_dark_smooth_brick_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_tenos_dark_smooth_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "the_vault:tenos_dark_smooth_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:tenos_dark_smooth_bricks_stairs_from_tenos_dark_smooth_brick_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tenos_dark_smooth_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

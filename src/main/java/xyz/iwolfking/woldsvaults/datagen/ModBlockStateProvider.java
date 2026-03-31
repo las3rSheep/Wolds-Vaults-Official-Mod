@@ -7,11 +7,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.client.model.generators.loaders.MultiLayerModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlock;
+import xyz.iwolfking.vhapi.api.util.ResourceLocUtils;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.blocks.*;
 import xyz.iwolfking.woldsvaults.init.ModBlocks;
@@ -104,6 +107,70 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         .end());
             }
         });
+
+        slabBlockWithItem(ModBlocks.TENOS_PLANKS_SLAB, VaultMod.id("decoration/tenos_planks"));
+        slabBlockWithItem(ModBlocks.TENOS_BRICKS_SLAB, VaultMod.id("decoration/tenos_brick"));
+        slabBlockWithItem(ModBlocks.TENOS_BRICK_CHISELED_SLAB, VaultMod.id("decoration/tenos_brick_chiseled"));
+        slabBlockWithItem(ModBlocks.TENOS_DARK_SMOOTH_BRICKS_SLAB, VaultMod.id("decoration/tenos_dark_smooth_brick"));
+        slabBlockWithItem(ModBlocks.TENOS_LIGHT_SMOOTH_BRICKS_SLAB, VaultMod.id("decoration/tenos_light_smooth_brick"));
+        slabBlockWithItem(ModBlocks.TENOS_GEM_BLOCK_SLAB, VaultMod.id("decoration/tenos_gem_block"));
+
+        stairsBlockWithItem(ModBlocks.TENOS_PLANKS_STAIRS, VaultMod.id("decoration/tenos_planks"));
+        stairsBlockWithItem(ModBlocks.TENOS_BRICKS_STAIRS, VaultMod.id("decoration/tenos_brick"));
+        stairsBlockWithItem(ModBlocks.TENOS_BRICK_CHISELED_STAIRS, VaultMod.id("decoration/tenos_brick_chiseled"));
+        stairsBlockWithItem(ModBlocks.TENOS_DARK_SMOOTH_BRICKS_STAIRS, VaultMod.id("decoration/tenos_dark_smooth_brick"));
+        stairsBlockWithItem(ModBlocks.TENOS_LIGHT_SMOOTH_BRICKS_STAIRS, VaultMod.id("decoration/tenos_light_smooth_brick"));
+        stairsBlockWithItem(ModBlocks.TENOS_GEM_BLOCK_STAIRS, VaultMod.id("decoration/tenos_gem_block"));
+
+        slabBlockWithItem(ModBlocks.VELARA_BRICKS_SLAB, VaultMod.id("decoration/velara_brick"));
+        slabBlockWithItem(ModBlocks.VELARA_BRICK_CHISELED_SLAB, VaultMod.id("decoration/velara_brick_chiseled"));
+        slabBlockWithItem(ModBlocks.VELARA_DARK_SMOOTH_BRICKS_SLAB, VaultMod.id("decoration/velara_dark_smooth_brick"));
+        slabBlockWithItem(ModBlocks.VELARA_LIGHT_SMOOTH_BRICKS_SLAB, VaultMod.id("decoration/velara_light_smooth_brick"));
+        slabBlockWithItem(ModBlocks.VELARA_GEM_BLOCK_SLAB, VaultMod.id("decoration/velara_gem_block"));
+
+        stairsBlockWithItem(ModBlocks.VELARA_BRICKS_STAIRS, VaultMod.id("decoration/velara_brick"));
+        stairsBlockWithItem(ModBlocks.VELARA_BRICK_CHISELED_STAIRS, VaultMod.id("decoration/velara_brick_chiseled"));
+        stairsBlockWithItem(ModBlocks.VELARA_DARK_SMOOTH_BRICKS_STAIRS, VaultMod.id("decoration/velara_dark_smooth_brick"));
+        stairsBlockWithItem(ModBlocks.VELARA_LIGHT_SMOOTH_BRICKS_STAIRS, VaultMod.id("decoration/velara_light_smooth_brick"));
+        stairsBlockWithItem(ModBlocks.VELARA_GEM_BLOCK_STAIRS, VaultMod.id("decoration/velara_gem_block"));
+
+        slabBlockWithItem(ModBlocks.WENDARR_BRICKS_SLAB, VaultMod.id("decoration/wendarr_brick"));
+        slabBlockWithItem(ModBlocks.WENDARR_BRICK_CHISELED_SLAB, VaultMod.id("decoration/wendarr_brick_chiseled"));
+        slabBlockWithItem(ModBlocks.WENDARR_DARK_SMOOTH_BRICKS_SLAB, VaultMod.id("decoration/wendarr_dark_smooth_brick"));
+        slabBlockWithItem(ModBlocks.WENDARR_LIGHT_SMOOTH_BRICKS_SLAB, VaultMod.id("decoration/wendarr_light_smooth_brick"));
+        slabBlockWithItem(ModBlocks.WENDARR_GEM_BLOCK_SLAB, VaultMod.id("decoration/wendarr_gem_block"));
+        slabBlockWithItem(ModBlocks.WENDARR_JEWEL_BLOCK_SLAB, VaultMod.id("decoration/wendarr_jewel_block"));
+
+        stairsBlockWithItem(ModBlocks.WENDARR_BRICKS_STAIRS, VaultMod.id("decoration/wendarr_brick"));
+        stairsBlockWithItem(ModBlocks.WENDARR_BRICK_CHISELED_STAIRS, VaultMod.id("decoration/wendarr_brick_chiseled"));
+        stairsBlockWithItem(ModBlocks.WENDARR_DARK_SMOOTH_BRICKS_STAIRS, VaultMod.id("decoration/wendarr_dark_smooth_brick"));
+        stairsBlockWithItem(ModBlocks.WENDARR_LIGHT_SMOOTH_BRICKS_STAIRS, VaultMod.id("decoration/wendarr_light_smooth_brick"));
+        stairsBlockWithItem(ModBlocks.WENDARR_GEM_BLOCK_STAIRS, VaultMod.id("decoration/wendarr_gem_block"));
+        stairsBlockWithItem(ModBlocks.WENDARR_JEWEL_BLOCK_STAIRS, VaultMod.id("decoration/wendarr_jewel_block"));
+
+        slabBlockWithItem(ModBlocks.IDONA_BRICKS_SLAB, VaultMod.id("decoration/idona_brick"));
+        slabBlockWithItem(ModBlocks.IDONA_BRICK_CHISELED_SLAB, VaultMod.id("decoration/idona_brick_chiseled"));
+        slabBlockWithItem(ModBlocks.IDONA_DARK_SMOOTH_BRICKS_SLAB, VaultMod.id("decoration/idona_dark_smooth_brick"));
+        slabBlockWithItem(ModBlocks.IDONA_LIGHT_SMOOTH_BRICKS_SLAB, VaultMod.id("decoration/idona_light_smooth_brick"));
+        slabBlockWithItem(ModBlocks.IDONA_GEM_BLOCK_SLAB, VaultMod.id("decoration/idona_gem_block"));
+
+        stairsBlockWithItem(ModBlocks.IDONA_BRICKS_STAIRS, VaultMod.id("decoration/idona_brick"));
+        stairsBlockWithItem(ModBlocks.IDONA_BRICK_CHISELED_STAIRS, VaultMod.id("decoration/idona_brick_chiseled"));
+        stairsBlockWithItem(ModBlocks.IDONA_DARK_SMOOTH_BRICKS_STAIRS, VaultMod.id("decoration/idona_dark_smooth_brick"));
+        stairsBlockWithItem(ModBlocks.IDONA_LIGHT_SMOOTH_BRICKS_STAIRS, VaultMod.id("decoration/idona_light_smooth_brick"));
+        stairsBlockWithItem(ModBlocks.IDONA_GEM_BLOCK_STAIRS, VaultMod.id("decoration/idona_gem_block"));
+
+    }
+
+    private void slabBlockWithItem(SlabBlock block, ResourceLocation texture) {
+        ResourceLocation blockTexture = ResourceLocUtils.prependToId("block/", texture);
+        slabBlock(block, blockTexture, blockTexture, blockTexture, blockTexture);
+        simpleBlockItem(block, models().getExistingFile(ResourceLocUtils.prependToId("block/", block.getRegistryName())));
+    }
+
+    private void stairsBlockWithItem(StairBlock block, ResourceLocation texture) {
+        stairsBlock(block, ResourceLocUtils.prependToId("block/", texture));
+        simpleBlockItem(block, models().getExistingFile(ResourceLocUtils.prependToId("block/", block.getRegistryName())));
     }
 
     private void simpleBlockWithItem(Block block) {

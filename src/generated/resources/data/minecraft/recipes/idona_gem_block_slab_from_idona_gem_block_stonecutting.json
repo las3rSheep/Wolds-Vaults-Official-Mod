@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "the_vault:idona_gem_block"
+  },
+  "result": "woldsvaults:idona_gem_block_slab",
+  "count": 2
+}

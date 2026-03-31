@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:idona_dark_smooth_bricks_stairs_from_idona_dark_smooth_brick_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_idona_dark_smooth_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "the_vault:idona_dark_smooth_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:idona_dark_smooth_bricks_stairs_from_idona_dark_smooth_brick_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_idona_dark_smooth_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

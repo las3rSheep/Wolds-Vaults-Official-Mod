@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "woldsvaults:wendarr_dark_smooth_bricks_slab",
+              "properties": {
+                "type": "double"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2.0,
+              "add": false
+            }
+          ],
+          "name": "woldsvaults:wendarr_dark_smooth_bricks_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "woldsvaults:wendarr_dark_smooth_bricks_slab"
+        }
+      ]
+    }
+  ]
+}

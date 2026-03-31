@@ -3,9 +3,11 @@ package xyz.iwolfking.woldsvaults.datagen;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import com.hollingsworth.arsnouveau.setup.BlockRegistry;
+import iskallia.vault.core.world.loot.entry.ItemLootEntry;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -13,18 +15,19 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.EntryGroup;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntry;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
 import net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder;
-import net.minecraft.world.level.storage.loot.predicates.ConditionUserBuilder;
-import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.MatchTool;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.p3pp3rf1y.sophisticatedbackpacks.data.CopyBackpackDataFunction;
@@ -102,6 +105,58 @@ public class ModBlockLootTables implements Consumer<BiConsumer<ResourceLocation,
         });
         dropSelf(ModBlocks.RAINBOW_UNOBTANIUM);
 
+        add(ModBlocks.TENOS_PLANKS_SLAB, this::createSlabTable);
+        add(ModBlocks.TENOS_BRICKS_SLAB, this::createSlabTable);
+        add(ModBlocks.TENOS_BRICK_CHISELED_SLAB, this::createSlabTable);
+        add(ModBlocks.TENOS_DARK_SMOOTH_BRICKS_SLAB, this::createSlabTable);
+        add(ModBlocks.TENOS_LIGHT_SMOOTH_BRICKS_SLAB, this::createSlabTable);
+        add(ModBlocks.TENOS_GEM_BLOCK_SLAB, this::createSlabTable);
+
+        add(ModBlocks.VELARA_BRICKS_SLAB, this::createSlabTable);
+        add(ModBlocks.VELARA_BRICK_CHISELED_SLAB, this::createSlabTable);
+        add(ModBlocks.VELARA_DARK_SMOOTH_BRICKS_SLAB, this::createSlabTable);
+        add(ModBlocks.VELARA_LIGHT_SMOOTH_BRICKS_SLAB, this::createSlabTable);
+        add(ModBlocks.VELARA_GEM_BLOCK_SLAB, this::createSlabTable);
+
+        add(ModBlocks.WENDARR_BRICKS_SLAB, this::createSlabTable);
+        add(ModBlocks.WENDARR_BRICK_CHISELED_SLAB, this::createSlabTable);
+        add(ModBlocks.WENDARR_DARK_SMOOTH_BRICKS_SLAB, this::createSlabTable);
+        add(ModBlocks.WENDARR_LIGHT_SMOOTH_BRICKS_SLAB, this::createSlabTable);
+        add(ModBlocks.WENDARR_JEWEL_BLOCK_SLAB, this::createSlabTable);
+        add(ModBlocks.WENDARR_GEM_BLOCK_SLAB, this::createSlabTable);
+
+        add(ModBlocks.IDONA_BRICKS_SLAB, this::createSlabTable);
+        add(ModBlocks.IDONA_BRICK_CHISELED_SLAB, this::createSlabTable);
+        add(ModBlocks.IDONA_DARK_SMOOTH_BRICKS_SLAB, this::createSlabTable);
+        add(ModBlocks.IDONA_LIGHT_SMOOTH_BRICKS_SLAB, this::createSlabTable);
+        add(ModBlocks.IDONA_GEM_BLOCK_SLAB, this::createSlabTable);
+
+        dropSelf(ModBlocks.TENOS_PLANKS_STAIRS);
+        dropSelf(ModBlocks.TENOS_BRICKS_STAIRS);
+        dropSelf(ModBlocks.TENOS_BRICK_CHISELED_STAIRS);
+        dropSelf(ModBlocks.TENOS_DARK_SMOOTH_BRICKS_STAIRS);
+        dropSelf(ModBlocks.TENOS_LIGHT_SMOOTH_BRICKS_STAIRS);
+        dropSelf(ModBlocks.TENOS_GEM_BLOCK_STAIRS);
+
+        dropSelf(ModBlocks.VELARA_BRICKS_STAIRS);
+        dropSelf(ModBlocks.VELARA_BRICK_CHISELED_STAIRS);
+        dropSelf(ModBlocks.VELARA_DARK_SMOOTH_BRICKS_STAIRS);
+        dropSelf(ModBlocks.VELARA_LIGHT_SMOOTH_BRICKS_STAIRS);
+        dropSelf(ModBlocks.VELARA_GEM_BLOCK_STAIRS);
+
+        dropSelf(ModBlocks.WENDARR_BRICKS_STAIRS);
+        dropSelf(ModBlocks.WENDARR_BRICK_CHISELED_STAIRS);
+        dropSelf(ModBlocks.WENDARR_DARK_SMOOTH_BRICKS_STAIRS);
+        dropSelf(ModBlocks.WENDARR_LIGHT_SMOOTH_BRICKS_STAIRS);
+        dropSelf(ModBlocks.WENDARR_GEM_BLOCK_STAIRS);
+        dropSelf(ModBlocks.WENDARR_JEWEL_BLOCK_STAIRS);
+
+        dropSelf(ModBlocks.IDONA_BRICKS_STAIRS);
+        dropSelf(ModBlocks.IDONA_BRICK_CHISELED_STAIRS);
+        dropSelf(ModBlocks.IDONA_DARK_SMOOTH_BRICKS_STAIRS);
+        dropSelf(ModBlocks.IDONA_LIGHT_SMOOTH_BRICKS_STAIRS);
+        dropSelf(ModBlocks.IDONA_GEM_BLOCK_STAIRS);
+
     }
 
     protected LootTable.Builder noDrop() {
@@ -157,6 +212,17 @@ public class ModBlockLootTables implements Consumer<BiConsumer<ResourceLocation,
         return (T)(!EXPLOSION_RESISTANT.contains(pItem.asItem()) ? pCondition.when(ExplosionCondition.survivesExplosion()) : pCondition.unwrap());
     }
 
+    protected LootTable.Builder createSlabTable(Block slab) {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(slab)
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2)))
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(slab).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SlabBlock.TYPE, SlabType.DOUBLE))))
+                        .add(LootItem.lootTableItem(slab)));
+    }
+
+
 
     public void accept(BiConsumer<ResourceLocation, LootTable.Builder> p_124179_) {
         this.addTables();
@@ -178,4 +244,5 @@ public class ModBlockLootTables implements Consumer<BiConsumer<ResourceLocation,
             //throw new IllegalStateException("Created block loot tables for non-blocks: " + this.map.keySet());
         }
     }
+
 }

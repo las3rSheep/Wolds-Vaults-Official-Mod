@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "the_vault:block/decoration/idona_dark_smooth_brick",
+    "bottom": "the_vault:block/decoration/idona_dark_smooth_brick",
+    "top": "the_vault:block/decoration/idona_dark_smooth_brick"
+  }
+}

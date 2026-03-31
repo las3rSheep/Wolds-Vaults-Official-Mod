@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "side": "the_vault:block/decoration/idona_gem_block",
+    "bottom": "the_vault:block/decoration/idona_gem_block",
+    "top": "the_vault:block/decoration/idona_gem_block"
+  }
+}

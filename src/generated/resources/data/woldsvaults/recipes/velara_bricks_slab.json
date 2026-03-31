@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "the_vault:velara_brick"
+    }
+  },
+  "result": {
+    "item": "woldsvaults:velara_bricks_slab"
+  }
+}

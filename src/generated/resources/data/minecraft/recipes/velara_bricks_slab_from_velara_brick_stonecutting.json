@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "the_vault:velara_brick"
+  },
+  "result": "woldsvaults:velara_bricks_slab",
+  "count": 2
+}

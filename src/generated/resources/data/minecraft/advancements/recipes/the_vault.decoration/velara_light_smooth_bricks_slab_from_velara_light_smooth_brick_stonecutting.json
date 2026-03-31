@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:velara_light_smooth_bricks_slab_from_velara_light_smooth_brick_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_velara_light_smooth_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "the_vault:velara_light_smooth_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:velara_light_smooth_bricks_slab_from_velara_light_smooth_brick_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_velara_light_smooth_brick",
+      "has_the_recipe"
+    ]
+  ]
+}
