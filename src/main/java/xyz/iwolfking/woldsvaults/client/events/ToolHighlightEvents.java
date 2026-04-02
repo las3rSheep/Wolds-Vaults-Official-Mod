@@ -54,7 +54,7 @@ public class ToolHighlightEvents {
         if (!InputEvents.isShiftDown()
                 || ActiveFlags.IS_AOE_MINING.isSet()
                 || player.getMainHandItem().getItem() != ModItems.TOOL
-                || DehammerizerTileEntity.hasDemhammerizerAround(player)) {
+                || DehammerizerTileEntity.hasDehammerizerAround(player)) {
             return;
         } // TODO ensure its a hammer
 
@@ -81,7 +81,7 @@ public class ToolHighlightEvents {
                 || !InputEvents.isShiftDown()
                 || ActiveFlags.IS_AOE_MINING.isSet()
                 || player.getMainHandItem().getItem() != ModItems.TOOL
-                || DehammerizerTileEntity.hasDemhammerizerAround(player)) {
+                || DehammerizerTileEntity.hasDehammerizerAround(player)) {
             return;
         }
 

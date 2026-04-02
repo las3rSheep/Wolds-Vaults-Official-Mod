@@ -7,7 +7,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import iskallia.vault.block.PlaceholderBlock;
 import iskallia.vault.block.VaultGlobeBlock;
-import iskallia.vault.command.GiveLootCommand;
+import iskallia.vault.command.give.GiveCommand;
 import iskallia.vault.config.CatalystConfig;
 import iskallia.vault.config.InscriptionConfig;
 import iskallia.vault.core.random.JavaRandom;
@@ -46,7 +46,7 @@ import xyz.iwolfking.woldsvaults.items.*;
 
 import java.util.Arrays;
 
-@Mixin(value = GiveLootCommand.class, remap = false)
+@Mixin(value = GiveCommand.class, remap = false)
 public class MixinGiveLootCommand {
     @Inject(method = "build", at = @At("TAIL"))
     private void wv$addExtraLootCommands(

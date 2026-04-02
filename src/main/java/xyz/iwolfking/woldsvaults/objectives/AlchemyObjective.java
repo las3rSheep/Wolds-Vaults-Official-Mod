@@ -6,7 +6,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import iskallia.vault.VaultMod;
 import iskallia.vault.client.gui.helper.LightmapHelper;
-import iskallia.vault.client.render.IVaultOptions;
 import iskallia.vault.core.Version;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.data.key.FieldKey;
@@ -25,6 +24,8 @@ import iskallia.vault.core.vault.player.Listener;
 import iskallia.vault.core.vault.stat.StatCollector;
 import iskallia.vault.core.world.storage.VirtualWorld;
 import iskallia.vault.entity.champion.ChampionLogic;
+import iskallia.vault.init.ModOptions;
+import iskallia.vault.options.types.ObjectiveHudSettings;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -238,7 +239,8 @@ public class AlchemyObjective extends Objective {
             txt = new TextComponent(String.format("%.1f%%", current * 100))
                     .append(new TextComponent(" / "))
                     .append(new TextComponent(String.format("%.1f%%", goal * 100)));
-            float userScale = ((IVaultOptions)Minecraft.getInstance().options).getObjectiveScale();
+            //TODO: Use Alchemy value instead, support moving position around?
+            float userScale = ModOptions.OBJECTIVES_HUD_SETTINGS.getValue().getSettings("elixir").getScale();
             poseStack.pushPose();
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);

@@ -2,7 +2,6 @@ package xyz.iwolfking.woldsvaults.objectives;
 
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
-import iskallia.vault.client.render.IVaultOptions;
 import iskallia.vault.core.Version;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.data.adapter.vault.CompoundAdapter;
