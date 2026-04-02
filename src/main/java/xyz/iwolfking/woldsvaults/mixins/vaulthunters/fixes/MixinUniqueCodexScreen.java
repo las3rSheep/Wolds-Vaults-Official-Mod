@@ -83,6 +83,9 @@ public class MixinUniqueCodexScreen extends AbstractElementScreen {
                 else if(location.get().getModel().toString().contains("rang")) {
                     stack = new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.RANG);
                 }
+                else if(location.get().getModel().toString().contains("vaultrod")) {
+                    stack = new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.VAULTROD);
+                }
                 else if(location.get().getModel().toString().contains("plushie")) {
                     stack = new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.PLUSHIE);
                 }

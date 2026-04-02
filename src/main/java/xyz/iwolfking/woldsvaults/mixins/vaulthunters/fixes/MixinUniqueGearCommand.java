@@ -60,6 +60,9 @@ public class MixinUniqueGearCommand {
             else if(modelPath.contains("rang")) {
                 cir.setReturnValue(new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.RANG));
             }
+            else if(modelPath.contains("vaultrod")) {
+                cir.setReturnValue(new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.VAULTROD));
+            }
             else if(modelPath.contains("plushie")) {
                 cir.setReturnValue(new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.PLUSHIE));
             }

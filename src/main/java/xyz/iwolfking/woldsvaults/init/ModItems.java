@@ -57,6 +57,7 @@ public class ModItems {
     public static VaultTridentItem TRIDENT;
     public static VaultPlushieItem PLUSHIE;
     public static VaultLootSackItem LOOT_SACK;
+    public static VaultRodItem VAULTROD;
 
     //public static VaultAmuletItem VAULT_AMULET;
 
@@ -227,6 +228,7 @@ public class ModItems {
         registry.register(TRIDENT);
         registry.register(PLUSHIE);
         registry.register(LOOT_SACK);
+        registry.register(VAULTROD);
         registry.register(GEM_BOX);
         registry.register(SUPPLY_BOX);
         registry.register(AUGMENT_BOX);
@@ -365,6 +367,7 @@ public class ModItems {
         TRIDENT = new VaultTridentItem(VaultMod.id("trident"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         PLUSHIE = new VaultPlushieItem(VaultMod.id("plushie"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         LOOT_SACK = new VaultLootSackItem(VaultMod.id("loot_sack"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
+        VAULTROD = new VaultRodItem(VaultMod.id("vaultrod"), (new Item.Properties()).tab(GEAR_GROUP).stacksTo(1));
         GEM_BOX = new LootableItem(VaultMod.id("gem_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.GEM_BOX.POOL.getRandom(rand).generateItemStack()));
         SUPPLY_BOX = new LootableItem(VaultMod.id("supply_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.SUPPLY_BOX.POOL.getRandom(rand).generateItemStack()));
         AUGMENT_BOX = new LootableItem(VaultMod.id("augment_box"), (new Item.Properties()).tab(VAULT_MOD_GROUP), () -> (ModConfigs.AUGMENT_BOX.POOL.getRandom(rand).generateItemStack()));

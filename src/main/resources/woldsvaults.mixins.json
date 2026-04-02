@@ -10,6 +10,7 @@
     "LivingEntityAccessor",
     "MixinBlockStateBase",
     "MixinEnchantmentHelper",
+    "MixinFishingHook",
     "MixinFortuneOreDropFormula",
     "MixinGameRuleCommand",
     "MixinItemEntity",
