@@ -33,7 +33,7 @@ import java.util.UUID;
 
 public class DiscoveredThemesData extends SavedData
 {
-    protected static final String DATA_NAME = "the_vault_DiscoveredThemes";
+    protected static final String DATA_NAME = "woldsvaults_DiscoveredThemes";
     protected Map<UUID, Set<ResourceLocation>> collectedThemes = new HashMap<>();
 
     private DiscoveredThemesData() {
@@ -44,11 +44,11 @@ public class DiscoveredThemesData extends SavedData
     }
 
     public void discoverThemeAndBroadcast(ThemeKey theme, Player player) {
-        if(theme != null) {
-            if(this.discoverTheme(player.getUUID(), theme.getId())) {
-                this.broadcastDiscovery(theme, player);
-            }
-        }
+//        if(theme != null) {
+//            if(this.discoverTheme(player.getUUID(), theme.getId())) {
+//                this.broadcastDiscovery(theme, player);
+//            }
+//        }
     }
 
     private void broadcastDiscovery(ThemeKey theme, Player player) {
@@ -153,6 +153,6 @@ public class DiscoveredThemesData extends SavedData
     public static DiscoveredThemesData get(MinecraftServer server) {
         return server.overworld()
                 .getDataStorage()
-                .computeIfAbsent(DiscoveredThemesData::new, DiscoveredThemesData::new, "the_vault_DiscoveredThemes");
+                .computeIfAbsent(DiscoveredThemesData::new, DiscoveredThemesData::new, DATA_NAME);
     }
 }

@@ -37,7 +37,8 @@ public abstract class MixinPlayerVaultStats {
     @Shadow private int vaultLevel;
     @Shadow @Final private UUID uuid;
 
-    @Shadow public abstract int getPrestigeLevel();
+    @Shadow
+    public abstract int getVaultUncappedLevel();
 
     @Redirect(method = "addVaultExp", at = @At(value = "INVOKE", target = "Liskallia/vault/config/VaultLevelsConfig;getExpMultiplier()F"))
     private float addExperiencedExpertiseMultiplier(VaultLevelsConfig instance, @Local MinecraftServer server) {
@@ -99,7 +100,7 @@ public abstract class MixinPlayerVaultStats {
             return ModConfigs.LEVELS_META.getLevelMeta(this.vaultLevel).tnl;
         }
 
-        return (int) (ModConfigs.LEVELS_META.getPrestigeTnl() + (ModConfigs.LEVELS_META.getPrestigeTnl() * (this.getPrestigeLevel() * 0.005F)));
+        return (int) (ModConfigs.LEVELS_META.getPrestigeTnl() + (ModConfigs.LEVELS_META.getPrestigeTnl() * (this.getVaultUncappedLevel() * 0.005F)));
 
     }
 }
