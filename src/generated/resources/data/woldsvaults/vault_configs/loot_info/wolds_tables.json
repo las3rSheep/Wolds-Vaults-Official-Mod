@@ -80,7 +80,7 @@
       }
     },
     "the_vault:gilded_chest_map": {
-      "display": "Gilded Chests (Map)",
+      "display": "Gilded Chest (Map)",
       "lootTableKeys": {
         "the_vault:gilded_chest_map": {
           "level": 100
@@ -110,7 +110,7 @@
       }
     },
     "the_vault:treasure_chest_map": {
-      "display": "Treasure Chests (Map)",
+      "display": "Treasure Chest (Map)",
       "lootTableKeys": {
         "the_vault:treasure_chest_map": {
           "level": 100
@@ -143,7 +143,7 @@
       }
     },
     "the_vault:wooden_chest_map": {
-      "display": "Wooden Chests (Map)",
+      "display": "Wooden Chest (Map)",
       "lootTableKeys": {
         "the_vault:wooden_chest_map": {
           "level": 100
@@ -159,7 +159,7 @@
       }
     },
     "the_vault:enigma_chest_map": {
-      "display": "Enigma Chests (Map)",
+      "display": "Enigma Chest (Map)",
       "lootTableKeys": {
         "the_vault:enigma_chest_map": {
           "level": 100
@@ -184,7 +184,7 @@
       }
     },
     "the_vault:living_chest_map": {
-      "display": "Living Chests (Map)",
+      "display": "Living Chest (Map)",
       "lootTableKeys": {
         "the_vault:living_chest_map": {
           "level": 100
@@ -217,7 +217,7 @@
       }
     },
     "the_vault:ornate_chest_map": {
-      "display": "Ornate Chests (Map)",
+      "display": "Ornate Chest (Map)",
       "lootTableKeys": {
         "the_vault:ornate_chest_map": {
           "level": 100
@@ -246,6 +246,14 @@
       "lootTableKeys": {
         "the_vault:time_trial_reward_crate": {
           "level": 0
+        }
+      }
+    },
+    "the_vault:treasure_pedestal_map": {
+      "display": "Treasure Pedestal (Map)",
+      "lootTableKeys": {
+        "the_vault:treasure_chest_stand_map": {
+          "level": 100
         }
       }
     }
