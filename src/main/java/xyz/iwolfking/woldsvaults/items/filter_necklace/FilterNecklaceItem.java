@@ -124,11 +124,6 @@ public class FilterNecklaceItem extends BasicItem implements ICurioItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        if (ModConfigs.isInitialized() && !StageManager.RESEARCH_TREE.isResearched(ModConfigs.RESEARCHES.getByName("Junk Management"))) {
-            tooltip.add((new TextComponent("Unlock \"Junk Management\" to equip")).withStyle(ChatFormatting.RED));
-            tooltip.add(TextComponent.EMPTY);
-            return;
-        }
 
         if (Screen.hasShiftDown()) {
             IItemHandler inventory = getInventory(stack);
