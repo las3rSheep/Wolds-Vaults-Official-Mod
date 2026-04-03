@@ -54,8 +54,7 @@ tasks.register('unzip') {
 }
 
 tasks.register("removeModdedItemsFromConfig") {
-    dependsOn 'unzip',
-            'removeModdedItemsEnchantments',
+    dependsOn 'removeModdedItemsEnchantments',
             'removeModdedItemsPaxel',
             'removeModdedItemsOmegaShopPedestal',
             'removeModdedItemsSpookyShopPedestal',
@@ -117,6 +116,28 @@ tasks.register("getVaultConfigs") {
     group = "Vault Configs"
     dependsOn "moveToRun"
 }
+
+tasks.register("removeVaultConfigs") {
+    group = "Vault Configs"
+    doLast {
+
+        def runConfig = file("${runDir}/config")
+        def runDefaults = file("${runDir}/defaultconfigs")
+
+        runDir.mkdirs()
+
+        if (runConfig.exists()) {
+            println "Deleting ${runConfig}"
+            delete runConfig
+        }
+
+        if (runDefaults.exists()) {
+            println "Deleting ${runDefaults}"
+            delete runDefaults
+        }
+    }
+}
+
 
 
 // Remove modded items from configs to remove error screens in dev env
@@ -294,5 +315,122 @@ tasks.register('removeModdedItemsAltar') {
 
         inputFile.text = JsonOutput.prettyPrint(JsonOutput.toJson(json))
         println "Removed modded items from vault_altar_ingredients.json"
+    }
+}
+
+
+// same as above but without removing modded files - copied to separate dirs, so they can run in parallel
+def zipFileDatagen = file("build/temp-vault-assets-datagen/archive.zip")
+def outputDirDatagen = file("build/temp-vault-assets-datagen/unzipped")
+def runDataDir = file("run-data")
+
+tasks.register('checkEmptyConfigDirsDatagen') {
+    def runConfig = file("${runDataDir}/config")
+    def runDefaults = file("${runDataDir}/defaultconfigs")
+
+    runDataDir.mkdirs()
+
+    if (runConfig.exists()) {
+        throw new GradleException("run-data/config already exists, delete the directory to update")
+    }
+
+    if (runDefaults.exists()) {
+        throw new GradleException("run-data/defaultconfigs already exists, delete the directory to update")
+    }
+}
+
+tasks.register('downloadZipDatagen') {
+    dependsOn 'checkEmptyConfigDirsDatagen'
+    doLast {
+        zipFileDatagen.parentFile.mkdirs()
+
+        println "Downloading $zipUrl..."
+        new URL(zipUrl).withInputStream { i ->
+            zipFileDatagen.withOutputStream { it << i }
+        }
+    }
+}
+
+tasks.register('unzipDatagen') {
+    dependsOn 'downloadZipDatagen'
+    doLast {
+        outputDirDatagen.mkdirs()
+
+        copy {
+            from zipTree(zipFileDatagen)
+            into outputDirDatagen
+        }
+    }
+}
+
+tasks.register("moveToRunData") {
+    dependsOn 'unzipDatagen'
+    finalizedBy 'cleanupVaultAssetsDatagen'
+    doLast {
+        def overridesConfig = file("${outputDirDatagen}/Wolds-Vaults-master/config")
+        def overridesDefaults = file("${outputDirDatagen}/Wolds-Vaults-master/defaultconfigs")
+
+        def runDataConfig = file("${runDataDir}/config")
+        def runDataDefaults = file("${runDataDir}/defaultconfigs")
+
+        runDataDir.mkdirs()
+
+        if (!overridesConfig.exists()) {
+            throw new GradleException("downloaded config doesn't exist")
+        }
+        if (!runDataConfig.exists()) {
+            println "Moving config -> ${runDataConfig}"
+            ant.move(file: overridesConfig, todir: runDataDir)
+        } else {
+            throw new GradleException("run-data/config already exists, delete the directory to update")
+        }
+
+        if (!overridesDefaults.exists()) {
+            throw new GradleException("downloaded config doesn't exist")
+        }
+        if (!runDataDefaults.exists()) {
+            println "Moving defaultconfigs -> ${runDataDefaults}"
+            ant.move(file: overridesDefaults, todir: runDataDir)
+        } else {
+            throw new GradleException("run-data/defaultconfigs already exists, delete the directory to update")
+        }
+    }
+}
+
+tasks.register("cleanupVaultAssetsDatagen") {
+    doLast {
+        def vaultAssetsDir = file("build/temp-vault-assets-datagen")
+        if (vaultAssetsDir.exists()) {
+            println "Deleting ${vaultAssetsDir}"
+            delete vaultAssetsDir
+        } else {
+            println "No build/temp-vault-assets-datagen directory to delete."
+        }
+    }
+}
+
+tasks.register("getVaultConfigsDatagen") {
+    group = "Vault Configs Datagen"
+    dependsOn "moveToRunData"
+}
+
+tasks.register("removeVaultConfigsDatagen") {
+    group = "Vault Configs Datagen"
+    doLast {
+
+        def runConfig = file("${runDataDir}/config")
+        def runDefaults = file("${runDataDir}/defaultconfigs")
+
+        runDataDir.mkdirs()
+
+        if (runConfig.exists()) {
+            println "Deleting ${runConfig}"
+            delete runConfig
+        }
+
+        if (runDefaults.exists()) {
+            println "Deleting ${runDefaults}"
+            delete runDefaults
+        }
     }
 }
