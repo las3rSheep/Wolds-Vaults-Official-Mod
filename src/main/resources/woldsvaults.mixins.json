@@ -341,6 +341,7 @@
     "vaulthunters.fixes.bettercombat.MixinGearAttributeEvents",
     "vaulthunters.fixes.bettercombat.MixinLuckyHitTalent",
     "vaulthunters.gear.MixinModDynamicModels",
+    "vaulthunters.gear.MixinModDynamicModels$Armor",
     "vaulthunters.modifiers.MixinVaultModifierTypeRegistry",
     "vaulthunters.objectives.MixinCrystalData",
     "vaulthunters.objectives.MixinNullCrystalModel",
