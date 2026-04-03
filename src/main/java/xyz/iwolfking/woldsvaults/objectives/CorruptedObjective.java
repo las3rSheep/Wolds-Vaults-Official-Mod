@@ -188,7 +188,7 @@ public class CorruptedObjective extends Objective {
     public boolean render(Vault vault, PoseStack poseStack, Window window, float partialTicks, Player player) {
         Minecraft mc = Minecraft.getInstance();
         Font font = mc.font;
-        int centerX = window.getGuiScaledWidth() / 2;
+        int centerX = 0;
 
         CorruptedVaultClientHelper.renderCorruptionOverlay(this, poseStack, font, window, centerX);
         CorruptedVaultClientHelper.renderTimeAddendOverlay(this, poseStack, window, player);

@@ -17,6 +17,7 @@ public abstract class MixinLootInfoGroupDefinitionRegistry {
         register("hellish_sand", () -> new ItemStack(ModBlocks.HELLISH_SAND_BLOCK));
         register("dungeon_pedestal", () -> new ItemStack(ModBlocks.DUNGEON_PEDESTAL_BLOCK));
         register("treasure_pedestal", () -> new ItemStack(iskallia.vault.init.ModBlocks.TREASURE_PEDESTAL));
+        register("treasure_pedestal_map", () -> new ItemStack(iskallia.vault.init.ModBlocks.TREASURE_PEDESTAL));
         register("vendor_pedestal", () -> new ItemStack(iskallia.vault.init.ModBlocks.SHOP_PEDESTAL));
         register("digsite_sand", () -> new ItemStack(iskallia.vault.init.ModBlocks.TREASURE_SAND));
         register("brazier_pillage", () -> new ItemStack(iskallia.vault.init.ModBlocks.MONOLITH));
