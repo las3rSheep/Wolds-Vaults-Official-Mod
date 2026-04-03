@@ -130,7 +130,7 @@ minecraft {
         data {
             // example of overriding the workingDirectory set in configureEach above
             workingDirectory project.file('run-data')
-
+            jvmArgs '-Duser.language=en', '-Duser.country=US' // dots as decimal separators
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', 'the_vault', '--existing-mod', 'compressium'
         }
