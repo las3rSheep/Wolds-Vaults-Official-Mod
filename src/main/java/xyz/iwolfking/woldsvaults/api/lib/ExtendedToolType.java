@@ -10,9 +10,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 
 public enum ExtendedToolType {
-    NONE("none"),
-    RAKER("raker"),
-    RAVAGER("ravager");
+    NONE("none");
+
     private final String id;
     private final String description;
     private final ExtendedToolType[] parents;
@@ -50,12 +49,6 @@ public enum ExtendedToolType {
         boolean hammering = data.hasAttribute(ModGearAttributes.HAMMERING);
         if(!picking && !axing && !shoveling && !reaping && !hammering) {
             return NONE;
-        }
-        else if(hammering && reaping && (axing || picking || shoveling)) {
-            return RAVAGER;
-        }
-        else if(hammering && reaping) {
-            return RAKER;
         }
         else {
             return null;
