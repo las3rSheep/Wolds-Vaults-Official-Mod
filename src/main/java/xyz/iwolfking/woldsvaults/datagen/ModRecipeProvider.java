@@ -160,16 +160,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_perfect_benitoite", has(iskallia.vault.init.ModItems.PERFECT_BENITOITE))
                 .save(pFinishedRecipeConsumer);
 
-        ShapedRecipeBuilder.shaped(ModBlocks.AUGMENT_CRAFTING_TABLE)
-                .define('N', ModItems.POG_PRISM)
-                .define('I', iskallia.vault.init.ModItems.VAULT_INGOT)
-                .define('L', Blocks.LECTERN)
-                .define('C', iskallia.vault.init.ModItems.AUGMENT)
-                .pattern("NCN")
-                .pattern("ILI")
-                .pattern("III")
-                .unlockedBy("has_augment", has(iskallia.vault.init.ModItems.AUGMENT))
-                .save(pFinishedRecipeConsumer);
+//        ShapedRecipeBuilder.shaped(ModBlocks.AUGMENT_CRAFTING_TABLE)
+//                .define('N', ModItems.POG_PRISM)
+//                .define('I', iskallia.vault.init.ModItems.VAULT_INGOT)
+//                .define('L', Blocks.LECTERN)
+//                .define('C', iskallia.vault.init.ModItems.AUGMENT)
+//                .pattern("NCN")
+//                .pattern("ILI")
+//                .pattern("III")
+//                .unlockedBy("has_augment", has(iskallia.vault.init.ModItems.AUGMENT))
+//                .save(pFinishedRecipeConsumer);
 
 
         ShapedRecipeBuilder.shaped(ModBlocks.MOD_BOX_WORKSTATION)

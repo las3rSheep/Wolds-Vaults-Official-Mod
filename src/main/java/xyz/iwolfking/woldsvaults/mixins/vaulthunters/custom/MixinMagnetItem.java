@@ -139,11 +139,10 @@ public abstract class MixinMagnetItem extends Item implements VaultGearItem, Cur
     @SuppressWarnings("deprecation")
     @Inject(method = "onPlayerPickup", at = @At(value = "INVOKE", target = "Liskallia/vault/item/MagnetItem;getMagnet(Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/Optional;"), cancellable = true)
     private static void removeDecorDmgIfJunkManagement(Player player, ItemEntity item, CallbackInfo ci) {
-        if (player instanceof ServerPlayer serverPlayer
+        if (player instanceof ServerPlayer
             && ( item.getItem().getItem().builtInRegistryHolder().is(woldsvaults$DECOR_ITEMS) // vanilla inv
                   || MagnetPickupUtils.getPreviousStack(item).getItem().builtInRegistryHolder().is(woldsvaults$DECOR_ITEMS) //backpack with pickup upgrade
-                )
-            && PlayerResearchesData.get(serverPlayer.getLevel()).getResearches(serverPlayer).isResearched("Junk Management")) {
+                )) {
             ci.cancel();
         }
     }
