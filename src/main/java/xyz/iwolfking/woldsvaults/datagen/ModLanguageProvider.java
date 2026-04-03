@@ -1,9 +1,24 @@
 package xyz.iwolfking.woldsvaults.datagen;
 
+import com.simibubi.create.content.logistics.filter.ItemAttribute;
+import iskallia.vault.VaultMod;
+import iskallia.vault.util.StringUtils;
+import net.joseph.vaultfilters.attributes.abstracts.BooleanAttribute;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.data.LanguageProvider;
+import xyz.iwolfking.vhapi.api.registry.objective.CustomObjectiveRegistryEntry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.init.ModItems;
+import xyz.iwolfking.woldsvaults.api.core.vault_events.VaultEvent;
+import xyz.iwolfking.woldsvaults.api.core.vault_events.VaultEventSystem;
+import xyz.iwolfking.woldsvaults.init.*;
+import xyz.iwolfking.woldsvaults.integration.vaultfilters.AlchemyIngredientTypeAttribute;
+import xyz.iwolfking.woldsvaults.integration.vaultfilters.AlchemyItemAttribute;
+import xyz.iwolfking.woldsvaults.integration.vaultfilters.CatalystItemAttribute;
+import xyz.iwolfking.woldsvaults.integration.vaultfilters.VaultDollCompletedAttribute;
+import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
+
+import java.util.LinkedHashMap;
 
 public class ModLanguageProvider extends LanguageProvider {
 
@@ -11,8 +26,102 @@ public class ModLanguageProvider extends LanguageProvider {
         super(gen, WoldsVaults.MOD_ID, "en_us");
     }
 
+    public void add(CustomObjectiveRegistryEntry entry, String text) {
+        add("objective." + entry.getRegistryName().getNamespace() + "." + entry.getRegistryName().getPath(), text);
+        add("objective." + VaultMod.MOD_ID + "." + entry.getRegistryName().getPath(), text);
+    }
+
+    public void add(ResourceLocation id, VaultEvent event) {
+        add("vault_event." + id.getNamespace() + "." + id.getPath(), event.eventName);
+        add("vault_event." + id.getNamespace() + "." + id.getPath() + "_description", event.eventDescription.getString());
+        add("vault_event." + id.getNamespace() + "." + id.getPath() + "_message", event.eventMessage.getString());
+    }
+
+    public void add(ItemAttribute attribute, String text, String invertedText) {
+        add("create.item_attributes." + attribute.getTranslationKey(), text);
+        add("create.item_attributes." + attribute.getTranslationKey() + ".inverted", invertedText);
+    }
+
     @Override
     protected void addTranslations() {
+        ModCustomVaultObjectiveEntries.getEntries().forEach(customObjectiveRegistryEntry -> {
+            add(customObjectiveRegistryEntry, customObjectiveRegistryEntry.getName());
+        });
+        add(new AlchemyItemAttribute(false), "is an Alchemy ingredient", "is not an Alchemy ingredient");
+        add(new CatalystItemAttribute(false), "is an Alchemy catalyst", "is not an Alchemy catalyst");
+        add(new AlchemyIngredientTypeAttribute(""), "is an Alchemy ingredient of type \"%1$s\"", "is not an Alchemy ingredient of type \"%1$s\"");
+        add(ModBlocks.CONFIGURABLE_FLOATING_TEXT_BLOCK, "Magic Text");
+        add(ModBlocks.CRATE_CRACKER_BLOCK, "Crate Cracker");
+        add(ModBlocks.SURVIVAL_OBJECTIVE_BLOCK, "Survival Pylon");
+        add(ModItems.CRYSTAL_SEAL_SURVIVOR, "Seal of the Survivor");
+        add(ModItems.SCAVENGER_POUCH_ITEM, "Scavenger Pouch");
+        add(ModEffects.BURN, "Burning");
+        add("config.waila.plugin_miningspeedometer.speedometer", "Enable Speedometer Tooltip");
+        add("vaultobjectiveblocks.jade.tooltip.brewing_altar", "%1$s brews remaining");
+        add("vaultobjectiveblocks.jade.tooltip.rune_boss_pillar", "%1$s runes inserted");
+        add("speedometer.jade.tooltip.instamine", "Instaminable ✔");
+        add("speedometer.jade.tooltip.speed_needed", "+%s Mining Speed to Instamine %s");
+        add("speedometer.jade.tooltip.speed_additional", "+%s more Mining Speed to Instamine %s");
+        add("speedometer.jade.tooltip.speed_for_breakpoint", "+%1$s more Mining Speed to break in %2$s ticks");
+        add("config.waila.plugin_woldsvaults.jade_plugin", "Wold's Plugins");
+        add("deck.woldsvaults.nitwit_modifier", "increased card efficiency inside Arcane slots (Arcane slots may only have non-Arcane slots inserted)");
+        add("deck.woldsvaults.void_modifier", "increased card efficiency per empty card slot");
+        add("deck.woldsvaults.adjacency_modifier", "increased card efficiency %2$s %1$s card");
+        add("deck.woldsvaults.adjacency_modifier_type_1", "per %1$s");
+        add("deck.woldsvaults.adjacency_modifier_type_2", "when %1$s to at least one");
+        add("deck.woldsvaults.adjacency_type_orthogonal", "orthogonal");
+        add("deck.woldsvaults.adjacency_type_diagonal", "diagonal");
+        add("deck.woldsvaults.adjacency_type_surrounding", "adjacent");
+        add("deck.woldsvaults.adjacency_type_surrounding_2", "within 2 spaces");
+        add("deck.woldsvaults.adjacency_type_starcross", "within two orthogonal or one diagonal");
+        add("deck.woldsvaults.adjacency_type_failure", "invalid configuration");
+        add("deck.woldsvaults.dominance_deck_modifier_current", "Currently: %1$s");
+        add("deck.woldsvaults.dominance_deck_modifier_dominant", "+%1$s card efficiency to cards with the most dominant group in the deck (%2$s)");
+        add("deck.woldsvaults.dominance_deck_modifier_minority", "+%1$s card efficiency to cards with the least dominant group in the deck (%2$s)");
+        add("deck.woldsvaults.dominance_deck_modifier_exclusion", "Excludes %1$s group");
+        add("deck.woldsvaults.group_synergy_modifier", "card efficiency for %2$s cards %3$s %1$s cards in your deck");
+        add("command.woldsvaults.give_loot", "Given a %1$s");
+        add("rewards.woldsvaults.unclaimed_rewards", "You have unclaimed rewards to collect! Do §6/timetrial rewards§r to claim!");
+        add("vault_event.woldsvaults.swap_task", "You have been swapped with %1$s.");
+        add("vault_event.woldsvaults.legacy_event_message", "%1$s encountered a %2$s Event!");
+        add("vault_event.woldsvaults.event_cascade", "%1$s %2$s Event has cascaded onto you!");
+        add("vault_event.woldsvaults.tombstone_elite", "An undead Elite has arisen!");
+        add("vault_event.woldsvaults.tombstone_wither", "You feel your body start to decay...");
+        add("vault_event.woldsvaults.tombstone_weaken", "Your muscles grow tense!");
+        add("vault_event.woldsvaults.tombstone_explode", "The grave was rigged to explode!");
+        add("vault_event.woldsvaults.tombstone_soul_shard_increase", "You feel the Soul Shard drop rate increase.");
+        add("vault_event.woldsvaults.tombstone_haunted", "The Vault feels a bit more haunted now...");
+        add("vault_event.woldsvaults.tombstone_ethereal", "A wave of phantasmal energy echoes throughout the vault.");
+        add("vault_event.woldsvaults.tombstone_spirits", "A wave of ghosts assaults you!");
+        add("vault_event.woldsvaults.tombstone_zombie", "A zombie is unearthed!");
+        add("vault_event.woldsvaults.tombstone_skeleton", "Skeletons are unearthed!");
+        add("vault_event.woldsvaults.tombstone_horse", "A horse is unearthed?!");
+        add("vault_event.woldsvaults.cockroach_celebrate", "The dancing cockroaches are fond towards you and bless each player with 3 random positive events!");
+        add("vault_event.woldsvaults.cockroach_hate", "The dancing cockroaches hate your guts and curse everyone in the vault with 3 random negative events!");
+        add("misc.woldsvaults.flight_block_0", "You cannot fly inside the Vault!");
+        add("vault_objective.woldsvaults.time_trial_player_best", "%1$s just finished a §d%2$s§r vault with a new best time of §6%3$s§r (previously: §6%4$s§r)");
+        add("vault_objective.woldsvaults.time_trial_new_competition_best", "%1$s just beat the §6Weekly Time Trial§r best of §6%2$s§r with a time of §6%3$s§r");
+        add("vault_objective.woldsvaults.time_trial_new_competition_first", "%1$s just set the first §6Weekly Time Trial§r entry to beat with a time of §6%2$s§r!");
+        add("vault_objective.woldsvaults.survival_completion", "You are now able to leave the vault at any time to complete or continue surviving to accumulate rewards.");
+        add("vault_objective.woldsvaults.corrupted_exit", "Find an escape.");
+        add("vault_objective.woldsvaults.corrupted_shatter", "You sense a portal shattering");
+        add("vault_objective.woldsvaults.corrupted_complete", "Vault Completed!");
+        add("vault_objective.woldsvaults.corrupted_fruit_disable", "Seems pointless...");
+        add("vault_objective.woldsvaults.survival_fruit_disable", "A mysterious force prevents you from eating the fruit.");
+        add("vault_objective.woldsvaults.survival_wave_increment", "§4Survival Wave Tier increased!");
+        add("unlock_goal.woldsvaults.idona_theme", "Idona shares insight on entering their domain with you.");
+        add("unlock_goal.woldsvaults.velara_theme", "Velara shares insight on entering their domain with you.");
+        add("unlock_goal.woldsvaults.wendarr_theme", "Wendarr shares insight on entering their domain with you.");
+        add("unlock_goal.woldsvaults.tenos_theme", "Tenos shares insight on entering their domain with you.");
+        add("unlock_goal.woldsvaults.wizard_trinket_pouch", "Your arcane energy has enlightened you!");
+        add("unlock_goal.woldsvaults.looters_trinket_pouch", "You are enlightened with a beautiful dream of boundless loot!");
+        add("unlock_goal.woldsvaults.treasure_jewel", "You envision a better way of opening Treasure Chests!");
+        add("vault_gear_modifiers.woldsvaults.safer_spaces_recharging_barrier", "Recharging Barrier");
+        add("vault_gear_modifiers.woldsvaults.safer_spaces_improved_block", "Improved Block");
+        add("key.woldsvaults.open_inventory_hud", "Open Inventory HUD Edit Screen");
+        add("util.woldsvaults.objective_text", "Objective: ");
+        add("util.woldsvaults.vault_modifier_added", "%1$s was added to the Vault!");
+        add("util.woldsvaults.timed_modifier_added", "%1$s added %2$s to the Vault for %3$s seconds!");
         add("item.woldsvaults.rotten_heart", "Rotten Heart");
         add("item.woldsvaults.rotten_apple", "Rotten Apple");
         add("item.woldsvaults.verdant_globule", "Verdant Globule");
@@ -21,6 +130,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.woldsvaults.auric_crystal", "Auric Crystal");
         add("curios.identifier.shard_pouch", "Shard Pouch");
         add("curios.identifier.trinket_pouch", "Trinket Pouch");
+        add("item.woldsvaults.trinket_pouch_stored_trinkets", "Stored Trinkets: ");
         add("curios.identifier.green_trinket", "Green Trinket");
         add("curios.modifiers.trinket_pouch", "Pouch Modifiers");
         add("ftbquests.task.woldsvaults.vault_level", "Vault Level");
@@ -43,17 +153,23 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.scannable.vault_dungeon_doors_module", "Scanner Module: Dungeon Doors");
         add("item.scannable.vault_vendoors_module", "Scanner Module: Vendoors");
         add("item.scannable.vault_pylon_module", "Scanner Module: Pylons");
-        add("item.the_vault.crystal_seal_unhinged", "Seal of the Psychopath");
-        add("item.the_vault.crystal_seal_doomsayer", "Seal of the Doomsayer");
-        add("item.the_vault.crystal_seal_spirits", "Seal of the Exorcist");
-        add("item.the_vault.crystal_seal_enchanter", "Seal of the Enchanter");
-        add("item.the_vault.crystal_seal_titan", "Seal of the Titan");
-        add("item.the_vault.crystal_seal_monolith", "Seal of the Searcher");
+        add(ModItems.CRYSTAL_SEAL_UNHINGED, "Seal of the Psychopath");
+        add(ModItems.CRYSTAL_SEAL_DOOMSAYER, "Seal of the Doomsayer");
+        add(ModItems.CRYSTAL_SEAL_SPIRITS, "Seal of the Exorcist");
+        add(ModItems.CRYSTAL_SEAL_ENCHANTER, "Seal of the Enchanter");
+        add(ModItems.CRYSTAL_SEAL_TITAN, "Seal of the Titan");
+        add(ModItems.UNINFUSED_TERRASTEEL_INGOT, "Uninfused Terrasteel Ingot");
+        add(ModItems.POGGING_SEED_BASE, "Pogging Seed Base");
+        add(ModItems.ECHOING_SEED_BASE, "Echoing Seed Base");
+        add("menu.woldsvaults.rewards_menu", "Rewards Menu");
         add("item.the_vault.plushie", "Vault Plushie");
         add("item.the_vault.loot_sack", "Vault Sack");
         add("item.the_vault.rang", "Vaultarang");
         add("item.woldsvaults.weapon_augmenter", "Weapon Augmenter");
         add("item.woldsvaults.greedy_vault_rock", "Greedy Vault Rock");
+        add("jei.the_vault.survival_gear_cache_loot", "Survival Gear Cache");
+        add("jei.the_vault.wooden_dungeon_barrel_loot", "Wooden Dungeon Barrel");
+        add("jei.the_vault.time_trial_reward_crate_loot", "Time Trial Reward Crate");
         add("jei.the_vault.completion_crate_unhinged_scavenger_loot", "Unhinged Scavenger Crate");
         add("jei.the_vault.completion_crate_haunted_braziers_loot", "Haunted Braziers Crate");
         add("jei.the_vault.completion_crate_enchanted_elixir_loot", "Enchanted Elixir Crate");
@@ -64,12 +180,15 @@ public class ModLanguageProvider extends LanguageProvider {
         add("jei.the_vault.completion_crate_bingo_wold_full_loot", "Bingo Crate (Full)");
         add("jei.the_vault.completion_crate_brutal_bosses_loot", "Brutal Bosses Crate");
         add("jei.the_vault.completion_crate_corrupted_loot", "Corrupted Crate");
+        add("jei.the_vault.dungeon_mobs_loot", "Dungeon Mobs");
+        add("jei.the_vault.dungeon_boss_loot", "Dungeon Boss");
         add("jei.the_vault.enigma_chest_map_loot", "Enigma Chest (Map)");
         add("jei.the_vault.gilded_chest_map_loot", "Gilded Chest (Map)");
         add("jei.the_vault.living_chest_map_loot", "Living Chest (Map)");
         add("jei.the_vault.ornate_chest_map_loot", "Ornate Chest (Map)");
         add("jei.the_vault.wooden_chest_map_loot", "Wooden Chest (Map)");
         add("jei.the_vault.treasure_chest_map_loot", "Treasure Chest (Map)");
+        add("jei.the_vault.treasure_pedestal_map_loot", "Treasure Pedestal (Map)");
         add("jei.the_vault.gilded_barrel_loot", "Gilded Barrel");
         add("jei.the_vault.ornate_barrel_loot", "Ornate Barrel");
         add("jei.the_vault.living_barrel_loot", "Living Barrel");
@@ -97,18 +216,23 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.the_vault.tool.ravager", "Ravager");
         add("item.the_vault.tool.raker", "Raker");
         add("item.the_vault.tool.none", "Stick");
-        add("block.the_vault.vault_salvager", "Vault Salvager");
+        add(ModBlocks.VAULT_SALVAGER_BLOCK, "Vault Salvager");
+        add(ModBlocks.WUTODIE, "Block of Wutodie Gem");
         add("block.woldsvaults.dungeon_pedestal", "Dungeon Pedestal");
         add("block.woldsvaults.iskallian_leaves", "Woldian Leaves");
         add("block.woldsvaults.hellish_sand", "Hellish Sand");
         add("block.woldsvaults.brewing_altar", "Brewing Altar");
-        add("item.the_vault.gem_box", "Gem Box");
-        add("item.the_vault.supply_box", "Supply Box");
-        add("item.the_vault.augment_box", "Augment Box");
-        add("item.woldsvaults.inscription_box", "Inscription Box");
-        add("item.woldsvaults.omega_box", "Omega Box");
-        add("item.woldsvaults.catalyst_box", "Catalyst Box");
-        add("item.woldsvaults.enigma_egg", "Enigma Egg");
+        add("block.the_vault.dungeon_door", "Dungeon Door");
+        add("block.the_vault.treasure_door", "Treasure Door");
+        add("block.the_vault.cake", "Cake");
+        add(ModItems.GEM_BOX, "Gem Box");
+        add(ModItems.SUPPLY_BOX, "Supply Box");
+        add(ModItems.AUGMENT_BOX, "Augment Box");
+        add(ModItems.INSCRIPTION_BOX, "Inscription Box");
+        add(ModItems.OMEGA_BOX, "Omega Box");
+        add(ModItems.CATALYST_BOX, "Catalyst Box");
+        add(ModItems.ENIGMA_EGG, "Enigma Egg");
+        add("itemGroup.woldsvaults", "Wold's Vaults");
         add("item.woldsvaults.zephyr_charm", "Zephyr Charm");
         add("item.woldsvaults.augment_piece", "Augment Piece");
         add("item.the_vault.scavenger_benitoite_gemstone", "Benitoite Gemstone");
@@ -119,7 +243,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.the_vault.scavenger_enderman_eye", "Enderman Eye");
         add("item.the_vault.scavenger_ender_crystal", "Ender Crystal");
         add("item.the_vault.scavenger_ender_artifact", "Ender Artifact");
-        add("item.the_vault.altar_recatalyzer", "Altar Recatalyzer");
+        add(ModItems.ALTAR_DECATALYZER, "Altar Recatalyzer");
         add("item.woldsvaults.expertise_orb", "Expertise Orb");
         add("item.woldsvaults.skill_orb", "Skill Orb");
         add("item.woldsvaults.chromatic_iron_angel_ring", "Chromatic Iron Angel Ring");
@@ -139,12 +263,10 @@ public class ModLanguageProvider extends LanguageProvider {
         add("block.woldsvaults.mob_barrier_red", "Mob Barrier");
         add("block.woldsvaults.fractured_obelisk", "Fractured Obelisk");
         add("block.woldsvaults.monolith_controller", "Monolith Controller");
-        add("block.woldsvaults.vault_crate_corrupt", "Corrupted Vault Crate");
-        add("block.woldsvaults.vault_crate_alchemy", "Alchemy Vault Crate");
         add("block.woldsvaults.nullite_ore", "Nullite Ore");
         add("block.woldsvaults.doll_dismantler", "Doll Blender");
         add("block.woldsvaults.tombstone", "Tombstone");
-        add("entity.the_vault.wold", "Wold");
+        add(ModEntities.WOLD, "Wold");
         add("entity.woldsvaults.green_ghost", "Toxic Ghost");
         add("entity.woldsvaults.black_ghost", "Unholy Ghost");
         add("entity.woldsvaults.blue_ghost", "Chilly Ghost");
@@ -189,28 +311,28 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.woldsvaults.heart_of_chaos", "Heart of Chaos");
         add("item.woldsvaults.arcane_essence", "Arcane Essence");
         add("item.woldsvaults.arcane_shard", "Arcane Shard");
-        add("item.the_vault.pog_prism", "Pog Prism");
-        add("item.the_vault.chromatic_gold_nugget", "Chromatic Gold Nugget");
-        add("item.the_vault.chromatic_gold_ingot", "Chromatic Gold Ingot");
-        add("item.the_vault.smashed_vault_gem", "Smashed Vault Gem");
-        add("item.the_vault.smashed_vault_gem_cluster", "Smashed Vault Gem Cluster");
-        add("item.the_vault.wold_star_chunk", "Wold Star Chunk");
-        add("item.the_vault.wold_star", "Wold Star");
-        add("item.the_vault.gem_reagent_ashium", "Gem Reagent: Ashium");
-        add("item.the_vault.gem_reagent_bomignite", "Gem Reagent: Bomignite");
-        add("item.the_vault.gem_reagent_iskallium", "Gem Reagent: Woldium");
-        add("item.the_vault.gem_reagent_xenium", "Gem Reagent: Xeenium");
-        add("item.the_vault.gem_reagent_sparkletine", "Gem Reagent: Sparkletine");
-        add("item.the_vault.gem_reagent_gorginite", "Gem Reagent: Gorginite");
-        add("item.the_vault.gem_reagent_tubium", "Gem Reagent: Tubium");
-        add("item.the_vault.gem_reagent_petzanite", "Gem Reagent: Petezanite");
-        add("item.the_vault.gem_reagent_upaline", "Gem Reagent: Upaline");
+        add(ModItems.POG_PRISM, "Pog Prism");
+        add(ModItems.CHROMATIC_GOLD_NUGGET, "Chromatic Gold Nugget");
+        add(ModItems.CHROMATIC_GOLD_INGOT, "Chromatic Gold Ingot");
+        add(ModItems.SMASHED_VAULT_GEM, "Smashed Vault Gem");
+        add(ModItems.SMASHED_VAULT_GEM_CLUSTER, "Smashed Vault Gem Cluster");
+        add(ModItems.WOLD_STAR_CHUNK, "Wold Star Chunk");
+        add(ModItems.WOLD_STAR, "Wold Star");
+        add(ModItems.GEM_REAGENT_ASHIUM, "Gem Reagent: Ashium");
+        add(ModItems.GEM_REAGENT_BOMIGNITE, "Gem Reagent: Bomignite");
+        add(ModItems.GEM_REAGENT_ISKALLIUM, "Gem Reagent: Woldium");
+        add(ModItems.GEM_REAGENT_XENIUM, "Gem Reagent: Xeenium");
+        add(ModItems.GEM_REAGENT_SPARKLETINE, "Gem Reagent: Sparkletine");
+        add(ModItems.GEM_REAGENT_GORGINITE, "Gem Reagent: Gorginite");
+        add(ModItems.GEM_REAGENT_TUBIUM, "Gem Reagent: Tubium");
+        add(ModItems.GEM_REAGENT_PETEZANITE, "Gem Reagent: Petezanite");
+        add(ModItems.GEM_REAGENT_UPALINE, "Gem Reagent: Upaline");
         add("item.woldsvaults.idona_dagger", "Idonian Sacrificial Dagger");
         add("item.woldsvaults.velara_apple", "Velaran Emerald Apple");
         add("item.woldsvaults.wendarr_gem", "Wendarrian Focus Gem");
         add("item.woldsvaults.tome_of_tenos", "Tome of Tenos");
-        add("block.the_vault.vault_palladium", "Vault Palladium");
-        add("block.the_vault.vault_iridium", "Vault Iridium");
+        add(ModBlocks.VAULT_PALLADIUM, "Vault Palladium");
+        add(ModBlocks.VAULT_IRIDIUM, "Vault Iridium");
         add("block.woldsvaults.augment_crafting_table", "Augment Assembly Pedestal");
         add("item.woldsvaults.poltergeist_plum", "Poltergeist Plum");
         add("item.woldsvaults.crystal_seal_zealot", "Seal of the Zealot");
@@ -231,6 +353,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("effect.woldsvaults.safer_space", "Safer Space");
         add("effect.woldsvaults.levitateii", "Levitate II");
         add("effect.woldsvaults.rerolled", "Reroll Cooldown");
+        add("effect.the_vault.glacial_shatter", "Glacial Shatter");
         add("woldsvaults.key.cherish_item", "Cherish Item");
         add("key.woldsvaults.cherish_item", "Cherish Item");
         add("key.woldsvaults.open_wolds_vaults_config", "Open Wold's Vaults Config Screen");
@@ -247,6 +370,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("the_vault.gear_modification.freeze_all.no_modifiers", "There are no modifiers to freeze");
         add("the_vault.gear_modification.freeze_all.frozen", "There is already a frozen modifier");
         add("item.the_vault.companion", "Companion");
+        add(new VaultDollCompletedAttribute(true), "is a completed Vault Doll", "is not a completed Vault Doll");
         add("create.item_attributes.has_unusual", "has an unusual modifier");
         add("create.item_attributes.has_unusual.inverted", "doesn't have an unusual modifier");
         add("create.item_attributes.has_divine", "is Divine");
@@ -313,6 +437,15 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.woldsvaults.unidentified_gateway_pearl", "Unidentified Gateway Pearl");
         add("item.woldsvaults.prismatic_fiber", "Prismatic Fiber");
         add("block.woldsvaults.prismatic_fiber_block", "Block of Prismatic Fiber");
+        add(ModBlocks.CHROMATIC_GOLD_BLOCK, "Block of Chromatic Gold");
+        add(ModBlocks.SILVER_SCRAP_BLOCK, "Block of Silver Scrap");
+        add(ModBlocks.VAULT_ESSENCE_BLOCK, "Block of Vault Essence");
+        add(ModBlocks.CARBON_BLOCK, "Block of Carbon");
+        add(ModBlocks.VAULT_INGOT_BLOCK, "Block of Vault Ingot");
+        add(ModBlocks.VAULT_PLATING_BLOCK, "Block of Vault Plating");
+        add(ModBlocks.OMEGA_POG_BLOCK, "Block of Omega Pog");
+        add(ModBlocks.ECHO_POG_BLOCK, "Block of Echo Pog");
+        add(ModBlocks.POG_BLOCK, "Block of Pog");
         add("block.woldsvaults.card_shop_pedestal", "Card Vendor Pedestal");
         add("block.woldsvaults.weaving_station", "Weaving Station");
         add("item.woldsvaults.recipe_blueprint", "Recipe Blueprint");
@@ -325,5 +458,117 @@ public class ModLanguageProvider extends LanguageProvider {
         add("block.the_vault.block_gem_wutodie_wall", "Wutodie Wall");
         add("block.the_vault.block_gem_wutodie_stairs", "Wutodie Stairs");
         add("item.woldsvaults.crystal_seal_alchemy", "Seal of the Alchemist");
+        add("trinket_pouch.woldsvaults.standard", "Standard Trinket Pouch");
+        add("trinket_pouch.woldsvaults.basic_alt_r", "Beginner's Trinket Pouch (Alt)");
+        add("trinket_pouch.woldsvaults.basic_alt_g", "Beginner's Trinket Pouch (Alt)");
+        add("trinket_pouch.woldsvaults.basic_classic", "Beginner's Trinket Pouch");
+        add("trinket_pouch.woldsvaults.explorer", "Explorer's Trinket Pouch");
+        add("trinket_pouch.woldsvaults.light", "Arcane Trinket Pouch");
+        add("trinket_pouch.woldsvaults.wizard", "Wizard Trinket Pouch");
+        add("trinket_pouch.woldsvaults.heavy", "Mercenary Trinket Pouch");
+        add("trinket_pouch.woldsvaults.slayer", "Slayer Trinket Pouch");
+        add("trinket_pouch.woldsvaults.looters_dream", "Looter's Dream Trinket Pouch");
+        add("trinket_pouch.woldsvaults.warrior", "Warrior's Trinket Pouch");
+        add("trinket_pouch.woldsvaults.hyper", "Hyper Trinket Pouch");
+        add("trinket_pouch.woldsvaults.prismatic", "Prismatic Trinket Pouch");
+        add("item.woldsvaults.trinket_pouch_slot_count", "+%1$s %2$s Slots");
+        add(ModBlocks.PUZZLE_CUBE_BLOCK, "Puzzle Cube Block");
+        add("woldsvaults.dweller_gate", "Dweller Duel");
+        add("woldsvaults.medium_dweller_gate", "Dweller Invasion");
+        add("woldsvaults.big_dweller_gate", "Dweller Apocalypse");
+        add("woldsvaults.raid_gate", "Illager Incursion");
+        add("woldsvaults.fungal_gate", "Fungal Infestation");
+        add("woldsvaults.ghost_gate", "Haunted");
+        add("woldsvaults.pirate_gate", "Pirate Brigade");
+        add("woldsvaults.big_pirate_gate", "Pirate Apocalypse");
+        add("woldsvaults.witch_gate", "Cruel Coven");
+        add("woldsvaults.dungeon_gate", "Dungeon Incursion");
+        add("woldsvaults.elite_gate", "Standard Elite Incursion");
+        add("woldsvaults.guardian_gate", "Guardian Gauntlet");
+        add("woldsvaults.thermal_gate", "Thermal Expansion");
+        add("woldsvaults.glitch_gate", "§k??? ??? ???? ????");
+        add("woldsvaults.tropical_gate", "Tropical Getaway");
+        add("woldsvaults.cloud_gate", "Cloudy Day");
+
+        add(ModBlocks.TENOS_PLANKS_SLAB, "Tenos Planks Slab");
+        add(ModBlocks.TENOS_BRICKS_SLAB, "Tenos Bricks Slab");
+        add(ModBlocks.TENOS_BRICK_CHISELED_SLAB, "Tenos Chiseled Bricks Slab");
+        add(ModBlocks.TENOS_DARK_SMOOTH_BRICKS_SLAB, "Tenos Dark Smooth Bricks Slab");
+        add(ModBlocks.TENOS_LIGHT_SMOOTH_BRICKS_SLAB, "Tenos Light Smooth Bricks Slab");
+        add(ModBlocks.TENOS_GEM_BLOCK_SLAB, "Tenos Gem Block Slab");
+        add(ModBlocks.TENOS_PLANKS_STAIRS, "Tenos Planks Stairs");
+        add(ModBlocks.TENOS_BRICKS_STAIRS, "Tenos Bricks Stairs");
+        add(ModBlocks.TENOS_BRICK_CHISELED_STAIRS, "Tenos Chiseled Bricks Stairs");
+        add(ModBlocks.TENOS_DARK_SMOOTH_BRICKS_STAIRS, "Tenos Dark Smooth Bricks Stairs");
+        add(ModBlocks.TENOS_LIGHT_SMOOTH_BRICKS_STAIRS, "Tenos Light Smooth Bricks Stairs");
+        add(ModBlocks.TENOS_GEM_BLOCK_STAIRS, "Tenos Gem Block Stairs");
+
+        add(ModBlocks.VELARA_BRICKS_SLAB, "Velara Bricks Slab");
+        add(ModBlocks.VELARA_BRICK_CHISELED_SLAB, "Velara Chiseled Bricks Slab");
+        add(ModBlocks.VELARA_DARK_SMOOTH_BRICKS_SLAB, "Velara Dark Smooth Bricks Slab");
+        add(ModBlocks.VELARA_LIGHT_SMOOTH_BRICKS_SLAB, "Velara Light Smooth Bricks Slab");
+        add(ModBlocks.VELARA_BRICKS_STAIRS, "Velara Bricks Stairs");
+        add(ModBlocks.VELARA_BRICK_CHISELED_STAIRS, "Velara Chiseled Bricks Stairs");
+        add(ModBlocks.VELARA_DARK_SMOOTH_BRICKS_STAIRS, "Velara Dark Smooth Bricks Stairs");
+        add(ModBlocks.VELARA_LIGHT_SMOOTH_BRICKS_STAIRS, "Velara Light Smooth Bricks Stairs");
+        add(ModBlocks.VELARA_GEM_BLOCK_SLAB, "Velara Gem Block Slab");
+        add(ModBlocks.VELARA_GEM_BLOCK_STAIRS, "Velara Gem Block Stairs");
+
+        add(ModBlocks.WENDARR_BRICKS_SLAB, "Wendarr Bricks Slab");
+        add(ModBlocks.WENDARR_BRICK_CHISELED_SLAB, "Wendarr Chiseled Bricks Slab");
+        add(ModBlocks.WENDARR_DARK_SMOOTH_BRICKS_SLAB, "Wendarr Dark Smooth Bricks Slab");
+        add(ModBlocks.WENDARR_LIGHT_SMOOTH_BRICKS_SLAB, "Wendarr Light Smooth Bricks Slab");
+        add(ModBlocks.WENDARR_BRICKS_STAIRS, "Wendarr Bricks Stairs");
+        add(ModBlocks.WENDARR_BRICK_CHISELED_STAIRS, "Wendarr Chiseled Bricks Stairs");
+        add(ModBlocks.WENDARR_DARK_SMOOTH_BRICKS_STAIRS, "Wendarr Dark Smooth Bricks Stairs");
+        add(ModBlocks.WENDARR_LIGHT_SMOOTH_BRICKS_STAIRS, "Wendarr Light Smooth Bricks Stairs");
+        add(ModBlocks.WENDARR_JEWEL_BLOCK_SLAB, "Wendarr Jewel Block Slab");
+        add(ModBlocks.WENDARR_GEM_BLOCK_SLAB, "Wendarr Gem Block Slab");
+        add(ModBlocks.WENDARR_JEWEL_BLOCK_STAIRS, "Wendarr Jewel Block Stairs");
+        add(ModBlocks.WENDARR_GEM_BLOCK_STAIRS, "Wendarr Gem Block Stairs");
+
+        add(ModBlocks.IDONA_BRICKS_SLAB, "Idona Bricks Slab");
+        add(ModBlocks.IDONA_BRICK_CHISELED_SLAB, "Idona Chiseled Bricks Slab");
+        add(ModBlocks.IDONA_DARK_SMOOTH_BRICKS_SLAB, "Idona Dark Smooth Bricks Slab");
+        add(ModBlocks.IDONA_LIGHT_SMOOTH_BRICKS_SLAB, "Idona Light Smooth Bricks Slab");
+        add(ModBlocks.IDONA_BRICKS_STAIRS, "Idona Bricks Stairs");
+        add(ModBlocks.IDONA_BRICK_CHISELED_STAIRS, "Idona Chiseled Bricks Stairs");
+        add(ModBlocks.IDONA_DARK_SMOOTH_BRICKS_STAIRS, "Idona Dark Smooth Bricks Stairs");
+        add(ModBlocks.IDONA_LIGHT_SMOOTH_BRICKS_STAIRS, "Idona Light Smooth Bricks Stairs");
+        add(ModBlocks.IDONA_GEM_BLOCK_STAIRS, "Idona Gem Block Stairs");
+        add(ModBlocks.IDONA_GEM_BLOCK_SLAB, "Idona Gem Block Slab");
+
+
+
+        ModItems.COLORED_UNOBTANIUMS.forEach(((dyeColor, basicItem) -> {
+            add(basicItem, StringUtils.convertToTitleCase(dyeColor.getSerializedName()) + " Unobtanium");
+        }));
+
+        ModBlocks.COLORED_UNOBTANIUMS.forEach(((dyeColor, basicItem) -> {
+            add(basicItem, StringUtils.convertToTitleCase(dyeColor.getSerializedName()) + " Unobtanium Block");
+        }));
+
+        add(ModBlocks.RAINBOW_UNOBTANIUM, "Rainbow Unobtanium Block");
+        add(ModItems.RAINBOW_UNOBTANIUM, "Rainbow Unobtanium");
+
+        EnchantedEventsRegistry.registerAllBuiltInEvents();
+        ModVaultEvents.init();
+
+        VaultEventSystem.getAllEvents().forEach(this::add);
+
+        REGISTERED_LANGUAGE_KEYS.forEach(this::add);
+
+        ModBlocks.CUSTOM_VAULT_CRATES.forEach((s, crateBlock) -> {
+            add(crateBlock, StringUtils.convertToTitleCase(s) + " Vault Crate");
+        });
+
+        ModCompressibleBlocks.getRegisteredBlocks().forEach((k, v) -> {
+            for (int i = 0; i < v.size(); i ++) {
+                add(v.get(i).get(), "Compressed " + (k.isBlockOf() ? "Block of " : "") + StringUtils.convertToTitleCase(k.name()) + " ("+(i+1)+"x)");
+            }
+        });
+
     }
+
+    public static final LinkedHashMap<String, String> REGISTERED_LANGUAGE_KEYS = new LinkedHashMap<>();
 }

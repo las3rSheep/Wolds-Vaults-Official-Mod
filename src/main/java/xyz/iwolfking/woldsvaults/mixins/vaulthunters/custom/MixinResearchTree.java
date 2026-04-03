@@ -1,32 +1,26 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import iskallia.vault.research.ResearchTree;
-import iskallia.vault.research.type.Research;
+import iskallia.vault.research.Restrictions;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
-import xyz.iwolfking.woldsvaults.init.ModConfigs;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ResearchTree.class, remap = false)
 public class MixinResearchTree {
-    @Redirect(method = "restrictedBy(Lnet/minecraft/world/item/ItemStack;Liskallia/vault/research/Restrictions$Type;)Ljava/lang/String;", at = @At(value = "INVOKE", target = "Liskallia/vault/research/type/Research;getName()Ljava/lang/String;", ordinal = 1))
-    private String checkResearchExclusionConfigForItem(Research instance, @Local(argsOnly = true) ItemStack item) {
-        String original = instance.getName();
-        if (original != null && ModConfigs.RESEARCH_EXCLUSIONS.isExcludedFromResearch(original, item.getItem().getRegistryName())) {
-                return null;
+    @Inject(method = "restrictedBy(Lnet/minecraft/world/item/ItemStack;Liskallia/vault/research/Restrictions$Type;)Ljava/lang/String;", at = @At("HEAD"), cancellable = true)
+    private void dontRestrictDyedBackpackCrafting(ItemStack item, Restrictions.Type restrictionType, CallbackInfoReturnable<String> cir) {
+        if(restrictionType.equals(Restrictions.Type.CRAFTABILITY)) {
+            if(item.getItem() instanceof BackpackItem) {
+                if(item.hasTag()) {
+                    if(item.getTag() != null && (item.getTag().contains("clothColor") || item.getTag().contains("borderColor"))) {
+                        cir.setReturnValue(null);
+                    }
+                }
+            }
         }
-        return original;
-    }
-
-    @Redirect(method = "restrictedBy(Lnet/minecraft/world/level/block/Block;Liskallia/vault/research/Restrictions$Type;)Ljava/lang/String;", at = @At(value = "INVOKE", target = "Liskallia/vault/research/type/Research;getName()Ljava/lang/String;", ordinal = 1))
-    private String checkResearchExclusionConfigForBlock(Research instance, @Local(argsOnly = true) Block block) {
-        String original = instance.getName();
-        if (original != null && ModConfigs.RESEARCH_EXCLUSIONS.isExcludedFromResearch(original, block.getRegistryName())) {
-            return null;
-        }
-        return original;
     }
 }

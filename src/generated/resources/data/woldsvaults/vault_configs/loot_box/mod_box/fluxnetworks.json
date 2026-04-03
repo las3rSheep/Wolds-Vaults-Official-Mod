@@ -1,0 +1,73 @@
+{
+  "POOL": {
+    "Flux Networks": {
+      "weight": 1,
+      "entries": [
+        {
+          "value": {
+            "id": "fluxnetworks:flux_dust",
+            "amountMin": 16,
+            "amountMax": 64
+          },
+          "weight": 70
+        },
+        {
+          "value": {
+            "id": "fluxnetworks:flux_core",
+            "amountMin": 4,
+            "amountMax": 4
+          },
+          "weight": 60
+        },
+        {
+          "value": {
+            "id": "fluxnetworks:flux_plug",
+            "amountMin": 1,
+            "amountMax": 1
+          },
+          "weight": 20
+        },
+        {
+          "value": {
+            "id": "fluxnetworks:flux_point",
+            "amountMin": 1,
+            "amountMax": 1
+          },
+          "weight": 40
+        },
+        {
+          "value": {
+            "id": "fluxnetworks:flux_controller",
+            "amountMin": 1,
+            "amountMax": 1
+          },
+          "weight": 1
+        },
+        {
+          "value": {
+            "id": "fluxnetworks:basic_flux_storage",
+            "amountMin": 1,
+            "amountMax": 1
+          },
+          "weight": 20
+        },
+        {
+          "value": {
+            "id": "fluxnetworks:herculean_flux_storage",
+            "amountMin": 1,
+            "amountMax": 1
+          },
+          "weight": 10
+        },
+        {
+          "value": {
+            "id": "fluxnetworks:gargantuan_flux_storage",
+            "amountMin": 1,
+            "amountMax": 1
+          },
+          "weight": 2
+        }
+      ]
+    }
+  }
+}

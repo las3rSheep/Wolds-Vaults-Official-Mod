@@ -60,7 +60,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.PacketDistributor;
 import vazkii.quark.content.mobs.entity.Wraith;
-import xyz.iwolfking.woldsvaults.api.util.NormalizedHelper;
+import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.api.util.ObjectiveHelper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -96,7 +97,12 @@ public class HauntedBraziersObjective extends MonolithObjective {
 
     @Override
     public void initServer(VirtualWorld world, Vault vault) {
-        NormalizedHelper.handleAddingNormalizedToVault(vault, world);
+        ObjectiveHelper.handleAddingNormalizedToVault(vault, world);
+
+        ObjectiveHelper.addInitModifiersToVault(vault, resourceLocations -> {
+            resourceLocations.add(WoldsVaults.id("ghost_town"));
+            resourceLocations.add(VaultMod.id("haunting"));
+        });
 
         CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, data -> {
             this.ifPresent(OBJECTIVE_PROBABILITY, probability -> data.setProbability(probability));
@@ -278,7 +284,7 @@ public class HauntedBraziersObjective extends MonolithObjective {
             int current = this.get(COUNT);
             int total = this.get(TARGET);
             Component txt = new TextComponent(String.valueOf(current)).withStyle(ChatFormatting.WHITE).append((new TextComponent(" / ")).withStyle(ChatFormatting.WHITE)).append((new TextComponent(String.valueOf(total))).withStyle(ChatFormatting.WHITE));
-            int midX = window.getGuiScaledWidth() / 2;
+            int midX = 0;
             matrixStack.pushPose();
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
@@ -301,9 +307,5 @@ public class HauntedBraziersObjective extends MonolithObjective {
             matrixStack.popPose();
             return true;
         }
-    }
-
-    static {
-        //H_KEY = SupplierKey.of("haunted_braziers", Objective.class).with(Version.v1_2, HauntedBraziersObjective::new);
     }
 }

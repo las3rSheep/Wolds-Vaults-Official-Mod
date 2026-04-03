@@ -1,0 +1,54 @@
+{
+  "THEMES": {},
+  "LAYOUTS": [],
+  "OBJECTIVES": {},
+  "SEALS": {
+    "woldsvaults:crystal_seal_doomsayer": [
+      {
+        "level": 0,
+        "input": [
+          "the_vault:vault_crystal"
+        ],
+        "objective": {
+          "objective_probability": 0.25,
+          "sealCount": 0,
+          "type": "scaling_ballistic_bingo"
+        },
+        "modifiers": {
+          "list": [],
+          "random_modifiers": true,
+          "clarity": false,
+          "type": "default"
+        }
+      }
+    ],
+    "woldsvaults:crystal_seal_survivor": [
+      {
+        "level": 0,
+        "input": [
+          "the_vault:vault_crystal"
+        ],
+        "objective": {
+          "objective_probability": 0.1,
+          "target": 10,
+          "waveGroups": [
+            "t1",
+            "t1_t2",
+            "t2",
+            "t2_t3",
+            "t3",
+            "t3_t4",
+            "t4"
+          ],
+          "type": "survival"
+        },
+        "modifiers": {
+          "list": [],
+          "random_modifiers": true,
+          "clarity": false,
+          "type": "default"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "woldsvaults:velara_dark_smooth_bricks_stairs"
+    ]
+  },
+  "criteria": {
+    "has_velara_dark_smooth_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "the_vault:velara_dark_smooth_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "woldsvaults:velara_dark_smooth_bricks_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_velara_dark_smooth_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

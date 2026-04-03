@@ -25,15 +25,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.EventPriority;
 import xyz.iwolfking.woldsvaults.client.sfx.LoopSoundHandler;
-import xyz.iwolfking.woldsvaults.data.compound.FloatList;
-import xyz.iwolfking.woldsvaults.events.vaultevents.client.WoldClientEvents;
+import xyz.iwolfking.woldsvaults.api.data.compound.FloatList;
+import xyz.iwolfking.woldsvaults.client.events.WoldClientEvents;
 import xyz.iwolfking.woldsvaults.api.util.CorruptedVaultClientHelper;
 import xyz.iwolfking.woldsvaults.api.util.CorruptedVaultHelper;
 
 public class CorruptedObjective extends Objective {
 
     public static final SupplierKey<Objective> S_KEY = SupplierKey.of("corrupted", Objective.class).with(Version.v1_31, CorruptedObjective::new);
-    private static final ResourceLocation SHADER = new ResourceLocation("shaders/post/sobel.json");
+    private static final ResourceLocation SHADER = ResourceLocation.parse("shaders/post/sobel.json");
     private static boolean queuedRefresh = true; // used for shader
     private static boolean showedToggleShaderMessage = false;
 
@@ -188,7 +188,7 @@ public class CorruptedObjective extends Objective {
     public boolean render(Vault vault, PoseStack poseStack, Window window, float partialTicks, Player player) {
         Minecraft mc = Minecraft.getInstance();
         Font font = mc.font;
-        int centerX = window.getGuiScaledWidth() / 2;
+        int centerX = 0;
 
         CorruptedVaultClientHelper.renderCorruptionOverlay(this, poseStack, font, window, centerX);
         CorruptedVaultClientHelper.renderTimeAddendOverlay(this, poseStack, window, player);

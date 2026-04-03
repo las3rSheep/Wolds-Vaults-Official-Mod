@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "the_vault:idona_light_smooth_brick"
+    }
+  },
+  "result": {
+    "item": "woldsvaults:idona_light_smooth_bricks_slab"
+  }
+}

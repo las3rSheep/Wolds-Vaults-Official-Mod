@@ -1,0 +1,31 @@
+{
+  "discoveryHints": {
+    "woldsvaults:ocean_current": "Bounty",
+    "woldsvaults:fork_of_the_glutton": "Survival Gear Reward",
+    "woldsvaults:aural_magnet": "Survival Gear Reward",
+    "woldsvaults:pocket_penguin": "Laboratory",
+    "woldsvaults:chroma_brew": "Laboratory",
+    "woldsvaults:lava_chicken_sword": "Survival",
+    "woldsvaults:shattering_jewel": "Gateways",
+    "woldsvaults:eternal_stella": "Black Market",
+    "woldsvaults:treasure_jewel": "Craftable",
+    "woldsvaults:wicked_witch": "Laboratory",
+    "woldsvaults:chonknet": "Bounty Reward",
+    "woldsvaults:treasure_magnet": "Treasure Pedestal",
+    "woldsvaults:bloodseeking_magnet": "Dungeon Pedestal",
+    "woldsvaults:leviathan": "Bounty Reward",
+    "woldsvaults:zombie_horse_axe": "Graveyard Room",
+    "woldsvaults:trirang": "Bounty Reward",
+    "woldsvaults:everfrost": "Vendoors",
+    "woldsvaults:everflame": "Vendoors",
+    "woldsvaults:hexblade": "Vendoors",
+    "woldsvaults:mineral_greatsword": "Vendoors",
+    "woldsvaults:grass_sword": "Vendoors",
+    "woldsvaults:aurora_scissors": "Black Market",
+    "woldsvaults:young_kitsune": "Vendoors",
+    "woldsvaults:safer_spaces": "Black Market",
+    "woldsvaults:bamboo_fightstick": "Vendoors",
+    "the_vault:chainlash": "The Laboratory",
+    "the_vault:baguette": "The Laboratory"
+  }
+}

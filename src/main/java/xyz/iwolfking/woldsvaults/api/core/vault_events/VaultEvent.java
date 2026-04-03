@@ -5,6 +5,7 @@ import iskallia.vault.core.vault.player.Listener;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,18 +17,29 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public class VaultEvent {
-
+    private ResourceLocation id;
     private final EventDisplayType eventDisplayType;
     private final Set<EventTag> eventTags;
-    private final TextComponent eventMessage;
-    private final String eventName;
-    private final TextComponent eventDescription;
+    public final TextComponent eventMessage;
+    public final String eventName;
+    public final TextComponent eventDescription;
     private final TextColor nameColor;
     private final List<VaultEventTask> eventTasks;
 
     private int cascadingValue = 85;
 
     public VaultEvent(String eventName, TextComponent eventMessage, TextColor nameColor, TextComponent eventDescription, EventDisplayType eventDisplayType, Set<EventTag> eventTags, List<VaultEventTask> eventTasks) {
+        this.eventDisplayType = eventDisplayType;
+        this.eventTags = eventTags;
+        this.eventMessage = eventMessage;
+        this.eventName = eventName;
+        this.eventDescription = eventDescription;
+        this.nameColor = nameColor;
+        this.eventTasks = eventTasks;
+    }
+
+    public VaultEvent(ResourceLocation id, String eventName, TextComponent eventMessage, TextColor nameColor, TextComponent eventDescription, EventDisplayType eventDisplayType, Set<EventTag> eventTags, List<VaultEventTask> eventTasks) {
+        this.id = id;
         this.eventDisplayType = eventDisplayType;
         this.eventTags = eventTags;
         this.eventMessage = eventMessage;
@@ -55,6 +67,14 @@ public class VaultEvent {
 
     public void triggerEvent(Supplier<BlockPos> pos, ServerPlayer player, Vault vault) {
         triggerEvent(pos, player, vault, false, null);
+    }
+
+    public void triggerEvent(Vault vault) {
+        Collection<Listener> listeners = vault.get(Vault.LISTENERS).getAll();
+
+        listeners.stream().findFirst().flatMap(Listener::getPlayer).ifPresent(player -> {
+            triggerEvent(player::getOnPos, player, vault);
+        });
     }
 
     public void cascadeEvent(Vault vault, ServerPlayer originator) {
@@ -85,20 +105,11 @@ public class VaultEvent {
     }
 
     public Component getLegacyEventMessage(ServerPlayer target) {
-        MutableComponent eventMessage = new TextComponent("");
-        eventMessage.append(target.getDisplayName());
-        eventMessage.append(new TextComponent(" encountered a ").withStyle(ChatFormatting.GRAY));
-        eventMessage.append(new TextComponent(eventName + " Event!").withStyle(Style.EMPTY.withColor(nameColor)).withStyle(getHoverDescription()));
-        return eventMessage;
+        return new TranslatableComponent("vault_event.woldsvaults.legacy_event_message", target.getDisplayName(), getEventName()).withStyle(getHoverDescription());
     }
 
     public Component getCascadingEventMessage(ServerPlayer originator) {
-        MutableComponent cascadeMessage = new TextComponent("");
-        cascadeMessage.append(originator.getDisplayName());
-        cascadeMessage.append("'s ").withStyle(originator.getDisplayName().getStyle());
-        cascadeMessage.append(eventName).withStyle(Style.EMPTY.withColor(nameColor)).withStyle(getHoverDescription());
-        cascadeMessage.append(" event has cascaded onto you!").withStyle(ChatFormatting.GRAY);
-        return cascadeMessage;
+        return new TranslatableComponent("vault_event.woldsvaults.event_cascade", originator.getDisplayName().copy().append("'s").withStyle(originator.getDisplayName().getStyle()), getEventName()).withStyle(getHoverDescription());
     }
 
     public void sendEventMessages(Vault vault, ServerPlayer originator, EventDisplayType type) {
@@ -107,30 +118,21 @@ public class VaultEvent {
                 return;
             }
             case ACTION_BAR -> handleActionBarMessage(originator);
-            case CHAT_MESSAGE_TARGET -> handleChatMessage(originator, vault, false);
-            case CHAT_MESSAGE_ALL -> handleChatMessage(originator, vault, true);
+            case CHAT_MESSAGE_TARGET, CHAT_MESSAGE_ALL -> handleChatMessage(originator, vault, type);
             default -> handleLegacyEventMessage(originator, vault);
         }
     }
 
     public void sendEventMessages(Vault vault, ServerPlayer originator) {
-        switch (eventDisplayType) {
-            case NONE -> {
-                return;
-            }
-            case ACTION_BAR -> handleActionBarMessage(originator);
-            case CHAT_MESSAGE_TARGET -> handleChatMessage(originator, vault, false);
-            case CHAT_MESSAGE_ALL -> handleChatMessage(originator, vault, true);
-            default -> handleLegacyEventMessage(originator, vault);
-        }
+        sendEventMessages(vault, originator, eventDisplayType);
     }
 
     public void handleActionBarMessage(ServerPlayer player) {
         player.displayClientMessage(eventMessage, true);
     }
 
-    public void handleChatMessage(ServerPlayer target, Vault vault, boolean shouldSendAll) {
-        if(this.eventDisplayType.equals(EventDisplayType.CHAT_MESSAGE_TARGET)) {
+    public void handleChatMessage(ServerPlayer target, Vault vault, EventDisplayType type) {
+        if(type.equals(EventDisplayType.CHAT_MESSAGE_TARGET)) {
             target.displayClientMessage(eventMessage, false);
             return;
         }
@@ -143,7 +145,10 @@ public class VaultEvent {
         }
     }
 
-    public TextComponent getEventMessage() {
+    public Component getEventMessage() {
+        if(id != null) {
+            return new TranslatableComponent("vault_event." + id.getNamespace() + "." + id.getPath() + "_message");
+        }
         return eventMessage;
     }
 
@@ -162,6 +167,10 @@ public class VaultEvent {
     }
 
     public Component getEventDescriptor() {
+        if(this.id != null) {
+            return new TranslatableComponent("vault_event." + id.getNamespace() + "." + id.getPath() + "_description");
+        }
+
         return eventDescription;
     }
 
@@ -169,16 +178,32 @@ public class VaultEvent {
         return Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, getEventDescriptor()));
     }
 
+    public Component getEventName() {
+        if(this.id != null) {
+            return new TranslatableComponent("vault_event." + id.getNamespace() + "." + id.getPath()).withStyle(Style.EMPTY.withColor(nameColor));
+        }
+
+        return new TextComponent(eventName).withStyle(Style.EMPTY.withColor(nameColor));
+    }
+
     public Set<EventTag> getEventTags() {
         return eventTags;
     }
 
+    public void setId(ResourceLocation id) {
+        this.id = id;
+    }
+
+    public ResourceLocation getId() {
+        return id;
+    }
+
     public static class Builder {
         private EventDisplayType eventDisplayType = EventDisplayType.NONE;
-        private Set<EventTag> eventTags = new HashSet<>();
+        private final Set<EventTag> eventTags = new HashSet<>();
         private TextComponent eventMessage;
         private TextColor nameColor = TextColor.fromLegacyFormat(ChatFormatting.WHITE);
-        private List<VaultEventTask> eventTasks = new ArrayList<>();
+        private final List<VaultEventTask> eventTasks = new ArrayList<>();
 
         public Builder displayType(EventDisplayType type) {
             this.eventDisplayType = type;

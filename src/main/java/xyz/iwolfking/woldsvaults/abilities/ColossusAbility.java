@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.abilities;
 import com.google.gson.JsonObject;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.net.BitBuffer;
+import iskallia.vault.item.CompanionParticleTrailItem;
 import iskallia.vault.skill.ability.effect.spi.core.InstantManaAbility;
 import iskallia.vault.skill.base.Skill;
 import iskallia.vault.skill.base.SkillContext;
@@ -180,6 +181,21 @@ public class ColossusAbility extends InstantManaAbility {
                 return resistancePercentage;
             }
             return resistancePercentage;
+        }
+
+        public static float getColossusAOE(LivingEntity entity) {
+            float aoePercentage = 0.0f;
+            if (entity instanceof ServerPlayer player) {
+                if (!player.hasEffect(ModEffects.COLOSSUS)) {
+                    return aoePercentage;
+                }
+                AbilityTree abilities = PlayerAbilitiesData.get((ServerLevel) player.level).getAbilities(player);
+                for (ColossusAbility ability : abilities.getAll(ColossusAbility.class, Skill::isUnlocked)) {
+                    aoePercentage += ability.getAdditionalResistance();
+                }
+                return aoePercentage;
+            }
+            return aoePercentage;
         }
     }
 }

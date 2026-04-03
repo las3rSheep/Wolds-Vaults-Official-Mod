@@ -1,7 +1,6 @@
 package xyz.iwolfking.woldsvaults.blocks.tiles;
 
 import com.google.common.collect.Lists;
-import iskallia.vault.block.entity.VaultRecyclerTileEntity;
 import iskallia.vault.config.VaultRecyclerConfig;
 import iskallia.vault.gear.VaultGearRarity;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
@@ -9,6 +8,7 @@ import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModGearAttributes;
+import iskallia.vault.init.ModItems;
 import iskallia.vault.init.ModNetwork;
 import iskallia.vault.item.gear.RecyclableItem;
 import iskallia.vault.network.message.RecyclerParticleMessage;
@@ -40,7 +40,7 @@ import net.minecraftforge.network.PacketDistributor;
 import xyz.iwolfking.vhapi.api.data.api.CustomRecyclerOutputs;
 import xyz.iwolfking.woldsvaults.blocks.containers.VaultSalvagerContainer;
 import xyz.iwolfking.woldsvaults.init.ModBlocks;
-import xyz.iwolfking.woldsvaults.lib.SimpleOversizedSidedContainer;
+import xyz.iwolfking.woldsvaults.api.lib.SimpleOversizedSidedContainer;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -102,6 +102,12 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
             if (input.getItem() instanceof VaultGearItem) {
                 VaultGearData data = VaultGearData.read(input);
                 VaultGearRarity rarity = data.getRarity();
+                if (rarity == VaultGearRarity.UNIQUE) {
+                    this.inventory.removeItem(0, 1);
+                    MiscUtils.addStackToSlot(this.inventory, 1, new ItemStack(ModItems.UNIQUE_SHARD, 1));
+                    ModNetwork.CHANNEL.send(PacketDistributor.ALL.noArg(), new RecyclerParticleMessage(this.getBlockPos()));
+                    return;
+                }
                 boolean isCrafted = data.hasAttribute(ModGearAttributes.CRAFTED_BY) || data.getFirstValue(ModGearAttributes.CRAFTED_BY).isPresent();
                 boolean isLegendary = data.get(ModGearAttributes.IS_LEGENDARY, VaultGearAttributeTypeMerger.anyTrue());
                 additionalChance = ModConfigs.VAULT_RECYCLER.getAdditionalOutputRarityChance(rarity);

@@ -30,6 +30,7 @@ import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.config.TrinketPouchConfig;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
+import xyz.iwolfking.woldsvaults.init.ModCreativeTabs;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 
 import javax.annotation.Nullable;
@@ -38,7 +39,7 @@ import static iskallia.vault.init.ModItems.VAULT_MOD_GROUP;
 
 public class TrinketPouchItem extends BasicItem implements ICurioItem {
     public TrinketPouchItem(ResourceLocation id) {
-        super(id, new Properties().stacksTo(1).tab(VAULT_MOD_GROUP));
+        super(id, new Properties().stacksTo(1).tab(ModCreativeTabs.WOLDS_VAULTS));
     }
 
 
@@ -149,7 +150,7 @@ public class TrinketPouchItem extends BasicItem implements ICurioItem {
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         if(isTemporary(stack)) {
-            tooltip.add(new TextComponent("This is a temporary pouch to hold your temporary stuffs!").withStyle(ChatFormatting.AQUA));
+            tooltip.add(new TranslatableComponent("item.woldsvaults.trinket_pouch_temporary").withStyle(ChatFormatting.AQUA));
             tooltip.add(new TextComponent(""));
         }
         if (!stack.hasTag()) return;
@@ -158,7 +159,7 @@ public class TrinketPouchItem extends BasicItem implements ICurioItem {
         if (tag.contains("StoredCurios", Tag.TAG_LIST)) {
             ListTag storedList = tag.getList("StoredCurios", Tag.TAG_COMPOUND);
             if (!storedList.isEmpty()) {
-                tooltip.add(new TextComponent("Stored Trinkets:").withStyle(ChatFormatting.GRAY));
+                tooltip.add(new TranslatableComponent("item.woldsvaults.trinket_pouch_stored_trinkets").withStyle(ChatFormatting.GRAY));
 
                 for (int i = 0; i < storedList.size(); i++) {
                     CompoundTag itemTag = storedList.getCompound(i);
@@ -174,7 +175,7 @@ public class TrinketPouchItem extends BasicItem implements ICurioItem {
     @Override
     public Component getName(ItemStack stack) {
         TrinketPouchConfig.TrinketPouchConfigEntry pouchConfigEntry = getPouchConfigFor(stack);
-        return new TextComponent(pouchConfigEntry.NAME).withStyle(Style.EMPTY.withColor(pouchConfigEntry.COLOR));
+        return new TranslatableComponent(pouchConfigEntry.NAME).withStyle(Style.EMPTY.withColor(pouchConfigEntry.COLOR));
     }
 
     @Override

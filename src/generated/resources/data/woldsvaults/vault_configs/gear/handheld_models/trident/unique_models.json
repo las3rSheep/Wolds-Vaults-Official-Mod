@@ -1,0 +1,16 @@
+{
+  "MODELS": [
+    {
+      "id": "woldsvaults:gear/trident/ocean_current",
+      "displayName": "Zeus's Fury",
+      "discoverOnRoll": true,
+      "allowTransmogrification": true
+    },
+    {
+      "id": "woldsvaults:gear/trident/fork",
+      "displayName": "Fork of the Glutton",
+      "discoverOnRoll": true,
+      "allowTransmogrification": true
+    }
+  ]
+}

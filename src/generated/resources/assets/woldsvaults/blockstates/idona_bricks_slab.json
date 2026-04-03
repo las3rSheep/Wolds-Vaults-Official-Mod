@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "woldsvaults:block/idona_bricks_slab_top"
+    },
+    "type=bottom": {
+      "model": "woldsvaults:block/idona_bricks_slab"
+    },
+    "type=double": {
+      "model": "the_vault:block/decoration/idona_brick"
+    }
+  }
+}

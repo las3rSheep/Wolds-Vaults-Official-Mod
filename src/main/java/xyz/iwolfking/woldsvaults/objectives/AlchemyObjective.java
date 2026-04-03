@@ -6,7 +6,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import iskallia.vault.VaultMod;
 import iskallia.vault.client.gui.helper.LightmapHelper;
-import iskallia.vault.client.render.IVaultOptions;
 import iskallia.vault.core.Version;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.data.key.FieldKey;
@@ -25,6 +24,8 @@ import iskallia.vault.core.vault.player.Listener;
 import iskallia.vault.core.vault.stat.StatCollector;
 import iskallia.vault.core.world.storage.VirtualWorld;
 import iskallia.vault.entity.champion.ChampionLogic;
+import iskallia.vault.init.ModOptions;
+import iskallia.vault.options.types.ObjectiveHudSettings;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -46,11 +47,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import xyz.iwolfking.woldsvaults.api.util.GameruleHelper;
+import xyz.iwolfking.woldsvaults.api.util.SigilUtils;
 import xyz.iwolfking.woldsvaults.blocks.tiles.BrewingAltarTileEntity;
 import xyz.iwolfking.woldsvaults.config.AlchemyObjectiveConfig;
-import xyz.iwolfking.woldsvaults.events.vaultevents.BrewingAltarBrewEvent;
-import xyz.iwolfking.woldsvaults.events.vaultevents.WoldCommonEvents;
-import xyz.iwolfking.woldsvaults.events.vaultevents.client.WoldClientEvents;
+import xyz.iwolfking.woldsvaults.events.vault.BrewingAltarBrewEvent;
+import xyz.iwolfking.woldsvaults.events.vault.WoldCommonEvents;
+import xyz.iwolfking.woldsvaults.client.events.WoldClientEvents;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
 import xyz.iwolfking.woldsvaults.init.ModGameRules;
 import xyz.iwolfking.woldsvaults.items.alchemy.AlchemyIngredientItem;
@@ -164,6 +166,8 @@ public class AlchemyObjective extends Objective {
         CommonEvents.ENTITY_DROPS.register(this, (data) -> {handleChampionDeath(data, vault, world);});
         WoldCommonEvents.BREWING_ALTAR_BREW_EVENT.register(this, (data -> handleBrewEvent(data, vault, world)));
 
+        SigilUtils.addStacksFromSigil(vault);
+
         // Call super.tickListener() on listener leave, to generate a crate at the end so we can process all the crate quantity modifier at the end
         // there is probably a better way, but i am lazy, lmao
         CommonEvents.LISTENER_LEAVE.register(this,
@@ -201,7 +205,7 @@ public class AlchemyObjective extends Objective {
     @Override
     @OnlyIn(Dist.CLIENT)
     public boolean render(Vault vault, PoseStack poseStack, Window window, float v, Player player) {
-        int midX = window.getGuiScaledWidth() / 2;
+        int midX = 0;
         Font font = Minecraft.getInstance().font;
         MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
         Component txt;
@@ -235,7 +239,7 @@ public class AlchemyObjective extends Objective {
             txt = new TextComponent(String.format("%.1f%%", current * 100))
                     .append(new TextComponent(" / "))
                     .append(new TextComponent(String.format("%.1f%%", goal * 100)));
-            float userScale = ((IVaultOptions)Minecraft.getInstance().options).getObjectiveScale();
+            float userScale = ModOptions.OBJECTIVES_HUD_SETTINGS.getValue().getSettings("alchemy").getScale();
             poseStack.pushPose();
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);

@@ -4,6 +4,7 @@ import iskallia.vault.VaultMod;
 import iskallia.vault.gear.attribute.VaultGearAttribute;
 import iskallia.vault.gear.attribute.config.ConfigurableAttributeGenerator;
 import iskallia.vault.gear.attribute.custom.effect.EffectGearAttribute;
+import iskallia.vault.gear.attribute.custom.effect.EffectTrialAttribute;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeType;
 import iskallia.vault.gear.comparator.VaultGearAttributeComparator;
 import iskallia.vault.gear.reader.VaultGearModifierReader;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.api.util.UniqueEffectGearAttribute;
+import xyz.iwolfking.woldsvaults.modifiers.gear.ParticleTrailAttribute;
 
 import javax.annotation.Nullable;
 
@@ -48,6 +50,11 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Float> EXECUTION_DAMAGE = attr("execution_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Execution Damage", 10302464), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<Float> CHAINING_DAMAGE = attr("chaining_damage", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Reduced Chaining Falloff", 6119096), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<Float> INCREASED_EFFECT_CLOUD_CHANCE = attr("effect_cloud_chance_additive", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Effect Cloud Chance", 3109217), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> SECOND_JUDGEMENT = attr("second_judgement", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Second Judgement", 3085471), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> BURNING_HIT_CHANCE = attr("burning_hit_chance", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Burning Hit Chance", 12976128), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<Boolean> IMPLODING_JAVELIN = attr("javelin_implode", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Imploding Javelin", 3085471), VaultGearAttributeComparator.booleanComparator());
+    public static final VaultGearAttribute<Boolean> DRIPPING_LAVA = attr("dripping_lava", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Dripping Lava", 12976128), VaultGearAttributeComparator.booleanComparator());
 
     //Extended Vanilla Modifiers
     public static final VaultGearAttribute<EffectGearAttribute> UNIQUE_EFFECT = attr("unique_effect", EffectGearAttribute.type(), EffectGearAttribute.generator(), UniqueEffectGearAttribute.reader());
@@ -107,7 +114,7 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<String> STATIC_PLACEHOLDER_MODIFIER = attr("static_modifier", VaultGearAttributeType.stringType(), xyz.iwolfking.woldsvaults.init.ModGearAttributeGenerators.stringValue(), xyz.iwolfking.woldsvaults.init.ModGearAttributeReaders.staticPlaceholderReader("Unknown Crystal Modifier", 14706614, "%s"));
     public static final VaultGearAttribute<Float> INSCRIPTION = attr("inscription", VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), xyz.iwolfking.woldsvaults.init.ModGearAttributeReaders.inscriptionReader("Guaranteed Special Rooms", 8833629, "%s"), VaultGearAttributeComparator.floatComparator());
 
-
+    public static final VaultGearAttribute<ParticleTrailAttribute> PARTICLE_TRAIL =  attr("particle_trail", ParticleTrailAttribute.type(), ParticleTrailAttribute.generator(), ParticleTrailAttribute.reader(), ParticleTrailAttribute.comparator());
 
     //Deprecated
     @Deprecated
@@ -179,6 +186,11 @@ public class ModGearAttributes {
                       registry.register(BONUS_BEDROCK);
                       registry.register(BONUS_COIN_PILES);
                       registry.register(INCREASED_EFFECT_CLOUD_CHANCE);
+                      registry.register(PARTICLE_TRAIL);
+                      registry.register(SECOND_JUDGEMENT);
+                      registry.register(IMPLODING_JAVELIN);
+                      registry.register(BURNING_HIT_CHANCE);
+                      registry.register(DRIPPING_LAVA);
        }
   
     public static void registerVanillaAssociations() {

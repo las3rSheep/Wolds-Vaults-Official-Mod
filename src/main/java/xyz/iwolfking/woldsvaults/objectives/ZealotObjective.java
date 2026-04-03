@@ -32,6 +32,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.loading.LoadingModList;
 import xyz.iwolfking.vhapi.api.events.vault.VaultEvents;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.api.util.SigilUtils;
 
 import java.util.Objects;
 
@@ -70,7 +71,13 @@ public class ZealotObjective extends Objective {
         CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, data -> {
             this.ifPresent(OBJECTIVE_PROBABILITY, probability -> data.setProbability(probability));
         });
-        VaultEvents.GOD_ALTAR_COMPLETED.in(world).register(this, (data -> this.set(COUNT, this.get(COUNT) + 1)));
+        CommonEvents.GOD_ALTAR_EVENT.register(this, event -> {
+            if (event.getVault().get(Vault.ID).equals(vault.get(Vault.ID)) && event.isCompleted()) {
+                this.modify(COUNT, count -> count + 1);
+            }
+        });
+        SigilUtils.addStacksFromSigil(vault);
+
         super.initServer(world, vault);
     }
 
@@ -113,7 +120,7 @@ public class ZealotObjective extends Objective {
             int current = this.get(COUNT);
             int total = this.get(TARGET);
             Component txt = (new TextComponent(String.valueOf(current))).withStyle(ChatFormatting.WHITE).append((new TextComponent(" / ")).withStyle(ChatFormatting.WHITE)).append((new TextComponent(String.valueOf(total))).withStyle(ChatFormatting.WHITE));
-            int midX = window.getGuiScaledWidth() / 2;
+            int midX = 0;
             matrixStack.pushPose();
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);

@@ -5,8 +5,6 @@ import org.apache.logging.log4j.core.Appender;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.Logger;
 import org.apache.logging.log4j.core.appender.AbstractAppender;
-import xyz.iwolfking.woldsvaults.WoldsVaults;
-
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.util.concurrent.Executors;
@@ -32,15 +30,15 @@ public class ServerKiller extends AbstractAppender {
     public void append(LogEvent event) {
         String message = event.getMessage().getFormattedMessage();
         if (event.getLoggerName().contains("net.minecraft.server.MinecraftServer") && message.contains("Stopping server")) {
-            WoldsVaults.LOGGER.warn("Stopping server detected");
+            System.out.println("[Wold's Vaults] Stopping server detected.");
             this.isShuttingDown = true;
         }
         if (this.isShuttingDown && message.contains("All dimensions are saved")) {
-            WoldsVaults.LOGGER.warn("Instance will shut down in 30 seconds.");
+            System.out.println("[Wold's Vaults] Instance will shut down in 30 seconds.");
             scheduler.schedule(() -> {
-                WoldsVaults.LOGGER.warn("Stopping instance.");
+                System.out.println("[Wold's Vaults] Forcing shut down.");
                 ServerKiller.forceKillProcess();
-            }, 5L, TimeUnit.SECONDS);
+            }, 30L, TimeUnit.SECONDS);
         }
     }
 

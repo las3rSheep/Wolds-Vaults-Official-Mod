@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Slice;
 import xaero.common.settings.ModOptions;
 import xaero.common.settings.ModSettings;
+import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 
 @Restriction(
@@ -27,7 +28,7 @@ public class MixinIntegrationMinimap { // fix not being able to disable minimap 
         )
     )
     private static Object dontDisableMinimapInVault(ModSettings instance, ModOptions par1EnumOptions) {
-        if(WoldsVaultsConfig.CLIENT.showVanillaVaultMap.get()) {
+        if(WoldsVaultsConfig.CLIENT.showVanillaVaultMap.get() || WoldsVaultsConfig.CLIENT.hideXaerosMinimapInVaults.get()) {
             return true;
         }
         else {
@@ -36,13 +37,5 @@ public class MixinIntegrationMinimap { // fix not being able to disable minimap 
             }
             return false;
         }
-    }
-
-    @Redirect(method = "lambda$onClientTick$0", at = @At(value = "INVOKE", target = "Lxaero/common/settings/ModSettings;getOptionValue(Lxaero/common/settings/ModOptions;)Ljava/lang/Object;", ordinal = 1),
-        slice = @Slice(
-            from = @At(value = "FIELD", target = "Lxaero/common/settings/ModOptions;SIZE:Lxaero/common/settings/ModOptions;")
-        ))
-    private static Object dontEnableMinimapInOverworld(ModSettings instance, ModOptions par1EnumOptions) {
-        return true;
     }
 }

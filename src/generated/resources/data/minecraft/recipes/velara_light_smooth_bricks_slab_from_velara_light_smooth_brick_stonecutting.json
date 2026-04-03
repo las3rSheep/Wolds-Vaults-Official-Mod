@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "the_vault:velara_light_smooth_brick"
+  },
+  "result": "woldsvaults:velara_light_smooth_bricks_slab",
+  "count": 2
+}

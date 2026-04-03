@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "the_vault:wendarr_jewel_block"
+  },
+  "result": "woldsvaults:wendarr_jewel_block_slab",
+  "count": 2
+}

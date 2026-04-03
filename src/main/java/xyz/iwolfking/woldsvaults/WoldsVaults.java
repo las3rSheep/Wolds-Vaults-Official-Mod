@@ -1,11 +1,13 @@
 package xyz.iwolfking.woldsvaults;
 
 import com.mojang.logging.LogUtils;
-import iskallia.vault.item.crystal.CrystalData;
 import iskallia.vault.world.data.PlayerGreedData;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -16,20 +18,24 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.LoadingModList;
 import org.slf4j.Logger;
 import xyz.iwolfking.vhapi.api.registry.gear.CustomVaultGearRegistryEntry;
 import xyz.iwolfking.vhapi.api.registry.objective.CustomObjectiveRegistryEntry;
+import xyz.iwolfking.woldsvaults.api.core.competition.PlayerRewardStorage;
 import xyz.iwolfking.woldsvaults.api.util.DelayedExecutionHelper;
-import xyz.iwolfking.woldsvaults.api.vhapi.loaders.WoldDataLoaders;
+import xyz.iwolfking.woldsvaults.integration.cctweaked.CCTweakedSetup;
+import xyz.iwolfking.woldsvaults.integration.vhapi.loaders.WoldDataLoaders;
 import xyz.iwolfking.woldsvaults.client.init.ModParticles;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
-import xyz.iwolfking.woldsvaults.data.discovery.DiscoveredRecipesData;
-import xyz.iwolfking.woldsvaults.data.discovery.DiscoveredThemesData;
-import xyz.iwolfking.woldsvaults.data.recipes.CachedInfuserRecipeData;
+import xyz.iwolfking.woldsvaults.api.data.discovery.DiscoveredRecipesData;
+import xyz.iwolfking.woldsvaults.api.data.discovery.DiscoveredThemesData;
+import xyz.iwolfking.woldsvaults.api.data.recipes.CachedInfuserRecipeData;
 import xyz.iwolfking.woldsvaults.events.LivingEntityEvents;
+import xyz.iwolfking.woldsvaults.events.MissingMappingsEvents;
 import xyz.iwolfking.woldsvaults.events.RegisterCommandEventHandler;
 import xyz.iwolfking.woldsvaults.events.ServerKiller;
 import xyz.iwolfking.woldsvaults.init.*;
@@ -39,7 +45,6 @@ import xyz.iwolfking.woldsvaults.models.AdditionalModels;
 import xyz.iwolfking.woldsvaults.network.NetworkHandler;
 import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
-import xyz.iwolfking.woldsvaults.objectives.speedrun.SpeedrunCrystalObjective;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("woldsvaults")
@@ -55,6 +60,7 @@ public class WoldsVaults {
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, WoldsVaultsConfig.SERVER_SPEC, "woldsvaults-server.toml");
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -65,6 +71,8 @@ public class WoldsVaults {
 
         MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, this::onPlayerLoggedIn);
         MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, this::onLevelLoad);
+        MinecraftForge.EVENT_BUS.addGenericListener(Block.class, MissingMappingsEvents::onMissingMappings);
+        MinecraftForge.EVENT_BUS.addGenericListener(Item.class, MissingMappingsEvents::onMissingMappingsItem);
         MinecraftForge.EVENT_BUS.addListener(RegisterCommandEventHandler::woldsvaults_registerCommandsEvent);
 
         ModParticles.REGISTRY.register(modEventBus);
@@ -73,8 +81,19 @@ public class WoldsVaults {
         MinecraftForge.EVENT_BUS.register(this);
         ModCatalystModels.registerModels();
         ModInscriptionModels.registerModels();
+        ModCrystalObjectives.init();
         ModFTBQuestsTaskTypes.init();
+        if(LoadingModList.get().getModFileById("computercraft") != null) {
+            CCTweakedSetup.init();
+        }
+
         MinecraftForge.EVENT_BUS.addListener(WoldDataLoaders::initProcessors);
+        ModCompressibleBlocks.addBuiltInBlocks();
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event) {
+        //MinecraftForge.EVENT_BUS.addListener(this::textureStitch);
+        ModOptions.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -83,24 +102,21 @@ public class WoldsVaults {
             LOGGER.debug("Initializing FMLCommonSetup events!");
         }
         ModNetwork.init();
-
         LivingEntityEvents.init();
         new AdditionalModels();
         ModVaultFilterAttributes.initAttributes();
         ModGameRules.initialize();
+        ModLayoutDefinitions.init();
         NetworkHandler.onCommonSetup();
         DelayedExecutionHelper.init();
-        CrystalData.OBJECTIVE.register("brb_speedrun", SpeedrunCrystalObjective.class, SpeedrunCrystalObjective::new);
+        ModVaultEvents.init();
         BETTER_COMBAT_PRESENT = LoadingModList.get().getModFileById("bettercombat") != null;
     }
 
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        EnchantedEventsRegistry.registerAllBuiltInEvents();
-        ModVaultEvents.init();
         BrutalBossesRegistry.init();
+        EnchantedEventsRegistry.registerAllBuiltInEvents();
         if(WoldsVaultsConfig.SERVER.enableServerKiller.get()) {
             ServerKiller.register();
         }
@@ -124,6 +140,10 @@ public class WoldsVaults {
         DiscoveredRecipesData.get(((ServerPlayer) event.getPlayer()).getLevel()).syncTo((ServerPlayer) event.getPlayer());
         PlayerGreedData greedData = PlayerGreedData.get(((ServerPlayer) event.getPlayer()).server);
         ((PlayerGreedDataExtension)greedData).syncTo((ServerPlayer) event.getPlayer());
+
+        if(PlayerRewardStorage.get(event.getPlayer().getServer()).hasRewards(event.getPlayer().getUUID())) {
+            event.getPlayer().displayClientMessage(new TranslatableComponent("rewards.woldsvaults.unclaimed_rewards"), false);
+        }
     }
 
 
@@ -132,7 +152,7 @@ public class WoldsVaults {
 
 
     public static ResourceLocation id(String name) {
-        return new ResourceLocation("woldsvaults", name);
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
     }
 
     public static String sId(String name) {

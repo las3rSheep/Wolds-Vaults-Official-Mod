@@ -1,7 +1,6 @@
 package xyz.iwolfking.woldsvaults.prestige;
 
 import com.google.gson.JsonObject;
-import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.net.BitBuffer;
 import iskallia.vault.skill.base.SkillContext;
 import iskallia.vault.skill.prestige.core.PrestigePower;
@@ -9,11 +8,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import xyz.iwolfking.woldsvaults.data.discovery.DiscoveredRecipesData;
+import xyz.iwolfking.woldsvaults.api.data.discovery.DiscoveredRecipesData;
 
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class CraftingRecipePower extends PrestigePower {
     private ResourceLocation recipeUnlock;
@@ -51,7 +48,7 @@ public class CraftingRecipePower extends PrestigePower {
     public void readNbt(CompoundTag nbt) {
         super.readNbt(nbt);
         String recipeUnlockString = nbt.getString("recipeUnlock");
-        this.recipeUnlock = new ResourceLocation(recipeUnlockString);
+        this.recipeUnlock = ResourceLocation.parse(recipeUnlockString);
     }
 
     public Optional<JsonObject> writeJson() {
@@ -64,7 +61,7 @@ public class CraftingRecipePower extends PrestigePower {
     public void readJson(JsonObject json) {
         super.readJson(json);
         String recipeUnlockString = json.get("recipeUnlock").getAsString();
-        this.recipeUnlock = new ResourceLocation(recipeUnlockString);
+        this.recipeUnlock = ResourceLocation.parse(recipeUnlockString);
     }
 
     public void writeBits(BitBuffer buffer) {
@@ -74,6 +71,6 @@ public class CraftingRecipePower extends PrestigePower {
 
     public void readBits(BitBuffer buffer) {
         super.readBits(buffer);
-        this.recipeUnlock = new ResourceLocation(buffer.readString());
+        this.recipeUnlock = ResourceLocation.parse(buffer.readString());
     }
 }

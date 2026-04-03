@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "woldsvaults:block/tenos_gem_block_slab_top"
+    },
+    "type=bottom": {
+      "model": "woldsvaults:block/tenos_gem_block_slab"
+    },
+    "type=double": {
+      "model": "the_vault:block/decoration/tenos_gem_block"
+    }
+  }
+}

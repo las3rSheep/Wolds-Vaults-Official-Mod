@@ -200,7 +200,7 @@ public class ConcentrateAbility extends InstantManaAbility {
         if (effect == ModEffects.SHRINKING) return ModEffects.GROWING;
         if (effect == MobEffects.LEVITATION) return MobEffects.CONDUIT_POWER;
         if (effect == MobEffects.DIG_SPEED) return MobEffects.SATURATION;
-        return effect;
+        return ModEffects.EMPOWER;
     }
 
     private static Vector3f[] getEffectColors(MobEffect effect) {

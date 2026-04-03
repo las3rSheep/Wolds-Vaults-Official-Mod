@@ -17,6 +17,7 @@ import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.item.BasicItem;
 import iskallia.vault.snapshot.AttributeSnapshot;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
+import iskallia.vault.util.SidedHelper;
 import iskallia.vault.world.data.DiscoveredModelsData;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
@@ -48,7 +49,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import vazkii.quark.base.handler.QuarkSounds;
-import xyz.iwolfking.woldsvaults.data.enchantments.AllowedEnchantmentsData;
+import xyz.iwolfking.woldsvaults.api.data.enchantments.AllowedEnchantmentsData;
 import xyz.iwolfking.woldsvaults.items.gear.rang.VaultRangEntity;
 import xyz.iwolfking.woldsvaults.models.Rangs;
 
@@ -81,9 +82,16 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, @Nonnull InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
+
         if(VaultGearHelper.rightClick(worldIn, playerIn, handIn, super.use(worldIn, playerIn, handIn)).getResult().equals(InteractionResult.FAIL)) {
             return InteractionResultHolder.fail(itemstack);
         }
+
+        VaultGearData data = VaultGearData.read(itemstack);
+        if(data.getItemLevel() > SidedHelper.getVaultLevel(playerIn)) {
+            return new InteractionResultHolder<>(InteractionResult.FAIL, itemstack);
+        }
+
         playerIn.setItemInHand(handIn, ItemStack.EMPTY);
         AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(playerIn);
         float velocity = snapshot.getAttributeValue(ModGearAttributes.VELOCITY, VaultGearAttributeTypeMerger.floatSum()) * 100;

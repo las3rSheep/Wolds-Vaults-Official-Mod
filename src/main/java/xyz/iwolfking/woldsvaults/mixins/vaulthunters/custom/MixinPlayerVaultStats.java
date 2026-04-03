@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.data.discovery.DiscoveredRecipesData;
+import xyz.iwolfking.woldsvaults.api.data.discovery.DiscoveredRecipesData;
 import xyz.iwolfking.woldsvaults.integration.ftbquests.tasks.VaultLevelTask;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,6 +36,9 @@ public abstract class MixinPlayerVaultStats {
     @Shadow private int exp;
     @Shadow private int vaultLevel;
     @Shadow @Final private UUID uuid;
+
+    @Shadow
+    public abstract int getVaultUncappedLevel();
 
     @Redirect(method = "addVaultExp", at = @At(value = "INVOKE", target = "Liskallia/vault/config/VaultLevelsConfig;getExpMultiplier()F"))
     private float addExperiencedExpertiseMultiplier(VaultLevelsConfig instance, @Local MinecraftServer server) {
@@ -97,7 +100,7 @@ public abstract class MixinPlayerVaultStats {
             return ModConfigs.LEVELS_META.getLevelMeta(this.vaultLevel).tnl;
         }
 
-        return (int) (ModConfigs.LEVELS_META.getPrestigeTnl() + (ModConfigs.LEVELS_META.getPrestigeTnl() * ((this.getVaultLevel() - 100) * 0.005F)));
+        return (int) (ModConfigs.LEVELS_META.getPrestigeTnl() + (ModConfigs.LEVELS_META.getPrestigeTnl() * (this.getVaultUncappedLevel() * 0.005F)));
 
     }
 }

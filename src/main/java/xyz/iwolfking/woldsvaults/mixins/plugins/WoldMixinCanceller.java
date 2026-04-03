@@ -8,17 +8,6 @@ import java.util.List;
 public class WoldMixinCanceller implements MixinCanceller {
     @Override
     public boolean shouldCancel(List<String> list, String s) {
-        if(LoadingModList.get().getModFileById("qolhunters") != null) {
-            //I mixin same class, don't need the changes made in this.
-            if(s.equals("io.iridium.qolhunters.mixin.brazier.MixinMonolithRenderer")) {
-                return true;
-            }
-            //I mixin same class, don't need the change made here.
-            else if(s.equals("io.iridium.qolhunters.mixin.paradox.MixinGateLockRenderer")) {
-                return true;
-            }
-        }
-
         if(LoadingModList.get().getModFileById("ars_nouveau") != null) {
             if(s.equals("com.hollingsworth.arsnouveau.common.mixin.elytra.ClientElytraMixin")) {
                 return true;
@@ -64,6 +53,11 @@ public class WoldMixinCanceller implements MixinCanceller {
         if(s.equals("net.joseph.vaultfilters.mixin.other.MixinAttributeResearchBypass")) {
             return true;
         }
+
+        if(s.equals("org.valkyrienskies.mod.mixin.feature.container_distance_check.MixinRandomizableContainerBlockEntity")) {
+            return true;
+        }
+
 
 
 

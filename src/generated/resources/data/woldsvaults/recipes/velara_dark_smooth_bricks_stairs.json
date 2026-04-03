@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "the_vault:velara_dark_smooth_brick"
+    }
+  },
+  "result": {
+    "item": "woldsvaults:velara_dark_smooth_bricks_stairs"
+  }
+}

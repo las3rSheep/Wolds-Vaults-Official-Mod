@@ -2,7 +2,7 @@ package xyz.iwolfking.woldsvaults.mixins.vaulthunters.fixes;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import iskallia.vault.VaultMod;
-import iskallia.vault.client.ClientExpertiseData;
+import iskallia.vault.client.data.ClientExpertiseData;
 import iskallia.vault.config.recipe.ForgeRecipeType;
 import iskallia.vault.gear.VaultGearRarity;
 import iskallia.vault.gear.attribute.VaultGearAttribute;
@@ -30,8 +30,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.data.discovery.ClientRecipeDiscoveryData;
-import xyz.iwolfking.woldsvaults.data.discovery.DiscoveredRecipesData;
+import xyz.iwolfking.woldsvaults.api.data.discovery.ClientRecipeDiscoveryData;
+import xyz.iwolfking.woldsvaults.api.data.discovery.DiscoveredRecipesData;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
 
 import java.util.List;
@@ -48,7 +48,7 @@ public abstract class MixinJewelCraftingRecipe extends VaultForgeRecipe {
     }
 
     @Override
-    public boolean canCraft(Player player) {
+    public boolean canCraft(Player player, int level) {
         if(this.getId().equals(VaultMod.id("random"))) {
             if(player instanceof ServerPlayer serverPlayer) {
                 ExpertiseTree tree = PlayerExpertisesData.get(serverPlayer.server).getExpertises(player);

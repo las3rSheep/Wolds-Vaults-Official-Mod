@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "the_vault:wendarr_brick"
+  },
+  "result": "woldsvaults:wendarr_bricks_stairs",
+  "count": 1
+}

@@ -1,15 +1,14 @@
 package xyz.iwolfking.woldsvaults.init;
 
-import org.checkerframework.checker.units.qual.A;
 import xyz.iwolfking.vhapi.api.data.api.CustomRecyclerOutputs;
 import xyz.iwolfking.vhapi.api.loaders.workstation.lib.CustomVaultRecyclerConfig;
 import xyz.iwolfking.woldsvaults.config.*;
 import xyz.iwolfking.woldsvaults.config.lib.GenericLootableConfig;
 import xyz.iwolfking.woldsvaults.config.lib.GenericShopPedestalConfig;
 import xyz.iwolfking.woldsvaults.config.recipes.augment.AugmentRecipesConfig;
-import xyz.iwolfking.woldsvaults.config.recipes.mod_box.ModBoxForgeRecipe;
 import xyz.iwolfking.woldsvaults.config.recipes.mod_box.ModBoxRecipesConfig;
 import xyz.iwolfking.woldsvaults.config.recipes.weaving.WeavingRecipesConfig;
+import xyz.iwolfking.woldsvaults.objectives.SurvivalObjective;
 
 public class ModConfigs {
     public static GenericLootableConfig GEM_BOX;
@@ -29,16 +28,13 @@ public class ModConfigs {
     public static EnchantedElixirConfig ENCHANTED_ELIXIR;
     public static CorruptedObjectiveConfig CORRUPTED_OBJECTIVE;
     public static AlchemyObjectiveConfig ALCHEMY_OBJECTIVE;
+    public static SurvivalObjectiveConfig SURVIVAL_OBJECTIVE;
 
     public static AugmentRecipesConfig AUGMENT_RECIPES;
     public static ModBoxRecipesConfig MOD_BOX_RECIPES_CONFIG;
     public static WeavingRecipesConfig WEAVING_RECIPES_CONFIG;
 
-    public static ThemeTooltipsConfig THEME_TOOLTIPS;
-
     public static CustomVaultRecyclerConfig CUSTOM_RECYCLER_CONFIG;
-
-    public static EternalAttributesConfig ETERNAL_ATTRIBUTES;
 
     public static GenericShopPedestalConfig ETCHING_SHOP_PEDESTAL;
     public static GenericShopPedestalConfig GOD_SHOP_PEDESTAL;
@@ -49,15 +45,11 @@ public class ModConfigs {
     public static GenericShopPedestalConfig CARD_SHOP_PEDESTAL;
 
     public static GreedVaultAltarIngredientsConfig GREED_VAULT_ALTAR_INGREDIENTS;
-    public static WeaponTypesConfig WEAPON_TYPES;
-    public static VaultGearRarityColorConfig VAULT_GEAR_RARITY_COLOR_CONFIG = new VaultGearRarityColorConfig();
     public static TrinketPouchConfig TRINKET_POUCH = new TrinketPouchConfig();
     public static RecipeUnlocksConfig RECIPE_UNLOCKS = new RecipeUnlocksConfig();
-    public static ResearchExclusionConfig RESEARCH_EXCLUSIONS = new ResearchExclusionConfig();
+    public static EtchedVaultLayoutConfig ETCHED_VAULT_LAYOUT = new EtchedVaultLayoutConfig();
 
-    public static void preregister() {
-        VAULT_GEAR_RARITY_COLOR_CONFIG = new VaultGearRarityColorConfig().readConfig();
-    }
+    public static TimeTrialCompetitionConfig TIME_TRIAL_COMPETITION = new TimeTrialCompetitionConfig();
 
     public static void register() {
         GEM_BOX = new GenericLootableConfig("gem_box").readConfig();
@@ -76,14 +68,12 @@ public class ModConfigs {
         ENCHANTED_ELIXIR = new EnchantedElixirConfig().readConfig();
         CORRUPTED_OBJECTIVE = new CorruptedObjectiveConfig().readConfig();
         ALCHEMY_OBJECTIVE = new AlchemyObjectiveConfig().readConfig();
+        SURVIVAL_OBJECTIVE = new SurvivalObjectiveConfig().readConfig();
         AUGMENT_RECIPES = new AugmentRecipesConfig().readConfig();
         MOD_BOX_RECIPES_CONFIG = new ModBoxRecipesConfig().readConfig();
-        THEME_TOOLTIPS = new ThemeTooltipsConfig().readConfig();
         CUSTOM_RECYCLER_CONFIG = new CustomVaultRecyclerConfig().readConfig();
         CustomRecyclerOutputs.CUSTOM_OUTPUTS.putAll(CUSTOM_RECYCLER_CONFIG.getOutputs());
-        ETERNAL_ATTRIBUTES = new EternalAttributesConfig().readConfig();
         GREED_VAULT_ALTAR_INGREDIENTS = new GreedVaultAltarIngredientsConfig().readConfig();
-        WEAPON_TYPES = new WeaponTypesConfig().readConfig();
         ETCHING_SHOP_PEDESTAL = new GenericShopPedestalConfig("etching_shop_pedestal").readConfig();
         GOD_SHOP_PEDESTAL = new GenericShopPedestalConfig("god_shop_pedestal").readConfig();
         BLACKSMITH_SHOP_PEDESTAL = new GenericShopPedestalConfig("blacksmith_shop_pedestal").readConfig();
@@ -94,6 +84,7 @@ public class ModConfigs {
         TRINKET_POUCH = new TrinketPouchConfig().readConfig();
         RECIPE_UNLOCKS = new RecipeUnlocksConfig().readConfig();
         WEAVING_RECIPES_CONFIG = new WeavingRecipesConfig().readConfig();
-        RESEARCH_EXCLUSIONS = new ResearchExclusionConfig().readConfig();
+        TIME_TRIAL_COMPETITION = new TimeTrialCompetitionConfig().readConfig();
+        ETCHED_VAULT_LAYOUT = new EtchedVaultLayoutConfig().readConfig();
     }
 }

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "the_vault:velara_dark_smooth_brick"
+  },
+  "result": "woldsvaults:velara_dark_smooth_bricks_stairs",
+  "count": 1
+}

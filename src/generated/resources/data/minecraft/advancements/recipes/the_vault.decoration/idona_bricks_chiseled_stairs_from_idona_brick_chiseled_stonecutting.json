@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:idona_bricks_chiseled_stairs_from_idona_brick_chiseled_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_idona_brick_chiseled": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "the_vault:idona_brick_chiseled"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:idona_bricks_chiseled_stairs_from_idona_brick_chiseled_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_idona_brick_chiseled",
+      "has_the_recipe"
+    ]
+  ]
+}

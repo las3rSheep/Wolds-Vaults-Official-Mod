@@ -1,190 +1,199 @@
 package xyz.iwolfking.woldsvaults.items;
 
+import iskallia.vault.config.VaultCrystalConfig;
 import iskallia.vault.core.random.JavaRandom;
 import iskallia.vault.core.random.RandomSource;
 import iskallia.vault.core.vault.Vault;
-import iskallia.vault.init.ModConfigs;
 import iskallia.vault.item.core.DataTransferItem;
 import iskallia.vault.item.core.VaultLevelItem;
-import iskallia.vault.item.crystal.layout.ClassicCircleCrystalLayout;
-import iskallia.vault.item.crystal.layout.ClassicInfiniteCrystalLayout;
-import iskallia.vault.item.crystal.layout.ClassicPolygonCrystalLayout;
-import iskallia.vault.item.crystal.layout.ClassicSpiralCrystalLayout;
 import iskallia.vault.item.crystal.layout.CrystalLayout;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.IntTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Rotation;
+import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.api.core.layout.lib.LayoutDefinition;
+import xyz.iwolfking.woldsvaults.api.core.layout.LayoutDefinitionRegistry;
+import xyz.iwolfking.woldsvaults.init.ModConfigs;
 import xyz.iwolfking.woldsvaults.init.ModItems;
-import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.ClassicCircleCrystalLayoutAccessor;
-import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.ClassicInfiniteCrystalLayoutAccessor;
-import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.ClassicPolygonCrystalLayoutAccessor;
-import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.ClassicSpiralCrystalLayoutAccessor;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class LayoutModificationItem extends Item implements VaultLevelItem, DataTransferItem {
+public class LayoutModificationItem extends Item
+        implements VaultLevelItem, DataTransferItem {
 
-    public LayoutModificationItem(CreativeModeTab group, ResourceLocation id) {
-        super((new Item.Properties()).tab(group));
-        this.setRegistryName(id);
+    public static final String TAG_LAYOUT = "layout";
+    public static final String TAG_POOL = "pool";
+    public static final String TAG_LEVEL = "level";
+    public static final String LEGACY_TUNNEL = "tunnel";
+    public static final String LEGACY_VALUE = "value";
+    public static final String TAG_LAYOUT_DATA = "layout_data";
+
+    public LayoutModificationItem(CreativeModeTab tab, ResourceLocation id) {
+        super(new Item.Properties().tab(tab));
+        setRegistryName(id);
     }
 
+
     @Override
-    public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level world, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag advanced) {
-        super.appendHoverText(stack, world, tooltip, advanced);
-        getLayout(stack).ifPresent(key -> {
+    public void appendHoverText(ItemStack stack, Level level,
+                                List<Component> tooltip, TooltipFlag flag) {
 
-            if(key instanceof ClassicCircleCrystalLayout crystalLayout) {
-                tooltip.add((new TextComponent("Layout: ")).append((new TextComponent("Circle")).withStyle(Style.EMPTY.withColor(3191506))));
-                tooltip.add(new TextComponent("Tunnel Span: ").append(new TextComponent(String.valueOf(((ClassicInfiniteCrystalLayoutAccessor)crystalLayout).getTunnelSpan())).withStyle(ChatFormatting.GOLD)));
-                tooltip.add(new TextComponent("Radius: ").append(new TextComponent(String.valueOf(((ClassicCircleCrystalLayoutAccessor)crystalLayout).getRadius())).withStyle(ChatFormatting.GOLD)));
-            }
+        CompoundTag root = stack.getTag();
+        if (root == null || !root.contains(TAG_LAYOUT)) return;
 
-            else if(key instanceof ClassicPolygonCrystalLayout crystalLayout) {
-                tooltip.add((new TextComponent("Layout: ")).append((new TextComponent("Polygon")).withStyle(Style.EMPTY.withColor(16757504))));
-                tooltip.add(new TextComponent("Tunnel Span: ").append(new TextComponent(String.valueOf(((ClassicInfiniteCrystalLayoutAccessor)crystalLayout).getTunnelSpan())).withStyle(ChatFormatting.GOLD)));
-                tooltip.add(new TextComponent("Vertices: ").append(new TextComponent(Arrays.toString(((ClassicPolygonCrystalLayoutAccessor) crystalLayout).getVertices())).withStyle(ChatFormatting.GOLD)));
-            }
-
-            else if(key instanceof ClassicSpiralCrystalLayout crystalLayout) {
-                tooltip.add((new TextComponent("Layout: ")).append((new TextComponent("Spiral")).withStyle(Style.EMPTY.withColor(3191296))));
-                tooltip.add(new TextComponent("Tunnel Span: ").append(new TextComponent(String.valueOf(((ClassicInfiniteCrystalLayoutAccessor)crystalLayout).getTunnelSpan())).withStyle(ChatFormatting.GOLD)));
-                tooltip.add(new TextComponent("Half Length: ").append(new TextComponent(String.valueOf(((ClassicSpiralCrystalLayoutAccessor)crystalLayout).getHalfLength())).withStyle(ChatFormatting.GOLD)));
-            }
-            else if(key instanceof ClassicInfiniteCrystalLayout crystalLayout) {
-                tooltip.add((new TextComponent("Layout: ")).append((new TextComponent("Infinite")).withStyle(Style.EMPTY.withColor(16730880))));
-                tooltip.add(new TextComponent("Tunnel Span: ").append(new TextComponent(String.valueOf(((ClassicInfiniteCrystalLayoutAccessor)crystalLayout).getTunnelSpan())).withStyle(ChatFormatting.GOLD)));
-            }
+        LayoutDefinitionRegistry.get(root.getString(TAG_LAYOUT)).ifPresent(def -> {
+            CompoundTag data = getOrUpgradeLayoutData(root, def);
+            def.addTooltip(data, tooltip);
         });
     }
 
-
-
     public static Optional<CrystalLayout> getLayout(ItemStack stack) {
-        if (stack.getTag() == null) {
-            return Optional.empty();
-        } else {
-            CompoundTag nbt = stack.getOrCreateTag();
-            if (!nbt.contains("layout") || !nbt.contains("tunnel") || !nbt.contains("value")) {
-                return Optional.empty();
-            } else {
-                String layoutName = nbt.getString("layout");
-                int tunnel = nbt.getInt("tunnel");
-                int value = nbt.getInt("value");
+        CompoundTag root = stack.getTag();
+        if (root == null || !root.contains(TAG_LAYOUT)) return Optional.empty();
 
-                return switch (layoutName) {
-                    case "infinite" -> Optional.of(new ClassicInfiniteCrystalLayout(tunnel));
-                    case "circle" -> Optional.of(new ClassicCircleCrystalLayout(tunnel, value));
-                    case "polygon" -> Optional.of(new ClassicPolygonCrystalLayout(tunnel, new int[]{-1 * value, value, value, value, value, -1 * value, -1 * value, -1 * value}));
-                    case "spiral" -> Optional.of(new ClassicSpiralCrystalLayout(tunnel, value, Rotation.CLOCKWISE_90));
-                    default -> Optional.empty();
-                };
-            }
-        }
+        return LayoutDefinitionRegistry.get(root.getString(TAG_LAYOUT))
+                .map(def -> def.create(getOrUpgradeLayoutData(root, def)));
     }
 
-    public static ItemStack create(String type, int tunnelSpan, int value) {
+    private static CompoundTag getOrUpgradeLayoutData(
+            CompoundTag root, LayoutDefinition def) {
+
+        if (root.contains(TAG_LAYOUT_DATA)) {
+            return root.getCompound(TAG_LAYOUT_DATA);
+        }
+
+        CompoundTag upgraded = def.upgradeLegacy(root);
+        root.put(TAG_LAYOUT_DATA, upgraded);
+        return upgraded;
+    }
+
+    public static ItemStack create(CrystalLayout layout) {
         ItemStack stack = new ItemStack(ModItems.LAYOUT_MANIPULATOR);
-        stack.getOrCreateTag().putString("layout", type);
-        stack.getOrCreateTag().putInt("tunnel", tunnelSpan);
-        stack.getOrCreateTag().putInt("value", value);
+        CompoundTag tag = stack.getOrCreateTag();
+        LayoutDefinition definition = LayoutDefinitionRegistry.getForLayout(layout).orElse(null);
+
+        if(definition == null) {
+            return ItemStack.EMPTY;
+        }
+
+        definition.writeFromLayout(layout, tag);
+
         return stack;
     }
 
-    @Override
-    public void initializeVaultLoot(int i, ItemStack stack, @org.jetbrains.annotations.Nullable BlockPos blockPos, @org.jetbrains.annotations.Nullable Vault vault) {
-        createStackFromLevel(i, stack);
+    public static ItemStack create(String layoutId, CompoundTag layoutData) {
+        ItemStack stack = new ItemStack(ModItems.LAYOUT_MANIPULATOR);
+        CompoundTag tag = stack.getOrCreateTag();
+
+        tag.putString(TAG_LAYOUT, layoutId);
+        tag.put(TAG_LAYOUT_DATA, layoutData);
+
+        return stack;
     }
 
-    private String getLayoutType(CrystalLayout key) {
-        if(key instanceof ClassicCircleCrystalLayout) {
-           return "circle";
-        }
+    public static ItemStack createLegacy(String layoutId, int value) {
+        ItemStack stack = new ItemStack(ModItems.LAYOUT_MANIPULATOR);
+        CompoundTag tag = stack.getOrCreateTag();
 
-        else if(key instanceof ClassicPolygonCrystalLayout) {
-           return "polygon";
-        }
+        tag.putString(TAG_LAYOUT, layoutId);
+        tag.putInt(LEGACY_TUNNEL, 1);
+        tag.putInt(LEGACY_VALUE, value);
 
-        else if(key instanceof ClassicSpiralCrystalLayout) {
-          return "spiral";
-        }
-        else if(key instanceof ClassicInfiniteCrystalLayout) {
-            return "infinite";
-        }
+        return stack;
+    }
 
-        return null;
+
+    @Override
+    public void initializeVaultLoot(
+            int level, ItemStack stack,
+            @Nullable BlockPos pos, @Nullable Vault vault) {
+        if(stack.hasTag() && stack.getTag().contains("pool")) {
+            if(stack.getTag().get("pool") instanceof IntTag) {
+                rollLayoutFromLevel(level, stack);
+            }
+            else {
+                rollLayoutFromLevel(stack.getTag().getString("pool"), level, stack);
+            }
+        }
+        else {
+            rollLayoutFromLevel(level, stack);
+        }
     }
 
     @Override
     public ItemStack convertStack(ItemStack stack, RandomSource random) {
-        if (stack.getTag() == null) {
-            return stack;
-        } else {
-            CompoundTag nbt = stack.getOrCreateTag();
-            if (!nbt.contains("level")) {
+        CompoundTag tag = stack.getTag();
+        if (tag == null || !tag.contains(TAG_POOL)) {
+            if(!tag.contains(TAG_LEVEL)) {
                 return stack;
-            } else {
-                int level = nbt.getInt("pool");
-                return createStackFromLevel(level, stack);
             }
-        }
-    }
 
-    private ItemStack createStackFromLevel(int level, ItemStack stack) {
-        if(stack.getTag() == null) {
+            rollLayoutFromLevel("default", tag.getInt(TAG_LEVEL), stack);
             return stack;
+        }
+
+        if(tag.contains(TAG_LEVEL)) {
+            rollLayoutFromLevel(tag.getString(TAG_POOL), 0, stack);
         }
         else {
-            CompoundTag nbt = stack.getOrCreateTag();
-            if(nbt.contains("layout")) {
-                return stack;
-            }
-            else {
-                Optional<CrystalLayout> layout = ModConfigs.VAULT_CRYSTAL.getRandomLayout(level, JavaRandom.ofNanoTime());
-
-                if(layout.isEmpty()) {
-                    return stack;
-                }
-
-                String type = getLayoutType(layout.get());
-
-                if(type != null) {
-                    nbt.putString("layout", type);
-                    nbt.putInt("tunnel", 1);
-                    switch (type) {
-                        case "polygon" -> {
-                            int i = ((ClassicPolygonCrystalLayoutAccessor) layout.get()).getVertices()[1];
-                            if(i == 0) {
-                                i = ((ClassicPolygonCrystalLayoutAccessor) layout.get()).getVertices()[3];
-                            }
-                            nbt.putInt("value", i);
-                        }
-                        case "circle" ->
-                                nbt.putInt("value", ((ClassicCircleCrystalLayoutAccessor) layout.get()).getRadius());
-                        case "spiral" ->
-                                nbt.putInt("value", ((ClassicSpiralCrystalLayoutAccessor) layout.get()).getHalfLength());
-                        default -> nbt.putInt("value", 0);
-                    }
-
-                    stack.setTag(nbt);
-                    return stack;
-                }
-            }
+            rollLayoutFromLevel(tag.getString(TAG_POOL), tag.getInt(TAG_LEVEL), stack);
         }
+
         return stack;
+    }
+
+    //Handles legacy items
+    private static void rollLayoutFromLevel(int level, ItemStack stack) {
+        rollLayoutFromLevel("default", level, stack);
+    }
+
+    private static void rollLayoutFromLevel(String pool, int level, ItemStack stack) {
+        CompoundTag tag = stack.getOrCreateTag();
+        if (tag.contains(TAG_LAYOUT)) return;
+
+        if(!ModConfigs.ETCHED_VAULT_LAYOUT.ETCHED_VAULT_LAYOUTS.containsKey(pool)) {
+            WoldsVaults.LOGGER.warn("Attempted to roll an Etched Vault Layout but pool {} was invalid, please report this to the developer!", pool);
+            WoldsVaults.LOGGER.warn(tag.toString());
+            rollLayoutFromLevel("default", level, stack);
+            return;
+        }
+
+        Optional<VaultCrystalConfig.LayoutEntry> rolled =
+                ModConfigs.ETCHED_VAULT_LAYOUT.ETCHED_VAULT_LAYOUTS.get(pool).getForLevel(level);
+        rolled.flatMap(layoutEntry -> layoutEntry.pool.getRandom()).ifPresent(crystalLayout -> {
+            LayoutDefinitionRegistry.getForLayout(crystalLayout).ifPresent(def -> {
+                def.writeFromLayout(crystalLayout, tag);
+
+                if(tag.contains(TAG_POOL)) {
+                    tag.remove(TAG_POOL);
+                }
+                if(tag.contains(TAG_LEVEL)) {
+                    tag.remove(TAG_LEVEL);
+                }
+            });
+        });
+
+    }
+
+    @Override
+    public @Nonnull Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+
+        CompoundTag root = stack.getTag();
+        if (root == null || !root.contains(TAG_LAYOUT)) {return Optional.empty();}
+
+        return LayoutDefinitionRegistry
+            .get(root.getString(TAG_LAYOUT))
+            .flatMap(def -> def.getTooltipImage(getOrUpgradeLayoutData(root, def)));
     }
 }

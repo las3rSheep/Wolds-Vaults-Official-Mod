@@ -38,10 +38,7 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextColor;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -73,7 +70,7 @@ import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import xyz.iwolfking.woldsvaults.blocks.MonolithControllerBlock;
 import xyz.iwolfking.woldsvaults.blocks.tiles.FracturedObeliskTileEntity;
-import xyz.iwolfking.woldsvaults.events.vaultevents.WoldCommonEvents;
+import xyz.iwolfking.woldsvaults.events.vault.WoldCommonEvents;
 import xyz.iwolfking.woldsvaults.items.LocatorItem;
 import xyz.iwolfking.woldsvaults.modifiers.clock.KillMobTimeExtension;
 import xyz.iwolfking.woldsvaults.objectives.CorruptedObjective;
@@ -221,13 +218,13 @@ public class CorruptedVaultHelper {
                 world.addFreshEntity(new FireworkRocketEntity(world, player.getX(), player.getY(), player.getZ(), new ItemStack(Items.FIREWORK_ROCKET)));
                 world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.MASTER, 0.6F, 0.8F);
 
-                TextComponent title = new TextComponent("Vault Completed!");
+                TranslatableComponent title = new TranslatableComponent("vault_objective.woldsvaults.corrupted_complete");
                 title.setStyle(Style.EMPTY.withColor(TextColor.fromRgb(14536734)));
                 player.connection.send(new ClientboundSetTitleTextPacket(title));
             }
 
             if (time >= 100 && time < 320 && time % 5 == 0) {
-                String jumbled = jumbleCharacters("Vault Completed!", world.random);
+                String jumbled = jumbleCharacters(new TranslatableComponent("vault_objective.woldsvaults.corrupted_complete"), world.random);
                 Component corrupted = ComponentUtils.corruptComponentServerSide(new TextComponent(jumbled).setStyle(Style.EMPTY.withColor(TextColor.parseColor("#870c03"))));
                 player.connection.send(new ClientboundSetTitleTextPacket(corrupted));
 
@@ -239,7 +236,7 @@ public class CorruptedVaultHelper {
                 player.teleportTo(0, 64, 0);
                 player.connection.teleport(0, 64, 0, 0, 0);
 
-                vault.get(Vault.MODIFIERS).addModifier(VaultModifierRegistry.get(VaultMod.id("crowded")), 10, true, ChunkRandom.any());
+                vault.get(Vault.MODIFIERS).addModifier(VaultModifierRegistry.get(VaultMod.id("crowded")), 10, true, ChunkRandom.ofNanoTime());
                 vault.ifPresent(Vault.CLOCK, (clock) -> clock.set(TickClock.VISIBLE));
 
                 FloatingItemEntity floatingItem = FloatingItemEntity.create(world, new BlockPos(0, 65, 5), new ItemStack(xyz.iwolfking.woldsvaults.init.ModItems.OBELISK_RESONATOR));
@@ -251,7 +248,9 @@ public class CorruptedVaultHelper {
     }
 
 
-
+    public static String jumbleCharacters(Component input, Random random) {
+        return jumbleCharacters(input.getString(), random);
+    }
 
 
     public static String jumbleCharacters(String input, Random random) {
@@ -564,7 +563,7 @@ public class CorruptedVaultHelper {
 
 
                         player.sendMessage(
-                                new TextComponent("You sense a portal shattering")
+                                new TranslatableComponent("vault_objective.woldsvaults.corrupted_shatter")
                                         .withStyle(Style.EMPTY.withItalic(true).withColor(11141120)),
                                 Util.NIL_UUID
                         );
@@ -589,7 +588,7 @@ public class CorruptedVaultHelper {
             Vault playerVault = VaultUtils.getVault(data.getPlayer().getLevel()).orElse(null);
             if(playerVault != null && playerVault.equals(vault)) {
                 data.setTime(0);
-                data.getPlayer().displayClientMessage(new TextComponent("Seems pointless...").withStyle(ChatFormatting.RED), true);
+                data.getPlayer().displayClientMessage(new TranslatableComponent("vault_objective.woldsvaults.corrupted_fruit_disable").withStyle(ChatFormatting.RED), true);
             }
         });
     }
@@ -719,27 +718,6 @@ public class CorruptedVaultHelper {
         );
 
         obj.registerObjectiveTemplate(world, vault);
-//        // VaultFaster Objective placement fix or something
-//        if(LoadingModList.get().getModFileById("vaultfaster") != null) {
-//            ObjectiveTemplateEvent.INSTANCE.registerObjectiveTemplate(obj, vault);
-//
-//            DynamicTemplate template = TemplateUtils.createTemplateFromPairs(
-//                    new Pair<>(new BlockPos(0, 0, 0), xyz.iwolfking.woldsvaults.init.ModBlocks.FRACTURED_OBELISK.defaultBlockState().setValue(FracturedObelisk.HALF, DoubleBlockHalf.LOWER)),
-//                    new Pair<>(new BlockPos(0, 1, 0), xyz.iwolfking.woldsvaults.init.ModBlocks.FRACTURED_OBELISK.defaultBlockState().setValue(FracturedObelisk.HALF, DoubleBlockHalf.UPPER))
-//            );
-//
-//            ObjectiveTemplateEvent.INSTANCE.registerObjectiveTemplate(obj, vault, template);
-//        } else {
-//            CommonEvents.BLOCK_SET.at(BlockSetEvent.Type.RETURN).in(world).register(obj, (data) -> {
-//                PartialTile target = PartialTile.of(PartialBlockState.of(ModBlocks.PLACEHOLDER), PartialCompoundNbt.empty());
-//                target.getState().set(PlaceholderBlock.TYPE, PlaceholderBlock.Type.OBJECTIVE);
-//
-//                if (target.isSubsetOf(PartialTile.of(data.getState()))) {
-//                    data.getWorld().setBlock(data.getPos(), xyz.iwolfking.woldsvaults.init.ModBlocks.FRACTURED_OBELISK.defaultBlockState(), 3);
-//                }
-//            });
-//        }
-
     }
 
     public static void handleKillTimeExtensions(CorruptedObjective obj, VirtualWorld world, Vault vault) {
@@ -778,7 +756,7 @@ public class CorruptedVaultHelper {
 
                     data.setTemplate(data.getLayout().getRoom(key.get(vault.get(Vault.VERSION)), vault, vault.get(Vault.VERSION), data.getRegion(), data.getRandom(), data.getSettings()));
                     ResourceLocation theme = vault.get(Vault.WORLD).get(WorldManager.THEME);
-                    ResourceLocation id = new ResourceLocation(theme.toString().replace("classic_vault_", "universal_"));
+                    ResourceLocation id = ResourceLocation.parse(theme.toString().replace("classic_vault_", "universal_"));
                     PaletteKey palette = VaultRegistry.PALETTE.getKey(id);
                     if (palette != null) {
                         data.getSettings().addProcessor(palette.get(Version.latest()));
@@ -873,7 +851,7 @@ public class CorruptedVaultHelper {
                 );
 
                 for (VaultModifier<?> mod : modifiers) {
-                    vault.get(Vault.MODIFIERS).addModifier(mod, 1, true, ChunkRandom.any());
+                    vault.get(Vault.MODIFIERS).addModifier(mod, 1, true, ChunkRandom.ofNanoTime());
                     world.players().forEach(player ->
                             player.sendMessage(
                                     mod.getChatDisplayNameComponent(1).copy().append(new TextComponent(" has been applied.").withStyle(ChatFormatting.RED)),
