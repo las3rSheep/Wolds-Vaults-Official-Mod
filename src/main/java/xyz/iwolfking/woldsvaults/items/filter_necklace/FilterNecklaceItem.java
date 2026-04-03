@@ -110,17 +110,6 @@ public class FilterNecklaceItem extends BasicItem implements ICurioItem {
         return InteractionResultHolder.success(player.getItemInHand(hand));
     }
 
-    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
-        LivingEntity livingEntity = slotContext.entity();
-        if (livingEntity instanceof ServerPlayer player) {
-            if (!StageManager.getResearchTree(player).isResearched(ModConfigs.RESEARCHES.getByName("Junk Management"))) {
-                return false;
-            }
-        }
-
-        return ICurioItem.super.canEquip(slotContext, stack);
-    }
-
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
