@@ -2,7 +2,9 @@ package xyz.iwolfking.woldsvaults.mixins;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
+import iskallia.vault.block.TreasureContainerBlock;
 import iskallia.vault.block.VaultChestBlock;
+import iskallia.vault.block.entity.TreasureContainerTileEntity;
 import iskallia.vault.block.entity.VaultChestTileEntity;
 import iskallia.vault.init.ModBlocks;
 import net.minecraft.core.BlockPos;
@@ -36,6 +38,14 @@ public abstract class MixinBlockStateBase extends StateHolder<Block, BlockState>
         if (this.getBlock() instanceof VaultChestBlock) {
             if (level.getBlockEntity(pos) instanceof VaultChestTileEntity chest) {
                 if (chest.getBlockState().getBlock().equals(ModBlocks.TREASURE_CHEST) ) {
+                    cir.setReturnValue(40.0F);
+                }
+            }
+        }
+
+        if(this.getBlock() instanceof TreasureContainerBlock) {
+            if (level.getBlockEntity(pos) instanceof TreasureContainerTileEntity treasureContainerTile) {
+                if (treasureContainerTile.getBlockState().getBlock().equals(ModBlocks.TREASURE_CONTAINER) ) {
                     cir.setReturnValue(40.0F);
                 }
             }

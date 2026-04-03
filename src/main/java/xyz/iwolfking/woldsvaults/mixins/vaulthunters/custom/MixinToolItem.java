@@ -81,5 +81,9 @@ public abstract class MixinToolItem extends TieredItem implements VaultGearItem,
         if(data.get(ModGearAttributes.TREASURE_AFFINITY, VaultGearAttributeTypeMerger.anyTrue()) && state.is(ModBlocks.TREASURE_CHEST)) {
             cir.setReturnValue(true);
         }
+
+        if(data.get(ModGearAttributes.TREASURE_AFFINITY, VaultGearAttributeTypeMerger.anyTrue()) && state.is(ModBlocks.TREASURE_CONTAINER)) {
+            cir.setReturnValue(true);
+        }
     }
 }

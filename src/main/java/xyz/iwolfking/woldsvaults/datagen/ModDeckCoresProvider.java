@@ -137,6 +137,22 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
                 stringWeightedListBuilder.add("pluto", 1);
                 stringWeightedListBuilder.add("premium", 1);
             });
+            builder.addPool("greed", stringWeightedListBuilder -> {
+                stringWeightedListBuilder.add("arsenal", 1);
+                stringWeightedListBuilder.add("aegis", 1);
+                stringWeightedListBuilder.add("tool", 1);
+                stringWeightedListBuilder.add("natural", 1);
+                stringWeightedListBuilder.add("fae", 1);
+                stringWeightedListBuilder.add("void", 1);
+                stringWeightedListBuilder.add("nitwit", 1);
+                stringWeightedListBuilder.add("bazaar", 1);
+                stringWeightedListBuilder.add("arcane", 1);
+                stringWeightedListBuilder.add("temporal", 1);
+                stringWeightedListBuilder.add("adept", 1);
+                stringWeightedListBuilder.add("jupiter", 1);
+                stringWeightedListBuilder.add("pluto", 1);
+                stringWeightedListBuilder.add("premium", 1);
+            });
             builder.addPool("treasure_sand", stringWeightedListBuilder -> {
                 stringWeightedListBuilder.add("temporal", 1);
                 stringWeightedListBuilder.add("adept", 1);
