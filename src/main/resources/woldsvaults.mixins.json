@@ -379,6 +379,7 @@
     "vaulthunters.custom.MixinTickTimer",
     "vaulthunters.custom.MixinVault",
     "vaulthunters.fixes.MixinCatalystItemRenderer",
+    "vaulthunters.fixes.MixinClientLocale",
     "vaulthunters.fixes.MixinIntegrationMinimap",
     "vaulthunters.fixes.MixinSkillDialog",
     "vaulthunters.fixes.MixinTalentWidget",
