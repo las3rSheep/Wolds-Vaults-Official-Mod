@@ -199,6 +199,7 @@
     "vaulthunters.custom.MixinCorruptGearModification",
     "vaulthunters.custom.MixinCrystalWorkbenchContainer",
     "vaulthunters.custom.MixinCrystalWorkbenchTileEntity",
+    "vaulthunters.custom.MixinCustomisationDiscovery",
     "vaulthunters.custom.MixinCustomSpawnerTileEntity",
     "vaulthunters.custom.MixinDeckForgeRecipe",
     "vaulthunters.custom.MixinDeckModifierAdapter",
