@@ -195,7 +195,7 @@ public class SurvivalObjective extends Objective {
 
     @OnlyIn(Dist.CLIENT)
     public boolean render(Vault vault, PoseStack matrixStack, Window window, float partialTicks, Player player) {
-        int midX = window.getGuiScaledWidth() / 2;
+        int midX = 0;
 
         float progress;
         Component label;

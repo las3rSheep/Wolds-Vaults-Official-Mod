@@ -182,7 +182,7 @@ public class EnchantedElixirObjective extends ElixirObjective {
     public boolean render(Vault vault, PoseStack matrixStack, Window window, float partialTicks, Player player) {
 
         boolean rendered = super.render(vault, matrixStack, window, partialTicks, player);
-        int midX = window.getGuiScaledWidth() / 2;
+        int midX = 0;
 
         ElixirGoal goal = (ElixirGoal)((GoalMap)this.get(GOALS)).get(player.getUUID());
         List<Float> breakpoints = this.get(ELIXIR_BREAKPOINTS).get(player.getUUID());
