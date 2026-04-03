@@ -12,11 +12,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
 import xyz.iwolfking.vhapi.VHAPI;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.models.armor.HeatwaveArmorModel;
+import xyz.iwolfking.woldsvaults.models.armor.layers.HeatwaveArmorLayers;
 
 @Mod.EventBusSubscriber(modid = WoldsVaults.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class AdditionalModels {
-
     public static final HandHeldModel LEVIATHAN_AXE;
     public static final PlainItemModel BLOODSEEKING_MAGNET;
     public static final PlainItemModel OTHERWORLDLY_MAGNET;
@@ -52,9 +51,8 @@ public class AdditionalModels {
     public static final PlainItemModel TINKERS_TANKARD;
     public static final PlainItemModel ERROR_MAGNET;
 
-    //public static final ArmorModel HEATWAVE = ((ArmorModel)(new ArmorModel(WoldsVaults.id("gear/armor/heatwave"), "Heatwave")).properties((new DynamicModelProperties()).allowTransmogrification().discoverOnRoll())).usingLayers(new HeatwaveArmorModel()).addSlot(EquipmentSlot.HEAD).addSlot(EquipmentSlot.CHEST).addSlot(EquipmentSlot.LEGS).addSlot(EquipmentSlot.FEET);
 
-    //public static final ArmorModel HEATWAVE;
+    public static final ArmorModel HEATWAVE;
 
     static {
        LEVIATHAN_AXE = ModDynamicModels.Axes.REGISTRY.register(new HandHeldModel(VaultMod.id("gear/axe/leviathan"), "Leviathan Axe")).properties(new DynamicModelProperties());
@@ -91,13 +89,16 @@ public class AdditionalModels {
        MUSTARD = ModDynamicModels.Wands.REGISTRY.register(new PlainItemModel(VHAPI.of("gear/wand/mustard"), "Mustard Bottle")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
        TINKERS_TANKARD = ModDynamicModels.Focus.REGISTRY.register(new PlainItemModel(VaultMod.id("gear/focus/tinkers_tankard"), "Tinker's Tankard")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
        ERROR_MAGNET = ModDynamicModels.Magnets.REGISTRY.register(new PlainItemModel(VaultMod.id("gear/magnet/magnet_error"), "Error Magnet")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
-//       HEATWAVE = new ArmorModel(VaultMod.id("gear/armor/heatwave"), "Heatwave")
-//               .properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll())
-//               .usingLayers(new HeatwaveArmorModel())
-//               .addSlot(EquipmentSlot.HEAD)
-//               .addSlot(EquipmentSlot.CHEST)
-//               .addSlot(EquipmentSlot.LEGS)
-//               .addSlot(EquipmentSlot.FEET);
+
+       // Dynamic armor models need to be registered in `MixinModDynamicModels$Armor`
+       HEATWAVE = new ArmorModel(VaultMod.id("gear/armor/heatwave"), "Heatwave")
+                .properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll())
+                .usingLayers(new HeatwaveArmorLayers())
+                .addSlot(EquipmentSlot.HEAD)
+                .addSlot(EquipmentSlot.CHEST)
+                .addSlot(EquipmentSlot.LEGS)
+                .addSlot(EquipmentSlot.FEET);
+
     }
 
 
