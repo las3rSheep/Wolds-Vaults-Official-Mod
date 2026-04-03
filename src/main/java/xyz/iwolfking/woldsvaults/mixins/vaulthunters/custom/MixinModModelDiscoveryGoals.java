@@ -24,64 +24,11 @@ import xyz.iwolfking.woldsvaults.discovery.themes.GodThemesDiscoveryGoal;
 public abstract class MixinModModelDiscoveryGoals {
 
     @Unique
-    private static GodThemesDiscoveryGoal IDONA_UNLOCK;
-    private static GodThemesDiscoveryGoal TENOS_UNLOCK;
-    private static GodThemesDiscoveryGoal VELARA_UNLOCK;
-    private static GodThemesDiscoveryGoal WENDARR_UNLOCK;
     private static WizardPouchDiscoveryGoal WIZARD_POUCH_UNLOCK;
     private static LootersPouchDiscoveryGoal LOOTERS_POUCH_UNLOCK;
     private static TreasuredJewelDiscoveryGoal TREASURED_JEWEL;
 
     static {
-        IDONA_UNLOCK = registerGoal(WoldsVaults.id("complete_idona_altar"), (new GodThemesDiscoveryGoal(1.0F, VaultGod.IDONA)).setReward((player, goal) -> {
-            DiscoveredThemesData discoversData = DiscoveredThemesData.get(player.getLevel());
-            ResourceLocation themeId = VaultMod.id("classic_vault_idona_normal");
-            if (!discoversData.getDiscoveredThemes(player.getUUID()).contains(themeId)) {
-                MutableComponent info = (new TranslatableComponent("unlock_goal.woldsvaults.idona_theme")).withStyle(ChatFormatting.RED);
-                if(VaultRegistry.THEME.getKey(themeId) != null) {
-                    player.displayClientMessage(info, false);
-                    discoversData.discoverThemeAndBroadcast(VaultRegistry.THEME.getKey(themeId), player);
-                }
-            }
-        }));
-
-        TENOS_UNLOCK = registerGoal(WoldsVaults.id("complete_tenos_altar"), (new GodThemesDiscoveryGoal(1.0F, VaultGod.TENOS)).setReward((player, goal) -> {
-            DiscoveredThemesData discoversData = DiscoveredThemesData.get(player.getLevel());
-            ResourceLocation themeId = VaultMod.id("classic_vault_tenos_normal");
-            if (!discoversData.getDiscoveredThemes(player.getUUID()).contains(themeId)) {
-                MutableComponent info = (new TranslatableComponent("unlock_goal.woldsvaults.tenos_theme")).withStyle(ChatFormatting.AQUA);
-                if(VaultRegistry.THEME.getKey(themeId) != null) {
-                    player.displayClientMessage(info, false);
-                    discoversData.discoverThemeAndBroadcast(VaultRegistry.THEME.getKey(themeId), player);
-                }
-
-            }
-        }));
-
-        VELARA_UNLOCK = registerGoal(WoldsVaults.id("complete_velara_altar"), (new GodThemesDiscoveryGoal(1.0F, VaultGod.VELARA)).setReward((player, goal) -> {
-            DiscoveredThemesData discoversData = DiscoveredThemesData.get(player.getLevel());
-            ResourceLocation themeId = VaultMod.id("classic_vault_velara_normal");
-            if (!discoversData.getDiscoveredThemes(player.getUUID()).contains(themeId)) {
-                MutableComponent info = (new TranslatableComponent("unlock_goal.woldsvaults.velara_theme")).withStyle(ChatFormatting.GREEN);
-                if(VaultRegistry.THEME.getKey(themeId) != null) {
-                    player.displayClientMessage(info, false);
-                    discoversData.discoverThemeAndBroadcast(VaultRegistry.THEME.getKey(themeId), player);
-                }
-            }
-        }));
-
-        WENDARR_UNLOCK = registerGoal(WoldsVaults.id("complete_wendarr_altar"), (new GodThemesDiscoveryGoal(1.0F, VaultGod.WENDARR)).setReward((player, goal) -> {
-            DiscoveredThemesData discoversData = DiscoveredThemesData.get(player.getLevel());
-            ResourceLocation themeId = VaultMod.id("classic_vault_wendarr_normal");
-            if (!discoversData.getDiscoveredThemes(player.getUUID()).contains(themeId)) {
-                MutableComponent info = (new TranslatableComponent("unlock_goal.woldsvaults.wendarr_theme")).withStyle(ChatFormatting.GOLD);
-                if(VaultRegistry.THEME.getKey(themeId) != null) {
-                    player.displayClientMessage(info, false);
-                    discoversData.discoverThemeAndBroadcast(VaultRegistry.THEME.getKey(themeId), player);
-                }
-            }
-        }));
-
         WIZARD_POUCH_UNLOCK = registerGoal(WoldsVaults.id("cast_250_abilities"), (new WizardPouchDiscoveryGoal(250.0F)).setReward((player, goal) -> {
             DiscoveredRecipesData data = DiscoveredRecipesData.get(player.getLevel());
             ResourceLocation unlock = WoldsVaults.id("wizard_trinket_pouch");
