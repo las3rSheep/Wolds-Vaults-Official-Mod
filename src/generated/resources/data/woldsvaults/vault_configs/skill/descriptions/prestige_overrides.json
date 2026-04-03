@@ -26,22 +26,6 @@
       {
         "text": "+100.0%\n",
         "color": "#FFD700"
-      },
-      {
-        "text": "2 ",
-        "color": "$text"
-      },
-      {
-        "text": "+150.0%\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "3 ",
-        "color": "$text"
-      },
-      {
-        "text": "+200.0%\n",
-        "color": "#FFD700"
       }
     ],
     "ChampionsDamage": [
@@ -78,30 +62,6 @@
       },
       {
         "text": "1 ",
-        "color": "$text"
-      },
-      {
-        "text": "+25.0%\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "1 ",
-        "color": "$text"
-      },
-      {
-        "text": "+25.0%\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "2 ",
-        "color": "$text"
-      },
-      {
-        "text": "+50.0%\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "2 ",
         "color": "$text"
       },
       {
@@ -144,22 +104,6 @@
       },
       {
         "text": "+60 wear-off time\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "2 ",
-        "color": "$text"
-      },
-      {
-        "text": "+45 wear-off time\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "3 ",
-        "color": "$text"
-      },
-      {
-        "text": "+30 wear-off time\n",
         "color": "#FFD700"
       }
     ],
@@ -213,22 +157,6 @@
       {
         "text": "+100.0%\n",
         "color": "#FFD700"
-      },
-      {
-        "text": "2 ",
-        "color": "$text"
-      },
-      {
-        "text": "+125.0%\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "3 ",
-        "color": "$text"
-      },
-      {
-        "text": "+150.0%\n",
-        "color": "#FFD700"
       }
     ],
     "TemporalShardChance": [
@@ -266,23 +194,7 @@
         "color": "$text"
       },
       {
-        "text": "+25.0%\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "2 ",
-        "color": "$text"
-      },
-      {
-        "text": "+50.0%\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "3 ",
-        "color": "$text"
-      },
-      {
-        "text": "+75.0%\n",
+        "text": "+30.0%\n",
         "color": "#FFD700"
       }
     ],
@@ -310,23 +222,7 @@
         "color": "$text"
       },
       {
-        "text": "+150.0%\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "2 ",
-        "color": "$text"
-      },
-      {
         "text": "+200.0%\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "3 ",
-        "color": "$text"
-      },
-      {
-        "text": "+300.0%\n",
         "color": "#FFD700"
       }
     ],
@@ -350,23 +246,7 @@
         "color": "$text"
       },
       {
-        "text": "+50.0%\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "2 ",
-        "color": "$text"
-      },
-      {
         "text": "+100.0%\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "3 ",
-        "color": "$text"
-      },
-      {
-        "text": "+125.0%\n",
         "color": "#FFD700"
       }
     ],
@@ -402,48 +282,11 @@
       {
         "text": "+20 max stacks, 5.0 bonus per stack\n",
         "color": "#FFD700"
-      },
-      {
-        "text": "2 ",
-        "color": "$text"
-      },
-      {
-        "text": "+20 max stacks, 10.0 bonus per stack\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "3 ",
-        "color": "$text"
-      },
-      {
-        "text": "+20 max stacks, 15.0 bonus per stack\n",
-        "color": "#FFD700"
       }
     ],
     "BlackMarketRerolls": [
       {
-        "text": "Makes the "
-      },
-      {
-        "text": "special slot ",
-        "color": "#8000A8"
-      },
-      {
-        "text": "in the "
-      },
-      {
-        "text": "Black Market ",
-        "color": "#8000A8"
-      },
-      {
-        "text": "contain new "
-      },
-      {
-        "text": "rare items ",
-        "color": "#FFD700"
-      },
-      {
-        "text": ", and adds a  "
+        "text": "Adds a  "
       },
       {
         "text": "25% ",
@@ -484,23 +327,7 @@
         "color": "$text"
       },
       {
-        "text": "+50 extra capacity\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "2 ",
-        "color": "$text"
-      },
-      {
         "text": "+100 extra capacity\n",
-        "color": "#FFD700"
-      },
-      {
-        "text": "3 ",
-        "color": "$text"
-      },
-      {
-        "text": "+150 extra capacity\n",
         "color": "#FFD700"
       }
     ]

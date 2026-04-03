@@ -51,11 +51,6 @@ public class PrestigePowersDescriptionsHelper {
                     jsonElements.add(JsonDescription.simple("+" + String.format("%.1f", (shieldedPrestigePower.getPercentageOfHearts() * 100)) + "%\n", "#FFD700"));
                 }
 
-                if (tier instanceof ChampionDamagePrestigePower championDamagePrestigePower) {
-                    jsonElements.add(JsonDescription.simple(i + 1 + " "));
-                    jsonElements.add(JsonDescription.simple("+" + String.format("%.1f", (championDamagePrestigePower.getValue() * 100)) + "%\n", "#FFD700"));
-                }
-
                 if (tier instanceof GearAttributePrestigePower gearAttributePrestigePower) {
                     jsonElements.add(JsonDescription.simple(i + 1 + " "));
                     jsonElements.add(JsonDescription.simple("+" + String.format("%.1f", (gearAttributePrestigePower.getValue() * 100)) + "%\n", "#FFD700"));

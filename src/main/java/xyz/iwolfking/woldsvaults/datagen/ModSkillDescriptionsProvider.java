@@ -528,13 +528,7 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
     public SkillDescriptionsConfig getOverridePrestigeDescriptions() {
         return new Builder()
                 .addDescription("BlackMarketRerolls", jsonElements -> {
-                    jsonElements.add(JsonDescription.simple("Makes the "));
-                    jsonElements.add(JsonDescription.simple("special slot ", "#8000A8"));
-                    jsonElements.add(JsonDescription.simple("in the "));
-                    jsonElements.add(JsonDescription.simple("Black Market ", "#8000A8"));
-                    jsonElements.add(JsonDescription.simple("contain new "));
-                    jsonElements.add(JsonDescription.simple("rare items ", "#FFD700"));
-                    jsonElements.add(JsonDescription.simple(", and adds a  "));
+                    jsonElements.add(JsonDescription.simple("Adds a  "));
                     jsonElements.add(JsonDescription.simple("25% ", "#8000A8"));
                     jsonElements.add(JsonDescription.simple("chance to consume no "));
                     jsonElements.add(JsonDescription.simple("Soul Ichor ", "#8000A8"));
