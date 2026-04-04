@@ -16,6 +16,7 @@ import iskallia.vault.event.event.ShopPedestalPriceEvent;
 import iskallia.vault.item.CoinBlockItem;
 import iskallia.vault.skill.base.Skill;
 import iskallia.vault.skill.tree.ExpertiseTree;
+import iskallia.vault.util.CoinDefinition;
 import iskallia.vault.util.InventoryUtil;
 import iskallia.vault.util.LootInitialization;
 import iskallia.vault.world.data.PlayerExpertisesData;
@@ -167,12 +168,18 @@ public abstract class MixinShopPedestalBlock extends Block implements EntityBloc
                                     return InteractionResult.sidedSuccess(worldIn.isClientSide);
                                 }
                             }
-                            else if(!woldsVaults$lightmansCurrencyExtract(player, currency)) {
-                                if (worldIn.isClientSide) {
-                                    player.displayClientMessage(new TranslatableComponent("message.the_vault.shop_pedestal.fail", currency.getHoverName()), true);
-                                }
 
-                                return InteractionResult.sidedSuccess(worldIn.isClientSide);
+                            if(!woldsVaults$lightmansCurrencyExtract(player, currency)) {
+                                if(hasEnoughCurrency(allItems, currency)) {
+                                    CoinDefinition.extractCurrency(player, allItems, currency);
+                                }
+                                else {
+                                    if (worldIn.isClientSide) {
+                                        player.displayClientMessage(new TranslatableComponent("message.the_vault.shop_pedestal.fail", currency.getHoverName()), true);
+                                    }
+
+                                    return InteractionResult.sidedSuccess(worldIn.isClientSide);
+                                }
                             }
                         }
 

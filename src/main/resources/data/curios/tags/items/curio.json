@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "woldsvaults:filter_necklace"
+    "woldsvaults:filter_necklace",
+    "the_vault:coin_pouch"
   ]
 }
