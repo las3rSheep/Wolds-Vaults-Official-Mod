@@ -1,33 +1,6 @@
 {
   "costs": {
-    "ensorcellation:damage_ender": {
-      "items": [
-        {
-          "id": "ender_eye",
-          "count": 32
-        }
-      ],
-      "levels": 1
-    },
-    "ensorcellation:vitality": {
-      "items": [
-        {
-          "id": "golden_apple",
-          "count": 64
-        }
-      ],
-      "levels": 3
-    },
-    "ensorcellation:volley": {
-      "items": [
-        {
-          "id": "emerald",
-          "count": 45
-        }
-      ],
-      "levels": 1
-    },
-    "ensorcellation:angler": {
+    "ensorcellation:hunter": {
       "items": [
         {
           "id": "emerald",
@@ -36,11 +9,20 @@
       ],
       "levels": 2
     },
-    "ensorcellation:trueshot": {
+    "ensorcellation:exp_boost": {
+      "items": [
+        {
+          "id": "the_vault:wutodic_mass",
+          "count": 8
+        }
+      ],
+      "levels": 3
+    },
+    "ensorcellation:angler": {
       "items": [
         {
           "id": "emerald",
-          "count": 45
+          "count": 5
         }
       ],
       "levels": 2
@@ -63,6 +45,24 @@
       ],
       "levels": 1
     },
+    "ensorcellation:trueshot": {
+      "items": [
+        {
+          "id": "emerald",
+          "count": 45
+        }
+      ],
+      "levels": 2
+    },
+    "ensorcellation:damage_ender": {
+      "items": [
+        {
+          "id": "ender_eye",
+          "count": 32
+        }
+      ],
+      "levels": 1
+    },
     "ensorcellation:soulbound": {
       "items": [
         {
@@ -71,15 +71,6 @@
         }
       ],
       "levels": 1
-    },
-    "ensorcellation:hunter": {
-      "items": [
-        {
-          "id": "emerald",
-          "count": 5
-        }
-      ],
-      "levels": 2
     },
     "ensorcellation:gourmand": {
       "items": [
@@ -90,11 +81,20 @@
       ],
       "levels": 2
     },
-    "ensorcellation:exp_boost": {
+    "ensorcellation:volley": {
       "items": [
         {
-          "id": "the_vault:wutodic_mass",
-          "count": 8
+          "id": "emerald",
+          "count": 45
+        }
+      ],
+      "levels": 1
+    },
+    "ensorcellation:vitality": {
+      "items": [
+        {
+          "id": "golden_apple",
+          "count": 64
         }
       ],
       "levels": 3

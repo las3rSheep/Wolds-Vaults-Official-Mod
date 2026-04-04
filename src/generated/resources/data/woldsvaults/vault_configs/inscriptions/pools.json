@@ -28,6 +28,123 @@
           }
         ]
       }
+    ],
+    "the_vault:treasure": [
+      {
+        "level": 0,
+        "pool": [
+          {
+            "value": {
+              "model": {
+                "type": "uniform",
+                "min": 109,
+                "max": 109
+              },
+              "size": {
+                "type": "uniform",
+                "min": 10,
+                "max": 10
+              },
+              "entries": [
+                {
+                  "pool": "the_vault:vault/rooms/omega/warehouse",
+                  "color": 7012096,
+                  "count": 1
+                }
+              ]
+            },
+            "weight": 1
+          },
+          {
+            "value": {
+              "model": {
+                "type": "uniform",
+                "min": 11,
+                "max": 11
+              },
+              "size": {
+                "type": "uniform",
+                "min": 10,
+                "max": 10
+              },
+              "entries": [
+                {
+                  "pool": "the_vault:vault/rooms/omega/trove",
+                  "color": 7012096,
+                  "count": 1
+                }
+              ]
+            },
+            "weight": 5
+          },
+          {
+            "value": {
+              "model": {
+                "type": "uniform",
+                "min": 9,
+                "max": 9
+              },
+              "size": {
+                "type": "uniform",
+                "min": 10,
+                "max": 10
+              },
+              "entries": [
+                {
+                  "pool": "the_vault:vault/rooms/omega/mine",
+                  "color": 7012096,
+                  "count": 1
+                }
+              ]
+            },
+            "weight": 5
+          },
+          {
+            "value": {
+              "model": {
+                "type": "uniform",
+                "min": 6,
+                "max": 6
+              },
+              "size": {
+                "type": "uniform",
+                "min": 10,
+                "max": 10
+              },
+              "entries": [
+                {
+                  "pool": "the_vault:vault/rooms/omega/digsite2",
+                  "color": 7012096,
+                  "count": 1
+                }
+              ]
+            },
+            "weight": 2
+          },
+          {
+            "value": {
+              "model": {
+                "type": "uniform",
+                "min": 98,
+                "max": 98
+              },
+              "size": {
+                "type": "uniform",
+                "min": 5,
+                "max": 5
+              },
+              "entries": [
+                {
+                  "pool": "the_vault:vault/rooms/omega/iskallian_garden",
+                  "color": 7012096,
+                  "count": 1
+                }
+              ]
+            },
+            "weight": 3
+          }
+        ]
+      }
     ]
   },
   "poolToModel": {
