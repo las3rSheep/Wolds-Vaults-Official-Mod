@@ -6,6 +6,7 @@
   "refmap": "woldsvaults.refmap.json",
   "plugin": "xyz.iwolfking.woldsvaults.mixins.plugins.WoldMixinPlugin",
   "mixins": [
+    "DimensionDataStorageAccessor",
     "GameRulesBooleanValueAccessor",
     "LivingEntityAccessor",
     "MixinBellBlockEntity",
@@ -308,6 +309,7 @@
     "vaulthunters.fixes.MixinDeathObjective",
     "vaulthunters.fixes.MixinDeckRecipeTaskData",
     "vaulthunters.fixes.MixinDecoratorAddModifier",
+    "vaulthunters.fixes.MixinDiscoveredThemesData",
     "vaulthunters.fixes.MixinDynamicModelRegistry",
     "vaulthunters.fixes.MixinEliteZombie",
     "vaulthunters.fixes.MixinEntityGroupsConfig",
