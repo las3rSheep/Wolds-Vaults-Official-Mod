@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.iwolfking.woldsvaults.api.core.discovery.customisation.ArtifactCustomisationDiscovery;
 import xyz.iwolfking.woldsvaults.api.core.discovery.customisation.ThemeCustomisationDiscovery;
 
 @Mixin(value = CustomisationDiscovery.class, remap = false)
@@ -17,5 +18,6 @@ public class MixinCustomisationDiscovery {
     @Inject(method = "<clinit>", at = @At("TAIL"))
     private static void registerNewTypes(CallbackInfo ci) {
         ADAPTER.register("theme", ThemeCustomisationDiscovery.class, ThemeCustomisationDiscovery::new);
+        ADAPTER.register("artifacts", ArtifactCustomisationDiscovery.class, ArtifactCustomisationDiscovery::new);
     }
 }
