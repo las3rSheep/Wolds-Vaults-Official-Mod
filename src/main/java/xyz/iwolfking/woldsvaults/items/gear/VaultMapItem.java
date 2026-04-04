@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.items.gear;
 import com.google.common.collect.Multimap;
 import iskallia.vault.VaultMod;
 import iskallia.vault.config.VaultCrystalConfig;
+import iskallia.vault.core.random.JavaRandom;
 import iskallia.vault.core.vault.modifier.VaultModifierStack;
 import iskallia.vault.core.vault.modifier.modifier.GroupedModifier;
 import iskallia.vault.core.vault.modifier.registry.VaultModifierRegistry;
@@ -20,6 +21,7 @@ import iskallia.vault.init.ModConfigs;
 import iskallia.vault.item.BasicItem;
 import iskallia.vault.item.crystal.CrystalData;
 import iskallia.vault.item.crystal.objective.CrystalObjective;
+import iskallia.vault.item.crystal.properties.CapacityCrystalProperties;
 import iskallia.vault.item.crystal.theme.CrystalTheme;
 import iskallia.vault.item.crystal.theme.PoolCrystalTheme;
 import iskallia.vault.item.crystal.theme.ValueCrystalTheme;
@@ -27,6 +29,7 @@ import iskallia.vault.item.data.InscriptionData;
 import iskallia.vault.item.tool.JewelItem;
 import iskallia.vault.recipe.anvil.AnvilContext;
 import iskallia.vault.world.data.DiscoveredModelsData;
+import iskallia.vault.world.data.PlayerGreedData;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -184,7 +187,7 @@ public class VaultMapItem extends BasicItem implements VaultGearItem, IVaultCrys
     @Override
     public void addTooltipItemLevel(VaultGearData data, ItemStack stack, List<Component> tooltip, VaultGearState state) {
         if (data.hasAttribute(ModGearAttributes.MAP_TIER)) {
-            int tier = data.getFirstValue(ModGearAttributes.MAP_TIER).orElse(0);
+            int tier = (data.getFirstValue(ModGearAttributes.MAP_TIER).orElse(0) + 1);
             tooltip.add(new TextComponent("Tier: ").append(new TextComponent(String.valueOf(tier)).withStyle(Style.EMPTY.withColor(getTierColor(tier)))));
         } else if (stack.getOrCreateTag().contains("the_vault:map_tier")) {
             int tier = stack.getOrCreateTag().getInt("the_vault:map_tier");
@@ -200,6 +203,9 @@ public class VaultMapItem extends BasicItem implements VaultGearItem, IVaultCrys
 
     public int getTierColor(int tier) {
         return switch (tier) {
+            case 12 -> 1458687;
+            case 11 -> 4276735;
+            case 10 -> 6242815;
             case 9 -> 7877375;
             case 8 -> 9974527;
             case 7 -> 9974403;
@@ -214,31 +220,37 @@ public class VaultMapItem extends BasicItem implements VaultGearItem, IVaultCrys
     }
 
     public boolean applyCrystalRecipe(AnvilContext context, CrystalData data, ItemStack ingredientStack, ItemStack output) {
-        boolean hasGreedy = false;
-
-        for (VaultModifierStack modifierStack : data.getModifiers()) {
-            if (modifierStack.getModifier() instanceof GroupedModifier groupedModifier) {
-                for (VaultModifier<?> childMod : groupedModifier.properties().getChildren()) {
-                    if (childMod instanceof GreedyVaultModifier) {
-                        hasGreedy = true;
-                        break;
-                    }
-                }
-            } else if (modifierStack.getModifier() instanceof GreedyVaultModifier) {
-                hasGreedy = true;
-                break;
-            }
-        }
-
         if (data.getProperties().getLevel().isPresent() && data.getProperties().getLevel().get() < 100) {
             return false;
         }
 
-        if (!hasGreedy) {
+        if(context.getPlayer().isEmpty()) {
+            return false;
+        }
+
+        Player player = context.getPlayer().get();
+
+        if(!PlayerGreedData.get().get(player).hasCompletedHerald()) {
             return false;
         }
 
         VaultGearData mapData = VaultGearData.read(ingredientStack);
+
+        int size = (mapData.getFirstValue(ModGearAttributes.MAP_TIER).orElse(1) + 1) * 10;
+
+        if (data.getProperties() instanceof CapacityCrystalProperties properties) {
+            Integer capacity = properties.getCapacity().orElse(null);
+            Integer level = properties.getLevel().orElse(null);
+            if (capacity == null || level == null) {
+                return false;
+            }
+
+            if (capacity < size) {
+                return false;
+            }
+
+            properties.setSize(properties.getSize() + size);
+        }
 
         Optional<Integer> prefixSlots = mapData.getFirstValue(iskallia.vault.init.ModGearAttributes.PREFIXES);
         Optional<Integer> suffixSlots = mapData.getFirstValue(iskallia.vault.init.ModGearAttributes.SUFFIXES);
@@ -250,11 +262,7 @@ public class VaultMapItem extends BasicItem implements VaultGearItem, IVaultCrys
         int numberOfPrefixes = mapData.getModifiers(VaultGearModifier.AffixType.PREFIX).size();
         int numberOfSuffixes = mapData.getModifiers(VaultGearModifier.AffixType.SUFFIX).size();
 
-        boolean unfinishedMap = false;
-
-        if (prefixSlots.get() != numberOfPrefixes || suffixSlots.get() != numberOfSuffixes) {
-            unfinishedMap = true;
-        }
+        boolean unfinishedMap = prefixSlots.get() != numberOfPrefixes || suffixSlots.get() != numberOfSuffixes;
 
         String themeId = mapData.getFirstValue(ModGearAttributes.THEME).orElse(null);
         String themePoolId = mapData.getFirstValue(ModGearAttributes.THEME_POOL).orElse(null);

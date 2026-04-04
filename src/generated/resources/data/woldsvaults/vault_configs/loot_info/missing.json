@@ -25,6 +25,14 @@
         }
       }
     },
+    "the_vault:treasure_pillar": {
+      "display": "Treasure Pillar",
+      "lootTableKeys": {
+        "the_vault:treasure_pillar": {
+          "level": 0
+        }
+      }
+    },
     "the_vault:dungeon_mobs": {
       "display": "Dungeon Mobs",
       "lootTableKeys": {

@@ -16,7 +16,6 @@ public abstract class MixinLootInfoGroupDefinitionRegistry {
         register("iskallian_leaves", () -> new ItemStack(ModBlocks.ISKALLIAN_LEAVES_BLOCK));
         register("hellish_sand", () -> new ItemStack(ModBlocks.HELLISH_SAND_BLOCK));
         register("dungeon_pedestal", () -> new ItemStack(ModBlocks.DUNGEON_PEDESTAL_BLOCK));
-        register("treasure_pedestal", () -> new ItemStack(iskallia.vault.init.ModBlocks.TREASURE_PEDESTAL));
         register("treasure_pedestal_map", () -> new ItemStack(iskallia.vault.init.ModBlocks.TREASURE_PEDESTAL));
         register("vendor_pedestal", () -> new ItemStack(iskallia.vault.init.ModBlocks.SHOP_PEDESTAL));
         register("digsite_sand", () -> new ItemStack(iskallia.vault.init.ModBlocks.TREASURE_SAND));
@@ -40,6 +39,7 @@ public abstract class MixinLootInfoGroupDefinitionRegistry {
         register("wooden_dungeon_barrel", () -> new ItemStack(iskallia.vault.init.ModBlocks.WOODEN_BARREL));
         register("time_trial_reward_crate", () -> new ItemStack(ModBlocks.getCrateFor("time_trial_reward")));
         register("survival_gear_cache", () -> new ItemStack(ModBlocks.getCrateFor("survival")));
+        register("treasure_pillar", () -> new ItemStack(iskallia.vault.init.ModBlocks.TREASURE_PEDESTAL));
     }
 
     @Shadow

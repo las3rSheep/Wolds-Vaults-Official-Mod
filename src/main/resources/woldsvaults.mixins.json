@@ -179,6 +179,7 @@
     "vaulthunters.compat.lightmanscurrency.MixinTradeCommand",
     "vaulthunters.custom.MixinAngelExpertise",
     "vaulthunters.custom.MixinAttributeSnapshot",
+    "vaulthunters.custom.MixinAugmentAnvilRecipe",
     "vaulthunters.custom.MixinBingoTask",
     "vaulthunters.custom.MixinBleedEffect",
     "vaulthunters.custom.MixinBoosterPackConfig",

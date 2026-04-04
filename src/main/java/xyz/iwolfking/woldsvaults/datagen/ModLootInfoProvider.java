@@ -91,6 +91,9 @@ public class ModLootInfoProvider extends AbstractLootInfoProvider {
             builder.lootInfo(VaultMod.id("cardboard_box_dull"), "Cardboard Box (Dull)", map -> {
                 map.put(VaultMod.id("cardboard_box_dull"), 0);
             });
+            builder.lootInfo(VaultMod.id("treasure_pillar"), "Treasure Pillar", map -> {
+                map.put(VaultMod.id("treasure_pillar"), 0);
+            });
         });
     }
 
