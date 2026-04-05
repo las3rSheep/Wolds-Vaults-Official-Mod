@@ -325,6 +325,7 @@
     "vaulthunters.fixes.MixinModifiers",
     "vaulthunters.fixes.MixinMonolithRenderer",
     "vaulthunters.fixes.MixinMultiJumpTrinket",
+    "vaulthunters.fixes.MixinObeliskObjective",
     "vaulthunters.fixes.MixinRoyaleObjective",
     "vaulthunters.fixes.MixinRunePillarRenderer",
     "vaulthunters.fixes.MixinScheduledModifiers",
