@@ -1,5 +1,17 @@
 {
   "modifiers": {
+    "the_vault:modifier_type/empty": {
+      "woldsvaults:rotting": {
+        "properties": {},
+        "display": {
+          "name": "Rotting",
+          "color": "#EBFF8D",
+          "description": "This vault is starting to rot, it might go rotten with more fruit consumption!",
+          "descriptionFormatted": "This vault is starting to rot, it might go rotten with more fruit consumption!",
+          "icon": "the_vault:gui/modifiers/rotten"
+        }
+      }
+    },
     "the_vault:modifier_type/difficulty_lock": {
       "the_vault:piece_of_cake": {
         "properties": {

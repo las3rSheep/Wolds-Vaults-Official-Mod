@@ -53,6 +53,7 @@ public class ModVaultModifiersProvider extends AbstractVaultModifierProvider {
     @Override
     public void addFiles(Map<String, Consumer<ModifierBuilder>> map) {
         map.put("wolds_builtin_modifiers", modifierBuilder -> {
+            empty(modifierBuilder, WoldsVaults.id("rotting"), "Rotting", "#EBFF8D", "This vault is starting to rot, it might go rotten with more fruit consumption!", null, VaultMod.id("gui/modifiers/rotten"));
             difficultyLock(modifierBuilder, VaultMod.id("piece_of_cake"), VaultDifficulty.PIECE_OF_CAKE, true, "Piece of Cake", "#EBFF8D", "This vault's difficulty is locked to Piece of Cake.", null, VaultMod.id("gui/modifiers/impossible"));
             difficultyLock(modifierBuilder, VaultMod.id("easy"), VaultDifficulty.EASY, true, "Easy", "#EBFF8D", "This vault's difficulty is locked to Easy.", null, VaultMod.id("gui/modifiers/impossible"));
             difficultyLock(modifierBuilder, VaultMod.id("normal"), VaultDifficulty.NORMAL, true, "Normal", "#EBFF8D", "This vault's difficulty is locked to Normal.", null, VaultMod.id("gui/modifiers/impossible"));

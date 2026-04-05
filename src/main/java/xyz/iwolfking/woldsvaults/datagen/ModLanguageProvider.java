@@ -56,6 +56,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.CRYSTAL_SEAL_SURVIVOR, "Seal of the Survivor");
         add(ModItems.SCAVENGER_POUCH_ITEM, "Scavenger Pouch");
         add(ModEffects.BURN, "Burning");
+        add("woldsvaults.special.fruit_rotting", "§4You feel the Vault start to rot away...");
+        add("woldsvaults.special.rotten", "§4The Vault has rotted!");
         add("config.waila.plugin_miningspeedometer.speedometer", "Enable Speedometer Tooltip");
         add("vaultobjectiveblocks.jade.tooltip.brewing_altar", "%1$s brews remaining");
         add("vaultobjectiveblocks.jade.tooltip.rune_boss_pillar", "%1$s runes inserted");

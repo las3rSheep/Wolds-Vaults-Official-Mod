@@ -460,6 +460,14 @@
       {
         "text": "You have to have the corresponding research first before you can craft a particular box. The cost for each is dependent on the mod.",
         "color": "$text"
+      },
+      {
+        "text": "\n",
+        "color": "$text"
+      },
+      {
+        "text": "This research is unlocked when you have researched 10 different mods!",
+        "color": "$text"
       }
     ],
     "Toms Simple Storage": [

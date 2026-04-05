@@ -21,12 +21,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+import xyz.iwolfking.woldsvaults.api.lib.IRottenFruit;
 import xyz.iwolfking.woldsvaults.api.util.VaultModifierUtils;
 
 import java.util.List;
 import java.util.Random;
 
-public class WisdomFruitItem extends ItemVaultFruit {
+public class WisdomFruitItem extends ItemVaultFruit implements IRottenFruit {
 
     private static final Random rand = new Random();
     public WisdomFruitItem(ResourceLocation id) {
@@ -75,5 +76,10 @@ public class WisdomFruitItem extends ItemVaultFruit {
 
         }
 
+    }
+
+    @Override
+    public float getRotChance() {
+        return 0F;
     }
 }

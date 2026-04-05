@@ -985,6 +985,8 @@
   "woldsvaults.medium_dweller_gate": "Dweller Invasion",
   "woldsvaults.pirate_gate": "Pirate Brigade",
   "woldsvaults.raid_gate": "Illager Incursion",
+  "woldsvaults.special.fruit_rotting": "\u00A74You feel the Vault start to rot away...",
+  "woldsvaults.special.rotten": "\u00A74The Vault has rotted!",
   "woldsvaults.subtitle.saferspaces_proc": "Safer Spaces activated!",
   "woldsvaults.thermal_gate": "Thermal Expansion",
   "woldsvaults.tropical_gate": "Tropical Getaway",

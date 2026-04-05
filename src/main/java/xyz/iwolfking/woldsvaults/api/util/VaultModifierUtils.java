@@ -11,10 +11,7 @@ import iskallia.vault.core.vault.modifier.spi.VaultModifier;
 import iskallia.vault.core.vault.player.Listener;
 import iskallia.vault.core.vault.player.Listeners;
 import iskallia.vault.init.ModConfigs;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -81,7 +78,11 @@ public class VaultModifierUtils {
     }
 
     public static boolean hasCountOfModifiers(Vault vault, ResourceLocation modifierId, int count) {
+        return getCountOfModifiers(vault, modifierId) >= count;
+    }
+
+    public static long getCountOfModifiers(Vault vault, ResourceLocation modifierId) {
         List<VaultModifier<?>> modifiers = vault.get(Vault.MODIFIERS).getModifiers();
-        return modifiers.stream().filter(modifier -> modifier.getId().equals(modifierId)).count() >= count;
+        return modifiers.stream().filter(modifier -> modifier.getId().equals(modifierId)).count();
     }
 }

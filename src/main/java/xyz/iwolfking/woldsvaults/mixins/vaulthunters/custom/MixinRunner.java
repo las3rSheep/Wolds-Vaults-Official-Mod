@@ -1,18 +1,26 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom;
 
 import iskallia.vault.VaultMod;
+import iskallia.vault.core.event.CommonEvents;
+import iskallia.vault.core.event.common.FruitEatenEvent;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.VaultUtils;
 import iskallia.vault.core.vault.modifier.spi.VaultModifier;
 import iskallia.vault.core.vault.player.Listener;
 import iskallia.vault.core.vault.player.Runner;
 import iskallia.vault.core.world.storage.VirtualWorld;
+import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
+import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.skill.base.LearnableSkill;
 import iskallia.vault.skill.base.Skill;
 import iskallia.vault.skill.tree.ExpertiseTree;
+import iskallia.vault.snapshot.AttributeSnapshot;
+import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.InventoryUtil;
+import iskallia.vault.util.calc.PlayerStat;
 import iskallia.vault.world.data.PlayerExpertisesData;
 import iskallia.vault.world.data.ServerVaults;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -22,14 +30,52 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.api.lib.IRottenFruit;
+import xyz.iwolfking.woldsvaults.api.util.WoldVaultUtils;
+import xyz.iwolfking.woldsvaults.init.ModConfigs;
 import xyz.iwolfking.woldsvaults.items.alchemy.AlchemyIngredientItem;
 import xyz.iwolfking.woldsvaults.items.alchemy.CatalystItem;
 import xyz.iwolfking.woldsvaults.modifiers.vault.RemoveBlacklistModifier;
 import xyz.iwolfking.woldsvaults.api.util.VaultModifierUtils;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+
 @Mixin(value = Runner.class, remap = false)
 public abstract class MixinRunner extends Listener {
+
+    @Inject(method = "lambda$initServer$3", at = @At("TAIL"))
+    private void handleFruitRotting(VirtualWorld world, Vault vault, FruitEatenEvent.Data data, CallbackInfo ci) {
+        if(!ModConfigs.VAULT_FRUIT_CONFIG.enableFruitRotting) {
+            return;
+        }
+
+        Random random = new Random();
+        float rotChance = ((IRottenFruit)data.getFruit()).getRotChance();
+        AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(data.getPlayer());
+
+        float effectiveness = snapshot.getAttributeValue(ModGearAttributes.FRUIT_EFFECTIVENESS, VaultGearAttributeTypeMerger.floatSum());
+        float scaledEffectiveness = effectiveness / (1.0F + effectiveness);
+        float adjustedRotChance = rotChance * (1.0F - scaledEffectiveness);
+
+        //Trigger rotting stack
+        if(random.nextFloat() <= adjustedRotChance) {
+            long rotCount = VaultModifierUtils.getCountOfModifiers(vault, WoldsVaults.id("rotting"));
+            if(rotCount >= ModConfigs.VAULT_FRUIT_CONFIG.rotAllowance) {
+                return;
+            }
+
+            VaultModifierUtils.addModifier(vault, WoldsVaults.id("rotting"), 1);
+            WoldVaultUtils.sendMessageToAllRunners(vault, new TranslatableComponent("woldsvaults.special.fruit_rotting"), true);
+
+            if(rotCount + 1 >= ModConfigs.VAULT_FRUIT_CONFIG.rotAllowance) {
+                VaultModifierUtils.addModifier(vault, VaultMod.id("rotten"), 1);
+                WoldVaultUtils.sendMessageToAllRunners(vault, new TranslatableComponent("woldsvaults.special.rotten"));
+            }
+        }
+    }
+
     @Inject(method = "lambda$initServer$0", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isCreative()Z", shift = At.Shift.AFTER, remap = true), cancellable = true)
     private void preventCancelingInteraction(VirtualWorld world, PlayerInteractEvent event, CallbackInfo ci) {
         if(ServerVaults.get(world).isPresent()) {
