@@ -231,34 +231,35 @@
     },
     "fae": {
       "modifierValue": {
-        "min": 0.2,
-        "max": 0.35,
+        "min": 0.25,
+        "max": 0.25,
         "type": "uniform"
       },
       "modifierValues": {
         "lesser": {
           "value": {
-            "min": 0.1,
-            "max": 0.1,
+            "min": 0.15,
+            "max": 0.15,
             "type": "uniform"
           },
-          "modelId": "woldsvaults:deck_cores/fae_deck_core_lesser#inventory",
-          "name": "Lesser Fae Core",
+          "modelId": "woldsvaults:deck_cores/sparkling_deck_core_lesser#inventory",
+          "name": "Lesser Sparkling Core",
           "colour": 13618375
         },
         "greater": {
           "value": {
-            "min": 0.35,
+            "min": 0.5,
             "max": 0.5,
             "type": "uniform"
           },
-          "modelId": "woldsvaults:deck_cores/fae_deck_core_greater#inventory",
-          "name": "Greater Fae Core",
+          "modelId": "woldsvaults:deck_cores/sparkling_deck_core_greater#inventory",
+          "name": "Greater Sparkling Core",
           "colour": 16769382
         }
       },
       "requiredGroups": [
-        "Magical"
+        "Magical",
+        "Shiny"
       ],
       "requiredColors": [],
       "modelId": "woldsvaults:deck_cores/fae_deck_core#inventory",
@@ -303,6 +304,19 @@
       "name": "Tool Core",
       "colour": 13618375,
       "id": "tool",
+      "type": "global"
+    },
+    "sparkling": {
+      "modifierValue": {
+        "count": 0.0,
+        "type": "constant"
+      },
+      "requiredGroups": [],
+      "requiredColors": [],
+      "modelId": "woldsvaults:deck_cores/sparkling_deck_core#inventory",
+      "name": "Sparkling Core",
+      "colour": 13618375,
+      "id": "sparkling",
       "type": "global"
     },
     "premium": {
@@ -643,6 +657,10 @@
       {
         "value": "premium",
         "weight": 1.0
+      },
+      {
+        "value": "sparkling",
+        "weight": 1.0
       }
     ],
     "champions": [
@@ -750,6 +768,32 @@
       },
       {
         "value": "premium",
+        "weight": 1.0
+      },
+      {
+        "value": "sparkling",
+        "weight": 1.0
+      }
+    ],
+    "treasure": [
+      {
+        "value": "temporal",
+        "weight": 1.0
+      },
+      {
+        "value": "adept",
+        "weight": 1.0
+      },
+      {
+        "value": "fae",
+        "weight": 1.0
+      },
+      {
+        "value": "tool",
+        "weight": 1.0
+      },
+      {
+        "value": "arcane",
         "weight": 1.0
       }
     ],

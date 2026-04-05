@@ -59,6 +59,12 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
             faeModifierConfig.modifierRolls.put("lesser", variant("Lesser Fae Core", FloatRoll.ofUniform(0.1F, 0.1F), 13618375, "woldsvaults:deck_cores/fae_deck_core_lesser#inventory"));
             faeModifierConfig.modifierRolls.put("greater", variant("Greater Fae Core", FloatRoll.ofUniform(0.35F, 0.5F), 16769382, "woldsvaults:deck_cores/fae_deck_core_greater#inventory"));
 
+            GlobalDeckModifier.Config sparklingDeckCore = new GlobalDeckModifier.Config();
+            faeModifierConfig.requiredGroups.add("Shiny");
+            faeModifierConfig.modifierRoll = FloatRoll.ofUniform(0.25F, 0.25F);
+            faeModifierConfig.modifierRolls.put("lesser", variant("Lesser Sparkling Core", FloatRoll.ofUniform(0.15F, 0.15F), 13618375, "woldsvaults:deck_cores/sparkling_deck_core_lesser#inventory"));
+            faeModifierConfig.modifierRolls.put("greater", variant("Greater Sparkling Core", FloatRoll.ofUniform(0.5F, 0.5F), 16769382, "woldsvaults:deck_cores/sparkling_deck_core_greater#inventory"));
+
             EmptySlotDeckModifier.Config voidModifierConfig = new EmptySlotDeckModifier.Config();
             voidModifierConfig.modifierRoll = FloatRoll.ofUniform(0.1F, 0.2F);
             voidModifierConfig.modifierRolls.put("lesser", variant("Lesser Void Core", FloatRoll.ofUniform(0.1F, 0.1F), 13618375, "woldsvaults:deck_cores/void_deck_core_lesser#inventory"));
@@ -121,6 +127,7 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
             builder.addCore("jupiter", DominanceDeckModifier::new, jupiterDeckModifier,"Jupiter Core", 13618375,"woldsvaults:deck_cores/jupiter_deck_core#inventory");
             builder.addCore("pluto", DominanceDeckModifier::new, plutoDeckModifier,"Pluto Core", 13618375,"woldsvaults:deck_cores/pluto_deck_core#inventory");
             builder.addCore("premium", GroupSynergyDeckModifier::new, premiumCoreModifier,"Premium Core", 13618375,"woldsvaults:deck_cores/premium_deck_core#inventory");
+            builder.addCore("sparkling", GlobalDeckModifier::new, sparklingDeckCore,"Sparkling Core", 13618375,"woldsvaults:deck_cores/sparkling_deck_core#inventory");
             builder.addPool("default", stringWeightedListBuilder -> {
                 stringWeightedListBuilder.add("arsenal", 1);
                 stringWeightedListBuilder.add("aegis", 1);
@@ -136,6 +143,7 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
                 stringWeightedListBuilder.add("jupiter", 1);
                 stringWeightedListBuilder.add("pluto", 1);
                 stringWeightedListBuilder.add("premium", 1);
+                stringWeightedListBuilder.add("sparkling", 1);
             });
             builder.addPool("greed", stringWeightedListBuilder -> {
                 stringWeightedListBuilder.add("arsenal", 1);
@@ -152,6 +160,14 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
                 stringWeightedListBuilder.add("jupiter", 1);
                 stringWeightedListBuilder.add("pluto", 1);
                 stringWeightedListBuilder.add("premium", 1);
+                stringWeightedListBuilder.add("sparkling", 1);
+            });
+            builder.addPool("treasure", stringWeightedListBuilder -> {
+                stringWeightedListBuilder.add("temporal", 1);
+                stringWeightedListBuilder.add("adept", 1);
+                stringWeightedListBuilder.add("fae", 1);
+                stringWeightedListBuilder.add("tool", 1);
+                stringWeightedListBuilder.add("arcane", 1);
             });
             builder.addPool("treasure_sand", stringWeightedListBuilder -> {
                 stringWeightedListBuilder.add("temporal", 1);
