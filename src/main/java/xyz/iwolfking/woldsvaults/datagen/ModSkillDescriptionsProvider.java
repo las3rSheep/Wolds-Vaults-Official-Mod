@@ -100,6 +100,8 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                 .addDescription("Mod Box Tinkering", jsonElements -> modDesc("Mod Box Tinkering", "workstation", innerDesc -> {
                     innerDesc.add(JsonDescription.simple("The Mod Box Workstation will allow you to craft Targeted Mod Boxes that only drop items and blocks for a certain mod!", "$text"));
                     innerDesc.add(JsonDescription.simple("You have to have the corresponding research first before you can craft a particular box. The cost for each is dependent on the mod."));
+                    innerDesc.add(JsonDescription.simple("\n"));
+                    innerDesc.add(JsonDescription.simple("This research is unlocked when you have researched 10 different mods!"));
                 }).forEach(jsonElements::add))
 
                 .addDescription("Applied Compatability", jsonElements -> modDesc("Applied Botanics and Applied Mekanistics", "addons", innerDesc -> {
