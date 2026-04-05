@@ -221,6 +221,7 @@
     "vaulthunters.custom.MixinInventoryUtil",
     "vaulthunters.custom.MixinItemHudModule",
     "vaulthunters.custom.MixinItemVaultCrystal",
+    "vaulthunters.custom.MixinItemVaultFruit",
     "vaulthunters.custom.MixinJavelinAbility",
     "vaulthunters.custom.MixinJewelItem",
     "vaulthunters.custom.MixinJewelPouchItem",

@@ -2,10 +2,13 @@ package xyz.iwolfking.woldsvaults.events;
 
 import iskallia.vault.block.SkillAltarBlock;
 import iskallia.vault.core.vault.VaultUtils;
+import iskallia.vault.init.ModDynamicModels;
+import iskallia.vault.init.ModItems;
 import iskallia.vault.item.KnowledgeBrewItem;
 import iskallia.vault.item.MentorsBrewItem;
 import iskallia.vault.item.VaultDollItem;
 import iskallia.vault.util.SideOnlyFixer;
+import iskallia.vault.world.data.DiscoveredModelsData;
 import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -31,6 +34,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.api.util.GameruleHelper;
 import xyz.iwolfking.woldsvaults.blocks.DollDismantlingBlock;
@@ -70,6 +74,21 @@ public class PlayerEvents {
                     }
                 }
 
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onFilterNecklaceCraft(PlayerEvent.ItemCraftedEvent event) {
+        if (event.getPlayer() instanceof ServerPlayer serverPlayer) {
+            ItemStack result = event.getCrafting();
+            ResourceLocation resultId = ForgeRegistries.ITEMS.getKey(result.getItem());
+            if (resultId != null) {
+                if (resultId.toString().equals("woldsvaults:filter_necklace")) {
+                    DiscoveredModelsData discoveredModelsData = DiscoveredModelsData.get(serverPlayer.getLevel());
+                    discoveredModelsData.discoverAllArmorPieceAndBroadcast(serverPlayer, ModDynamicModels.Armor.DANK);
+
+                }
             }
         }
     }
