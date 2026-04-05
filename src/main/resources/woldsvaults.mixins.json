@@ -239,6 +239,7 @@
     "vaulthunters.custom.MixinObjectiveTemplates",
     "vaulthunters.custom.MixinPlayerGreedData",
     "vaulthunters.custom.MixinPlayerReputationData",
+    "vaulthunters.custom.MixinPlayerResearchesData",
     "vaulthunters.custom.MixinPlayerSpiritRecoveryData",
     "vaulthunters.custom.MixinPlayerVaultStats",
     "vaulthunters.custom.MixinPlayerVaultStatsData",
