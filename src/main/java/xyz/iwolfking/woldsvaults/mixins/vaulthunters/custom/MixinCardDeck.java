@@ -7,8 +7,7 @@ import iskallia.vault.core.card.modifier.deck.DeckModifier;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.TooltipFlag;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -25,6 +24,9 @@ import java.util.stream.Collectors;
 @Mixin(value = CardDeck.class, remap = false)
 public abstract class MixinCardDeck implements ICardDeckCache {
 
+    @Shadow
+    @Final
+    private List<DeckModifier<?>> modifiers;
     @Unique private int wv$emptySlots = -1;
     @Unique private int wv$filledSlots = -1;
     @Unique private String wv$dominantGroup = null;
@@ -80,29 +82,9 @@ public abstract class MixinCardDeck implements ICardDeckCache {
         if (wv$emptySlots < 0) {
             wv$recomputeSlotCache();
         }
-        if(wv$dominantGroup == null) {
+        if (wv$dominantGroup == null) {
             wv$recomputeGroupCache();
         }
-    }
-
-    @Inject(method = "getModifierValue", at = @At("HEAD"))
-    private void wv$onGetModifierValue(Card card, CardPos pos, CallbackInfoReturnable<Float> cir) {
-        if (wv$emptySlots < 0) {
-            wv$recomputeSlotCache();
-        }
-        if(wv$dominantGroup == null) {
-            wv$recomputeGroupCache();
-        }
-    }
-
-    @Redirect(method = "getModifierValue", at = @At(value = "INVOKE", target = "Liskallia/vault/core/card/modifier/deck/DeckModifier;getModifierValue(Liskallia/vault/core/card/Card;Liskallia/vault/core/card/CardPos;Liskallia/vault/core/card/CardDeck;)F"))
-    private float alwaysRecomputeEmptySlots(DeckModifier<?> instance, Card card, CardPos cardPos, CardDeck cardDeck) {
-        if(instance instanceof EmptySlotDeckModifier emptySlotDeckModifier) {
-           wv$recomputeSlotCache();
-           return emptySlotDeckModifier.getModifierValue(card, cardPos, cardDeck);
-        }
-
-        return instance.getModifierValue(card, cardPos, cardDeck);
     }
 
     @Unique
@@ -151,4 +133,30 @@ public abstract class MixinCardDeck implements ICardDeckCache {
     }
 
 
+    /**
+     * @author iwolfking
+     * @reason Make Deck Modifiers additive instead of multiplicative
+     */
+    @Overwrite
+    public float getModifierValue(Card card, CardPos pos) {
+        if (wv$emptySlots < 0) {
+            wv$recomputeSlotCache();
+        }
+        if(wv$dominantGroup == null) {
+            wv$recomputeGroupCache();
+        }
+
+        float value = 1.0F;
+
+        for (DeckModifier<?> modifier : this.modifiers) {
+            if(modifier instanceof EmptySlotDeckModifier emptySlotDeckModifier) {
+                wv$recomputeSlotCache();
+                return emptySlotDeckModifier.getModifierValue(card, pos, (CardDeck)(Object)this);
+            }
+
+            value += modifier.getModifierValue(card, pos, (CardDeck)(Object)this);
+        }
+
+        return value;
+    }
 }
