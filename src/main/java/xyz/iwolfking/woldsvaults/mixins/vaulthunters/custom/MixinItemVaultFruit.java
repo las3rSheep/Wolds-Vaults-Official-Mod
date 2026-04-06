@@ -30,22 +30,22 @@ public abstract class MixinItemVaultFruit extends Item implements IRottenFruit {
             return 0.05F;
         }
         else if(this.getRegistryName().equals(VaultMod.id("grapes"))) {
-            return 0.25F;
+            return 0.15F;
         }
         else if(this.getRegistryName().equals(VaultMod.id("bitter_lemon"))) {
-            return 0.35F;
-        }
-        else if(this.getRegistryName().equals(VaultMod.id("sour_orange"))) {
-            return 0.4F;
+            return 0.25F;
         }
         else if(this.getRegistryName().equals(VaultMod.id("mango"))) {
-            return 0.65F;
+            return 0.40F;
+        }
+        else if(this.getRegistryName().equals(VaultMod.id("sour_orange"))) {
+            return 0.55F;
         }
         else if(this.getRegistryName().equals(VaultMod.id("star_fruit"))) {
-            return 0.9F;
+            return 0.85F;
         }
         else if(this.getRegistryName().equals(VaultMod.id("mystic_pear"))) {
-            return 1.4F;
+            return 1.5F;
         }
 
         return ModConfigs.VAULT_FRUIT_CONFIG.baseRotChance;
