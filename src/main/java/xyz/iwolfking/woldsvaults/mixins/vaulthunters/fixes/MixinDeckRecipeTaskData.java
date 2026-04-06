@@ -8,9 +8,5 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = DeckRecipeTaskData.class, remap = false)
 public class MixinDeckRecipeTaskData {
-    @Inject(method = "onConfigReload", at = @At("HEAD"), cancellable = true)
-    private static void cancelThis(CallbackInfo ci) {
-        ci.cancel();
-        return;
-    }
+
 }

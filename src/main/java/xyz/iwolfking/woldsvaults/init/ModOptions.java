@@ -9,7 +9,6 @@ import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.client.invhud.LightmanWalletHudOptions;
 
 public class ModOptions {
-    //TODO: Probably need changed, investigate in-game
     public static final VaultOption<InventoryHudElementOptions> GREEN_TRINKET = VaultOptionsRegistry.register("woldsOptions.json", WoldsVaults.id("inv_hud_trinket_green"), InventoryHudElementOptions.createDefault(HudPosition.of(Alignment.Horizontal.CENTER, Alignment.Vertical.BOTTOM, 0.5F, 0.5F)), null, InventoryHudElementOptions.ADAPTER);
     public static final VaultOption<InventoryHudElementOptions> TRINKET_POUCH = VaultOptionsRegistry.register("woldsOptions.json", WoldsVaults.id("inv_hud_trinket_pouch"), InventoryHudElementOptions.createDefault(HudPosition.of(Alignment.Horizontal.CENTER, Alignment.Vertical.BOTTOM, 0.5F, 0.5F)), null, InventoryHudElementOptions.ADAPTER);
     public static final VaultOption<LightmanWalletHudOptions> LIGHTMAN_WALLET = VaultOptionsRegistry.register("woldsOptions.json", WoldsVaults.id("inv_hud_lightman_wallet"), LightmanWalletHudOptions.createDefault(HudPosition.of(Alignment.Horizontal.CENTER, Alignment.Vertical.BOTTOM, 0.8F, 0.05F)), null, LightmanWalletHudOptions.ADAPTER);
