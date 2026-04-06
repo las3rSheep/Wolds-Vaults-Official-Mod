@@ -43,6 +43,8 @@ public class ModVaultDiffuserProvider extends AbstractVaultDiffuserProvider {
                     .add(ModItems.HASTY_POMEGRANATE.getRegistryName(), 486)
                     .add(ModItems.POLTERGEIST_PLUM.getRegistryName(), 666)
                     .add(iskallia.vault.init.ModItems.MYSTIC_PEAR.getRegistryName(), 4096)
+                    .add(iskallia.vault.init.ModItems.ADAPTIVE_FOCUS.getRegistryName(), 512)
+                    .add(iskallia.vault.init.ModItems.PYRETIC_FOCUS.getRegistryName(), 384)
                     .add(ModBlocks.VAULT_ESSENCE_BLOCK.getRegistryName(), 99)
                     .add(ModBlocks.CHROMATIC_GOLD_BLOCK.getRegistryName(), 936)
                     .add(ModBlocks.SILVER_SCRAP_BLOCK.getRegistryName(), 54)

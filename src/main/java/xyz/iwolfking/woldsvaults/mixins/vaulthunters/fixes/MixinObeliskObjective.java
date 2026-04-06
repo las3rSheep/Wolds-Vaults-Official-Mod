@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(value = ObeliskObjective.class, remap = false)
+@Mixin(value = ObeliskObjective.class)
 public class MixinObeliskObjective {
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/platform/Window;getGuiScaledWidth()I"))
     private int fixObjectiveRendering(Window instance) {

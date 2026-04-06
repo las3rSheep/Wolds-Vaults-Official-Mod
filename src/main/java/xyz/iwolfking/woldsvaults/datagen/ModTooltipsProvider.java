@@ -17,7 +17,6 @@ public class ModTooltipsProvider extends AbstractTooltipProvider {
 
         add("builtin_overrides", builder -> {
             builder
-                    .addTooltipEntry(iskallia.vault.init.ModItems.COIN_POUCH.getRegistryName(), "It is recommended to use the wallet from Lightman's Currency instead!")
                     .addTooltipEntry(iskallia.vault.init.ModItems.RELIC_BOOSTER_PACK.getRegistryName(), "Legacy Item");
         });
 

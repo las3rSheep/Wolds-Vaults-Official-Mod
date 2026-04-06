@@ -187,6 +187,7 @@
     "vaulthunters.custom.MixinBoosterPackItem",
     "vaulthunters.custom.MixinBossRunePillarTileEntity",
     "vaulthunters.custom.MixinBottleItem",
+    "vaulthunters.custom.MixinCardboardBoxTileEntity",
     "vaulthunters.custom.MixinCardDeck",
     "vaulthunters.custom.MixinCardDeckContainerMenu",
     "vaulthunters.custom.MixinCardEntry",
