@@ -1,0 +1,15 @@
+{
+  "itemRegistryName": "the_vault:vaultrod",
+  "MODEL_ROLLS": {
+    "SCRAPPY": [
+      "the_vault:gear/vaultrod/blahaj",
+      "the_vault:gear/vaultrod/safer_spaces"
+    ],
+    "COMMON": [],
+    "RARE": [],
+    "EPIC": [],
+    "OMEGA": [],
+    "MYTHIC": [],
+    "UNIQUE": []
+  }
+}

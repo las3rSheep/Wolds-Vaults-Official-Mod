@@ -15,7 +15,7 @@ public class VaultRods {
     }
 
     static {
-        BLAHAJ = REGISTRY.register(new HandHeldModel(VaultMod.id("gear/plushie/blahaj"), "Blåhaj the Actually a VaultRod")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
-        SAFER_SPACES = REGISTRY.register(new HandHeldModel(VaultMod.id("gear/plushie/safer_spaces"), "Terry the Actually a VaultRod")).properties(new DynamicModelProperties());
+        BLAHAJ = REGISTRY.register(new HandHeldModel(VaultMod.id("gear/vaultrod/blahaj"), "Blåhaj the Actually a VaultRod")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
+        SAFER_SPACES = REGISTRY.register(new HandHeldModel(VaultMod.id("gear/vaultrod/safer_spaces"), "Terry the Actually a VaultRod")).properties(new DynamicModelProperties());
     }
 }

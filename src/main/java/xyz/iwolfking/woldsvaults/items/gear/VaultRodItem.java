@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.items.gear;
 
 import cofh.lib.item.FishingRodItemCoFH;
+import com.google.common.collect.Multimap;
 import iskallia.vault.dynamodel.DynamicModel;
 import iskallia.vault.gear.VaultGearClassification;
 import iskallia.vault.gear.VaultGearHelper;
@@ -24,6 +25,8 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.FishingRodItem;
@@ -51,7 +54,6 @@ public class VaultRodItem extends FishingRodItem implements VaultGearItem, Dyeab
     public void damageFromRod(Player player) {
         //xxxxxxxxxxxxxx
     }
-
 
     @NotNull
     @Override
@@ -85,7 +87,7 @@ public class VaultRodItem extends FishingRodItem implements VaultGearItem, Dyeab
 
     @Override
     public boolean canAttackBlock(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
-        return false;
+        return pPlayer.fishing == null;
     }
 
     @Override
@@ -99,9 +101,14 @@ public class VaultRodItem extends FishingRodItem implements VaultGearItem, Dyeab
     }
 
     @Override
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+        return VaultGearHelper.getModifiers(stack, slot);
+    }
+
+    @Override
     public int getMaxDamage(ItemStack stack) {
-        return (VaultGearData.read(stack)
-                .get(ModGearAttributes.DURABILITY, VaultGearAttributeTypeMerger.intSum())).intValue();
+        return VaultGearData.read(stack)
+                .get(ModGearAttributes.DURABILITY, VaultGearAttributeTypeMerger.intSum());
     }
 
     @Override
@@ -111,9 +118,7 @@ public class VaultRodItem extends FishingRodItem implements VaultGearItem, Dyeab
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        return (this.getState(player.getItemInHand(hand)) == VaultGearState.IDENTIFIED)
-        ? super.use(world, player, hand)
-        : VaultGearHelper.rightClick(world, player, hand, super.use(world, player, hand));
+        return VaultGearHelper.rightClick(world, player, hand, super.use(world, player, hand));
     }
 
     @Override

@@ -17,7 +17,7 @@ public class ModVaultLootTablesProvider extends AbstractLootTableProvider {
         super(generator, WoldsVaults.MOD_ID);
     }
 
-    private static final List<VaultGearItem> gearItems = new ArrayList<VaultGearItem>(Arrays.asList(ModItems.CHESTPLATE, ModItems.BOOTS, ModItems.LEGGINGS, ModItems.HELMET, ModItems.SWORD, ModItems.AXE, ModItems.FOCUS, ModItems.WAND, ModItems.MAGNET, ModItems.SHIELD, xyz.iwolfking.woldsvaults.init.ModItems.BATTLESTAFF, xyz.iwolfking.woldsvaults.init.ModItems.LOOT_SACK, xyz.iwolfking.woldsvaults.init.ModItems.RANG, xyz.iwolfking.woldsvaults.init.ModItems.PLUSHIE, xyz.iwolfking.woldsvaults.init.ModItems.TRIDENT));
+    private static final List<VaultGearItem> gearItems = new ArrayList<VaultGearItem>(Arrays.asList(ModItems.CHESTPLATE, ModItems.BOOTS, ModItems.LEGGINGS, ModItems.HELMET, ModItems.SWORD, ModItems.AXE, ModItems.FOCUS, ModItems.WAND, ModItems.MAGNET, ModItems.SHIELD, xyz.iwolfking.woldsvaults.init.ModItems.BATTLESTAFF, xyz.iwolfking.woldsvaults.init.ModItems.LOOT_SACK, xyz.iwolfking.woldsvaults.init.ModItems.RANG, xyz.iwolfking.woldsvaults.init.ModItems.VAULTROD, xyz.iwolfking.woldsvaults.init.ModItems.PLUSHIE, xyz.iwolfking.woldsvaults.init.ModItems.TRIDENT));
 
     @Override
     public void registerLootTables() {

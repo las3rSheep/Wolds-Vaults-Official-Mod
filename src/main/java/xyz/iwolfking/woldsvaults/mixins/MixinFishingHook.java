@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import xyz.iwolfking.woldsvaults.init.ModItems;
+import static net.minecraft.world.item.Items.FISHING_ROD;
 
 @Mixin(FishingHook.class)
 public abstract class MixinFishingHook extends Projectile {
@@ -19,7 +20,7 @@ public abstract class MixinFishingHook extends Projectile {
     }
 
     @Redirect(method = "shouldStopFishing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"))
-    private boolean letVRodsCast(ItemStack stack, Item FISHINGROD) {
-        return stack.is(FISHINGROD) || stack.is(ModItems.VAULTROD);
+    private boolean letVRodsCast(ItemStack stack, Item x) {
+        return stack.is(FISHING_ROD) || stack.is(ModItems.VAULTROD);
     }
 }

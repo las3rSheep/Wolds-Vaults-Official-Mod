@@ -15,7 +15,7 @@ public class ModCustomVaultGearEntries {
     public static final CustomVaultGearRegistryEntry PLUSHIE = new CustomVaultGearRegistryEntry("plushie", "Plushie", ModItems.PLUSHIE, Plushies.REGISTRY, CustomVaultGearModelRollRaritiesConfig.PLUSHIE_MODEL_ROLLS);
     public static final CustomVaultGearRegistryEntry LOOT_SACK = new CustomVaultGearRegistryEntry("loot_sack", "Loot Sack", ModItems.LOOT_SACK, LootSacks.REGISTRY, CustomVaultGearModelRollRaritiesConfig.LOOT_SACKS_MODEL_ROLLS);
     public static final CustomVaultGearRegistryEntry RANG = new CustomVaultGearRegistryEntry("rang", "Vaultarang", ModItems.RANG, Rangs.REGISTRY, CustomVaultGearModelRollRaritiesConfig.RANG_MODEL_ROLLS);
-    public static final CustomVaultGearRegistryEntry VAULTROD = new CustomVaultGearRegistryEntry("rod", "Vaultrod", ModItems.VAULTROD, VaultRods.REGISTRY, CustomVaultGearModelRollRaritiesConfig.BATTLESTAFF_MODEL_ROLLS);
+    public static final CustomVaultGearRegistryEntry VAULTROD = new CustomVaultGearRegistryEntry("vaultrod", "Vaultrod", ModItems.VAULTROD, VaultRods.REGISTRY, CustomVaultGearModelRollRaritiesConfig.VAULTROD_MODEL_ROLLS);
     public static final CustomVaultGearRegistryEntry MAP = new CustomVaultGearRegistryEntry("map", "Map", ModItems.MAP, Maps.REGISTRY, CustomVaultGearModelRollRaritiesConfig.MAP_MODEL_ROLLS);
     public static void registerGearEntries(RegistryEvent.Register<CustomVaultGearRegistryEntry> event) {
         event.getRegistry().register(TRIDENT);
