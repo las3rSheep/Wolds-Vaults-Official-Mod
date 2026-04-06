@@ -304,6 +304,11 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                     disabledInVaults().forEach(innerDesc::add);
                     innerDesc.add(JsonDescription.simple("Psi is a magical tech spell programming mod inspired by Mahouka Kokou no Rettousei. Don't worry if that doesn't make any sense. The core of Psi is a system where you can create action sequences (\\\"Spells\\\") to be executed in the world. This system is followed by a leveling system containing ingame documentation and tutorials of the various concepts and pieces you'll get. The mod makes use of basic mathematical concepts, such as Vectors in its systems, which allows for great flexibility on what spells can do.", "$text"));
                 }).forEach(jsonElements::add))
+
+                .addDescription("Draconic Evolution", jsonElements -> modDesc("Draconic Evolution", innerDesc -> {
+                     disabledInVaults().forEach(innerDesc::add);
+                     innerDesc.add(JsonDescription.simple("Harness immense power with advanced tech, massive energy storage, and endgame gear. Build powerful reactors, upgrade your equipment beyond your limits!", "$text"));
+                }).forEach(jsonElements::add))
                 .build());
     }
 

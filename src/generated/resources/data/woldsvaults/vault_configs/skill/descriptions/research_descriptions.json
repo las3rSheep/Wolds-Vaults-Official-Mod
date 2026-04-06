@@ -983,6 +983,32 @@
         "text": "\\n\\nThe mod also comes with Create support so you can put Create contraptions on top of your barges or train cars!",
         "color": "$text"
       }
+    ],
+    "Draconic Evolution": [
+      {
+        "text": "Unlocks the ",
+        "color": "$text"
+      },
+      {
+        "text": "Draconic Evolution",
+        "color": "$yellow"
+      },
+      {
+        "text": " mod!\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "⚠",
+        "color": "red"
+      },
+      {
+        "text": "Disabled In Vaults!\n\n",
+        "color": "dark_red"
+      },
+      {
+        "text": "Harness immense power with advanced tech, massive energy storage, and endgame gear. Build powerful reactors, upgrade your equipment beyond your limits!",
+        "color": "$text"
+      }
     ]
   }
 }
