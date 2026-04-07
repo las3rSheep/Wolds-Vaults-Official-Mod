@@ -7,7 +7,7 @@
   ],
   "key": {
     "A": {
-      "item": "the_vault:echo_pog"
+      "item": "the_vault:extraordinary_larimar"
     },
     "B": {
       "item": "the_vault:extraordinary_benitoite"
@@ -19,7 +19,7 @@
       "item": "woldsvaults:pog_prism"
     },
     "R": {
-      "item": "the_vault:extraordinary_echo_gem"
+      "item": "the_vault:echo_pog"
     },
     "D": {
       "item": "the_vault:extraordinary_painite"
@@ -28,7 +28,7 @@
       "item": "the_vault:extraordinary_wutodie"
     },
     "F": {
-      "item": "the_vault:perfect_black_opal"
+      "item": "the_vault:extraordinary_black_opal"
     }
   },
   "result": {

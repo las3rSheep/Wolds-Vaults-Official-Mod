@@ -567,14 +567,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pFinishedRecipeConsumer);
 
         ShapedRecipeBuilder.shaped(ModItems.EXTRAORDINARY_POG_PRISM)
-                .define('A', iskallia.vault.init.ModItems.ECHO_POG)
+                .define('A', iskallia.vault.init.ModItems.EXTRAORDINARY_LARIMAR)
                 .define('B', iskallia.vault.init.ModItems.EXTRAORDINARY_BENITOITE)
                 .define('C', iskallia.vault.init.ModItems.EXTRAORDINARY_ALEXANDRITE)
                 .define('X', ModItems.POG_PRISM)
-                .define('R', iskallia.vault.init.ModItems.EXTRAORDINARY_ECHO_GEM)
+                .define('R', iskallia.vault.init.ModItems.ECHO_POG)
                 .define('D', iskallia.vault.init.ModItems.EXTRAORDINARY_PAINITE)
                 .define('E', iskallia.vault.init.ModItems.EXTRAORDINARY_WUTODIE)
-                .define('F', iskallia.vault.init.ModItems.PERFECT_BLACK_OPAL)
+                .define('F', iskallia.vault.init.ModItems.EXTRAORDINARY_BLACK_OPAL)
                 .pattern("ABC")
                 .pattern("XRX")
                 .pattern("DEF")
