@@ -314,6 +314,24 @@
         "color": "$text"
       }
     ],
+    "Bag Inception": [
+      {
+        "text": "Unlocks the ",
+        "color": "$text"
+      },
+      {
+        "text": "Inception Upgrade",
+        "color": "$yellow"
+      },
+      {
+        "text": " from Sophisticated Backpacks!\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "With your mastery of looting, your accumulation of knowledge, and insane willpower, you finally have the brilliant idea, wondering why it hasn't hit you all this time, to simply put your backpacks inside of other backpacks. A peculiar thought...",
+        "color": "$text"
+      }
+    ],
     "Hostile Neural Networks": [
       {
         "text": "Unlocks the ",
@@ -923,24 +941,6 @@
       },
       {
         "text": "Additionally, unlocks the Companion Locker, a useful block to store and search through all your Companions!",
-        "color": "$text"
-      }
-    ],
-    "Inception Upgrade": [
-      {
-        "text": "Unlocks the ",
-        "color": "$text"
-      },
-      {
-        "text": "Inception Upgrade",
-        "color": "$yellow"
-      },
-      {
-        "text": " from Sophisticated Backpacks!\n\n",
-        "color": "$text"
-      },
-      {
-        "text": "With your mastery of looting, your accumulation of knowledge, and insane willpower, you finally have the brilliant idea, wondering why it hasn't hit you all this time, to simply put your backpacks inside of other backpacks. A peculiar thought...",
         "color": "$text"
       }
     ],

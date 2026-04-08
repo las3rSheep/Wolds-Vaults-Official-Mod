@@ -283,7 +283,7 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                     }).forEach(jsonElements::add);;
                 })
 
-                .addDescription("Inception Upgrade", jsonElements -> modDesc("Inception Upgrade", "from Sophisticated Backpacks", innerDesc -> innerDesc.add(JsonDescription.simple("With your mastery of looting, your accumulation of knowledge, and insane willpower, you finally have the brilliant idea, wondering why it hasn't hit you all this time, to simply put your backpacks inside of other backpacks. A peculiar thought...", "$text"))).forEach(jsonElements::add))
+                .addDescription("Bag Inception", jsonElements -> modDesc("Inception Upgrade", "from Sophisticated Backpacks", innerDesc -> innerDesc.add(JsonDescription.simple("With your mastery of looting, your accumulation of knowledge, and insane willpower, you finally have the brilliant idea, wondering why it hasn't hit you all this time, to simply put your backpacks inside of other backpacks. A peculiar thought...", "$text"))).forEach(jsonElements::add))
 
                 .addDescription("QuarryPlus", jsonElements -> modDesc("QuarryPlus", innerDesc -> {
                     disabledInVaults().forEach(innerDesc::add);

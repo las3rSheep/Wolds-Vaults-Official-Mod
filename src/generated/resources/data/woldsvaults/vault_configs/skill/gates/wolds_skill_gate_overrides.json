@@ -296,10 +296,6 @@
             "type": "constant"
           },
           {
-            "id": "Augment Crafting",
-            "type": "constant"
-          },
-          {
             "id": "Oops, All Iron Mods",
             "type": "constant"
           },
@@ -328,19 +324,11 @@
             "type": "constant"
           },
           {
-            "id": "Junk Management",
-            "type": "constant"
-          },
-          {
             "id": "Create Crafts and Additions",
             "type": "constant"
           },
           {
             "id": "LaserIO",
-            "type": "constant"
-          },
-          {
-            "id": "Companion Workstation",
             "type": "constant"
           },
           {
@@ -365,6 +353,10 @@
           },
           {
             "id": "Digital Miner",
+            "type": "constant"
+          },
+          {
+            "id": "Draconic Evolution",
             "type": "constant"
           }
         ],

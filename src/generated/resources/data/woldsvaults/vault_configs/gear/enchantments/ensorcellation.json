@@ -1,51 +1,15 @@
 {
   "costs": {
-    "ensorcellation:quick_draw": {
+    "ensorcellation:gourmand": {
       "items": [
         {
-          "id": "emerald",
-          "count": 5
-        }
-      ],
-      "levels": 3
-    },
-    "ensorcellation:air_affinity": {
-      "items": [
-        {
-          "id": "the_vault:phoenix_feather",
-          "count": 1
-        }
-      ],
-      "levels": 1
-    },
-    "ensorcellation:soulbound": {
-      "items": [
-        {
-          "id": "the_vault:echo_pog",
-          "count": 1
-        }
-      ],
-      "levels": 1
-    },
-    "ensorcellation:volley": {
-      "items": [
-        {
-          "id": "emerald",
-          "count": 45
-        }
-      ],
-      "levels": 1
-    },
-    "ensorcellation:vitality": {
-      "items": [
-        {
-          "id": "golden_apple",
+          "id": "pumpkin_pie",
           "count": 64
         }
       ],
-      "levels": 3
+      "levels": 2
     },
-    "ensorcellation:hunter": {
+    "ensorcellation:angler": {
       "items": [
         {
           "id": "emerald",
@@ -54,11 +18,11 @@
       ],
       "levels": 2
     },
-    "ensorcellation:damage_ender": {
+    "ensorcellation:air_affinity": {
       "items": [
         {
-          "id": "ender_eye",
-          "count": 32
+          "id": "the_vault:phoenix_feather",
+          "count": 1
         }
       ],
       "levels": 1
@@ -72,6 +36,15 @@
       ],
       "levels": 2
     },
+    "ensorcellation:hunter": {
+      "items": [
+        {
+          "id": "emerald",
+          "count": 5
+        }
+      ],
+      "levels": 2
+    },
     "ensorcellation:exp_boost": {
       "items": [
         {
@@ -81,23 +54,50 @@
       ],
       "levels": 3
     },
-    "ensorcellation:angler": {
+    "ensorcellation:damage_ender": {
+      "items": [
+        {
+          "id": "ender_eye",
+          "count": 32
+        }
+      ],
+      "levels": 1
+    },
+    "ensorcellation:vitality": {
+      "items": [
+        {
+          "id": "golden_apple",
+          "count": 64
+        }
+      ],
+      "levels": 3
+    },
+    "ensorcellation:quick_draw": {
       "items": [
         {
           "id": "emerald",
           "count": 5
         }
       ],
-      "levels": 2
+      "levels": 3
     },
-    "ensorcellation:gourmand": {
+    "ensorcellation:volley": {
       "items": [
         {
-          "id": "pumpkin_pie",
-          "count": 64
+          "id": "emerald",
+          "count": 45
         }
       ],
-      "levels": 2
+      "levels": 1
+    },
+    "ensorcellation:soulbound": {
+      "items": [
+        {
+          "id": "the_vault:echo_pog",
+          "count": 1
+        }
+      ],
+      "levels": 1
     }
   }
 }
