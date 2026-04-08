@@ -12,6 +12,7 @@
     "MixinBlockStateBase",
     "MixinCreeperEntity",
     "MixinEnchantmentHelper",
+    "MixinEntity",
     "MixinFishingHook",
     "MixinFortuneOreDropFormula",
     "MixinGameRuleCommand",
