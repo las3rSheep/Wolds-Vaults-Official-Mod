@@ -8,7 +8,6 @@ import iskallia.vault.init.ModParticles;
 import iskallia.vault.init.ModSounds;
 import iskallia.vault.skill.ability.effect.ImplodeAbility;
 import iskallia.vault.util.AABBHelper;
-import net.minecraft.core.particles.ParticleType;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -16,7 +15,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
-import org.jline.utils.Log;
 
 import java.util.List;
 

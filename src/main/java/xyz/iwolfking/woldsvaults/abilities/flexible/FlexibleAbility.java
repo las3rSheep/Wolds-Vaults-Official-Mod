@@ -44,7 +44,9 @@ public class FlexibleAbility {
             case "Implode":
                 FlexibleImplode implodeAbility = new FlexibleImplode();
                 if (target instanceof LivingEntity) {
-                    durabilityDamage = implodeAbility.cast(player, (LivingEntity) target, (ImplodeAbility) abilityToCast);
+                    if(abilityToCast instanceof ImplodeAbility) {
+                        durabilityDamage = implodeAbility.cast(player, (LivingEntity) target, (ImplodeAbility) abilityToCast);
+                    }
                 }
                 break;
             case "Smite":
