@@ -23,5 +23,8 @@ public class MixinModGearAttribute {
         else if(name.equals("range")) {
             cir.setReturnValue(new VaultGearAttribute(VaultMod.id(name), type, generator, ModGearAttributeReaders.addedDecimalReader("Range", 16364415), comparator));
         }
+        else if(name.equals("on_hit_aoe")) {
+            cir.setReturnValue(new VaultGearAttribute(VaultMod.id(name), type, generator, ModGearAttributeReaders.addedIntReader("Cleave Range", 12085504), comparator));
+        }
     }
 }
