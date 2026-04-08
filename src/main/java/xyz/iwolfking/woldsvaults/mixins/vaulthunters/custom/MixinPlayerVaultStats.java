@@ -33,12 +33,8 @@ import java.util.UUID;
 public abstract class MixinPlayerVaultStats {
     @Shadow public abstract int getVaultLevel();
 
-    @Shadow private int exp;
     @Shadow private int vaultLevel;
     @Shadow @Final private UUID uuid;
-
-    @Shadow
-    public abstract int getVaultUncappedLevel();
 
     @Redirect(method = "addVaultExp", at = @At(value = "INVOKE", target = "Liskallia/vault/config/VaultLevelsConfig;getExpMultiplier()F"))
     private float addExperiencedExpertiseMultiplier(VaultLevelsConfig instance, @Local MinecraftServer server) {
@@ -87,20 +83,5 @@ public abstract class MixinPlayerVaultStats {
                 data.setProgress(task, newLevel);
             }
         }
-    }
-
-
-    /**
-     * @author iwolfking
-     * @reason Scale amount of XP needed for prestige levels
-     */
-    @Overwrite
-    public int getExpNeededToNextLevel() {
-        if(this.getVaultLevel() < 100) {
-            return ModConfigs.LEVELS_META.getLevelMeta(this.vaultLevel).tnl;
-        }
-
-        return (int) (ModConfigs.LEVELS_META.getPrestigeTnl() + (ModConfigs.LEVELS_META.getPrestigeTnl() * (this.getVaultUncappedLevel() * 0.005F)));
-
     }
 }
