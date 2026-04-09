@@ -313,10 +313,10 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
                 nearby.removeIf(
                         mob -> mob instanceof EternalEntity || mob instanceof PetEntity
                 );
+                PlayerActiveFlags.set(player, PlayerActiveFlags.Flag.ATTACK_AOE, 2);
                 nearby.forEach(
                         mob -> {
                             EntityHelper.knockbackIgnoreResist(mob, player, 1.0F);
-                            PlayerActiveFlags.set(player, PlayerActiveFlags.Flag.ATTACK_AOE, 2);
                             int ticksSinceLastSwing = player.attackStrengthTicker;
                             player.attackStrengthTicker = (int) (1.0 / player.getAttributeValue(Attributes.ATTACK_SPEED) * 20.0) + 1;
                             player.attack(mob);
