@@ -309,7 +309,6 @@
     "vaulthunters.fixes.MixinAttributeGearData",
     "vaulthunters.fixes.MixinBailObjective",
     "vaulthunters.fixes.MixinBingoObjective",
-    "vaulthunters.fixes.MixinChallengeControllerBlockEntity",
     "vaulthunters.fixes.MixinClientEvents",
     "vaulthunters.fixes.MixinCoinPouchItem",
     "vaulthunters.fixes.MixinCurioContainerHandler",
