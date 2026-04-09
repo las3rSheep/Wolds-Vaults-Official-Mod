@@ -151,7 +151,6 @@ public class MixinGearAttributeEvents {
 
 
     /**
-     * @return
      * @author aida
      * @reason chain falloff reduction stat
      */

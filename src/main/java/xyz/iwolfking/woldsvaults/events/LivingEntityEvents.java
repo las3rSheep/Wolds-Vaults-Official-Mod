@@ -594,7 +594,7 @@ public class LivingEntityEvents {
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onLivingHurt(LivingHurtEvent event) {
         if (!(event.getSource().getEntity() instanceof Player player)) {
             return;
@@ -605,13 +605,15 @@ public class LivingEntityEvents {
         if (stack.getItem() instanceof VaultTridentItem &&
                 player.isAutoSpinAttack() && VaultTridentItem.isVaultTridentRiptide(stack)) {
             VaultGearData data = VaultGearData.read(stack);
-            Double f = data.get(iskallia.vault.init.ModGearAttributes.ATTACK_DAMAGE, VaultGearAttributeTypeMerger.doubleSum());
+            double d = 2 * data.get(iskallia.vault.init.ModGearAttributes.ATTACK_DAMAGE, VaultGearAttributeTypeMerger.doubleSum());
 
             AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
-            event.setAmount((float) VaultTridentItem.getTridentScaledDamage(snapshot, event.getEntityLiving(), f * 2));
-            if(!PlayerActiveFlags.isSet(player, PlayerActiveFlags.Flag.ATTACK_AOE)) {
-                VaultTridentItem.triggerChannelingRiptide(stack, player.getLevel(), player);
+            if(!ActiveFlags.IS_CHAINING_ATTACKING.isSet()) {
+                ActiveFlags.IS_CHAINING_ATTACKING.runIfNotSet(() -> VaultTridentItem.triggerChannelingRiptide(stack, player.getLevel(), player));
+                event.setAmount((float) VaultTridentItem.getTridentScaledDamage(snapshot, event.getEntityLiving(), d));
             }
+            else
+                event.setAmount((float) d);
         }
     }
 

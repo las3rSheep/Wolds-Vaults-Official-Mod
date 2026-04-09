@@ -100,26 +100,6 @@ public abstract class MixinThrownTrident extends AbstractArrow {
 
 
             Entity entity1 = this.getOwner();
-            if(entity1 instanceof Player player) {
-                AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
-                f = VaultTridentItem.getTridentScaledDamage(snapshot, (LivingEntity) entity, f);
-            }
-
-
-            DamageSource damagesource = DamageSource.trident(this, entity1 == null ? this : entity1);
-            this.dealtDamage = true;
-            SoundEvent soundevent = SoundEvents.TRIDENT_HIT;
-            if (entity.hurt(damagesource, f.floatValue())) {
-
-                if (entity instanceof LivingEntity livingentity) {
-                    if (entity1 instanceof LivingEntity livingentity1) {
-                        EnchantmentHelper.doPostHurtEffects(livingentity, livingentity1);
-                        EnchantmentHelper.doPostDamageEffects(livingentity1, livingentity);
-                    }
-
-                    this.doPostHurtEffects(livingentity);
-                }
-            }
 
             this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));
             float f1 = 1.0F;
@@ -140,6 +120,27 @@ public abstract class MixinThrownTrident extends AbstractArrow {
                     }
                 }
 
+            }
+
+            if(entity1 instanceof Player player) {
+                AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
+                f = VaultTridentItem.getTridentScaledDamage(snapshot, (LivingEntity) entity, f);
+            }
+
+
+            DamageSource damagesource = DamageSource.trident(this, entity1 == null ? this : entity1);
+            this.dealtDamage = true;
+            SoundEvent soundevent = SoundEvents.TRIDENT_HIT;
+            if (entity.hurt(damagesource, f.floatValue())) {
+
+                if (entity instanceof LivingEntity livingentity) {
+                    if (entity1 instanceof LivingEntity livingentity1) {
+                        EnchantmentHelper.doPostHurtEffects(livingentity, livingentity1);
+                        EnchantmentHelper.doPostDamageEffects(livingentity1, livingentity);
+                    }
+
+                    this.doPostHurtEffects(livingentity);
+                }
             }
 
             this.playSound(soundevent, f1, 1.0F);
