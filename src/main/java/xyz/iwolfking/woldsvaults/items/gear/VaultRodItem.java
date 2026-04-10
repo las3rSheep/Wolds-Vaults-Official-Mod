@@ -1,6 +1,5 @@
 package xyz.iwolfking.woldsvaults.items.gear;
 
-import cofh.lib.item.FishingRodItemCoFH;
 import com.google.common.collect.Multimap;
 import iskallia.vault.dynamodel.DynamicModel;
 import iskallia.vault.gear.VaultGearClassification;
@@ -10,7 +9,6 @@ import iskallia.vault.gear.VaultGearType;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.crafting.ProficiencyType;
 import iskallia.vault.gear.data.VaultGearData;
-import iskallia.vault.gear.item.IdentifiableItem;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.tooltip.GearTooltip;
 import iskallia.vault.init.ModConfigs;
@@ -49,10 +47,6 @@ public class VaultRodItem extends FishingRodItem implements VaultGearItem, Dyeab
     public VaultRodItem(ResourceLocation id, Properties builder) {
         super(builder);
         setRegistryName(id);
-    }
-
-    public void damageFromRod(Player player) {
-        //xxxxxxxxxxxxxx
     }
 
     @NotNull
