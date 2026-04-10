@@ -47,7 +47,7 @@ public class ModGearEnchantmentsProvider extends AbstractGearEnchantmentProvider
         });
 
         add("draconic_evolution", builder -> {
-            builder.addEnchantment(ResourceLocation.fromNamespaceAndPath("draconicevolution", "reaper"), 48, 10);
+            builder.addEnchantment(ResourceLocation.fromNamespaceAndPath("draconicevolution", "reaper_enchantment"), 48, 10);
         });
 
         add("alexsmobs", builder -> {

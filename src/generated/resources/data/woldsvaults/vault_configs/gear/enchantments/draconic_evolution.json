@@ -1,10 +1,10 @@
 {
   "costs": {
-    "null": {
+    "draconicevolution:reaper_enchantment": {
       "items": [
         {
-          "id": "emerald",
-          "count": 48
+          "id": "draconicevolution:draconium_dust",
+          "count": 1
         }
       ],
       "levels": 10
