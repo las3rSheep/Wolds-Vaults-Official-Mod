@@ -346,6 +346,7 @@
     "vaulthunters.fixes.MixinVaultGearModifierHelper",
     "vaulthunters.fixes.MixinVaultGearRarity",
     "vaulthunters.fixes.MixinVaultUtils",
+    "vaulthunters.fixes.MixinVoidStoneItem",
     "vaulthunters.fixes.MixinVorpalSealCost",
     "vaulthunters.fixes.MixinWardrobeTileEntity",
     "vaulthunters.fixes.bettercombat.MixinAttributeSnapshotCalculatorNoBC",
