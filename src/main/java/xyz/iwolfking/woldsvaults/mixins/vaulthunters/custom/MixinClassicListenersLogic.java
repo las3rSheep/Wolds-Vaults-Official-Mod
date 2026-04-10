@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 @Mixin(value = ClassicListenersLogic.class, remap = false)
 public class MixinClassicListenersLogic {
-    @Redirect(method = "lambda$onJoin$11", at = @At(value = "INVOKE", target = "Liskallia/vault/item/gear/VaultUsesHelper;addUsedVault(Lnet/minecraft/world/item/ItemStack;Ljava/util/UUID;)V"))
+    @Redirect(method = "lambda$onJoin$12", at = @At(value = "INVOKE", target = "Liskallia/vault/item/gear/VaultUsesHelper;addUsedVault(Lnet/minecraft/world/item/ItemStack;Ljava/util/UUID;)V"))
     private void trinketerEffectsNecklaces(ItemStack stack, UUID vaultId, @Local(argsOnly = true) ServerPlayer player) {
         double damageAvoidanceChance = PlayerExpertisesData.get(player.getLevel())
                 .getExpertises(player)
@@ -49,7 +49,7 @@ public class MixinClassicListenersLogic {
         }
     }
 
-    @Redirect(method = "lambda$onJoin$12", at = @At(value = "INVOKE", target = "Liskallia/vault/item/gear/VaultUsesHelper;addUsedVault(Lnet/minecraft/world/item/ItemStack;Ljava/util/UUID;)V"))
+    @Redirect(method = "lambda$onJoin$13", at = @At(value = "INVOKE", target = "Liskallia/vault/item/gear/VaultUsesHelper;addUsedVault(Lnet/minecraft/world/item/ItemStack;Ljava/util/UUID;)V"))
     private void trinketerEffectsGodCharms(ItemStack stack, UUID vaultId, @Local(argsOnly = true) ServerPlayer player) {
         double damageAvoidanceChance = PlayerExpertisesData.get(player.getLevel())
                 .getExpertises(player)
@@ -80,7 +80,7 @@ public class MixinClassicListenersLogic {
     }
 
     @WrapOperation(method = {"printJoinMessage", "lambda$initServer$1"/*leave*/}, at = @At(value = "INVOKE", target = "Liskallia/vault/core/vault/player/ClassicListenersLogic;getVaultObjective(Ljava/lang/String;)Ljava/lang/String;"))
-    private String improveRaidChatMessage(ClassicListenersLogic instance, String key, Operation<String> original, @Local(argsOnly = true) Vault vault){
+    private static String improveRaidChatMessage(ClassicListenersLogic instance, String key, Operation<String> original, @Local(argsOnly = true) Vault vault){
         if (!"raid".equals(key)) {
             return original.call(instance, key);
         }
