@@ -1,0 +1,13 @@
+{
+  "costs": {
+    "null": {
+      "items": [
+        {
+          "id": "emerald",
+          "count": 48
+        }
+      ],
+      "levels": 10
+    }
+  }
+}

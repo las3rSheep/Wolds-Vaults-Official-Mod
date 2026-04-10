@@ -46,6 +46,10 @@ public class ModGearEnchantmentsProvider extends AbstractGearEnchantmentProvider
             builder.addEnchantment(WBEnchantments.SWIFT_SNEAK.get(), 20, 1);
         });
 
+        add("draconic_evolution", builder -> {
+            builder.addEnchantment(ResourceLocation.fromNamespaceAndPath("draconicevolution", "reaper"), 48, 10);
+        });
+
         add("alexsmobs", builder -> {
             builder.addEnchantment(AMEnchantmentRegistry.STRADDLE_BOARDRETURN, 5, 1);
             builder.addEnchantment(AMEnchantmentRegistry.STRADDLE_JUMP, 5, 1);
