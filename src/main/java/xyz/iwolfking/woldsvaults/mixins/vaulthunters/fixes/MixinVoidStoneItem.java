@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import javax.annotation.Nullable;
 import java.util.List;
 
-@Mixin(value = VoidStoneItem.class, remap = false)
+@Mixin(value = VoidStoneItem.class, remap = true)
 public abstract class MixinVoidStoneItem {
     /**
      * @author iwolfking
