@@ -14,6 +14,7 @@ import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.AnvilBlock;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.items.gear.VaultMapItem;
 import java.util.List;
@@ -23,6 +24,10 @@ import static xyz.iwolfking.woldsvaults.items.gear.VaultMapItem.applySpecialModi
 public class MapModificationRecipe extends VanillaAnvilRecipe {
     @Override
     public boolean onSimpleCraft(AnvilContext context) {
+        if (context.getBlockState().map((state) -> state.getBlock() instanceof AnvilBlock).orElse(false)) {
+            return false;
+        }
+
         ItemStack primary = context.getInput()[0];
         ItemStack secondary = context.getInput()[1];
         if (primary.getItem() instanceof VaultCrystalItem && secondary.getItem() == ModItems.MAP) {
