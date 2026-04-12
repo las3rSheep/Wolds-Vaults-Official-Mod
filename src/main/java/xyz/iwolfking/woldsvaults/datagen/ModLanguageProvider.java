@@ -450,6 +450,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.OMEGA_POG_BLOCK, "Block of Omega Pog");
         add(ModBlocks.ECHO_POG_BLOCK, "Block of Echo Pog");
         add(ModBlocks.POG_BLOCK, "Block of Pog");
+        add(ModBlocks.TIME_TRIAL_TROPHY_BLOCK, "Time Trial Trophy");
         add("block.woldsvaults.card_shop_pedestal", "Card Vendor Pedestal");
         add("block.woldsvaults.weaving_station", "Weaving Station");
         add("item.woldsvaults.recipe_blueprint", "Recipe Blueprint");
