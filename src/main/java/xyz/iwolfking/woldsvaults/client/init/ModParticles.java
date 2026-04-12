@@ -15,6 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.client.particle.ElixirOrbParticle;
+import xyz.iwolfking.woldsvaults.client.particle.SaferSpaceParticle;
 
 @Mod.EventBusSubscriber(modid = WoldsVaults.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModParticles {
@@ -22,6 +23,7 @@ public class ModParticles {
 
 
     public static final RegistryObject<SimpleParticleType> ELIXIR_ORB = REGISTRY.register("elixir_orb", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> SAFERSPACE_CUBE = REGISTRY.register("saferspace_cube", () -> new SimpleParticleType(true));
 
 
     @OnlyIn(Dist.CLIENT)
@@ -30,5 +32,6 @@ public class ModParticles {
         ParticleEngine particleManager = Minecraft.getInstance().particleEngine;
 
         particleManager.register(ELIXIR_ORB.get(), ElixirOrbParticle.Provider::new);
+        particleManager.register(SAFERSPACE_CUBE.get(), SaferSpaceParticle.Provider::new);
     }
 }

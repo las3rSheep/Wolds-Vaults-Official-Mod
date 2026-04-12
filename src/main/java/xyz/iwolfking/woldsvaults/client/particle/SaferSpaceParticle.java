@@ -1,4 +1,4 @@
-package xyz.iwolfking.woldsvaults.client.particles;
+package xyz.iwolfking.woldsvaults.client.particle;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.*;
