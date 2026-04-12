@@ -393,6 +393,7 @@
     "vaulthunters.custom.MixinSpiritExtractorScreen",
     "vaulthunters.custom.MixinTickTimer",
     "vaulthunters.custom.MixinVault",
+    "vaulthunters.custom.MixinVaultForgeScreen",
     "vaulthunters.fixes.MixinCatalystItemRenderer",
     "vaulthunters.fixes.MixinClientLocale",
     "vaulthunters.fixes.MixinIntegrationMinimap",
