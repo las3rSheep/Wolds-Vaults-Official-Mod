@@ -394,6 +394,7 @@
     "vaulthunters.custom.MixinSpiritExtractorScreen",
     "vaulthunters.custom.MixinTickTimer",
     "vaulthunters.custom.MixinVault",
+    "vaulthunters.custom.MixinVaultForgeScreen",
     "vaulthunters.fixes.MixinCatalystItemRenderer",
     "vaulthunters.fixes.MixinClientLocale",
     "vaulthunters.fixes.MixinIntegrationMinimap",
@@ -402,6 +403,7 @@
     "vaulthunters.fixes.MixinTalentWidget",
     "vaulthunters.fixes.MixinToolItemRenderer",
     "vaulthunters.fixes.MixinUniqueCodexScreen",
+    "vaulthunters.fixes.MixinVoidStoneItem",
     "vaulthunters.objectives.MixinClientCrystalData"
   ],
   "injectors": {
