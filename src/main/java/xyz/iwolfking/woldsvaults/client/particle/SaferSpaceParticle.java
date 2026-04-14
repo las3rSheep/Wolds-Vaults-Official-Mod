@@ -24,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 
 import javax.annotation.Nullable;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class SaferSpaceParticle extends Particle {
@@ -34,8 +35,10 @@ public class SaferSpaceParticle extends Particle {
     private Vec3 rotationDegreeAxis;
     private Vec3 prevRotationDegreeAxis;
     private LivingEntity target = null;
-    private boolean visible = false;
+    private boolean visible = true;
     private boolean isFirst = false;
+
+    public static LinkedList<SaferSpaceParticle> particles = new LinkedList<>();
 
     protected SaferSpaceParticle(ClientLevel world, SpriteSet spriteSet, double x, double y, double z) {
         super(world, x, y, z);
@@ -49,12 +52,12 @@ public class SaferSpaceParticle extends Particle {
     }
 
     public void tick() {
-//        if(age++ > lifetime) {
-//            remove();
-//            return;
-//        }
-        if(target == null
-        || target.isRemoved()) {
+        if(this.age++ > this.lifetime) {
+            remove();
+            return;
+        }
+        if(this.target == null
+        || this.target.isRemoved()) {
             remove();
             return;
         }
@@ -65,41 +68,53 @@ public class SaferSpaceParticle extends Particle {
 
         Minecraft inst = Minecraft.getInstance();
 //        if (age++ > 15) {
-            if(target.hasEffect(ModEffects.SAFER_SPACE)
-            && target.getEffect(ModEffects.SAFER_SPACE).isVisible())
-                this.visible = true;
-            else {
-                remove();
-                return;
-            }
-
-            if (inst.player != null
-            && inst.player.is(target)
-            && inst.options.getCameraType().isFirstPerson()) {
-                LocalPlayer p = (LocalPlayer)target;
-                this.isFirst = true;
-                this.x = target.getX();
-                this.y = target.getY() + target.getEyeHeight();
-                this.z = target.getZ();
-                this.size = .2f;
-            } else {
-                this.isFirst = false;
-                this.x = target.getX();
-                this.y = target.getY() + target.getBbHeight() * 0.55f;
-                this.z = target.getZ();
-                this.size = target.getBbHeight() * 1.1f;
-            }
-            this.updateRotations();
-//        }
+//        if(target.hasEffect(ModEffects.SAFER_SPACE))
+//            this.visible = target.getEffect(ModEffects.SAFER_SPACE).isVisible();
 //        else {
-//            this.x = target.getX();
-//            this.y = target.getY() + 1;
-//            this.z = target.getZ();
+//            remove();
+//            return;
 //        }
+
+        if (inst.player != null
+        && inst.player.is(target)
+        && inst.options.getCameraType().isFirstPerson()) {
+            this.isFirst = true;
+            this.x = this.target.getX();
+            this.y = this.target.getY() + this.target.getEyeHeight();
+            this.z = this.target.getZ();
+            this.size = .2f;
+        } else {
+            this.isFirst = false;
+            this.x = this.target.getX();
+            this.y = this.target.getY() + this.target.getBbHeight() * 0.55f;
+            this.z = this.target.getZ();
+            this.size = this.target.getBbHeight() * 1.1f;
+        }
+        this.updateRotations();
     }
 
+    @Override
+    public void remove() {
+        particles.remove(this);
+        this.removed = true;
+    }
+
+    public LivingEntity getTarget() {
+        return this.target;
+    }
     public void setTarget(LivingEntity e) {
         this.target = e;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    public boolean getVisible() {
+        return this.visible;
+    }
+    public void setVisible(boolean isVisible) {
+        this.visible = isVisible;
     }
 
     private void updateRotations() {
@@ -123,30 +138,30 @@ public class SaferSpaceParticle extends Particle {
     }
 
     public void render(VertexConsumer buffer, Camera ari, float partialTicks) {
-        if(this.visible) {
+        if(this.visible && !this.isFirst) {
             float x = (float) Mth.lerp(partialTicks, this.xo, this.x);
             float y = (float) Mth.lerp(partialTicks, this.yo, this.y);
             float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
             Vec3 cameraPos = ari.getPosition();
-            if(!this.isFirst) {
+//            if(!this.isFirst) {
                 x = (float) ((double) x - cameraPos.x());
                 y = (float) ((double) y - cameraPos.y());
                 z = (float) ((double) z - cameraPos.z());
-            }
-            else {
-//                x = ari.getLookVector().x();
-//                y = ari.getLookVector().y();
-//                z = ari.getLookVector().z();
-                x = (float) cameraPos.x;
-                y = (float) cameraPos.y;
-                z = (float) cameraPos.z;
-            }
-            LocalPlayer p = Minecraft.getInstance().player;
-            Item i = p.getOffhandItem().getItem();
+//            }
+//            else {
+//                x += ari.getLookVector().x() * 2;
+//                y += ari.getLookVector().y() * 2;
+//                z += ari.getLookVector().z() * 2;
+//                x = (float) cameraPos.x;
+//                y = (float) cameraPos.y;
+//                z = (float) cameraPos.z;
+//            }
+//            LocalPlayer p = Minecraft.getInstance().player;
+//            Item i = p.getOffhandItem().getItem();
 //            x = (float) p.getHandHoldingItemAngle(i).x;
 //            y = (float) p.getHandHoldingItemAngle(i).y;
 //            z = (float) p.getHandHoldingItemAngle(i).z;
-            Quaternion q = TransformationHelper.quatFromXYZ(new Vector3f(p.getHandHoldingItemAngle(i)),false);
+//            Quaternion q = TransformationHelper.quatFromXYZ(new Vector3f(p.getHandHoldingItemAngle(i)),false);
 //            Vec3 hand = cameraPos.
 
             Vec3 iRotation = this.getInterpolatedRotation(partialTicks);
@@ -220,7 +235,7 @@ public class SaferSpaceParticle extends Particle {
                                        double x, double y, double z,
                                        double dX, double dY, double dZ) {
             SaferSpaceParticle p = new SaferSpaceParticle(world, this.spriteSet, x, y, z);
-            p.lifetime = 20;
+            p.lifetime = 1000;
             return p;
         }
     }

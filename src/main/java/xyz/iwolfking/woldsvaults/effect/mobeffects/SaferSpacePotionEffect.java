@@ -5,8 +5,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -29,33 +28,36 @@ public class SaferSpacePotionEffect extends MobEffect {
     @Override
     public boolean isDurationEffectTick(int pDuration, int pAmplifier) { return false;}
 
-    @OnlyIn(Dist.DEDICATED_SERVER)
     @SubscribeEvent()
     public static void onSafeSpaceExpire(PotionEvent.PotionExpiryEvent event) {
-        //procs when saferspaces reenables *or* when its total duration runs out
+        //procs when saferspaces' total duration runs out
 
         MobEffectInstance effect = event.getPotionEffect();
         if(effect != null
-        && effect.getEffect() instanceof SaferSpacePotionEffect
-        && effect.isVisible())
-            ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(event::getEntityLiving)
-                , new SaferSpaceParticleMessage(event.getEntityLiving().getUUID()
-                    , SaferSpaceParticleMessage.Reason.REMOVE));
+        && effect.getEffect() instanceof SaferSpacePotionEffect) {
+            if (effect.isVisible()) {
+                ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(event::getEntityLiving)
+                        , new SaferSpaceParticleMessage(event.getEntityLiving() instanceof Player
+                                , event.getEntityLiving()
+                                , SaferSpaceParticleMessage.Reason.REMOVE));//expire
+            }
+        }
     }
 
-    @OnlyIn(Dist.DEDICATED_SERVER)
     @SubscribeEvent()
     public static void onSafeSpaceAdded(PotionEvent.PotionAddedEvent event) {
         //procs when saferspaces refreshes its duration, or when it blocks damage
 
         if(event.getPotionEffect().getEffect() instanceof SaferSpacePotionEffect) {
             if(event.getPotionEffect().isVisible()) {
-                ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(event::getEntityLiving)
-                    , new SaferSpaceParticleMessage(event.getEntityLiving().getUUID()
-                        , SaferSpaceParticleMessage.Reason.MAKE_REFRESH));//activate, refresh, reactivate
+                ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(event::getEntityLiving)
+                    , new SaferSpaceParticleMessage(event.getEntityLiving() instanceof Player
+                        , event.getEntityLiving()
+                        , SaferSpaceParticleMessage.Reason.MAKE_REFRESH));//activate, refresh
             } else
-                ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(event::getEntityLiving)
-                    , new SaferSpaceParticleMessage(event.getEntityLiving().getUUID()
+                ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(event::getEntityLiving)
+                    , new SaferSpaceParticleMessage(event.getEntityLiving() instanceof Player
+                        , event.getEntityLiving()
                         , SaferSpaceParticleMessage.Reason.HIDE));//block
         }
     }
