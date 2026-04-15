@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.event.common.EntityChainAttackedEvent;
 import iskallia.vault.core.event.common.EntityDamageBlockEvent;
@@ -14,10 +15,14 @@ import iskallia.vault.init.ModDynamicModels;
 import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.init.ModNetwork;
 import iskallia.vault.network.message.ChainingParticleMessage;
+import iskallia.vault.skill.base.Skill;
+import iskallia.vault.skill.talent.type.PuristTalent;
+import iskallia.vault.snapshot.AttributeSnapshot;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.EntityHelper;
 import iskallia.vault.util.Entropy;
 import iskallia.vault.util.calc.BlockChanceHelper;
+import iskallia.vault.world.data.PlayerTalentsData;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
@@ -25,6 +30,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
@@ -38,8 +44,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModSounds;
 import xyz.iwolfking.woldsvaults.mixins.LivingEntityAccessor;
@@ -70,6 +78,25 @@ public class MixinGearAttributeEvents {
 
         return Entropy.canExecute(entity, stat, chance);
     }
+
+    /**
+     * @author aida
+     * @reason to make the purist talent multiplicative
+     */
+    @Inject(method = "increaseDamageDealt",
+            at = @At(value = "INVOKE",
+                    target = "Liskallia/vault/world/data/PlayerTalentsData;getTalents(Lnet/minecraft/world/entity/player/Player;)Liskallia/vault/skill/tree/TalentTree;",
+                    shift = At.Shift.BEFORE),
+            cancellable = true)
+    private static void increaseDamageDealt(LivingHurtEvent event, CallbackInfo ci, @Local PlayerTalentsData talents, @Local float increasedDamage, @Local Player player) {
+        float puristMult = 1.0F;
+        for(PuristTalent talent : talents.getTalents(player).getAll(PuristTalent.class, Skill::isUnlocked)) {
+            puristMult += talent.getDamageIncrease() * (float)talent.getCount(player);
+        }
+        event.setAmount(event.getAmount() * (1.0F + increasedDamage) * puristMult);
+        ci.cancel();
+    }
+
 
     /**
      * @author aida
