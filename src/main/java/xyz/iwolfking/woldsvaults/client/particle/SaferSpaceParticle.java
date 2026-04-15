@@ -61,33 +61,27 @@ public class SaferSpaceParticle extends Particle {
             remove();
             return;
         }
-        this.xo = this.x;
-        this.yo = this.y;
-        this.zo = this.z;
+
+        this.xo = target.xo;
+        this.yo = target.yo;
+        this.zo = target.zo;
+        this.x = this.target.getX();
+        this.y = this.target.getY();
+        this.z = this.target.getZ();
         this.oRoll = this.roll;
 
         Minecraft inst = Minecraft.getInstance();
-//        if (age++ > 15) {
-//        if(target.hasEffect(ModEffects.SAFER_SPACE))
-//            this.visible = target.getEffect(ModEffects.SAFER_SPACE).isVisible();
-//        else {
-//            remove();
-//            return;
-//        }
-
         if (inst.player != null
         && inst.player.is(target)
         && inst.options.getCameraType().isFirstPerson()) {
             this.isFirst = true;
-            this.x = this.target.getX();
-            this.y = this.target.getY() + this.target.getEyeHeight();
-            this.z = this.target.getZ();
+            this.y += this.target.getEyeHeight();
+            this.yo += this.target.getEyeHeight();
             this.size = .2f;
         } else {
             this.isFirst = false;
-            this.x = this.target.getX();
-            this.y = this.target.getY() + this.target.getBbHeight() * 0.55f;
-            this.z = this.target.getZ();
+            this.y += this.target.getBbHeight() * 0.55f;
+            this.yo += this.target.getBbHeight() * 0.55f;
             this.size = this.target.getBbHeight() * 1.1f;
         }
         this.updateRotations();
@@ -118,15 +112,15 @@ public class SaferSpaceParticle extends Particle {
     }
 
     private void updateRotations() {
-        if (this.rotationChange.lengthSqr() > (double)0.0F) {
-            this.prevRotationDegreeAxis = this.rotationDegreeAxis.scale(1.0F);
+        if (this.rotationChange.lengthSqr() > 0.0) {
+            this.prevRotationDegreeAxis = this.rotationDegreeAxis.scale(1.0);
             this.rotationDegreeAxis = this.rotationDegreeAxis.add(this.rotationChange);
-            this.rotationDegreeAxis = new Vec3(this.rotationDegreeAxis.x() % (double)360.0F, this.rotationDegreeAxis.y() % (double)360.0F, this.rotationDegreeAxis.z() % (double)360.0F);
+            this.rotationDegreeAxis = new Vec3(this.rotationDegreeAxis.x() % 360.0, this.rotationDegreeAxis.y() % 360.0, this.rotationDegreeAxis.z() % 360.0);
             if (!this.rotationDegreeAxis.add(this.rotationChange).equals(this.rotationDegreeAxis)) {
                 this.prevRotationDegreeAxis = this.rotationDegreeAxis.subtract(this.rotationChange);
             }
         } else {
-            this.prevRotationDegreeAxis = this.rotationDegreeAxis.scale(1.0F);
+            this.prevRotationDegreeAxis = this.rotationDegreeAxis.scale(1.0);
         }
 
     }
@@ -142,11 +136,12 @@ public class SaferSpaceParticle extends Particle {
             float x = (float) Mth.lerp(partialTicks, this.xo, this.x);
             float y = (float) Mth.lerp(partialTicks, this.yo, this.y);
             float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
+
             Vec3 cameraPos = ari.getPosition();
 //            if(!this.isFirst) {
-                x = (float) ((double) x - cameraPos.x());
-                y = (float) ((double) y - cameraPos.y());
-                z = (float) ((double) z - cameraPos.z());
+                x = (float)(x - cameraPos.x());
+                y = (float)(y - cameraPos.y());
+                z = (float)(z - cameraPos.z());
 //            }
 //            else {
 //                x += ari.getLookVector().x() * 2;
