@@ -106,6 +106,7 @@ minecraft {
             jvmArgs "-Xms2G"
             jvmArgs "-Xmx8G"
             jvmArgs "-Dfml.earlyprogresswindow=false"
+            jvmArgs "-XX:+AllowEnhancedClassRedefinition"
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', mod_id
         }

@@ -98,7 +98,7 @@ public abstract class ChainBreakHandler extends BlockBreakHandler {
                                 }
 
                                 if (showChain)
-                                    ModNetwork.CHANNEL.send(PacketDistributor.ALL.noArg(), new ChainingParticleMessage(List.of(Vec3.atCenterOf(headPos),Vec3.atCenterOf(offset))));
+                                    ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(()->player), new ChainingParticleMessage(List.of(Vec3.atCenterOf(headPos),Vec3.atCenterOf(offset))));
 
                                 positionQueue.add(offset);
                                 traversedBlocks.add(offset);
