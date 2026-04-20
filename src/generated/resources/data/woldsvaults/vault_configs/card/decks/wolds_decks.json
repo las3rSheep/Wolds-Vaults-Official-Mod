@@ -21,8 +21,8 @@
         }
       ],
       "socketCount": {
-        "min": 3,
-        "max": 3
+        "min": 4,
+        "max": 4
       }
     },
     "snake": {
@@ -46,8 +46,8 @@
         }
       ],
       "socketCount": {
-        "min": 1,
-        "max": 1
+        "min": 2,
+        "max": 2
       }
     },
     "crate": {
@@ -70,8 +70,8 @@
         }
       ],
       "socketCount": {
-        "min": 1,
-        "max": 1
+        "min": 3,
+        "max": 3
       }
     },
     "wall": {
@@ -120,8 +120,8 @@
         }
       ],
       "socketCount": {
-        "min": 2,
-        "max": 2
+        "min": 3,
+        "max": 3
       }
     }
   }

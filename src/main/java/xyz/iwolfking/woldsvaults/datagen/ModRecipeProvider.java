@@ -182,7 +182,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("III")
                 .unlockedBy("has_modbox", has(iskallia.vault.init.ModItems.MOD_BOX))
                 .save(recipeCosumer -> pFinishedRecipeConsumer.accept(new UncheckedRecipe(recipeCosumer, Map.of(
-                        'L', ResourceLocation.fromNamespaceAndPath("craftingstation", "crafting_station")
+                        'L', ResourceLocation.fromNamespaceAndPath("minecraft", "crafting_table")
                 ))));
 
         ShapedRecipeBuilder.shaped(ModBlocks.WEAVING_STATION)
