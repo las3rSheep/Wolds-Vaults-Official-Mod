@@ -240,6 +240,7 @@
     "vaulthunters.custom.MixinModifierContext",
     "vaulthunters.custom.MixinModifierWorkbenchBlock",
     "vaulthunters.custom.MixinModModelDiscoveryGoals",
+    "vaulthunters.custom.MixinNovaAbility",
     "vaulthunters.custom.MixinObjectiveHudSettings",
     "vaulthunters.custom.MixinObjectiveTemplates",
     "vaulthunters.custom.MixinPlayerGreedData",
