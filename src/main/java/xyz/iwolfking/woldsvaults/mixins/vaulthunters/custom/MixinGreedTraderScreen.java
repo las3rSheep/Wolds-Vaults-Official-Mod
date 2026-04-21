@@ -1,7 +1,10 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.lightman314.lightmanscurrency.util.InventoryUtil;
+import iskallia.vault.client.data.ClientShardTradeData;
 import iskallia.vault.client.gui.framework.ScreenTextures;
+import iskallia.vault.client.gui.framework.element.DynamicLabelElement;
 import iskallia.vault.client.gui.framework.element.ItemStackDisplayElement;
 import iskallia.vault.client.gui.framework.element.TextureAtlasElement;
 import iskallia.vault.client.gui.framework.render.Tooltips;
@@ -10,10 +13,13 @@ import iskallia.vault.client.gui.framework.render.spi.ITooltipRendererFactory;
 import iskallia.vault.client.gui.framework.screen.AbstractElementContainerScreen;
 import iskallia.vault.client.gui.framework.spatial.Spatials;
 import iskallia.vault.client.gui.framework.spatial.spi.IMutableSpatial;
+import iskallia.vault.client.gui.framework.spatial.spi.IPosition;
+import iskallia.vault.client.gui.framework.spatial.spi.ISize;
 import iskallia.vault.client.gui.framework.text.LabelTextStyle;
 import iskallia.vault.client.gui.framework.text.TextBorder;
 import iskallia.vault.client.gui.screen.CatalystInfusionTableScreen;
 import iskallia.vault.client.gui.screen.GreedTraderScreen;
+import iskallia.vault.client.gui.screen.ShardTradeScreen;
 import iskallia.vault.client.gui.screen.block.ToolStationScreen;
 import iskallia.vault.client.gui.screen.block.VaultArtisanStationScreen;
 import iskallia.vault.client.gui.screen.block.base.ForgeRecipeContainerScreen;
@@ -27,13 +33,21 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.iwolfking.woldsvaults.api.lib.ui.CountDownElement;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 @Mixin(value = GreedTraderScreen.class, remap = false)
 public class MixinGreedTraderScreen  extends AbstractElementContainerScreen<GreedTraderContainer> {
@@ -51,5 +65,29 @@ public class MixinGreedTraderScreen  extends AbstractElementContainerScreen<Gree
             itemStackDisplayElement.setScale(0.72F);
             this.addElement(itemStackDisplayElement);
 
+            //Countdown
+            LocalDateTime endTime = ClientShardTradeData.getNextReset();
+            LocalDateTime nowTime = LocalDateTime.now(ZoneId.of("UTC")).withNano(0);
+            LocalTime diff = LocalTime.MIN.plusSeconds(ChronoUnit.SECONDS.between(nowTime, endTime));
+            Component component = new TextComponent(diff.format(DateTimeFormatter.ISO_LOCAL_TIME));
+            this.addElement(
+                new CountDownElement(
+                        Spatials.positionXYZ(this.getGuiSpatial().width() / 2 - 70, -10, 200),
+                        Spatials.size(TextBorder.DEFAULT_FONT.get().width(component), 9),
+                        (() -> component),
+                        LabelTextStyle.shadowFromTextColor()
+                )
+                        .layout((screen, gui, parent, world) -> world.translateXY(gui.x(), gui.y()))
+            );
+            this.addElement(
+                (new TextureAtlasElement<>(
+                        Spatials.positionXY(this.getGuiSpatial().width() / 2 - 79, -ScreenTextures.TAB_COUNTDOWN_BACKGROUND.height()),
+                        ScreenTextures.TAB_COUNTDOWN_BACKGROUND
+                )
+                        .layout((screen, gui, parent, world) -> world.translateXY(gui)))
+                        .tooltip(Tooltips.multi(() -> List.of(new TextComponent("Shop resets in"))))
+            );
     }
+
+
 }

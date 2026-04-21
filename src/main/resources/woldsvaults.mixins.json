@@ -244,6 +244,7 @@
     "vaulthunters.custom.MixinNovaAbility",
     "vaulthunters.custom.MixinObjectiveHudSettings",
     "vaulthunters.custom.MixinObjectiveTemplates",
+    "vaulthunters.custom.MixinPlayerBlackMarketData",
     "vaulthunters.custom.MixinPlayerGreedData",
     "vaulthunters.custom.MixinPlayerReputationData",
     "vaulthunters.custom.MixinPlayerResearchesData",
