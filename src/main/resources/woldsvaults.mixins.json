@@ -107,6 +107,7 @@
     "tropicraft.MixinEIHEntity",
     "vaultarhud.MixinInventoryHudRender",
     "vaultarhud.MixinScreenValidator",
+    "vaultfilters.MixinAffixAttribute",
     "vaulthunters.MixinModConfigs",
     "vaulthunters.MixinVaultObjectivesModule",
     "vaulthunters.accessors.ArchitectCrystalLayoutAccessor",
