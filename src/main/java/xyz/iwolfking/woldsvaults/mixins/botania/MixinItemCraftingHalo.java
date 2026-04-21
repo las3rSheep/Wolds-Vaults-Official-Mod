@@ -3,6 +3,8 @@ package xyz.iwolfking.woldsvaults.mixins.botania;
 import com.llamalad7.mixinextras.sugar.Local;
 import iskallia.vault.research.Restrictions;
 import iskallia.vault.research.StageManager;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
@@ -14,6 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import vazkii.botania.common.item.ItemCraftingHalo;
 
+@Restriction(
+        require = {
+                @Condition(type = Condition.Type.MOD, value = "botania")
+        }
+)
 @Mixin(value = ItemCraftingHalo.class, remap = false)
 public class MixinItemCraftingHalo {
     @Inject(method = "tryCraft", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/crafting/Recipe;matches(Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Z"), cancellable = true, remap = true)
