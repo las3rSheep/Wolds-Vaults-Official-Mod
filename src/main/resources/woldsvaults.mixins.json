@@ -217,6 +217,7 @@
     "vaulthunters.custom.MixinGodCharmItem",
     "vaulthunters.custom.MixinGodCharmRollHelper",
     "vaulthunters.custom.MixinGrantedEffectHelper",
+    "vaulthunters.custom.MixinGreedTraderEntity",
     "vaulthunters.custom.MixinHeraldCrystalObjective",
     "vaulthunters.custom.MixinHeraldObjective",
     "vaulthunters.custom.MixinInscriptionData",
