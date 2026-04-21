@@ -106,6 +106,8 @@
     "sophisticatedbackpacks.MixinToolSwapperWrapper",
     "sophisticatedstorage.MixinPackingTape",
     "supplementaries.MixinFaucetTileEntity",
+    "thermal.MixinCyclicAssemblerBlock",
+    "thermal.MixinTileBlockActive4Way",
     "travel_anchors.MixinTeleportHandler",
     "tropicraft.MixinEIHEntity",
     "vaultarhud.MixinInventoryHudRender",

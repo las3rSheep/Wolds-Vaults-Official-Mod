@@ -323,6 +323,9 @@ dependencies {
     implementation fg.deobf("curse.maven:iron-generators-446489:3955850")
     implementation fg.deobf("curse.maven:toms-storage-378609:5211203") // vaultarhud
     implementation fg.deobf("curse.maven:rftools-storage-350006:4069708")
+    compileOnly fg.deobf("curse.maven:rftools-utility-342466:4938941")
+    compileOnly fg.deobf("curse.maven:thermal-foundation-222880:4788649")
+    compileOnly fg.deobf("curse.maven:thermal-expansion-69163:4782927")
     implementation fg.deobf("curse.maven:common-capabilities-247007:4987177")
     implementation fg.deobf("curse.maven:cyclops-core-232758:5262021") // lot of mods
     implementation fg.deobf("curse.maven:titanium-287342:5151207") // industrial foregoing dep
