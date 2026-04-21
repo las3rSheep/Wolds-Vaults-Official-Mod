@@ -43,6 +43,7 @@
     "bettercombat.MixinWeaponAttributesHelper",
     "blackmarkettweaks.MixinBlackMarketTileEntity",
     "blackmarkettweaks.MixinServerboundResetBlackMarketTradesMessageMixin",
+    "botania.MixinItemCraftingHalo",
     "cloudstorage.MixinBalloonBuddyEntity",
     "cofhcore.MixinCofhEnchantment",
     "compressium.MixinCompressium",
