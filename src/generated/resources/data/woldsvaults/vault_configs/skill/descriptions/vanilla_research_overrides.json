@@ -82,6 +82,36 @@
         "color": "yellow"
       }
     ],
+    "Automatic Genius": [
+      {
+        "text": "Unlocks the ",
+        "color": "$text"
+      },
+      {
+        "text": "Bragging rights",
+        "color": "$yellow"
+      },
+      {
+        "text": " of unlocking all mods!\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "Big Brain!\n\n",
+        "color": "yellow"
+      },
+      {
+        "text": "You have completed every research and filled your brain with knowledge!\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "This research is purely for bragging rights, all autocrafting is available within their respective mod without this unlock!\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "All mods with autocrafting respect the research system of Vault Hunters, only allowing crafting items you have unlocked!",
+        "color": "$text"
+      }
+    ],
     "Elevators": [
       {
         "text": "Unlocks the ",

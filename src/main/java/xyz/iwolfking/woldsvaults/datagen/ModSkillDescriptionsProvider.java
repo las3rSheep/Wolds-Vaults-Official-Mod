@@ -67,7 +67,7 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                  })
 
                  .addDescription("Automatic Genius", jsonElements -> {
-                            modDesc("Nothing", "at all",  innerDesc -> {
+                            modDesc("Bragging rights", "of unlocking all mods",  innerDesc -> {
                                 innerDesc.add(JsonDescription.simple("Big Brain!\n\n", "yellow"));
                                 innerDesc.add(JsonDescription.simple("You have completed every research and filled your brain with knowledge!\n\n"));
                                 innerDesc.add(JsonDescription.simple("This research is purely for bragging rights, all autocrafting is available within their respective mod without this unlock!\n\n"));
