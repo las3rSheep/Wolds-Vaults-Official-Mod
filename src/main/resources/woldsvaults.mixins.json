@@ -96,6 +96,7 @@
     "openpac.MixinHostileEntityProtectionHelper",
     "pnc.MixinDisenchantingPressureRecipe",
     "quark.MixinAncientTomesModule",
+    "rftoolsutility.MixinCrafterBaseTE",
     "scannable.MixinRangeScannerModule",
     "scannable.MixinScannableItem",
     "scannable.MixinScannableItems",
@@ -417,7 +418,8 @@
     "vaulthunters.fixes.MixinToolItemRenderer",
     "vaulthunters.fixes.MixinUniqueCodexScreen",
     "vaulthunters.fixes.MixinVoidStoneItem",
-    "vaulthunters.objectives.MixinClientCrystalData"
+    "vaulthunters.objectives.MixinClientCrystalData",
+    "vaulthunters.fixes.MixinRebirthObjectiveClient"
   ],
   "injectors": {
     "defaultRequire": 1
