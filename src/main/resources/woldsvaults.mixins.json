@@ -96,6 +96,7 @@
     "openpac.MixinHostileEntityProtectionHelper",
     "pnc.MixinDisenchantingPressureRecipe",
     "quark.MixinAncientTomesModule",
+    "rftoolsutility.MixinCrafterBaseTE",
     "scannable.MixinRangeScannerModule",
     "scannable.MixinScannableItem",
     "scannable.MixinScannableItems",
