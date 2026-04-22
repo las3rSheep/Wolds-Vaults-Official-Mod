@@ -253,6 +253,7 @@
     "vaulthunters.custom.MixinPlayerBlackMarketData",
     "vaulthunters.custom.MixinPlayerGreedData",
     "vaulthunters.custom.MixinPlayerGreedTraderData",
+    "vaulthunters.custom.MixinPlayerGreedTreeData",
     "vaulthunters.custom.MixinPlayerReputationData",
     "vaulthunters.custom.MixinPlayerResearchesData",
     "vaulthunters.custom.MixinPlayerSpiritRecoveryData",
