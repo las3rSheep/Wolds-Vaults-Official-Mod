@@ -62,6 +62,10 @@ public class WoldMixinCanceller implements MixinCanceller {
             return true;
         }
 
+        if(s.equals("io.iridium.qolhunters.mixin.greedtrader.MixinGreedTraderScreen")) {
+            return true;
+        }
+
 
 
         return false;
