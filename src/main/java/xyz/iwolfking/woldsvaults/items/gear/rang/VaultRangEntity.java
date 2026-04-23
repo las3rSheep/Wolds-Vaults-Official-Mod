@@ -52,6 +52,7 @@ import vazkii.quark.base.handler.QuarkSounds;
 import xyz.iwolfking.woldsvaults.api.util.CollisionHelper;
 import xyz.iwolfking.woldsvaults.init.ModEntities;
 import xyz.iwolfking.woldsvaults.init.ModItems;
+import xyz.iwolfking.woldsvaults.items.gear.VaultRangItem;
 import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.AttributeSnapshotHelperAccessor;
 
 import javax.annotation.Nonnull;
@@ -371,7 +372,7 @@ public class VaultRangEntity extends Projectile {
         liveTime++;
 
         LivingEntity owner = getThrower();
-        if(owner == null || !owner.isAlive() || !(owner instanceof Player)) {
+        if(owner == null || !owner.isAlive() || !(owner instanceof Player player)) {
             if(!level.isClientSide) {
                 while(isInWall())
                     setPos(getX(), getY() + 1, getZ());
@@ -417,17 +418,20 @@ public class VaultRangEntity extends Projectile {
             double motionMag = 3.25 + VaultRangLogic.getVelocity(stack) * 0.25;
 
             if(motion.lengthSqr() < motionMag) {
-                Player player = (Player) owner;
                 Inventory inventory = player.getInventory();
                 ItemStack stackInSlot = inventory.getItem(slot);
 
                 if(!level.isClientSide) {
                     playSound(QuarkSounds.ENTITY_PICKARANG_PICKUP, 1, 1);
 
-                    if(!stack.isEmpty()) if (player.isAlive() && stackInSlot.isEmpty())
-                        inventory.setItem(slot, stack);
-                    else if (!player.isAlive() || !inventory.add(stack))
-                        player.drop(stack, false);
+                    if (!stackInSlot.isEmpty()) {
+                        VaultRangItem.setInFlight(stackInSlot, false, player);
+
+                        int cooldown = 10 - (int) player.getAttributeValue(Attributes.ATTACK_SPEED);
+                        if (cooldown > 0) {
+                            player.getCooldowns().addCooldown(stackInSlot.getItem(), cooldown);
+                        }
+                    }
 
                     if (player.isAlive()) {
                         for (ItemEntity item : items)
