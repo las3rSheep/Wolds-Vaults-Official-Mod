@@ -98,8 +98,22 @@ public class LightmanWalletHudModule extends AbstractHudModule<ModuleRenderConte
                     coin,
                     iconX,
                     iconY,
-                    true
+                    false // decorations are bugged since vh 21.5
                 );
+                // render the stack size manually until it's fixed
+                poseStack.pushPose();
+                poseStack.translate(0.0, 0.0, 999.0);
+                Font font = Minecraft.getInstance().font;
+                font.drawShadow(
+                    poseStack,
+                    coin.getCount() +"",
+                    iconX + 11,
+                    iconY + 9,
+                    0xFFFFFFFF
+                );
+                poseStack.popPose();
+
+
                 iconX += offsetAmount;
             }
         }
