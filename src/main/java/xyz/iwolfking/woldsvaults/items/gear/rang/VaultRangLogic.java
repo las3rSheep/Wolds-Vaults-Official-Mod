@@ -20,6 +20,11 @@ public class VaultRangLogic {
         ACTIVE_RANG.set(pickarang);
     }
 
+
+    public static boolean isRangAttack() {
+        return ACTIVE_RANG.get() != null;
+    }
+
     public static int getTimeout(ItemStack stack) {
         if(stack.getItem() instanceof VaultGearItem) {
             VaultGearData data = VaultGearData.read(stack);
