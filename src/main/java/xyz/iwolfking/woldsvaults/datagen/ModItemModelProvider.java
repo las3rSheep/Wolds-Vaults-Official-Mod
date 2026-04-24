@@ -256,6 +256,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         }));
         simpleItem(ModItems.RAINBOW_UNOBTANIUM);
 
+        etching(VaultMod.id("concentrate_drain"));
+
         ModCompressibleBlocks.getRegisteredBlocks().forEach((k, v) -> {
             for (int i = 0; i < v.size(); i ++) {
                 var name = k.name().toLowerCase();
@@ -284,6 +286,13 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0",
                         VaultMod.id("gui/researches/" + ResourceLocUtils.getStrippedPath(icon)));
+    }
+
+    public ItemModelBuilder etching(ResourceLocation icon) {
+        return getBuilder(VaultMod.id("item/gear/etching/" + ResourceLocUtils.getStrippedPath(icon)).toString())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0",
+                        VaultMod.id("item/gear/etching/" + ResourceLocUtils.getStrippedPath(icon)));
     }
 
     private ItemModelBuilder vaultModifier(ResourceLocation modifierId) {

@@ -292,6 +292,7 @@
   "block.woldsvaults.xl_backpack": "Beeg Backpack",
   "block.woldsvaults.yellow_unobtanium_block": "Yellow Unobtanium Block",
   "command.woldsvaults.give_loot": "Given a %1$s",
+  "command.woldsvaults.prevent_back_into_vault": "You cannot return into The Vault!",
   "config.waila.plugin_miningspeedometer.speedometer": "Enable Speedometer Tooltip",
   "config.waila.plugin_woldsvaults.jade_plugin": "Wold's Plugins",
   "container.woldsvaults.infuser": "Vault Infuser",

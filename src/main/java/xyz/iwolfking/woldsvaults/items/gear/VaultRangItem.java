@@ -9,6 +9,7 @@ import iskallia.vault.gear.VaultGearState;
 import iskallia.vault.gear.VaultGearType;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.crafting.ProficiencyType;
+import iskallia.vault.gear.data.GearDataCache;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.tooltip.GearTooltip;
@@ -134,7 +135,7 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
 
     @Override
     public boolean isBarVisible(ItemStack stack) {
-        return !isInFlight(stack);
+        return !isInFlight(stack) && GearDataCache.of(stack).getState() != null && GearDataCache.of(stack).getState().equals(VaultGearState.IDENTIFIED);
     }
 
     @Override
@@ -201,6 +202,11 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
 
                 if (world.getGameTime() - thrownAt > 20 * 8) {
                     setInFlight(stack, false, player);
+                }
+            }
+            else {
+                if(stack.hasTag() && stack.getTag().contains("InFlight")) {
+                    stack.removeTagKey("InFlight");
                 }
             }
 

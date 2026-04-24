@@ -67,6 +67,7 @@
     "ensorcellation.MixinEnsorcEnchantments",
     "fruitbag.MixinFruitBagHandler",
     "fruitbag.MixinFruitSlot",
+    "ftbessentials.MixinFTBBackCommand",
     "ftbquests.MixinFTBQuestsClient",
     "ftbquests.MixinItemReward",
     "ftbteams.MixinFTBTeamsClient",

@@ -229,8 +229,7 @@ public class MixinGiveLootCommand {
 
     @Unique
     private int woldsVaults$giveBoosterPack(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        ServerPlayer player = ((CommandSourceStack)context.getSource()).getPlayerOrException();
-        RandomSource random = JavaRandom.ofNanoTime();
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
         ItemStack boosterPack = new ItemStack(ModItems.BOOSTER_PACK);
         BoosterPackItem.setId(boosterPack, ResourceLocationArgument.getId(context, "id").toString());
         woldsvaults$giveStack(player, boosterPack);
@@ -239,8 +238,7 @@ public class MixinGiveLootCommand {
 
     @Unique
     private int woldsVaults$giveCardDeck(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        ServerPlayer player = ((CommandSourceStack)context.getSource()).getPlayerOrException();
-        RandomSource random = JavaRandom.ofNanoTime();
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
         ItemStack cardDeck = new ItemStack(ModItems.CARD_DECK);
         CardDeckItem.setId(cardDeck, StringArgumentType.getString(context, "id"));
         woldsvaults$giveStack(player, cardDeck);
@@ -249,8 +247,7 @@ public class MixinGiveLootCommand {
 
     @Unique
     private int woldsVaults$giveTrinketPouch(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        ServerPlayer player = ((CommandSourceStack)context.getSource()).getPlayerOrException();
-        RandomSource random = JavaRandom.ofNanoTime();
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
         ItemStack trinketPouch =  TrinketPouchItem.create(ResourceLocationArgument.getId(context, "id"));
         woldsvaults$giveStack(player, trinketPouch);
         return 1;
@@ -268,8 +265,7 @@ public class MixinGiveLootCommand {
 
     @Unique
     private int woldsVaults$giveResearchToken(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        ServerPlayer player = ((CommandSourceStack)context.getSource()).getPlayerOrException();
-        RandomSource random = JavaRandom.ofNanoTime();
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
         ItemStack researchToken =  ResearchTokenItem.create(StringArgumentType.getString(context, "research"));
         woldsvaults$giveStack(player, researchToken);
         return 1;
@@ -277,8 +273,7 @@ public class MixinGiveLootCommand {
 
     @Unique
     private int woldsVaults$giveVaultGlobe(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        ServerPlayer player = ((CommandSourceStack)context.getSource()).getPlayerOrException();
-        RandomSource random = JavaRandom.ofNanoTime();
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
         ItemStack vaultGlobe = new ItemStack(ModBlocks.VAULT_GLOBE_BLOCK);
 
         CompoundTag tag = vaultGlobe.getOrCreateTag();
@@ -298,8 +293,7 @@ public class MixinGiveLootCommand {
 
     @Unique
     private int woldsVaults$givePlaceholder(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        ServerPlayer player = ((CommandSourceStack)context.getSource()).getPlayerOrException();
-        RandomSource random = JavaRandom.ofNanoTime();
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
         ItemStack placeholder = new ItemStack(ModBlocks.PLACEHOLDER);
         CompoundTag tag = placeholder.getOrCreateTag();
 
@@ -319,8 +313,7 @@ public class MixinGiveLootCommand {
 
     @Unique
     private int woldsVaults$giveGodOffering(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        ServerPlayer player = ((CommandSourceStack)context.getSource()).getPlayerOrException();
-        RandomSource random = JavaRandom.ofNanoTime();
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
         ItemStack godOffering =  GodReputationItem.create(StringArgumentType.getString(context, "god"));
         woldsvaults$giveStack(player, godOffering);
         return 1;
@@ -328,8 +321,7 @@ public class MixinGiveLootCommand {
 
     @Unique
     private int woldsVaults$giveChiselingFocus(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        ServerPlayer player = ((CommandSourceStack)context.getSource()).getPlayerOrException();
-        RandomSource random = JavaRandom.ofNanoTime();
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
         ItemStack chiselingFocus =  ToolModifierNullifyingItem.create(StringArgumentType.getString(context, "modifier"));
         woldsvaults$giveStack(player, chiselingFocus);
         return 1;
@@ -337,7 +329,7 @@ public class MixinGiveLootCommand {
 
     @Unique
     private int woldsVaults$giveLayoutManipulator(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        ServerPlayer player = ((CommandSourceStack)context.getSource()).getPlayerOrException();
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
         ItemStack layoutModifier =  LayoutModificationItem.createLegacy(StringArgumentType.getString(context, "layout"), IntegerArgumentType.getInteger(context, "value"));
         woldsvaults$giveStack(player, layoutModifier);
         return 1;
@@ -345,8 +337,7 @@ public class MixinGiveLootCommand {
 
     @Unique
     private int woldsVaults$giveCatalyst(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        ServerPlayer player = ((CommandSourceStack)context.getSource()).getPlayerOrException();
-        RandomSource random = JavaRandom.ofNanoTime();
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
         ResourceLocation pool = ResourceLocationArgument.getId(context, "pool");
         CatalystConfig.Pool poolEntry = ModConfigs.CATALYST.pools.get(pool).getForLevel(SidedHelper.getVaultLevel(player)).orElse(null);
         if(poolEntry == null) {
@@ -366,8 +357,7 @@ public class MixinGiveLootCommand {
 
     @Unique
     private int woldsVaults$giveInscription(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        ServerPlayer player = ((CommandSourceStack)context.getSource()).getPlayerOrException();
-        RandomSource random = JavaRandom.ofNanoTime();
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
         ResourceLocation pool = ResourceLocationArgument.getId(context, "pool");
         InscriptionConfig.Pool poolEntry = ModConfigs.INSCRIPTION.pools.get(pool).getForLevel(SidedHelper.getVaultLevel(player)).orElse(null);
         if(poolEntry == null) {
