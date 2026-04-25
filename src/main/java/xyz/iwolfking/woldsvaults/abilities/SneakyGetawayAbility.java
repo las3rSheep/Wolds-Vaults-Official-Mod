@@ -3,6 +3,8 @@ package xyz.iwolfking.woldsvaults.abilities;
 import com.google.gson.JsonObject;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.net.BitBuffer;
+import iskallia.vault.gear.attribute.VaultGearAttributeInstance;
+import iskallia.vault.gear.etching.EtchingHelper;
 import iskallia.vault.skill.ability.effect.spi.core.InstantManaAbility;
 import iskallia.vault.skill.base.Skill;
 import iskallia.vault.skill.base.SkillContext;
@@ -23,6 +25,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import virtuoel.pehkui.api.ScaleData;
 import virtuoel.pehkui.api.ScaleType;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
+import xyz.iwolfking.woldsvaults.init.ModEtchingGearAttributes;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -159,6 +162,15 @@ public class SneakyGetawayAbility extends InstantManaAbility {
                 //continue cooldown
                 PlayerAbilitiesData.setAbilityOnCooldown(player, SneakyGetawayAbility.class);
             }
+        }
+
+        public static float getSneakyEtchingDodgeChance(LivingEntity entity) {
+            if(entity instanceof ServerPlayer player) {
+                VaultGearAttributeInstance<Float> sneakyEtchingAttribute = EtchingHelper.getEtchings(player, ModEtchingGearAttributes.SNEAKY_GETAWAY_NINJA).stream().findFirst().orElse(null);
+                return sneakyEtchingAttribute != null ? sneakyEtchingAttribute.getValue() : 0F;
+            }
+
+            return 0F;
         }
 
     }

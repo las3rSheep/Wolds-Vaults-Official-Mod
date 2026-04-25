@@ -188,8 +188,8 @@ public class ColossusAbility extends InstantManaAbility {
         //mixined into applying resistance
         public static float getColossusResistanceCapIncrease(LivingEntity entity) {
             if(entity instanceof ServerPlayer player) {
-                VaultGearAttributeInstance<Float> drainEtchingAttribute = EtchingHelper.getEtchings(player, ModEtchingGearAttributes.COLOSSUS_TITAN_RESISTANCE).stream().findFirst().orElse(null);
-                return drainEtchingAttribute != null ? drainEtchingAttribute.getValue() : 0F;
+                VaultGearAttributeInstance<Float> titanEtchingAttribute = EtchingHelper.getEtchings(player, ModEtchingGearAttributes.COLOSSUS_TITAN_RESISTANCE).stream().findFirst().orElse(null);
+                return titanEtchingAttribute != null ? titanEtchingAttribute.getValue() : 0F;
             }
 
             return 0F;

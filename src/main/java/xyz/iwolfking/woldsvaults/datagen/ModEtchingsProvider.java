@@ -48,7 +48,17 @@ public class ModEtchingsProvider extends AbstractEtchingProvider {
                 });
             });
 
-            builder.addEtching(WoldsVaults.id("diffuse_chemical_bomb"), "Diffuse Chemical Barrage",  "<#83BB6C>Diffuse<gray> throws <yellow>%dvalue<gray> <#83176C>Chaos Grenades<gray> randomly around you", 4092928, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
+            builder.addEtching(WoldsVaults.id("sneaky_getaway_ninja"), "Sneaky Getaway Ninja",  "<#301749>Sneaky Getaway<gray> adds <yellow>%.0fpvalue%<gray> additional <#30455F>Dodge Chance<gray> while active", 3163487, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
+                etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
+                    stringBasicListBuilder.add("Defensive");
+                });
+                etchingEntryBuilder.attribute(WoldsVaults.id("sneaky_getaway_ninja"), "ModEtching", WoldsVaults.id("sneaky_getaway_ninja_etching"), tierBasicListBuilder -> {
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(7, 11, 10, 1, new FloatAttributeGenerator.Range(0.25F, 0.3F, 0.01F)));
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(11, -1, 10, 1, new FloatAttributeGenerator.Range(0.3F, 0.4F, 0.01F)));
+                });
+            });
+
+            builder.addEtching(WoldsVaults.id("diffuse_chemical_bomb"), "Diffuse Chemical Barrage",  "<#83BB6C>Diffuse<gray> throws <yellow>%dvalue<gray> <#83176C>Chaos Grenades<gray> randomly around you", 8874661, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
                 etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
                     stringBasicListBuilder.add("Offensive");
                 });

@@ -128,10 +128,50 @@
       ],
       "affixType": "IMPLICIT"
     },
+    "woldsvaults:sneaky_getaway_ninja": {
+      "name": "Sneaky Getaway Ninja",
+      "description": "<#301749>Sneaky Getaway<gray> adds <yellow>%.0fpvalue%<gray> additional <#30455F>Dodge Chance<gray> while active",
+      "color": 3163487,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Defensive"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:sneaky_getaway_ninja",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:sneaky_getaway_ninja_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 7,
+              "maxGreedTier": 11,
+              "weight": 10,
+              "value": {
+                "min": 0.25,
+                "max": 0.3,
+                "step": 0.01
+              }
+            },
+            {
+              "minGreedTier": 11,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "min": 0.3,
+                "max": 0.4,
+                "step": 0.01
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
     "woldsvaults:diffuse_chemical_bomb": {
       "name": "Diffuse Chemical Barrage",
       "description": "<#83BB6C>Diffuse<gray> throws <yellow>%dvalue<gray> <#83176C>Chaos Grenades<gray> randomly around you",
-      "color": 4092928,
+      "color": 8874661,
       "minGreedTier": 0,
       "typeGroups": [
         "Offensive"

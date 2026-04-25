@@ -25,6 +25,7 @@ public class ModEtchingGearAttributes {
     //Utility Modifiers
     public static final VaultGearAttribute<Float> CONCENTRATE_DRAIN = woldsAttr("concentrate_drain", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<Float> COLOSSUS_TITAN_RESISTANCE = woldsAttr("colossus_titan_resistance", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> SNEAKY_GETAWAY_NINJA = woldsAttr("sneaky_getaway_ninja", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<Boolean> LEVITATE_SLOW_FALLING = woldsAttr("levitate_slow_falling", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
     public static final VaultGearAttribute<Integer> DIFFUSE_CHEMICAL_BOMB = woldsAttr("diffuse_chemical_bomb", VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.intComparator());
 
@@ -33,6 +34,7 @@ public class ModEtchingGearAttributes {
         IForgeRegistry<VaultGearAttribute<?>> registry = event.getRegistry();
         registry.register(CONCENTRATE_DRAIN);
         registry.register(COLOSSUS_TITAN_RESISTANCE);
+        registry.register(SNEAKY_GETAWAY_NINJA);
         registry.register(LEVITATE_SLOW_FALLING);
         registry.register(DIFFUSE_CHEMICAL_BOMB);
     }
