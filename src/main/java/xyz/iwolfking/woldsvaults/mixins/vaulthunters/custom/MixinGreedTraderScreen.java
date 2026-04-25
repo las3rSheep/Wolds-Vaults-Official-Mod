@@ -59,7 +59,7 @@ public class MixinGreedTraderScreen  extends AbstractElementContainerScreen<Gree
     private void addGreedCoinDisplay(CallbackInfo ci) {
             IMutableSpatial var10003 = Spatials.positionXYZ(20, -10, 200);
             Objects.requireNonNull(TextBorder.DEFAULT_FONT.get());
-            this.addElement((new VaultArtisanStationScreen.CoinCountElement(var10003, Spatials.size(100, 9), () -> Minecraft.getInstance().player != null ? InventoryUtil.GetItemCount(Minecraft.getInstance().player.getInventory(), ModItems.GREED_COIN) : 0, LabelTextStyle.shadowFromTextColor())).layout((screen, gui, parent, world) -> world.translateXY(gui.x(), gui.y())));
+            this.addElement((new VaultArtisanStationScreen.CoinCountElement(var10003, Spatials.size(100, 9), () -> this.getMenu().getPlayerCoinCount(), LabelTextStyle.shadowFromTextColor())).layout((screen, gui, parent, world) -> world.translateXY(gui.x(), gui.y())));
             this.addElement(((new TextureAtlasElement<>(Spatials.positionXY(0, -ScreenTextures.TAB_SOULSHARD_BACKGROUND.height()), ScreenTextures.TAB_SOULSHARD_BACKGROUND)).layout((screen, gui, parent, world) -> world.translateXY(gui))).tooltip(Tooltips.multi(() -> List.of(new TextComponent("Greed Coins")))));
             ItemStackDisplayElement<?> itemStackDisplayElement = (new ItemStackDisplayElement<>(Spatials.positionXY(5, -ScreenTextures.TAB_COUNTDOWN_BACKGROUND.height() + 3), new ItemStack(ModItems.GREED_COIN, 64))).layout((screen, gui, parent, world) -> world.translateXY(gui));
             itemStackDisplayElement.setScale(0.72F);
