@@ -88,9 +88,7 @@ public class ModAbilityDescriptionsProvider extends AbstractAbilityDescriptionsP
 
             builder.addDescription("Sneaky_Getaway", jsonElements -> {
                 jsonElements.add(JsonDescription.simple("Makes you considerably smaller and increases your "));
-                jsonElements.add(JsonDescription.simple("knockback immunity ", "$knockback"));
-                jsonElements.add(JsonDescription.simple("and a boost in "));
-                jsonElements.add(JsonDescription.simple("resistance ", "$radius"));
+                jsonElements.add(JsonDescription.simple("speed ", "$radius"));
                 jsonElements.add(JsonDescription.simple("for a limited duration. "));
                 jsonElements.add(castAbility());
             }, current -> {
