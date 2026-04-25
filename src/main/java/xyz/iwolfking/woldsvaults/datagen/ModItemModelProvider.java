@@ -257,6 +257,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.RAINBOW_UNOBTANIUM);
 
         etching(VaultMod.id("concentrate_drain"));
+        etching(VaultMod.id("levitation_slow_falling"));
+        etching(VaultMod.id("colossus_titan_resistance"));
 
         ModCompressibleBlocks.getRegisteredBlocks().forEach((k, v) -> {
             for (int i = 0; i < v.size(); i ++) {

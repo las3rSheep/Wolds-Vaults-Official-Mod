@@ -1,7 +1,7 @@
 {
   "ETCHINGS": {
     "woldsvaults:concentrate_drain": {
-      "name": "Concentrated Drain",
+      "name": "Concentrate: Drain",
       "description": "<gray>Concentrate drains <yellow>%.0fpvalue% <gray>current health from mob per effect drained.",
       "color": 11153926,
       "minGreedTier": 0,
@@ -52,6 +52,74 @@
               "value": {
                 "min": 0.08,
                 "max": 0.1,
+                "step": 0.01
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
+    "woldsvaults:levitation_slow_falling": {
+      "name": "Levitation: Hover",
+      "description": "<#34b7eb>Levitate<gray> adds <yellow>Slow Falling<gray> for a brief period when deactivated",
+      "color": 3093151,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Utility"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:levitate_slow_falling",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:levitate_slow_falling_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 4,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "flag": true
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
+    "woldsvaults:colossus_titan_resistance": {
+      "name": "Colossus: Titan",
+      "description": "<#41880E>Colossus<gray> adds <yellow>%.0fpvalue%<gray> additional <#FF7400>Resistance Cap Limit<gray> while active",
+      "color": 4092928,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Defensive"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:colossus_titan_resistance",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:colossus_titan_resistance_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 9,
+              "maxGreedTier": 11,
+              "weight": 10,
+              "value": {
+                "min": 0.04,
+                "max": 0.06,
+                "step": 0.01
+              }
+            },
+            {
+              "minGreedTier": 11,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "min": 0.05,
+                "max": 0.08,
                 "step": 0.01
               }
             }
