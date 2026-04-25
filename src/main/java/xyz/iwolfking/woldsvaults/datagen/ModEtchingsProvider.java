@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.datagen;
 import iskallia.vault.gear.attribute.VaultGearModifier;
 import iskallia.vault.gear.attribute.config.BooleanFlagGenerator;
 import iskallia.vault.gear.attribute.config.FloatAttributeGenerator;
+import iskallia.vault.gear.attribute.config.IntegerAttributeGenerator;
 import net.minecraft.data.DataGenerator;
 import xyz.iwolfking.vhapi.api.datagen.AbstractEtchingProvider;
 import xyz.iwolfking.vhapi.api.util.gear.GearModifierRegistryHelper;
@@ -44,6 +45,18 @@ public class ModEtchingsProvider extends AbstractEtchingProvider {
                 etchingEntryBuilder.attribute(WoldsVaults.id("colossus_titan_resistance"), "ModEtching", WoldsVaults.id("colossus_titan_resistance_etching"), tierBasicListBuilder -> {
                     tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(9, 11, 10, 1, new FloatAttributeGenerator.Range(0.04F, 0.06F, 0.01F)));
                     tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(11, -1, 10, 1, new FloatAttributeGenerator.Range(0.05F, 0.08F, 0.01F)));
+                });
+            });
+
+            builder.addEtching(WoldsVaults.id("diffuse_chemical_bomb"), "Diffuse Chemical Barrage",  "<#83BB6C>Diffuse<gray> throws <yellow>%dvalue<gray> <#83176C>Chaos Grenades<gray> randomly around you", 4092928, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
+                etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
+                    stringBasicListBuilder.add("Offensive");
+                });
+                etchingEntryBuilder.attribute(WoldsVaults.id("diffuse_chemical_bomb"), "ModEtching", WoldsVaults.id("diffuse_chemical_bomb_etching"), tierBasicListBuilder -> {
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(1, 4, 10, 1, new IntegerAttributeGenerator.Range(3, 4, 1)));
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(4, 7, 10, 1, new IntegerAttributeGenerator.Range(4, 5, 1)));
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(7, 9, 10, 1, new IntegerAttributeGenerator.Range(5, 6, 1)));
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(9, -1, 10, 1, new IntegerAttributeGenerator.Range(6, 9, 1)));
                 });
             });
         });

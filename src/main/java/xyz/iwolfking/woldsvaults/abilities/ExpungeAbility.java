@@ -4,7 +4,9 @@ import com.google.gson.JsonObject;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.net.BitBuffer;
 import iskallia.vault.entity.entity.EffectCloudEntity;
+import iskallia.vault.gear.attribute.VaultGearAttributeInstance;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
+import iskallia.vault.gear.etching.EtchingHelper;
 import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.init.ModSounds;
 import iskallia.vault.skill.ability.effect.spi.core.InstantManaAbility;
@@ -15,9 +17,12 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
+import xyz.iwolfking.woldsvaults.abilities.flexible.FlexibleAbility;
 import xyz.iwolfking.woldsvaults.api.util.WoldAttributeHelper;
+import xyz.iwolfking.woldsvaults.init.ModEtchingGearAttributes;
 
 import java.util.Optional;
+import java.util.Random;
 
 public class ExpungeAbility extends InstantManaAbility {
     private float radiusMultiplier;
@@ -85,6 +90,17 @@ public class ExpungeAbility extends InstantManaAbility {
             );
 
             player.getLevel().playSound(null, player.getOnPos(), ModSounds.OVERGROWN_ZOMBIE_DEATH, SoundSource.PLAYERS, 1.0F, 0.5F);
+
+            VaultGearAttributeInstance<Integer> diffuseChemicalBombAttribute = EtchingHelper.getEtchings(player, ModEtchingGearAttributes.DIFFUSE_CHEMICAL_BOMB).stream().findFirst().orElse(null);
+
+            if(diffuseChemicalBombAttribute != null) {
+                FlexibleAbility flexibleAbility = new FlexibleAbility();
+                Random rand = new Random();
+                for(int i = 0; i < diffuseChemicalBombAttribute.getValue(); i++) {
+                    flexibleAbility.castWithRotation("Grenade", player,rand.nextFloat() * 180.0f - 90.0f, rand.nextFloat() * 360.0f - 180.0f);
+                }
+            }
+
             this.putOnCooldown(context);
             return ActionResult.successCooldownDeferred();
         }).orElse(ActionResult.fail());
