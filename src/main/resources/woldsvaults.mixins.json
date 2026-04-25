@@ -382,6 +382,7 @@
     "vaulthunters.recipes.MixinJewelCraftingRecipe",
     "vaulthunters.recipes.MixinSigilAnvilRecipe",
     "vaulthunters.skills.MixinAbilityLabelFactory",
+    "vaulthunters.skills.MixinAreaOfEffectHelper",
     "vaulthunters.skills.MixinHealEffectAbility",
     "vaulthunters.skills.MixinModAbilityLabelBindings",
     "vaulthunters.skills.MixinResistanceHelper",

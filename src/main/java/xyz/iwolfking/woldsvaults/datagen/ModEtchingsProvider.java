@@ -16,7 +16,7 @@ public class ModEtchingsProvider extends AbstractEtchingProvider {
     @Override
     public void registerConfigs() {
         add("wolds_etchings", builder -> {
-            builder.addEtching(WoldsVaults.id("concentrate_drain"), "Concentrate: Drain",  "<gray>Concentrate drains <yellow>%.0fpvalue% <gray>current health from mob per effect drained.", 11153926, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
+            builder.addEtching(WoldsVaults.id("concentrate_drain"), "Concentrated Drain",  "<gray>Concentrate drains <yellow>%.0fpvalue% <gray>current health from mob per effect drained.", 11153926, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
                 etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
                     stringBasicListBuilder.add("Offensive");
                 });
@@ -28,7 +28,7 @@ public class ModEtchingsProvider extends AbstractEtchingProvider {
                 });
             });
 
-            builder.addEtching(WoldsVaults.id("levitation_slow_falling"), "Levitation: Hover",  "<#34b7eb>Levitate<gray> adds <yellow>Slow Falling<gray> for a brief period when deactivated", 3093151, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
+            builder.addEtching(WoldsVaults.id("levitation_slow_falling"), "Levitation Hover",  "<#34b7eb>Levitate<gray> adds <yellow>Slow Falling<gray> for a brief period when deactivated", 3093151, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
                 etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
                     stringBasicListBuilder.add("Utility");
                 });
@@ -37,7 +37,7 @@ public class ModEtchingsProvider extends AbstractEtchingProvider {
                 });
             });
 
-            builder.addEtching(WoldsVaults.id("colossus_titan_resistance"), "Colossus: Titan",  "<#41880E>Colossus<gray> adds <yellow>%.0fpvalue%<gray> additional <#FF7400>Resistance Cap Limit<gray> while active", 4092928, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
+            builder.addEtching(WoldsVaults.id("colossus_titan_resistance"), "Colossus Titan",  "<#41880E>Colossus<gray> adds <yellow>%.0fpvalue%<gray> additional <#FF7400>Resistance Cap Limit<gray> while active", 4092928, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
                 etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
                     stringBasicListBuilder.add("Defensive");
                 });

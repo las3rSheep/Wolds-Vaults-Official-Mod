@@ -1,7 +1,7 @@
 {
   "ETCHINGS": {
     "woldsvaults:concentrate_drain": {
-      "name": "Concentrate: Drain",
+      "name": "Concentrated Drain",
       "description": "<gray>Concentrate drains <yellow>%.0fpvalue% <gray>current health from mob per effect drained.",
       "color": 11153926,
       "minGreedTier": 0,
@@ -61,7 +61,7 @@
       "affixType": "IMPLICIT"
     },
     "woldsvaults:levitation_slow_falling": {
-      "name": "Levitation: Hover",
+      "name": "Levitation Hover",
       "description": "<#34b7eb>Levitate<gray> adds <yellow>Slow Falling<gray> for a brief period when deactivated",
       "color": 3093151,
       "minGreedTier": 0,
@@ -89,7 +89,7 @@
       "affixType": "IMPLICIT"
     },
     "woldsvaults:colossus_titan_resistance": {
-      "name": "Colossus: Titan",
+      "name": "Colossus Titan",
       "description": "<#41880E>Colossus<gray> adds <yellow>%.0fpvalue%<gray> additional <#FF7400>Resistance Cap Limit<gray> while active",
       "color": 4092928,
       "minGreedTier": 0,
