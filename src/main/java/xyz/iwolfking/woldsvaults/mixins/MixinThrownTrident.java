@@ -104,7 +104,7 @@ public abstract class MixinThrownTrident extends AbstractArrow {
             this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));
             float f1 = 1.0F;
             if (this.level instanceof ServerLevel && VaultTridentItem.isVaultTridentChanneling(this.tridentItem)) {
-                if(!VaultTridentItem.shouldTriggerChanneling(data)) {
+                if(VaultTridentItem.shouldTriggerChanneling(data)) {
                     woldsVaults$triggerChannelingStrike(entity, entity1, f.floatValue());
 
                     if (entity1 instanceof LivingEntity livingEntity) {
