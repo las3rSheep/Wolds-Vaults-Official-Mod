@@ -1,13 +1,20 @@
 package xyz.iwolfking.woldsvaults;
 
 import com.mojang.logging.LogUtils;
+import fuzs.puzzleslib.api.client.event.v1.ModelEvents;
 import iskallia.vault.world.data.PlayerGreedData;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -25,6 +32,7 @@ import net.minecraftforge.fml.loading.LoadingModList;
 import org.slf4j.Logger;
 import xyz.iwolfking.vhapi.api.registry.gear.CustomVaultGearRegistryEntry;
 import xyz.iwolfking.vhapi.api.registry.objective.CustomObjectiveRegistryEntry;
+import xyz.iwolfking.vhapi.api.util.ResourceLocUtils;
 import xyz.iwolfking.woldsvaults.api.core.competition.PlayerRewardStorage;
 import xyz.iwolfking.woldsvaults.api.util.DelayedExecutionHelper;
 import xyz.iwolfking.woldsvaults.integration.cctweaked.CCTweakedSetup;
@@ -146,10 +154,23 @@ public class WoldsVaults {
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
+    @SubscribeEvent
+    public static void onModelBake(ModelBakeEvent event) {
 
+        ModelResourceLocation id = new ModelResourceLocation(
+                "woldsvaults:combined_trinket_base",
+                "inventory"
+        );
 
+        ModelResourceLocation id2 = new ModelResourceLocation(
+                "woldsvaults:research_token_base",
+                "inventory"
+        );
 
-
+        event.getModelRegistry().get(id);
+        event.getModelRegistry().get(id2);
+    }
 
     public static ResourceLocation id(String name) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);

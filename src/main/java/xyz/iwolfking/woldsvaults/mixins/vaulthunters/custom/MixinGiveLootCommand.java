@@ -14,6 +14,8 @@ import iskallia.vault.core.random.JavaRandom;
 import iskallia.vault.core.random.RandomSource;
 import iskallia.vault.core.util.WeightedList;
 import iskallia.vault.core.vault.influence.VaultGod;
+import iskallia.vault.gear.trinket.TrinketEffect;
+import iskallia.vault.gear.trinket.TrinketEffectRegistry;
 import iskallia.vault.init.ModBlocks;
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModItems;
@@ -21,6 +23,8 @@ import iskallia.vault.item.BoosterPackItem;
 import iskallia.vault.item.CardDeckItem;
 import iskallia.vault.item.InfusedCatalystItem;
 import iskallia.vault.item.data.InscriptionData;
+import iskallia.vault.item.gear.TrinketItem;
+import iskallia.vault.util.EntityHelper;
 import iskallia.vault.util.SidedHelper;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -45,6 +49,7 @@ import xyz.iwolfking.woldsvaults.api.core.layout.LayoutDefinitionRegistry;
 import xyz.iwolfking.woldsvaults.items.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Mixin(value = GiveCommand.class, remap = false)
 public class MixinGiveLootCommand {
@@ -224,8 +229,67 @@ public class MixinGiveLootCommand {
                         )
         );
 
+        builder.then(
+                Commands.literal("trinket")
+                        .then(
+                                Commands.argument("id", ResourceLocationArgument.id())
+                                        .suggests((ctx, sb) -> {
+                                            TrinketEffectRegistry.getOrderedKeys().forEach(resourceLocation -> sb.suggest(resourceLocation.toString()));
+                                            return sb.buildFuture();
+                                        })
+                                        .executes(this::woldsVaults$giveTrinket)
+                        )
+        );
+
+        builder.then(
+                Commands.literal("combined_trinket")
+                        .then(
+                                Commands.argument("id1", ResourceLocationArgument.id())
+                                        .suggests((ctx, sb) -> {
+                                            TrinketEffectRegistry.getOrderedKeys().forEach(resourceLocation -> sb.suggest(resourceLocation.toString()));
+                                            return sb.buildFuture();
+                                        }).then(Commands.argument("id2", ResourceLocationArgument.id())
+                                                .suggests((ctx, sb) -> {
+                                                    TrinketEffectRegistry.getOrderedKeys().forEach(resourceLocation -> sb.suggest(resourceLocation.toString()));
+                                                    return sb.buildFuture();
+                                                }).executes(this::woldsVaults$giveCombinedTrinket))
+                        )
+        );
+
     }
 
+    @Unique
+    private int woldsVaults$giveTrinket(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
+        TrinketEffect<?> effect = TrinketEffectRegistry.getEffect(ResourceLocationArgument.getId(context, "id"));
+        if(effect == null) {
+            return 0;
+        }
+
+        ItemStack trinket = TrinketItem.createRandomTrinket(effect);
+        woldsvaults$giveStack(player, trinket);
+        return 1;
+    }
+
+
+    @Unique
+    private int woldsVaults$giveCombinedTrinket(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+        ServerPlayer player = (context.getSource()).getPlayerOrException();
+        TrinketEffect<?> effect = TrinketEffectRegistry.getEffect(ResourceLocationArgument.getId(context, "id1"));
+        TrinketEffect<?> effect2 = TrinketEffectRegistry.getEffect(ResourceLocationArgument.getId(context, "id2"));
+
+        if(effect == null) {
+            return 0;
+        }
+
+        if(effect2 == null) {
+            return 0;
+        }
+
+        ItemStack trinket = CombinedTrinketItem.createCombined(List.of(effect, effect2), 25);
+        woldsvaults$giveStack(player, trinket);
+        return 1;
+    }
 
     @Unique
     private int woldsVaults$giveBoosterPack(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {

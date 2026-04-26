@@ -69,6 +69,17 @@ public class ModEtchingsProvider extends AbstractEtchingProvider {
                     tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(9, -1, 10, 1, new IntegerAttributeGenerator.Range(6, 9, 1)));
                 });
             });
+
+            builder.addEtching(WoldsVaults.id("fireball_volley_mitosis"), "Fireball Volley Mitosis",  "<#870018>Fireball Volley<gray> creates <yellow>%dvalue<gray> additional fireball on first bounce", 8847384, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
+                etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
+                    stringBasicListBuilder.add("Offensive");
+                });
+                etchingEntryBuilder.attribute(WoldsVaults.id("fireball_volley_mitosis"), "ModEtching", WoldsVaults.id("fireball_volley_mitosis_etching"), tierBasicListBuilder -> {
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(5, 8, 10, 1, new IntegerAttributeGenerator.Range(1, 1, 1)));
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(8, 10, 10, 1, new IntegerAttributeGenerator.Range(2, 2, 1)));
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(10, -1, 10, 1, new IntegerAttributeGenerator.Range(2, 4, 1)));
+                });
+            });
         });
     }
 }

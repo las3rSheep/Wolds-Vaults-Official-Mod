@@ -60,6 +60,8 @@ public class ModItems {
     public static VaultMapItem MAP;
     //public static VaultBowItem BOW;
 
+    public static CombinedTrinketItem COMBINED_TRINKET;
+
     public static LootableItem GEM_BOX;
     public static LootableItem SUPPLY_BOX;
     public static LootableItem AUGMENT_BOX;
@@ -363,6 +365,7 @@ public class ModItems {
         registry.register(ECHOING_SEED_BASE);
         registry.register(UNINFUSED_TERRASTEEL_INGOT);
         registry.register(SCAVENGER_POUCH_ITEM);
+        registry.register(COMBINED_TRINKET);
         COLORED_UNOBTANIUMS.forEach((s, bi) -> {
             registry.register(bi);
         });
@@ -523,6 +526,8 @@ public class ModItems {
         ECHOING_SEED_BASE = new BasicItem(WoldsVaults.id("echoing_seed_base"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));
 
         UNINFUSED_TERRASTEEL_INGOT = new BasicItem(WoldsVaults.id("uninfused_terrasteel_ingot"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));
+
+        COMBINED_TRINKET = new CombinedTrinketItem(WoldsVaults.id("combined_trinket"));
 
         for(DyeColor dyeColor : DyeColor.values()) {
             BasicItem dyedUnobtanium = new BasicItem(WoldsVaults.id(dyeColor.getSerializedName() + "_unobtanium"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));

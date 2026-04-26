@@ -218,6 +218,7 @@
     "vaulthunters.custom.MixinDeckForgeRecipe",
     "vaulthunters.custom.MixinDeckModifierAdapter",
     "vaulthunters.custom.MixinEntityEvents",
+    "vaulthunters.custom.MixinEtchingApplicationTableTileEntity",
     "vaulthunters.custom.MixinExperiencedExpertise",
     "vaulthunters.custom.MixinGearAttributeEvents",
     "vaulthunters.custom.MixinGearRollHelper",

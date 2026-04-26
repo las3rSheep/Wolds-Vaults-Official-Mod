@@ -2,6 +2,7 @@ package xyz.iwolfking.woldsvaults.datagen;
 
 import iskallia.vault.VaultMod;
 import iskallia.vault.config.ResearchesGUIConfig;
+import iskallia.vault.gear.trinket.TrinketEffectRegistry;
 import iskallia.vault.init.ModConfigs;
 import me.dinnerbeef.compressium.Compressium;
 import net.minecraft.data.DataGenerator;
@@ -142,7 +143,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.POGGING_SEED_BASE);
         simpleItem(ModItems.ECHOING_SEED_BASE);
         simpleItem(ModItems.UNINFUSED_TERRASTEEL_INGOT);
-        //simpleItem(ModItems.WEAPON_TYPE_SETTER);
+        getBuilder(ModItems.COMBINED_TRINKET.getRegistryName().getPath())
+                .parent(new ModelFile.UncheckedModelFile(
+                        ResourceLocation.parse("builtin/entity")
+                ));
 
         spawnEgg(ModItems.BLUE_BLAZE_EGG);
         spawnEgg(ModItems.BOOGIEMAN_EGG);
@@ -248,12 +252,6 @@ public class ModItemModelProvider extends ItemModelProvider {
             researchToken(ModConfigs.RESEARCHES_GUI.getStyles().get(name).icon);
         });
 
-        CustomInscriptionModelRegistry.getModelMap().forEach(this::vaultInscription);
-        CustomCatalystModelRegistry.getModelMap().forEach(this::vaultCatalyst);
-
-        ModItems.COLORED_UNOBTANIUMS.forEach(((dyeColor, basicItem) -> {
-            simpleItem(basicItem);
-        }));
         simpleItem(ModItems.RAINBOW_UNOBTANIUM);
 
         etching(VaultMod.id("concentrate_drain"));
@@ -261,6 +259,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         etching(VaultMod.id("colossus_titan_resistance"));
         etching(VaultMod.id("diffuse_chemical_bomb"));
         etching(VaultMod.id("sneaky_getaway_ninja"));
+        etching(VaultMod.id("fireball_volley_mitosis"));
 
         ModCompressibleBlocks.getRegisteredBlocks().forEach((k, v) -> {
             for (int i = 0; i < v.size(); i ++) {
