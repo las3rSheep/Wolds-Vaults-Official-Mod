@@ -105,21 +105,17 @@ public abstract class MixinThrownTrident extends AbstractArrow {
             float f1 = 1.0F;
             if (this.level instanceof ServerLevel && VaultTridentItem.isVaultTridentChanneling(this.tridentItem)) {
                 if(!VaultTridentItem.shouldTriggerChanneling(data)) {
-                    ci.cancel();
-                    return;
-                }
+                    woldsVaults$triggerChannelingStrike(entity, entity1, f.floatValue());
 
-                woldsVaults$triggerChannelingStrike(entity, entity1, f.floatValue());
+                    if (entity1 instanceof LivingEntity livingEntity) {
+                        AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(livingEntity);
+                        float judgementValue = snapshot.getAttributeValue(xyz.iwolfking.woldsvaults.init.ModGearAttributes.SECOND_JUDGEMENT, VaultGearAttributeTypeMerger.floatSum());
 
-                if(entity1 instanceof LivingEntity livingEntity) {
-                    AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(livingEntity);
-                    float judgementValue = snapshot.getAttributeValue(xyz.iwolfking.woldsvaults.init.ModGearAttributes.SECOND_JUDGEMENT, VaultGearAttributeTypeMerger.floatSum());
-
-                    if(random.nextFloat() < judgementValue) {
-                        woldsVaults$triggerChannelingStrike(entity, entity, f.floatValue());
+                        if (random.nextFloat() < judgementValue) {
+                            woldsVaults$triggerChannelingStrike(entity, entity, f.floatValue());
+                        }
                     }
                 }
-
             }
 
             if(entity1 instanceof Player player) {
