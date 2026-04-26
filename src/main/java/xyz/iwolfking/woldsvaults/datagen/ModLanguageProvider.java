@@ -55,6 +55,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.SURVIVAL_OBJECTIVE_BLOCK, "Survival Pylon");
         add(ModItems.CRYSTAL_SEAL_SURVIVOR, "Seal of the Survivor");
         add(ModItems.SCAVENGER_POUCH_ITEM, "Scavenger Pouch");
+        add(ModItems.COMBINED_TRINKET, "Fusion Trinket");
         add(ModEffects.BURN, "Burning");
         add("command.woldsvaults.prevent_back_into_vault", "You cannot return into The Vault!");
         add("woldsvaults.special.fruit_rotting", "§4You feel the Vault start to rot away...");

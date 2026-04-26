@@ -169,15 +169,7 @@
           "color": "$text"
         },
         {
-          "text": "knockback immunity ",
-          "color": "$knockback"
-        },
-        {
-          "text": "and a boost in ",
-          "color": "$text"
-        },
-        {
-          "text": "resistance ",
+          "text": "speed ",
           "color": "$radius"
         },
         {

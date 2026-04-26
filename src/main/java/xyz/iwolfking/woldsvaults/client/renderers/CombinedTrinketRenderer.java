@@ -46,10 +46,6 @@ public class CombinedTrinketRenderer extends SpecialItemRenderer {
 
             poseStack.pushPose();
 
-            if (transformType != ItemTransforms.TransformType.GUI) {
-               // poseStack.translate(-0.5, -0.5, 0.0);
-            }
-
             if (transformType == ItemTransforms.TransformType.GUI) {
                 Lighting.setupForFlatItems();
             } else {

@@ -94,6 +94,10 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .parent(new ModelFile.UncheckedModelFile(
                         ResourceLocation.parse("builtin/entity")
                 ));
+        getBuilder(ModItems.COMBINED_TRINKET.getRegistryName().getPath())
+                .parent(new ModelFile.UncheckedModelFile(
+                        ResourceLocation.parse("builtin/entity")
+                ));
         singleTexture("research_token_base", ResourceLocation.withDefaultNamespace("item/generated"), WoldsVaults.id("item/research_token"));
         simpleItem(ModItems.RESEARCH_TOKEN);
         simpleItem(ModItems.RESONATING_REINFORCEMENT);
@@ -143,10 +147,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.POGGING_SEED_BASE);
         simpleItem(ModItems.ECHOING_SEED_BASE);
         simpleItem(ModItems.UNINFUSED_TERRASTEEL_INGOT);
-        getBuilder(ModItems.COMBINED_TRINKET.getRegistryName().getPath())
-                .parent(new ModelFile.UncheckedModelFile(
-                        ResourceLocation.parse("builtin/entity")
-                ));
+        //simpleItem(ModItems.WEAPON_TYPE_SETTER);
 
         spawnEgg(ModItems.BLUE_BLAZE_EGG);
         spawnEgg(ModItems.BOOGIEMAN_EGG);
@@ -252,6 +253,12 @@ public class ModItemModelProvider extends ItemModelProvider {
             researchToken(ModConfigs.RESEARCHES_GUI.getStyles().get(name).icon);
         });
 
+        CustomInscriptionModelRegistry.getModelMap().forEach(this::vaultInscription);
+        CustomCatalystModelRegistry.getModelMap().forEach(this::vaultCatalyst);
+
+        ModItems.COLORED_UNOBTANIUMS.forEach(((dyeColor, basicItem) -> {
+            simpleItem(basicItem);
+        }));
         simpleItem(ModItems.RAINBOW_UNOBTANIUM);
 
         etching(VaultMod.id("concentrate_drain"));
