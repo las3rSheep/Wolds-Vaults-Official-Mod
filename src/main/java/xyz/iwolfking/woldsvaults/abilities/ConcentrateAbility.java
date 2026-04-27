@@ -206,7 +206,7 @@ public class ConcentrateAbility extends InstantManaAbility {
         if (effect == MobEffects.MOVEMENT_SLOWDOWN || effect == iskallia.vault.init.ModEffects.CHILLED || effect == MobEffects.MOVEMENT_SPEED) return ModEffects.QUICKENING;
         if (effect == MobEffects.WEAKNESS || effect == iskallia.vault.init.ModEffects.BLEED || effect == MobEffects.DAMAGE_BOOST) return ModEffects.EMPOWER;
         if (effect == MobEffects.POISON) return random.nextBoolean() ? iskallia.vault.init.ModEffects.PURIFYING_AURA : MobEffects.REGENERATION;
-        if (effect == iskallia.vault.init.ModEffects.VULNERABLE) return random.nextBoolean() ? MobEffects.DAMAGE_RESISTANCE : ModEffects.EMPOWER;
+        if (effect == iskallia.vault.init.ModEffects.VULNERABLE) return ModEffects.EMPOWER;
         if (effect == iskallia.vault.init.ModEffects.FREEZE || effect == iskallia.vault.init.ModEffects.HYPOTHERMIA) return random.nextBoolean() ? MobEffects.FIRE_RESISTANCE : MobEffects.DIG_SPEED;
         if (effect == iskallia.vault.init.ModEffects.TAUNT_REPEL_MOB) return random.nextBoolean() ? AMEffectRegistry.SOULSTEAL : MobEffects.NIGHT_VISION;
         if (effect == MobEffects.UNLUCK) return MobEffects.LUCK;
