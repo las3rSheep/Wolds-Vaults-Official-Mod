@@ -56,6 +56,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.RAINBOW_UNOBTANIUM)
                 .add(ModBlocks.PUZZLE_CUBE_BLOCK)
                 .add(ModBlocks.TIME_TRIAL_TROPHY_BLOCK)
+                .add(ModBlocks.TRINKET_FUSION_BLOCK)
 
                 .add(ModBlocks.TENOS_BRICKS_SLAB)
                 .add(ModBlocks.TENOS_BRICK_CHISELED_SLAB)

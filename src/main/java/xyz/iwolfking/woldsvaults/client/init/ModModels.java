@@ -31,6 +31,7 @@ public class ModModels {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.DECO_MONOLITH_BLOCK, RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRAVEYARD_LOOT_BLOCK, RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.TIME_TRIAL_TROPHY_BLOCK, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.TRINKET_FUSION_BLOCK, RenderType.cutout());
     }
 
 

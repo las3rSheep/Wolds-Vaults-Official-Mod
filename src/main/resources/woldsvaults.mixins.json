@@ -73,6 +73,7 @@
     "ftbteams.MixinFTBTeamsClient",
     "gatewaystoeternity.MixinGatePearlItem",
     "grimoireofgaia.MixinAbstractGaiaEntity",
+    "grimoireofgaia.MixinCreep",
     "hexal.MixinBlockEntitySlipway",
     "hostilenetworks.HostileCachedModelMixin",
     "hostilenetworks.HostileDataModelMixin",

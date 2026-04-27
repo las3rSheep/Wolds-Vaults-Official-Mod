@@ -18,5 +18,6 @@ public class ModScreens {
         MenuScreens.register(ModContainers.WEAVING_STATION_CONTAINER, WeavingStationScreen::new);
         MenuScreens.register(ModContainers.FILTER_NECKLACE_CONTAINER, FilterNecklaceContainerScreen::new);
         MenuScreens.register(ModContainers.SCAVENGER_POUCH_CONTAINER, ScavengerPouchScreen::new);
+        MenuScreens.register(ModContainers.TRINKET_FUSION_CONTAINER, TrinketFusionScreen::new);
     }
 }

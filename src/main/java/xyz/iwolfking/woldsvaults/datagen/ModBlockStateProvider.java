@@ -63,7 +63,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         generateGenericItemModelBlockState(ModBlocks.SPOOKY_VENDOR_PEDESTAL, "etching_shop_pedestal");
 
         generateTwoTallItemModelBlockState(ModBlocks.FRACTURED_OBELISK);
-
+        simpleBlock(ModBlocks.PRISMATIC_GLUE_BLOCK);
         simpleBlockWithItem(ModBlocks.HELLISH_SAND_BLOCK);
         simpleBlockWithItem(ModBlocks.INFUSED_DRIFTWOOD_PLANKS);
         simpleBlockWithItem(ModBlocks.ISKALLIAN_LEAVES_BLOCK);

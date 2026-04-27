@@ -90,6 +90,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.RECIPE_BLUEPRINT);
         simpleItem(ModItems.REPAIR_AUGMENTER);
         simpleItem(ModItems.SCAVENGER_POUCH_ITEM);
+        simpleItem(ModItems.PRISMATIC_GLUE_BUCKET);
         getBuilder(ModItems.RESEARCH_TOKEN.getRegistryName().getPath())
                 .parent(new ModelFile.UncheckedModelFile(
                         ResourceLocation.parse("builtin/entity")

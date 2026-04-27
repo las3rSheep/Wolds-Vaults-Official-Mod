@@ -9,9 +9,7 @@ import iskallia.vault.item.LootableItem;
 import iskallia.vault.item.VaultBasicFoodItem;
 
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -223,6 +221,9 @@ public class ModItems {
     public static ConfigurableFloatingTextBlockItem CONFIGURABLE_FLOATING_TEXT;
     public static TimeTrialTrophyItem TIME_TRIAL_TROPHY;
 
+    //Buckets
+    public static BucketItem PRISMATIC_GLUE_BUCKET = (BucketItem) new BucketItem(ModFluids.PRISMATIC_GLUE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(ModCreativeTabs.WOLDS_VAULTS)).setRegistryName(WoldsVaults.id("prismatic_glue_bucket"));
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
@@ -366,6 +367,7 @@ public class ModItems {
         registry.register(UNINFUSED_TERRASTEEL_INGOT);
         registry.register(SCAVENGER_POUCH_ITEM);
         registry.register(COMBINED_TRINKET);
+        registry.register(PRISMATIC_GLUE_BUCKET);
         COLORED_UNOBTANIUMS.forEach((s, bi) -> {
             registry.register(bi);
         });

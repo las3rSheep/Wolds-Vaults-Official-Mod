@@ -84,6 +84,7 @@ public class WoldsVaults {
         MinecraftForge.EVENT_BUS.addListener(RegisterCommandEventHandler::woldsvaults_registerCommandsEvent);
 
         ModParticles.REGISTRY.register(modEventBus);
+        ModFluids.REGISTRY.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
