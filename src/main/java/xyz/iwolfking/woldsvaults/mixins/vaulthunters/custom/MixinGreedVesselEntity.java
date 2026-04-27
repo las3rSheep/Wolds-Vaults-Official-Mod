@@ -9,13 +9,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import iskallia.vault.init.ModEffects;
 import iskallia.vault.entity.boss.TheVesselEntity;
-
 import java.util.HashSet;
 import java.util.Set;
 
 @Mixin(value = TheVesselEntity.class, remap = false)
 public class MixinGreedVesselEntity {
-    @Inject(method = "canBeAffected" , at = @At("HEAD"), cancellable = true, remap = true)
+    @Inject(method = "canBeAffected" , at = @At("TAIL"), cancellable = true, remap = true)
     private void allowedVesselEffects(MobEffectInstance effect, CallbackInfoReturnable<Boolean> cir) {
         if (effect.getEffect() == MobEffects.POISON ||
                 effect.getEffect() == MobEffects.MOVEMENT_SLOWDOWN ||
