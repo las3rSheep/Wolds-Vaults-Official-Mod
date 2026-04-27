@@ -15,26 +15,24 @@ import java.util.Set;
 
 @Mixin(value = TheVesselEntity.class, remap = false)
 public class MixinGreedVesselEntity {
-    @Unique
-    private static final Set<MobEffect> woldsvaults$possibleVesselEffects = new HashSet<>();
-    static {
-        woldsvaults$possibleVesselEffects.add(MobEffects.POISON);
-        woldsvaults$possibleVesselEffects.add(MobEffects.MOVEMENT_SLOWDOWN);
-        woldsvaults$possibleVesselEffects.add(MobEffects.WEAKNESS);
-        woldsvaults$possibleVesselEffects.add(ModEffects.SMITE);
-        woldsvaults$possibleVesselEffects.add(ModEffects.TOTEM_MOB_DAMAGE);
-        woldsvaults$possibleVesselEffects.add(ModEffects.BLEED);
-        woldsvaults$possibleVesselEffects.add(ModEffects.NOVA_DOT);
-        woldsvaults$possibleVesselEffects.add(ModEffects.CHILLED);
-        woldsvaults$possibleVesselEffects.add(xyz.iwolfking.woldsvaults.init.ModEffects.ECHOING);
-        woldsvaults$possibleVesselEffects.add(xyz.iwolfking.woldsvaults.init.ModEffects.REAVING);
-    }
-    @SuppressWarnings("unused")
-    @Inject(method = "m_7301_", at = @At("Head"), cancellable = true)
-    
-    private void woldsvaults$allowedVesselEffects(MobEffectInstance effect, CallbackInfoReturnable<Boolean> cir) {
-        if (woldsvaults$possibleVesselEffects.contains(effect.getEffect())) {
+    @Inject(method = "canBeAffected" , at = @At("HEAD"), cancellable = true, remap = true)
+    private void allowedVesselEffects(MobEffectInstance effect, CallbackInfoReturnable<Boolean> cir) {
+        if (effect.getEffect() == MobEffects.POISON ||
+                effect.getEffect() == MobEffects.MOVEMENT_SLOWDOWN ||
+                effect.getEffect() == MobEffects.WEAKNESS ||
+                effect.getEffect() == ModEffects.SMITE ||
+                effect.getEffect() == ModEffects.TOTEM_MOB_DAMAGE ||
+                effect.getEffect() == ModEffects.BLEED ||
+                effect.getEffect() == ModEffects.NOVA_DOT ||
+                effect.getEffect() == ModEffects.CHILLED ||
+                effect.getEffect() == xyz.iwolfking.woldsvaults.init.ModEffects.ECHOING ||
+                effect.getEffect() == xyz.iwolfking.woldsvaults.init.ModEffects.REAVING)
+        {
             cir.setReturnValue(true);
         }
+
+        //if (woldsvaults$possibleVesselEffects.contains(effect.getEffect())) {
+        //    cir.setReturnValue(true);
+        //}
     }
 }
