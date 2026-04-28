@@ -1,11 +1,16 @@
 package xyz.iwolfking.woldsvaults.mixins.bettercombat;
 
+import iskallia.vault.gear.VaultGearState;
 import iskallia.vault.gear.data.GearDataCache;
+import iskallia.vault.gear.item.IdentifiableItem;
 import iskallia.vault.gear.item.VaultGearItem;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.bettercombat.api.WeaponAttributes;
 import net.bettercombat.logic.WeaponRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,6 +30,24 @@ public class MixinWeaponRegistry {
     private static void ignoreFallbackForWeaponTypeAttribute(ItemStack itemStack, CallbackInfoReturnable<WeaponAttributes> cir) {
         if(WoldsVaultsConfig.CLIENT.weaponsShouldntBeBetter.get()) {
             cir.setReturnValue(null);
+        }
+
+        if(Minecraft.getInstance().player != null) {
+            LocalPlayer player = Minecraft.getInstance().player;
+            if(player.getCooldowns().isOnCooldown(itemStack.getItem())) {
+                cir.setReturnValue(null);
+            }
+
+            if(itemStack.getItem() instanceof VaultGearItem vaultGearItem)  {
+                if(vaultGearItem.isBroken(itemStack)) {
+                    cir.setReturnValue(null);
+                }
+
+                if(GearDataCache.of(itemStack).getState() != null && GearDataCache.of(itemStack).getState().equals(VaultGearState.UNIDENTIFIED)) {
+                    cir.setReturnValue(null);
+                }
+            }
+
         }
     }
 }
