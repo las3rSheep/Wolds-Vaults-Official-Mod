@@ -1,0 +1,15 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "the_vault:trinket_scrap"
+    }
+  ],
+  "results": [
+    {
+      "fluid": "woldsvaults:molten_trinket",
+      "amount": 10
+    }
+  ],
+  "heatRequirement": "superheated"
+}

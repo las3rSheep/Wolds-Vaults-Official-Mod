@@ -45,6 +45,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.CHROMATIC_IRON_ANGEL_RING);
         simpleItem(ModItems.CHROMATIC_STEEL_ANGEL_RING);
         simpleItem(ModItems.CHUNK_OF_POWER);
+        simpleItem(ModItems.DUST_OF_POWER);
         simpleItem(ModItems.COMMUNITY_TOKEN);
         simpleItem(ModItems.CRYSTAL_REINFORCEMENT);
         simpleItem(ModItems.CRYSTAL_SEAL_CORRUPT);

@@ -1,0 +1,30 @@
+{
+  "input": [
+    {
+      "item": "woldsvaults:dust_of_power"
+    },
+    {
+      "item": "woldsvaults:dust_of_power"
+    },
+    {
+      "item": "the_vault:gem_pog"
+    },
+    {
+      "item": "the_vault:gem_pog"
+    },
+    {
+      "item": "the_vault:gem_pog"
+    },
+    {
+      "item": "the_vault:gem_pog"
+    }
+  ],
+  "inputFluid": "{FluidName:\"woldsvaults:molten_trinket\",Amount:10}",
+  "processingTime": 200,
+  "output": {
+    "item": "minecraft:air",
+    "count": 1
+  },
+  "outputFluid": "{FluidName:\"woldsvaults:prismatic_glue\",Amount:30}",
+  "type": "industrialforegoing:dissolution_chamber"
+}

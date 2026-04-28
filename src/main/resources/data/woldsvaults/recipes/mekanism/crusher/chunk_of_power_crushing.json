@@ -1,0 +1,12 @@
+{
+  "type": "mekanism:crushing",
+  "input": {
+    "ingredient": {
+      "item": "woldsvaults:chunk_of_power"
+    }
+  },
+  "output": {
+    "item": "woldsvaults:dust_of_power",
+    "count": 4
+  }
+}

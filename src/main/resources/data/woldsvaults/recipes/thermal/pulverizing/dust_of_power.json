@@ -1,0 +1,18 @@
+{
+  "type": "thermal:pulverizer",
+  "ingredient": {
+    "value": [
+      {
+        "item": "woldsvaults:chunk_of_power"
+      }
+    ],
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "woldsvaults:dust_of_power",
+      "count": 4
+    }
+  ],
+  "experience": 0.1
+}

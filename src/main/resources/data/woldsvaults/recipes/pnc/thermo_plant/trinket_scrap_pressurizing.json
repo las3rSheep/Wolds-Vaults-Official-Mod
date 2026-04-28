@@ -1,0 +1,20 @@
+{
+  "type": "pneumaticcraft:thermo_plant",
+  "item_input": {
+    "item": "the_vault:trinket_scrap"
+  },
+  "fluid_input": {
+    "type": "pneumaticcraft:fluid",
+    "fluid": "pneumaticcraft:plastic",
+    "amount": 100
+  },
+  "fluid_output": {
+    "fluid": "woldsvaults:molten_trinket",
+    "amount": 30
+  },
+  "temperature": {
+    "min_temp": 600
+  },
+  "pressure": 2.0,
+  "exothermic": false
+}

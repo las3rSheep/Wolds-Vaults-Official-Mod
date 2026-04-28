@@ -1,0 +1,13 @@
+{
+  "type": "thermal:crucible",
+  "ingredient": {
+    "item": "the_vault:trinket_scrap"
+  },
+  "result": [
+    {
+      "fluid": "woldsvaults:molten_trinket",
+      "amount": 20
+    }
+  ],
+  "energy": 2000000
+}
