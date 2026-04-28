@@ -9,6 +9,7 @@
     "DimensionDataStorageAccessor",
     "GameRulesBooleanValueAccessor",
     "LivingEntityAccessor",
+    "MixinAttributes",
     "MixinBellBlockEntity",
     "MixinBlockStateBase",
     "MixinCreeperEntity",
