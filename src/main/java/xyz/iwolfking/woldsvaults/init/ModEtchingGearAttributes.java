@@ -19,6 +19,7 @@ import xyz.iwolfking.woldsvaults.api.util.UniqueEffectGearAttribute;
 import xyz.iwolfking.woldsvaults.modifiers.gear.ParticleTrailAttribute;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = WoldsVaults.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEtchingGearAttributes {
@@ -27,6 +28,7 @@ public class ModEtchingGearAttributes {
     public static final VaultGearAttribute<Float> COLOSSUS_TITAN_RESISTANCE = woldsAttr("colossus_titan_resistance", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<Float> SNEAKY_GETAWAY_NINJA = woldsAttr("sneaky_getaway_ninja", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<Boolean> LEVITATE_SLOW_FALLING = woldsAttr("levitate_slow_falling", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
+    public static final VaultGearAttribute<Boolean> PURIST_COMMON = woldsAttr("purist_common", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
     public static final VaultGearAttribute<Integer> DIFFUSE_CHEMICAL_BOMB = woldsAttr("diffuse_chemical_bomb", VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.intComparator());
     public static final VaultGearAttribute<Integer> FIREBALL_VOLLEY_MITOSIS = woldsAttr("fireball_volley_mitosis", VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.intComparator());
 
@@ -37,6 +39,7 @@ public class ModEtchingGearAttributes {
         registry.register(COLOSSUS_TITAN_RESISTANCE);
         registry.register(SNEAKY_GETAWAY_NINJA);
         registry.register(LEVITATE_SLOW_FALLING);
+        registry.register(PURIST_COMMON);
         registry.register(DIFFUSE_CHEMICAL_BOMB);
         registry.register(FIREBALL_VOLLEY_MITOSIS);
     }

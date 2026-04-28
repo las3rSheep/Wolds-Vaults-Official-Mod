@@ -677,7 +677,6 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                     jsonElements.add(JsonDescription.simple("based on the amount of "));
                     jsonElements.add(JsonDescription.simple("Scrappy ", "343434"));
                     jsonElements.add(JsonDescription.simple("armor pieces you wear."));
-                    jsonElements.add(JsonDescription.simple("20%", "#F6CD0E"));
                 })
                 .addDescription("Nether_Mastery", jsonElements -> {
                     jsonElements.add(JsonDescription.simple("Increases the "));

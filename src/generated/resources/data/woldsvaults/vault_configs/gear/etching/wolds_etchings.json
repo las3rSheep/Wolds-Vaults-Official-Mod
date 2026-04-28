@@ -88,6 +88,35 @@
       ],
       "affixType": "IMPLICIT"
     },
+    "woldsvaults:purist_common": {
+      "name": "Purist of Normality",
+      "description": "<#214E92>Purist<gray> counts <aqua>Common<gray> gear in addition to Scrappy",
+      "color": 2182802,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "SHIELD",
+        "FOCUS"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:purist_common",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:purist_common_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 2,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "flag": true
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
     "woldsvaults:colossus_titan_resistance": {
       "name": "Colossus Titan",
       "description": "<#41880E>Colossus<gray> adds <yellow>%.0fpvalue%<gray> additional <#FF7400>Resistance Cap Limit<gray> while active",

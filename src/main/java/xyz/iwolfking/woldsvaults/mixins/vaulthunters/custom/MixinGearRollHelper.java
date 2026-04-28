@@ -10,6 +10,7 @@ import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.modification.GearModification;
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModGearAttributes;
+import iskallia.vault.item.MagnetItem;
 import iskallia.vault.item.gear.*;
 import iskallia.vault.item.tool.JewelItem;
 import iskallia.vault.skill.base.Skill;
@@ -158,7 +159,7 @@ public class MixinGearRollHelper {
 
     @Unique
     private static void woldsvaults$addRandomEtchingEntry(VaultGearData data, VaultGearItem gear, ItemStack gearStack) {
-        if(data.hasAttribute(ModGearAttributes.ETCHING) || !data.isModifiable() || data.getRarity().equals(VaultGearRarity.UNIQUE)) {
+        if(data.hasAttribute(ModGearAttributes.ETCHING) || !data.isModifiable() || data.getRarity().equals(VaultGearRarity.UNIQUE) || gearStack.getItem() instanceof MagnetItem) {
             return;
         }
 
