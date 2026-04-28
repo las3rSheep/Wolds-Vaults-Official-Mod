@@ -59,6 +59,7 @@ public class DataGenerators {
             gen.addProvider(new ModVaultRecyclerProvider(gen));
             gen.addProvider(new ModVaultAltarIngredientsProvider(gen));
             gen.addProvider(new ModInscriptionRecipesProvider(gen));
+            gen.addProvider(new ModGearModelRollRaritiesProvider(gen));
             gen.addProvider(new ModPrebuiltToolsProvider(gen));
             gen.addProvider(new ModVaultPortalBlocksProvider(gen));
             gen.addProvider(new ModChampionsProvider(gen));
