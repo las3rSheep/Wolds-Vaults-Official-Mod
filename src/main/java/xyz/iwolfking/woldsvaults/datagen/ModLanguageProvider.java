@@ -509,6 +509,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("woldsvaults.glitch_gate", "§k??? ??? ???? ????");
         add("woldsvaults.tropical_gate", "Tropical Getaway");
         add("woldsvaults.cloud_gate", "Cloudy Day");
+        add("woldsvaults.greed_assassin_gateway", "Greedy");
 
         add(ModBlocks.TENOS_PLANKS_SLAB, "Tenos Planks Slab");
         add(ModBlocks.TENOS_BRICKS_SLAB, "Tenos Bricks Slab");
