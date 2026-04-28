@@ -115,8 +115,7 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
 
         setInFlight(itemstack, true, playerIn);
         AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(playerIn);
-        float velocity = snapshot.getAttributeValue(ModGearAttributes.VELOCITY, VaultGearAttributeTypeMerger.floatSum()) * 100;
-        Double attackSpeed = snapshot.getAttributeValue(ModGearAttributes.ATTACK_SPEED, VaultGearAttributeTypeMerger.doubleSum());
+        float velocity = data.getFirstValue(ModGearAttributes.VELOCITY).orElse(1F);
         Vec3 pos = playerIn.position();
         worldIn.playSound(null, pos.x, pos.y, pos.z, QuarkSounds.ENTITY_PICKARANG_THROW, SoundSource.NEUTRAL, 0.5F + velocity * 0.14F, 0.4F / (worldIn.random.nextFloat() * 0.4F + 0.8F));
 
@@ -131,11 +130,6 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
 
         playerIn.awardStat(Stats.ITEM_USED.get(this));
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
-    }
-
-    @Override
-    public boolean isBarVisible(ItemStack stack) {
-        return !isInFlight(stack) && GearDataCache.of(stack).getState() != null && GearDataCache.of(stack).getState().equals(VaultGearState.IDENTIFIED);
     }
 
     @Override
