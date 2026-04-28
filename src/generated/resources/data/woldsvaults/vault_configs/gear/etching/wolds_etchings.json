@@ -1,0 +1,283 @@
+{
+  "ETCHINGS": {
+    "woldsvaults:concentrate_drain": {
+      "name": "Concentrated Drain",
+      "description": "<gray>Concentrate drains <yellow>%.0fpvalue% <gray>current health from mob per effect drained.",
+      "color": 11153926,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Offensive"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:concentrate_drain",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:concenrate_drain_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 2,
+              "maxGreedTier": 4,
+              "weight": 10,
+              "value": {
+                "min": 0.02,
+                "max": 0.04,
+                "step": 0.01
+              }
+            },
+            {
+              "minGreedTier": 4,
+              "maxGreedTier": 7,
+              "weight": 10,
+              "value": {
+                "min": 0.04,
+                "max": 0.06,
+                "step": 0.01
+              }
+            },
+            {
+              "minGreedTier": 7,
+              "maxGreedTier": 12,
+              "weight": 10,
+              "value": {
+                "min": 0.06,
+                "max": 0.08,
+                "step": 0.01
+              }
+            },
+            {
+              "minGreedTier": 12,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "min": 0.08,
+                "max": 0.1,
+                "step": 0.01
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
+    "woldsvaults:levitation_slow_falling": {
+      "name": "Levitation Hover",
+      "description": "<#34b7eb>Levitate<gray> adds <yellow>Slow Falling<gray> for a brief period when deactivated",
+      "color": 3093151,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Utility"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:levitate_slow_falling",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:levitate_slow_falling_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 4,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "flag": true
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
+    "woldsvaults:colossus_titan_resistance": {
+      "name": "Colossus Titan",
+      "description": "<#41880E>Colossus<gray> adds <yellow>%.0fpvalue%<gray> additional <#FF7400>Resistance Cap Limit<gray> while active",
+      "color": 4092928,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Defensive"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:colossus_titan_resistance",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:colossus_titan_resistance_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 9,
+              "maxGreedTier": 11,
+              "weight": 10,
+              "value": {
+                "min": 0.04,
+                "max": 0.06,
+                "step": 0.01
+              }
+            },
+            {
+              "minGreedTier": 11,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "min": 0.05,
+                "max": 0.08,
+                "step": 0.01
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
+    "woldsvaults:sneaky_getaway_ninja": {
+      "name": "Sneaky Getaway Ninja",
+      "description": "<#301749>Sneaky Getaway<gray> adds <yellow>%.0fpvalue%<gray> additional <#30455F>Dodge Chance<gray> while active",
+      "color": 3163487,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Defensive"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:sneaky_getaway_ninja",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:sneaky_getaway_ninja_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 7,
+              "maxGreedTier": 11,
+              "weight": 10,
+              "value": {
+                "min": 0.25,
+                "max": 0.3,
+                "step": 0.01
+              }
+            },
+            {
+              "minGreedTier": 11,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "min": 0.3,
+                "max": 0.4,
+                "step": 0.01
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
+    "woldsvaults:diffuse_chemical_bomb": {
+      "name": "Diffuse Chemical Barrage",
+      "description": "<#83BB6C>Diffuse<gray> throws <yellow>%dvalue<gray> <#83176C>Chaos Grenades<gray> randomly around you",
+      "color": 8874661,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Offensive"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:diffuse_chemical_bomb",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:diffuse_chemical_bomb_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 1,
+              "maxGreedTier": 4,
+              "weight": 10,
+              "value": {
+                "min": 3,
+                "max": 4,
+                "step": 1
+              }
+            },
+            {
+              "minGreedTier": 4,
+              "maxGreedTier": 7,
+              "weight": 10,
+              "value": {
+                "min": 4,
+                "max": 5,
+                "step": 1
+              }
+            },
+            {
+              "minGreedTier": 7,
+              "maxGreedTier": 9,
+              "weight": 10,
+              "value": {
+                "min": 5,
+                "max": 6,
+                "step": 1
+              }
+            },
+            {
+              "minGreedTier": 9,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "min": 6,
+                "max": 9,
+                "step": 1
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
+    "woldsvaults:fireball_volley_mitosis": {
+      "name": "Fireball Volley Mitosis",
+      "description": "<#870018>Fireball Volley<gray> creates <yellow>%dvalue<gray> additional fireball on first bounce",
+      "color": 8847384,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Offensive"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:fireball_volley_mitosis",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:fireball_volley_mitosis_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 5,
+              "maxGreedTier": 8,
+              "weight": 10,
+              "value": {
+                "min": 1,
+                "max": 1,
+                "step": 1
+              }
+            },
+            {
+              "minGreedTier": 8,
+              "maxGreedTier": 10,
+              "weight": 10,
+              "value": {
+                "min": 2,
+                "max": 2,
+                "step": 1
+              }
+            },
+            {
+              "minGreedTier": 10,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "min": 2,
+                "max": 4,
+                "step": 1
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    }
+  },
+  "groups": {}
+}

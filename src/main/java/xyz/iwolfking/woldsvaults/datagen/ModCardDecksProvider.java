@@ -28,7 +28,7 @@ public class ModCardDecksProvider extends AbstractDeckProvider {
                 deckBuilder.add("OXOOOXO");
                 deckBuilder.add("OXOOOXO");
                 deckBuilder.add("OOOOOOO");
-            }), new IntRangeEntry(3, 3));
+            }), new IntRangeEntry(4, 4));
 
             builder.addEntry("snake", "woldsvaults:deck/snake#inventory", "The Snake Deck", new IntRangeEntry(4, 4), deck(deckBuilder -> {
                 deckBuilder.add("XXXXXXXXA");
@@ -37,7 +37,7 @@ public class ModCardDecksProvider extends AbstractDeckProvider {
                 deckBuilder.add("OOOOOOOOO");
                 deckBuilder.add("XXXXXXXXO");
                 deckBuilder.add("AOOOOOOOO");
-            }), new IntRangeEntry(1, 1));
+            }), new IntRangeEntry(2, 2));
 
             builder.addEntry("fairy", "woldsvaults:deck/fairy#inventory", "The Fairy Deck", new IntRangeEntry(4, 4), deck(deckBuilder -> {
                 deckBuilder.add("AXXOXOXXA");
@@ -46,7 +46,7 @@ public class ModCardDecksProvider extends AbstractDeckProvider {
                 deckBuilder.add("XXAXXXAXX");
                 deckBuilder.add("XOXOXOXOX");
                 deckBuilder.add("AXXXOXXXA");
-            }), new IntRangeEntry(2, 2));
+            }), new IntRangeEntry(3, 3));
 
             builder.addEntry("wall", "woldsvaults:deck/wall#inventory", "The Rook Deck", new IntRangeEntry(4, 4), deck(deckBuilder -> {
                 deckBuilder.add("AXOXAXOXA");
@@ -63,16 +63,7 @@ public class ModCardDecksProvider extends AbstractDeckProvider {
                 deckBuilder.add("OAOOOOAO");
                 deckBuilder.add("OXOXXOXO");
                 deckBuilder.add("OOOOOOOO");
-            }), new IntRangeEntry(1, 1));
-
-//            builder.addEntry("skull", "woldsvaults:deck/skull#inventory", "The Skull Deck", new IntRangeEntry(4, 4), deck(deckBuilder -> {
-//                deckBuilder.add("XXOOOXXX");
-//                deckBuilder.add("XOXXXOXX");
-//                deckBuilder.add("OXAXAXOX");
-//                deckBuilder.add("OXAXAXOX");
-//                deckBuilder.add("XOXXXOXX");
-//                deckBuilder.add("XXOOOXXX");
-//            }), new IntRangeEntry(3, 3));
+            }), new IntRangeEntry(3, 3));
         });
 
 

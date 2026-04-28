@@ -66,6 +66,15 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                      }).forEach(jsonElements::add);;
                  })
 
+                 .addDescription("Automatic Genius", jsonElements -> {
+                            modDesc("Bragging rights", "of unlocking all mods",  innerDesc -> {
+                                innerDesc.add(JsonDescription.simple("Big Brain!\n\n", "yellow"));
+                                innerDesc.add(JsonDescription.simple("You have completed every research and filled your brain with knowledge!\n\n"));
+                                innerDesc.add(JsonDescription.simple("This research is purely for bragging rights, all autocrafting is available within their respective mod without this unlock!\n\n"));
+                                innerDesc.add(JsonDescription.simple("All mods with autocrafting respect the research system of Vault Hunters, only allowing crafting items you have unlocked!"));
+                            }).forEach(jsonElements::add);;
+                })
+
                  .addDescription("Junk Management", jsonElements -> modDesc("Junk Management", "research", innerDesc -> {
                      innerDesc.add(JsonDescription.simple("The Void Crucible will let you configure what blocks you don't want to void when using the Void + Pickup Mode on your ", "$text"));
                      innerDesc.add(JsonDescription.simple("Magnet", "aqua"));

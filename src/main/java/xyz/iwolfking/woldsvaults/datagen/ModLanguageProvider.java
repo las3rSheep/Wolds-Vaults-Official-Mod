@@ -55,7 +55,15 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.SURVIVAL_OBJECTIVE_BLOCK, "Survival Pylon");
         add(ModItems.CRYSTAL_SEAL_SURVIVOR, "Seal of the Survivor");
         add(ModItems.SCAVENGER_POUCH_ITEM, "Scavenger Pouch");
+        add(ModItems.COMBINED_TRINKET, "Fusion Trinket");
+        add(ModItems.PRISMATIC_GLUE_BUCKET, "Bucket of Prismatic Glue");
+        add(ModBlocks.PRISMATIC_GLUE_BLOCK, "Prismatic Glue");
+        add("block.woldsvaults.prismatic_glue", "Prismatic Glue");
+        add("block.woldsvaults.flowing_prismatic_glue", "Flowing Prismatic Glue");
+        add("tile.woldsvaults.trinket_fusion_forge", "Trinket Fusion Forge");
+        add(ModBlocks.TRINKET_FUSION_BLOCK, "Trinket Fusion Forge");
         add(ModEffects.BURN, "Burning");
+        add("command.woldsvaults.prevent_back_into_vault", "You cannot return into The Vault!");
         add("woldsvaults.special.fruit_rotting", "§4You feel the Vault start to rot away...");
         add("woldsvaults.special.rotten", "§4The Vault has rotted!");
         add("config.waila.plugin_miningspeedometer.speedometer", "Enable Speedometer Tooltip");
@@ -350,6 +358,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.the_vault.map", "Vault Map");
         add("item.woldsvaults.layout_manipulator", "Etched Vault Layout");
         add("effect.woldsvaults.reaving", "Reaved");
+        add("effect.woldsvaults.echoing", "Echoing");
         add("effect.woldsvaults.shrinking", "Shrinking");
         add("effect.woldsvaults.growing", "Growing");
         add("effect.woldsvaults.safer_space", "Safer Space");

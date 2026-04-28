@@ -3,6 +3,8 @@ package xyz.iwolfking.woldsvaults.abilities;
 import com.google.gson.JsonObject;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.net.BitBuffer;
+import iskallia.vault.gear.attribute.VaultGearAttributeInstance;
+import iskallia.vault.gear.etching.EtchingHelper;
 import iskallia.vault.init.ModParticles;
 import iskallia.vault.skill.ability.effect.spi.core.Ability;
 import iskallia.vault.skill.ability.effect.spi.core.HoldManaAbility;
@@ -14,7 +16,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
+import xyz.iwolfking.woldsvaults.init.ModEtchingGearAttributes;
 
 public class LevitateAbility extends HoldManaAbility {
     private int levitateStrength;
@@ -55,6 +59,9 @@ public class LevitateAbility extends HoldManaAbility {
             if (result != Ability.TickResult.COOLDOWN) {
                 MobEffectInstance newEffect = new MobEffectInstance(ModEffects.LEVITATEII, 100, levitateStrength, false, false, true);
                 player.addEffect(newEffect);
+                if(player.hasEffect(MobEffects.SLOW_FALLING) && player.getEffect(MobEffects.SLOW_FALLING).getAmplifier() == 2) {
+                    player.removeEffect(MobEffects.SLOW_FALLING);
+                }
                 doParticles(context);
             }
 
@@ -66,7 +73,11 @@ public class LevitateAbility extends HoldManaAbility {
     @Override
     public boolean onKeyUp(SkillContext context) {
             context.getSource().as(ServerPlayer.class).map(player -> {
+                VaultGearAttributeInstance<Boolean> levitateEtchingAttribute = EtchingHelper.getEtchings(player, ModEtchingGearAttributes.LEVITATE_SLOW_FALLING).stream().findFirst().orElse(null);
                 player.removeEffect(ModEffects.LEVITATEII);
+                if(levitateEtchingAttribute != null && levitateEtchingAttribute.getValue()) {
+                    player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 100, 2, false, false, true));
+                }
                 return true;
             });
         return super.onKeyUp(context);

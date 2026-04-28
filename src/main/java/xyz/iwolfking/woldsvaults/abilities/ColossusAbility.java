@@ -3,6 +3,8 @@ package xyz.iwolfking.woldsvaults.abilities;
 import com.google.gson.JsonObject;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.net.BitBuffer;
+import iskallia.vault.gear.attribute.VaultGearAttributeInstance;
+import iskallia.vault.gear.etching.EtchingHelper;
 import iskallia.vault.item.CompanionParticleTrailItem;
 import iskallia.vault.skill.ability.effect.spi.core.InstantManaAbility;
 import iskallia.vault.skill.base.Skill;
@@ -24,6 +26,7 @@ import net.minecraftforge.fml.common.Mod;
 import virtuoel.pehkui.api.ScaleData;
 import virtuoel.pehkui.api.ScaleType;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
+import xyz.iwolfking.woldsvaults.init.ModEtchingGearAttributes;
 
 import java.util.Optional;
 
@@ -129,11 +132,9 @@ public class ColossusAbility extends InstantManaAbility {
             if (entity instanceof ServerPlayer player) {
                 //get data from the skill tree
                 float size = 1.0f;
-                //float additionalResistance = 0.0f;
                 AbilityTree abilities = PlayerAbilitiesData.get((ServerLevel)player.level).getAbilities(player);
                 for (ColossusAbility ability : abilities.getAll(ColossusAbility.class, Skill::isUnlocked)) {
                     size = ability.getSize();
-                    //additionalResistance = ability.getAdditionalResistance();
                 }
                 //set scale
                 ScaleData scaleData = scaleType.getScaleData(player);
@@ -167,6 +168,7 @@ public class ColossusAbility extends InstantManaAbility {
                 }
             }
         }
+
         //mixined into applying resistance
         public static float getColossusResistance(LivingEntity entity) {
             float resistancePercentage = 0.0f;
@@ -182,6 +184,17 @@ public class ColossusAbility extends InstantManaAbility {
             }
             return resistancePercentage;
         }
+
+        //mixined into applying resistance
+        public static float getColossusResistanceCapIncrease(LivingEntity entity) {
+            if(entity instanceof ServerPlayer player) {
+                VaultGearAttributeInstance<Float> titanEtchingAttribute = EtchingHelper.getEtchings(player, ModEtchingGearAttributes.COLOSSUS_TITAN_RESISTANCE).stream().findFirst().orElse(null);
+                return titanEtchingAttribute != null ? titanEtchingAttribute.getValue() : 0F;
+            }
+
+            return 0F;
+        }
+
 
         public static float getColossusAOE(LivingEntity entity) {
             float aoePercentage = 0.0f;

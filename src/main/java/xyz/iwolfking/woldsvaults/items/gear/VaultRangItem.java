@@ -9,6 +9,7 @@ import iskallia.vault.gear.VaultGearState;
 import iskallia.vault.gear.VaultGearType;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.crafting.ProficiencyType;
+import iskallia.vault.gear.data.GearDataCache;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.tooltip.GearTooltip;
@@ -61,6 +62,22 @@ import java.util.Random;
 
 public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLeatherItem {
 
+    private static final String TAG_IN_FLIGHT = "InFlight";
+
+    public static boolean isInFlight(ItemStack stack) {
+        return stack.hasTag() && stack.getTag().getBoolean(TAG_IN_FLIGHT);
+    }
+
+    public static void setInFlight(ItemStack stack, boolean value, Player player) {
+        stack.getOrCreateTag().putBoolean(TAG_IN_FLIGHT, value);
+        if(!value || player == null) {
+            stack.removeTagKey("ThrownTime");
+        }
+        else {
+            stack.getOrCreateTag().putLong("ThrownTime", player.getLevel().getGameTime());
+        }
+    }
+
     public VaultRangItem(ResourceLocation id,  Item.Properties properties) {
         super(id, properties);
     }
@@ -83,6 +100,10 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, @Nonnull InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
 
+        if (isInFlight(itemstack)) {
+            return InteractionResultHolder.fail(itemstack);
+        }
+
         if(VaultGearHelper.rightClick(worldIn, playerIn, handIn, super.use(worldIn, playerIn, handIn)).getResult().equals(InteractionResult.FAIL)) {
             return InteractionResultHolder.fail(itemstack);
         }
@@ -92,7 +113,7 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
             return new InteractionResultHolder<>(InteractionResult.FAIL, itemstack);
         }
 
-        playerIn.setItemInHand(handIn, ItemStack.EMPTY);
+        setInFlight(itemstack, true, playerIn);
         AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(playerIn);
         float velocity = snapshot.getAttributeValue(ModGearAttributes.VELOCITY, VaultGearAttributeTypeMerger.floatSum()) * 100;
         Double attackSpeed = snapshot.getAttributeValue(ModGearAttributes.ATTACK_SPEED, VaultGearAttributeTypeMerger.doubleSum());
@@ -108,14 +129,13 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
             worldIn.addFreshEntity(entity);
         }
 
-        if(!playerIn.getAbilities().instabuild) {
-            int cooldown = 10 - attackSpeed.intValue();
-            if (cooldown > 0)
-                playerIn.getCooldowns().addCooldown(this, cooldown);
-        }
-
         playerIn.awardStat(Stats.ITEM_USED.get(this));
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
+    }
+
+    @Override
+    public boolean isBarVisible(ItemStack stack) {
+        return !isInFlight(stack) && GearDataCache.of(stack).getState() != null && GearDataCache.of(stack).getState().equals(VaultGearState.IDENTIFIED);
     }
 
     @Override
@@ -177,6 +197,19 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected) {
         super.inventoryTick(stack, world, entity, itemSlot, isSelected);
         if (entity instanceof ServerPlayer player) {
+            if(stack.hasTag() && stack.getTag().contains("ThrownTime")) {
+                long thrownAt = stack.getTag().getLong("ThrownTime");
+
+                if (world.getGameTime() - thrownAt > 20 * 8) {
+                    setInFlight(stack, false, player);
+                }
+            }
+            else {
+                if(stack.hasTag() && stack.getTag().contains("InFlight")) {
+                    stack.removeTagKey("InFlight");
+                }
+            }
+
             this.vaultGearTick(stack, player);
         }
 

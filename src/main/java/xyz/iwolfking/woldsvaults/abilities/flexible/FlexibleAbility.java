@@ -8,6 +8,7 @@
 
 package xyz.iwolfking.woldsvaults.abilities.flexible;
 
+import iskallia.vault.skill.ability.effect.GrenadeAbility;
 import iskallia.vault.skill.ability.effect.ImplodeAbility;
 import iskallia.vault.skill.ability.effect.SmiteAbility;
 import iskallia.vault.skill.ability.effect.spi.AbstractNovaAbility;
@@ -32,6 +33,12 @@ public class FlexibleAbility {
         return abilityToCast.map(value -> castAbility(ability, value, player, target)).orElse(0F);
     }
 
+    public void castWithRotation(String ability, Player player, float xRot, float yRot) {
+        Optional<Ability> abilityToCast = getAbilityData(ability, PlayerAbilitiesData.get((ServerLevel)player.level).getAbilities(player));
+        abilityToCast.map(value -> castAbilityWithRotation(ability, value, player, xRot, yRot)).orElse(0F);
+    }
+
+
     protected float castAbility(String ability, Ability abilityToCast, Player player, Entity target) {
         float durabilityDamage = 0;
         //Log.info("Ability: " + abilityToCast);
@@ -52,6 +59,22 @@ public class FlexibleAbility {
             case "Smite":
                 FlexibleSmite smiteAbility = new FlexibleSmite();
                 durabilityDamage = smiteAbility.cast(player, target, (SmiteAbility) abilityToCast);
+                break;
+            case "Grenade":
+                FlexibleGrenade grenadeAbility = new FlexibleGrenade();
+                grenadeAbility.cast(player, (GrenadeAbility) abilityToCast);
+                break;
+            default:
+        }
+        return durabilityDamage;
+    }
+
+    protected float castAbilityWithRotation(String ability, Ability abilityToCast, Player player, float xRot, float yRot) {
+        float durabilityDamage = 0;
+        switch (ability) {
+            case "Grenade":
+                FlexibleGrenade grenadeAbility = new FlexibleGrenade();
+                grenadeAbility.cast(player, (GrenadeAbility) abilityToCast, xRot, yRot);
                 break;
             default:
         }

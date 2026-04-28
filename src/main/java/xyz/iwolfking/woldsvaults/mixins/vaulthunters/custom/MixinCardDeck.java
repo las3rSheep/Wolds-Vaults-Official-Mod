@@ -151,11 +151,12 @@ public abstract class MixinCardDeck implements ICardDeckCache {
         for (DeckModifier<?> modifier : this.modifiers) {
             if(modifier instanceof EmptySlotDeckModifier emptySlotDeckModifier) {
                 wv$recomputeSlotCache();
-                return emptySlotDeckModifier.getModifierValue(card, pos, (CardDeck)(Object)this);
+                value += emptySlotDeckModifier.getModifierValue(card, pos, (CardDeck)(Object)this);
             }
-
-            float modValue = modifier.getModifierValue(card, pos, (CardDeck)(Object)this);
-            value += (modValue - 1.0F);
+            else {
+                float modValue = modifier.getModifierValue(card, pos, (CardDeck)(Object)this);
+                value += (modValue - 1.0F);
+            }
         }
 
         return value;

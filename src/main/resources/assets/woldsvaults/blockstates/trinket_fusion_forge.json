@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=south": {
+      "model": "woldsvaults:block/trinket_fusion_forge"
+    },
+    "facing=east": {
+      "model": "woldsvaults:block/trinket_fusion_forge",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "woldsvaults:block/trinket_fusion_forge",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "woldsvaults:block/trinket_fusion_forge",
+      "y": 90
+    }
+  }
+}

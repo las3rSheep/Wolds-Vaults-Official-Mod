@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import iskallia.vault.config.ShopPedestalConfig;
 import iskallia.vault.container.oversized.OverSizedItemStack;
 import iskallia.vault.core.event.common.ShopPedestalGenerationEvent;
@@ -7,6 +8,7 @@ import iskallia.vault.core.vault.ClassicLootLogic;
 import iskallia.vault.core.vault.LootLogic;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.VaultLevel;
+import iskallia.vault.core.vault.objective.Objective;
 import iskallia.vault.core.world.storage.VirtualWorld;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -40,9 +42,9 @@ public abstract class MixinClassicLootLogic extends LootLogic {
         data.getTileEntity().setChanged();
         world.sendBlockUpdated(data.getPos(), data.getState(), data.getState(), 3);
     }
-//
-//    @Redirect(method = "generateCatalystFragments", at = @At(value = "INVOKE", target = "Ljava/util/List;isEmpty()Z", ordinal = 0))
-//    protected boolean generateCatalystFragments(List instance) {
-//        return true;
-//    }
+
+    @Redirect(method = "generateCatalystFragments", at = @At(value = "INVOKE", target = "Liskallia/vault/core/vault/VaultUtils;hasObjective(Liskallia/vault/core/vault/Vault;Ljava/lang/Class;)Z", ordinal = 0))
+    protected boolean generateCatalystFragments(Vault vault, Class<? extends Objective> objectiveClass) {
+        return false;
+    }
 }

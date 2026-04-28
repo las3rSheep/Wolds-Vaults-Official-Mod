@@ -6,6 +6,9 @@ import com.mojang.math.Vector3f;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.net.BitBuffer;
 import iskallia.vault.entity.entity.PetEntity;
+import iskallia.vault.gear.attribute.VaultGearAttributeInstance;
+import iskallia.vault.gear.etching.EtchingGearAttributes;
+import iskallia.vault.gear.etching.EtchingHelper;
 import iskallia.vault.skill.ability.effect.spi.core.InstantManaAbility;
 import iskallia.vault.skill.base.SkillContext;
 import iskallia.vault.util.calc.AreaOfEffectHelper;
@@ -16,6 +19,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -24,6 +28,7 @@ import net.minecraft.world.phys.Vec3;
 import org.apache.commons.lang3.tuple.Pair;
 import xyz.iwolfking.woldsvaults.api.util.DelayedExecutionHelper;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
+import xyz.iwolfking.woldsvaults.init.ModEtchingGearAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +75,12 @@ public class ConcentrateAbility extends InstantManaAbility {
                     e -> !(e instanceof ServerPlayer || e instanceof PetEntity)
             );
 
+            if(entities.isEmpty()) {
+                return ActionResult.fail();
+            }
+
+            VaultGearAttributeInstance<Float> drainEtchingAttribute = EtchingHelper.getEtchings(serverPlayer, ModEtchingGearAttributes.CONCENTRATE_DRAIN).stream().findFirst().orElse(null);
+
             List<Pair<Vec3, MobEffect>> effectsToProcess = new ArrayList<>();
             for (LivingEntity entity : entities) {
                 List<MobEffect> effectsToRemove = new ArrayList<>();
@@ -83,6 +94,10 @@ public class ConcentrateAbility extends InstantManaAbility {
                 }
                 for(MobEffect effect : effectsToRemove) {
                     entity.removeEffect(effect);
+                    if(drainEtchingAttribute != null) {
+                        entity.hurt(DamageSource.MAGIC, Math.min(entity.getHealth() * drainEtchingAttribute.getValue(), 3 * context.getLevel()));
+                        serverPlayer.heal(1);
+                    }
                 }
             }
 
@@ -191,7 +206,7 @@ public class ConcentrateAbility extends InstantManaAbility {
         if (effect == MobEffects.MOVEMENT_SLOWDOWN || effect == iskallia.vault.init.ModEffects.CHILLED || effect == MobEffects.MOVEMENT_SPEED) return ModEffects.QUICKENING;
         if (effect == MobEffects.WEAKNESS || effect == iskallia.vault.init.ModEffects.BLEED || effect == MobEffects.DAMAGE_BOOST) return ModEffects.EMPOWER;
         if (effect == MobEffects.POISON) return random.nextBoolean() ? iskallia.vault.init.ModEffects.PURIFYING_AURA : MobEffects.REGENERATION;
-        if (effect == iskallia.vault.init.ModEffects.VULNERABLE) return random.nextBoolean() ? MobEffects.DAMAGE_RESISTANCE : ModEffects.EMPOWER;
+        if (effect == iskallia.vault.init.ModEffects.VULNERABLE) return ModEffects.EMPOWER;
         if (effect == iskallia.vault.init.ModEffects.FREEZE || effect == iskallia.vault.init.ModEffects.HYPOTHERMIA) return random.nextBoolean() ? MobEffects.FIRE_RESISTANCE : MobEffects.DIG_SPEED;
         if (effect == iskallia.vault.init.ModEffects.TAUNT_REPEL_MOB) return random.nextBoolean() ? AMEffectRegistry.SOULSTEAL : MobEffects.NIGHT_VISION;
         if (effect == MobEffects.UNLUCK) return MobEffects.LUCK;

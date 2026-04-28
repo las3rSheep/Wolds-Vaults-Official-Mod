@@ -61,9 +61,9 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
 
             GlobalDeckModifier.Config sparklingDeckCore = new GlobalDeckModifier.Config();
             sparklingDeckCore.requiredGroups.add("Shiny");
-            sparklingDeckCore.modifierRoll = FloatRoll.ofUniform(0.25F, 0.25F);
-            sparklingDeckCore.modifierRolls.put("lesser", variant("Lesser Sparkling Core", FloatRoll.ofUniform(0.15F, 0.15F), 13618375, "woldsvaults:deck_cores/sparkling_deck_core_lesser#inventory"));
-            sparklingDeckCore.modifierRolls.put("greater", variant("Greater Sparkling Core", FloatRoll.ofUniform(0.5F, 0.5F), 16769382, "woldsvaults:deck_cores/sparkling_deck_core_greater#inventory"));
+            sparklingDeckCore.modifierRoll = FloatRoll.ofUniform(0.6F, 0.9F);
+            sparklingDeckCore.modifierRolls.put("lesser", variant("Lesser Sparkling Core", FloatRoll.ofUniform(0.4F, 0.4F), 13618375, "woldsvaults:deck_cores/sparkling_deck_core_lesser#inventory"));
+            sparklingDeckCore.modifierRolls.put("greater", variant("Greater Sparkling Core", FloatRoll.ofUniform(1.0F, 1.75F), 16769382, "woldsvaults:deck_cores/sparkling_deck_core_greater#inventory"));
 
             EmptySlotDeckModifier.Config voidModifierConfig = new EmptySlotDeckModifier.Config();
             voidModifierConfig.modifierRoll = FloatRoll.ofUniform(0.1F, 0.2F);

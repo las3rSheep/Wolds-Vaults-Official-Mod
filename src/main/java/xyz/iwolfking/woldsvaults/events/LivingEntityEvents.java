@@ -48,6 +48,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -64,6 +65,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.event.CurioChangeEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.abilities.SneakyGetawayAbility;
 import xyz.iwolfking.woldsvaults.api.util.WoldAttributeHelper;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.api.data.HexEffects;
@@ -108,6 +110,9 @@ public class LivingEntityEvents {
             return;
 
         float dodgeChance = AttributeSnapshotHelper.getInstance().getSnapshot(entity).getAttributeValue(ModGearAttributes.DODGE_PERCENT, VaultGearAttributeTypeMerger.floatSum());
+        if(entity.hasEffect(ModEffects.SNEAKY_GETAWAY)) {
+            dodgeChance += SneakyGetawayAbility.SneakyGetawayEffect.getSneakyEtchingDodgeChance(entity);
+        }
         boolean dodge = entity.getRandom().nextDouble() < dodgeChance;
 
         event.setCanceled(dodge);

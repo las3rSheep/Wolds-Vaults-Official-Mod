@@ -2,6 +2,7 @@ package xyz.iwolfking.woldsvaults.datagen;
 
 import iskallia.vault.VaultMod;
 import iskallia.vault.config.ResearchesGUIConfig;
+import iskallia.vault.gear.trinket.TrinketEffectRegistry;
 import iskallia.vault.init.ModConfigs;
 import me.dinnerbeef.compressium.Compressium;
 import net.minecraft.data.DataGenerator;
@@ -89,7 +90,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.RECIPE_BLUEPRINT);
         simpleItem(ModItems.REPAIR_AUGMENTER);
         simpleItem(ModItems.SCAVENGER_POUCH_ITEM);
+        simpleItem(ModItems.PRISMATIC_GLUE_BUCKET);
         getBuilder(ModItems.RESEARCH_TOKEN.getRegistryName().getPath())
+                .parent(new ModelFile.UncheckedModelFile(
+                        ResourceLocation.parse("builtin/entity")
+                ));
+        getBuilder(ModItems.COMBINED_TRINKET.getRegistryName().getPath())
                 .parent(new ModelFile.UncheckedModelFile(
                         ResourceLocation.parse("builtin/entity")
                 ));
@@ -256,6 +262,13 @@ public class ModItemModelProvider extends ItemModelProvider {
         }));
         simpleItem(ModItems.RAINBOW_UNOBTANIUM);
 
+        etching(VaultMod.id("concentrate_drain"));
+        etching(VaultMod.id("levitation_slow_falling"));
+        etching(VaultMod.id("colossus_titan_resistance"));
+        etching(VaultMod.id("diffuse_chemical_bomb"));
+        etching(VaultMod.id("sneaky_getaway_ninja"));
+        etching(VaultMod.id("fireball_volley_mitosis"));
+
         ModCompressibleBlocks.getRegisteredBlocks().forEach((k, v) -> {
             for (int i = 0; i < v.size(); i ++) {
                 var name = k.name().toLowerCase();
@@ -284,6 +297,13 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0",
                         VaultMod.id("gui/researches/" + ResourceLocUtils.getStrippedPath(icon)));
+    }
+
+    public ItemModelBuilder etching(ResourceLocation icon) {
+        return getBuilder(VaultMod.id("item/gear/etching/" + ResourceLocUtils.getStrippedPath(icon)).toString())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0",
+                        VaultMod.id("item/gear/etching/" + ResourceLocUtils.getStrippedPath(icon)));
     }
 
     private ItemModelBuilder vaultModifier(ResourceLocation modifierId) {

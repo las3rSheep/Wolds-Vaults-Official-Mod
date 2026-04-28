@@ -6,6 +6,7 @@ import iskallia.vault.entity.entity.EternalEntity;
 import iskallia.vault.event.ActiveFlags;
 import iskallia.vault.init.ModParticles;
 import iskallia.vault.init.ModSounds;
+import iskallia.vault.mana.ManaPlayer;
 import iskallia.vault.skill.ability.effect.ImplodeAbility;
 import iskallia.vault.util.AABBHelper;
 import net.minecraft.server.level.ServerPlayer;
@@ -22,21 +23,21 @@ public class FlexibleImplode extends ImplodeAbility {
 
     public float cast(Player player, LivingEntity target, ImplodeAbility ability) {
         Vec3 pos = target.position();
-        float health = target.getHealth();
+        ManaPlayer manaPlayer = (ManaPlayer) player;
+
         float radius = ability.getRadius(player);
-        List<LivingEntity> targetEntities = player.level.getNearbyEntities(LivingEntity.class, TargetingConditions.forCombat().range((double)radius).selector((entity) -> !(entity instanceof Player) && !(entity instanceof EternalEntity)), player, AABBHelper.create(pos, radius));;
+        List<LivingEntity> targetEntities = player.level.getNearbyEntities(LivingEntity.class, TargetingConditions.forCombat().range(radius).selector((entity) -> !(entity instanceof Player) && !(entity instanceof EternalEntity)), player, AABBHelper.create(pos, radius));;
         DamageSource damageSource = DamageSource.playerAttack(player);
 
         for (LivingEntity entity : targetEntities) {
             if (!entity.isInvulnerableTo(damageSource)) {
                 float damageModifier = this.getDamageModifier(ability.getRadius(target), target.distanceTo(entity));
-                float damage = health * ability.getPercentManaDealt() * damageModifier;
-                //Log.info("Imploding " + entity + " with " + damage + " damage");
+                float damage = manaPlayer.getMana() * ability.getPercentManaDealt() * damageModifier;
                 ActiveFlags.IS_AOE_ATTACKING.runIfNotSet(() -> entity.hurt(damageSource, damage));
             }
         }
         ((ServerPlayer) player).getLevel().sendParticles(new SphericalParticleOptions(ModParticles.IMPLODE.get(), ability.getRadius(player), new Vector3f(0.0F, 1.0F, 1.0F)), target.getX(), target.getY(), target.getZ(), 400, (double) 0.0F, (double) 0.0F, (double) 0.0F, (double) 0.0F);
-        player.level.playSound((Player) null, target.getX(), target.getY(), target.getZ(), ModSounds.MANA_SHIELD, SoundSource.PLAYERS, 0.2F, 0.2F);
+        player.level.playSound(null, target.getX(), target.getY(), target.getZ(), ModSounds.MANA_SHIELD, SoundSource.PLAYERS, 0.2F, 0.2F);
         player.playNotifySound(ModSounds.MANA_SHIELD, SoundSource.PLAYERS, 0.2F, 0.2F);
 
         return targetEntities.size();
