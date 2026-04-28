@@ -619,6 +619,7 @@
   "key.woldsvaults.open_wolds_vaults_config": "Open Wold's Vaults Config Screen",
   "key.woldsvaults.toggle_better_combat": "Toggle Better Combat",
   "menu.woldsvaults.rewards_menu": "Rewards Menu",
+  "message.woldsvaults.filled_bottle_alchemy_archive": "You have all effects unlocked! Your %1$s has been refilled!",
   "misc.woldsvaults.flight_block_0": "You cannot fly inside the Vault!",
   "objective.the_vault.alchemy": "Alchemy",
   "objective.the_vault.ballistic_bingo": "Ballistic Bingo",
