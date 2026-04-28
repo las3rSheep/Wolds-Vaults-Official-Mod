@@ -123,6 +123,18 @@ public class ModBlocks {
                     .noDrops()
     );
 
+    public static final LiquidBlock MOLTEN_TRINKET_BLOCK = new LiquidBlock(
+            ModFluids.MOLTEN_TRINKET,
+            BlockBehaviour.Properties.of(Material.LAVA, MaterialColor.COLOR_MAGENTA)
+                    .noCollission()
+                    .noOcclusion()
+                    .randomTicks()
+                    .strength(100.0F)
+                    .noDrops()
+    );
+
+
+
     //Decorative Blocks -- Missing Vault Decoration
     public static final VaultGemStairsBlock WUTODIE_STAIRS;
     public static final VaultGemSlabBlock WUTODIE_SLAB;
@@ -364,6 +376,7 @@ public class ModBlocks {
         registerBlock(event, CHROMATIC_STEEL_INFUSER_BLOCK, WoldsVaults.id("chromatic_steel_vault_infuser"));
         registerBlock(event, TRINKET_FUSION_BLOCK, WoldsVaults.id("trinket_fusion_forge"));
         registerBlock(event, PRISMATIC_GLUE_BLOCK, WoldsVaults.id("prismatic_glue_block"));
+        registerBlock(event, MOLTEN_TRINKET_BLOCK, WoldsVaults.id("molten_trinket_block"));
         registerBlock(event, GATEWAY_CHANNELING_BLOCK, WoldsVaults.id("gateway_channeling_block"));
         registerBlock(event, ETCHING_PEDESTAL, WoldsVaults.id("etching_shop_pedestal"));
         registerBlock(event, FRACTURED_OBELISK, WoldsVaults.id("fractured_obelisk"));

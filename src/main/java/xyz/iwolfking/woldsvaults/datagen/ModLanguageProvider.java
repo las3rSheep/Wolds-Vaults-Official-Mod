@@ -57,7 +57,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.SCAVENGER_POUCH_ITEM, "Scavenger Pouch");
         add(ModItems.COMBINED_TRINKET, "Fusion Trinket");
         add(ModItems.PRISMATIC_GLUE_BUCKET, "Bucket of Prismatic Glue");
+        add(ModItems.MOLTEN_TRINKET_BUCKET, "Bucket of Molten Trinket");
         add(ModBlocks.PRISMATIC_GLUE_BLOCK, "Prismatic Glue");
+        add(ModBlocks.MOLTEN_TRINKET_BLOCK, "Molten Trinket");
         add("block.woldsvaults.prismatic_glue", "Prismatic Glue");
         add("block.woldsvaults.flowing_prismatic_glue", "Flowing Prismatic Glue");
         add("tile.woldsvaults.trinket_fusion_forge", "Trinket Fusion Forge");

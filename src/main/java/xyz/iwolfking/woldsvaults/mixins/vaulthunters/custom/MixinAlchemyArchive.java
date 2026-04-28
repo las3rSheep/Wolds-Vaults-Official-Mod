@@ -21,7 +21,7 @@ public abstract class MixinAlchemyArchive {
     @Shadow
     public abstract boolean setUsedByPlayer(Player player);
 
-    @Redirect(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;sendMessage(Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V"))
+    @Redirect(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;sendMessage(Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V"), remap = true)
     private void fillPlayersBrew(ServerPlayer instance, Component pComponent, UUID pSenderUUID) {
         ItemStack bottle = InventoryUtil.getFirst(instance.getInventory().items, stack -> stack.getItem() instanceof BottleItem).orElse(null);
         if(bottle != null) {
