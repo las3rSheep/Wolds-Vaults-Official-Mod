@@ -219,6 +219,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("jei.the_vault.god_altar_idona_loot", "God Altar (Idona)");
         add("jei.the_vault.god_altar_tenos_loot", "God Altar (Tenos)");
         add("jei.the_vault.god_altar_velara_loot", "God Altar (Velara)");
+        add("jei.woldsvaults.trinket_fusion", "Trinket Fusion Forge");
         add("item.the_vault.gem_iskallium", "§5Woldium Gem");
         add("item.the_vault.key_iskallium", "§5Woldium Key");
         add("item.the_vault.cluster_iskallium", "§5Woldium Cluster");

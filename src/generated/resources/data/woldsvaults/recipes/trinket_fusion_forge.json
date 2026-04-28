@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NVN",
+    "ICI",
+    "LLL"
+  ],
+  "key": {
+    "N": {
+      "item": "the_vault:echo_pog"
+    },
+    "I": {
+      "item": "woldsvaults:pogominium_ingot"
+    },
+    "V": {
+      "item": "compressium:vault_diamond_block_1"
+    },
+    "L": {
+      "item": "the_vault:black_chromatic_steel_block"
+    },
+    "C": {
+      "item": "the_vault:trinket_forge"
+    }
+  },
+  "result": {
+    "item": "woldsvaults:trinket_fusion_forge"
+  }
+}

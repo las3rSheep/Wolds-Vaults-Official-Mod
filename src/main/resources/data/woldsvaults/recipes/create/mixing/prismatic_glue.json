@@ -21,5 +21,6 @@
       "fluid": "woldsvaults:prismatic_glue",
       "amount": 10
     }
-  ]
+  ],
+  "heatRequirement": "superheated"
 }

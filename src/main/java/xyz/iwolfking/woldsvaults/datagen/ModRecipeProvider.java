@@ -157,16 +157,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_perfect_benitoite", has(iskallia.vault.init.ModItems.PERFECT_BENITOITE))
                 .save(pFinishedRecipeConsumer);
 
-//        ShapedRecipeBuilder.shaped(ModBlocks.AUGMENT_CRAFTING_TABLE)
-//                .define('N', ModItems.POG_PRISM)
-//                .define('I', iskallia.vault.init.ModItems.VAULT_INGOT)
-//                .define('L', Blocks.LECTERN)
-//                .define('C', iskallia.vault.init.ModItems.AUGMENT)
-//                .pattern("NCN")
-//                .pattern("ILI")
-//                .pattern("III")
-//                .unlockedBy("has_augment", has(iskallia.vault.init.ModItems.AUGMENT))
-//                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(ModBlocks.TRINKET_FUSION_BLOCK)
+                .define('N', iskallia.vault.init.ModItems.ECHO_POG)
+                .define('I', ModItems.POGOMINIUM_INGOT)
+                .define('V', ModCompressibleBlocks.getCompressed("vault_diamond_block", 1))
+                .define('L', iskallia.vault.init.ModBlocks.BLACK_CHROMATIC_STEEL_BLOCK)
+                .define('C', iskallia.vault.init.ModBlocks.TRINKET_FORGE)
+                .pattern("NVN")
+                .pattern("ICI")
+                .pattern("LLL")
+                .unlockedBy("has_augment", has(iskallia.vault.init.ModItems.AUGMENT))
+                .save(pFinishedRecipeConsumer);
 
 
         ShapedRecipeBuilder.shaped(ModBlocks.MOD_BOX_WORKSTATION)
