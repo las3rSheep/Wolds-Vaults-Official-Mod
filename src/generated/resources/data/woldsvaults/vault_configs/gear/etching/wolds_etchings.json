@@ -117,6 +117,34 @@
       ],
       "affixType": "IMPLICIT"
     },
+    "woldsvaults:prudent_chaos": {
+      "name": "Prudent Chaos",
+      "description": "<#E87CAC>Prudent<gray> triggers a random <#FF7CAC>Brew<gray> effect when successful",
+      "color": 15236268,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Defensive"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:prudent_chaos",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:prudent_chaos_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 2,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "flag": true
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
     "woldsvaults:colossus_titan_resistance": {
       "name": "Colossus Titan",
       "description": "<#41880E>Colossus<gray> adds <yellow>%.0fpvalue%<gray> additional <#FF7400>Resistance Cap Limit<gray> while active",

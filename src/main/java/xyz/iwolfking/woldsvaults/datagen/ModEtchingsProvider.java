@@ -48,6 +48,15 @@ public class ModEtchingsProvider extends AbstractEtchingProvider {
                 });
             });
 
+            builder.addEtching(WoldsVaults.id("prudent_chaos"), "Prudent Chaos",  "<#E87CAC>Prudent<gray> triggers a random <#FF7CAC>Brew<gray> effect when successful", 15236268, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
+                etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
+                    stringBasicListBuilder.add("Defensive");
+                });
+                etchingEntryBuilder.attribute(WoldsVaults.id("prudent_chaos"), "ModEtching", WoldsVaults.id("prudent_chaos_etching"), tierBasicListBuilder -> {
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(2, -1, 10, 1, new BooleanFlagGenerator.BooleanFlag(true)));
+                });
+            });
+
             builder.addEtching(WoldsVaults.id("colossus_titan_resistance"), "Colossus Titan",  "<#41880E>Colossus<gray> adds <yellow>%.0fpvalue%<gray> additional <#FF7400>Resistance Cap Limit<gray> while active", 4092928, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
                 etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
                     stringBasicListBuilder.add("Defensive");
