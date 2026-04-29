@@ -1,12 +1,16 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.fixes;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.objective.Objective;
 import iskallia.vault.core.vault.objective.RebirthObjective;
+import iskallia.vault.core.vault.time.TickClock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
@@ -30,5 +34,11 @@ abstract class MixinRebirthObjective extends Objective {
         if (damageDealt < woldsVaults$getPhaseDamageGoalFloat(currentPhase))
             ci.cancel();
     }
-
+  
+    @ModifyConstant(method = "tickServer",
+                    constant = @Constant(intValue = 1),
+                    remap = false)
+    private int onlyCountOnline(int constant, @Local(argsOnly = true) Vault vault) {
+        return vault.get(Vault.CLOCK).has(TickClock.PAUSED) ? 0 : 1;
+    }
 }
