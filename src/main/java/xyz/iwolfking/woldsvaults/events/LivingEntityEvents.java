@@ -22,7 +22,6 @@ import iskallia.vault.entity.entity.elite.EliteWitchEntity;
 import iskallia.vault.entity.entity.elite.EliteWitherSkeleton;
 import iskallia.vault.entity.entity.elite.EliteZombieEntity;
 import iskallia.vault.event.ActiveFlags;
-import iskallia.vault.event.PlayerActiveFlags;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
@@ -49,7 +48,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -81,7 +79,6 @@ import xyz.iwolfking.woldsvaults.items.TrinketPouchItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultTridentItem;
-import xyz.iwolfking.woldsvaults.mixins.accessors.MobEffectInstanceAccessor;
 import xyz.iwolfking.woldsvaults.objectives.data.bosses.WoldBoss;
 import xyz.iwolfking.woldsvaults.api.util.WoldEventHelper;
 
@@ -520,8 +517,8 @@ public class LivingEntityEvents {
                         if(oldInstance == null)
                             return;
 
-                        //[[DEBUG]]
-                        WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Echo successfully re-procced.");
+//                        //[[DEBUG]]
+//                        WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Echo successfully re-procced.");
 
                         // proc from echo/reverb
                         newDamage = event.getAmount() * oldInstance.getDecay();
@@ -536,10 +533,6 @@ public class LivingEntityEvents {
                         newDecay = 1.0F;
                     }
 
-
-
-
-
                     //only activate on big enough hits
                     if(newDamage > 1.0f) {
                         if(oldInstance != null
@@ -553,8 +546,8 @@ public class LivingEntityEvents {
                             oldInstance.reverberate();
 
                             if(oDamage > 1.0F) {
-                                //[[DEBUG]]
-                                WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Reverberated {} damage.", oDamage);
+//                                //[[DEBUG]]
+//                                WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Reverberated {} damage.", oDamage);
 
                                 if (WoldActiveFlags.IS_ECHOING_ATTACKING.isSet())
                                     DamageUtil.shotgunAttack(target, e -> e.hurt(oSource, oDamage));
@@ -568,10 +561,10 @@ public class LivingEntityEvents {
 
                         target.addEffect(new EchoingEffectInstance(player, newDamage, newSource, newDuration, newDecay));
 
-                        //[[DEBUG]]
-                        WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Added a {} damage echo to attack.", newDamage);
-                        WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Currently, {} damage is on top.", ((EchoingEffectInstance) target.getEffect(ModEffects.ECHOING)).getDamage());
-                        WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Decay at {}.", ((EchoingEffectInstance) target.getEffect(ModEffects.ECHOING)).getDecay());
+//                        //[[DEBUG]]
+//                        WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Added a {} damage echo to attack.", newDamage);
+//                        WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Currently, {} damage is on top.", ((EchoingEffectInstance) target.getEffect(ModEffects.ECHOING)).getDamage());
+//                        WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Decay at {}.", ((EchoingEffectInstance) target.getEffect(ModEffects.ECHOING)).getDecay());
                     }
                 }
             }

@@ -32,19 +32,12 @@ public class EchoingEffectInstance extends MobEffectInstance {
         return this.decay;
     }
 
-//    public EchoingEffectInstance(EchoingEffectInstance echo, boolean doDecay) {
-//        this(echo.attacker, echo.damage, echo.source, echo.getDuration(), echo.decay);
-//        this.doDecay();
-//    }
     public EchoingEffectInstance(EchoingEffectInstance echo, int duration) {
         this(echo.attacker, echo.damage, echo.source, duration, echo.decay);
     }
     public EchoingEffectInstance(EchoingEffectInstance echo) {
         this(echo.attacker, echo.damage, echo.source, echo.getDuration(), echo.decay);
         this.doDecay();
-    }
-    public EchoingEffectInstance(Player attacker, float damage, DamageSource source, int pDuration) {
-        this(attacker, damage, source, pDuration, 1);
     }
     public EchoingEffectInstance(Player attacker, float damage, DamageSource source, int pDuration, float decay) {
         super(ModEffects.ECHOING, pDuration);
