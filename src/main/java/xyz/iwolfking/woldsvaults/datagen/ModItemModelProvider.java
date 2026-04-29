@@ -272,6 +272,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         etching(VaultMod.id("fireball_volley_mitosis"));
         etching(VaultMod.id("purist_common"));
         etching(VaultMod.id("prudent_chaos"));
+        etching(VaultMod.id("reverberation"));
 
         ModCompressibleBlocks.getRegisteredBlocks().forEach((k, v) -> {
             for (int i = 0; i < v.size(); i ++) {

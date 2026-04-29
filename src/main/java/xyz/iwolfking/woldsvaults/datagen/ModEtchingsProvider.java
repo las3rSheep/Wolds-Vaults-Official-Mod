@@ -38,6 +38,15 @@ public class ModEtchingsProvider extends AbstractEtchingProvider {
                 });
             });
 
+            builder.addEtching(WoldsVaults.id("reverberation"), "Reverberating Echo",  "<#691337>Echoing<gray> deals damage on subsequent applications instead of over time", 6886199, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
+                etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
+                    stringBasicListBuilder.add("Offensive");
+                });
+                etchingEntryBuilder.attribute(WoldsVaults.id("reverberation"), "ModEtching", WoldsVaults.id("reverberation"), tierBasicListBuilder -> {
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(4, -1, 10, 1, new BooleanFlagGenerator.BooleanFlag(true)));
+                });
+            });
+
             builder.addEtching(WoldsVaults.id("purist_common"), "Purist of Normality",  "<#214E92>Purist<gray> counts <aqua>Common<gray> gear in addition to Scrappy", 2182802, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
                 etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
                     stringBasicListBuilder.add("SHIELD");
