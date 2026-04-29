@@ -27,6 +27,7 @@ import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.trinket.TrinketHelper;
+import iskallia.vault.gear.trinket.effects.DamageImmunityTrinket;
 import iskallia.vault.gear.trinket.effects.MultiJumpTrinket;
 import iskallia.vault.item.gear.TrinketItem;
 import iskallia.vault.snapshot.AttributeSnapshot;
@@ -58,6 +59,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -67,12 +69,14 @@ import top.theillusivec4.curios.api.event.CurioChangeEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.abilities.SneakyGetawayAbility;
 import xyz.iwolfking.woldsvaults.api.util.WoldAttributeHelper;
+import xyz.iwolfking.woldsvaults.api.util.WoldEtchingHelper;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.api.data.HexEffects;
 import xyz.iwolfking.woldsvaults.api.data.discovery.DiscoveredRecipesData;
 import xyz.iwolfking.woldsvaults.effect.mobeffects.EchoingPotionEffect;
 import xyz.iwolfking.woldsvaults.effect.mobeffects.PercentBurnEffect;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
+import xyz.iwolfking.woldsvaults.init.ModEtchingGearAttributes;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import xyz.iwolfking.woldsvaults.items.TrinketPouchItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
@@ -95,6 +99,26 @@ public class LivingEntityEvents {
 
     public static void init() {
          ANCHOR_SLAM_SOUND  = Registry.SOUND_EVENT.get(ResourceLocation.parse("bettercombat:anchor_slam"));
+    }
+
+    @SubscribeEvent
+    public static void onPotionEffect(PotionEvent.PotionApplicableEvent event) {
+        if (event.getEntityLiving() instanceof Player player) {
+            if(WoldEtchingHelper.hasEtching(player, ModEtchingGearAttributes.DIVINITY)) {
+                    if (!event.getPotionEffect().getEffect().isBeneficial()
+                            && event.getPotionEffect().getEffect() != iskallia.vault.init.ModEffects.TIMER_ACCELERATION) {
+                        if (event.getPotionEffect().getEffect().getRegistryName() != null
+                                && (
+                                event.getPotionEffect().getEffect().getRegistryName().getNamespace().equals("xaeroworldmap")
+                                        || event.getPotionEffect().getEffect().getRegistryName().getNamespace().equals("xaerominimap")
+                        )) {
+                            return;
+                        }
+
+                        event.setResult(Event.Result.DENY);
+                    }
+            }
+        }
     }
 
     @SubscribeEvent

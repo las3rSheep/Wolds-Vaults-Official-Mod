@@ -16,7 +16,7 @@
           "tags": [],
           "tiers": [
             {
-              "minGreedTier": 2,
+              "minGreedTier": 0,
               "maxGreedTier": 4,
               "weight": 10,
               "value": {
@@ -60,6 +60,76 @@
       ],
       "affixType": "IMPLICIT"
     },
+    "woldsvaults:fireball_greedball": {
+      "name": "Greedball",
+      "description": "<red>Fireball<gray> deals additional damage based on <yellow>%dpvalue%<gray> of your <gold>Item Quantity<gray>, <yellow>Item Rarity<gray>, and <light_purple>Copiously<gray>. Base radius set to minimum.",
+      "color": 11153926,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "FOCUS"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:fireball_greedball",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:fireball_greedball_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 0,
+              "maxGreedTier": 3,
+              "weight": 10,
+              "value": {
+                "min": 0.1,
+                "max": 0.15,
+                "step": 0.01
+              }
+            },
+            {
+              "minGreedTier": 3,
+              "maxGreedTier": 6,
+              "weight": 10,
+              "value": {
+                "min": 0.15,
+                "max": 0.2,
+                "step": 0.01
+              }
+            },
+            {
+              "minGreedTier": 6,
+              "maxGreedTier": 9,
+              "weight": 10,
+              "value": {
+                "min": 0.2,
+                "max": 0.25,
+                "step": 0.01
+              }
+            },
+            {
+              "minGreedTier": 9,
+              "maxGreedTier": 11,
+              "weight": 10,
+              "value": {
+                "min": 0.25,
+                "max": 0.3,
+                "step": 0.01
+              }
+            },
+            {
+              "minGreedTier": 11,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "min": 0.3,
+                "max": 0.4,
+                "step": 0.01
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
     "woldsvaults:levitation_slow_falling": {
       "name": "Levitation Hover",
       "description": "<#34b7eb>Levitate<gray> adds <yellow>Slow Falling<gray> for a brief period when deactivated",
@@ -76,7 +146,7 @@
           "tags": [],
           "tiers": [
             {
-              "minGreedTier": 4,
+              "minGreedTier": 0,
               "maxGreedTier": -1,
               "weight": 10,
               "value": {
@@ -105,11 +175,68 @@
           "tags": [],
           "tiers": [
             {
-              "minGreedTier": 2,
+              "minGreedTier": 0,
               "maxGreedTier": -1,
               "weight": 10,
               "value": {
                 "flag": true
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
+    "woldsvaults:divinity": {
+      "name": "Blessed",
+      "description": "<#5CD916>Immune to <yellow>Most<#5CD916> Negative Effects",
+      "color": 6084886,
+      "minGreedTier": 7,
+      "typeGroups": [
+        "Defensive"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:divinity",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:divinity_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 7,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "flag": true
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
+    "woldsvaults:ingenium": {
+      "name": "Ingenium",
+      "description": "<yellow>+1<gray> to all <aqua>Talent<gray> levels",
+      "color": 6084886,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Defensive"
+      ],
+      "attributes": [
+        {
+          "attribute": "the_vault:added_talent_level",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:ingenium_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 0,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "talentKey": "all_talents",
+                "levelChange": 1
               }
             }
           ]
@@ -133,7 +260,7 @@
           "tags": [],
           "tiers": [
             {
-              "minGreedTier": 2,
+              "minGreedTier": 0,
               "maxGreedTier": -1,
               "weight": 10,
               "value": {
@@ -149,7 +276,7 @@
       "name": "Colossus Titan",
       "description": "<#41880E>Colossus<gray> adds <yellow>%.0fpvalue%<gray> additional <#FF7400>Resistance Cap Limit<gray> while active",
       "color": 4092928,
-      "minGreedTier": 0,
+      "minGreedTier": 4,
       "typeGroups": [
         "Defensive"
       ],
@@ -161,7 +288,7 @@
           "tags": [],
           "tiers": [
             {
-              "minGreedTier": 9,
+              "minGreedTier": 4,
               "maxGreedTier": 11,
               "weight": 10,
               "value": {
@@ -189,7 +316,7 @@
       "name": "Sneaky Getaway Ninja",
       "description": "<#301749>Sneaky Getaway<gray> adds <yellow>%.0fpvalue%<gray> additional <#30455F>Dodge Chance<gray> while active",
       "color": 3163487,
-      "minGreedTier": 0,
+      "minGreedTier": 7,
       "typeGroups": [
         "Defensive"
       ],
@@ -241,7 +368,7 @@
           "tags": [],
           "tiers": [
             {
-              "minGreedTier": 1,
+              "minGreedTier": 0,
               "maxGreedTier": 4,
               "weight": 10,
               "value": {
@@ -301,7 +428,7 @@
           "tags": [],
           "tiers": [
             {
-              "minGreedTier": 5,
+              "minGreedTier": 0,
               "maxGreedTier": 8,
               "weight": 10,
               "value": {

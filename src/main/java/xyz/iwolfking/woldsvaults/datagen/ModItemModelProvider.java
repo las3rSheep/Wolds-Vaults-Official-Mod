@@ -272,6 +272,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         etching(VaultMod.id("fireball_volley_mitosis"));
         etching(VaultMod.id("purist_common"));
         etching(VaultMod.id("prudent_chaos"));
+        etching(VaultMod.id("reaving_hemmorage"));
+        etching(VaultMod.id("divinity"), "divine");
+        etching(VaultMod.id("ingenium"));
+        etching(VaultMod.id("fireball_greedball"), "treasure");
 
         ModCompressibleBlocks.getRegisteredBlocks().forEach((k, v) -> {
             for (int i = 0; i < v.size(); i ++) {
@@ -308,6 +312,13 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0",
                         VaultMod.id("item/gear/etching/" + ResourceLocUtils.getStrippedPath(icon)));
+    }
+
+    public ItemModelBuilder etching(ResourceLocation icon, String replacementName) {
+        return getBuilder(VaultMod.id("item/gear/etching/" + ResourceLocUtils.getStrippedPath(icon)).toString())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0",
+                        VaultMod.id("item/gear/etching/" + replacementName));
     }
 
     private ItemModelBuilder vaultModifier(ResourceLocation modifierId) {
