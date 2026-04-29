@@ -27,6 +27,7 @@
     "MixinTagLoader",
     "MixinThrownTrident",
     "ThrownTridentAccessor",
+    "accessors.MobEffectInstanceAccessor",
     "accessors.SheepAccessor",
     "advanced_peripherals.MixinVillagerTrades",
     "ae2.terminal.MixinAEBaseMenu",

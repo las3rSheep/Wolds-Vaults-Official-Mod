@@ -158,6 +158,34 @@
       ],
       "affixType": "IMPLICIT"
     },
+    "woldsvaults:reverberation": {
+      "name": "Reverberating Echo",
+      "description": "<#691337>Echoing<gray> deals damage on subsequent applications instead of over time",
+      "color": 6886199,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Offensive"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:reverberation",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:reverberation_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 4,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "flag": true
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
     "woldsvaults:purist_common": {
       "name": "Purist of Normality",
       "description": "<#214E92>Purist<gray> counts <aqua>Common<gray> gear in addition to Scrappy",

@@ -272,6 +272,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         etching(VaultMod.id("fireball_volley_mitosis"));
         etching(VaultMod.id("purist_common"));
         etching(VaultMod.id("prudent_chaos"));
+        etching(VaultMod.id("reverberation"));
         etching(VaultMod.id("reaving_hemmorage"));
         etching(VaultMod.id("divinity"), "divine");
         etching(VaultMod.id("ingenium"));

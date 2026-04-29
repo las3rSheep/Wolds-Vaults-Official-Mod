@@ -27,6 +27,7 @@ public class ModEtchingGearAttributes {
     public static final VaultGearAttribute<Boolean> LEVITATE_SLOW_FALLING = woldsAttr("levitate_slow_falling", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
     public static final VaultGearAttribute<Boolean> PURIST_COMMON = woldsAttr("purist_common", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
     public static final VaultGearAttribute<Boolean> PRUDENT_CHAOS = woldsAttr("prudent_chaos", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
+    public static final VaultGearAttribute<Boolean> REVERBERATION = woldsAttr("reverberation", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
     public static final VaultGearAttribute<Boolean> DIVINITY = woldsAttr("divinity", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
     public static final VaultGearAttribute<Integer> DIFFUSE_CHEMICAL_BOMB = woldsAttr("diffuse_chemical_bomb", VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.intComparator());
     public static final VaultGearAttribute<Integer> FIREBALL_VOLLEY_MITOSIS = woldsAttr("fireball_volley_mitosis", VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.intComparator());
@@ -41,6 +42,7 @@ public class ModEtchingGearAttributes {
         registry.register(LEVITATE_SLOW_FALLING);
         registry.register(PURIST_COMMON);
         registry.register(PRUDENT_CHAOS);
+        registry.register(REVERBERATION);
         registry.register(DIFFUSE_CHEMICAL_BOMB);
         registry.register(FIREBALL_VOLLEY_MITOSIS);
         registry.register(REAVING_HEMMORAGE);
