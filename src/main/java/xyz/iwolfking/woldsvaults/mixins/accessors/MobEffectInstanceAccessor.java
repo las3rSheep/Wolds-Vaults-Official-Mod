@@ -15,10 +15,4 @@ public interface MobEffectInstanceAccessor {
 
     @Accessor
     void setDuration(int duration);
-
-    @Invoker("tickDownDuration")
-    int tickDownDuration();
-
-    @Invoker("setDetailsFrom")
-    void setDetailsFrom(MobEffectInstance mobEffectInstance);
 }
