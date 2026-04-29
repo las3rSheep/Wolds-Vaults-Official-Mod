@@ -1,0 +1,35 @@
+{
+  "challenges": {
+    "pitch_black": {
+      "objective": {
+        "target": {
+          "count": 10,
+          "type": "constant"
+        },
+        "objective_probability": 0.5,
+        "type": "haunted_braziers"
+      },
+      "theme": {
+        "id": "the_vault:classic_vault_dark_cavern",
+        "type": "value"
+      },
+      "time": {
+        "roll": {
+          "count": 12000,
+          "type": "constant"
+        },
+        "type": "value"
+      },
+      "modifiers": {
+        "list": [],
+        "random_modifiers": true,
+        "clarity": false,
+        "type": "default"
+      },
+      "hazards": {
+        "hazards": []
+      },
+      "exhausted": true
+    }
+  }
+}

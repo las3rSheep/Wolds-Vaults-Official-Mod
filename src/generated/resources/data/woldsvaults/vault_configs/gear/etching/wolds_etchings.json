@@ -170,7 +170,7 @@
         {
           "attribute": "woldsvaults:reverberation",
           "group": "ModEtching",
-          "identifier": "woldsvaults:reverberation_etching",
+          "identifier": "woldsvaults:reverberation",
           "tags": [],
           "tiers": [
             {

@@ -90,6 +90,7 @@ public class DataGenerators {
             gen.addProvider(new ModVaultStatsProvider(gen));
             gen.addProvider(new ModLegacyLootTablesProvider(gen));
             gen.addProvider(new ModGatewayProvider(gen));
+            gen.addProvider(new ModChallengeCrystalProvider(gen));
         }
     }
 
