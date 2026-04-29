@@ -62,7 +62,7 @@
     },
     "woldsvaults:fireball_greedball": {
       "name": "Greedball",
-      "description": "<red>Fireball<gray> deals additional damage based on <yellow>%dpvalue%<gray> of your <gold>Item Quantity<gray>, <yellow>Item Rarity<gray>, and <light_purple>Copiously<gray>. Base radius set to minimum.",
+      "description": "<red>Fireball<gray> deals additional damage based on <yellow>%.0fpvalue%<gray> of your <gold>Item Quantity<gray>, <yellow>Item Rarity<gray>, and <light_purple>Copiously<gray>. Base radius set to minimum.",
       "color": 11153926,
       "minGreedTier": 0,
       "typeGroups": [
@@ -427,6 +427,16 @@
           "identifier": "woldsvaults:fireball_volley_mitosis_etching",
           "tags": [],
           "tiers": [
+            {
+              "minGreedTier": 0,
+              "maxGreedTier": 8,
+              "weight": 10,
+              "value": {
+                "min": 1,
+                "max": 1,
+                "step": 1
+              }
+            },
             {
               "minGreedTier": 0,
               "maxGreedTier": 8,

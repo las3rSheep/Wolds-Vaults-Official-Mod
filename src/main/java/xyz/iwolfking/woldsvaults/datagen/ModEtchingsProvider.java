@@ -32,7 +32,7 @@ public class ModEtchingsProvider extends AbstractEtchingProvider {
                 }).minGreedTier(0);
             });
 
-            builder.addEtching(WoldsVaults.id("fireball_greedball"), "Greedball",  "<red>Fireball<gray> deals additional damage based on <yellow>%dpvalue%<gray> of your <gold>Item Quantity<gray>, <yellow>Item Rarity<gray>, and <light_purple>Copiously<gray>. Base radius set to minimum.", 11153926, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
+            builder.addEtching(WoldsVaults.id("fireball_greedball"), "Greedball",  "<red>Fireball<gray> deals additional damage based on <yellow>%.0fpvalue%<gray> of your <gold>Item Quantity<gray>, <yellow>Item Rarity<gray>, and <light_purple>Copiously<gray>. Base radius set to minimum.", 11153926, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
                 etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
                     stringBasicListBuilder.add("FOCUS");
                 });
@@ -128,6 +128,7 @@ public class ModEtchingsProvider extends AbstractEtchingProvider {
                     stringBasicListBuilder.add("Offensive");
                 });
                 etchingEntryBuilder.attribute(WoldsVaults.id("fireball_volley_mitosis"), "ModEtching", WoldsVaults.id("fireball_volley_mitosis_etching"), tierBasicListBuilder -> {
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(0, 8, 10, 1, new IntegerAttributeGenerator.Range(1, 1, 1)));
                     tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(0, 8, 10, 1, new IntegerAttributeGenerator.Range(1, 1, 1)));
                     tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(8, 10, 10, 1, new IntegerAttributeGenerator.Range(2, 2, 1)));
                     tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(10, -1, 10, 1, new IntegerAttributeGenerator.Range(2, 4, 1)));
