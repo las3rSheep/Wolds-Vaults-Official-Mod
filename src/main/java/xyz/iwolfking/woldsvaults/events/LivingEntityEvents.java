@@ -9,6 +9,8 @@ import iskallia.vault.block.entity.VaultChestTileEntity;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.VaultLevel;
+import iskallia.vault.core.vault.VaultUtils;
+import iskallia.vault.core.vault.modifier.spi.VaultModifier;
 import iskallia.vault.entity.VaultBoss;
 import iskallia.vault.entity.boss.TheVesselEntity;
 import iskallia.vault.entity.boss.VaultBossEntity;
@@ -67,6 +69,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.event.CurioChangeEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.abilities.SneakyGetawayAbility;
+import xyz.iwolfking.woldsvaults.api.util.VaultModifierUtils;
 import xyz.iwolfking.woldsvaults.api.util.WoldAttributeHelper;
 import xyz.iwolfking.woldsvaults.api.util.WoldEtchingHelper;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
@@ -81,11 +84,14 @@ import xyz.iwolfking.woldsvaults.items.TrinketPouchItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultTridentItem;
+import xyz.iwolfking.woldsvaults.modifiers.vault.AntiImmunityModifier;
 import xyz.iwolfking.woldsvaults.objectives.data.bosses.WoldBoss;
 import xyz.iwolfking.woldsvaults.api.util.WoldEventHelper;
 
+import java.util.List;
 import java.util.Random;
 import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(
         modid = WoldsVaults.MOD_ID
@@ -100,9 +106,21 @@ public class LivingEntityEvents {
          ANCHOR_SLAM_SOUND  = Registry.SOUND_EVENT.get(ResourceLocation.parse("bettercombat:anchor_slam"));
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onPotionEffect(PotionEvent.PotionApplicableEvent event) {
         if (event.getEntityLiving() instanceof Player player) {
+            if(!event.getPotionEffect().getEffect().isBeneficial()) {
+                Vault vault = VaultUtils.getVault(player.getLevel()).orElse(null);
+                if(vault != null) {
+                    List<ResourceLocation> antiImmunityModifierList = vault.get(Vault.MODIFIERS).getModifiers().stream().filter(vaultModifier -> vaultModifier instanceof AntiImmunityModifier).map(vaultModifier -> ((AntiImmunityModifier) vaultModifier).properties().getId()).toList();
+
+                    if(antiImmunityModifierList.contains(event.getPotionEffect().getEffect().getRegistryName())) {
+                        event.setResult(Event.Result.ALLOW);
+                        return;
+                    }
+                }
+            }
+
             if(WoldEtchingHelper.hasEtching(player, ModEtchingGearAttributes.DIVINITY)) {
                     if (!event.getPotionEffect().getEffect().isBeneficial()
                             && event.getPotionEffect().getEffect() != iskallia.vault.init.ModEffects.TIMER_ACCELERATION) {

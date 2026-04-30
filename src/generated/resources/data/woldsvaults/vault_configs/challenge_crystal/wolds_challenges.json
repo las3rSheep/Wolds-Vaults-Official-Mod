@@ -21,7 +21,12 @@
         "type": "value"
       },
       "modifiers": {
-        "list": [],
+        "list": [
+          {
+            "modifier": "woldsvaults:lights_out",
+            "count": 1
+          }
+        ],
         "random_modifiers": true,
         "clarity": false,
         "type": "default"

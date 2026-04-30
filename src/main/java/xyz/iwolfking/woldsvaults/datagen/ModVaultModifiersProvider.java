@@ -644,10 +644,28 @@ public class ModVaultModifiersProvider extends AbstractVaultModifierProvider {
                 resourceLocationIntegerMap.put(VaultMod.id("normalized"), 1);
             },"Raid", "#d89e01", "No Vault Fruit can be used, and you take no durability damage", null, VaultMod.id("gui/modifiers/raid"));
 
+            playerEffect(modifierBuilder, WoldsVaults.id("lights_out"), ResourceLocation.fromNamespaceAndPath("wildbackport", "darkness"), 0, "Light's Out", "#47402d", "Permanent Darkness Effect", null, VaultMod.id("gui/modifiers/impossible"));
+
+            brazierPool(modifierBuilder, WoldsVaults.id("all_bad_haunted_braziers"), WoldsVaults.id("all_bad_haunted_braziers"), "All Bad Haunted Braziers", "#47402d", "Braziers only have negative effects", null, VaultMod.id("gui/modifiers/impossible"));
+            antiEffectImmunity(modifierBuilder, WoldsVaults.id("blindness_immunity_cancel"), ResourceLocation.withDefaultNamespace("blindness"), "Anti-Blindness Immunity", "#47402d", "Blindness can't be prevented", null, VaultMod.id("gui/modifiers/impossible"));
 
         });
     }
 
+    public static void brazierPool(ModifierBuilder builder, ResourceLocation modifierId, ResourceLocation replacementPoolId, String name, String color, String description, String formattedDescription, ResourceLocation icon) {
+        resourceLocation(builder, WoldsVaults.id("modifier_type/brazier_pool_modification"), modifierId, replacementPoolId, name, color, description, formattedDescription, icon);
+    }
+
+    public static void antiEffectImmunity(ModifierBuilder builder, ResourceLocation modifierId, ResourceLocation effectId, String name, String color, String description, String formattedDescription, ResourceLocation icon) {
+        resourceLocation(builder, WoldsVaults.id("modifier_type/anti_effect_immunity"), modifierId, effectId, name, color, description, formattedDescription, icon);
+    }
+
+    public static void resourceLocation(ModifierBuilder builder, ResourceLocation modifierTypeId, ResourceLocation modifierId, ResourceLocation id, String name, String color, String description, String formattedDescription, ResourceLocation icon) {
+        builder.type(modifierTypeId.toString(), (typeBuilder) -> typeBuilder.modifier(modifierId.toString(), (modifierEntryBuilder) -> {
+            modifierEntryBuilder.property("id", id);
+            createModifierDisplay(modifierEntryBuilder, name, color, description, formattedDescription, icon);
+        }));
+    }
 
 
 }

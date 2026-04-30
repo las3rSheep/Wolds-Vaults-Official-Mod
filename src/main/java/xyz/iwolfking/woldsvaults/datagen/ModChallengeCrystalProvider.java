@@ -1,6 +1,8 @@
 package xyz.iwolfking.woldsvaults.datagen;
 
 import iskallia.vault.VaultMod;
+import iskallia.vault.core.vault.modifier.VaultModifierStack;
+import iskallia.vault.core.vault.modifier.registry.VaultModifierRegistry;
 import iskallia.vault.core.world.roll.IntRoll;
 import iskallia.vault.item.crystal.theme.ValueCrystalTheme;
 import iskallia.vault.item.crystal.time.ValueCrystalTime;
@@ -22,6 +24,7 @@ public class ModChallengeCrystalProvider extends AbstractChallengeCrystalProvide
                        .objective(new HauntedBraziersCrystalObjective(IntRoll.ofConstant(10), 0.5F))
                        .theme(new ValueCrystalTheme(VaultMod.id("classic_vault_dark_cavern")))
                        .time(new ValueCrystalTime(IntRoll.ofConstant(12000)))
+                       .modifier(WoldsVaults.id("lights_out"), 1)
                        .exhausted();
             });
         });

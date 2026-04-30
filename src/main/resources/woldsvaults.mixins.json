@@ -219,6 +219,7 @@
     "vaulthunters.custom.MixinCrystalWorkbenchTileEntity",
     "vaulthunters.custom.MixinCustomisationDiscovery",
     "vaulthunters.custom.MixinCustomSpawnerTileEntity",
+    "vaulthunters.custom.MixinDamageImmunityTrinket",
     "vaulthunters.custom.MixinDeckForgeRecipe",
     "vaulthunters.custom.MixinDeckModifierAdapter",
     "vaulthunters.custom.MixinEntityEvents",

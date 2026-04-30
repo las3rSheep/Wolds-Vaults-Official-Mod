@@ -784,6 +784,19 @@
           "descriptionFormatted": "+%d Strength",
           "icon": "the_vault:gui/modifiers/stronk"
         }
+      },
+      "woldsvaults:lights_out": {
+        "properties": {
+          "effect": "wildbackport:darkness",
+          "effectAmplifier": 0
+        },
+        "display": {
+          "name": "Light's Out",
+          "color": "#47402d",
+          "description": "Permanent Darkness Effect",
+          "descriptionFormatted": "Permanent Darkness Effect",
+          "icon": "the_vault:gui/modifiers/impossible"
+        }
       }
     },
     "the_vault:modifier_type/player_inventory_restore": {
@@ -3092,6 +3105,34 @@
           "description": "No Vault Fruit can be used, and you take no durability damage",
           "descriptionFormatted": "No Vault Fruit can be used, and you take no durability damage",
           "icon": "the_vault:gui/modifiers/raid"
+        }
+      }
+    },
+    "woldsvaults:modifier_type/brazier_pool_modification": {
+      "woldsvaults:all_bad_haunted_braziers": {
+        "properties": {
+          "id": "woldsvaults:all_bad_haunted_braziers"
+        },
+        "display": {
+          "name": "All Bad Haunted Braziers",
+          "color": "#47402d",
+          "description": "Braziers only have negative effects",
+          "descriptionFormatted": "Braziers only have negative effects",
+          "icon": "the_vault:gui/modifiers/impossible"
+        }
+      }
+    },
+    "woldsvaults:modifier_type/anti_effect_immunity": {
+      "woldsvaults:blindness_immunity_cancel": {
+        "properties": {
+          "id": "blindness"
+        },
+        "display": {
+          "name": "Anti-Blindness Immunity",
+          "color": "#47402d",
+          "description": "Blindness can't be prevented",
+          "descriptionFormatted": "Blindness can't be prevented",
+          "icon": "the_vault:gui/modifiers/impossible"
         }
       }
     }
