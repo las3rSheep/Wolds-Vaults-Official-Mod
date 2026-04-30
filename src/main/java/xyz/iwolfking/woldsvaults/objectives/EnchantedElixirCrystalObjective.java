@@ -31,6 +31,10 @@ public class EnchantedElixirCrystalObjective extends WoldCrystalObjective {
     public EnchantedElixirCrystalObjective() {
     }
 
+    public EnchantedElixirCrystalObjective(float objectiveProbability) {
+        this.objectiveProbability = objectiveProbability;
+    }
+
     @Override
     public void configure(Vault vault, RandomSource random, @Nullable String sigil) {
         int level = vault.get(Vault.LEVEL).get();

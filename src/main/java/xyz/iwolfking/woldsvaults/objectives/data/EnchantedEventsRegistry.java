@@ -31,6 +31,8 @@ import xyz.iwolfking.woldsvaults.objectives.data.builtin.events.CloudStorageEven
 import xyz.iwolfking.woldsvaults.objectives.data.builtin.events.ThermalEvents;
 import xyz.iwolfking.woldsvaults.objectives.data.builtin.events.WildBackportEvents;
 
+import java.util.List;
+
 
 public class EnchantedEventsRegistry {
 
@@ -68,6 +70,16 @@ public class EnchantedEventsRegistry {
 
     public static WeightedList<VaultEvent> getEvents() {
         return ENCHANTED_EVENTS;
+    }
+
+    public static WeightedList<VaultEvent> getEventsWithTags(List<EventTag> tags) {
+        WeightedList<VaultEvent> events = new WeightedList<>();
+
+        ENCHANTED_EVENTS.entrySet().stream()
+                .filter(entry -> entry.getKey().getEventTags().containsAll(tags))
+                .forEach(entry -> events.add(entry.getKey(), entry.getValue()));
+
+        return events;
     }
 
     public static WeightedList<VaultEvent> getOmegaEvents() {

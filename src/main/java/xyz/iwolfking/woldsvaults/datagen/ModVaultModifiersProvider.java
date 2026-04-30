@@ -30,6 +30,7 @@ import xyz.iwolfking.vhapi.api.datagen.lib.BasicListBuilder;
 import xyz.iwolfking.vhapi.api.datagen.lib.WeightedListBuilder;
 import xyz.iwolfking.vhapi.api.datagen.lib.modifiers.ModifierBuilder;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.api.core.vault_events.lib.EventTag;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
@@ -403,6 +404,7 @@ public class ModVaultModifiersProvider extends AbstractVaultModifierProvider {
 
             infernalChance(modifierBuilder, VaultMod.id("raging"), EMPTY_ENTITY_PREDICATE, 0.03F,  3, "Raging", "#a996ca", "3% chance for mobs to spawn with Infernal modifiers", "Chance for mobs to spawn with Infernal modifiers", VaultMod.id("gui/modifiers/infernal"));
             infernalChance(modifierBuilder, VaultMod.id("bingo_infernal"), EMPTY_ENTITY_PREDICATE, 0.015F,  3, "Infernal", "#a996ca", "1.5% chance for mobs to spawn with Infernal modifiers", "Chance for mobs to spawn with Infernal modifiers", VaultMod.id("gui/modifiers/infernal"));
+            infernalChance(modifierBuilder, WoldsVaults.id("infernal_fury"), EMPTY_ENTITY_PREDICATE, 0.25F,  3, "Infernal", "#a996ca", "25% chance for mobs to spawn with Infernal modifiers", "Chance for mobs to spawn with Infernal modifiers", VaultMod.id("gui/modifiers/infernal"));
 
             grouped(modifierBuilder, VaultMod.id("greedy"), resourceLocationIntegerMap -> {
                 resourceLocationIntegerMap.put(VaultMod.id("greedy_single"), 1);
@@ -644,9 +646,16 @@ public class ModVaultModifiersProvider extends AbstractVaultModifierProvider {
                 resourceLocationIntegerMap.put(VaultMod.id("normalized"), 1);
             },"Raid", "#d89e01", "No Vault Fruit can be used, and you take no durability damage", null, VaultMod.id("gui/modifiers/raid"));
 
-            playerEffect(modifierBuilder, WoldsVaults.id("lights_out"), ResourceLocation.fromNamespaceAndPath("wildbackport", "darkness"), 0, "Light's Out", "#47402d", "Permanent Darkness Effect", null, VaultMod.id("gui/modifiers/impossible"));
+            playerEffect(modifierBuilder, WoldsVaults.id("lights_out"), ResourceLocation.fromNamespaceAndPath("wildbackport", "darkness"), 0, "Light's Out", "#47402d", "Permanent Blindness Effect", null, VaultMod.id("gui/modifiers/impossible"));
 
             brazierPool(modifierBuilder, WoldsVaults.id("all_bad_haunted_braziers"), WoldsVaults.id("all_bad_haunted_braziers"), "All Bad Haunted Braziers", "#47402d", "Braziers only have negative effects", null, VaultMod.id("gui/modifiers/impossible"));
+
+            enchantedElixirTags(modifierBuilder, WoldsVaults.id("all_bad_enchanted_elixir"), eventTagBasicListBuilder -> {
+                eventTagBasicListBuilder.add(EventTag.NEGATIVE);
+            }, "All Bad Enchanted Elixir", "#47402d", "Enchanted Elixir events are always negative", null, VaultMod.id("gui/modifiers/impossible"));
+
+            enchantedElixirEventAmount(modifierBuilder, WoldsVaults.id("enchanted_elixir_50_events"), 50, "Events Extravaganza", "#47402d", "Enchanted Elixir will roll 50 events", null, VaultMod.id("gui/modifiers/impossible"));
+
             antiEffectImmunity(modifierBuilder, WoldsVaults.id("blindness_immunity_cancel"), ResourceLocation.withDefaultNamespace("blindness"), "Anti-Blindness Immunity", "#47402d", "Blindness can't be prevented", null, VaultMod.id("gui/modifiers/impossible"));
 
         });
@@ -658,6 +667,22 @@ public class ModVaultModifiersProvider extends AbstractVaultModifierProvider {
 
     public static void antiEffectImmunity(ModifierBuilder builder, ResourceLocation modifierId, ResourceLocation effectId, String name, String color, String description, String formattedDescription, ResourceLocation icon) {
         resourceLocation(builder, WoldsVaults.id("modifier_type/anti_effect_immunity"), modifierId, effectId, name, color, description, formattedDescription, icon);
+    }
+
+    public static void enchantedElixirTags(ModifierBuilder builder, ResourceLocation modifierId, Consumer<BasicListBuilder<EventTag>> allowedTagsConsumer, String name, String color, String description, String formattedDescription, ResourceLocation icon) {
+        BasicListBuilder<EventTag> basicListBuilder = new BasicListBuilder<>();
+        allowedTagsConsumer.accept(basicListBuilder);
+        builder.type(WoldsVaults.id("modifier_type/enchanted_elixir_tags").toString(), (typeBuilder) -> typeBuilder.modifier(modifierId.toString(), (modifierEntryBuilder) -> {
+            modifierEntryBuilder.property("allowedTags", basicListBuilder.build());
+            createModifierDisplay(modifierEntryBuilder, name, color, description, formattedDescription, icon);
+        }));
+    }
+
+    public static void enchantedElixirEventAmount(ModifierBuilder builder, ResourceLocation modifierId, int count, String name, String color, String description, String formattedDescription, ResourceLocation icon) {
+        builder.type(WoldsVaults.id("modifier_type/enchanted_elixir_event_count").toString(), (typeBuilder) -> typeBuilder.modifier(modifierId.toString(), (modifierEntryBuilder) -> {
+            modifierEntryBuilder.property("count", count);
+            createModifierDisplay(modifierEntryBuilder, name, color, description, formattedDescription, icon);
+        }));
     }
 
     public static void resourceLocation(ModifierBuilder builder, ResourceLocation modifierTypeId, ResourceLocation modifierId, ResourceLocation id, String name, String color, String description, String formattedDescription, ResourceLocation icon) {

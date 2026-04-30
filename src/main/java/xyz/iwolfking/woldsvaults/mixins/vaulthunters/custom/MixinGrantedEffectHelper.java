@@ -26,9 +26,9 @@ import xyz.iwolfking.woldsvaults.modifiers.vault.AntiImmunityModifier;
 @Mixin(value = GrantedEffectHelper.class, remap = false)
 public class MixinGrantedEffectHelper {
 
-    @Inject(method = "canAvoidEffect", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "canAvoidEffect", at = @At("TAIL"), cancellable = true)
     private static void handleAntiImmunity(MobEffect effect, LivingEntity entity, Random random, CallbackInfoReturnable<Boolean> cir) {
-        if(entity instanceof Player player) {
+        if(entity instanceof Player player && cir.getReturnValue()) {
             if(!effect.isBeneficial()) {
                 Vault vault = VaultUtils.getVault(player.getLevel()).orElse(null);
                 if(vault != null) {

@@ -47,5 +47,7 @@ public class MixinVaultModifierTypeRegistry {
         MODIFIER_TYPE_REGISTRY.put(VaultMod.id("modifier_type/player_no_temporal_shard"), VaultModifierType.of(PlayerNoTemporalShardModifier.class, PlayerNoTemporalShardModifier.Properties.class, PlayerNoTemporalShardModifier::new));
         MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/anti_effect_immunity"), VaultModifierType.of(AntiImmunityModifier.class, AntiImmunityModifier.Properties.class, AntiImmunityModifier::new));
         MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/brazier_pool_modification"), VaultModifierType.of(BrazierPoolsModifier.class, BrazierPoolsModifier.Properties.class, BrazierPoolsModifier::new));
+        MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/enchanted_elixir_tags"), VaultModifierType.of(EnchantedElixirPoolModifier.class, EnchantedElixirPoolModifier.Properties.class, EnchantedElixirPoolModifier::new));
+        MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/enchanted_elixir_event_count"), VaultModifierType.of(EnchantedElixirEventAmountModifier.class, EnchantedElixirEventAmountModifier.Properties.class, EnchantedElixirEventAmountModifier::new));
     }
 }

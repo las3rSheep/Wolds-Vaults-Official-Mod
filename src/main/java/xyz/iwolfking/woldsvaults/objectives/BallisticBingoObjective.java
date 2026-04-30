@@ -71,6 +71,11 @@ public class BallisticBingoObjective extends BingoObjective {
         return (BallisticBingoObjective) (new BallisticBingoObjective()).set(TASK, task).set(TASKS, new TaskMap());
     }
 
+    public static BallisticBingoObjective of(BingoTask task, int width, int height, boolean blackout) {
+        task.getConfig().setSize(width, height);
+        return (BallisticBingoObjective)((new BallisticBingoObjective()).set(TASK, task).set(TASKS, new TaskMap())).set(BLACKOUT, blackout);
+    }
+
     public TaskContext getContext(VirtualWorld world, Vault vault) {
         this.setIfAbsent(TASK_SOURCE, () -> EntityTaskSource.ofUuids(JavaRandom.ofInternal((Long)vault.get(Vault.SEED)), new UUID[0]));
         return TaskContext.of((TaskSource)this.get(TASK_SOURCE), world.getServer()).setVault(vault);

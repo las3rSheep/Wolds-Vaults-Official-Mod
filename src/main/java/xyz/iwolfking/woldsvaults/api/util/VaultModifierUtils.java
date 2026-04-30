@@ -21,6 +21,7 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class VaultModifierUtils {
     public static void sendModifierAddedMessage(ServerPlayer player, VaultModifier<?> modifier, Integer stackSize) {
@@ -75,6 +76,15 @@ public class VaultModifierUtils {
                 });
             }
         }
+    }
+
+    public static <T extends VaultModifier<?>> List<T> getModifiersOfType(Vault vault, Class<T> type) {
+        return vault.get(Vault.MODIFIERS)
+                .getModifiers()
+                .stream()
+                .filter(type::isInstance)
+                .map(type::cast)
+                .toList();
     }
 
     public static boolean hasCountOfModifiers(Vault vault, ResourceLocation modifierId, int count) {
