@@ -26,6 +26,7 @@ import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.trinket.TrinketHelper;
+import iskallia.vault.gear.trinket.effects.DamageImmunityTrinket;
 import iskallia.vault.gear.trinket.effects.MultiJumpTrinket;
 import iskallia.vault.item.gear.TrinketItem;
 import iskallia.vault.snapshot.AttributeSnapshot;
@@ -57,6 +58,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -96,6 +98,26 @@ public class LivingEntityEvents {
 
     public static void init() {
          ANCHOR_SLAM_SOUND  = Registry.SOUND_EVENT.get(ResourceLocation.parse("bettercombat:anchor_slam"));
+    }
+
+    @SubscribeEvent
+    public static void onPotionEffect(PotionEvent.PotionApplicableEvent event) {
+        if (event.getEntityLiving() instanceof Player player) {
+            if(WoldEtchingHelper.hasEtching(player, ModEtchingGearAttributes.DIVINITY)) {
+                    if (!event.getPotionEffect().getEffect().isBeneficial()
+                            && event.getPotionEffect().getEffect() != iskallia.vault.init.ModEffects.TIMER_ACCELERATION) {
+                        if (event.getPotionEffect().getEffect().getRegistryName() != null
+                                && (
+                                event.getPotionEffect().getEffect().getRegistryName().getNamespace().equals("xaeroworldmap")
+                                        || event.getPotionEffect().getEffect().getRegistryName().getNamespace().equals("xaerominimap")
+                        )) {
+                            return;
+                        }
+
+                        event.setResult(Event.Result.DENY);
+                    }
+            }
+        }
     }
 
     @SubscribeEvent

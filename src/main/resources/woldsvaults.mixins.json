@@ -323,6 +323,7 @@
     "vaulthunters.custom.enum_extension.MixinVaultCrateType",
     "vaulthunters.custom.enum_extension.MixinVaultGearClassificationEnum",
     "vaulthunters.custom.enum_extension.MixinVaultRarityEnum",
+    "vaulthunters.custom.etching.MixinAbstractFireballAbility",
     "vaulthunters.custom.etching.MixinBottleItem",
     "vaulthunters.custom.etching.MixinPuristTalent",
     "vaulthunters.custom.recycler.MixinVaultCatalystItem",

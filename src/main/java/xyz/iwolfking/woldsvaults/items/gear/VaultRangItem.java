@@ -100,6 +100,10 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, @Nonnull InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
 
+        if(handIn.equals(InteractionHand.OFF_HAND)) {
+            return InteractionResultHolder.fail(itemstack);
+        }
+
         if (isInFlight(itemstack)) {
             return InteractionResultHolder.fail(itemstack);
         }
