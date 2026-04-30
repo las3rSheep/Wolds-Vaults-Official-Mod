@@ -18,7 +18,7 @@ public class EchoingPotionEffect extends MobEffect {
 
     @Override
     public boolean isDurationEffectTick(int pDuration, int pAmplifier) {
-        return (pDuration % 10) == 9;
+        return (pDuration % 10) == 1;
     }
 
     @Override

@@ -78,7 +78,7 @@ public class EchoingEffectInstance extends MobEffectInstance {
     }
 
     public void reverberate() {
-        if(this.getDuration() > 18) {
+        if(this.getDuration() > 11) {
             EchoingEffectInstance reverb = new EchoingEffectInstance(this, this.getDuration()-10);
             this.remove();
             this.update(reverb);
@@ -121,7 +121,7 @@ public class EchoingEffectInstance extends MobEffectInstance {
                 didUpdate = true;
             } else if (oEcho.getDuration() > this.getDuration()) {
                 if (this.damage == oEcho.damage) {
-                    int newDur = (oEcho.getDuration() / 10) * 10 + Math.min((oEcho.getDuration()+1) % 10, (this.getDuration()+1) % 10) - 1;
+                    int newDur = (oEcho.getDuration() / 10) * 10 + Math.min((oEcho.getDuration()-1) % 10, (this.getDuration()-1) % 10) + 1;
                     ((MobEffectInstanceAccessor) this).setDuration(newDur);
                     this.decay = oEcho.decay;
                     didUpdate = true;

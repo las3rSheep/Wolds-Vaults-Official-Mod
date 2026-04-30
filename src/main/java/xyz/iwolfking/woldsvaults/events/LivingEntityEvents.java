@@ -545,13 +545,13 @@ public class LivingEntityEvents {
                         // proc from echo/reverb
                         newDamage = event.getAmount() * oldInstance.getDecay();
                         newSource = oldInstance.getSource();
-                        newDuration = EffectDurationHelper.adjustEffectDurationFloor(player, 1) * 10 + 8;
+                        newDuration = EffectDurationHelper.adjustEffectDurationFloor(player, 1) * 10;
                         newDecay = oldInstance.getDecay() * 0.95F - 0.05F;
                     } else {
                         // original proc
                         newDamage = event.getAmount() * (1+echoingDamage) * 0.667F;
                         newSource = event.getSource();
-                        newDuration = EffectDurationHelper.adjustEffectDurationFloor(player, 1) * 10 + 8;
+                        newDuration = EffectDurationHelper.adjustEffectDurationFloor(player, 1) * 10;
                         newDecay = 1.0F;
                     }
 
