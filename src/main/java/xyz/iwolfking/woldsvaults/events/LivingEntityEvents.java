@@ -106,38 +106,6 @@ public class LivingEntityEvents {
          ANCHOR_SLAM_SOUND  = Registry.SOUND_EVENT.get(ResourceLocation.parse("bettercombat:anchor_slam"));
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onPotionEffect(PotionEvent.PotionApplicableEvent event) {
-        if (event.getEntityLiving() instanceof Player player) {
-            if(!event.getPotionEffect().getEffect().isBeneficial()) {
-                Vault vault = VaultUtils.getVault(player.getLevel()).orElse(null);
-                if(vault != null) {
-                    List<ResourceLocation> antiImmunityModifierList = vault.get(Vault.MODIFIERS).getModifiers().stream().filter(vaultModifier -> vaultModifier instanceof AntiImmunityModifier).map(vaultModifier -> ((AntiImmunityModifier) vaultModifier).properties().getId()).toList();
-
-                    if(antiImmunityModifierList.contains(event.getPotionEffect().getEffect().getRegistryName())) {
-                        event.setResult(Event.Result.ALLOW);
-                        return;
-                    }
-                }
-            }
-
-            if(WoldEtchingHelper.hasEtching(player, ModEtchingGearAttributes.DIVINITY)) {
-                    if (!event.getPotionEffect().getEffect().isBeneficial()
-                            && event.getPotionEffect().getEffect() != iskallia.vault.init.ModEffects.TIMER_ACCELERATION) {
-                        if (event.getPotionEffect().getEffect().getRegistryName() != null
-                                && (
-                                event.getPotionEffect().getEffect().getRegistryName().getNamespace().equals("xaeroworldmap")
-                                        || event.getPotionEffect().getEffect().getRegistryName().getNamespace().equals("xaerominimap")
-                        )) {
-                            return;
-                        }
-
-                        event.setResult(Event.Result.DENY);
-                    }
-            }
-        }
-    }
-
     @SubscribeEvent
     public static void dodge(LivingHurtEvent event) {
         LivingEntity entity = event.getEntityLiving();

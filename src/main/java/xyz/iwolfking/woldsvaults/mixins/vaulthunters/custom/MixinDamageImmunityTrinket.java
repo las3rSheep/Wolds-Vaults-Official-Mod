@@ -11,6 +11,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.iwolfking.woldsvaults.api.util.WoldEtchingHelper;
+import xyz.iwolfking.woldsvaults.init.ModEtchingGearAttributes;
 import xyz.iwolfking.woldsvaults.modifiers.vault.AntiImmunityModifier;
 
 import java.util.List;
@@ -29,6 +31,22 @@ public class MixinDamageImmunityTrinket {
                         event.setResult(Event.Result.ALLOW);
                         ci.cancel();
                     }
+                }
+            }
+
+
+            if(WoldEtchingHelper.hasEtching(player, ModEtchingGearAttributes.DIVINITY)) {
+                if (!event.getPotionEffect().getEffect().isBeneficial()
+                        && event.getPotionEffect().getEffect() != iskallia.vault.init.ModEffects.TIMER_ACCELERATION) {
+                    if (event.getPotionEffect().getEffect().getRegistryName() != null
+                            && (
+                            event.getPotionEffect().getEffect().getRegistryName().getNamespace().equals("xaeroworldmap")
+                                    || event.getPotionEffect().getEffect().getRegistryName().getNamespace().equals("xaerominimap")
+                    )) {
+                        return;
+                    }
+
+                    event.setResult(Event.Result.DENY);
                 }
             }
         }
