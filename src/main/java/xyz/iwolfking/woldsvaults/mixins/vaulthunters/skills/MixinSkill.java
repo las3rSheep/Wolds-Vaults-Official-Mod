@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.abilities.*;
 import xyz.iwolfking.woldsvaults.expertises.*;
+import xyz.iwolfking.woldsvaults.prestige.CraftingPotentialPrestigePower;
 import xyz.iwolfking.woldsvaults.prestige.CraftingRecipePower;
 import xyz.iwolfking.woldsvaults.prestige.ReachPrestigePower;
 import xyz.iwolfking.woldsvaults.prestige.ToolCapacityPrestigePower;
@@ -41,5 +42,6 @@ public class MixinSkill extends TypeSupplierAdapter<Skill> {
         this.register("reach_cap_power", ReachPrestigePower.class, ReachPrestigePower::new);
         this.register("crafting_recipe_power", CraftingRecipePower.class, CraftingRecipePower::new);
         this.register("tool_capacity_power", ToolCapacityPrestigePower.class, ToolCapacityPrestigePower::new);
+        this.register("crafting_potential_power", CraftingPotentialPrestigePower.class, CraftingPotentialPrestigePower::new);
     }
 }

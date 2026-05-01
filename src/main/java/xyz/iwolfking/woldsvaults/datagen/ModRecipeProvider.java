@@ -50,6 +50,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         CompoundTag colossus = new CompoundTag();
         colossus.putString("Ability", "Colossus");
 
+        ShapedRecipeBuilder.shaped(ModBlocks.OWNED_CRAFTING_TABLE_BLOCK)
+                .define('O', iskallia.vault.init.ModItems.CHROMATIC_IRON_INGOT)
+                .define('V', iskallia.vault.init.ModItems.VAULT_ESSENCE)
+                .define('C', Blocks.CRAFTING_TABLE)
+                .pattern("OVO")
+                .pattern("VCV")
+                .pattern("OVO")
+                .unlockedBy("has_crafting_table", has(Blocks.CRAFTING_TABLE))
+                .save(pFinishedRecipeConsumer);
 
         ShapedRecipeBuilder.shaped(ModBlocks.CRATE_CRACKER_BLOCK)
                 .define('G', Ingredient.of(Tags.Items.GLASS))
