@@ -318,6 +318,7 @@ dependencies {
     implementation fg.deobf("curse.maven:integrated-dynamics-236307:5262070")
     implementation fg.deobf("curse.maven:integrated-terminals-295910:5264606")
     implementation fg.deobf("curse.maven:integrated-tunnels-251389:5314661")
+    implementation fg.deobf("curse.maven:integrated-crafting-287357:4987203")
     implementation fg.deobf("curse.maven:iron-furnaces-237664:4183356")
     implementation fg.deobf("curse.maven:iron-chests-228756:3966367")
     implementation fg.deobf("curse.maven:iron-generators-446489:3955850")

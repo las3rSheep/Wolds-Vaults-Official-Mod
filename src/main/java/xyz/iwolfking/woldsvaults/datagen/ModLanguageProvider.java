@@ -51,6 +51,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(new CatalystItemAttribute(false), "is an Alchemy catalyst", "is not an Alchemy catalyst");
         add(new AlchemyIngredientTypeAttribute(""), "is an Alchemy ingredient of type \"%1$s\"", "is not an Alchemy ingredient of type \"%1$s\"");
         add(ModBlocks.CONFIGURABLE_FLOATING_TEXT_BLOCK, "Magic Text");
+        add(ModBlocks.OWNED_CRAFTING_TABLE_BLOCK, "Owned Crafting Table");
         add(ModBlocks.CRATE_CRACKER_BLOCK, "Crate Cracker");
         add(ModBlocks.SURVIVAL_OBJECTIVE_BLOCK, "Survival Pylon");
         add(ModItems.CRYSTAL_SEAL_SURVIVOR, "Seal of the Survivor");

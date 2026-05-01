@@ -160,6 +160,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         stairsBlockWithItem(ModBlocks.IDONA_LIGHT_SMOOTH_BRICKS_STAIRS, VaultMod.id("decoration/idona_light_smooth_brick"));
         stairsBlockWithItem(ModBlocks.IDONA_GEM_BLOCK_STAIRS, VaultMod.id("decoration/idona_gem_block"));
 
+        simpleBlock(ModBlocks.OWNED_CRAFTING_TABLE_BLOCK,
+                models().getExistingFile(mcLoc("block/crafting_table")));
     }
 
     private void slabBlockWithItem(SlabBlock block, ResourceLocation texture) {

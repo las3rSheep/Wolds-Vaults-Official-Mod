@@ -111,6 +111,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ModBlocks.TENOS_PLANKS_SLAB)
                 .add(ModBlocks.TENOS_PLANKS_STAIRS)
+                .add(ModBlocks.OWNED_CRAFTING_TABLE_BLOCK)
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_dark_oak_log"))
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_spruce_log"))
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_oak_log"))

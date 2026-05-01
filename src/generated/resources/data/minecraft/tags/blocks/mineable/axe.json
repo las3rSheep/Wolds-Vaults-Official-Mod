@@ -3,6 +3,7 @@
   "values": [
     "woldsvaults:tenos_planks_slab",
     "woldsvaults:tenos_planks_stairs",
+    "woldsvaults:owned_crafting_table",
     {
       "id": "#chipped:stripped_dark_oak_log",
       "required": false

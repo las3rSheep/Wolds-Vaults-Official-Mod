@@ -152,6 +152,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.UNINFUSED_TERRASTEEL_INGOT);
         //simpleItem(ModItems.WEAPON_TYPE_SETTER);
 
+        withExistingParent("owned_crafting_table",
+                mcLoc("item/crafting_table"));
+
         spawnEgg(ModItems.BLUE_BLAZE_EGG);
         spawnEgg(ModItems.BOOGIEMAN_EGG);
         spawnEgg(ModItems.MONSTER_EYE_EGG);

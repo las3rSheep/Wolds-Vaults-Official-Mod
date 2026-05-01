@@ -14,7 +14,6 @@ public class MixinTieredLootTableGenerator {
             at = @At(value = "FIELD", target = "Liskallia/vault/core/world/loot/generator/TieredLootTableGenerator;itemQuantity:F", opcode = Opcodes.GETFIELD)
     )
     private float alterItemQuantityScaling(float originalValue) {
-        if (originalValue <= 1) return originalValue;
         return 1.1f * (float) Math.log(originalValue + 1.0f);
     }
 
