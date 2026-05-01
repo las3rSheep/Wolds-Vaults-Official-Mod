@@ -2,6 +2,38 @@
   "replace": false,
   "values": [
     "woldsvaults:tenos_planks_slab",
-    "woldsvaults:tenos_planks_stairs"
+    "woldsvaults:tenos_planks_stairs",
+    {
+      "id": "#chipped:stripped_dark_oak_log",
+      "required": false
+    },
+    {
+      "id": "#chipped:stripped_spruce_log",
+      "required": false
+    },
+    {
+      "id": "#chipped:stripped_oak_log",
+      "required": false
+    },
+    {
+      "id": "#chipped:stripped_birch_log",
+      "required": false
+    },
+    {
+      "id": "#chipped:stripped_acacia_log",
+      "required": false
+    },
+    {
+      "id": "#chipped:stripped_crimson_stem",
+      "required": false
+    },
+    {
+      "id": "#chipped:stripped_warped_stem",
+      "required": false
+    },
+    {
+      "id": "#chipped:stripped_jungle_log",
+      "required": false
+    }
   ]
 }

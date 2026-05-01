@@ -10,6 +10,7 @@ import xyz.iwolfking.woldsvaults.abilities.*;
 import xyz.iwolfking.woldsvaults.expertises.*;
 import xyz.iwolfking.woldsvaults.prestige.CraftingRecipePower;
 import xyz.iwolfking.woldsvaults.prestige.ReachPrestigePower;
+import xyz.iwolfking.woldsvaults.prestige.ToolCapacityPrestigePower;
 
 @Mixin(value = Skill.Adapter.class, remap = false)
 public class MixinSkill extends TypeSupplierAdapter<Skill> {
@@ -39,5 +40,6 @@ public class MixinSkill extends TypeSupplierAdapter<Skill> {
 
         this.register("reach_cap_power", ReachPrestigePower.class, ReachPrestigePower::new);
         this.register("crafting_recipe_power", CraftingRecipePower.class, CraftingRecipePower::new);
+        this.register("tool_capacity_power", ToolCapacityPrestigePower.class, ToolCapacityPrestigePower::new);
     }
 }

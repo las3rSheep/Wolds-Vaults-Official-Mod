@@ -110,7 +110,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.VAULT_ESSENCE_BLOCK);
         tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ModBlocks.TENOS_PLANKS_SLAB)
-                .add(ModBlocks.TENOS_PLANKS_STAIRS);
+                .add(ModBlocks.TENOS_PLANKS_STAIRS)
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_dark_oak_log"))
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_spruce_log"))
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_oak_log"))
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_birch_log"))
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_acacia_log"))
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_crimson_stem"))
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_warped_stem"))
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_jungle_log"));
         tag(BlockTags.LEAVES)
                 .add(ModBlocks.ISKALLIAN_LEAVES_BLOCK);
         tag(WUTODIE_STORAGE_BLOCK)
