@@ -1,6 +1,9 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom;
 
-import iskallia.vault.greed.ChallengeState;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import iskallia.vault.config.greed.GreedChallengeEntry;
+import iskallia.vault.config.greed.GreedTraderConfig;
 import iskallia.vault.greed.GreedChallengeSlot;
 import iskallia.vault.greed.GreedTree;
 import iskallia.vault.init.ModConfigs;
@@ -8,7 +11,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.List;
 import java.util.Set;
@@ -61,5 +63,12 @@ public abstract class MixinGreedTree {
             }
 
         }
+    }
+
+    @WrapOperation(method = "populateTierChallenge", at = @At(value = "INVOKE", target = "Liskallia/vault/config/greed/GreedTraderConfig;getEligibleChallenges(I)Ljava/util/List;"))
+    public List<GreedChallengeEntry> removeCompletedChallengesFromPopulating(GreedTraderConfig instance, int greedTier, Operation<List<GreedChallengeEntry>> original) {
+        List<GreedChallengeEntry> entries = original.call(instance, greedTier);
+        entries.removeIf(challengeEntry -> completedChallengeIds.contains(challengeEntry.getChallengeCrystalId()));
+        return entries;
     }
 }
