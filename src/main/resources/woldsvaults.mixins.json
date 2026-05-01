@@ -231,6 +231,7 @@
     "vaulthunters.custom.MixinExperiencedExpertise",
     "vaulthunters.custom.MixinGearAttributeEvents",
     "vaulthunters.custom.MixinGearRollHelper",
+    "vaulthunters.custom.MixinGearScoreHelper",
     "vaulthunters.custom.MixinGiveLootCommand",
     "vaulthunters.custom.MixinGodCharmItem",
     "vaulthunters.custom.MixinGodCharmRollHelper",
