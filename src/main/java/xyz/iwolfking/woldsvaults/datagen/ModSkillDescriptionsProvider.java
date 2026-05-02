@@ -752,7 +752,7 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                     jsonElements.add(JsonDescription.simple("Gain "));
                     jsonElements.add(JsonDescription.simple("extra healing efficiency ", "#7DF587"));
                     jsonElements.add(JsonDescription.simple("while below "));
-                    jsonElements.add(JsonDescription.simple("20% mana ", "#0353D7"))
+                    jsonElements.add(JsonDescription.simple("20% mana ", "#0353D7"));
                 })
                 .addDescription("Sorcery", jsonElements -> {
                     jsonElements.add(JsonDescription.simple("Gain "));
