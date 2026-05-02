@@ -72,6 +72,8 @@ public class ModTooltipsProvider extends AbstractTooltipProvider {
                     .addTooltipEntry(ModItems.WOLD_STAR_CHUNK.getRegistryName(), "An extremely rare item used in crafting a Wold Star.")
                     .addTooltipEntry(ModItems.WOLD_STAR.getRegistryName(), "Used in crafting Creative items.")
                     .addTooltipEntry(ModItems.SMASHED_VAULT_GEM.getRegistryName(), "Obtained when a vault ore would normally drop nothing.")
+                    .addTooltipEntry(ModBlocks.OWNED_CRAFTING_TABLE_BLOCK.getRegistryName(), "Use with <aqua>Integrated Dynamics's<yellow> Crafting Interface<white> when you want to utilize research locked recipes!")
+                    .addTooltipEntry(ModBlocks.TRINKET_FUSION_BLOCK.getRegistryName(), "Combines <light_purple>Trinkets into <gold>Fusion Trinkets<white> using the power of <light_purple>Prismatic Glue")
                     .build();
         });
     }

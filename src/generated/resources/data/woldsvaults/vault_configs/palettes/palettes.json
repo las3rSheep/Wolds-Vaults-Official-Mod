@@ -1,3 +1,14 @@
 {
-  "keys": []
+  "keys": [
+    {
+      "id": "woldsvaults:universal_sculk",
+      "name": "Universal Sculk",
+      "1.0": "woldsvaults:universal_sculk"
+    },
+    {
+      "id": "woldsvaults:spawners_group_standard",
+      "name": "Spawners Group Standard",
+      "1.0": "woldsvaults:spawners_group_standard"
+    }
+  ]
 }

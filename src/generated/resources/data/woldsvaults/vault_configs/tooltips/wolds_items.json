@@ -181,6 +181,14 @@
       "value": "Obtained when a vault ore would normally drop nothing."
     },
     {
+      "item": "woldsvaults:owned_crafting_table",
+      "value": "Use with <aqua>Integrated Dynamics's<yellow> Crafting Interface<white> when you want to utilize research locked recipes!"
+    },
+    {
+      "item": "woldsvaults:trinket_fusion_forge",
+      "value": "Combines <light_purple>Trinkets into <gold>Fusion Trinkets<white> using the power of <light_purple>Prismatic Glue"
+    },
+    {
       "item": "woldsvaults:mod_box_workstation",
       "value": "Used to create Targeted Mod Boxes that will only give items from a particular mod."
     },
@@ -359,6 +367,14 @@
     {
       "item": "woldsvaults:smashed_vault_gem",
       "value": "Obtained when a vault ore would normally drop nothing."
+    },
+    {
+      "item": "woldsvaults:owned_crafting_table",
+      "value": "Use with <aqua>Integrated Dynamics's<yellow> Crafting Interface<white> when you want to utilize research locked recipes!"
+    },
+    {
+      "item": "woldsvaults:trinket_fusion_forge",
+      "value": "Combines <light_purple>Trinkets into <gold>Fusion Trinkets<white> using the power of <light_purple>Prismatic Glue"
     }
   ]
 }

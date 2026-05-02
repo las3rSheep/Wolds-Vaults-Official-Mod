@@ -1,0 +1,24 @@
+{
+  "THEMES": {
+    "the_vault:default": [
+      {
+        "level": 50,
+        "pool": [
+          {
+            "value": "woldsvaults:sculk",
+            "weight": 5
+          }
+        ]
+      },
+      {
+        "level": 30,
+        "pool": [
+          {
+            "value": "woldsvaults:sculk",
+            "weight": 5
+          }
+        ]
+      }
+    ]
+  }
+}

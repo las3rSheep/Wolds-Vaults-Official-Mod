@@ -1,4 +1,8 @@
 {
   "series": {},
-  "augments": {}
+  "augments": {
+    "Void": [
+      "woldsvaults:sculk"
+    ]
+  }
 }
