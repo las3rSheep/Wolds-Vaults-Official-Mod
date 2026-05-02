@@ -12,7 +12,7 @@
         "text": "it gains "
       },
       {
-        "text": "100",
+        "text": "100 ",
         "color": "yellow"
       },
       {
@@ -30,6 +30,26 @@
         "color": "$text"
       }
     ],
+    "HealthIncrease": [
+      {
+        "text": "Increases your "
+      },
+      {
+        "text": "Health ",
+        "color": "#008700"
+      },
+      {
+        "text": "."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "1 15 Hearts",
+        "color": "$text"
+      }
+    ],
     "Toolsmith": [
       {
         "text": "When crafting "
@@ -42,7 +62,7 @@
         "text": "they gain "
       },
       {
-        "text": "75",
+        "text": "75 ",
         "color": "yellow"
       },
       {
@@ -74,6 +94,30 @@
       },
       {
         "text": "+10.0%\n",
+        "color": "#FFD700"
+      }
+    ],
+    "SoulFetcher": [
+      {
+        "text": "Increases your "
+      },
+      {
+        "text": "Soul Shard Chance",
+        "color": "#6D02FB"
+      },
+      {
+        "text": "."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "1 ",
+        "color": "$text"
+      },
+      {
+        "text": "+100.0%\n",
         "color": "#FFD700"
       }
     ],

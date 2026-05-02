@@ -41,6 +41,17 @@ public class PrestigePowersDescriptionsHelper {
             for (int i = 0; i < tieredSkill.getTiers().size(); i++) {
                 LearnableSkill tier = tieredSkill.getTiers().get(i);
 
+                if (skill.getId().equals("HealthIncrease")) {
+                    jsonElements.add(JsonDescription.simple(i + 1 + " 15 Hearts"));
+                    return;
+                }
+
+                if (tier instanceof GearAttributePrestigePower gearAttributePrestigePower && skill.getId().equals("SpiritsHand")) {
+                    jsonElements.add(JsonDescription.simple(i + 1 + " "));
+                    jsonElements.add(JsonDescription.simple("+" + String.format("%.1f", (gearAttributePrestigePower.getValue())) + "\n", "#FFD700"));
+                    return;
+                }
+
                 if (tier instanceof MagnetMasteryPrestigePower) {
                     jsonElements.add(JsonDescription.simple(i + 1 + " "));
                     jsonElements.add(JsonDescription.simple("+" + String.format("%.1f", 100F + (25F * i)) + "%\n", "#FFD700"));
