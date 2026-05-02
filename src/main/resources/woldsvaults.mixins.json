@@ -436,6 +436,7 @@
     "vaulthunters.custom.MixinVaultForgeScreen",
     "vaulthunters.fixes.MixinCatalystItemRenderer",
     "vaulthunters.fixes.MixinClientLocale",
+    "vaulthunters.fixes.MixinInputEvents",
     "vaulthunters.fixes.MixinIntegrationMinimap",
     "vaulthunters.fixes.MixinObeliskObjective",
     "vaulthunters.fixes.MixinRebirthObjectiveClient",
