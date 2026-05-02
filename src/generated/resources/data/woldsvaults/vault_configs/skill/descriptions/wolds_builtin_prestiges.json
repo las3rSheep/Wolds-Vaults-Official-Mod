@@ -1,5 +1,82 @@
 {
   "descriptions": {
+    "Artificer": [
+      {
+        "text": "When you identify "
+      },
+      {
+        "text": "Vault Gear ",
+        "color": "#82D4FC"
+      },
+      {
+        "text": "it gains "
+      },
+      {
+        "text": "100",
+        "color": "yellow"
+      },
+      {
+        "text": "additional "
+      },
+      {
+        "text": "Crafting Potential",
+        "color": "gold"
+      },
+      {
+        "text": "."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      }
+    ],
+    "Toolsmith": [
+      {
+        "text": "When crafting "
+      },
+      {
+        "text": "Vault Tools ",
+        "color": "#82D4FC"
+      },
+      {
+        "text": "they gain "
+      },
+      {
+        "text": "75",
+        "color": "yellow"
+      },
+      {
+        "text": "additional capacity."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      }
+    ],
+    "ShieldOfLastingGuard": [
+      {
+        "text": "Increases the "
+      },
+      {
+        "text": "Block Chance ",
+        "color": "#00F5B2"
+      },
+      {
+        "text": "Cap."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "1 ",
+        "color": "$text"
+      },
+      {
+        "text": "+10.0%\n",
+        "color": "#FFD700"
+      }
+    ],
     "SpiritsHand": [
       {
         "text": "Increases the "

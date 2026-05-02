@@ -350,6 +350,22 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                     jsonElements.add(JsonDescription.simple("Weaving Station", "aqua"));
                     jsonElements.add(JsonDescription.simple("."));
                 })
+                .addDescription("Toolsmith", jsonElements -> {
+                    jsonElements.add(JsonDescription.simple("When crafting "));
+                    jsonElements.add(JsonDescription.simple("Vault Tools ", "#82D4FC"));
+                    jsonElements.add(JsonDescription.simple("they gain "));
+                    jsonElements.add(JsonDescription.simple("75", "yellow"));
+                    jsonElements.add(JsonDescription.simple("additional capacity."));
+                })
+                .addDescription("Artificer", jsonElements -> {
+                    jsonElements.add(JsonDescription.simple("When you identify "));
+                    jsonElements.add(JsonDescription.simple("Vault Gear ", "#82D4FC"));
+                    jsonElements.add(JsonDescription.simple("it gains "));
+                    jsonElements.add(JsonDescription.simple("100", "yellow"));
+                    jsonElements.add(JsonDescription.simple("additional "));
+                    jsonElements.add(JsonDescription.simple("Crafting Potential", "gold"));
+                    jsonElements.add(JsonDescription.simple("."));
+                })
                 .build();
     }
 
