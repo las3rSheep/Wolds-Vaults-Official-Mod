@@ -92,6 +92,7 @@ public class DataGenerators {
             gen.addProvider(new ModGatewayProvider(gen));
             gen.addProvider(new ModChallengeCrystalProvider(gen));
             gen.addProvider(new ModGreedTraderProvider(gen));
+            gen.addProvider(new ModGreedCauldronProvider(gen));
         }
     }
 

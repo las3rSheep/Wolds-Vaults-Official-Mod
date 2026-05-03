@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "compressium:compressed_soot_block_6"
+    }
+  },
+  "result": {
+    "item": "compressium:compressed_soot_block_7"
+  }
+}
