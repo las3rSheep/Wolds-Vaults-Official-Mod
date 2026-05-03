@@ -1,18 +1,17 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.fixes;
 
-import iskallia.vault.client.gui.component.OpenSupportersButton;
 import iskallia.vault.event.ClientEvents;
-import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.components.events.GuiEventListener;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.TitleScreen;
-import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.ScreenEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import org.apache.commons.lang3.mutable.MutableObject;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
+
+import java.util.List;
 
 @Mixin(value = ClientEvents.class, remap = false)
 public class MixinClientEvents {
@@ -23,5 +22,12 @@ public class MixinClientEvents {
      */
     @Overwrite
     public static void onGuiInit(ScreenEvent.InitScreenEvent event) {
+    }
+
+    @Inject(method = "addLootTableInfoToTooltip", at = @At("HEAD"), cancellable = true)
+    private static void hideLootInfo(ItemStack itemStack, List<Component> toolTip, CallbackInfo ci){
+        if (WoldsVaultsConfig.CLIENT.hideVaultLootInfoTooltip.get()) {
+            ci.cancel();
+        }
     }
 }
