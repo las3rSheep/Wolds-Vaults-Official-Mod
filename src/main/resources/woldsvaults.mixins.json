@@ -342,6 +342,7 @@
     "vaulthunters.datagen.MixinChampionsConfig",
     "vaulthunters.datagen.MixinVaultGearEnchantmentConfig",
     "vaulthunters.fixes.MixinAbilityCooldownPercentAttributeReader",
+    "vaulthunters.fixes.MixinAbstractEarthquakeAbility",
     "vaulthunters.fixes.MixinAscensionObjective",
     "vaulthunters.fixes.MixinAttributeGearData",
     "vaulthunters.fixes.MixinBailObjective",
