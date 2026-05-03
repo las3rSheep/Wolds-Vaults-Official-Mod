@@ -121,6 +121,46 @@
         "color": "#FFD700"
       }
     ],
+    "MythicBounty": [
+      {
+        "text": "Bounties now always roll as "
+      },
+      {
+        "text": "Legendary bounties",
+        "color": "gold"
+      },
+      {
+        "text": ".\n\n"
+      },
+      {
+        "text": "Lost Bounties ",
+        "color": "aqua"
+      },
+      {
+        "text": "will now roll a "
+      },
+      {
+        "text": "Mythic bounty",
+        "color": "light_purple"
+      },
+      {
+        "text": " with a"
+      },
+      {
+        "text": " unique ",
+        "color": "yellow"
+      },
+      {
+        "text": "reward pool"
+      },
+      {
+        "text": "."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      }
+    ],
     "SpiritsHand": [
       {
         "text": "Increases the "

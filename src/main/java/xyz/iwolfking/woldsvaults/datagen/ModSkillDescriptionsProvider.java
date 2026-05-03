@@ -376,6 +376,18 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                     jsonElements.add(JsonDescription.simple("Health ", "#008700"));
                     jsonElements.add(JsonDescription.simple("."));
                 })
+                .addDescription("MythicBounty", jsonElements -> {
+                    jsonElements.add(JsonDescription.simple("Bounties now always roll as "));
+                    jsonElements.add(JsonDescription.simple("Legendary bounties", "gold"));
+                    jsonElements.add(JsonDescription.simple(".\n\n"));
+                    jsonElements.add(JsonDescription.simple("Lost Bounties ", "aqua"));
+                    jsonElements.add(JsonDescription.simple("will now roll a "));
+                    jsonElements.add(JsonDescription.simple("Mythic bounty", "light_purple"));
+                    jsonElements.add(JsonDescription.simple(" with a"));
+                    jsonElements.add(JsonDescription.simple(" unique ", "yellow"));
+                    jsonElements.add(JsonDescription.simple("reward pool"));
+                    jsonElements.add(JsonDescription.simple("."));
+                })
                 .build();
     }
 
