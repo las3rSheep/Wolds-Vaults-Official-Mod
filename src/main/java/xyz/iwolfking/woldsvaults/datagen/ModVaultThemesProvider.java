@@ -34,11 +34,32 @@ public class ModVaultThemesProvider extends AbstractThemeProvider {
                     .themeWeight(5)
                     .themeGroup("Void");
         });
+
+        add(WoldsVaults.id("astral"), t -> {
+            t.type("classic_vault")
+                    .starts(WoldsVaults.id("astral_starts").toString())
+                    .rooms(WoldsVaults.id("astral_rooms").toString())
+                    .tunnels(WoldsVaults.id("astral_tunnels").toString())
+                    .ambientLight(0.2f)
+                    .fogColor(12358351)
+                    .grassColor(8041299)
+                    .foliageColor(8041299)
+                    .waterColor(3112412)
+                    .waterFogColor(3112412)
+                    .themeColor(3112412)
+                    .particle("minecraft:ambient_entity_effect")
+                    .particleProbability(0.002f)
+                    .levelEntry("the_vault:default", 30)
+                    .levelEntry("the_vault:default", 50)
+                    .themeWeight(5)
+                    .themeGroup("Astral")
+                    .themeLore(new ThemeAugmentLoreConfig.AugmentLore("Astral", new DescriptionDataBuilder()
+                            .description(JsonDescription.perk("Space, the final frontier.\n"))
+                            .description(JsonDescription.mobs("Hordes: ", new JsonDescription.MobEntry("WIP", 1, 2, 1), new JsonDescription.MobEntry("Test", 3, 2, 3)))
+                            .description(JsonDescription.mobs("Assassins: ", new JsonDescription.MobEntry("WIP", 1, 2, 1), new JsonDescription.MobEntry("Test", 3, 2, 3)))
+                            .description(JsonDescription.mobs("Tanks: ", new JsonDescription.MobEntry("WIP", 1, 2, 1), new JsonDescription.MobEntry("Test", 3, 2, 3)))
+                            .description(JsonDescription.dwellers(3)).build(), 3112412));
+        });
     }
 }
-//                    .themeLore(new ThemeAugmentLoreConfig.AugmentLore("Astral", new DescriptionDataBuilder()
-//                            .description(JsonDescription.perk("This is a test description.\n"))
-//                                    .description(JsonDescription.mobs("Hordes: ", new JsonDescription.MobEntry("Enderman", 1, 2, 1), new JsonDescription.MobEntry("Test", 3, 2, 3)))
-//                                    .description(JsonDescription.mobs("Assassins: ", new JsonDescription.MobEntry("Enderman", 1, 2, 1), new JsonDescription.MobEntry("Test", 3, 2, 3)))
-//                                    .description(JsonDescription.mobs("Tanks: ", new JsonDescription.MobEntry("Enderman", 1, 2, 1), new JsonDescription.MobEntry("Test", 3, 2, 3)))
-//                                    .description(JsonDescription.dwellers(3))
+

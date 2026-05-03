@@ -13,5 +13,6 @@ public class ModVaultTemplatePoolsProvider extends AbstractTemplatePoolProvider 
     @Override
     protected void registerPools() {
         createStandardPoolsForTheme("sculk", WoldsVaults.id("universal_sculk"), VaultMod.id("generic/ore_placeholder_void"));
+        createStandardPoolsForTheme("astral", WoldsVaults.id("universal_astral"), WoldsVaults.id("generic/ore_placeholder_astral"));
     }
 }

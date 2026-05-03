@@ -303,7 +303,7 @@ dependencies {
     //For building themes -- Wold's Only
     runtimeOnly fg.deobf("curse.maven:rechiseled-558998:5286275")
     runtimeOnly fg.deobf("curse.maven:chipped-456956:4293291")
-    runtimeOnly fg.deobf("curse.maven:daves-building-extended-568645:4841877")
+    implementation fg.deobf("curse.maven:daves-building-extended-568645:4841877")
     runtimeOnly fg.deobf("curse.maven:supermartijn642s-config-lib-438332:4715404")
     runtimeOnly fg.deobf("curse.maven:supermartijn642s-core-lib-454372:6034709")
     runtimeOnly fg.deobf("curse.maven:ctm-267602:3933537")

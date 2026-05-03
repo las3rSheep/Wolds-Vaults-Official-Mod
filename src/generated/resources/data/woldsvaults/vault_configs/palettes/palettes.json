@@ -6,6 +6,16 @@
       "1.0": "woldsvaults:universal_sculk"
     },
     {
+      "id": "woldsvaults:universal_astral",
+      "name": "Universal Astral",
+      "1.0": "woldsvaults:universal_astral"
+    },
+    {
+      "id": "woldsvaults:generic/ore_placeholder_astral",
+      "name": "Generic Ore Placeholder Astral",
+      "1.0": "woldsvaults:generic/ore_placeholder_astral"
+    },
+    {
       "id": "woldsvaults:spawners_group_standard",
       "name": "Spawners Group Standard",
       "1.0": "woldsvaults:spawners_group_standard"

@@ -1,6 +1,7 @@
 {
   "themes": [
-    "woldsvaults:sculk"
+    "woldsvaults:sculk",
+    "woldsvaults:astral"
   ],
   "allowedBlocks": []
 }

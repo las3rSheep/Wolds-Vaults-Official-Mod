@@ -1,0 +1,24 @@
+{
+  "THEMES": {
+    "the_vault:default": [
+      {
+        "level": 50,
+        "pool": [
+          {
+            "value": "woldsvaults:astral",
+            "weight": 5
+          }
+        ]
+      },
+      {
+        "level": 30,
+        "pool": [
+          {
+            "value": "woldsvaults:astral",
+            "weight": 5
+          }
+        ]
+      }
+    ]
+  }
+}
