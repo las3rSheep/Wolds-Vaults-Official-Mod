@@ -150,14 +150,12 @@ public class ModVaultEvents {
         VaultEventSystem.register(WoldsVaults.id("survival_player_nerf"), new VaultEvent.Builder()
                 .tag(EventTag.NEGATIVE)
                 .tag(EventTag.ADDS_MODIFIER)
-                .message(new TextComponent("You feel yourself get weaker... cooldown reduction, resistance, healing effectiveness, and mana regeneration decreased..."))
+                .message(new TextComponent("You feel yourself get weaker... resistance and healing effectiveness decrease"))
                 .displayType(VaultEvent.EventDisplayType.CHAT_MESSAGE_ALL)
                 .color(TextColor.fromLegacyFormat(ChatFormatting.GOLD))
-                .task(new VaultModifierTask(VaultMod.id("inert"), 1))
                 .task(new VaultModifierTask(VaultMod.id("vulnerable"), 1))
                 .task(new VaultModifierTask(VaultMod.id("antiheal"), 1))
-                .task(new VaultModifierTask(VaultMod.id("draining"), 1))
-                .build("Survival Nerf", new TextComponent("Decreases your mana regen, cooldown reduction, resistance, and healing effectiveness.")));
+                .build("Survival Nerf", new TextComponent("Decreases your resistance and healing effectiveness.")));
         VaultEventSystem.register(WoldsVaults.id("survival_wave_decrease"), new VaultEvent.Builder()
                 .tag(EventTag.SURVIVAL)
                 .tag(EventTag.EXTRA_LONG_COOLDOWN)
