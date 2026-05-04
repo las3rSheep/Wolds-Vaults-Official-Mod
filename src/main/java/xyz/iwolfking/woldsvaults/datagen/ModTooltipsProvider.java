@@ -44,7 +44,7 @@ public class ModTooltipsProvider extends AbstractTooltipProvider {
                     .addTooltipEntry(ModItems.REPAIR_AUGMENTER.getRegistryName(), "Use with Vault Gear in an anvil to add a repair slot.")
                     .addTooltipEntry(ModItems.WANING_AUGMENTER.getRegistryName(), "Use with Vault Gear in an anvil to add a suffix slot. (Legacy)")
                     .addTooltipEntry(ModItems.WAXING_AUGMENTER.getRegistryName(), "Use with Vault Gear in an anvil to add a prefix slot. (Legacy)")
-                    .addTooltipEntry(ModItems.LAYOUT_MANIPULATOR.getRegistryName(), "Combine with Vault Crystal in Anvil to set the Vault's Layout")
+                    .addTooltipEntry(ModItems.LAYOUT_MANIPULATOR.getRegistryName(), "Use in the Crystal Workbench to set the Vault's Layout")
                     .addTooltipEntry(ModItems.CRYSTAL_SEAL_DOOMSAYER.getRegistryName(), "Use in the Crystal Workbench to set the objective to 'Ballistic Bingo'")
                     .addTooltipEntry(ModItems.CRYSTAL_SEAL_WARRIOR.getRegistryName(), "Use in the Crystal Workbench to set the objective to 'Slay the Guardians'")
                     .addTooltipEntry(ModItems.CRYSTAL_SEAL_UNHINGED.getRegistryName(), "Use in the Crystal Workbench to set the objective to 'Unhinged Scavenger Hunt'")
@@ -73,8 +73,7 @@ public class ModTooltipsProvider extends AbstractTooltipProvider {
                     .addTooltipEntry(ModItems.WOLD_STAR.getRegistryName(), "Used in crafting Creative items.")
                     .addTooltipEntry(ModItems.SMASHED_VAULT_GEM.getRegistryName(), "Obtained when a vault ore would normally drop nothing.")
                     .addTooltipEntry(ModBlocks.OWNED_CRAFTING_TABLE_BLOCK.getRegistryName(), "Use with <aqua>Integrated Dynamics's<yellow> Crafting Interface<white> when you want to utilize research locked recipes!")
-                    .addTooltipEntry(ModBlocks.TRINKET_FUSION_BLOCK.getRegistryName(), "Combines <light_purple>Trinkets into <gold>Fusion Trinkets<white> using the power of <light_purple>Prismatic Glue")
-                    .build();
+                    .addTooltipEntry(ModBlocks.TRINKET_FUSION_BLOCK.getRegistryName(), "Combines <light_purple>Trinkets into <gold>Fusion Trinkets<white> using the power of <light_purple>Prismatic Glue");
         });
     }
 }

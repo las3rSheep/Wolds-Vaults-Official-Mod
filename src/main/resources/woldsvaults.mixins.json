@@ -86,6 +86,7 @@
     "infernalmobs.MixinMobModsPacket",
     "integrateddynamics.MixinClientProxy",
     "integrateddynamics.MixinCraftingProcessOverrideCraftingTable",
+    "jevh.MixinClientEvents",
     "jevh.MixinJEIRecipeProvider",
     "jewelsorting.MixinSortingHelper",
     "legendarytooltips.MixinLegendaryTooltips",
