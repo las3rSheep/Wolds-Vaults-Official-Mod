@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.datagen;
 
+import com.github.alexthe666.alexsmobs.entity.AMEntityRegistry;
 import iskallia.vault.VaultMod;
 import iskallia.vault.init.ModConfigs;
 import net.minecraft.data.DataGenerator;
@@ -16,6 +17,211 @@ public class ModVaultMobsProvider extends AbstractVaultMobsProvider {
 
     @Override
     protected void registerOverrides() {
+        add(ModEntities.ASTRAL_STALKER.getRegistryName(), vaultMobBuilder -> {
+            vaultMobBuilder.entityGroup(VaultMod.id("assassin"))
+                    .xpValue(90)
+                    .attributeWithLevels("minecraft:generic.max_health", levels -> {
+                        levels.addLevel(0, 55.0, 80.0, "set", 1.0, 0.07, 49)
+                                .addLevel(50, 65.0, 85.0, "set", 1.0, 0.07, 64)
+                                .addLevel(65, 70.0, 90.0, "set", 1.0, 0.07, -1)
+                                .addLevel(80, 75, 95.0, "set", 1.0, 0.07, -1)
+                                .addLevel(90, 95.0, 100.0, "set", 1.0, 0.07, -1);
+                    })
+                    .attributeWithLevels("minecraft:generic.attack_damage", levels -> {
+                        levels.addLevel(0, 2.0, 4.0, "set", 1.0, 0.1, 50)
+                                .addLevel(65, 2.0, 4.0, "set", 1.0, 0.1, -1)
+                                .addLevel(90, 3, 6.0, "set", 1.0, 0.1, -1);
+                    })
+                    .attributeWithLevels("the_vault:generic.crit_chance", levels -> {
+                        levels.addLevel(0, 0.05, 0.1, "set", 1.0, 0.0, 49)
+                                .addLevel(50, 0.1, 0.15, "set", 1.0, 0.0, 84)
+                                .addLevel(85, 0.15, 0.2, "set", 1.0, 0.0, -1);
+                    })
+                    .attributeWithLevels("the_vault:generic.crit_multiplier", levels -> {
+                        levels.addLevel(0, 1.5, 1.5, "set", 1.0, 0.0, 49)
+                                .addLevel(50, 1.5, 1.5, "set", 1.0, 0.0, 84)
+                                .addLevel(85, 1.5, 1.5, "set", 1.0, 0.0, -1);
+                    })
+                    .attributeSimple("minecraft:generic.movement_speed", 1.05, 1.1, "multiply", 1.0, 0.0, -1)
+                    .attributeSimple("forge:swim_speed", 5.0, 5.0, "set", 1.0, 0.0, -1)
+                    .bestiaryEntry(themes -> {
+                        themes.add("Astral");
+                    }, 30, descriptions -> {
+                        descriptions.add(JsonDescription.simple("A skeleton influenced by the space warp!", "$text"));
+                    });
+        });
+
+        add(ModEntities.NEBULA_SENTINEL.getRegistryName(), vaultMobBuilder -> {
+            vaultMobBuilder.entityGroup(VaultMod.id("tank"))
+                    .xpValue(140)
+                    .attributeWithLevels("minecraft:generic.max_health", levels -> {
+                        levels.addLevel(0, 68.0, 82.0, "set", 1.0, 0.07, 49)
+                                .addLevel(50, 82.0, 104.0, "set", 1.0, 0.09, 64)
+                                .addLevel(65, 100.0, 140.0, "set", 1.0, 0.09, -1)
+                                .addLevel(80, 150, 190.0, "set", 1.0, 0.09, -1)
+                                .addLevel(90, 200.0, 240.0, "set", 1.0, 0.09, -1);
+                    })
+                    .attributeWithLevels("minecraft:generic.attack_damage", levels -> {
+                        levels.addLevel(0, 4.0, 4.0, "set", 1.0, 0.1, 50)
+                                .addLevel(65, 4.0, 6.0, "set", 1.0, 0.1, -1)
+                                .addLevel(90, 5.0, 8.0, "set", 1.0, 0.1, -1);
+                    })
+                    .attributeWithLevels("the_vault:generic.crit_chance", levels -> {
+                        levels.addLevel(0, 0.05, 0.1, "set", 1.0, 0.0, 49)
+                                .addLevel(50, 0.1, 0.15, "set", 1.0, 0.0, 84)
+                                .addLevel(85, 0.15, 0.2, "set", 1.0, 0.0, -1);
+                    })
+                    .attributeWithLevels("the_vault:generic.crit_multiplier", levels -> {
+                        levels.addLevel(0, 1.2, 1.2, "set", 1.0, 0.0, 49)
+                                .addLevel(50, 1.3, 1.3, "set", 1.0, 0.0, 84)
+                                .addLevel(85, 1.4, 1.4, "set", 1.0, 0.0, -1);
+                    })
+                    .attributeSimple("minecraft:generic.movement_speed", 1.05, 1.1, "multiply", 1.0, 0.0, -1)
+                    .attributeSimple("minecraft:generic.knockback_resistance", 0.95, 0.95, "set", 1.0, 0.0, -1)
+                    .attributeSimple("forge:swim_speed", 5.0, 5.0, "set", 1.0, 0.0, -1)
+                    .bestiaryEntry(themes -> {
+                        themes.add("Astral");
+                    }, 30, descriptions -> {
+                        descriptions.add(JsonDescription.simple("A golem influenced by the space warp! It's black hole core sucks players in periodically", "$text"));
+                    });
+        });
+
+        add(ModEntities.SINGULARITY_CREEPER.getRegistryName(), vaultMobBuilder -> {
+            vaultMobBuilder.entityGroup(VaultMod.id("assassin"))
+                    .xpValue(90)
+                    .attributeWithLevels("minecraft:generic.max_health", levels -> {
+                        levels.addLevel(0, 30.0, 40.0, "set", 1.0, 0.07, 49)
+                                .addLevel(50, 39.0, 58.0, "set", 1.0, 0.09, 64)
+                                .addLevel(65, 40.0, 69.0, "set", 1.0, 0.09, -1)
+                                .addLevel(80, 44, 75.9, "set", 1.0, 0.09, -1)
+                                .addLevel(90, 42.0, 82.8, "set", 1.0, 0.09, -1);
+                    })
+                    .attributeWithLevels("minecraft:generic.attack_damage", levels -> {
+                        levels.addLevel(0, 1.0, 3.0, "set", 1.0, 0.1, 50)
+                                .addLevel(65, 2.0, 4.0, "set", 1.0, 0.1, -1)
+                                .addLevel(90, 2.5, 5.0, "set", 1.0, 0.1, -1);
+                    })
+                    .attributeWithLevels("the_vault:generic.crit_chance", levels -> {
+                        levels.addLevel(0, 0.05, 0.1, "set", 1.0, 0.0, 49)
+                                .addLevel(50, 0.1, 0.15, "set", 1.0, 0.0, 84)
+                                .addLevel(85, 0.15, 0.2, "set", 1.0, 0.0, -1);
+                    })
+                    .attributeWithLevels("the_vault:generic.crit_multiplier", levels -> {
+                        levels.addLevel(0, 1.2, 1.2, "set", 1.0, 0.0, 49)
+                                .addLevel(50, 1.3, 1.3, "set", 1.0, 0.0, 84)
+                                .addLevel(85, 1.4, 1.4, "set", 1.0, 0.0, -1);
+                    })
+                    .attributeSimple("minecraft:generic.movement_speed", 1.05, 1.1, "multiply", 1.0, 0.0, -1)
+                    .attributeSimple("forge:swim_speed", 5.0, 5.0, "set", 1.0, 0.0, -1)
+                    .bestiaryEntry(themes -> {
+                        themes.add("Astral");
+                    }, 30, descriptions -> {
+                        descriptions.add(JsonDescription.simple("A creeper influenced by the space warp! It's singularity implosion flings players upwards and towards it", "$text"));
+                    });
+        });
+
+        add(ModEntities.STAR_DEVOURER_ENTITY.getRegistryName(), vaultMobBuilder -> {
+            vaultMobBuilder.entityGroup(VaultMod.id("tank"))
+                    .xpValue(100)
+                    .attributeWithLevels("minecraft:generic.max_health", levels -> {
+                        levels.addLevel(0, 80.0, 100.0, "set", 1.0, 0.07, 49)
+                                .addLevel(50, 90.0, 125.0, "set", 1.0, 0.09, 64)
+                                .addLevel(65, 125.0, 150.0, "set", 1.0, 0.09, -1)
+                                .addLevel(80, 150, 200.0, "set", 1.0, 0.09, -1)
+                                .addLevel(90, 220.0, 260.0, "set", 1.0, 0.09, -1);
+                    })
+                    .attributeWithLevels("minecraft:generic.attack_damage", levels -> {
+                        levels.addLevel(0, 3.0, 3.0, "set", 1.0, 0.1, 50)
+                                .addLevel(65, 4.0, 4.0, "set", 1.0, 0.1, -1)
+                                .addLevel(90, 5.0, 5.0, "set", 1.0, 0.1, -1);
+                    })
+                    .attributeWithLevels("the_vault:generic.crit_chance", levels -> {
+                        levels.addLevel(0, 0.05, 0.1, "set", 1.0, 0.0, 49)
+                                .addLevel(50, 0.1, 0.15, "set", 1.0, 0.0, 84)
+                                .addLevel(85, 0.15, 0.2, "set", 1.0, 0.0, -1);
+                    })
+                    .attributeWithLevels("the_vault:generic.crit_multiplier", levels -> {
+                        levels.addLevel(0, 1.2, 1.2, "set", 1.0, 0.0, 49)
+                                .addLevel(50, 1.3, 1.3, "set", 1.0, 0.0, 84)
+                                .addLevel(85, 1.4, 1.4, "set", 1.0, 0.0, -1);
+                    })
+                    .attributeSimple("minecraft:generic.movement_speed", 1.05, 1.1, "multiply", 1.0, 0.0, -1)
+                    .attributeSimple("forge:swim_speed", 5.0, 5.0, "set", 1.0, 0.0, -1)
+                    .bestiaryEntry(themes -> {
+                        themes.add("Astral");
+                    }, 30, descriptions -> {
+                        descriptions.add(JsonDescription.simple("A Ravager influenced by the space warp! It's roar halts players and levitates them into space", "$text"));
+                    });
+        });
+
+        add(ModEntities.LOGINAR.getRegistryName(), vaultMobBuilder -> {
+            vaultMobBuilder.entityGroup(VaultMod.id("horde"))
+                    .xpValue(60)
+                    .attributeWithLevels("minecraft:generic.max_health", levels -> {
+                        levels.addLevel(0, 30.0, 40.0, "set", 1.0, 0.07, 49)
+                                .addLevel(50, 39.0, 58.0, "set", 1.0, 0.09, 64)
+                                .addLevel(65, 40.0, 69.0, "set", 1.0, 0.09, -1)
+                                .addLevel(80, 44, 75.9, "set", 1.0, 0.09, -1)
+                                .addLevel(90, 42.0, 82.8, "set", 1.0, 0.09, -1);
+                    })
+                    .attributeWithLevels("minecraft:generic.attack_damage", levels -> {
+                        levels.addLevel(0, 1.0, 3.0, "set", 1.0, 0.1, 50)
+                                .addLevel(65, 2.0, 4.0, "set", 1.0, 0.1, -1)
+                                .addLevel(90, 2.5, 5.0, "set", 1.0, 0.1, -1);
+                    })
+                    .attributeWithLevels("the_vault:generic.crit_chance", levels -> {
+                        levels.addLevel(0, 0.05, 0.1, "set", 1.0, 0.0, 49)
+                                .addLevel(50, 0.1, 0.15, "set", 1.0, 0.0, 84)
+                                .addLevel(85, 0.15, 0.2, "set", 1.0, 0.0, -1);
+                    })
+                    .attributeWithLevels("the_vault:generic.crit_multiplier", levels -> {
+                        levels.addLevel(0, 1.2, 1.2, "set", 1.0, 0.0, 49)
+                                .addLevel(50, 1.3, 1.3, "set", 1.0, 0.0, 84)
+                                .addLevel(85, 1.4, 1.4, "set", 1.0, 0.0, -1);
+                    })
+                    .attributeSimple("minecraft:generic.movement_speed", 1.05, 1.1, "multiply", 1.0, 0.0, -1)
+                    .attributeSimple("forge:swim_speed", 5.0, 5.0, "set", 1.0, 0.0, -1)
+                    .bestiaryEntry(themes -> {
+                        themes.add("Astral");
+                    }, 30, descriptions -> {
+                        descriptions.add(JsonDescription.simple("An alien critter! How dare you invade its space :(", "$text"));
+                    });
+        });
+
+        add(AMEntityRegistry.COSMAW.getId(), vaultMobBuilder -> {
+            vaultMobBuilder.entityGroup(VaultMod.id("assassin"))
+                    .xpValue(125)
+                    .attributeWithLevels("minecraft:generic.max_health", levels -> {
+                        levels.addLevel(0, 20.0, 30.0, "set", 1.0, 0.07, 49)
+                                .addLevel(50, 30.0, 40.0, "set", 1.0, 0.09, 64)
+                                .addLevel(65, 42.0, 52.0, "set", 1.0, 0.09, -1)
+                                .addLevel(80, 52, 65.0, "set", 1.0, 0.09, -1)
+                                .addLevel(90, 65.0, 75.0, "set", 1.0, 0.09, -1);
+                    })
+                    .attributeWithLevels("minecraft:generic.attack_damage", levels -> {
+                        levels.addLevel(0, 4.0, 4.0, "set", 1.0, 0.1, 50)
+                                .addLevel(65, 4.0, 4.0, "set", 1.0, 0.1, -1)
+                                .addLevel(90, 4.0, 4.0, "set", 1.0, 0.1, -1);
+                    })
+                    .attributeWithLevels("the_vault:generic.crit_chance", levels -> {
+                        levels.addLevel(0, 0.05, 0.1, "set", 1.0, 0.0, 49)
+                                .addLevel(50, 0.1, 0.15, "set", 1.0, 0.0, 84)
+                                .addLevel(85, 0.15, 0.2, "set", 1.0, 0.0, -1);
+                    })
+                    .attributeWithLevels("the_vault:generic.crit_multiplier", levels -> {
+                        levels.addLevel(0, 1.2, 1.2, "set", 1.0, 0.0, 49)
+                                .addLevel(50, 1.3, 1.3, "set", 1.0, 0.0, 84)
+                                .addLevel(85, 1.4, 1.4, "set", 1.0, 0.0, -1);
+                    })
+                    .attributeSimple("minecraft:generic.movement_speed", 1.05, 1.1, "multiply", 1.0, 0.0, -1)
+                    .attributeSimple("forge:swim_speed", 5.0, 5.0, "set", 1.0, 0.0, -1)
+                    .bestiaryEntry(themes -> {
+                        themes.add("Astral");
+                    }, 30, descriptions -> {
+                        descriptions.add(JsonDescription.simple("A flying space creature, oh no!", "$text"));
+                    });
+        });
+
         add(ModEntities.HOSTILE_SHEEP.getRegistryName(), vaultMobBuilder -> {
              vaultMobBuilder.entityGroup(VaultMod.id("assassin"))
                      .xpValue(75)

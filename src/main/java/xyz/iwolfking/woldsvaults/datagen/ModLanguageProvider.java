@@ -63,6 +63,10 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.MOLTEN_TRINKET_BLOCK, "Molten Trinket");
         add(ModItems.DUST_OF_POWER, "Dust of Power");
         add(ModEntities.LOGINAR, "Alien");
+        add(ModEntities.ASTRAL_STALKER, "Astral Stalker");
+        add(ModEntities.NEBULA_SENTINEL, "Nebula Sentinel");
+        add(ModEntities.STAR_DEVOURER_ENTITY, "Star Beast");
+        add(ModEntities.SINGULARITY_CREEPER, "Singularity Creeper");
         add("fluid.woldsvaults.molten_trinket", "Molten Trinket");
         add("block.woldsvaults.prismatic_glue", "Prismatic Glue");
         add("block.woldsvaults.flowing_prismatic_glue", "Flowing Prismatic Glue");

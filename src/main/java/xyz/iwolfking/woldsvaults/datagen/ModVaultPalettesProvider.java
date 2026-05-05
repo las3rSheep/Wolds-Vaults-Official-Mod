@@ -137,7 +137,7 @@ public class ModVaultPalettesProvider extends AbstractPaletteProvider {
                     .placeholder(ThemePaletteBuilder.Placeholder.TREASURE_DOOR)
                     .placeholder(ThemePaletteBuilder.Placeholder.ROOM_BASE)
                     .placeholder(ThemePaletteBuilder.Placeholder.COMMON_ELITE_SPAWNERS)
-                    .placeholder(VaultMod.id("generic/spawners/void_mobs"))
+                    .placeholder(WoldsVaults.id("generic/spawners/astral_mobs"))
                     .replace(ThemePaletteBuilder.ThemeBlockType.WALL_MAIN, replacementBlocks -> {
                         replacementBlocks.put(DavebuildingmodModBlocks.STARS.getId(), 3);
                         replacementBlocks.put(DavebuildingmodModBlocks.VANTA_BLACK.getId(), 7);
@@ -338,11 +338,28 @@ public class ModVaultPalettesProvider extends AbstractPaletteProvider {
                 });
             });
 
-//            p.leveled(leveledBuilder -> {
-//                leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:tank}", 1, entries -> {
-//                   entries.put("")
-//                });
-//            })
+            p.leveled(leveledBuilder -> {
+                leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:tank}", 1, entries -> {
+                   entries.put("woldsvaults:star_devourer", 1);
+                   entries.put("woldsvaults:nebula_sentinel", 1);
+                });
+            });
+
+            p.leveled(leveledBuilder -> {
+                leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:horde}", 1, entries -> {
+                    entries.put("woldsvaults:loginar", 30);
+                });
+            });
+
+            p.leveled(leveledBuilder -> {
+                leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:assassin}", 1, entries -> {
+                    entries.put("woldsvaults:singularity_creeper", 10);
+                    entries.put("woldsvaults:astral_stalker", 15);
+                    entries.put("alexsmobs:cosmaw", 5);
+                });
+            });
+
+
 
             p.leveled(leveledBuilder -> {
                 leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {

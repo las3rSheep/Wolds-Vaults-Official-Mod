@@ -18,7 +18,7 @@
     },
     {
       "type": "reference",
-      "id": "the_vault:generic/spawners/void_mobs"
+      "id": "woldsvaults:generic/spawners/astral_mobs"
     },
     {
       "type": "weighted_target",

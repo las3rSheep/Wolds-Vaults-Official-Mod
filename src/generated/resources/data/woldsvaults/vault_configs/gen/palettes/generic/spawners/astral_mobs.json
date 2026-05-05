@@ -22,6 +22,63 @@
         {
           "level": 0,
           "type": "spawner",
+          "target": "ispawner:spawner{group:tank}",
+          "output": [
+            {
+              "elements": {
+                "woldsvaults:star_devourer": 1,
+                "woldsvaults:nebula_sentinel": 1
+              },
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "leveled",
+      "levels": [
+        {
+          "level": 0,
+          "type": "spawner",
+          "target": "ispawner:spawner{group:horde}",
+          "output": [
+            {
+              "elements": {
+                "woldsvaults:loginar": 30
+              },
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "leveled",
+      "levels": [
+        {
+          "level": 0,
+          "type": "spawner",
+          "target": "ispawner:spawner{group:assassin}",
+          "output": [
+            {
+              "elements": {
+                "woldsvaults:singularity_creeper": 10,
+                "woldsvaults:astral_stalker": 15,
+                "alexsmobs:cosmaw": 5
+              },
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "leveled",
+      "levels": [
+        {
+          "level": 0,
+          "type": "spawner",
           "target": "ispawner:spawner{group:dwellers}",
           "output": [
             {
