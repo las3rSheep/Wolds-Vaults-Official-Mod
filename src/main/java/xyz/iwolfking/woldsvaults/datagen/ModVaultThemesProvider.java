@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import xyz.iwolfking.vhapi.api.datagen.gen.AbstractThemeProvider;
 import xyz.iwolfking.vhapi.api.util.builder.description.DescriptionDataBuilder;
 import xyz.iwolfking.vhapi.api.util.builder.description.JsonDescription;
+import xyz.iwolfking.vhapi.api.util.builder.description.ThemeLoreDescriptionBuilder;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 
 public class ModVaultThemesProvider extends AbstractThemeProvider {
@@ -53,12 +54,18 @@ public class ModVaultThemesProvider extends AbstractThemeProvider {
                     .levelEntry("the_vault:default", 50)
                     .themeWeight(5)
                     .themeGroup("Astral")
-                    .themeLore(new ThemeAugmentLoreConfig.AugmentLore("Astral", new DescriptionDataBuilder()
-                            .description(JsonDescription.perk("Space, the final frontier.\n"))
-                            .description(JsonDescription.mobs("Hordes: ", new JsonDescription.MobEntry("WIP", 1, 2, 1), new JsonDescription.MobEntry("Test", 3, 2, 3)))
-                            .description(JsonDescription.mobs("Assassins: ", new JsonDescription.MobEntry("WIP", 1, 2, 1), new JsonDescription.MobEntry("Test", 3, 2, 3)))
-                            .description(JsonDescription.mobs("Tanks: ", new JsonDescription.MobEntry("WIP", 1, 2, 1), new JsonDescription.MobEntry("Test", 3, 2, 3)))
-                            .description(JsonDescription.dwellers(3)).build(), 3112412));
+                    .themeLore("Astral", 3112412, themeLoreDescriptionBuilder -> {
+                        themeLoreDescriptionBuilder
+                                .perk("More ", "white")
+                                .perk("Wutodie ", "light_purple")
+                                .perk("and ", "white")
+                                .perk("Player Gems ", "yellow")
+                                .horde(3, ThemeLoreDescriptionBuilder.mob("Alien", 2, 2, 2, "⚔"))
+                                .assassin(2, ThemeLoreDescriptionBuilder.mob("Astral Stalker", 2, 2, 2, "⚔ \uD83C\uDFF9"), ThemeLoreDescriptionBuilder.mob("Singularity Creeper", 1, 2, 2, "✸"), ThemeLoreDescriptionBuilder.mob("Cosmaw", 3, 1, 4, "✸"))
+                                .tank(4, ThemeLoreDescriptionBuilder.mob("Nebula Sentinel", 3, 3, 2, "✸ ⚔"), ThemeLoreDescriptionBuilder.mob("Star Beast", 2, 4, 1, "✸ ⚔"))
+                                .dweller(2);
+
+                    });
         });
     }
 }
