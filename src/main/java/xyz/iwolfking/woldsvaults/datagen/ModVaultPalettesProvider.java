@@ -327,16 +327,22 @@ public class ModVaultPalettesProvider extends AbstractPaletteProvider {
             });
         });
 
-        add(WoldsVaults.id("spawners_group_standard"), new PaletteBuilder(), p -> {
+        add(WoldsVaults.id("generic/spawners/astral_mobs"), new PaletteBuilder(), p -> {
 
             p.leveled(leveledBuilder -> {
                 leveledBuilder.list(0, "weighted_target", "ispawner:spawner", entries -> {
                     entries.put("ispawner:spawner{group: horde}", 50);
-                    entries.put("ispawner:spawner{group: assassin}", 33);
-                    entries.put("ispawner:spawner{group: tank}", 12);
+                    entries.put("ispawner:spawner{group: assassin}", 30);
+                    entries.put("ispawner:spawner{group: tank}", 15);
                     entries.put("ispawner:spawner{group: dwellers}", 5);
                 });
             });
+
+//            p.leveled(leveledBuilder -> {
+//                leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:tank}", 1, entries -> {
+//                   entries.put("")
+//                });
+//            })
 
             p.leveled(leveledBuilder -> {
                 leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {

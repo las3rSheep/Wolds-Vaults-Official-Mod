@@ -236,7 +236,7 @@
       "color": "#D2B4DE",
       "cost": 4,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -546,7 +546,7 @@
       "color": "#5DADE2",
       "cost": 3,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -556,7 +556,7 @@
       "color": "#AF7AC5",
       "cost": 2,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -566,7 +566,7 @@
       "color": "#7845FF",
       "cost": 4,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -576,7 +576,7 @@
       "color": "#0B0B0F",
       "cost": 4,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -586,7 +586,7 @@
       "color": "#F1948A",
       "cost": 3,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -606,7 +606,7 @@
       "color": "#85929E",
       "cost": 2,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -616,7 +616,7 @@
       "color": "#AAB7B8",
       "cost": 3,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -626,7 +626,7 @@
       "color": "#34495E",
       "cost": 3,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -636,7 +636,7 @@
       "color": "#566DF0",
       "cost": 4,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -646,7 +646,7 @@
       "color": "#BB8FCE",
       "cost": 3,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -906,7 +906,7 @@
       "color": "#D2B4DE",
       "cost": 4,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -2018,7 +2018,7 @@
       "color": "#EBDEF0",
       "cost": 3,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },
@@ -2438,7 +2438,7 @@
       "color": "#C39BD3",
       "cost": 3,
       "requirement": {
-        "themeGroup": "Space",
+        "themeGroup": "Astral",
         "type": "theme"
       }
     },

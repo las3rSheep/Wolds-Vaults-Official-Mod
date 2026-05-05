@@ -62,6 +62,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.PRISMATIC_GLUE_BLOCK, "Prismatic Glue");
         add(ModBlocks.MOLTEN_TRINKET_BLOCK, "Molten Trinket");
         add(ModItems.DUST_OF_POWER, "Dust of Power");
+        add(ModEntities.LOGINAR, "Alien");
         add("fluid.woldsvaults.molten_trinket", "Molten Trinket");
         add("block.woldsvaults.prismatic_glue", "Prismatic Glue");
         add("block.woldsvaults.flowing_prismatic_glue", "Flowing Prismatic Glue");

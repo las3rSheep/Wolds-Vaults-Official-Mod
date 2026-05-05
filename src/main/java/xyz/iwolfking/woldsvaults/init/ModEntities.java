@@ -10,6 +10,7 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.entities.astral.LoginarHostileAlienEntity;
 import xyz.iwolfking.woldsvaults.entities.barnyard.HostileChickenEntity;
 import xyz.iwolfking.woldsvaults.entities.barnyard.HostilePigEntity;
 import xyz.iwolfking.woldsvaults.entities.barnyard.HostileSheepEntity;
@@ -44,6 +45,7 @@ public class ModEntities {
     public static EntityType<HostileSheepEntity> HOSTILE_SHEEP;
     public static EntityType<HostilePigEntity> HOSTILE_PIG;
     public static EntityType<HaturkeyEntity> HATURKIN;
+    public static EntityType<LoginarHostileAlienEntity> LOGINAR;
 
     public static void register(RegistryEvent.Register<EntityType<?>> event) {
         WOLD = registerLiving("wold", EntityType.Builder.of(WoldBoss::new, MobCategory.MONSTER)
@@ -64,6 +66,7 @@ public class ModEntities {
         HOSTILE_SHEEP = registerLivingWV("hostile_sheep", EntityType.Builder.of(HostileSheepEntity::new, MobCategory.MONSTER).sized(1.0F, 1.0F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new HostileSheepEntity(HOSTILE_SHEEP, level))), HostileSheepEntity::createAttributes, event);
         HOSTILE_PIG = registerLivingWV("hostile_pig", EntityType.Builder.of(HostilePigEntity::new, MobCategory.MONSTER).sized(1.0F, 1.0F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new HostilePigEntity(HOSTILE_PIG, level))), HostilePigEntity::createAttributes, event);
         HATURKIN = registerLivingWV("haturkin", EntityType.Builder.of(HaturkeyEntity::new, MobCategory.MONSTER).sized(1.0F, 1.0F).clientTrackingRange(16).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new HaturkeyEntity(HATURKIN, level))), HaturkeyEntity::createAttributes, event);
+        LOGINAR = registerLivingWV("loginar", EntityType.Builder.of(LoginarHostileAlienEntity::new, MobCategory.MONSTER).sized(1.0F, 1.0F).clientTrackingRange(16).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new LoginarHostileAlienEntity(LOGINAR, level))), LoginarHostileAlienEntity::createAttributes, event);
         VAULT_RANG = registerWV("rang", EntityType.Builder.<VaultRangEntity>of(VaultRangEntity::new, MobCategory.MISC)
                 .sized(0.4F, 0.4F)
                 .clientTrackingRange(4)

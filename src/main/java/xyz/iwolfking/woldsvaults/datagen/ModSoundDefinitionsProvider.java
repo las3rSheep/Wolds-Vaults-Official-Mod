@@ -63,6 +63,30 @@ public class ModSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 ).subtitle("woldsvaults.subtitle.haturkin.ambient")
         );
 
+        add(ModSounds.LOGINAR_ATTACK,
+                SoundDefinition.definition().with(
+                        sound(WoldsVaults.id("loginar/loginar_attack"))
+                ));
+
+        add(ModSounds.LOGINAR_DEATH,
+                SoundDefinition.definition().with(
+                        sound(WoldsVaults.id("loginar/loginar_death1")),
+                        sound(WoldsVaults.id("loginar/loginar_death2"))
+                ));
+
+        add(ModSounds.LOGINAR_HURT,
+                SoundDefinition.definition().with(
+                        sound(WoldsVaults.id("loginar/loginar_hurt1")),
+                        sound(WoldsVaults.id("loginar/loginar_hurt2")),
+                        sound(WoldsVaults.id("loginar/loginar_hurt3")),
+                        sound(WoldsVaults.id("loginar/loginar_hurt4"))
+                ));
+
+        add(ModSounds.LOGINAR_IDLE,
+                SoundDefinition.definition().with(
+                        sound(WoldsVaults.id("loginar/loginar_idle"))
+                ));
+
         add(ModSounds.DARK, SoundDefinition.definition().with(sound(WoldsVaults.id("dark")).stream()));
 
         add(ModSounds.BLENDER, SoundDefinition.definition().with(sound(WoldsVaults.id("blender")).stream()));

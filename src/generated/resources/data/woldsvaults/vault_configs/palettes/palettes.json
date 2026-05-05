@@ -16,9 +16,9 @@
       "1.0": "woldsvaults:generic/ore_placeholder_astral"
     },
     {
-      "id": "woldsvaults:spawners_group_standard",
-      "name": "Spawners Group Standard",
-      "1.0": "woldsvaults:spawners_group_standard"
+      "id": "woldsvaults:generic/spawners/astral_mobs",
+      "name": "Generic Spawners Astral Mobs",
+      "1.0": "woldsvaults:generic/spawners/astral_mobs"
     }
   ]
 }
