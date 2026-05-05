@@ -49,7 +49,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import vazkii.quark.base.handler.QuarkSounds;
-import xyz.iwolfking.woldsvaults.api.util.CollisionHelper;
 import xyz.iwolfking.woldsvaults.init.ModEntities;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.items.gear.VaultRangItem;
@@ -161,20 +160,22 @@ public class VaultRangEntity extends Projectile {
         Vec3 position = position();
         Vec3 rayEnd = position.add(motion);
 
+        HitResult blockResult = level.clip(new ClipContext(position, rayEnd, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
+        Vec3 entityRayEnd = blockResult.getType() == HitResult.Type.MISS ? rayEnd : blockResult.getLocation();
+
         boolean doEntities = true;
         int tries = 100;
 
         while(isAlive() && (!entityData.get(RETURNING) || returningDamage > 0F)) {
             if(doEntities) {
-                EntityHitResult result = raycastEntities(position, rayEnd);
+                EntityHitResult result = raycastEntities(position, entityRayEnd);
                 if(result != null)
                     onHit(result);
                 else doEntities = false;
             } else {
-                HitResult result = CollisionHelper.specialClip(level, new ClipContext(position, rayEnd, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
-                if(result.getType() == HitResult.Type.MISS)
+                if(blockResult.getType() == HitResult.Type.MISS)
                     return;
-                else onHit(result);
+                else onHit(blockResult);
             }
 
             if(tries-- <= 0) {
@@ -374,10 +375,6 @@ public class VaultRangEntity extends Projectile {
         LivingEntity owner = getThrower();
         if(owner == null || !owner.isAlive() || !(owner instanceof Player player)) {
             if(!level.isClientSide) {
-                while(isInWall())
-                    setPos(getX(), getY() + 1, getZ());
-
-                spawnAtLocation(stack, 0);
                 if(owner instanceof ServerPlayer serverPlayer) {
                     AttributeSnapshotHelper.getInstance().refreshSnapshot(serverPlayer);
                 }
@@ -425,11 +422,18 @@ public class VaultRangEntity extends Projectile {
                     playSound(QuarkSounds.ENTITY_PICKARANG_PICKUP, 1, 1);
 
                     if (!stackInSlot.isEmpty()) {
-                        VaultRangItem.setInFlight(stackInSlot, false, player);
+                        //VaultRangItem.clearInFlight(stackInSlot);
 
                         int cooldown = 10 - (int) player.getAttributeValue(Attributes.ATTACK_SPEED);
                         if (cooldown > 0) {
                             player.getCooldowns().addCooldown(stackInSlot.getItem(), cooldown);
+                        }
+                    }
+
+                    if (!stack.isEmpty() && player.isAlive()) {
+                        int placeholderSlot = findInFlightPlaceholderSlot(inventory);
+                        if (placeholderSlot >= 0) {
+                            inventory.setItem(placeholderSlot, stack);
                         }
                     }
 
@@ -474,6 +478,21 @@ public class VaultRangEntity extends Projectile {
             player.drop(drop, false);
             itemEntity.discard();
         }
+    }
+
+    private int findInFlightPlaceholderSlot(Inventory inventory) {
+        UUID myId = this.getUUID();
+        if (slot >= 0 && slot < inventory.getContainerSize()
+                && myId.equals(VaultRangItem.getInFlightEntityId(inventory.getItem(slot)))) {
+            return slot;
+        }
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            if (i == slot) continue;
+            if (myId.equals(VaultRangItem.getInFlightEntityId(inventory.getItem(i)))) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Nullable
