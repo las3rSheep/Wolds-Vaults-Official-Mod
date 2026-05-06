@@ -23,7 +23,8 @@ public class MixinItemVaultFruitClient {
     @ModifyArg(method = "appendHoverText",
                at = @At(value = "INVOKE",
                         target = "Ljava/util/List;add(Ljava/lang/Object;)Z",
-                        ordinal = 1)
+                        ordinal = 1),
+            remap = true
                )
     public Object changeHPNumber(Object cmp) {
         return new TextComponent("Removes ")
@@ -42,7 +43,8 @@ public class MixinItemVaultFruitClient {
             at = @At(value = "INVOKE",
                     target = "Ljava/util/List;add(Ljava/lang/Object;)Z",
                     ordinal = 1,
-                    shift = At.Shift.AFTER)
+                    shift = At.Shift.AFTER),
+            remap = true
             )
     public void improveFormula(ItemStack itemStack, Level worldIn, List<Component> tooltip, TooltipFlag tooltipFlag, CallbackInfo ci) {
                                            //Removes~10%~ 17.3%! max health

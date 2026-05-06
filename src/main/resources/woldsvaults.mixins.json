@@ -420,7 +420,8 @@
     "vaulthunters.skills.MixinSkill",
     "vaulthunters.skills.modifications.MixinAbstractVeinMinerAbility",
     "vaulthunters.skills.modifications.MixinFireballAbility",
-    "vaulthunters.skills.modifications.MixinIceBoltChunkAbility"
+    "vaulthunters.skills.modifications.MixinIceBoltChunkAbility",
+    "vaultintegrations.MixinAltarConduitNode"
   ],
   "client": [
     "AccessorParticleEngine",
@@ -440,8 +441,8 @@
     "vaulthunters.custom.MixinCrystalWorkbenchScreen",
     "vaulthunters.custom.MixinGearDataCache",
     "vaulthunters.custom.MixinGreedTraderScreen",
-    "vaulthunters.custom.MixinItemVaultFruitClient",
     "vaulthunters.custom.MixinGreedTraderScreen$Challenges",
+    "vaulthunters.custom.MixinItemVaultFruitClient",
     "vaulthunters.custom.MixinSpiritExtractorScreen",
     "vaulthunters.custom.MixinTickTimer",
     "vaulthunters.custom.MixinVault",
