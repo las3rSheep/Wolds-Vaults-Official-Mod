@@ -416,9 +416,7 @@
     "vaulthunters.skills.MixinSkill",
     "vaulthunters.skills.modifications.MixinAbstractVeinMinerAbility",
     "vaulthunters.skills.modifications.MixinFireballAbility",
-    "vaulthunters.skills.modifications.MixinIceBoltChunkAbility",
-    "vaulthunters.testing.CardScaler$FilterAccessor",
-    "vaulthunters.testing.MixinCardScaler"
+    "vaulthunters.skills.modifications.MixinIceBoltChunkAbility"
   ],
   "client": [
     "AccessorParticleEngine",
