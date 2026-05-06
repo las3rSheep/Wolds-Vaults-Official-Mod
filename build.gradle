@@ -255,6 +255,7 @@ dependencies {
     implementation fg.deobf("curse.maven:ftb-library-forge-404465:4396792") // ftb quests
     implementation fg.deobf("curse.maven:ftb-teams-forge-404468:4579981") // ftb quests
     implementation fg.deobf("curse.maven:ispawner-533792:5925639")
+    compileOnly fg.deobf("curse.maven:crafting-tweaks-233071:4939214")
 
     // optional mods (usually conditional mixin)
     compileOnly fg.deobf("curse.maven:better-tridents-666941:4707885")

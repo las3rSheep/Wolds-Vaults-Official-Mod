@@ -67,6 +67,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModEntities.NEBULA_SENTINEL, "Nebula Sentinel");
         add(ModEntities.STAR_DEVOURER_ENTITY, "Star Beast");
         add(ModEntities.SINGULARITY_CREEPER, "Singularity Creeper");
+        add("fix.woldsvaults.schematic_terminal_no_permission", "You do not have permission to place an Overworld Inscription here!");
         add("fluid.woldsvaults.molten_trinket", "Molten Trinket");
         add("block.woldsvaults.prismatic_glue", "Prismatic Glue");
         add("block.woldsvaults.flowing_prismatic_glue", "Flowing Prismatic Glue");
