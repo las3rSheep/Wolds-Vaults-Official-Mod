@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.client.invhud.LightmanWalletHudModule;
+import xyz.iwolfking.woldsvaults.client.invhud.MultiItemHudModule;
 import xyz.iwolfking.woldsvaults.init.ModOptions;
 
 import java.util.ArrayList;
@@ -38,7 +39,12 @@ public abstract class MixinInventoryHudRenderer {
 
     @Inject(method = "initModules", at = @At("TAIL"))
     private static void registerWoldsModules(CallbackInfo ci) {
-        MODULES.add(new ItemHudModule("trinket_3", () -> getCurioSlotByName(Minecraft.getInstance().player, "green_trinket"), ModOptions.GREEN_TRINKET));
+        MODULES.removeIf(x -> "trinket_1".equals(x.key()));
+        MODULES.removeIf(x -> "trinket_2".equals(x.key()));
+
+        MODULES.add(new MultiItemHudModule("trinket_1", () -> MultiItemHudModule.getCurioSlotsByName(Minecraft.getInstance().player, "blue_trinket"), iskallia.vault.init.ModOptions.BLUE_TRINKET));
+        MODULES.add(new MultiItemHudModule("trinket_2", () -> MultiItemHudModule.getCurioSlotsByName(Minecraft.getInstance().player, "red_trinket"), iskallia.vault.init.ModOptions.RED_TRINKET));
+        MODULES.add(new MultiItemHudModule("trinket_3", () -> MultiItemHudModule.getCurioSlotsByName(Minecraft.getInstance().player, "green_trinket"), ModOptions.GREEN_TRINKET));
         MODULES.add(new ItemHudModule("trinket_pouch", () -> getCurioSlotByName(Minecraft.getInstance().player, "trinket_pouch"), ModOptions.TRINKET_POUCH));
         if (ModList.get().isLoaded("lightmanscurrency")) {
             MODULES.add(new LightmanWalletHudModule("lightman_wallet", ModOptions.LIGHTMAN_WALLET));

@@ -1,0 +1,26 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "the_vault:gem_pog"
+    },
+    {
+      "item": "the_vault:gem_pog"
+    },
+    {
+      "item": "woldsvaults:dust_of_power"
+    },
+    {
+      "fluid": "woldsvaults:molten_trinket",
+      "nbt": {},
+      "amount": 10
+    }
+  ],
+  "results": [
+    {
+      "fluid": "woldsvaults:prismatic_glue",
+      "amount": 10
+    }
+  ],
+  "heatRequirement": "superheated"
+}

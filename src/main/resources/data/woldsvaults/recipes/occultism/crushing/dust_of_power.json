@@ -1,0 +1,11 @@
+{
+  "type": "occultism:crushing",
+  "ingredient": {
+    "item": "woldsvaults:chunk_of_power"
+  },
+  "result": {
+    "item": "woldsvaults:dust_of_power",
+    "count": 3
+  },
+  "crushing_time": 200
+}

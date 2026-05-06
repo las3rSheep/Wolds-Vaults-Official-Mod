@@ -1,0 +1,31 @@
+{
+  "THEMES": {
+    "woldsvaults:god_themes": [
+      {
+        "level": 0,
+        "pool": [
+          {
+            "value": "the_vault:classic_vault_velara_normal",
+            "weight": 1.0
+          },
+          {
+            "value": "the_vault:classic_vault_idona_normal",
+            "weight": 1.0
+          },
+          {
+            "value": "the_vault:classic_vault_wendarr_normal",
+            "weight": 1.0
+          },
+          {
+            "value": "the_vault:classic_vault_tenos_normal",
+            "weight": 1.0
+          }
+        ],
+        "seasonalWeights": {}
+      }
+    ]
+  },
+  "LAYOUTS": [],
+  "OBJECTIVES": {},
+  "SEALS": {}
+}

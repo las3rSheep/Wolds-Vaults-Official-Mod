@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "woldsvaults:dust_of_power"
+    },
+    {
+      "item": "woldsvaults:dust_of_power"
+    },
+    {
+      "item": "woldsvaults:dust_of_power"
+    },
+    {
+      "item": "woldsvaults:dust_of_power"
+    },
+    {
+      "item": "woldsvaults:dust_of_power"
+    },
+    {
+      "item": "woldsvaults:dust_of_power"
+    },
+    {
+      "item": "woldsvaults:dust_of_power"
+    },
+    {
+      "item": "woldsvaults:dust_of_power"
+    },
+    {
+      "item": "woldsvaults:dust_of_power"
+    }
+  ],
+  "result": {
+    "item": "woldsvaults:chunk_of_power"
+  }
+}

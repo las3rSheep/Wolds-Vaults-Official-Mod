@@ -350,6 +350,44 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                     jsonElements.add(JsonDescription.simple("Weaving Station", "aqua"));
                     jsonElements.add(JsonDescription.simple("."));
                 })
+                .addDescription("Toolsmith", jsonElements -> {
+                    jsonElements.add(JsonDescription.simple("When crafting "));
+                    jsonElements.add(JsonDescription.simple("Vault Tools ", "#82D4FC"));
+                    jsonElements.add(JsonDescription.simple("they gain "));
+                    jsonElements.add(JsonDescription.simple("75 ", "yellow"));
+                    jsonElements.add(JsonDescription.simple("additional capacity."));
+                })
+                .addDescription("Artificer", jsonElements -> {
+                    jsonElements.add(JsonDescription.simple("When you identify "));
+                    jsonElements.add(JsonDescription.simple("Vault Gear ", "#82D4FC"));
+                    jsonElements.add(JsonDescription.simple("it gains "));
+                    jsonElements.add(JsonDescription.simple("100 ", "yellow"));
+                    jsonElements.add(JsonDescription.simple("additional "));
+                    jsonElements.add(JsonDescription.simple("Crafting Potential", "gold"));
+                    jsonElements.add(JsonDescription.simple("."));
+                })
+                .addDescription("SoulFetcher", jsonElements -> {
+                    jsonElements.add(JsonDescription.simple("Increases your "));
+                    jsonElements.add(JsonDescription.simple("Soul Shard Chance", "#6D02FB"));
+                    jsonElements.add(JsonDescription.simple("."));
+                })
+                .addDescription("HealthIncrease", jsonElements -> {
+                    jsonElements.add(JsonDescription.simple("Increases your "));
+                    jsonElements.add(JsonDescription.simple("Health ", "#008700"));
+                    jsonElements.add(JsonDescription.simple("."));
+                })
+                .addDescription("MythicBounty", jsonElements -> {
+                    jsonElements.add(JsonDescription.simple("Bounties now always roll as "));
+                    jsonElements.add(JsonDescription.simple("Legendary bounties", "gold"));
+                    jsonElements.add(JsonDescription.simple(".\n\n"));
+                    jsonElements.add(JsonDescription.simple("Lost Bounties ", "aqua"));
+                    jsonElements.add(JsonDescription.simple("will now roll a "));
+                    jsonElements.add(JsonDescription.simple("Mythic bounty", "light_purple"));
+                    jsonElements.add(JsonDescription.simple(" with a"));
+                    jsonElements.add(JsonDescription.simple(" unique ", "yellow"));
+                    jsonElements.add(JsonDescription.simple("reward pool"));
+                    jsonElements.add(JsonDescription.simple("."));
+                })
                 .build();
     }
 
@@ -677,7 +715,6 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                     jsonElements.add(JsonDescription.simple("based on the amount of "));
                     jsonElements.add(JsonDescription.simple("Scrappy ", "343434"));
                     jsonElements.add(JsonDescription.simple("armor pieces you wear."));
-                    jsonElements.add(JsonDescription.simple("20%", "#F6CD0E"));
                 })
                 .addDescription("Nether_Mastery", jsonElements -> {
                     jsonElements.add(JsonDescription.simple("Increases the "));
@@ -727,8 +764,7 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                     jsonElements.add(JsonDescription.simple("Gain "));
                     jsonElements.add(JsonDescription.simple("extra healing efficiency ", "#7DF587"));
                     jsonElements.add(JsonDescription.simple("while below "));
-                    jsonElements.add(JsonDescription.simple("20% ", "#0353D7"));
-                    jsonElements.add(JsonDescription.simple("max health."));
+                    jsonElements.add(JsonDescription.simple("20% mana ", "#0353D7"));
                 })
                 .addDescription("Sorcery", jsonElements -> {
                     jsonElements.add(JsonDescription.simple("Gain "));

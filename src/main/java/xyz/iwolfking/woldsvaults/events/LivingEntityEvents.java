@@ -22,7 +22,6 @@ import iskallia.vault.entity.entity.elite.EliteWitchEntity;
 import iskallia.vault.entity.entity.elite.EliteWitherSkeleton;
 import iskallia.vault.entity.entity.elite.EliteZombieEntity;
 import iskallia.vault.event.ActiveFlags;
-import iskallia.vault.event.PlayerActiveFlags;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
@@ -34,6 +33,7 @@ import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.calc.EffectDurationHelper;
 import iskallia.vault.util.calc.PlayerStat;
 import iskallia.vault.util.calc.ThornsHelper;
+import iskallia.vault.util.damage.DamageUtil;
 import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
@@ -48,7 +48,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -67,12 +66,15 @@ import top.theillusivec4.curios.api.event.CurioChangeEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.abilities.SneakyGetawayAbility;
 import xyz.iwolfking.woldsvaults.api.util.WoldAttributeHelper;
+import xyz.iwolfking.woldsvaults.api.util.WoldEtchingHelper;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.api.data.HexEffects;
 import xyz.iwolfking.woldsvaults.api.data.discovery.DiscoveredRecipesData;
-import xyz.iwolfking.woldsvaults.effect.mobeffects.EchoingPotionEffect;
+import xyz.iwolfking.woldsvaults.effect.mobeffects.EchoingEffectInstance;
 import xyz.iwolfking.woldsvaults.effect.mobeffects.PercentBurnEffect;
+import xyz.iwolfking.woldsvaults.effect.trinkets.EffectOnHitTakenEffect;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
+import xyz.iwolfking.woldsvaults.init.ModEtchingGearAttributes;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import xyz.iwolfking.woldsvaults.items.TrinketPouchItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
@@ -98,7 +100,7 @@ public class LivingEntityEvents {
     }
 
     @SubscribeEvent
-    public static void dodge(LivingHurtEvent event) {
+    public static void onPlayerHit(LivingHurtEvent event) {
         LivingEntity entity = event.getEntityLiving();
 
         if (!(entity instanceof Player))
@@ -108,6 +110,12 @@ public class LivingEntityEvents {
 
         if (!(source instanceof EntityDamageSource) || source.isExplosion() || source.isBypassInvul())
             return;
+
+        TrinketHelper.getTrinkets(entity, EffectOnHitTakenEffect.class).forEach(effectOnHitTakenEffectTrinketStack -> {
+            if(entity.getRandom().nextFloat() <= effectOnHitTakenEffectTrinketStack.trinket().getConfig().getChance() && !entity.hasEffect(effectOnHitTakenEffectTrinketStack.trinket().getConfig().getEffect())) {
+                entity.addEffect(new MobEffectInstance(effectOnHitTakenEffectTrinketStack.trinket().getConfig().getEffectInstance()));
+            }
+        });
 
         float dodgeChance = AttributeSnapshotHelper.getInstance().getSnapshot(entity).getAttributeValue(ModGearAttributes.DODGE_PERCENT, VaultGearAttributeTypeMerger.floatSum());
         if(entity.hasEffect(ModEffects.SNEAKY_GETAWAY)) {
@@ -498,35 +506,72 @@ public class LivingEntityEvents {
             float echoingChance = AttributeSnapshotHelper.getInstance().getSnapshot(player).getAttributeValue(ModGearAttributes.ECHOING_CHANCE, VaultGearAttributeTypeMerger.floatSum());
             float echoingDamage = AttributeSnapshotHelper.getInstance().getSnapshot(player).getAttributeValue(ModGearAttributes.ECHOING_DAMAGE, VaultGearAttributeTypeMerger.floatSum());
             if(echoingChance != 0) {
+                //buff chances for echoing to re-proc itself
                 if (WoldActiveFlags.IS_ECHOING_ATTACKING.isSet())
                     echoingChance = (float) Math.sqrt(echoingChance);
 
+                //roll chance
                 if(player.level.random.nextFloat() <= echoingChance) {
-                    EchoingPotionEffect newEffect = (EchoingPotionEffect) ModEffects.ECHOING;
+                    LivingEntity target = event.getEntityLiving();
 
-                    if (WoldActiveFlags.IS_ECHOING_ATTACKING.isSet() && event.getEntityLiving().hasEffect(ModEffects.ECHOING)) {
-                        newEffect = (EchoingPotionEffect) event.getEntityLiving().getEffect(ModEffects.ECHOING).getEffect();
-                        ////[[DEBUG]]
-                        //WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Added a {} damage echo to attack from a previous echo.", newEffect.getDamage());
+                    float newDamage;
+                    DamageSource newSource;
+                    int newDuration;
+                    float newDecay;
+
+                    EchoingEffectInstance oldInstance = (EchoingEffectInstance) target.getEffect(ModEffects.ECHOING);
+                    if (WoldActiveFlags.IS_ECHOING_ATTACKING.isSet()) {
+                        if(oldInstance == null)
+                            return;
+
+//                        //[[DEBUG]]
+//                        WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Echo successfully re-procced.");
+
+                        // proc from echo/reverb
+                        newDamage = event.getAmount() * oldInstance.getDecay();
+                        newSource = oldInstance.getSource();
+                        newDuration = EffectDurationHelper.adjustEffectDurationFloor(player, 1) * 10;
+                        newDecay = oldInstance.getDecay() * 0.95F - 0.05F;
+                    } else {
+                        // original proc
+                        newDamage = event.getAmount() * (1+echoingDamage) * 0.667F;
+                        newSource = event.getSource();
+                        newDuration = EffectDurationHelper.adjustEffectDurationFloor(player, 1) * 10;
+                        newDecay = 1.0F;
                     }
-                    else {
-                        newEffect.setDamage(event.getAmount());
-                        newEffect.setAttacker(player);
-                        newEffect.setSource(event.getSource());
-                    }
 
-                    float damage = newEffect.getDamage() * 0.667f;
+                    //only activate on big enough hits
+                    if(newDamage > 1.0f) {
+                        if(oldInstance != null
+                        && WoldEtchingHelper.hasEtching(player, ModEtchingGearAttributes.REVERBERATION)) {
 
-                    if(echoingDamage != 0)
-                        damage *= 1 + echoingDamage;
+                            DamageSource oSource = oldInstance.getSource();
+                            float oDamage = oldInstance.getDamage() * oldInstance.getDecay();
+                            oldInstance.setDamage(oDamage);
 
-                    if(damage > 1.0f) {
-                        newEffect.setDamage(damage);
-                        int duration = EffectDurationHelper.adjustEffectDurationFloor(player, 1) * 10;
-                        event.getEntityLiving().addEffect(new MobEffectInstance(newEffect, duration, 0));
+                            oldInstance.doDecay();
+                            oldInstance.reverberate();
 
-                        ////[[DEBUG]]
-                        //WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Added a {} damage echo to attack.", damage);
+                            if(oDamage > 1.0F) {
+//                                //[[DEBUG]]
+//                                WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Reverberated {} damage.", oDamage);
+
+                                if (WoldActiveFlags.IS_ECHOING_ATTACKING.isSet())
+                                    DamageUtil.shotgunAttack(target, e -> e.hurt(oSource, oDamage));
+                                else {
+                                    WoldActiveFlags.IS_ECHOING_ATTACKING.push();
+                                    DamageUtil.shotgunAttack(target, e -> e.hurt(oSource, oDamage));
+                                    WoldActiveFlags.IS_ECHOING_ATTACKING.pop();
+                                }
+                            }
+                        }
+
+                        target.addEffect(new EchoingEffectInstance(player, newDamage, newSource, newDuration, newDecay));
+
+//                        //[[DEBUG]]
+//                        WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Added a {} damage echo to attack.", newDamage);
+//                        WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Currently, {} damage is on top.", ((EchoingEffectInstance) target.getEffect(ModEffects.ECHOING)).getDamage());
+//                        WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Decay at {}.", ((EchoingEffectInstance) target.getEffect(ModEffects.ECHOING)).getDecay());
                     }
                 }
             }

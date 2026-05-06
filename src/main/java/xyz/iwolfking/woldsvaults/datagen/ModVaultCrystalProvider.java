@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.datagen;
 
 import iskallia.vault.VaultMod;
+import iskallia.vault.config.VaultCrystalConfig;
 import iskallia.vault.core.vault.modifier.VaultModifierStack;
 import iskallia.vault.core.vault.modifier.registry.VaultModifierRegistry;
 import iskallia.vault.core.world.roll.IntRoll;
@@ -137,6 +138,16 @@ public class ModVaultCrystalProvider extends AbstractVaultCrystalConfigProvider 
 //               });
 //            });
 //        });
+        add("wolds_theme_pools", builder -> {
+           builder.addThemePool(WoldsVaults.id("god_themes"), themeEntries -> {
+              themeEntries.add(0, themes -> {
+                 themes.add(VaultMod.id("classic_vault_velara_normal"), 1);
+                 themes.add(VaultMod.id("classic_vault_idona_normal"), 1);
+                 themes.add(VaultMod.id("classic_vault_wendarr_normal"), 1);
+                 themes.add(VaultMod.id("classic_vault_tenos_normal"), 1);
+              });
+           });
+        });
         add("wolds_seals", builder -> {
             builder.addSeal(ModItems.CRYSTAL_SEAL_DOOMSAYER.getRegistryName(), sealListBuilder -> {
                 sealListBuilder.add(0, sealEntryBuilder -> {

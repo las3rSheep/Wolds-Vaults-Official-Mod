@@ -1,4 +1,11 @@
 {
   "dropChance": 0.2,
-  "drops": {}
+  "drops": {
+    "woldsvaults:astral": {
+      "the_vault:augment{theme:\"woldsvaults:astral\"}": 1
+    },
+    "woldsvaults:sculk": {
+      "the_vault:augment{theme:\"woldsvaults:sculk\"}": 1
+    }
+  }
 }

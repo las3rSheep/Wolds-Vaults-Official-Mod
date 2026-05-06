@@ -59,6 +59,7 @@ public class DataGenerators {
             gen.addProvider(new ModVaultRecyclerProvider(gen));
             gen.addProvider(new ModVaultAltarIngredientsProvider(gen));
             gen.addProvider(new ModInscriptionRecipesProvider(gen));
+            gen.addProvider(new ModGearModelRollRaritiesProvider(gen));
             gen.addProvider(new ModPrebuiltToolsProvider(gen));
             gen.addProvider(new ModVaultPortalBlocksProvider(gen));
             gen.addProvider(new ModChampionsProvider(gen));
@@ -88,6 +89,10 @@ public class DataGenerators {
             gen.addProvider(new ModVaultCrystalProvider(gen));
             gen.addProvider(new ModVaultStatsProvider(gen));
             gen.addProvider(new ModLegacyLootTablesProvider(gen));
+            gen.addProvider(new ModGatewayProvider(gen));
+            gen.addProvider(new ModChallengeCrystalProvider(gen));
+            gen.addProvider(new ModGreedTraderProvider(gen));
+            gen.addProvider(new ModGreedCauldronProvider(gen));
         }
     }
 

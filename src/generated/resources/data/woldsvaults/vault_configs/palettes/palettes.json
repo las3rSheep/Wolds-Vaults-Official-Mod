@@ -1,3 +1,24 @@
 {
-  "keys": []
+  "keys": [
+    {
+      "id": "woldsvaults:universal_sculk",
+      "name": "Universal Sculk",
+      "1.0": "woldsvaults:universal_sculk"
+    },
+    {
+      "id": "woldsvaults:universal_astral",
+      "name": "Universal Astral",
+      "1.0": "woldsvaults:universal_astral"
+    },
+    {
+      "id": "woldsvaults:generic/ore_placeholder_astral",
+      "name": "Generic Ore Placeholder Astral",
+      "1.0": "woldsvaults:generic/ore_placeholder_astral"
+    },
+    {
+      "id": "woldsvaults:generic/spawners/astral_mobs",
+      "name": "Generic Spawners Astral Mobs",
+      "1.0": "woldsvaults:generic/spawners/astral_mobs"
+    }
+  ]
 }

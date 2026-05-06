@@ -1,10 +1,10 @@
 package xyz.iwolfking.woldsvaults.init;
 
+import com.mojang.datafixers.util.Pair;
 import iskallia.vault.VaultMod;
 import iskallia.vault.gear.attribute.VaultGearAttribute;
 import iskallia.vault.gear.attribute.config.ConfigurableAttributeGenerator;
-import iskallia.vault.gear.attribute.custom.effect.EffectGearAttribute;
-import iskallia.vault.gear.attribute.custom.effect.EffectTrialAttribute;
+import iskallia.vault.gear.attribute.talent.TalentLevelAttribute;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeType;
 import iskallia.vault.gear.comparator.VaultGearAttributeComparator;
 import iskallia.vault.gear.reader.VaultGearModifierReader;
@@ -15,9 +15,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.api.util.UniqueEffectGearAttribute;
-import xyz.iwolfking.woldsvaults.modifiers.gear.ParticleTrailAttribute;
-
 import javax.annotation.Nullable;
 
 @Mod.EventBusSubscriber(modid = WoldsVaults.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -26,9 +23,15 @@ public class ModEtchingGearAttributes {
     public static final VaultGearAttribute<Float> CONCENTRATE_DRAIN = woldsAttr("concentrate_drain", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<Float> COLOSSUS_TITAN_RESISTANCE = woldsAttr("colossus_titan_resistance", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<Float> SNEAKY_GETAWAY_NINJA = woldsAttr("sneaky_getaway_ninja", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> FIREBALL_GREEDBALL = woldsAttr("fireball_greedball", VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.floatComparator());
     public static final VaultGearAttribute<Boolean> LEVITATE_SLOW_FALLING = woldsAttr("levitate_slow_falling", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
+    public static final VaultGearAttribute<Boolean> PURIST_COMMON = woldsAttr("purist_common", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
+    public static final VaultGearAttribute<Boolean> PRUDENT_CHAOS = woldsAttr("prudent_chaos", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
+    public static final VaultGearAttribute<Boolean> REVERBERATION = woldsAttr("reverberation", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
+    public static final VaultGearAttribute<Boolean> DIVINITY = woldsAttr("divinity", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
     public static final VaultGearAttribute<Integer> DIFFUSE_CHEMICAL_BOMB = woldsAttr("diffuse_chemical_bomb", VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.intComparator());
     public static final VaultGearAttribute<Integer> FIREBALL_VOLLEY_MITOSIS = woldsAttr("fireball_volley_mitosis", VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.intComparator());
+    public static final VaultGearAttribute<Pair<Integer, Integer>> REAVING_HEMMORAGE = woldsAttr("reaving_hemmorage", VaultGearAttributeType.pairType(VaultGearAttributeType.intType(), VaultGearAttributeType.intType()), ModGearAttributeGenerators.pairGenerator(ModGearAttributeGenerators.intRange(), ModGearAttributeGenerators.intRange(), "amplifier", "duration"), ModGearAttributeReaders.none());
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
@@ -37,8 +40,14 @@ public class ModEtchingGearAttributes {
         registry.register(COLOSSUS_TITAN_RESISTANCE);
         registry.register(SNEAKY_GETAWAY_NINJA);
         registry.register(LEVITATE_SLOW_FALLING);
+        registry.register(PURIST_COMMON);
+        registry.register(PRUDENT_CHAOS);
+        registry.register(REVERBERATION);
         registry.register(DIFFUSE_CHEMICAL_BOMB);
         registry.register(FIREBALL_VOLLEY_MITOSIS);
+        registry.register(REAVING_HEMMORAGE);
+        registry.register(DIVINITY);
+        registry.register(FIREBALL_GREEDBALL);
     }
 
     private static <T> VaultGearAttribute<T> attr(String name, VaultGearAttributeType<T> type,ConfigurableAttributeGenerator<T, ?> generator,VaultGearModifierReader<T> reader,@Nullable VaultGearAttributeComparator<T> comparator) {

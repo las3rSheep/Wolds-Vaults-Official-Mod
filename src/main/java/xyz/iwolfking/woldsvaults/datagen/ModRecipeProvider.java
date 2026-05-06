@@ -1,10 +1,8 @@
 package xyz.iwolfking.woldsvaults.datagen;
 
-import com.simibubi.create.AllItems;
 import iskallia.vault.VaultMod;
 import iskallia.vault.core.vault.influence.VaultGod;
 import iskallia.vault.item.AugmentItem;
-import iskallia.vault.tags.ModItemTags;
 import me.dinnerbeef.compressium.Compressium;
 import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
@@ -14,7 +12,6 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -53,6 +50,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         CompoundTag colossus = new CompoundTag();
         colossus.putString("Ability", "Colossus");
 
+        ShapedRecipeBuilder.shaped(ModBlocks.OWNED_CRAFTING_TABLE_BLOCK)
+                .define('O', iskallia.vault.init.ModItems.CHROMATIC_IRON_INGOT)
+                .define('V', iskallia.vault.init.ModItems.VAULT_ESSENCE)
+                .define('C', Blocks.CRAFTING_TABLE)
+                .pattern("OVO")
+                .pattern("VCV")
+                .pattern("OVO")
+                .unlockedBy("has_crafting_table", has(Blocks.CRAFTING_TABLE))
+                .save(pFinishedRecipeConsumer);
 
         ShapedRecipeBuilder.shaped(ModBlocks.CRATE_CRACKER_BLOCK)
                 .define('G', Ingredient.of(Tags.Items.GLASS))
@@ -160,16 +166,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_perfect_benitoite", has(iskallia.vault.init.ModItems.PERFECT_BENITOITE))
                 .save(pFinishedRecipeConsumer);
 
-//        ShapedRecipeBuilder.shaped(ModBlocks.AUGMENT_CRAFTING_TABLE)
-//                .define('N', ModItems.POG_PRISM)
-//                .define('I', iskallia.vault.init.ModItems.VAULT_INGOT)
-//                .define('L', Blocks.LECTERN)
-//                .define('C', iskallia.vault.init.ModItems.AUGMENT)
-//                .pattern("NCN")
-//                .pattern("ILI")
-//                .pattern("III")
-//                .unlockedBy("has_augment", has(iskallia.vault.init.ModItems.AUGMENT))
-//                .save(pFinishedRecipeConsumer);
+        ShapedRecipeBuilder.shaped(ModBlocks.TRINKET_FUSION_BLOCK)
+                .define('N', iskallia.vault.init.ModItems.ECHO_POG)
+                .define('I', ModItems.POGOMINIUM_INGOT)
+                .define('V', ModCompressibleBlocks.getCompressed("vault_diamond_block", 1))
+                .define('L', iskallia.vault.init.ModBlocks.BLACK_CHROMATIC_STEEL_BLOCK)
+                .define('C', iskallia.vault.init.ModBlocks.TRINKET_FORGE)
+                .pattern("NVN")
+                .pattern("ICI")
+                .pattern("LLL")
+                .unlockedBy("has_augment", has(iskallia.vault.init.ModItems.AUGMENT))
+                .save(pFinishedRecipeConsumer);
 
 
         ShapedRecipeBuilder.shaped(ModBlocks.MOD_BOX_WORKSTATION)
@@ -905,6 +912,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         compactingRecipe(ModBlocks.OMEGA_POG_BLOCK, iskallia.vault.init.ModItems.OMEGA_POG, pFinishedRecipeConsumer);
         compactingRecipe(ModBlocks.ECHO_POG_BLOCK, iskallia.vault.init.ModItems.ECHO_POG, pFinishedRecipeConsumer);
         compactingRecipe(ModBlocks.POG_BLOCK, iskallia.vault.init.ModItems.POG, pFinishedRecipeConsumer);
+        oneWayCompacting(ModItems.CHUNK_OF_POWER, ModItems.DUST_OF_POWER, pFinishedRecipeConsumer);
 
         for(DyeColor color : DyeColor.values()) {
             unobtanium(ModItems.COLORED_UNOBTANIUMS.get(color), ModBlocks.COLORED_UNOBTANIUMS.get(color), pFinishedRecipeConsumer);
@@ -1004,6 +1012,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_" + result.getRegistryName().getPath(), has(result))
                 .save(finishedRecipe, WoldsVaults.id(result.getRegistryName().getPath() + "_to_" + input.getRegistryName().getPath()));
     }
+
+    private void oneWayCompacting(ItemLike result, Item input, Consumer<FinishedRecipe> finishedRecipe) {
+        ShapelessRecipeBuilder.shapeless(result, 1)
+                .requires(input, 9)
+                .unlockedBy("has_" + input.getRegistryName().getPath(), has(input))
+                .save(finishedRecipe, WoldsVaults.id(result.asItem().getRegistryName().getPath()));
+
+    }
+
 
     private void unobtanium(Item itemForm, Block blockForm, Consumer<FinishedRecipe> finishedRecipeConsumer) {
         ShapelessRecipeBuilder.shapeless(blockForm, 1)

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compressium:topaz_block_1"
+    }
+  ],
+  "result": {
+    "item": "the_vault:topaz_block",
+    "count": 9
+  }
+}

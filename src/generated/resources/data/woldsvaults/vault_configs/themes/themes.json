@@ -1,3 +1,16 @@
 {
-  "keys": []
+  "keys": [
+    {
+      "id": "woldsvaults:sculk",
+      "name": "Sculk",
+      "color": 3112412,
+      "1.0": "woldsvaults:sculk"
+    },
+    {
+      "id": "woldsvaults:astral",
+      "name": "Astral",
+      "color": 3112412,
+      "1.0": "woldsvaults:astral"
+    }
+  ]
 }

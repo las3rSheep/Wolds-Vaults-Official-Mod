@@ -46,6 +46,7 @@ public class ModBlocks {
     public static final FracturedObelisk FRACTURED_OBELISK;
     public static final MonolithControllerBlock MONOLITH_CONTROLLER;
     public static final TrinketFusionBlock TRINKET_FUSION_BLOCK;
+    public static final OwnedCraftingTableBlock OWNED_CRAFTING_TABLE_BLOCK;
 
     public static final BrewingAltar BREWING_ALTAR;
     public static final SurvivalObjectiveBlock SURVIVAL_OBJECTIVE_BLOCK;
@@ -84,6 +85,7 @@ public class ModBlocks {
     public static final BlockEntityType<VaultInfuserTileEntity> VAULT_INFUSER_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DollDismantlingTileEntity> DOLL_DISMANTLING_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<CrateCrackerTileEntity> CRATE_CRACKER_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<OwnedCraftingTableTileEntity> OWNED_CRAFTING_TABLE_TILE_ENTITY_BLOCK_ENTITY_TYPE;
 
     //Workstations
     public static final AugmentCraftingTableBlock AUGMENT_CRAFTING_TABLE;
@@ -122,6 +124,18 @@ public class ModBlocks {
                     .strength(100.0F)
                     .noDrops()
     );
+
+    public static final LiquidBlock MOLTEN_TRINKET_BLOCK = new LiquidBlock(
+            ModFluids.MOLTEN_TRINKET,
+            BlockBehaviour.Properties.of(Material.LAVA, MaterialColor.COLOR_MAGENTA)
+                    .noCollission()
+                    .noOcclusion()
+                    .randomTicks()
+                    .strength(100.0F)
+                    .noDrops()
+    );
+
+
 
     //Decorative Blocks -- Missing Vault Decoration
     public static final VaultGemStairsBlock WUTODIE_STAIRS;
@@ -232,6 +246,7 @@ public class ModBlocks {
         MONOLITH_CONTROLLER = new MonolithControllerBlock();
         BREWING_ALTAR = new BrewingAltar();
         SURVIVAL_OBJECTIVE_BLOCK = new SurvivalObjectiveBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK));
+        OWNED_CRAFTING_TABLE_BLOCK = new OwnedCraftingTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE));
         WUTODIE_SLAB = new VaultGemSlabBlock(ModItems.WUTODIE_GEM);
         WUTODIE_WALL = new VaultGemWallBlock(ModItems.WUTODIE_GEM);
         WUTODIE_STAIRS = new VaultGemStairsBlock(ModItems.WUTODIE_GEM);
@@ -265,6 +280,7 @@ public class ModBlocks {
         CONFIGURABLE_FLOATING_TEXT_TILE_ENTITY = BlockEntityType.Builder.of(ConfigurableFloatingTextTileEntity::new, new Block[]{CONFIGURABLE_FLOATING_TEXT_BLOCK}).build(null);
         TIME_TRIAL_TROPHY_BLOCK_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(TimeTrialTrophyBlockEntity::new, new Block[]{TIME_TRIAL_TROPHY_BLOCK}).build(null);
         TRINKET_FUSION_FORGE_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(TrinketFusionForgeTileEntity::new, new Block[]{TRINKET_FUSION_BLOCK}).build(null);
+        OWNED_CRAFTING_TABLE_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(OwnedCraftingTableTileEntity::new, new Block[]{OWNED_CRAFTING_TABLE_BLOCK}).build(null);
         for(DyeColor color : DyeColor.values()) {
             Block dyedUnobtanium = new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL, color).strength(50F).requiresCorrectToolForDrops());
             COLORED_UNOBTANIUMS.put(color, dyedUnobtanium);
@@ -364,6 +380,7 @@ public class ModBlocks {
         registerBlock(event, CHROMATIC_STEEL_INFUSER_BLOCK, WoldsVaults.id("chromatic_steel_vault_infuser"));
         registerBlock(event, TRINKET_FUSION_BLOCK, WoldsVaults.id("trinket_fusion_forge"));
         registerBlock(event, PRISMATIC_GLUE_BLOCK, WoldsVaults.id("prismatic_glue_block"));
+        registerBlock(event, MOLTEN_TRINKET_BLOCK, WoldsVaults.id("molten_trinket_block"));
         registerBlock(event, GATEWAY_CHANNELING_BLOCK, WoldsVaults.id("gateway_channeling_block"));
         registerBlock(event, ETCHING_PEDESTAL, WoldsVaults.id("etching_shop_pedestal"));
         registerBlock(event, FRACTURED_OBELISK, WoldsVaults.id("fractured_obelisk"));
@@ -384,6 +401,7 @@ public class ModBlocks {
         registerBlock(event, CRATE_CRACKER_BLOCK, WoldsVaults.id("crate_cracker"));
         registerBlock(event, CONFIGURABLE_FLOATING_TEXT_BLOCK, WoldsVaults.id("configurable_floating_text"));
         registerBlock(event, TIME_TRIAL_TROPHY_BLOCK, WoldsVaults.id("time_trial_trophy"));
+        registerBlock(event, OWNED_CRAFTING_TABLE_BLOCK, WoldsVaults.id("owned_crafting_table"));
         COLORED_UNOBTANIUMS.forEach(((dyeColor, block) -> {
             registerBlock(event, block, WoldsVaults.id(dyeColor.getSerializedName() + "_unobtanium_block"));
         }));
@@ -468,6 +486,7 @@ public class ModBlocks {
         registerTileEntity(event, CONFIGURABLE_FLOATING_TEXT_TILE_ENTITY, WoldsVaults.id("configurable_floating_text_entity"));
         registerTileEntity(event, TIME_TRIAL_TROPHY_BLOCK_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("time_trial_trophy_entity"));
         registerTileEntity(event, TRINKET_FUSION_FORGE_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("trinket_fusion_forge_tile_entity"));
+        registerTileEntity(event, OWNED_CRAFTING_TABLE_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("owned_crafting_table_tile_entity"));
     }
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
@@ -520,6 +539,7 @@ public class ModBlocks {
         registerBlockItem(event, SURVIVAL_OBJECTIVE_BLOCK, 64, properties -> properties.tab(ModCreativeTabs.WOLDS_VAULTS));
         registerBlockItem(event, DOLL_DISMANTLING_BLOCK, 64, properties -> properties.tab(ModCreativeTabs.WOLDS_VAULTS));
         registerBlockItem(event, CRATE_CRACKER_BLOCK, 64, properties -> properties.tab(ModCreativeTabs.WOLDS_VAULTS));
+        registerBlockItem(event, OWNED_CRAFTING_TABLE_BLOCK, 64, properties -> properties.tab(ModCreativeTabs.WOLDS_VAULTS));
         registerBlockItem(event, CONFIGURABLE_FLOATING_TEXT_BLOCK, xyz.iwolfking.woldsvaults.init.ModItems.CONFIGURABLE_FLOATING_TEXT);
         registerBlockItem(event, TIME_TRIAL_TROPHY_BLOCK, xyz.iwolfking.woldsvaults.init.ModItems.TIME_TRIAL_TROPHY);
         COLORED_UNOBTANIUMS.forEach(((dyeColor, block) -> {

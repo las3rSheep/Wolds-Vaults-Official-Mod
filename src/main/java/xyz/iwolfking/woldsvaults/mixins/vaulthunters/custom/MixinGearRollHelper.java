@@ -10,6 +10,7 @@ import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.modification.GearModification;
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModGearAttributes;
+import iskallia.vault.item.MagnetItem;
 import iskallia.vault.item.gear.*;
 import iskallia.vault.item.tool.JewelItem;
 import iskallia.vault.skill.base.Skill;
@@ -18,6 +19,7 @@ import iskallia.vault.world.data.PlayerExpertisesData;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -31,9 +33,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.api.util.PrestigePowerHelper;
 import xyz.iwolfking.woldsvaults.api.util.WoldGearModifierHelper;
 import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
 import xyz.iwolfking.woldsvaults.expertises.EclecticGearExpertise;
+import xyz.iwolfking.woldsvaults.prestige.CraftingPotentialPrestigePower;
 
 import java.util.List;
 import java.util.Random;
@@ -58,6 +62,30 @@ public class MixinGearRollHelper {
             if(craftsmanLevel > 0) {
                 cir.setReturnValue(true);
             }
+        }
+    }
+
+    @Inject(method = "initializeGear(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At(value = "INVOKE", target = "Liskallia/vault/gear/VaultGearModifierHelper;generateAffixSlots(Lnet/minecraft/world/item/ItemStack;Ljava/util/Random;)V"))
+    private static void initializeGearWithCraftingPotential(ItemStack stack, Player player, CallbackInfo ci) {
+        if(player instanceof ServerPlayer serverPlayer) {
+           List<CraftingPotentialPrestigePower> craftingPotentialPrestigePowers = PrestigePowerHelper.getPrestigePowersOfType(serverPlayer, CraftingPotentialPrestigePower.class);
+           if(craftingPotentialPrestigePowers.isEmpty()) {
+               return;
+           }
+
+           int additionalPotential = 0;
+
+           for(CraftingPotentialPrestigePower power : craftingPotentialPrestigePowers) {
+               additionalPotential += power.getPotentialIncrease();
+           }
+
+           if(additionalPotential > 0) {
+               VaultGearData data = VaultGearData.read(stack);
+               int currentPotential = data.getFirstValue(ModGearAttributes.MAX_CRAFTING_POTENTIAL).orElse(0);
+               data.createOrReplaceAttributeValue(ModGearAttributes.MAX_CRAFTING_POTENTIAL, currentPotential + additionalPotential);
+               data.createOrReplaceAttributeValue(ModGearAttributes.CRAFTING_POTENTIAL, currentPotential + additionalPotential);
+               data.write(stack);
+           }
         }
     }
 
@@ -123,6 +151,7 @@ public class MixinGearRollHelper {
         else if(itemLevel >= 40 && rand.nextFloat() <= 0.01F + increasedSpecialRollsChance) {
             VaultGearLegendaryHelper.improveExistingModifier(stack, 1, rand, List.of(VaultGearModifier.AffixCategory.GREATER));
         }
+
     }
 
     @Inject(method = "initializeGear(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At("TAIL"))
@@ -158,7 +187,7 @@ public class MixinGearRollHelper {
 
     @Unique
     private static void woldsvaults$addRandomEtchingEntry(VaultGearData data, VaultGearItem gear, ItemStack gearStack) {
-        if(data.hasAttribute(ModGearAttributes.ETCHING) || !data.isModifiable() || data.getRarity().equals(VaultGearRarity.UNIQUE)) {
+        if(data.hasAttribute(ModGearAttributes.ETCHING) || !data.isModifiable() || data.getRarity().equals(VaultGearRarity.UNIQUE) || gearStack.getItem() instanceof MagnetItem) {
             return;
         }
 

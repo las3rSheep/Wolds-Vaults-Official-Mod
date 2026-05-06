@@ -21,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.items.CombinedTrinketItem;
 
+import java.util.Collections;
 import java.util.List;
 
 public class CombinedTrinketRenderer extends SpecialItemRenderer {
@@ -71,7 +72,7 @@ public class CombinedTrinketRenderer extends SpecialItemRenderer {
 
         RenderSystem.enablePolygonOffset();
         RenderSystem.polygonOffset(-1.0F, -1.0F);
-        for (int i = 0; i < effects.size(); i++) {
+        for (int i = effects.size() - 1; i >= 0; i--) {
 
             TrinketEffect<?> effect = effects.get(i);
 

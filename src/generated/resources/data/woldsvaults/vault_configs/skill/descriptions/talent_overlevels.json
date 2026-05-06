@@ -625,11 +625,8 @@
         "text": "while below "
       },
       {
-        "text": "20% ",
+        "text": "20% mana ",
         "color": "#0353D7"
-      },
-      {
-        "text": "max health."
       },
       {
         "text": "\n\n",
@@ -5361,10 +5358,6 @@
       },
       {
         "text": "armor pieces you wear."
-      },
-      {
-        "text": "20%",
-        "color": "#F6CD0E"
       },
       {
         "text": "\n\n",

@@ -1,0 +1,15 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "woldsvaults:chunk_of_power"
+    }
+  ],
+  "results": [
+    {
+      "item": "woldsvaults:dust_of_power",
+      "count": 3
+    }
+  ],
+  "processingTime": 150
+}

@@ -1,3 +1,44 @@
 {
-  "keys": []
+  "keys": [
+    {
+      "id": "woldsvaults:sculk_common_rooms",
+      "name": "Sculk Common Rooms",
+      "1.0": "woldsvaults:sculk_common_rooms"
+    },
+    {
+      "id": "woldsvaults:sculk_tunnels",
+      "name": "Sculk Tunnels",
+      "1.0": "woldsvaults:sculk_tunnels"
+    },
+    {
+      "id": "woldsvaults:sculk_starts",
+      "name": "Sculk Starts",
+      "1.0": "woldsvaults:sculk_starts"
+    },
+    {
+      "id": "woldsvaults:sculk_rooms",
+      "name": "Sculk Rooms",
+      "1.0": "woldsvaults:sculk_rooms"
+    },
+    {
+      "id": "woldsvaults:astral_common_rooms",
+      "name": "Astral Common Rooms",
+      "1.0": "woldsvaults:astral_common_rooms"
+    },
+    {
+      "id": "woldsvaults:astral_tunnels",
+      "name": "Astral Tunnels",
+      "1.0": "woldsvaults:astral_tunnels"
+    },
+    {
+      "id": "woldsvaults:astral_starts",
+      "name": "Astral Starts",
+      "1.0": "woldsvaults:astral_starts"
+    },
+    {
+      "id": "woldsvaults:astral_rooms",
+      "name": "Astral Rooms",
+      "1.0": "woldsvaults:astral_rooms"
+    }
+  ]
 }

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "woldsvaults:chunk_of_power"
+    ]
+  },
+  "criteria": {
+    "has_dust_of_power": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "woldsvaults:dust_of_power"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "woldsvaults:chunk_of_power"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dust_of_power",
+      "has_the_recipe"
+    ]
+  ]
+}

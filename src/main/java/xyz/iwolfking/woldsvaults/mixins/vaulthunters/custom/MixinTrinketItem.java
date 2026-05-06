@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.gear.item.IdentifiableItem;
 import iskallia.vault.gear.trinket.TrinketEffect;
+import iskallia.vault.init.ModItems;
 import iskallia.vault.item.BasicItem;
 import iskallia.vault.item.core.DataTransferItem;
 import iskallia.vault.item.gear.RecyclableItem;
@@ -26,7 +27,9 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.ISlotType;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
+import xyz.iwolfking.woldsvaults.items.CombinedTrinketItem;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mixin(value = TrinketItem.class, remap = false)
@@ -48,9 +51,40 @@ public abstract class MixinTrinketItem extends BasicItem implements ICurioItem, 
                 if(curioHandler != null) {
                     for(int i = 0; i < curioHandler.getSlots(); i++) {
                         ItemStack curioStack = curioHandler.getStackInSlot(i);
-                        if(curioStack.getItem() instanceof TrinketItem) {
+                        if(curioStack.getItem() instanceof CombinedTrinketItem) {
+                            List<TrinketEffect<?>> curioTrinketEffects = CombinedTrinketItem.getTrinkets(curioStack);
+                            if(stack.getItem().equals(ModItems.TRINKET)) {
+                                TrinketEffect<?> effect = TrinketItem.getTrinket(stack).orElse(null);
+                                if(effect != null) {
+                                    if(curioTrinketEffects.contains(effect)) {
+                                        cir.setReturnValue(false);
+                                        return;
+                                    }
+                                }
+                            }
+                            else if(stack.getItem() instanceof CombinedTrinketItem) {
+                                List<TrinketEffect<?>> effects = CombinedTrinketItem.getTrinkets(stack);
+                                if(effects != null && !effects.isEmpty()) {
+                                    for(TrinketEffect<?> effect : effects) {
+                                        if(curioTrinketEffects.contains(effect)) {
+                                            cir.setReturnValue(false);
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        else if(curioStack.getItem() instanceof TrinketItem) {
                          TrinketEffect<?> effect = TrinketItem.getTrinket(curioStack).orElse(null);
-                         if(effect != null && effect.equals(TrinketItem.getTrinket(stack).orElse(null))) {
+                         if(stack.getItem() instanceof CombinedTrinketItem) {
+                             List<TrinketEffect<?>> effects = CombinedTrinketItem.getTrinkets(stack);
+                            if(effects != null && !effects.isEmpty() && effects.contains(effect)) {
+                                cir.setReturnValue(false);
+                                return;
+                            }
+                         }
+                         else if(stack.getItem().equals(ModItems.TRINKET) && effect != null && effect.equals(TrinketItem.getTrinket(stack).orElse(null))) {
                              cir.setReturnValue(false);
                          }
                         }
@@ -59,16 +93,4 @@ public abstract class MixinTrinketItem extends BasicItem implements ICurioItem, 
             }
         }
     }
-
-//    @Redirect(method = "canUnequip", at = @At(value = "INVOKE", target = "Ljava/util/Optional;isPresent()Z"))
-//    public boolean allowUnequip(Optional<Vault> vault, @Local(argsOnly = true) ItemStack stack) {
-//        if(stack.getItem() instanceof TrinketItem ) {
-//            return vault.isPresent() && !VaultUsesHelper.isUsable(stack, vault.get().get(Vault.ID));
-//        }
-//    }
-//
-//    @Redirect(method = "canEquip", at = @At(value = "INVOKE", target = "Ljava/util/Optional;isPresent()Z"))
-//    public boolean allowReequip(Optional<Vault> vault, @Local(argsOnly = true) ItemStack stack) {
-//        return vault.isPresent() && !TrinketItem.isUsableInVault(stack, vault.get().get(Vault.ID));
-//    }
 }

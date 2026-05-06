@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.integration.jei;
 
+import com.ibm.icu.impl.Pair;
 import com.simibubi.create.AllItems;
 import dev.attackeight.just_enough_vh.jei.ForgeItem;
 import dev.attackeight.just_enough_vh.jei.JEIRecipeProvider;
@@ -19,6 +20,9 @@ import iskallia.vault.gear.attribute.VaultGearAttribute;
 import iskallia.vault.gear.crafting.recipe.VaultForgeRecipe;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
+import iskallia.vault.gear.trinket.TrinketEffect;
+import iskallia.vault.gear.trinket.TrinketEffectRegistry;
+import iskallia.vault.item.gear.TrinketItem;
 import iskallia.vault.util.StringUtils;
 import jeresources.util.LootTableHelper;
 import mezz.jei.api.IModPlugin;
@@ -43,6 +47,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.NotNull;
 import shadows.gateways.gate.Gateway;
@@ -57,8 +62,11 @@ import xyz.iwolfking.woldsvaults.init.*;
 import xyz.iwolfking.woldsvaults.integration.jei.category.*;
 import xyz.iwolfking.woldsvaults.integration.jei.category.lib.GenericLootableBoxCategory;
 import xyz.iwolfking.woldsvaults.integration.jei.category.lib.ShopTierCategory;
+import xyz.iwolfking.woldsvaults.items.CombinedTrinketItem;
 import xyz.iwolfking.woldsvaults.items.LayoutModificationItem;
 import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.TaskLootCardModifierConfigAccessor;
+import xyz.iwolfking.woldsvaults.recipes.lib.TrinketFusionRecipe;
+
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -141,6 +149,11 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(AllItems.ATTRIBUTE_FILTER.get()), USEFUL_FILTER_ITEMS);
         registration.addRecipeCatalyst(new ItemStack(ModItems.UNIDENTIFIED_GATEWAY_PEARL), GATEWAY_REWARDS);
         registration.addRecipeCatalyst(new ItemStack(iskallia.vault.init.ModBlocks.VAULT_ALTAR), GREED_VAULT_ALTAR);
+
+        registration.addRecipeCatalyst(
+                new ItemStack(ModBlocks.TRINKET_FUSION_BLOCK),
+                RecipeType.create("woldsvaults", "trinket_fusion", TrinketFusionRecipe.class)
+        );
     }
 
     @Override
@@ -154,8 +167,11 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
         registration.addRecipeCategories(new GenericLootableBoxCategory(guiHelper, ModConfigs.GEM_BOX, new TextComponent("Gem Box"), ModItems.GEM_BOX, GEM_BOX));
         registration.addRecipeCategories(new GenericLootableBoxCategory(guiHelper, ModConfigs.OMEGA_BOX, new TextComponent("Omega Box"), ModItems.OMEGA_BOX, OMEGA_BOX));
         registration.addRecipeCategories(new GenericLootableBoxCategory(guiHelper, ModConfigs.ENIGMA_EGG, new TextComponent("Enigma Egg"), ModItems.ENIGMA_EGG, ENIGMA_EGG));
-        registration.addRecipeCategories(new InfuserCraftingCategory(guiHelper));
         registration.addRecipeCategories(new GenericLootableBoxCategory(guiHelper, ModConfigs.GATEWAY_PEARL, new TextComponent("Gateway Pearl"), ModItems.UNIDENTIFIED_GATEWAY_PEARL, GATEWAY_PEARL));
+
+        registration.addRecipeCategories(new InfuserCraftingCategory(guiHelper));
+        registration.addRecipeCategories(new TrinketFusionCategory(guiHelper));
+
 
         registration.addRecipeCategories(new ShopTierCategory(guiHelper, new TextComponent("Etching Shop Pedestal"), ModBlocks.ETCHING_PEDESTAL.asItem(), ETCHING_SHOP_PEDESTAL));
         registration.addRecipeCategories(new ShopTierCategory(guiHelper, new TextComponent("God Shop Pedestal"), ModBlocks.GOD_VENDOR_PEDESTAL.asItem(), GOD_SHOP_PEDESTAL));
@@ -185,6 +201,27 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
             var manager = world.getRecipeManager();
             registration.addRecipes(manager.byType(ModRecipeTypes.INFUSER).values(), InfuserCraftingCategory.UID);
         }
+
+        List<TrinketFusionRecipe> recipes = new ArrayList<>();
+
+        if(TrinketEffectRegistry.getOrderedEntries().size() > 2) {
+            Pair<TrinketEffect<?>, TrinketEffect<?>> trinketEffectPair = Pair.of(TrinketEffectRegistry.getOrderedEntries().get(0), TrinketEffectRegistry.getOrderedEntries().get(1));
+
+            ItemStack trinket = TrinketItem.createTrinket(trinketEffectPair.first, 1);
+            ItemStack trinket2 = TrinketItem.createTrinket(trinketEffectPair.second, 1);
+
+            recipes.add(new TrinketFusionRecipe(
+                    trinket,
+                    trinket2,
+                    new FluidStack(ModFluids.PRISMATIC_GLUE.get(), 1000),
+                    CombinedTrinketItem.createCombined(List.of(trinketEffectPair.first, trinketEffectPair.second), 2)
+            ));
+        }
+
+        registration.addRecipes(
+                RecipeType.create("woldsvaults", "trinket_fusion", TrinketFusionRecipe.class),
+                recipes
+        );
 
 
         registration.addRecipes(ENIGMA_EGG, makePages(ModConfigs.ENIGMA_EGG));

@@ -111,7 +111,7 @@ public class RetroSpawnVaultModifier extends VaultModifier<RetroSpawnVaultModifi
 
         Entity spawned = null;
         int attempts = 0;
-        int maxAttempts = 50; // stop after 50 tries
+        int maxAttempts = 1000;
 
         while (spawned == null && attempts++ < maxAttempts) {
             double angle = 2 * Math.PI * random.nextDouble();
@@ -126,7 +126,7 @@ public class RetroSpawnVaultModifier extends VaultModifier<RetroSpawnVaultModifi
         }
 
         if (spawned == null) {
-            WoldsVaults.LOGGER.warn("Failed to spawn mob after {} attempts at {} in {}", maxAttempts, pos, world.getLevel().dimension());
+            WoldsVaults.LOGGER.debug("Failed to spawn mob after {} attempts at {} in {}", maxAttempts, pos, world.getLevel().dimension());
         }
 
         return spawned;

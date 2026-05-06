@@ -2,6 +2,102 @@
   "groupDescriptions": {},
   "entities": [
     {
+      "entityId": "woldsvaults:astral_stalker",
+      "descriptionData": {
+        "description": [
+          {
+            "text": "A skeleton influenced by the space warp!",
+            "color": "$text"
+          }
+        ]
+      },
+      "themes": [
+        "Astral"
+      ],
+      "minLevel": 30,
+      "drops": []
+    },
+    {
+      "entityId": "woldsvaults:nebula_sentinel",
+      "descriptionData": {
+        "description": [
+          {
+            "text": "A golem influenced by the space warp! It\u0027s black hole core sucks players in periodically",
+            "color": "$text"
+          }
+        ]
+      },
+      "themes": [
+        "Astral"
+      ],
+      "minLevel": 30,
+      "drops": []
+    },
+    {
+      "entityId": "woldsvaults:singularity_creeper",
+      "descriptionData": {
+        "description": [
+          {
+            "text": "A creeper influenced by the space warp! It\u0027s singularity implosion flings players upwards and towards it",
+            "color": "$text"
+          }
+        ]
+      },
+      "themes": [
+        "Astral"
+      ],
+      "minLevel": 30,
+      "drops": []
+    },
+    {
+      "entityId": "woldsvaults:star_devourer",
+      "descriptionData": {
+        "description": [
+          {
+            "text": "A Ravager influenced by the space warp! It\u0027s roar halts players and levitates them into space",
+            "color": "$text"
+          }
+        ]
+      },
+      "themes": [
+        "Astral"
+      ],
+      "minLevel": 30,
+      "drops": []
+    },
+    {
+      "entityId": "woldsvaults:loginar",
+      "descriptionData": {
+        "description": [
+          {
+            "text": "An alien critter! How dare you invade its space :(",
+            "color": "$text"
+          }
+        ]
+      },
+      "themes": [
+        "Astral"
+      ],
+      "minLevel": 30,
+      "drops": []
+    },
+    {
+      "entityId": "alexsmobs:cosmaw",
+      "descriptionData": {
+        "description": [
+          {
+            "text": "A flying space creature, oh no!",
+            "color": "$text"
+          }
+        ]
+      },
+      "themes": [
+        "Astral"
+      ],
+      "minLevel": 30,
+      "drops": []
+    },
+    {
       "entityId": "woldsvaults:hostile_sheep",
       "descriptionData": {
         "description": [

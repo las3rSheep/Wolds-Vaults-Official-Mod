@@ -1,8 +1,13 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
 import iskallia.vault.entity.entity.VaultFireball;
 import iskallia.vault.gear.attribute.VaultGearAttributeInstance;
 import iskallia.vault.gear.etching.EtchingHelper;
+import iskallia.vault.skill.ability.effect.spi.AbstractFireballAbility;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +19,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.iwolfking.woldsvaults.api.util.WoldEtchingHelper;
 import xyz.iwolfking.woldsvaults.init.ModEtchingGearAttributes;
 
 import java.util.Random;
@@ -69,5 +75,14 @@ public abstract class MixinVaultFireball {
             }
         }
         explode(result.getLocation());
+    }
+
+    @WrapOperation(method = "getRadius", at = @At(value = "INVOKE", target = "Liskallia/vault/skill/ability/effect/spi/AbstractFireballAbility;getRadius()F"))
+    private float getGreedBallRadius(AbstractFireballAbility instance, Operation<Float> original, @Local(name = "player") ServerPlayer player) {
+        if(WoldEtchingHelper.hasEtching(player, ModEtchingGearAttributes.FIREBALL_GREEDBALL)) {
+            return 3.0F;
+        }
+
+        return original.call(instance);
     }
 }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OVO",
+    "VCV",
+    "OVO"
+  ],
+  "key": {
+    "O": {
+      "item": "the_vault:chromatic_iron_ingot"
+    },
+    "V": {
+      "item": "the_vault:vault_essence"
+    },
+    "C": {
+      "item": "minecraft:crafting_table"
+    }
+  },
+  "result": {
+    "item": "woldsvaults:owned_crafting_table"
+  }
+}

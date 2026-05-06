@@ -1,0 +1,12 @@
+{
+  "type": "immersiveengineering:crusher",
+  "secondaries": [],
+  "result": {
+    "item": "woldsvaults:dust_of_power",
+    "count": 6
+  },
+  "input": {
+    "item": "woldsvaults:chunk_of_power"
+  },
+  "energy": 6400
+}

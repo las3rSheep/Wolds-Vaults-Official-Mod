@@ -24,9 +24,14 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.api.core.vault_events.VaultEvent;
+import xyz.iwolfking.woldsvaults.api.core.vault_events.lib.EventTag;
 import xyz.iwolfking.woldsvaults.api.util.ObjectiveHelper;
+import xyz.iwolfking.woldsvaults.api.util.VaultModifierUtils;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
+import xyz.iwolfking.woldsvaults.modifiers.vault.EnchantedElixirEventAmountModifier;
+import xyz.iwolfking.woldsvaults.modifiers.vault.EnchantedElixirPoolModifier;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 import xyz.iwolfking.woldsvaults.objectives.enchanted_elixir.ElixirBreakpointMap;
 import xyz.iwolfking.woldsvaults.objectives.enchanted_elixir.ElixirCollectionMap;
@@ -75,7 +80,7 @@ public class EnchantedElixirObjective extends ElixirObjective {
                 this.generateGoal(world, vault, runner);
                 if(listener.getPlayer().isPresent()) {
                     this.get(ELIXIR_COLLECTION).put(listener.getPlayer().get(), 0);
-                    generateElixirBreakpointsMap(listener, true);
+                    generateElixirBreakpointsMap(listener, true, vault);
                 }
             }
         }
@@ -85,7 +90,7 @@ public class EnchantedElixirObjective extends ElixirObjective {
         }
         ElixirGoal goal = this.get(GOALS).get(listener.get(Listener.ID));
         if(this.get(ELIXIR_BREAKPOINTS) != null && this.get(ELIXIR_BREAKPOINTS).get(listener.getPlayer().get()) == null) {
-            generateElixirBreakpointsMap(listener, false);
+            generateElixirBreakpointsMap(listener, false, vault);
             Integer currentElixir = goal.get(ElixirGoal.CURRENT);
             for(int i = 0; i < this.get(ELIXIR_BREAKPOINTS).get(listenerPlayer).size() - 1; i++) {
                 if(this.get(ELIXIR_BREAKPOINTS).get(listenerPlayer).get(i) >= currentElixir) {
@@ -130,10 +135,16 @@ public class EnchantedElixirObjective extends ElixirObjective {
         goal.initServer(world, vault, this, listener.getId());
     }
 
-    private void generateElixirBreakpointsMap(Listener listener, boolean sendMessage) {
+    private void generateElixirBreakpointsMap(Listener listener, boolean sendMessage, Vault vault) {
 
         Random random = new Random();
         int numberOfBreakpoints = random.nextInt(10, 25);
+
+        EnchantedElixirEventAmountModifier amountModifier = VaultModifierUtils.getModifiersOfType(vault, EnchantedElixirEventAmountModifier.class).stream().findFirst().orElse(null);
+        if(amountModifier != null) {
+            numberOfBreakpoints = amountModifier.properties().getCount();
+        }
+
         if(listener.getPlayer().isPresent()) {
             ElixirGoal goal = this.get(GOALS).get(listener.get(Listener.ID));
             List<Float> elixirBreakPointsList = new ArrayList<>();
@@ -162,19 +173,48 @@ public class EnchantedElixirObjective extends ElixirObjective {
                     serverPlayer.displayClientMessage(new TextComponent("You will experience a high number of random events this vault!").withStyle(ChatFormatting.LIGHT_PURPLE), false);
                 });
             }
+            else {
+                listener.getPlayer().ifPresent(serverPlayer -> {
+                    serverPlayer.displayClientMessage(new TextComponent("You will experience an extraordinarily high number of random events this vault!").withStyle(ChatFormatting.RED), false);
+                });
+            }
         }
     }
 
+    private List<EventTag>  getAllowedTags(Vault vault) {
+        List<EventTag> allowedTags = new ArrayList<>();
+        VaultModifierUtils.getModifiersOfType(vault, EnchantedElixirPoolModifier.class).forEach(enchantedElixirPoolModifier -> {
+            allowedTags.addAll(enchantedElixirPoolModifier.properties().getAllowedTags());
+        });
+        WoldsVaults.LOGGER.info(allowedTags.toString());
+
+        return allowedTags;
+    }
+
     private void triggerRandomEvent(ServerPlayer objPlayer, Vault vault) {
-        if(EnchantedEventsRegistry.getEvents().getRandom().isPresent()) {
-            EnchantedEventsRegistry.getEvents().getRandom().get().triggerEvent(objPlayer::getOnPos, objPlayer, vault, true, VaultEvent.EventDisplayType.LEGACY);
+        List<EventTag> allowedTags = getAllowedTags(vault);
+        if(allowedTags.isEmpty()) {
+            if(EnchantedEventsRegistry.getEvents().getRandom().isPresent()) {
+                EnchantedEventsRegistry.getEvents().getRandom().get().triggerEvent(objPlayer::getOnPos, objPlayer, vault, true, VaultEvent.EventDisplayType.LEGACY);
+            }
+        }
+        else {
+            EnchantedEventsRegistry.getEventsWithTags(allowedTags).getRandom().get().triggerEvent(objPlayer::getOnPos, objPlayer, vault, true, VaultEvent.EventDisplayType.LEGACY);
         }
     }
 
     private void triggerOmegaRandomEvent(ServerPlayer objPlayer, Vault vault) {
-        if(EnchantedEventsRegistry.getEvents().getRandom().isPresent()) {
-            EnchantedEventsRegistry.getOmegaEvents().getRandom().get().triggerEvent(objPlayer::getOnPos, objPlayer, vault, true, VaultEvent.EventDisplayType.LEGACY);
+        List<EventTag> allowedTags = getAllowedTags(vault);
+        if(allowedTags.isEmpty()) {
+            if(EnchantedEventsRegistry.getEvents().getRandom().isPresent()) {
+                EnchantedEventsRegistry.getOmegaEvents().getRandom().get().triggerEvent(objPlayer::getOnPos, objPlayer, vault, true, VaultEvent.EventDisplayType.LEGACY);
+            }
         }
+        else {
+            allowedTags.add(EventTag.OMEGA);
+            EnchantedEventsRegistry.getEventsWithTags(allowedTags).getRandom().get().triggerEvent(objPlayer::getOnPos, objPlayer, vault, true, VaultEvent.EventDisplayType.LEGACY);
+        }
+
     }
 
     @Override

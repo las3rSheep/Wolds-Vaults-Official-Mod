@@ -191,6 +191,7 @@ public class ModItems {
     public static BasicItem SPARK_OF_INSPIRATION;
     public static BasicItem VAULT_DIAMOND_NUGGET;
     public static BasicItem CHUNK_OF_POWER;
+    public static BasicItem DUST_OF_POWER;
     public static BasicItem SOUL_ICHOR;
     public static BasicItem CHROMA_CORE;
 
@@ -223,6 +224,7 @@ public class ModItems {
 
     //Buckets
     public static BucketItem PRISMATIC_GLUE_BUCKET = (BucketItem) new BucketItem(ModFluids.PRISMATIC_GLUE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(ModCreativeTabs.WOLDS_VAULTS)).setRegistryName(WoldsVaults.id("prismatic_glue_bucket"));
+    public static BucketItem MOLTEN_TRINKET_BUCKET = (BucketItem) new BucketItem(ModFluids.MOLTEN_TRINKET, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(ModCreativeTabs.WOLDS_VAULTS)).setRegistryName(WoldsVaults.id("molten_trinket_bucket"));
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -331,6 +333,7 @@ public class ModItems {
         registry.register(VAULT_DIAMOND_NUGGET);
         registry.register(EXQUISITE_BOX);
         registry.register(CHUNK_OF_POWER);
+        registry.register(DUST_OF_POWER);
         registry.register(SOUL_ICHOR);
         registry.register(BLAZING_FOCUS);
         registry.register(SUSPENSION_FOCUS);
@@ -368,6 +371,7 @@ public class ModItems {
         registry.register(SCAVENGER_POUCH_ITEM);
         registry.register(COMBINED_TRINKET);
         registry.register(PRISMATIC_GLUE_BUCKET);
+        registry.register(MOLTEN_TRINKET_BUCKET);
         COLORED_UNOBTANIUMS.forEach((s, bi) -> {
             registry.register(bi);
         });
@@ -465,6 +469,7 @@ public class ModItems {
         SMASHED_VAULT_GEM = new BasicItem(WoldsVaults.id("smashed_vault_gem"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));
         SMASHED_VAULT_GEM_CLUSTER = new BasicItem(WoldsVaults.id("smashed_vault_gem_cluster"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));
         CHUNK_OF_POWER = new BasicItem(WoldsVaults.id("chunk_of_power"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));
+        DUST_OF_POWER = new BasicItem(WoldsVaults.id("dust_of_power"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));
         WOLD_STAR_CHUNK = new BasicItem(WoldsVaults.id("wold_star_chunk"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));
         WOLD_STAR = new BasicItem(WoldsVaults.id("wold_star"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));
         POG_PRISM = new BasicItem(WoldsVaults.id("pog_prism"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));

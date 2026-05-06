@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.datagen;
 
 import iskallia.vault.config.customisation.CustomisationDiscovery;
+import iskallia.vault.config.customisation.GreedChallengeDiscovery;
 import iskallia.vault.config.customisation.VaultLevelDiscovery;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.network.chat.Component;
@@ -45,7 +46,7 @@ public class ModPlayerTitlesProvider extends AbstractPlayerTitlesProvider {
         addPrefix("skyborne_prefix", "Skyborne ", "#5DADE2", 2,new ThemeCustomisationDiscovery("Aether"));
         addPrefix("forlorn_prefix", "Forlorn ", "#566573", 2, new ThemeCustomisationDiscovery("LostDepths"));
         addPrefix("verdant_prefix", "Verdant ", "#58D68D", 3, new ThemeCustomisationDiscovery("Glimmergrove"));
-        addPrefix("lunarcrown_prefix", "Lunarcrown ", "#D2B4DE", 4,new ThemeCustomisationDiscovery("Space"));
+        addPrefix("lunarcrown_prefix", "Lunarcrown ", "#D2B4DE", 4,new ThemeCustomisationDiscovery("Astral"));
         addPrefix("tempest_prefix", "Tempest ", "#2471A3", 3, new ArtifactCustomisationDiscovery(7));
         addPrefix("hellforged_prefix", "Hellforged ", "#8B0000", 4, new ThemeCustomisationDiscovery("Nether"));
         addPrefix("demonbound_prefix", "Demonbound ", "#7D1B1B", 2, new ThemeCustomisationDiscovery("Nether"));
@@ -76,17 +77,17 @@ public class ModPlayerTitlesProvider extends AbstractPlayerTitlesProvider {
         addPrefix("astral_prefix", "Astral ", "#A569BD", 3, new ArtifactCustomisationDiscovery(25));
         addPrefix("cosmic_prefix", "Cosmic ", "#7FB3D5", 3, new ArtifactCustomisationDiscovery(25));
         addPrefix("voidborn_prefix", "Voidborn ", "#1C1C3C", 4, new ThemeCustomisationDiscovery("Void"));
-        addPrefix("galactic_prefix", "Galactic ", "#5DADE2", 3, new ThemeCustomisationDiscovery("Space"));
-        addPrefix("nebular_prefix", "Nebular ", "#AF7AC5", 2, new ThemeCustomisationDiscovery("Space"));
-        addPrefix("quantumstar_prefix", "Quantumstar ", "#7845FF", 4,new ThemeCustomisationDiscovery("Space"));
-        addPrefix("darkmatter_prefix", "Darkmatter ", "#0B0B0F", 4,new ThemeCustomisationDiscovery("Space"));
-        addPrefix("supernova_prefix", "Supernova ", "#F1948A", 3,new ThemeCustomisationDiscovery("Space"));
+        addPrefix("galactic_prefix", "Galactic ", "#5DADE2", 3, new ThemeCustomisationDiscovery("Astral"));
+        addPrefix("nebular_prefix", "Nebular ", "#AF7AC5", 2, new ThemeCustomisationDiscovery("Astral"));
+        addPrefix("quantumstar_prefix", "Quantumstar ", "#7845FF", 4,new ThemeCustomisationDiscovery("Astral"));
+        addPrefix("darkmatter_prefix", "Darkmatter ", "#0B0B0F", 4,new ThemeCustomisationDiscovery("Astral"));
+        addPrefix("supernova_prefix", "Supernova ", "#F1948A", 3,new ThemeCustomisationDiscovery("Astral"));
         addPrefix("eventide_prefix", "Eventide ", "#566573", 2,new ThemeCustomisationDiscovery("Underwater"));
-        addPrefix("astron_prefix", "Astron ", "#85929E", 2,new ThemeCustomisationDiscovery("Space"));
-        addPrefix("chronos_prefix", "Chronos ", "#AAB7B8", 3,new ThemeCustomisationDiscovery("Space"));
-        addPrefix("gravitybound_prefix", "Gravitybound ", "#34495E", 3,new ThemeCustomisationDiscovery("Space"));
-        addPrefix("interstellar_prefix", "Interstellar ", "#566DF0", 4,new ThemeCustomisationDiscovery("Space"));
-        addPrefix("cosmograd_prefix", "Cosmograd ", "#BB8FCE", 3,new ThemeCustomisationDiscovery("Space"));
+        addPrefix("astron_prefix", "Astron ", "#85929E", 2,new ThemeCustomisationDiscovery("Astral"));
+        addPrefix("chronos_prefix", "Chronos ", "#AAB7B8", 3,new ThemeCustomisationDiscovery("Astral"));
+        addPrefix("gravitybound_prefix", "Gravitybound ", "#34495E", 3,new ThemeCustomisationDiscovery("Astral"));
+        addPrefix("interstellar_prefix", "Interstellar ", "#566DF0", 4,new ThemeCustomisationDiscovery("Astral"));
+        addPrefix("cosmograd_prefix", "Cosmograd ", "#BB8FCE", 3,new ThemeCustomisationDiscovery("Astral"));
         addPrefix("buccaneer_prefix", "Buccaneer ", "#C49A6C", 2, new ThemeCustomisationDiscovery("Saltshade"));
         addPrefix("corsair_prefix", "Corsair ", "#8E6B3A", 3, new ThemeCustomisationDiscovery("Saltshade"));
         addPrefix("dreadpirate_prefix", "Dreadpirate ", "#4A3728", 3, new ThemeCustomisationDiscovery("Saltshade"));
@@ -112,7 +113,7 @@ public class ModPlayerTitlesProvider extends AbstractPlayerTitlesProvider {
         addPrefix("glimmered_prefix", "Glimmered ", "#EBDEF0", 2, new ThemeCustomisationDiscovery("Glimmergrove"));
         addPrefix("facet_prefix", "Facet ", "#AED6F1", 1, new ThemeCustomisationDiscovery("Deepcrag"));
         addPrefix("radiantcrystal_prefix", "Radiantcrystal ", "#FDEBD0", 3, new ThemeCustomisationDiscovery("Deepcrag"));
-        addPrefix("starshard_prefix", "Starshard ", "#D2B4DE", 4,new ThemeCustomisationDiscovery("Space"));
+        addPrefix("starshard_prefix", "Starshard ", "#D2B4DE", 4,new ThemeCustomisationDiscovery("Astral"));
         addPrefix("quartzforged_prefix", "Quartzforged ", "#F7F7F7", 3, new ThemeCustomisationDiscovery("Deepcrag"));
         addPrefix("amethystine_prefix", "Amethystine ", "#C39BD3", 3, new ThemeCustomisationDiscovery("Deepcrag"));
         addPrefix("opaline_prefix", "Opaline ", "#FDF1FF", 2, new ThemeCustomisationDiscovery("Deepcrag"));
@@ -214,7 +215,7 @@ public class ModPlayerTitlesProvider extends AbstractPlayerTitlesProvider {
         addSuffix("of_the_sunspire_suffix", " of the Sunspire", "#FFF2CC", 2,new ThemeCustomisationDiscovery("Sandsworn"));
         addSuffix("of_the_eternal_glow_suffix", " of the Eternal Glow", "#FEF9E7", 2,new HeraldCustomisationDiscovery());
         addSuffix("of_the_skyward_suffix", " of the Skyward", "#D6EAF8", 2,new ThemeCustomisationDiscovery("Aether"));
-        addSuffix("of_the_celestium_suffix", " of the Celestium", "#EBDEF0", 3,new ThemeCustomisationDiscovery("Space"));
+        addSuffix("of_the_celestium_suffix", " of the Celestium", "#EBDEF0", 3,new ThemeCustomisationDiscovery("Astral"));
         addSuffix("of_the_lightbound_suffix", " of the Lightbound", "#F9E79F", 2,new ThemeCustomisationDiscovery("Sandsworn"));
         addSuffix("of_the_astral_plane_suffix", " of the Astral Plane", "#A569BD", 3, new ArtifactCustomisationDiscovery(20));
         addSuffix("of_the_cosmos_suffix", " of the Cosmos", "#7FB3D5", 3, new ArtifactCustomisationDiscovery(20));
@@ -256,7 +257,7 @@ public class ModPlayerTitlesProvider extends AbstractPlayerTitlesProvider {
         addSuffix("of_the_quartzwake_suffix", " of the Quartzwake", "#F7F7F7", 2,new ThemeCustomisationDiscovery("Deepcrag"));
         addSuffix("of_the_crystal_depths_suffix", " of the Crystal Depths", "#AED6F1", 3,new ThemeCustomisationDiscovery("Deepcrag"));
         addSuffix("of_the_lumengorge_suffix", " of the Lumengorge", "#FDEBD0", 3,new ThemeCustomisationDiscovery("Deepcrag"));
-        addSuffix("of_the_faceted_star_suffix", " of the Faceted Star", "#C39BD3", 3,new ThemeCustomisationDiscovery("Space"));
+        addSuffix("of_the_faceted_star_suffix", " of the Faceted Star", "#C39BD3", 3,new ThemeCustomisationDiscovery("Astral"));
         addSuffix("of_the_gemforge_suffix", " of the Gemforge", "#BB8FCE", 2,new ThemeCustomisationDiscovery("Deepcrag"));
         addSuffix("of_the_radiant_shard_suffix", " of the Radiant Shard", "#F9E79F", 2,new ArtifactCustomisationDiscovery(14));
         addSuffix("of_the_crystal_maw_suffix", " of the Crystal Maw", "#8E44AD", 4,new ThemeCustomisationDiscovery("Deepcrag"));
@@ -303,7 +304,38 @@ public class ModPlayerTitlesProvider extends AbstractPlayerTitlesProvider {
         addSuffix("of_elegance_suffix", " of Elegance", "#E6E6FA", 2, new ThemeCustomisationDiscovery("Sporegrove"));
         addSuffix("of_gleaming_suffix", " of Gleaming", "#FFF8DC", 2,new ThemeCustomisationDiscovery("Glimmergrove"));
 
+        //Challenge unlocks
+        addPrefix("cat_eyed_prefix", "Cat-Eyed", "#9EA637", 2, new GreedChallengeDiscovery("pitch_black"));
+        addSuffix("of_the_inky_black_suffix", "of the Inky Black", "#03020E", 2, new GreedChallengeDiscovery("pitch_black"));
 
+        addPrefix("champion_prefix", "Champion", "#B47410", 2, new GreedChallengeDiscovery("ultra_hard"));
+        addPrefix("sweaty_prefix", "Sweaty", "#B44710", 2, new GreedChallengeDiscovery("ultra_hard"));
+        addSuffix("the_sweat_suffix", "the Sweat", "#B44710", 2, new GreedChallengeDiscovery("ultra_hard"));
+        addSuffix("the_challenger_suffix", "the Challenger", "#B4473A", 2, new GreedChallengeDiscovery("ultra_hard"));
+
+        addPrefix("enchanted_prefix", "Enchanted", "#B447AC", 2, new GreedChallengeDiscovery("elixir_of_doom"));
+        addSuffix("of_elixir", "of Elixir", "#03020E", 2, new GreedChallengeDiscovery("elixir_of_doom"));
+        addPrefix("elixir_lover_prefix", "Elixir Lover", "#03020E", 2, new GreedChallengeDiscovery("elixir_of_doom"));
+
+        addPrefix("ballistic_prefix", "Ballistic", "#230094", 2, new GreedChallengeDiscovery("ballistic_bingo_blackout"));
+
+        addPrefix("collector_prefix", "Collector", "#23A594", 2, new GreedChallengeDiscovery("blackout_scavingo"));
+
+        addPrefix("regent_prefix", "Regent", "#D5A500", 2, new GreedChallengeDiscovery("gods_challenge"));
+        addPrefix("proven_prefix", "Proven", "#D5A500", 2, new GreedChallengeDiscovery("gods_challenge"));
+        addSuffix("of_velara_suffix", "of Velara", "#00A500", 2, new GreedChallengeDiscovery("gods_challenge"));
+        addSuffix("of_wendarr_suffix", "of Wendarr", "#D5A500", 2, new GreedChallengeDiscovery("gods_challenge"));
+        addSuffix("of_tenos_suffix", "of Tenos", "#00BAC8", 2, new GreedChallengeDiscovery("gods_challenge"));
+        addSuffix("of_idona_suffix", "of Idona", "#B60000", 2, new GreedChallengeDiscovery("gods_challenge"));
+
+        addPrefix("alchemist_prefix", "Alchemist", "#23A594", 2, new GreedChallengeDiscovery("big_bad_brew"));
+        addSuffix("troubling_suffix", "the Troubling", "#B67E59", 2, new GreedChallengeDiscovery("big_bad_brew"));
+
+        addPrefix("insane_prefix", "Insane", "#B67EA1", 2, new GreedChallengeDiscovery("chaos_chaos_chaos"));
+
+        addPrefix("raging_prefix", "Raging", "#B63025", 2, new GreedChallengeDiscovery("rage_cage"));
+
+        addPrefix("survivor_prefix", "Survivor", "#007925", 2, new GreedChallengeDiscovery("survival_of_the_fittest"));
 
     }
 }

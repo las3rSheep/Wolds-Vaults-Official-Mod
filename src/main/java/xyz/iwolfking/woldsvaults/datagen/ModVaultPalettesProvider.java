@@ -1,9 +1,19 @@
 package xyz.iwolfking.woldsvaults.datagen;
 
+import appeng.core.definitions.AEBlocks;
+import appeng.init.InitBlocks;
+import com.cursedcauldron.wildbackport.common.registry.WBBlocks;
+import iskallia.auxiliaryblocks.AuxiliaryBlocks;
+import iskallia.auxiliaryblocks.init.ModBlocks;
 import iskallia.vault.VaultMod;
+import iskallia.vault.block.PlaceholderBlock;
+import net.mcreator.buildingmod.init.DavebuildingmodModBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.regions_unexplored.block.RegionsUnexploredBlocks;
+import org.cyclops.integrateddynamics.RegistryEntries;
 import xyz.iwolfking.vhapi.api.datagen.gen.AbstractPaletteProvider;
 import xyz.iwolfking.vhapi.api.datagen.lib.gen.palette.PaletteBuilder;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
@@ -18,100 +28,370 @@ public class ModVaultPalettesProvider extends AbstractPaletteProvider {
 
     @Override
     protected void registerPalettes() {
-//        add(WoldsVaults.id("universal_eclipse"), new ThemePaletteBuilder(), tb -> {
-//            tb.placeholder(ThemePaletteBuilder.Placeholder.ORE_PLACEHOLDER_VOID)
-//                    .placeholder(ThemePaletteBuilder.Placeholder.TREASURE_DOOR)
-//                    .placeholder(ThemePaletteBuilder.Placeholder.ROOM_BASE)
-//                    .placeholder(ThemePaletteBuilder.Placeholder.COMMON_ELITE_SPAWNERS)
-//                    .placeholder(VaultMod.id("generic/spawners/beach_mobs"))
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_MAIN, replacementBlocks -> {
-//                        replacementBlocks.put(Blocks.BLACKSTONE.getRegistryName(), 3);
-//                        replacementBlocks.put(Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS.getRegistryName(), 1);
-//                    })
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_SECONDARY, ResourceLocation.parse("blackstone_bricks"), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_TERTIARY, ResourceLocation.parse("black_stained_glass"), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_FLOURISH, ResourceLocation.parse("black_wool"), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR, resourceLocationIntegerMap -> {
-//                        resourceLocationIntegerMap.put(ResourceLocation.fromNamespaceAndPath("rechiseled", "obsidian_dark"), 1);
-//                    })
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_CARPET, resourceLocationIntegerMap -> {
-//                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 1);
-//                    })
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_SLAB, resourceLocationIntegerMap -> {
-//                        resourceLocationIntegerMap.put(ResourceLocation.fromNamespaceAndPath("regions_unexplored", "black_painted_slab"), 1);
-//                    })
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_SECONDARY, resourceLocationIntegerMap -> {
-//                        resourceLocationIntegerMap.put((ResourceLocation.fromNamespaceAndPath("davebuildingmod", "vanta_black"), 1);
-//                    })
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_TERTIRARY, resourceLocationIntegerMap -> {
-//                        resourceLocationIntegerMap.put(ResourceLocation.fromNamespaceAndPath("regions_unexplored", "sculk_grass_block"), 1);
-//                    })
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_DECORATION, resourceLocationIntegerMap -> {
-//                        resourceLocationIntegerMap.put(ResourceLocation.withDefaultNamespace("wither_rose"), 4);
-//                        resourceLocationIntegerMap.put((ResourceLocation.fromNamespaceAndPath("regions_unexplored", "dorcel"), 2);
-//                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 10);
-//                    })
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_VARIANT, Blocks.OBSIDIAN.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR, ResourceLocation.fromNamespaceAndPath("architects_palette", "onyx_pillar"), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR_ACCENT, ResourceLocation.fromNamespaceAndPath("create", "cut_scorchia_wall"), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR_STAIRS, Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_VARIANT_PILLAR, Blocks.OBSIDIAN.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_VARIANT_PILLAR_ACCENT, Blocks.CRYING_OBSIDIAN.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_BLOCK, ResourceLocation.fromNamespaceAndPath("regions_unexplored", "sculkwood_leaves"), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_FENCE, ResourceLocation.fromNamespaceAndPath("regions_unexplored", "sculkwood_log_dark"), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_LIGHT, Blocks.AIR.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_VARIANT, Blocks.AIR.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_SLAB, ResourceLocation.withDefaultNamespace("blackstone_slab"), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_TALL_DECORATION_LOWER, Blocks.AIR.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_TALL_DECORATION_UPPER, Blocks.AIR.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_ACCENT, Blocks.AIR.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_ACCENT_SECONDARY, Blocks.POLISHED_BLACKSTONE.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_ACCENT_TERTIARY, Blocks.POLISHED_BLACKSTONE_BRICKS.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_DECORATION, Blocks.GILDED_BLACKSTONE.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_PLANT, Blocks.AIR.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_VINES, Blocks.AIR.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_VINES, Blocks.AIR.getRegistryName(), 1)
-//                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_PLANT, Blocks.AIR.getRegistryName(), 1);
-//        });
-//
-//        add(WoldsVaults.id("spawners_group_standard"), new PaletteBuilder(), p -> {
-//
-//            p.leveled(leveledBuilder -> {
-//                leveledBuilder.list(0, "weighted_target", "ispawner:spawner", entries -> {
-//                    entries.put("ispawner:spawner{group: horde}", 50);
-//                    entries.put("ispawner:spawner{group: assassin}", 33);
-//                    entries.put("ispawner:spawner{group: tank}", 12);
-//                    entries.put("ispawner:spawner{group: dwellers}", 5);
-//                });
-//            });
-//
-//            p.leveled(leveledBuilder -> {
-//                leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {
-//                    entries.put("the_vault:vault_fighter", 15);
-//                });
-//                leveledBuilder.weighted(20, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {
-//                    entries.put("the_vault:vault_fighter", 15);
-//                    entries.put("the_vault:vault_fighter_2", 15);
-//                });
-//                leveledBuilder.weighted(40, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {
-//                    entries.put("the_vault:vault_fighter_1", 15);
-//                    entries.put("the_vault:vault_fighter_2", 15);
-//                });
-//                leveledBuilder.weighted(60, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {
-//                    entries.put("the_vault:vault_fighter_2", 15);
-//                    entries.put("the_vault:vault_fighter_3", 15);
-//                });
-//                leveledBuilder.weighted(80, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {
-//                    entries.put("the_vault:vault_fighter_3", 15);
-//                    entries.put("the_vault:vault_fighter_4", 15);
-//                });
-//                leveledBuilder.weighted(100, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {
-//                    entries.put("the_vault:vault_fighter_4", 15);
-//                });
-//            });
-//
-//            p.reference("the_vault:generic/spawners/group_settings");
-//        });
+        add(WoldsVaults.id("universal_sculk"), new ThemePaletteBuilder(), tb -> {
+            tb.placeholder(ThemePaletteBuilder.Placeholder.ORE_PLACEHOLDER_VOID)
+                    .placeholder(ThemePaletteBuilder.Placeholder.TREASURE_DOOR)
+                    .placeholder(ThemePaletteBuilder.Placeholder.ROOM_BASE)
+                    .placeholder(ThemePaletteBuilder.Placeholder.COMMON_ELITE_SPAWNERS)
+                    .placeholder(VaultMod.id("generic/spawners/void_mobs"))
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_MAIN, replacementBlocks -> {
+                        replacementBlocks.put(RegionsUnexploredBlocks.SCULKWOOD_PLANKS.getId(), 3);
+                        replacementBlocks.put(RegionsUnexploredBlocks.SCULKWOOD_LOG_DARK.getId(), 1);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_SECONDARY, RegionsUnexploredBlocks.SCULKWOOD_LEAVES.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_TERTIARY, RegionsUnexploredBlocks.SCULKWOOD_LOG.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_FLOURISH, WBBlocks.SCULK.get().getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(RegionsUnexploredBlocks.SCULK_GRASS_BLOCK.getId(), 1);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_CARPET, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 1);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_SLAB, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(RegionsUnexploredBlocks.SCULKWOOD_SLAB.getId(), 1);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_SECONDARY, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(RegionsUnexploredBlocks.SCULK_GRASS_BLOCK.getId(), 1);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_TERTIRARY, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(RegionsUnexploredBlocks.SCULK_GRASS_BLOCK.getId(), 1);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_DECORATION, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(RegionsUnexploredBlocks.SCULK_TENDRIL.getId(), 4);
+                        resourceLocationIntegerMap.put(RegionsUnexploredBlocks.SCULK_SPROUT.getId(), 4);
+                        resourceLocationIntegerMap.put(RegionsUnexploredBlocks.SCULKWOOD_SAPLING.getId(), 2);
+                        resourceLocationIntegerMap.put(Blocks.WITHER_ROSE.getRegistryName(), 1);
+                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 12);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_DECORATION_SECONDARY, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(RegionsUnexploredBlocks.SCULK_TENDRIL.getId(), 3);
+                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 3);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_VARIANT, WBBlocks.SCULK.get().getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR, RegionsUnexploredBlocks.SCULKWOOD_LOG.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR_SECONDARY, WBBlocks.SCULK.get().getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR_ACCENT, RegionsUnexploredBlocks.SCULKWOOD_FENCE.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR_STAIRS, RegionsUnexploredBlocks.SCULKWOOD_STAIRS.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_VARIANT_PILLAR, RegionsUnexploredBlocks.SCULKWOOD_LOG_DARK.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_VARIANT_PILLAR_ACCENT, WBBlocks.SCULK.get().getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_BLOCK, RegionsUnexploredBlocks.SCULKWOOD_LEAVES.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_FENCE, RegionsUnexploredBlocks.SCULKWOOD_LOG.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_LIGHT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_VARIANT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_SLAB, RegionsUnexploredBlocks.SCULKWOOD_SLAB.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_TALL_DECORATION_LOWER, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_TALL_DECORATION_UPPER, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_ACCENT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_ACCENT_SECONDARY, WBBlocks.SCULK.get().getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_ACCENT_TERTIARY, Blocks.POLISHED_BLACKSTONE_BRICKS.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_DECORATION, RegionsUnexploredBlocks.SCULKWOOD_LEAVES.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_PLANT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_VINES, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_HANGING_ACCENT, RegionsUnexploredBlocks.SCULKWOOD_FENCE.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_SOLID_ACCENT, RegionsUnexploredBlocks.SCULKWOOD_LEAVES.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_VINES, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_PLANT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FENCE_WOOD_SECONDARY, RegionsUnexploredBlocks.SCULKWOOD_FENCE.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_MAIN, ResourceLocation.parse("chipped:warped_planks_23"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_MAIN_ALT, ResourceLocation.parse("chipped:warped_planks_14"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_MAIN_ALT_SECONDARY, ResourceLocation.parse("chipped:warped_planks_37"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_ACCENT, ResourceLocation.parse("chipped:warped_planks_6"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_PILLAR, ResourceLocation.parse("rechiseled:warped_planks_bricks_connecting"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_STAIRS, ResourceLocation.parse("architects_palette:warped_board_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_FENCE, ResourceLocation.parse("minecraft:warped_fence"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_FENCE_GATE, ResourceLocation.parse("minecraft:warped_fence_gate"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_LEAVES, RegionsUnexploredBlocks.SCULKWOOD_LEAVES.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_SLAB, ResourceLocation.parse("architects_palette:warped_board_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_SLAB_TERTIARY, ResourceLocation.parse("architects_palette:warped_board_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_VERTICAL_SLAB, ResourceLocation.parse("architects_palette:warped_board_vertical_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_VERTICAL_SLAB_BRICK, ResourceLocation.parse("architects_palette:warped_board_vertical_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_WALL, ResourceLocation.parse("architects_palette:warped_board_wall"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_WALL_SECONDARY, ResourceLocation.parse("architects_palette:warped_board_wall"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_WALL_TERTIARY, ResourceLocation.parse("architects_palette:warped_board_wall"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_LOG, ResourceLocation.parse("minecraft:stripped_warped_stem"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_PLANKS, ResourceLocation.parse("minecraft:warped_planks"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_STAIRS_WOOD, ResourceLocation.parse("minecraft:warped_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_STONE_STAIRS, ResourceLocation.parse("minecraft:warped_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_STAIRS_SECONDARY, ResourceLocation.parse("minecraft:warped_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_TRAPDOOR, ResourceLocation.parse("minecraft:warped_trapdoor"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_WOOD, ResourceLocation.parse("minecraft:warped_hyphae"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_SUPPORT, ResourceLocation.parse("decorative_blocks:warped_support"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_DOOR, ResourceLocation.parse("chipped:warped_door_17"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_CAMPFIRE, ResourceLocation.parse("minecraft:soul_campfire"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_BOOKSHELF, ResourceLocation.parse("quark:warped_bookshelf"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_CONCRETE, ResourceLocation.parse("minecraft:stripped_warped_stem"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CHAIN, ResourceLocation.parse("buildscape:large_ancient_steel_chain"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.BRIDGE_SLAB, ResourceLocation.parse("minecraft:warped_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.GOD_ALTAR_MAIN, ResourceLocation.parse("rechiseled:warped_planks_small_bricks"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.GOD_ALTAR_ACCENT, ResourceLocation.parse("rechiseled:warped_planks_small_tiles"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.GOD_ALTAR_SLAB, ResourceLocation.parse("architects_palette:warped_board_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.GOD_ALTAR_STAIRS, ResourceLocation.parse("architects_palette:warped_board_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.DECORATION_BRAZIER, Blocks.SCULK_SENSOR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.STARTING_ROOM_POOL_BOTTOM_LAYER, ModBlocks.CYAN_WATER.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.STARTING_ROOM_POOL_TOP_LAYER, ModBlocks.CYAN_WATER.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WATER, ModBlocks.CYAN_WATER.getId(), 1);
+        });
 
+        add(WoldsVaults.id("universal_astral"), new ThemePaletteBuilder(), tb -> {
+            tb.placeholder(WoldsVaults.id("generic/ore_placeholder_astral"))
+                    .placeholder(ThemePaletteBuilder.Placeholder.TREASURE_DOOR)
+                    .placeholder(ThemePaletteBuilder.Placeholder.ROOM_BASE)
+                    .placeholder(ThemePaletteBuilder.Placeholder.COMMON_ELITE_SPAWNERS)
+                    .placeholder(WoldsVaults.id("generic/spawners/astral_mobs"))
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_MAIN, replacementBlocks -> {
+                        replacementBlocks.put(DavebuildingmodModBlocks.STARS.getId(), 3);
+                        replacementBlocks.put(DavebuildingmodModBlocks.VANTA_BLACK.getId(), 7);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_SECONDARY, ResourceLocation.parse("auxiliaryblocks:gloomy_dust"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_TERTIARY, DavebuildingmodModBlocks.STARS.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_FLOURISH, ResourceLocation.parse("quark:black_corundum"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("chipped:gravel_3"), 2);
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("auxiliaryblocks:gloomy_gravel"), 8);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_CARPET, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 1);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_SLAB, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("auxiliaryblocks:gloomy_gravel_slab"), 8);
+                        resourceLocationIntegerMap.put(DavebuildingmodModBlocks.GRAVEL_SLAB.getId(), 2);
+
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_SECONDARY, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("chipped:gravel_3"), 2);
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("auxiliaryblocks:gloomy_gravel"), 8);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_TERTIRARY, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("chipped:gravel_3"), 2);
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("auxiliaryblocks:gloomy_gravel"), 8);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_DECORATION, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 1);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_DECORATION_SECONDARY, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 1);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_VARIANT, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(DavebuildingmodModBlocks.STARS.getId(), 7);
+                        resourceLocationIntegerMap.put(DavebuildingmodModBlocks.VANTA_BLACK.getId(), 3);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR, AEBlocks.SMOOTH_SKY_STONE_BLOCK.id(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR_SECONDARY, ResourceLocation.parse("architects_palette:moonstone"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR_ACCENT, ResourceLocation.parse("auxiliaryblocks:gloomy_fence"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR_STAIRS, ResourceLocation.parse("auxiliaryblocks:gloomy_crushed_rocks_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_VARIANT_PILLAR, Blocks.DEAD_HORN_CORAL_BLOCK.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_VARIANT_PILLAR_ACCENT, iskallia.vault.init.ModBlocks.CRYSTAL_BLOCK.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_BLOCK, ResourceLocation.parse("chipped:spruce_leaves_11"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_FENCE, RegionsUnexploredBlocks.DEAD_LOG.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_LIGHT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_VARIANT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_SLAB, AEBlocks.SMOOTH_SKY_STONE_SLAB.id(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_TALL_DECORATION_LOWER, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_TALL_DECORATION_UPPER, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_ACCENT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_ACCENT_SECONDARY, ResourceLocation.parse("quark:black_corundum"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_ACCENT_TERTIARY, iskallia.vault.init.ModBlocks.CRYSTAL_BLOCK.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_DECORATION, ResourceLocation.parse("quark:white_corundum"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_PLANT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_VINES, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_HANGING_ACCENT, ResourceLocation.parse("integrateddynamics:menril_fence"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_SOLID_ACCENT, ResourceLocation.parse("quark:white_corundum"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_VINES, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_PLANT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FENCE_WOOD_SECONDARY, ResourceLocation.parse("integrateddynamics:menril_fence"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_MAIN, AEBlocks.SKY_STONE_BLOCK.id(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_MAIN_ALT, AEBlocks.SKY_STONE_BRICK.id(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_MAIN_ALT_SECONDARY, AEBlocks.SMOOTH_SKY_STONE_BLOCK.id(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_ACCENT, ResourceLocation.parse("chipped:gray_concrete_18"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_PILLAR, AEBlocks.SMOOTH_SKY_STONE_BLOCK.id(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_STAIRS, AEBlocks.SKY_STONE_STAIRS.id(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_FENCE, ResourceLocation.parse("integrateddynamics:menril_fence"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_FENCE_GATE, ResourceLocation.parse("integrateddynamics:menril_fence_gate"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_LEAVES, ResourceLocation.parse("chipped:spruce_leaves_11"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_SLAB, AEBlocks.SKY_STONE_SLAB.id(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_SLAB_TERTIARY, AEBlocks.SMOOTH_SKY_STONE_SLAB.id(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_VERTICAL_SLAB, ResourceLocation.parse("quark:shale_vertical_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_VERTICAL_SLAB_BRICK, ResourceLocation.parse("quark:shale_bricks_vertical_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_WALL, AEBlocks.SKY_STONE_WALL.id(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_WALL_SECONDARY, ResourceLocation.parse("quark:shale_wall"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_WALL_TERTIARY, ResourceLocation.parse("quark:shale_bricks_wall"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_LOG, RegionsUnexploredBlocks.DEAD_LOG.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_PLANKS, ResourceLocation.parse("quark:shale"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_STAIRS_WOOD, ResourceLocation.parse("quark:shale_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_STONE_STAIRS, ResourceLocation.parse("quark:polished_shale_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_STAIRS_SECONDARY, ResourceLocation.parse("quark:shale_bricks_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_TRAPDOOR, DavebuildingmodModBlocks.STEEL_TRAPDOOR.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_WOOD, ResourceLocation.parse("quark:indigo_corundum"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_SUPPORT, ResourceLocation.parse("everycomp:db/regions_unexplored/dead_support"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_DOOR, DavebuildingmodModBlocks.STEEL_DOOR.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_CAMPFIRE, ResourceLocation.parse("minecraft:soul_campfire"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_BOOKSHELF, ResourceLocation.parse("everycomp:q/the_vault/driftwood_bookshelf"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_CONCRETE, iskallia.vault.init.ModBlocks.CRYSTAL_BLOCK.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CHAIN, ResourceLocation.parse("buildscape:large_ancient_steel_chain"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.BRIDGE_SLAB, ResourceLocation.parse("buildscape:steel_block_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.GOD_ALTAR_MAIN, ResourceLocation.parse("quark:shale_bricks"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.GOD_ALTAR_ACCENT, ResourceLocation.parse("quark:chiseled_shale_bricks"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.GOD_ALTAR_SLAB, ResourceLocation.parse("quark:polished_shale_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.GOD_ALTAR_STAIRS, ResourceLocation.parse("quark:polished_shale_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.DECORATION_BRAZIER, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(DavebuildingmodModBlocks.ARCANE_DUCK.getId(), 1);
+                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 9);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.STARTING_ROOM_POOL_BOTTOM_LAYER, ModBlocks.GRAY_WATER.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.STARTING_ROOM_POOL_TOP_LAYER, ModBlocks.GRAY_WATER.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WATER, ModBlocks.GRAY_WATER.getId(), 1);
+        });
+
+        add(WoldsVaults.id("generic/ore_placeholder_astral"), new PaletteBuilder(), p -> {
+            p.placeholder(PlaceholderBlock.Type.ORE, placeholderBuilder -> {
+               placeholderBuilder.probability(0, 0.08, successes -> {
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.PAINITE_ORE, "vault_stone"), 10);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.ALEXANDRITE_ORE, "vault_stone"), 10);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.WUTODIE_ORE, "vault_stone"), 140);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.BENITOITE_ORE, "vault_stone"), 100);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.LARIMAR_ORE, "vault_stone"), 300);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.BLACK_OPAL_ORE, "vault_stone"), 6);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.ECHO_ORE, "vault_stone"), 1);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.ISKALLIUM_ORE, "vault_stone"), 10);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.GORGINITE_ORE, "vault_stone"), 10);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.ASHIUM_ORE, "vault_stone"), 10);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.SPARKLETINE_ORE, "vault_stone"), 10);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.BOMIGNITE_ORE, "vault_stone"), 10);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.TUBIUM_ORE, "vault_stone"), 10);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.UPALINE_ORE, "vault_stone"), 10);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.XENIUM_ORE, "vault_stone"), 10);
+                   successes.put(vaultOre(iskallia.vault.init.ModBlocks.PETZANITE_ORE, "vault_stone"), 10);
+               }, failures -> {
+                failures.put(iskallia.vault.init.ModBlocks.VAULT_STONE.getRegistryName().toString(), 1);
+               });
+                placeholderBuilder.probability(11, 0.1, successes -> {
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.PAINITE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.ALEXANDRITE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.WUTODIE_ORE, "vault_stone"), 160);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.BENITOITE_ORE, "vault_stone"), 100);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.LARIMAR_ORE, "vault_stone"), 300);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.BLACK_OPAL_ORE, "vault_stone"), 25);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.ECHO_ORE, "vault_stone"), 1);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.ISKALLIUM_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.GORGINITE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.ASHIUM_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.SPARKLETINE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.BOMIGNITE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.TUBIUM_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.UPALINE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.XENIUM_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.PETZANITE_ORE, "vault_stone"), 10);
+                }, failures -> {
+                    failures.put(iskallia.vault.init.ModBlocks.VAULT_STONE.getRegistryName().toString(), 1);
+                });
+                placeholderBuilder.probability(23, 0.1, successes -> {
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.PAINITE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.ALEXANDRITE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.WUTODIE_ORE, "vault_stone"), 180);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.BENITOITE_ORE, "vault_stone"), 100);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.LARIMAR_ORE, "vault_stone"), 300);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.BLACK_OPAL_ORE, "vault_stone"), 25);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.ECHO_ORE, "vault_stone"), 1);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.ISKALLIUM_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.GORGINITE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.ASHIUM_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.SPARKLETINE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.BOMIGNITE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.TUBIUM_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.UPALINE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.XENIUM_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.PETZANITE_ORE, "vault_stone"), 10);
+                }, failures -> {
+                    failures.put(iskallia.vault.init.ModBlocks.VAULT_STONE.getRegistryName().toString(), 1);
+                });
+                placeholderBuilder.probability(40, 0.12, successes -> {
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.PAINITE_ORE, "vault_stone"), 100);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.ALEXANDRITE_ORE, "vault_stone"), 40);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.WUTODIE_ORE, "vault_stone"), 200);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.BENITOITE_ORE, "vault_stone"), 120);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.LARIMAR_ORE, "vault_stone"), 300);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.BLACK_OPAL_ORE, "vault_stone"), 25);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.ECHO_ORE, "vault_stone"), 1);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.ISKALLIUM_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.GORGINITE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.ASHIUM_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.SPARKLETINE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.BOMIGNITE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.TUBIUM_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.UPALINE_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.XENIUM_ORE, "vault_stone"), 10);
+                    successes.put(vaultOre(iskallia.vault.init.ModBlocks.PETZANITE_ORE, "vault_stone"), 10);
+                }, failures -> {
+                    failures.put(iskallia.vault.init.ModBlocks.VAULT_STONE.getRegistryName().toString(), 1);
+                });
+            });
+        });
+
+        add(WoldsVaults.id("generic/spawners/astral_mobs"), new PaletteBuilder(), p -> {
+
+            p.leveled(leveledBuilder -> {
+                leveledBuilder.list(0, "weighted_target", "ispawner:spawner", entries -> {
+                    entries.put("ispawner:spawner{group: horde}", 50);
+                    entries.put("ispawner:spawner{group: assassin}", 30);
+                    entries.put("ispawner:spawner{group: tank}", 15);
+                    entries.put("ispawner:spawner{group: dwellers}", 5);
+                });
+            });
+
+            p.leveled(leveledBuilder -> {
+                leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:tank}", 1, entries -> {
+                   entries.put("woldsvaults:star_devourer", 1);
+                   entries.put("woldsvaults:nebula_sentinel", 1);
+                });
+            });
+
+            p.leveled(leveledBuilder -> {
+                leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:horde}", 1, entries -> {
+                    entries.put("woldsvaults:loginar", 30);
+                });
+            });
+
+            p.leveled(leveledBuilder -> {
+                leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:assassin}", 1, entries -> {
+                    entries.put("woldsvaults:singularity_creeper", 10);
+                    entries.put("woldsvaults:astral_stalker", 15);
+                    entries.put("alexsmobs:cosmaw", 5);
+                });
+            });
+
+
+
+            p.leveled(leveledBuilder -> {
+                leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {
+                    entries.put("the_vault:vault_fighter", 15);
+                });
+                leveledBuilder.weighted(20, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {
+                    entries.put("the_vault:vault_fighter", 15);
+                    entries.put("the_vault:vault_fighter_2", 15);
+                });
+                leveledBuilder.weighted(40, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {
+                    entries.put("the_vault:vault_fighter_1", 15);
+                    entries.put("the_vault:vault_fighter_2", 15);
+                });
+                leveledBuilder.weighted(60, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {
+                    entries.put("the_vault:vault_fighter_2", 15);
+                    entries.put("the_vault:vault_fighter_3", 15);
+                });
+                leveledBuilder.weighted(80, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {
+                    entries.put("the_vault:vault_fighter_3", 15);
+                    entries.put("the_vault:vault_fighter_4", 15);
+                });
+                leveledBuilder.weighted(100, "spawner", "ispawner:spawner{group:dwellers}", 1, entries -> {
+                    entries.put("the_vault:vault_fighter_4", 15);
+                });
+            });
+
+            p.reference("the_vault:generic/spawners/group_settings");
+        });
+
+    }
+
+    public static String vaultOre(ItemLike oreBlock, String type) {
+        return oreBlock.asItem().getRegistryName().toString() + "[type=" + type + ",generated=true]";
     }
 }

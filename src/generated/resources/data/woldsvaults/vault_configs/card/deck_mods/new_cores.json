@@ -799,28 +799,6 @@
         "weight": 1.0
       }
     ],
-    "treasure": [
-      {
-        "value": "temporal",
-        "weight": 1.0
-      },
-      {
-        "value": "adept",
-        "weight": 1.0
-      },
-      {
-        "value": "fae",
-        "weight": 1.0
-      },
-      {
-        "value": "tool",
-        "weight": 1.0
-      },
-      {
-        "value": "arcane",
-        "weight": 1.0
-      }
-    ],
     "dungeon_boss": [
       {
         "value": "adept",

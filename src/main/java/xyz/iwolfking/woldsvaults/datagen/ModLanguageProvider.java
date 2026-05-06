@@ -51,18 +51,30 @@ public class ModLanguageProvider extends LanguageProvider {
         add(new CatalystItemAttribute(false), "is an Alchemy catalyst", "is not an Alchemy catalyst");
         add(new AlchemyIngredientTypeAttribute(""), "is an Alchemy ingredient of type \"%1$s\"", "is not an Alchemy ingredient of type \"%1$s\"");
         add(ModBlocks.CONFIGURABLE_FLOATING_TEXT_BLOCK, "Magic Text");
+        add(ModBlocks.OWNED_CRAFTING_TABLE_BLOCK, "Owned Crafting Table");
         add(ModBlocks.CRATE_CRACKER_BLOCK, "Crate Cracker");
         add(ModBlocks.SURVIVAL_OBJECTIVE_BLOCK, "Survival Pylon");
         add(ModItems.CRYSTAL_SEAL_SURVIVOR, "Seal of the Survivor");
         add(ModItems.SCAVENGER_POUCH_ITEM, "Scavenger Pouch");
         add(ModItems.COMBINED_TRINKET, "Fusion Trinket");
         add(ModItems.PRISMATIC_GLUE_BUCKET, "Bucket of Prismatic Glue");
+        add(ModItems.MOLTEN_TRINKET_BUCKET, "Bucket of Molten Trinket");
         add(ModBlocks.PRISMATIC_GLUE_BLOCK, "Prismatic Glue");
+        add(ModBlocks.MOLTEN_TRINKET_BLOCK, "Molten Trinket");
+        add(ModItems.DUST_OF_POWER, "Dust of Power");
+        add(ModEntities.LOGINAR, "Alien");
+        add(ModEntities.ASTRAL_STALKER, "Astral Stalker");
+        add(ModEntities.NEBULA_SENTINEL, "Nebula Sentinel");
+        add(ModEntities.STAR_DEVOURER_ENTITY, "Star Beast");
+        add(ModEntities.SINGULARITY_CREEPER, "Singularity Creeper");
+        add("fix.woldsvaults.schematic_terminal_no_permission", "You do not have permission to place an Overworld Inscription here!");
+        add("fluid.woldsvaults.molten_trinket", "Molten Trinket");
         add("block.woldsvaults.prismatic_glue", "Prismatic Glue");
         add("block.woldsvaults.flowing_prismatic_glue", "Flowing Prismatic Glue");
         add("tile.woldsvaults.trinket_fusion_forge", "Trinket Fusion Forge");
         add(ModBlocks.TRINKET_FUSION_BLOCK, "Trinket Fusion Forge");
         add(ModEffects.BURN, "Burning");
+        add("message.woldsvaults.filled_bottle_alchemy_archive", "You have all effects unlocked! Your %1$s has been refilled!");
         add("command.woldsvaults.prevent_back_into_vault", "You cannot return into The Vault!");
         add("woldsvaults.special.fruit_rotting", "§4You feel the Vault start to rot away...");
         add("woldsvaults.special.rotten", "§4The Vault has rotted!");
@@ -214,6 +226,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("jei.the_vault.god_altar_idona_loot", "God Altar (Idona)");
         add("jei.the_vault.god_altar_tenos_loot", "God Altar (Tenos)");
         add("jei.the_vault.god_altar_velara_loot", "God Altar (Velara)");
+        add("jei.woldsvaults.trinket_fusion", "Trinket Fusion Forge");
         add("item.the_vault.gem_iskallium", "§5Woldium Gem");
         add("item.the_vault.key_iskallium", "§5Woldium Key");
         add("item.the_vault.cluster_iskallium", "§5Woldium Cluster");
@@ -503,6 +516,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("woldsvaults.glitch_gate", "§k??? ??? ???? ????");
         add("woldsvaults.tropical_gate", "Tropical Getaway");
         add("woldsvaults.cloud_gate", "Cloudy Day");
+        add("woldsvaults.greed_assassin_gateway", "Greedy");
 
         add(ModBlocks.TENOS_PLANKS_SLAB, "Tenos Planks Slab");
         add(ModBlocks.TENOS_BRICKS_SLAB, "Tenos Bricks Slab");
