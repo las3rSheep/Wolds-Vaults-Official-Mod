@@ -125,7 +125,6 @@ public class WoldsVaults {
         EnchantedEventsRegistry.registerAllBuiltInEvents();
         if(WoldsVaultsConfig.SERVER.enableServerKiller.get()) {
             ServerKiller.register();
-            MinecraftForge.EVENT_BUS.addListener(ServerWatchdog::onServerTick);
         }
     }
 
