@@ -5,18 +5,58 @@ import iskallia.vault.gear.attribute.VaultGearAttribute;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.item.ItemVaultFruit;
 import iskallia.vault.snapshot.AttributeSnapshot;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import xyz.iwolfking.woldsvaults.api.lib.IRottenFruit;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
+
+import static iskallia.vault.item.ItemVaultFruit.MAX_HEALTH_REDUCTION_ATTRIBUTE_MODIFIER_UUID;
 
 @Mixin(value = ItemVaultFruit.class, remap = false)
 public abstract class MixinItemVaultFruit extends Item implements IRottenFruit {
 
     public MixinItemVaultFruit(Properties pProperties) {
         super(pProperties);
+    }
+
+    /**
+     * @author aida
+     * @reason overfruit - change fruit maxHP penalty scaling to discourage armor swapping
+     */
+    @Overwrite
+    protected void reducePlayerMaxHealth(ServerPlayer player) {
+        AttributeInstance attributeInstance = player.getAttribute(Attributes.MAX_HEALTH);
+        if(attributeInstance != null) {
+            AttributeModifier existingModifier = attributeInstance.getModifier(MAX_HEALTH_REDUCTION_ATTRIBUTE_MODIFIER_UUID);
+            double mult = 1.0849795594911; // this is to make the first fruit less harsh and the 7th give a funny number
+            if (existingModifier != null) {
+                mult = existingModifier.getAmount() + 1;
+                attributeInstance.removeModifier(MAX_HEALTH_REDUCTION_ATTRIBUTE_MODIFIER_UUID);
+            }
+
+            // how steep the curve is
+            mult *= 0.827;
+
+            attributeInstance.addPermanentModifier(new AttributeModifier(MAX_HEALTH_REDUCTION_ATTRIBUTE_MODIFIER_UUID, "VaultFruitMaxHealthReduction", mult - 1, AttributeModifier.Operation.MULTIPLY_TOTAL));
+        }
+    }
+
+    /**
+     * @author aida
+     * @reason overfruit - change fruiting minimum health threshold to be in line with everything else
+     */
+    @Overwrite
+    protected boolean isPlayerMaxHealthGreaterThan(Player player, int threshold) {
+        AttributeInstance maxHP = player.getAttribute(Attributes.MAX_HEALTH);
+        return maxHP != null && maxHP.getValue() >= 5.0;
     }
 
     @Redirect(method = "onEaten", at = @At(value = "INVOKE", target = "Liskallia/vault/snapshot/AttributeSnapshot;getAttributeValue(Liskallia/vault/gear/attribute/VaultGearAttribute;Liskallia/vault/gear/attribute/type/VaultGearAttributeTypeMerger;)Ljava/lang/Object;"))
