@@ -25,6 +25,8 @@ public class ModSounds {
     public static SoundEvent LOGINAR_HURT;
     public static SoundEvent LOGINAR_IDLE;
 
+    public static SoundEvent RANG_RICOCHET;
+
     public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
         WOLD_DEATH = registerSound(event, "wold_death");
         WOLD_HURT = registerSound(event, "wold_hurt");
@@ -38,6 +40,7 @@ public class ModSounds {
         LOGINAR_DEATH = registerSound(event, "loginar_death");
         LOGINAR_HURT = registerSound(event, "loginar_hurt");
         LOGINAR_IDLE = registerSound(event, "loginar_idle");
+        RANG_RICOCHET = registerSound(event, "rang_ricochet");
     }
 
     private static SoundEvent registerSound(RegistryEvent.Register<SoundEvent> event, String soundName) {

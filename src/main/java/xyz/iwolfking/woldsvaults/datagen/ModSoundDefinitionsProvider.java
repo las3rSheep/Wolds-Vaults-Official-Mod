@@ -87,6 +87,11 @@ public class ModSoundDefinitionsProvider extends SoundDefinitionsProvider {
                         sound(WoldsVaults.id("loginar/loginar_idle"))
                 ));
 
+        add(ModSounds.RANG_RICOCHET,
+                SoundDefinition.definition().with(
+                        sound(WoldsVaults.id("rang_ricochet"))
+                ));
+
         add(ModSounds.DARK, SoundDefinition.definition().with(sound(WoldsVaults.id("dark")).stream()));
 
         add(ModSounds.BLENDER, SoundDefinition.definition().with(sound(WoldsVaults.id("blender")).stream()));

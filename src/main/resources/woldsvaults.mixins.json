@@ -346,6 +346,7 @@
     "vaulthunters.custom.recycler.MixinVaultGearItem",
     "vaulthunters.datagen.MixinChampionsConfig",
     "vaulthunters.datagen.MixinVaultGearEnchantmentConfig",
+    "vaulthunters.fixes.CardPosMixin",
     "vaulthunters.fixes.MixinAbilityCooldownPercentAttributeReader",
     "vaulthunters.fixes.MixinAbstractEarthquakeAbility",
     "vaulthunters.fixes.MixinAscensionObjective",
@@ -415,7 +416,9 @@
     "vaulthunters.skills.MixinSkill",
     "vaulthunters.skills.modifications.MixinAbstractVeinMinerAbility",
     "vaulthunters.skills.modifications.MixinFireballAbility",
-    "vaulthunters.skills.modifications.MixinIceBoltChunkAbility"
+    "vaulthunters.skills.modifications.MixinIceBoltChunkAbility",
+    "vaulthunters.testing.CardScaler$FilterAccessor",
+    "vaulthunters.testing.MixinCardScaler"
   ],
   "client": [
     "AccessorParticleEngine",
