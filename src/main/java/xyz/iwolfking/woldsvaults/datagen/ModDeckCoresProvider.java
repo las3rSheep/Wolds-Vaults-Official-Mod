@@ -30,34 +30,33 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
         add("new_cores", builder -> {
             GlobalDeckModifier.Config arsenalModifierConfig = new GlobalDeckModifier.Config();
             arsenalModifierConfig.requiredGroups.add("Offensive");
-            arsenalModifierConfig.modifierRoll = FloatRoll.ofUniform(0.3F, 0.6F);
+            arsenalModifierConfig.modifierRoll = FloatRoll.ofUniform(0.4F, 0.6F);
             arsenalModifierConfig.modifierRolls.put("lesser", variant("Lesser Arsenal Core", FloatRoll.ofUniform(0.3F, 0.3F), 13618375, "woldsvaults:deck_cores/arsenal_deck_core_lesser#inventory"));
-            arsenalModifierConfig.modifierRolls.put("greater", variant("Greater Arsenal Core", FloatRoll.ofUniform(0.6F, 0.9F), 16769382, "woldsvaults:deck_cores/arsenal_deck_core_greater#inventory"));
+            arsenalModifierConfig.modifierRolls.put("greater", variant("Greater Arsenal Core", FloatRoll.ofUniform(0.75F, 1.25F), 16769382, "woldsvaults:deck_cores/arsenal_deck_core_greater#inventory"));
 
             GlobalDeckModifier.Config aegisModifierConfig = new GlobalDeckModifier.Config();
             aegisModifierConfig.requiredGroups.add("Defensive");
             aegisModifierConfig.modifierRoll = FloatRoll.ofUniform(0.3F, 0.6F);
             aegisModifierConfig.modifierRolls.put("lesser", variant("Lesser Aegis Core", FloatRoll.ofUniform(0.3F, 0.3F), 13618375, "woldsvaults:deck_cores/aegis_deck_core_lesser#inventory"));
-            aegisModifierConfig.modifierRolls.put("greater", variant("Greater Aegis Core", FloatRoll.ofUniform(0.6F, 0.9F), 16769382, "woldsvaults:deck_cores/aegis_deck_core_greater#inventory"));
-
+            aegisModifierConfig.modifierRolls.put("greater", variant("Greater Aegis Core", FloatRoll.ofUniform(0.75F, 1.25F), 16769382, "woldsvaults:deck_cores/aegis_deck_core_greater#inventory"));
 
             GlobalDeckModifier.Config toolModifierConfig = new GlobalDeckModifier.Config();
             toolModifierConfig.requiredGroups.add("Utility");
             toolModifierConfig.modifierRoll = FloatRoll.ofUniform(0.35F, 0.6F);
             toolModifierConfig.modifierRolls.put("lesser", variant("Lesser Tool Core", FloatRoll.ofUniform(0.3F, 0.3F), 13618375, "woldsvaults:deck_cores/tool_deck_core_lesser#inventory"));
-            toolModifierConfig.modifierRolls.put("greater", variant("Greater Tool Core", FloatRoll.ofUniform(0.6F, 0.9F), 16769382, "woldsvaults:deck_cores/tool_deck_core_greater#inventory"));
+            toolModifierConfig.modifierRolls.put("greater", variant("Greater Tool Core", FloatRoll.ofUniform(0.75F, 1.25F), 16769382, "woldsvaults:deck_cores/tool_deck_core_greater#inventory"));
 
             GlobalDeckModifier.Config naturalModifierConfig = new GlobalDeckModifier.Config();
             naturalModifierConfig.requiredGroups.add("Physical");
             naturalModifierConfig.modifierRoll = FloatRoll.ofUniform(0.35F, 0.6F);
             naturalModifierConfig.modifierRolls.put("lesser", variant("Lesser Natural Core", FloatRoll.ofUniform(0.3F, 0.3F), 13618375, "woldsvaults:deck_cores/natural_deck_core_lesser#inventory"));
-            naturalModifierConfig.modifierRolls.put("greater", variant("Greater Natural Core", FloatRoll.ofUniform(0.6F, 0.9F), 16769382, "woldsvaults:deck_cores/natural_deck_core_greater#inventory"));
+            naturalModifierConfig.modifierRolls.put("greater", variant("Greater Natural Core", FloatRoll.ofUniform(0.75F, 1.25F), 16769382, "woldsvaults:deck_cores/natural_deck_core_greater#inventory"));
 
             GlobalDeckModifier.Config faeModifierConfig = new GlobalDeckModifier.Config();
             faeModifierConfig.requiredGroups.add("Magical");
             faeModifierConfig.modifierRoll = FloatRoll.ofUniform(0.3F, 0.6F);
             faeModifierConfig.modifierRolls.put("lesser", variant("Lesser Fae Core", FloatRoll.ofUniform(0.3F, 0.3F), 13618375, "woldsvaults:deck_cores/fae_deck_core_lesser#inventory"));
-            faeModifierConfig.modifierRolls.put("greater", variant("Greater Fae Core", FloatRoll.ofUniform(0.6F, 0.9F), 16769382, "woldsvaults:deck_cores/fae_deck_core_greater#inventory"));
+            faeModifierConfig.modifierRolls.put("greater", variant("Greater Fae Core", FloatRoll.ofUniform(0.75F, 1.25F), 16769382, "woldsvaults:deck_cores/fae_deck_core_greater#inventory"));
 
             GlobalDeckModifier.Config sparklingDeckCore = new GlobalDeckModifier.Config();
             sparklingDeckCore.requiredGroups.add("Shiny");
@@ -71,21 +70,21 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
             voidModifierConfig.modifierRolls.put("greater", variant("Greater Void Core", FloatRoll.ofUniform(0.2F, 0.3F), 16769382, "woldsvaults:deck_cores/void_deck_core_greater#inventory"));
 
             NitwitDeckModifier.Config nitwitModifierConfig = new NitwitDeckModifier.Config();
-            nitwitModifierConfig.modifierRoll = FloatRoll.ofUniform(0.5F, 1.0F);
-            nitwitModifierConfig.modifierRolls.put("lesser", variant("Lesser Nitwit Core", FloatRoll.ofUniform(0.35F, 0.35F), 13618375, "woldsvaults:deck_cores/nitwit_deck_core_lesser#inventory"));
-            nitwitModifierConfig.modifierRolls.put("greater", variant("Greater Nitwit Core", FloatRoll.ofUniform(1.0F, 1.5F), 16769382, "woldsvaults:deck_cores/nitwit_deck_core_greater#inventory"));
+            nitwitModifierConfig.modifierRoll = FloatRoll.ofUniform(0.75F, 1.25F);
+            nitwitModifierConfig.modifierRolls.put("lesser", variant("Lesser Nitwit Core", FloatRoll.ofUniform(0.45F, 0.45F), 13618375, "woldsvaults:deck_cores/nitwit_deck_core_lesser#inventory"));
+            nitwitModifierConfig.modifierRolls.put("greater", variant("Greater Nitwit Core", FloatRoll.ofUniform(1.25F, 2.5F), 16769382, "woldsvaults:deck_cores/nitwit_deck_core_greater#inventory"));
 
             AdjacencyBonusDeckModifier.Config bazaarDeckModifier = new AdjacencyBonusDeckModifier.Config(FloatRoll.ofUniform(0.2F, 0.35F), List.of("Resource"), false, AdjacencyBonusDeckModifier.Type.SURROUNDING);
             bazaarDeckModifier.modifierRolls.put("lesser", variant("Lesser Bazaar Core", FloatRoll.ofUniform(0.15F, 0.15F), 13618375, "woldsvaults:deck_cores/bazaar_deck_core_lesser#inventory"));
             bazaarDeckModifier.modifierRolls.put("greater", variant("Greater Bazaar Core", FloatRoll.ofUniform(0.35F, 0.5F), 16769382, "woldsvaults:deck_cores/bazaar_deck_core_greater#inventory"));
 
-            AdjacencyBonusDeckModifier.Config temporalDeckModifier = new AdjacencyBonusDeckModifier.Config(FloatRoll.ofUniform(0.35F, 0.5F), List.of("Temporal"), false, AdjacencyBonusDeckModifier.Type.STARCROSS);
-            temporalDeckModifier.modifierRolls.put("lesser", variant("Lesser Temporal Core", FloatRoll.ofUniform(0.25F, 0.25F), 13618375, "woldsvaults:deck_cores/temporal_deck_core_lesser#inventory"));
-            temporalDeckModifier.modifierRolls.put("greater", variant("Greater Temporal Core", FloatRoll.ofUniform(0.5F, 1.0F), 16769382, "woldsvaults:deck_cores/temporal_deck_core_greater#inventory"));
+            AdjacencyBonusDeckModifier.Config temporalDeckModifier = new AdjacencyBonusDeckModifier.Config(FloatRoll.ofUniform(0.7F, 1.0F), List.of("Temporal"), false, AdjacencyBonusDeckModifier.Type.STARCROSS);
+            temporalDeckModifier.modifierRolls.put("lesser", variant("Lesser Temporal Core", FloatRoll.ofUniform(0.35F, 0.35F), 13618375, "woldsvaults:deck_cores/temporal_deck_core_lesser#inventory"));
+            temporalDeckModifier.modifierRolls.put("greater", variant("Greater Temporal Core", FloatRoll.ofUniform(1.0F, 2.0F), 16769382, "woldsvaults:deck_cores/temporal_deck_core_greater#inventory"));
 
-            AdjacencyBonusDeckModifier.Config talentDeckModifier = new AdjacencyBonusDeckModifier.Config(FloatRoll.ofUniform(0.1F, 0.2F), List.of("Knack"), true, AdjacencyBonusDeckModifier.Type.SURROUNDING);
-            talentDeckModifier.modifierRolls.put("lesser", variant("Lesser Talent Core", FloatRoll.ofUniform(0.1F, 0.1F), 13618375, "woldsvaults:deck_cores/talent_deck_core_lesser#inventory"));
-            talentDeckModifier.modifierRolls.put("greater", variant("Greater Talent Core", FloatRoll.ofUniform(0.2F, 0.4F), 16769382, "woldsvaults:deck_cores/talent_deck_core_greater#inventory"));
+            AdjacencyBonusDeckModifier.Config talentDeckModifier = new AdjacencyBonusDeckModifier.Config(FloatRoll.ofUniform(0.2F, 0.3F), List.of("Knack"), true, AdjacencyBonusDeckModifier.Type.SURROUNDING);
+            talentDeckModifier.modifierRolls.put("lesser", variant("Lesser Talent Core", FloatRoll.ofUniform(0.15F, 0.15F), 13618375, "woldsvaults:deck_cores/talent_deck_core_lesser#inventory"));
+            talentDeckModifier.modifierRolls.put("greater", variant("Greater Talent Core", FloatRoll.ofUniform(0.3F, 0.5F), 16769382, "woldsvaults:deck_cores/talent_deck_core_greater#inventory"));
 
             CreateGroupSlotDeckModifier.Config arcaneDeckModifier = new CreateGroupSlotDeckModifier.Config("Arcane");
             arcaneDeckModifier.slotRoll = IntRoll.ofUniform(2, 3);
@@ -99,13 +98,13 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
             adeptDeckModifier.modifierRolls.put("lesser", variant("Lesser Adept Core", FloatRoll.ofUniformedStep(2.0F, 2.0F, 1.0F), 13618375, "woldsvaults:deck_cores/adept_deck_core_lesser#inventory"));
             adeptDeckModifier.modifierRolls.put("greater", variant("Greater Adept Core", FloatRoll.ofUniformedStep(4.0F, 6.0F, 1.0F), 16769382, "woldsvaults:deck_cores/adept_deck_core_greater#inventory"));
 
-            DominanceDeckModifier.Config jupiterDeckModifier = new DominanceDeckModifier.Config(FloatRoll.ofUniform(0.15F, 0.3F), DominanceDeckModifier.Mode.DOMINANT, Set.of("Stat"));
-            jupiterDeckModifier.modifierRolls.put("lesser", variant("Lesser Jupiter Core", FloatRoll.ofUniform(0.1F, 0.1F), 13618375, "woldsvaults:deck_cores/jupiter_deck_core_lesser#inventory"));
-            jupiterDeckModifier.modifierRolls.put("greater", variant("Greater Jupiter Core", FloatRoll.ofUniform(0.3F, 0.5F), 16769382, "woldsvaults:deck_cores/jupiter_deck_core_greater#inventory"));
+            DominanceDeckModifier.Config jupiterDeckModifier = new DominanceDeckModifier.Config(FloatRoll.ofUniform(0.3F, 0.5F), DominanceDeckModifier.Mode.DOMINANT, Set.of("Stat"));
+            jupiterDeckModifier.modifierRolls.put("lesser", variant("Lesser Jupiter Core", FloatRoll.ofUniform(0.2F, 0.2F), 13618375, "woldsvaults:deck_cores/jupiter_deck_core_lesser#inventory"));
+            jupiterDeckModifier.modifierRolls.put("greater", variant("Greater Jupiter Core", FloatRoll.ofUniform(0.5F, 0.75F), 16769382, "woldsvaults:deck_cores/jupiter_deck_core_greater#inventory"));
 
-            DominanceDeckModifier.Config plutoDeckModifier = new DominanceDeckModifier.Config(FloatRoll.ofUniform(0.25F, 0.5F), DominanceDeckModifier.Mode.MINORITY, Set.of("Stat"));
-            plutoDeckModifier.modifierRolls.put("lesser", variant("Lesser Pluto Core", FloatRoll.ofUniform(0.2F, 0.2F), 13618375, "woldsvaults:deck_cores/pluto_deck_core_lesser#inventory"));
-            plutoDeckModifier.modifierRolls.put("greater", variant("Greater Pluto Core", FloatRoll.ofUniform(0.5F, 0.75F), 16769382, "woldsvaults:deck_cores/pluto_deck_core_greater#inventory"));
+            DominanceDeckModifier.Config plutoDeckModifier = new DominanceDeckModifier.Config(FloatRoll.ofUniform(0.5F, 1.0F), DominanceDeckModifier.Mode.MINORITY, Set.of("Stat"));
+            plutoDeckModifier.modifierRolls.put("lesser", variant("Lesser Pluto Core", FloatRoll.ofUniform(0.35F, 0.35F), 13618375, "woldsvaults:deck_cores/pluto_deck_core_lesser#inventory"));
+            plutoDeckModifier.modifierRolls.put("greater", variant("Greater Pluto Core", FloatRoll.ofUniform(1.0F, 2.0F), 16769382, "woldsvaults:deck_cores/pluto_deck_core_greater#inventory"));
 
             GroupSynergyDeckModifier.Config premiumCoreModifier = new GroupSynergyDeckModifier.Config(FloatRoll.ofUniform(0.05F, 0.1F), List.of("Deluxe"), List.of(), true);
             premiumCoreModifier.modifierRolls.put("lesser", variant("Lesser Premium Core", FloatRoll.ofUniform(0.05F, 0.05F), 13618375, "woldsvaults:deck_cores/premium_deck_core_lesser#inventory"));

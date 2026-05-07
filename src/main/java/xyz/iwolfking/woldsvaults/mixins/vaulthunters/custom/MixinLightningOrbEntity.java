@@ -8,10 +8,11 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -22,17 +23,23 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.iwolfking.woldsvaults.mixins.accessors.ThrowableItemProjectileAccessor;
 
 import java.util.List;
 
 @Mixin(value = LightningOrbEntity.class, remap = false)
-public abstract class MixinLightningOrbEntity extends Entity {
+public abstract class MixinLightningOrbEntity extends ThrowableItemProjectile {
 
     @Shadow
     @Final
     private static EntityDataAccessor<Float> RADIUS;
     @Shadow @Final private static EntityDataAccessor<Float> DAMAGE_MIN;
     @Shadow @Final private static EntityDataAccessor<Float> DAMAGE_MAX;
+
+    public MixinLightningOrbEntity(EntityType<? extends ThrowableItemProjectile> pEntityType, Level pLevel) {
+        super(pEntityType, pLevel);
+    }
+
 
     @Shadow
     protected abstract void applyLightningDamage(LivingEntity target, float damage, Player player);
@@ -42,10 +49,6 @@ public abstract class MixinLightningOrbEntity extends Entity {
 
     @Unique
     private int woldsVaults$chainCooldown = 0;
-
-    public MixinLightningOrbEntity(EntityType<?> type, Level level) {
-        super(type, level);
-    }
 
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/projectile/ThrowableItemProjectile;tick()V", shift = At.Shift.AFTER))
     private void tickChains(CallbackInfo ci) {
@@ -91,7 +94,7 @@ public abstract class MixinLightningOrbEntity extends Entity {
     @Unique
     private float woldsVaults$getChainDamage() {
         float avgDamage = (this.entityData.get(DAMAGE_MIN) + this.entityData.get(DAMAGE_MAX)) / 2.0f;
-        return AbilityPowerHelper.getAbilityPower(getShooter()) * avgDamage * 0.5f;
+        return AbilityPowerHelper.getAbilityPower(getShooter()) * avgDamage * 1.25f;
     }
 
     @Unique
@@ -130,5 +133,9 @@ public abstract class MixinLightningOrbEntity extends Entity {
             this.level.playSound(null, start.x + direction.x/2, start.y + direction.y/2, start.z + direction.z/2,
                     ModSounds.LIGHTING_BOLT, SoundSource.PLAYERS, 0.2F, 2.0F);
         }
+    }
+    @Inject(method = "defineSynchedData", at = @At("HEAD"))
+    private void fixMissingItemData(CallbackInfo ci) {
+        this.entityData.define(ThrowableItemProjectileAccessor.getDataItemStack(), ItemStack.EMPTY);
     }
 }

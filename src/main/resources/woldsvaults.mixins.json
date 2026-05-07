@@ -31,6 +31,7 @@
     "ThrownTridentAccessor",
     "accessors.MobEffectInstanceAccessor",
     "accessors.SheepAccessor",
+    "accessors.ThrowableItemProjectileAccessor",
     "advanced_peripherals.MixinVillagerTrades",
     "ae2.terminal.MixinAEBaseMenu",
     "ae2.terminal.MixinInventoryHotkeyAction",
