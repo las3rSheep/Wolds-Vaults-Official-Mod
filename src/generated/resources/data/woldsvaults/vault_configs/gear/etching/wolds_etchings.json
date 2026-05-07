@@ -466,16 +466,6 @@
               }
             },
             {
-              "minGreedTier": 0,
-              "maxGreedTier": 8,
-              "weight": 10,
-              "value": {
-                "min": 1,
-                "max": 1,
-                "step": 1
-              }
-            },
-            {
               "minGreedTier": 8,
               "maxGreedTier": 10,
               "weight": 10,
@@ -492,6 +482,66 @@
               "value": {
                 "min": 2,
                 "max": 4,
+                "step": 1
+              }
+            }
+          ]
+        }
+      ],
+      "affixType": "IMPLICIT"
+    },
+    "woldsvaults:reaving_hemmorage": {
+      "name": "Reaving Hemmorage",
+      "description": "<#98329F>Reaving<gray> inflicts <red>Bleed<gray> <yellow>%dvalue<gray> for <yellow>8<gray> seconds",
+      "color": 9974431,
+      "minGreedTier": 0,
+      "typeGroups": [
+        "Offensive"
+      ],
+      "attributes": [
+        {
+          "attribute": "woldsvaults:reaving_hemmorage",
+          "group": "ModEtching",
+          "identifier": "woldsvaults:reaving_hemmorage_etching",
+          "tags": [],
+          "tiers": [
+            {
+              "minGreedTier": 0,
+              "maxGreedTier": 5,
+              "weight": 10,
+              "value": {
+                "min": 3,
+                "max": 4,
+                "step": 1
+              }
+            },
+            {
+              "minGreedTier": 5,
+              "maxGreedTier": 7,
+              "weight": 10,
+              "value": {
+                "min": 4,
+                "max": 5,
+                "step": 1
+              }
+            },
+            {
+              "minGreedTier": 7,
+              "maxGreedTier": 10,
+              "weight": 10,
+              "value": {
+                "min": 5,
+                "max": 7,
+                "step": 1
+              }
+            },
+            {
+              "minGreedTier": 10,
+              "maxGreedTier": -1,
+              "weight": 10,
+              "value": {
+                "min": 7,
+                "max": 9,
                 "step": 1
               }
             }

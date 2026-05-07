@@ -53,6 +53,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.CRYSTAL_SEAL_ZEALOT);
         simpleItem(ModItems.CRYSTAL_SEAL_ENCHANTER);
         simpleItem(ModItems.CRYSTAL_SEAL_DOOMSAYER);
+        shuffleSeal(ModItems.CRYSTAL_SEAL_DOOMSAYER_SHUFFLE);
         simpleItem(ModItems.CRYSTAL_SEAL_SPIRITS);
         simpleItem(ModItems.CRYSTAL_SEAL_TITAN);
         simpleItem(ModItems.CRYSTAL_SEAL_ALCHEMY);
@@ -295,6 +296,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getRegistryName().getPath(),
                 ResourceLocation.parse("item/generated")).texture("layer0",
                 WoldsVaults.id("item/" + item.getRegistryName().getPath()));
+    }
+
+    private ItemModelBuilder shuffleSeal(Item item) {
+        return withExistingParent(item.getRegistryName().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                WoldsVaults.id("item/" + item.getRegistryName().getPath())).texture("layer1", VaultMod.id("item/shuffle_seal_overlay"));
     }
 
     public ItemModelBuilder skillScroll(String skillId) {

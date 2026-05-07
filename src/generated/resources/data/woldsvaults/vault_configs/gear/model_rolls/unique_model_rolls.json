@@ -53,7 +53,9 @@
     "RARE": [],
     "EPIC": [],
     "OMEGA": [],
-    "UNIQUE": [],
+    "UNIQUE": [
+      "the_vault:gear/armor/plague/boots"
+    ],
     "SPECIAL": [],
     "CHAOTIC": [],
     "MYTHIC": []

@@ -155,6 +155,13 @@ public class ModVaultCrystalProvider extends AbstractVaultCrystalConfigProvider 
                     sealEntryBuilder.objective(new ScalingBallisticBingoCrystalObjective(0.25F, 0));
                 });
             });
+            builder.addSeal(ModItems.CRYSTAL_SEAL_DOOMSAYER_SHUFFLE.getRegistryName(), sealListBuilder -> {
+                sealListBuilder.add(0, sealEntryBuilder -> {
+                    sealEntryBuilder.input(iskallia.vault.init.ModItems.VAULT_CRYSTAL.getRegistryName());
+                    sealEntryBuilder.objective(new ScalingBallisticBingoCrystalObjective(0.25F, 0));
+                    sealEntryBuilder.modifier(VaultModifierStack.of(VaultModifierRegistry.get(VaultMod.id("shuffle"))));
+                });
+            });
             builder.addSeal(ModItems.CRYSTAL_SEAL_SURVIVOR.getRegistryName(), sealListBuilder -> {
                 sealListBuilder.add(0, sealEntryBuilder -> {
                     sealEntryBuilder.input(iskallia.vault.init.ModItems.VAULT_CRYSTAL.getRegistryName());

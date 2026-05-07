@@ -15,6 +15,7 @@ import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.random.ChunkRandom;
 import iskallia.vault.core.random.JavaRandom;
 import iskallia.vault.core.vault.Vault;
+import iskallia.vault.core.vault.modifier.modifier.ObjectiveShuffleModifier;
 import iskallia.vault.core.vault.modifier.spi.VaultModifier;
 import iskallia.vault.core.vault.objective.BingoObjective;
 import iskallia.vault.core.vault.objective.Objective;
@@ -43,6 +44,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import xyz.iwolfking.woldsvaults.api.util.ObjectiveHelper;
+import xyz.iwolfking.woldsvaults.api.util.VaultModifierUtils;
 import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.BingoObjectiveAccessor;
 
 import java.util.Iterator;
@@ -220,7 +222,7 @@ public class BallisticBingoObjective extends BingoObjective {
                 return;
             }
         }
-
+        int previousBingos = this.getBingos();
         if (this.pvp) {
             ((BingoObjective.TaskMap)this.get(TASKS)).forEach((uuid, task) -> {
                 if (task instanceof BingoTask bingo) {
@@ -234,6 +236,31 @@ public class BallisticBingoObjective extends BingoObjective {
                 BingoTask bingo = (BingoTask)var4;
                 bingo.onTick(this.getContext(world, vault));
             }
+        }
+
+        if (this.getBingos() > previousBingos) {
+            VaultModifierUtils.getModifiersOfType(vault, ObjectiveShuffleModifier.class).stream().findFirst().ifPresent(modifier -> {
+                if (modifier.shouldRegenerate()) {
+                    if (this.pvp) {
+                        this.get(TASKS).forEach((uuid, task) -> {
+                            if (task instanceof BingoTask bingox) {
+                                bingox.regenerateIncomplete(this.getContext(world, vault, uuid));
+                            }
+                        });
+                    } else if (this.get(TASK) instanceof BingoTask bingo) {
+                        bingo.regenerateIncomplete(this.getContext(world, vault));
+                        this.lastScaledJoined = -1;
+                    }
+                } else if (this.pvp) {
+                    this.get(TASKS).forEach((uuid, task) -> {
+                        if (task instanceof BingoTask bingox) {
+                            bingox.shuffleIncomplete();
+                        }
+                    });
+                } else if (this.get(TASK) instanceof BingoTask bingo) {
+                    bingo.shuffleIncomplete();
+                }
+            });
         }
 
         if (world.getTickCount() % 20 == 0) {

@@ -42,6 +42,7 @@ public class ModItems {
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_ENCHANTER;
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_TITAN;
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_DOOMSAYER;
+    public static ItemVaultCrystalSeal CRYSTAL_SEAL_DOOMSAYER_SHUFFLE;
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_ZEALOT;
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_WARRIOR;
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_CORRUPT;
@@ -234,6 +235,7 @@ public class ModItems {
         registry.register(CRYSTAL_SEAL_ENCHANTER);
         registry.register(CRYSTAL_SEAL_TITAN);
         registry.register(CRYSTAL_SEAL_DOOMSAYER);
+        registry.register(CRYSTAL_SEAL_DOOMSAYER_SHUFFLE);
         registry.register(CRYSTAL_SEAL_WARRIOR);
         registry.register(CRYSTAL_SEAL_CORRUPT);
         registry.register(CRYSTAL_SEAL_ALCHEMY);
@@ -385,6 +387,7 @@ public class ModItems {
         CRYSTAL_SEAL_ENCHANTER = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_enchanter"));
         CRYSTAL_SEAL_TITAN = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_titan"));
         CRYSTAL_SEAL_DOOMSAYER = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_doomsayer"));
+        CRYSTAL_SEAL_DOOMSAYER_SHUFFLE = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_doomsayer_shuffle"));
         CRYSTAL_SEAL_ZEALOT = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_zealot"));
         CRYSTAL_SEAL_WARRIOR = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_warrior"));
         CRYSTAL_SEAL_CORRUPT = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_corrupt"));

@@ -49,6 +49,30 @@
           "type": "default"
         }
       }
+    ],
+    "woldsvaults:crystal_seal_doomsayer_shuffle": [
+      {
+        "level": 0,
+        "input": [
+          "the_vault:vault_crystal"
+        ],
+        "objective": {
+          "objective_probability": 0.25,
+          "sealCount": 0,
+          "type": "scaling_ballistic_bingo"
+        },
+        "modifiers": {
+          "list": [
+            {
+              "modifier": "the_vault:shuffle",
+              "count": 1
+            }
+          ],
+          "random_modifiers": true,
+          "clarity": false,
+          "type": "default"
+        }
+      }
     ]
   }
 }

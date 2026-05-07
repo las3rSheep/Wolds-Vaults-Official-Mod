@@ -177,6 +177,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.scannable.vault_pylon_module", "Scanner Module: Pylons");
         add(ModItems.CRYSTAL_SEAL_UNHINGED, "Seal of the Psychopath");
         add(ModItems.CRYSTAL_SEAL_DOOMSAYER, "Seal of the Doomsayer");
+        add(ModItems.CRYSTAL_SEAL_DOOMSAYER_SHUFFLE, "Seal of the Shuffling Doomsayer");
         add(ModItems.CRYSTAL_SEAL_SPIRITS, "Seal of the Exorcist");
         add(ModItems.CRYSTAL_SEAL_ENCHANTER, "Seal of the Enchanter");
         add(ModItems.CRYSTAL_SEAL_TITAN, "Seal of the Titan");

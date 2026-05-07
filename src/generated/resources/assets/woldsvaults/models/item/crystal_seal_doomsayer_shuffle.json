@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "woldsvaults:item/crystal_seal_doomsayer_shuffle",
+    "layer1": "the_vault:item/shuffle_seal_overlay"
+  }
+}

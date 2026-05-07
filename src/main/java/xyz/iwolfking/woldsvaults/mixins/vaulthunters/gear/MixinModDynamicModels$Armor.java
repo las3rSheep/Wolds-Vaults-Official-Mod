@@ -19,6 +19,7 @@ public class MixinModDynamicModels$Armor {
     @Inject(method = "<clinit>", at = @At(value = "TAIL"))
     private static void injectArmorModels(CallbackInfo ci) {
         PIECE_REGISTRY.registerAll(AdditionalModels.HEATWAVE);
+        PIECE_REGISTRY.registerAll(AdditionalModels.PLAGUE);
 
     }
 }

@@ -24,6 +24,7 @@ import iskallia.vault.entity.entity.elite.EliteZombieEntity;
 import iskallia.vault.event.ActiveFlags;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
+import iskallia.vault.gear.etching.EtchingHelper;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.trinket.TrinketHelper;
 import iskallia.vault.gear.trinket.effects.MultiJumpTrinket;
@@ -350,6 +351,10 @@ public class LivingEntityEvents {
                 else {
                     event.setAmount(event.getAmount() + (event.getEntityLiving().getMaxHealth() * reavingDamage));
                 }
+
+                EtchingHelper.getEtchings(player, ModEtchingGearAttributes.REAVING_HEMMORAGE).stream().findFirst().ifPresent(reavingHemmorageAttribute -> {
+                    event.getEntityLiving().addEffect(new MobEffectInstance(iskallia.vault.init.ModEffects.BLEED, 160, reavingHemmorageAttribute.getValue()));
+                });
 
                 if(ANCHOR_SLAM_SOUND == null) {
                     WoldsVaults.LOGGER.debug("Anchor Slam Sound was null, Better Combat mod is missing.");

@@ -1916,6 +1916,50 @@
             }
           }
         ]
+      },
+      {
+        "attribute": "the_vault:added_ability_level",
+        "group": "ModPoisonNovaLevel",
+        "identifier": "the_vault:mod_poison_nova_level",
+        "tags": [],
+        "tiers": [
+          {
+            "minLevel": 0,
+            "maxLevel": -1,
+            "weight": 10,
+            "value": {
+              "abilityKey": "Nova_Dot",
+              "levelChange": 1
+            }
+          },
+          {
+            "minLevel": 0,
+            "maxLevel": -1,
+            "weight": 10,
+            "value": {
+              "abilityKey": "Nova_Dot",
+              "levelChange": 2
+            }
+          },
+          {
+            "minLevel": 50,
+            "maxLevel": -1,
+            "weight": 10,
+            "value": {
+              "abilityKey": "Nova_Dot",
+              "levelChange": 3
+            }
+          },
+          {
+            "minLevel": 75,
+            "maxLevel": -1,
+            "weight": 10,
+            "value": {
+              "abilityKey": "Nova_Dot",
+              "levelChange": 4
+            }
+          }
+        ]
       }
     ],
     "SUFFIX": [
@@ -2177,6 +2221,53 @@
             "value": {
               "abilityKey": "Expunge_Base",
               "levelChange": 4
+            }
+          }
+        ]
+      },
+      {
+        "attribute": "the_vault:effect_trail",
+        "group": "ModEffectTrail",
+        "identifier": "the_vault:mod_poison_trail",
+        "tags": [],
+        "tiers": [
+          {
+            "minLevel": 0,
+            "maxLevel": 65,
+            "weight": 10,
+            "value": {
+              "durationTicks": {
+                "step": 20,
+                "min": 140,
+                "max": 200
+              },
+              "effectId": "minecraft:poison"
+            }
+          },
+          {
+            "minLevel": 65,
+            "maxLevel": -1,
+            "weight": 10,
+            "value": {
+              "durationTicks": {
+                "step": 20,
+                "min": 200,
+                "max": 240
+              },
+              "effectId": "minecraft:poison"
+            }
+          },
+          {
+            "minLevel": 90,
+            "maxLevel": -1,
+            "weight": 10,
+            "value": {
+              "durationTicks": {
+                "step": 20,
+                "min": 240,
+                "max": 300
+              },
+              "effectId": "minecraft:poison"
             }
           }
         ]
