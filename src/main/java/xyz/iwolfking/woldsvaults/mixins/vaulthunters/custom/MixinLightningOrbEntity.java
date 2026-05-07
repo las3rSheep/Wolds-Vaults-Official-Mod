@@ -50,7 +50,7 @@ public abstract class MixinLightningOrbEntity extends ThrowableItemProjectile {
     @Unique
     private int woldsVaults$chainCooldown = 0;
 
-    @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/projectile/ThrowableItemProjectile;tick()V", shift = At.Shift.AFTER))
+    @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/projectile/ThrowableItemProjectile;tick()V", shift = At.Shift.AFTER), remap = true)
     private void tickChains(CallbackInfo ci) {
         if (this.level.isClientSide) return;
 
@@ -134,7 +134,7 @@ public abstract class MixinLightningOrbEntity extends ThrowableItemProjectile {
                     ModSounds.LIGHTING_BOLT, SoundSource.PLAYERS, 0.2F, 2.0F);
         }
     }
-    @Inject(method = "defineSynchedData", at = @At("HEAD"))
+    @Inject(method = "defineSynchedData", at = @At("HEAD"), remap = true)
     private void fixMissingItemData(CallbackInfo ci) {
         this.entityData.define(ThrowableItemProjectileAccessor.getDataItemStack(), ItemStack.EMPTY);
     }
