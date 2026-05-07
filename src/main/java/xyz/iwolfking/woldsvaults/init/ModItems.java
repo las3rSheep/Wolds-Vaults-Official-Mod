@@ -215,6 +215,8 @@ public class ModItems {
     public static BasicItem POGGING_SEED_BASE;
     public static BasicItem ECHOING_SEED_BASE;
 
+    public static BasicItem MOB_BINDING_STONE;
+
     public static BasicItem UNINFUSED_TERRASTEEL_INGOT;
 
     public static Map<DyeColor, BasicItem> COLORED_UNOBTANIUMS = new HashMap<>();
@@ -369,6 +371,7 @@ public class ModItems {
 
         registry.register(POGGING_SEED_BASE);
         registry.register(ECHOING_SEED_BASE);
+        registry.register(MOB_BINDING_STONE);
         registry.register(UNINFUSED_TERRASTEEL_INGOT);
         registry.register(SCAVENGER_POUCH_ITEM);
         registry.register(COMBINED_TRINKET);
@@ -467,6 +470,7 @@ public class ModItems {
 
         VAULT_ROCK_CANDY = new VaultBasicFoodItem(WoldsVaults.id("vault_rock_candy"), (new FoodProperties.Builder()).alwaysEat().fast().nutrition(8).saturationMod(1.4F).build());
 
+        MOB_BINDING_STONE = new BasicItem(WoldsVaults.id("mob_binding_stone"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));
         CHROMATIC_GOLD_NUGGET = new BasicItem(WoldsVaults.id("chromatic_gold_nugget"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));
         CHROMATIC_GOLD_INGOT = new BasicItem(WoldsVaults.id("chromatic_gold_ingot"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));
         SMASHED_VAULT_GEM = new BasicItem(WoldsVaults.id("smashed_vault_gem"), new Item.Properties().tab(ModCreativeTabs.WOLDS_VAULTS));

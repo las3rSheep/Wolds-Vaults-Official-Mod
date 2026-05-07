@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PMP",
+    "MEM",
+    "PMP"
+  ],
+  "key": {
+    "M": {
+      "item": "the_vault:vault_meat"
+    },
+    "P": {
+      "item": "the_vault:gem_painite"
+    },
+    "E": {
+      "item": "the_vault:perfect_black_opal"
+    }
+  },
+  "result": {
+    "item": "woldsvaults:mob_binding_stone"
+  }
+}

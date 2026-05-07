@@ -246,6 +246,7 @@ dependencies {
     //implementation fg.deobf("curse.maven:vh-scaling-bingo-seals-1132651:7316939")
     //implementation fg.deobf("curse.maven:vault-hunters-api-1118899:7734104")
     implementation fg.deobf("curse.maven:vault-crate-tooltips-1373573:7156709")
+    compileOnly fg.deobf("curse.maven:cagerium-709608:4699709")
 
     // transitive WV deps
     implementation fg.deobf("curse.maven:placebo-283644:4500363") // gateways

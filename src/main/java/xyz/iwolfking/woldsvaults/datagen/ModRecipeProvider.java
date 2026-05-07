@@ -166,6 +166,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_perfect_benitoite", has(iskallia.vault.init.ModItems.PERFECT_BENITOITE))
                 .save(pFinishedRecipeConsumer);
 
+        ShapedRecipeBuilder.shaped(ModItems.MOB_BINDING_STONE)
+                .define('M', iskallia.vault.init.ModItems.VAULT_MEAT)
+                .define('P', iskallia.vault.init.ModItems.PAINITE_GEM)
+                .define('E', iskallia.vault.init.ModItems.PERFECT_BLACK_OPAL)
+                .pattern("PMP")
+                .pattern("MEM")
+                .pattern("PMP")
+                .unlockedBy("has_blopal", has(iskallia.vault.init.ModItems.PERFECT_BLACK_OPAL))
+                .save(pFinishedRecipeConsumer);
+
         ShapedRecipeBuilder.shaped(ModBlocks.TRINKET_FUSION_BLOCK)
                 .define('N', iskallia.vault.init.ModItems.ECHO_POG)
                 .define('I', ModItems.POGOMINIUM_INGOT)

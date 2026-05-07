@@ -112,6 +112,28 @@
         "color": "$text"
       }
     ],
+    "Colossal Chests": [
+      {
+        "text": "Unlocks the ",
+        "color": "$text"
+      },
+      {
+        "text": "Colossal Chests",
+        "color": "$yellow"
+      },
+      {
+        "text": " mod!\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "Colossal chests allows you to build massive chests that can store a lot of items in them.\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "Colossal chests above Iron have been disabled to help prevent issues on servers!",
+        "color": "$text"
+      }
+    ],
     "Elevators": [
       {
         "text": "Unlocks the ",

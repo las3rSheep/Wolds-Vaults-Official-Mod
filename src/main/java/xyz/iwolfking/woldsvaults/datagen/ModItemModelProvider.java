@@ -94,6 +94,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.SCAVENGER_POUCH_ITEM);
         simpleItem(ModItems.PRISMATIC_GLUE_BUCKET);
         simpleItem(ModItems.MOLTEN_TRINKET_BUCKET);
+        simpleItem(ModItems.MOB_BINDING_STONE);
         getBuilder(ModItems.RESEARCH_TOKEN.getRegistryName().getPath())
                 .parent(new ModelFile.UncheckedModelFile(
                         ResourceLocation.parse("builtin/entity")

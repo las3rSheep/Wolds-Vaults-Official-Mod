@@ -184,6 +184,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.UNINFUSED_TERRASTEEL_INGOT, "Uninfused Terrasteel Ingot");
         add(ModItems.POGGING_SEED_BASE, "Pogging Seed Base");
         add(ModItems.ECHOING_SEED_BASE, "Echoing Seed Base");
+        add(ModItems.MOB_BINDING_STONE, "Mob Binding Stone");
         add("menu.woldsvaults.rewards_menu", "Rewards Menu");
         add("item.the_vault.plushie", "Vault Plushie");
         add("item.the_vault.loot_sack", "Vault Sack");

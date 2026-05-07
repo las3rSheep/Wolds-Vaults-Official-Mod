@@ -75,6 +75,15 @@ public class ModSkillDescriptionsProvider extends AbstractSkillDescriptionsProvi
                             }).forEach(jsonElements::add);;
                 })
 
+                .addDescription("Colossal Chests", jsonElements -> {
+                    modDesc("Colossal Chests",  innerDesc -> {
+                        innerDesc.add(JsonDescription.simple("Colossal chests allows you to build massive chests that can store a lot of items in them.\n\n"));
+                        innerDesc.add(JsonDescription.simple("Colossal chests above Iron have been disabled to help prevent issues on servers!"));
+                    }).forEach(jsonElements::add);;
+                })
+
+
+
                  .addDescription("Junk Management", jsonElements -> modDesc("Junk Management", "research", innerDesc -> {
                      innerDesc.add(JsonDescription.simple("The Void Crucible will let you configure what blocks you don't want to void when using the Void + Pickup Mode on your ", "$text"));
                      innerDesc.add(JsonDescription.simple("Magnet", "aqua"));
