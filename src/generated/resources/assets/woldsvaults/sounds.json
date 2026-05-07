@@ -69,6 +69,11 @@
       "woldsvaults:loginar/loginar_idle"
     ]
   },
+  "rang_ricochet": {
+    "sounds": [
+      "woldsvaults:rang_ricochet"
+    ]
+  },
   "dark": {
     "sounds": [
       {
