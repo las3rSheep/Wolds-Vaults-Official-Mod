@@ -6,8 +6,6 @@ import io.github.lightman314.lightmanscurrency.common.core.ModItems;
 import io.github.lightman314.lightmanscurrency.common.items.WalletItem;
 import io.github.lightman314.lightmanscurrency.common.money.CoinValue;
 import io.github.lightman314.lightmanscurrency.common.money.MoneyUtil;
-import iskallia.vault.client.gui.framework.element.SliderElement;
-import iskallia.vault.client.gui.framework.element.spi.AbstractSpatialElement;
 import iskallia.vault.client.render.HudPosition;
 import iskallia.vault.client.render.hud.InventoryHudHelper;
 import iskallia.vault.client.render.hud.module.AbstractHudModule;
@@ -215,21 +213,14 @@ public class LightmanWalletHudModule extends AbstractHudModule<ModuleRenderConte
                 () -> opts.setDisplayMode(opts.getDisplayMode().next())
             ),
             new ConditionalModuleSetting(
-                new SliderSetting(
+                new SliderSettingWithoutPercentage(
                     "itemGap",
                     new TextComponent("Item Gap"),
                     new TextComponent("Controls the size of the gap between coin items."),
                     () -> new TextComponent("Item Gap: " + opts.getItemGap()),
                     () -> opts.getItemGap() / 30F,
                     (value) -> this.option.setValue(opts.setItemGap(Math.round(value*30)))
-                ) {
-                    @Override // this is pretty stupid, but there is no int slider
-                    public AbstractSpatialElement<?> createElement(int x, int y, int width, final Runnable onChange) {
-                        AbstractSpatialElement<?> el = super.createElement(x,y,width,onChange);
-                        if (el instanceof SliderElement slider) slider.hidePercentage(true);
-                        return el;
-                    }
-                },
+                ),
                 () -> opts.getDisplayMode() == LightmanWalletHudOptions.DisplayMode.ITEMS
             )
         );
