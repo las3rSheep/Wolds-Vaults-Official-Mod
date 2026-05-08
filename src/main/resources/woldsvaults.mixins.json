@@ -445,6 +445,7 @@
     "vaulthunters.accessors.VaultChestRendererAccessor",
     "vaulthunters.custom.MixinAugmentItem",
     "vaulthunters.custom.MixinCrystalWorkbenchScreen",
+    "vaulthunters.custom.MixinEtchingApplicationTableScreen",
     "vaulthunters.custom.MixinGearDataCache",
     "vaulthunters.custom.MixinGreedTraderScreen",
     "vaulthunters.custom.MixinGreedTraderScreen$Challenges",
