@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
+import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.api.data.discovery.DiscoveredRecipesData;
 
 import java.util.Optional;
@@ -27,7 +28,6 @@ public class CraftingRecipePower extends PrestigePower {
                 }
             }
         });
-        super.learn(context);
     }
 
     public CraftingRecipePower(ResourceLocation recipeUnlock) {

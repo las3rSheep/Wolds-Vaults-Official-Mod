@@ -8,6 +8,7 @@ import mcp.mobius.waila.impl.config.ConfigEntry;
 import mcp.mobius.waila.impl.config.PluginConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import xyz.iwolfking.vhapi.api.util.ConditionalModUtils;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.integration.jade.components.CageriumBlocksComponent;
 import xyz.iwolfking.woldsvaults.integration.jade.components.SpeedometerComponent;
@@ -22,6 +23,8 @@ public class WoldsJadePlugin implements IWailaPlugin {
         PluginConfig.INSTANCE.addConfig(new ConfigEntry(INSTANCE, true, false));
         registration.registerComponentProvider(SpeedometerComponent.INSTANCE, TooltipPosition.TAIL, Block.class);
         registration.registerComponentProvider(VaultObjectiveBlocksComponent.INSTANCE, TooltipPosition.TAIL, Block.class);
-        registration.registerComponentProvider(CageriumBlocksComponent.INSTANCE, TooltipPosition.TAIL, Block.class);
+        if(ConditionalModUtils.isModPresent("cagerium")) {
+            registration.registerComponentProvider(CageriumBlocksComponent.INSTANCE, TooltipPosition.TAIL, Block.class);
+        }
     }
 }
