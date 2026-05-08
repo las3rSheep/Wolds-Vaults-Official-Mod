@@ -19,7 +19,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GameMasterBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,7 +30,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.PacketDistributor;
 
-public abstract class ChainBreakHandler extends BlockBreakHandler {
+public abstract class WoldBreakHandler extends BlockBreakHandler {
     private static final List<IItemDamageHandler> DAMAGE_HANDLER_LIST = new ArrayList<IItemDamageHandler>() {};
 
     private static IItemDamageHandler getDamageHandler(ItemStack itemStack) {
@@ -46,70 +45,99 @@ public abstract class ChainBreakHandler extends BlockBreakHandler {
 
     protected abstract int getRange();
 
+    @Override
     public boolean areaDig(ServerLevel level, ServerPlayer player, BlockPos pos, Block targetBlock) {
-        if (targetBlock == Blocks.AIR) {
-            return false;
-        } else if (!level.getBlockState(pos).canHarvestBlock(level, pos, player)) {
+        ItemStack heldItem = player.getItemInHand(InteractionHand.MAIN_HAND);
+        IItemDamageHandler damageHandler = getDamageHandler(heldItem);
+        int limit = this.getBlockLimit(player);
+        if (limit == 1) {
+            this.destroyBlock(level, player, heldItem, damageHandler, pos, this.shouldVoid(level, player, level.getBlockState(pos)), false);
+            return true;
+        } else if (limit <= 0) {
             return false;
         } else {
-            ItemStack heldItem = player.getItemInHand(InteractionHand.MAIN_HAND);
-            if (heldItem.isDamageableItem()) {
-                if (heldItem.getItem() instanceof VaultGearItem gearItem && gearItem.isBroken(heldItem)) {
-                    return false;
-                }
+            boolean heldItemStartedEmpty = heldItem.isEmpty();
+            Set<BlockPos> traversedBlocks = new HashSet<>();
+            Queue<BlockPos> positionQueue = new LinkedList<>();
+            positionQueue.add(pos);
 
-                int usesLeft = heldItem.getMaxDamage() - heldItem.getDamageValue();
-                if (usesLeft <= 1) {
-                    return false;
-                }
-            }
+            while (!positionQueue.isEmpty()) {
+                BlockPos headPos = positionQueue.poll();
 
-            IItemDamageHandler damageHandler = getDamageHandler(heldItem);
-            int limit = this.getBlockLimit(player);
-            int range = this.getRange();
-            if (limit == 1) {
-                this.destroyBlock(level, player, heldItem, damageHandler, pos, this.shouldVoid(level, player, level.getBlockState(pos)), false);
-                return true;
-            } else if (limit <= 0) {
-                return false;
-            } else {
-                boolean showChain = range > 1;
-                boolean heldItemStartedEmpty = heldItem.isEmpty();
-                Set<BlockPos> traversedBlocks = new HashSet<>();
-                Queue<BlockPos> positionQueue = new LinkedList<>();
-                positionQueue.add(pos);
-
-                while (!positionQueue.isEmpty()) {
-                    BlockPos headPos = positionQueue.poll();
-
-                    for (BlockPos offset : BlockPos.withinManhattanStream(headPos, range, range, range).map(BlockPos::immutable).toList()) {
-                        if (traversedBlocks.size() >= limit) {
-                            positionQueue.clear();
-                            break;
-                        }
-
-                        if (!traversedBlocks.contains(offset)) {
-                            BlockState blockState = level.getBlockState(offset);
-                            if (!blockState.isAir() && blockState.getBlock() == targetBlock) {
-                                this.destroyBlock(level, player, heldItem, damageHandler, offset, this.shouldVoid(level, player, blockState), !offset.equals(pos));
-                                if (heldItem.isEmpty() && !heldItemStartedEmpty || heldItem.getItem() instanceof VaultGearItem gearItem && gearItem.isBroken(heldItem)) {
-                                    positionQueue.clear();
-                                    break;
-                                }
-
-                                if (showChain)
-                                    ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(()->player), new ChainingParticleMessage(List.of(Vec3.atCenterOf(headPos),Vec3.atCenterOf(offset))));
-
-                                positionQueue.add(offset);
-                                traversedBlocks.add(offset);
-                            }
-                        }
+                for (BlockPos offset : BlockPos.withinManhattanStream(headPos, 1, 1, 1).map(BlockPos::immutable).toList()) {
+                    if (traversedBlocks.size() >= limit) {
+                        positionQueue.clear();
+                        break;
                     }
 
+                    if (!traversedBlocks.contains(offset)) {
+                        BlockState blockState = level.getBlockState(offset);
+                        if (!blockState.isAir() && blockState.getBlock() == targetBlock) {
+                            this.destroyBlock(level, player, heldItem, damageHandler, offset, this.shouldVoid(level, player, blockState), !offset.equals(pos));
+                            if (heldItem.isEmpty() && !heldItemStartedEmpty || heldItem.getItem() instanceof VaultGearItem gearItem && gearItem.isBroken(heldItem)) {
+                                positionQueue.clear();
+                                break;
+                            }
+
+                            positionQueue.add(offset);
+                            traversedBlocks.add(offset);
+                        }
+                    }
                 }
 
-                return true;
             }
+            return true;
+        }
+    }
+
+
+    public boolean chainDig(ServerLevel level, ServerPlayer player, BlockPos pos, Block targetBlock) {
+        ItemStack heldItem = player.getItemInHand(InteractionHand.MAIN_HAND);
+        IItemDamageHandler damageHandler = getDamageHandler(heldItem);
+        int limit = this.getBlockLimit(player);
+        int range = this.getRange();
+        if (limit == 1) {
+            this.destroyBlock(level, player, heldItem, damageHandler, pos, this.shouldVoid(level, player, level.getBlockState(pos)), false);
+            return true;
+        } else if (limit <= 0) {
+            return false;
+        } else {
+            boolean showChain = range > 1;
+            boolean heldItemStartedEmpty = heldItem.isEmpty();
+            Set<BlockPos> traversedBlocks = new HashSet<>();
+            Queue<BlockPos> positionQueue = new LinkedList<>();
+            positionQueue.add(pos);
+
+            while (!positionQueue.isEmpty()) {
+                BlockPos headPos = positionQueue.poll();
+
+                for (BlockPos offset : BlockPos.withinManhattanStream(headPos, range, range, range).map(BlockPos::immutable).toList()) {
+                    if (traversedBlocks.size() >= limit) {
+                        positionQueue.clear();
+                        break;
+                    }
+
+                    if (!traversedBlocks.contains(offset)) {
+                        BlockState blockState = level.getBlockState(offset);
+                        if (!blockState.isAir() && blockState.getBlock() == targetBlock) {
+                            this.destroyBlock(level, player, heldItem, damageHandler, offset, this.shouldVoid(level, player, blockState), !offset.equals(pos));
+                            if (heldItem.isEmpty() && !heldItemStartedEmpty || heldItem.getItem() instanceof VaultGearItem gearItem && gearItem.isBroken(heldItem)) {
+                                positionQueue.clear();
+                                break;
+                            }
+
+                            if (showChain)
+                                ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(()->player), new ChainingParticleMessage(List.of(Vec3.atCenterOf(headPos),Vec3.atCenterOf(offset))));
+
+                            positionQueue.add(offset);
+                            traversedBlocks.add(offset);
+                        }
+                    }
+                }
+
+            }
+
+            return true;
         }
     }
 
