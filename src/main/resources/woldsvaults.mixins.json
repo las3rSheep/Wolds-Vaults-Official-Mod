@@ -448,6 +448,7 @@
     "vaulthunters.custom.MixinGreedTraderScreen",
     "vaulthunters.custom.MixinGreedTraderScreen$Challenges",
     "vaulthunters.custom.MixinItemVaultFruitClient",
+    "vaulthunters.custom.MixinPickupNotifierModule",
     "vaulthunters.custom.MixinSpiritExtractorScreen",
     "vaulthunters.custom.MixinTickTimer",
     "vaulthunters.custom.MixinVault",
