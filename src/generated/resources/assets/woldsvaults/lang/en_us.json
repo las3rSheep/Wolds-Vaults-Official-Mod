@@ -696,6 +696,8 @@
   "the_vault.gear_modification.unfreeze_all.description": "Unfreeze all Frozen modifiers",
   "the_vault.gear_modification.unfreeze_all.no_modifiers": "There are no frozen modifiers to unfreeze",
   "tile.woldsvaults.trinket_fusion_forge": "Trinket Fusion Forge",
+  "tooltip.woldsvaults.egg_supported": "\u00A7a\u2714 \u00A77Supported",
+  "tooltip.woldsvaults.egg_unsupported": "\u00A7c\u2718 \u00A77Unsupported",
   "trinket_pouch.woldsvaults.basic_alt_g": "Beginner's Trinket Pouch (Alt)",
   "trinket_pouch.woldsvaults.basic_alt_r": "Beginner's Trinket Pouch (Alt)",
   "trinket_pouch.woldsvaults.basic_classic": "Beginner's Trinket Pouch",

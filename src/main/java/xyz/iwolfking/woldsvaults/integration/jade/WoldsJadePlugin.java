@@ -9,6 +9,7 @@ import mcp.mobius.waila.impl.config.PluginConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.integration.jade.components.CageriumBlocksComponent;
 import xyz.iwolfking.woldsvaults.integration.jade.components.SpeedometerComponent;
 import xyz.iwolfking.woldsvaults.integration.jade.components.VaultObjectiveBlocksComponent;
 
@@ -21,5 +22,6 @@ public class WoldsJadePlugin implements IWailaPlugin {
         PluginConfig.INSTANCE.addConfig(new ConfigEntry(INSTANCE, true, false));
         registration.registerComponentProvider(SpeedometerComponent.INSTANCE, TooltipPosition.TAIL, Block.class);
         registration.registerComponentProvider(VaultObjectiveBlocksComponent.INSTANCE, TooltipPosition.TAIL, Block.class);
+        registration.registerComponentProvider(CageriumBlocksComponent.INSTANCE, TooltipPosition.TAIL, Block.class);
     }
 }
