@@ -31,7 +31,7 @@ public class InfiniteLayoutDefinition implements LayoutDefinition {
         ClassicInfiniteCrystalLayout infinite = (ClassicInfiniteCrystalLayout) layout;
         data.putString("layout", id());
         CompoundTag layoutData = new CompoundTag();
-        data.putInt("tunnel", ((ClassicInfiniteCrystalLayoutAccessor) infinite).getTunnelSpan());
+        layoutData.putInt("tunnel", ((ClassicInfiniteCrystalLayoutAccessor) infinite).getTunnelSpan());
         data.put("layout_data", layoutData);
     }
 
