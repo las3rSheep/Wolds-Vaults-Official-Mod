@@ -185,6 +185,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.POGGING_SEED_BASE, "Pogging Seed Base");
         add(ModItems.ECHOING_SEED_BASE, "Echoing Seed Base");
         add(ModItems.MOB_BINDING_STONE, "Mob Binding Stone");
+        add("tooltip.woldsvaults.egg_supported", "§a✔ §7Supported");
+        add("tooltip.woldsvaults.egg_unsupported", "§c✘ §7Unsupported");
         add("menu.woldsvaults.rewards_menu", "Rewards Menu");
         add("item.the_vault.plushie", "Vault Plushie");
         add("item.the_vault.loot_sack", "Vault Sack");

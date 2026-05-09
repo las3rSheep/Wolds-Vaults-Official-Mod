@@ -75,7 +75,7 @@ public class ModChallengeCrystalProvider extends AbstractChallengeCrystalProvide
 
             builder.addEntry("blackout_scavingo", challengeEntryBuilder -> {
                 challengeEntryBuilder
-                        .objective(CrystalObjectiveHelper.createScavingo(0.25F, 5, 5, true, null))
+                        .objective(CrystalObjectiveHelper.createScavingo(0.25F, 5, 5, true, VaultMod.id("bingos")))
                         .modifier(VaultMod.id("rotten"), 1)
                         .modifier(VaultMod.id("no_companion"), 1)
                         .exhausted();

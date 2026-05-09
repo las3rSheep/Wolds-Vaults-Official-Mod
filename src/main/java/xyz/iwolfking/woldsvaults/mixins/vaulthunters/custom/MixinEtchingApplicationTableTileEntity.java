@@ -12,4 +12,9 @@ public class MixinEtchingApplicationTableTileEntity {
     private boolean allowEtchingUniques(VaultGearRarity instance, Object o) {
         return false;
     }
+
+    @Redirect(method = "getCompatibility", at = @At(value = "INVOKE", target = "Liskallia/vault/gear/VaultGearRarity;equals(Ljava/lang/Object;)Z"))
+    private boolean allowEtchingUniquesCompat(VaultGearRarity instance, Object o) {
+        return false;
+    }
 }

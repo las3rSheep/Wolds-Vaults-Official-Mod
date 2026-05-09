@@ -164,6 +164,7 @@
         "width": 5,
         "height": 5,
         "blackout": true,
+        "modifierPool": "the_vault:bingos",
         "type": "scavenger_bingo"
       },
       "modifiers": {
