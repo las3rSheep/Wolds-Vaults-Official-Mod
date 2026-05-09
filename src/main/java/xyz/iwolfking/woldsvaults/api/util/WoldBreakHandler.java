@@ -1,12 +1,11 @@
 package xyz.iwolfking.woldsvaults.api.util;
 
+import com.mojang.math.Vector3f;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.init.ModItems;
-import iskallia.vault.init.ModNetwork;
-import iskallia.vault.network.message.ChainingParticleMessage;
 import iskallia.vault.network.message.EffectMessage;
 
 import java.util.*;
@@ -29,6 +28,8 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.PacketDistributor;
+import xyz.iwolfking.woldsvaults.aaaWIP.NeochainBasePMsg;
+import xyz.iwolfking.woldsvaults.init.ModNetwork;
 
 public abstract class WoldBreakHandler extends BlockBreakHandler {
     private static final List<IItemDamageHandler> DAMAGE_HANDLER_LIST = new ArrayList<IItemDamageHandler>() {};
@@ -84,12 +85,11 @@ public abstract class WoldBreakHandler extends BlockBreakHandler {
                         }
                     }
                 }
-
             }
+
             return true;
         }
     }
-
 
     public boolean chainDig(ServerLevel level, ServerPlayer player, BlockPos pos, Block targetBlock) {
         ItemStack heldItem = player.getItemInHand(InteractionHand.MAIN_HAND);
@@ -102,8 +102,8 @@ public abstract class WoldBreakHandler extends BlockBreakHandler {
         } else if (limit <= 0) {
             return false;
         } else {
-            boolean showChain = range > 1;
             boolean heldItemStartedEmpty = heldItem.isEmpty();
+            NeochainBasePMsg pMessage = new NeochainBasePMsg();
             Set<BlockPos> traversedBlocks = new HashSet<>();
             Queue<BlockPos> positionQueue = new LinkedList<>();
             positionQueue.add(pos);
@@ -126,19 +126,22 @@ public abstract class WoldBreakHandler extends BlockBreakHandler {
                                 break;
                             }
 
-                            if (showChain)
-                                ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(()->player), new ChainingParticleMessage(List.of(Vec3.atCenterOf(headPos),Vec3.atCenterOf(offset))));
-
                             positionQueue.add(offset);
                             traversedBlocks.add(offset);
+                            pMessage.add(getV(offset), getV(headPos));
                         }
                     }
                 }
-
             }
+
+            ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(()->player), pMessage);
 
             return true;
         }
+    }
+
+    private Vector3f getV(BlockPos pos) {
+        return new Vector3f(pos.getX()+0.5f, pos.getY()+0.5f, pos.getZ()+0.5f);
     }
 
     private void destroyBlock(
