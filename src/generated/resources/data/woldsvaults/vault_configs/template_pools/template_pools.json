@@ -39,6 +39,26 @@
       "id": "woldsvaults:astral_rooms",
       "name": "Astral Rooms",
       "1.0": "woldsvaults:astral_rooms"
+    },
+    {
+      "id": "woldsvaults:astral_red_common_rooms",
+      "name": "Astral Red Common Rooms",
+      "1.0": "woldsvaults:astral_red_common_rooms"
+    },
+    {
+      "id": "woldsvaults:astral_red_tunnels",
+      "name": "Astral Red Tunnels",
+      "1.0": "woldsvaults:astral_red_tunnels"
+    },
+    {
+      "id": "woldsvaults:astral_red_starts",
+      "name": "Astral Red Starts",
+      "1.0": "woldsvaults:astral_red_starts"
+    },
+    {
+      "id": "woldsvaults:astral_red_rooms",
+      "name": "Astral Red Rooms",
+      "1.0": "woldsvaults:astral_red_rooms"
     }
   ]
 }

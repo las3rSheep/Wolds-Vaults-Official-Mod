@@ -7,10 +7,16 @@
       "1.0": "woldsvaults:sculk"
     },
     {
-      "id": "woldsvaults:astral",
-      "name": "Astral",
-      "color": 3112412,
-      "1.0": "woldsvaults:astral"
+      "id": "woldsvaults:lunar",
+      "name": "Lunar",
+      "color": 6838410,
+      "1.0": "woldsvaults:lunar"
+    },
+    {
+      "id": "woldsvaults:red_planet",
+      "name": "Red Planet",
+      "color": 8991232,
+      "1.0": "woldsvaults:red_planet"
     }
   ]
 }

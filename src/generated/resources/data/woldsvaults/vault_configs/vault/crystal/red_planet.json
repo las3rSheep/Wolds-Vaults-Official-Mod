@@ -5,7 +5,7 @@
         "level": 50,
         "pool": [
           {
-            "value": "woldsvaults:astral",
+            "value": "woldsvaults:red_planet",
             "weight": 5
           }
         ]
@@ -14,7 +14,7 @@
         "level": 30,
         "pool": [
           {
-            "value": "woldsvaults:astral",
+            "value": "woldsvaults:red_planet",
             "weight": 5
           }
         ]

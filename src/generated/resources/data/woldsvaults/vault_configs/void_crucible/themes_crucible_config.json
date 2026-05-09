@@ -1,7 +1,8 @@
 {
   "themes": [
     "woldsvaults:sculk",
-    "woldsvaults:astral"
+    "woldsvaults:lunar",
+    "woldsvaults:red_planet"
   ],
   "allowedBlocks": []
 }

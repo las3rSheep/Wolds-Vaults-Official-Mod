@@ -242,6 +242,119 @@ public class ModVaultPalettesProvider extends AbstractPaletteProvider {
                     .replace(ThemePaletteBuilder.ThemeBlockType.WATER, ModBlocks.GRAY_WATER.getId(), 1);
         });
 
+        add(WoldsVaults.id("universal_astral_red"), new ThemePaletteBuilder(), tb -> {
+            tb.placeholder(WoldsVaults.id("generic/ore_placeholder_astral"))
+                    .placeholder(ThemePaletteBuilder.Placeholder.TREASURE_DOOR)
+                    .placeholder(ThemePaletteBuilder.Placeholder.ROOM_BASE)
+                    .placeholder(ThemePaletteBuilder.Placeholder.COMMON_ELITE_SPAWNERS)
+                    .placeholder(WoldsVaults.id("generic/spawners/astral_mobs"))
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_MAIN, replacementBlocks -> {
+                        replacementBlocks.put(DavebuildingmodModBlocks.STARS.getId(), 3);
+                        replacementBlocks.put(DavebuildingmodModBlocks.VANTA_BLACK.getId(), 7);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_SECONDARY, ResourceLocation.parse("auxiliaryblocks:gloomy_dust"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_TERTIARY, DavebuildingmodModBlocks.STARS.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WALL_FLOURISH, ResourceLocation.parse("quark:red_corundum"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("minecraft:red_sand"), 8);
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("chipped:red_sandstone_57"), 2);
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("chipped:red_sandstone_61"), 2);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_CARPET, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 1);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_SLAB, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("minecraft:red_sandstone_slab"), 8);
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("minecraft:cut_red_sandstone_slab"), 2);
+
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_SECONDARY, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("minecraft:red_sand"), 8);
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("chipped:red_sandstone_57"), 2);
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("chipped:red_sandstone_61"), 2);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_TERTIRARY, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("minecraft:red_sand"), 8);
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("chipped:red_sandstone_57"), 2);
+                        resourceLocationIntegerMap.put(ResourceLocation.parse("chipped:red_sandstone_61"), 2);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_DECORATION, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 1);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_DECORATION_SECONDARY, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 1);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_VARIANT, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(DavebuildingmodModBlocks.STARS.getId(), 7);
+                        resourceLocationIntegerMap.put(DavebuildingmodModBlocks.VANTA_BLACK.getId(), 3);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR, AEBlocks.SMOOTH_SKY_STONE_BLOCK.id(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR_SECONDARY, ResourceLocation.parse("architects_palette:moonstone"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR_ACCENT, ResourceLocation.parse("auxiliaryblocks:gloomy_fence"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_PILLAR_STAIRS, ResourceLocation.parse("auxiliaryblocks:gloomy_crushed_rocks_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_VARIANT_PILLAR, Blocks.DEAD_HORN_CORAL_BLOCK.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_VARIANT_PILLAR_ACCENT, iskallia.vault.init.ModBlocks.CRYSTAL_BLOCK.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_BLOCK, ResourceLocation.parse("chipped:dark_oak_leaves_9"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_FENCE, RegionsUnexploredBlocks.DEAD_LOG.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_LIGHT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POST_VARIANT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.TUNNEL_SLAB, AEBlocks.SMOOTH_SKY_STONE_SLAB.id(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_TALL_DECORATION_LOWER, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_TALL_DECORATION_UPPER, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_ACCENT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_ACCENT_SECONDARY, ResourceLocation.parse("quark:red_corundum"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_ACCENT_TERTIARY, iskallia.vault.init.ModBlocks.CRYSTAL_BLOCK.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_DECORATION, ResourceLocation.parse("quark:white_corundum"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_PLANT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_VINES, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_HANGING_ACCENT, RegionsUnexploredBlocks.REDWOOD_FENCE.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CEILING_SOLID_ACCENT, ResourceLocation.parse("quark:white_corundum"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_VINES, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FLOOR_PLANT, Blocks.AIR.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.FENCE_WOOD_SECONDARY, RegionsUnexploredBlocks.REDWOOD_FENCE.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_MAIN, ResourceLocation.parse("quark:jasper"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_MAIN_ALT, ResourceLocation.parse("quark:jasper_bricks"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_MAIN_ALT_SECONDARY, ResourceLocation.parse("quark:polished_jasper"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_ACCENT, ResourceLocation.parse("quark:chiseled_jasper_bricks"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_PILLAR, ResourceLocation.parse("quark:jasper_pillar"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_STAIRS, ResourceLocation.parse("quark:jasper_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_FENCE, RegionsUnexploredBlocks.REDWOOD_FENCE.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_FENCE_GATE, RegionsUnexploredBlocks.REDWOOD_FENCE_GATE.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_LEAVES, ResourceLocation.parse("chipped:dark_oak_leaves_9"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_SLAB, ResourceLocation.parse("quark:jasper_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_SLAB_TERTIARY, ResourceLocation.parse("quark:polished_jasper_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_VERTICAL_SLAB, ResourceLocation.parse("quark:jasper_vertical_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_VERTICAL_SLAB_BRICK, ResourceLocation.parse("quark:jasper_bricks_vertical_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_WALL, ResourceLocation.parse("quark:jasper_bricks_wall"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_WALL_SECONDARY, ResourceLocation.parse("quark:jasper_wall"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_WALL_TERTIARY, ResourceLocation.parse("quark:jasper_bricks_wall"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_LOG, RegionsUnexploredBlocks.DEAD_LOG.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_PLANKS, ResourceLocation.parse("quark:jasper"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_STAIRS_WOOD, ResourceLocation.parse("quark:jasper_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_STONE_STAIRS, ResourceLocation.parse("quark:polished_jasper_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_STAIRS_SECONDARY, ResourceLocation.parse("quark:jasper_bricks_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_TRAPDOOR, DavebuildingmodModBlocks.RED_STEEL_TRAPDOOR.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_WOOD, ResourceLocation.parse("quark:violet_corundum"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_SUPPORT, ResourceLocation.parse("everycomp:db/regions_unexplored/dead_support"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_DOOR, DavebuildingmodModBlocks.STEEL_DOOR.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_CAMPFIRE, ResourceLocation.parse("minecraft:campfire"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_BOOKSHELF, ResourceLocation.parse("everycomp:q/the_vault/driftwood_bookshelf"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.POI_CONCRETE, iskallia.vault.init.ModBlocks.CRYSTAL_BLOCK.getRegistryName(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.CHAIN, ResourceLocation.parse("buildscape:large_ancient_steel_chain"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.BRIDGE_SLAB, DavebuildingmodModBlocks.RED_STEEL_SLAB.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.GOD_ALTAR_MAIN, ResourceLocation.parse("chipped:granite_8"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.GOD_ALTAR_ACCENT, ResourceLocation.parse("chipped:granite_9"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.GOD_ALTAR_SLAB, ResourceLocation.parse("minecraft:polished_granite_slab"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.GOD_ALTAR_STAIRS, ResourceLocation.parse("minecraft:polished_granite_stairs"), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.DECORATION_BRAZIER, resourceLocationIntegerMap -> {
+                        resourceLocationIntegerMap.put(DavebuildingmodModBlocks.RUBBER_DUCK.getId(), 1);
+                        resourceLocationIntegerMap.put(Blocks.AIR.getRegistryName(), 9);
+                    })
+                    .replace(ThemePaletteBuilder.ThemeBlockType.STARTING_ROOM_POOL_BOTTOM_LAYER, ModBlocks.GRAY_WATER.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.STARTING_ROOM_POOL_TOP_LAYER, ModBlocks.GRAY_WATER.getId(), 1)
+                    .replace(ThemePaletteBuilder.ThemeBlockType.WATER, ModBlocks.GRAY_WATER.getId(), 1);
+        });
+
         add(WoldsVaults.id("generic/ore_placeholder_astral"), new PaletteBuilder(), p -> {
             p.placeholder(PlaceholderBlock.Type.ORE, placeholderBuilder -> {
                placeholderBuilder.probability(0, 0.08, successes -> {
@@ -340,8 +453,8 @@ public class ModVaultPalettesProvider extends AbstractPaletteProvider {
 
             p.leveled(leveledBuilder -> {
                 leveledBuilder.weighted(0, "spawner", "ispawner:spawner{group:tank}", 1, entries -> {
-                   entries.put("woldsvaults:star_devourer", 1);
-                   entries.put("woldsvaults:nebula_sentinel", 1);
+                   entries.put("woldsvaults:star_devourer", 0);
+                   entries.put("woldsvaults:nebula_sentinel", 2);
                 });
             });
 

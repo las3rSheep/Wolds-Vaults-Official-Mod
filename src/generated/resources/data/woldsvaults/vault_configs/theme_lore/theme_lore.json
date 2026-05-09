@@ -371,7 +371,8 @@
       "woldsvaults:sculk"
     ],
     "Astral": [
-      "woldsvaults:astral"
+      "woldsvaults:lunar",
+      "woldsvaults:red_planet"
     ]
   }
 }

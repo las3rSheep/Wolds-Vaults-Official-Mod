@@ -26,8 +26,8 @@
           "output": [
             {
               "elements": {
-                "woldsvaults:star_devourer": 1,
-                "woldsvaults:nebula_sentinel": 1
+                "woldsvaults:star_devourer": 0,
+                "woldsvaults:nebula_sentinel": 2
               },
               "weight": 1
             }

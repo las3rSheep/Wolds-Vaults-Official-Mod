@@ -36,7 +36,7 @@ public class ModVaultThemesProvider extends AbstractThemeProvider {
                     .themeGroup("Void");
         });
 
-        add(WoldsVaults.id("astral"), t -> {
+        add(WoldsVaults.id("lunar"), t -> {
             t.type("classic_vault")
                     .starts(WoldsVaults.id("astral_starts").toString())
                     .rooms(WoldsVaults.id("astral_rooms").toString())
@@ -47,7 +47,7 @@ public class ModVaultThemesProvider extends AbstractThemeProvider {
                     .foliageColor(8041299)
                     .waterColor(3112412)
                     .waterFogColor(3112412)
-                    .themeColor(3112412)
+                    .themeColor(6838410)
                     .particle("minecraft:ambient_entity_effect")
                     .particleProbability(0.002f)
                     .levelEntry("the_vault:default", 30)
@@ -66,6 +66,26 @@ public class ModVaultThemesProvider extends AbstractThemeProvider {
                                 .dweller(2);
 
                     });
+        });
+
+        add(WoldsVaults.id("red_planet"), t -> {
+            t.type("classic_vault")
+                    .starts(WoldsVaults.id("astral_red_starts").toString())
+                    .rooms(WoldsVaults.id("astral_red_rooms").toString())
+                    .tunnels(WoldsVaults.id("astral_red_tunnels").toString())
+                    .ambientLight(0.2f)
+                    .fogColor(12358351)
+                    .grassColor(8041299)
+                    .foliageColor(8041299)
+                    .waterColor(3112412)
+                    .waterFogColor(3112412)
+                    .themeColor(8991232)
+                    .particle("minecraft:ambient_entity_effect")
+                    .particleProbability(0.002f)
+                    .levelEntry("the_vault:default", 30)
+                    .levelEntry("the_vault:default", 50)
+                    .themeWeight(5)
+                    .themeGroup("Astral");
         });
     }
 }

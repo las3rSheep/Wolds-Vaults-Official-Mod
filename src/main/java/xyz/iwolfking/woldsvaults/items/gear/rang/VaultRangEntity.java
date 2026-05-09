@@ -74,7 +74,7 @@ public class VaultRangEntity extends Projectile {
     private static final String TAG_CURRENT_RICOCHET_TARGET = "currentRicochetTarget";
     private static final String TAG_PENDING_RICOCHETS = "pendingRicochets";
 
-    private static final double RICOCHET_SEARCH_RADIUS = 12.0D;
+    private static final double RICOCHET_SEARCH_RADIUS = 8.0D;
     private static final double RICOCHET_SPEED = 0.85D;
 
     protected LivingEntity owner;
