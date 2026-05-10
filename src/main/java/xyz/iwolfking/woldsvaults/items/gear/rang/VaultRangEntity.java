@@ -344,7 +344,7 @@ public class VaultRangEntity extends Projectile {
         double nearestDistance = Double.MAX_VALUE;
 
         for (LivingEntity candidate : this.level.getEntitiesOfClass(LivingEntity.class, searchBox)) {
-            if (!candidate.isAlive() || candidate.isSpectator()) {
+            if (!candidate.isAlive() || candidate.isSpectator() || candidate instanceof Player) {
                 continue;
             }
             if (candidate == thrower || candidate == lastHit) {
