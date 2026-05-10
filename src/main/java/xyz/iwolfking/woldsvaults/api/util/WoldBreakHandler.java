@@ -28,7 +28,9 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.PacketDistributor;
+import xyz.iwolfking.woldsvaults.aaaWIP.InsertableQueue;
 import xyz.iwolfking.woldsvaults.aaaWIP.NeochainBasePMsg;
+import xyz.iwolfking.woldsvaults.aaaWIP.NeochainDat;
 import xyz.iwolfking.woldsvaults.init.ModNetwork;
 
 public abstract class WoldBreakHandler extends BlockBreakHandler {
@@ -103,36 +105,41 @@ public abstract class WoldBreakHandler extends BlockBreakHandler {
             return false;
         } else {
             boolean heldItemStartedEmpty = heldItem.isEmpty();
-            NeochainBasePMsg pMessage = new NeochainBasePMsg();
-            Set<BlockPos> traversedBlocks = new HashSet<>();
-            Queue<BlockPos> positionQueue = new LinkedList<>();
-            positionQueue.add(pos);
+            HashMap<BlockPos, NeochainDat<BlockPos>> traversedBlocks = new HashMap<>();
+            traversedBlocks.put(pos, new NeochainDat<>());
+            InsertableQueue<BlockPos> pQueue = new InsertableQueue<>(pos, 1);
 
-            while (!positionQueue.isEmpty()) {
-                BlockPos headPos = positionQueue.poll();
+            while (!pQueue.isEmpty()) {
+                BlockPos headPos = pQueue.poll();
 
                 for (BlockPos offset : BlockPos.withinManhattanStream(headPos, range, range, range).map(BlockPos::immutable).toList()) {
                     if (traversedBlocks.size() >= limit) {
-                        positionQueue.clear();
+                        pQueue.clear();
                         break;
                     }
-
-                    if (!traversedBlocks.contains(offset)) {
+                    NeochainDat<BlockPos> oldDat = traversedBlocks.get(offset);
+                    int newDist = headPos.distManhattan(offset);
+                    if (oldDat == null) {
                         BlockState blockState = level.getBlockState(offset);
                         if (!blockState.isAir() && blockState.getBlock() == targetBlock) {
                             this.destroyBlock(level, player, heldItem, damageHandler, offset, this.shouldVoid(level, player, blockState), !offset.equals(pos));
                             if (heldItem.isEmpty() && !heldItemStartedEmpty || heldItem.getItem() instanceof VaultGearItem gearItem && gearItem.isBroken(heldItem)) {
-                                positionQueue.clear();
+                                pQueue.clear();
                                 break;
                             }
 
-                            positionQueue.add(offset);
-                            traversedBlocks.add(offset);
-                            pMessage.add(getV(offset), getV(headPos));
+                            pQueue.add(offset, newDist);
+                            traversedBlocks.put(offset, new NeochainDat<>(newDist, headPos));
+                        }
+                    } else {
+                        if (newDist < oldDat.getDist()) {
+                            oldDat.setDist(newDist);
+                            oldDat.setFrom(headPos);
                         }
                     }
                 }
             }
+            NeochainBasePMsg pMessage = new NeochainBasePMsg();
 
             ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(()->player), pMessage);
 
