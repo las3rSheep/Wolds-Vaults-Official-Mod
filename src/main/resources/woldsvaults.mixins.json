@@ -443,6 +443,7 @@
     "scannable.MixinScanResultProviderBlock",
     "sophisticatedbackpacks.MixinBackpackModel",
     "vaulthunters.accessors.VaultChestRendererAccessor",
+    "vaulthunters.custom.MixinAbilityDialog",
     "vaulthunters.custom.MixinAugmentItem",
     "vaulthunters.custom.MixinCrystalWorkbenchScreen",
     "vaulthunters.custom.MixinGearDataCache",
