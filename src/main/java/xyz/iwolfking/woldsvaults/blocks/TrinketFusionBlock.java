@@ -33,7 +33,7 @@ public class TrinketFusionBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     public TrinketFusionBlock(Properties props) {
-        super(props);
+        super(props.noOcclusion());
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH));
     }

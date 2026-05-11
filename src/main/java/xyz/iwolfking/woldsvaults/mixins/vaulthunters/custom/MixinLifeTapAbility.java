@@ -13,17 +13,17 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(value = LifeTapAbility.class, remap = false)
 public abstract class MixinLifeTapAbility {
 
-    @Shadow
-    protected abstract float getDamageModifier(float radius, float dist);
-
-    @Redirect(method = "lambda$doAction$3", at = @At(value = "INVOKE", target = "Liskallia/vault/skill/ability/effect/LifeTapAbility;getDamageModifier(FF)F"))
-    private float callAdjustedDamageModifier(LifeTapAbility instance, float radius, float dist, @Local(argsOnly = true) SkillContext skillContext) {
-        return woldsVaults$getLevelScaledDamageFallOff(this.getDamageModifier(radius, dist), skillContext.getLevel());
-    }
-
-    @Unique
-    private float woldsVaults$getLevelScaledDamageFallOff(float originalFalloff, int abilityLevel) {
-        float maxFallOffPerLevel = 0.2F + (abilityLevel * 0.025F);
-        return Math.max(originalFalloff, maxFallOffPerLevel);
-    }
+//    @Shadow
+//    protected abstract float getDamageModifier(float radius, float dist);
+//
+//    @Redirect(method = "lambda$doAction$3", at = @At(value = "INVOKE", target = "Liskallia/vault/skill/ability/effect/LifeTapAbility;getDamageModifier(FF)F"))
+//    private float callAdjustedDamageModifier(LifeTapAbility instance, float radius, float dist, @Local(argsOnly = true) SkillContext skillContext) {
+//        return woldsVaults$getLevelScaledDamageFallOff(this.getDamageModifier(radius, dist), skillContext.getLevel());
+//    }
+//
+//    @Unique
+//    private float woldsVaults$getLevelScaledDamageFallOff(float originalFalloff, int abilityLevel) {
+//        float maxFallOffPerLevel = 0.2F + (abilityLevel * 0.025F);
+//        return Math.max(originalFalloff, maxFallOffPerLevel);
+//    }
 }
