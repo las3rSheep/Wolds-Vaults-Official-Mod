@@ -408,6 +408,7 @@
     "vaulthunters.gear.MixinModDynamicModels",
     "vaulthunters.gear.MixinModDynamicModels$Armor",
     "vaulthunters.modifiers.MixinVaultModifierTypeRegistry",
+    "vaulthunters.objectives.MixinArchitectObjective",
     "vaulthunters.objectives.MixinCrystalData",
     "vaulthunters.objectives.MixinNullCrystalModel",
     "vaulthunters.objectives.MixinScavengerObjective",
