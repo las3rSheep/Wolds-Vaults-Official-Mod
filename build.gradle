@@ -379,7 +379,7 @@ dependencies {
 
     implementation fg.deobf('local:vhroller:1.3.2')
     implementation fg.deobf('local:forgified-sgui:1.0.2')
-    implementation fg.deobf('local:black_market_tweaks:1.7')
+    implementation fg.deobf('local:black_market_tweaks:1.8')
     implementation fg.deobf('local:vhapi:4.8.0')
     implementation fg.deobf('local:ftb-essentials:1802.2.2-build.83')
 //    implementation fg.deobf('local:serverportals:1.18.2-1.5')
@@ -390,8 +390,8 @@ dependencies {
     jarJar(group: 'me.justahuman', name: 'vhroller', version: '[1.3.2,)') {
         jarJar.pin(it, '1.3.2')
     }
-    jarJar(group: 'dev.attackeight', name: 'black_market_tweaks', version: '[1.7,)') {
-        jarJar.pin(it, '1.7')
+    jarJar(group: 'dev.attackeight', name: 'black_market_tweaks', version: '[1.8,)') {
+        jarJar.pin(it, '1.8')
     }
     //    jarJar(group: 'com.dog', name: 'serverportals', version: '[1.18.2-1.5,)') {
 //        jarJar.pin(it, '1.18.2-1.5')
