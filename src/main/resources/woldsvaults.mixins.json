@@ -433,6 +433,8 @@
     "AccessorParticleEngine",
     "MixinAnvilScreen",
     "MixinItemRenderer",
+    "MixinSignEditScreen",
+    "MixinSignRenderer",
     "MixinThrownTridentRenderer",
     "bettercombat.MixinWeaponRegistry",
     "inventoryhud.MixinCuriosRenderer",
