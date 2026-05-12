@@ -2,9 +2,8 @@ package xyz.iwolfking.woldsvaults.mixins.vaulthunters.fixes;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import iskallia.vault.entity.boss.ArtifactBossEntity;
+import iskallia.vault.entity.VaultBoss;
 import iskallia.vault.entity.boss.TheVesselEntity;
-import iskallia.vault.entity.boss.VaultBossEntity;
 import iskallia.vault.init.ModEffects;
 import java.util.function.Predicate;
 
@@ -22,28 +21,26 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(value = TauntAbility.class, remap = false)
 public class MixinTauntAbility {
 
-//    // this was making harold do some weird teleporty thing, but idk if that was an intended thing or not, so i just pulled it
-//
-//    /// aida - make harold targetable with taunt
-//    @Redirect(method = "lambda$doAction$1",
-//              at = @At(value = "INVOKE",
-//                       target = "Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;selector(Ljava/util/function/Predicate;)Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;"))
-//    private TargetingConditions doTargetHarold(TargetingConditions conditions, Predicate<LivingEntity> x) {
-//        return conditions.selector(NEW_MONSTER_PREDICATE);
-//    }
-//    @Unique
-//    private static final Predicate<LivingEntity> NEW_MONSTER_PREDICATE = entity -> entity.getType().getCategory() == MobCategory.MONSTER
-//            && entity instanceof Mob
-//            && !entity.hasEffect(ModEffects.TAUNT_CHARM)
-//            && !entity.hasEffect(ModEffects.TAUNT_REPEL_MOB)
-//            && !entity.getTags().contains("ethereal_immune");
+    /// aida - make harold targetable with taunt
+    @Redirect(method = "lambda$doAction$1",
+              at = @At(value = "INVOKE",
+                       target = "Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;selector(Ljava/util/function/Predicate;)Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;"))
+    private TargetingConditions doTargetHarold(TargetingConditions conditions, Predicate<LivingEntity> x) {
+        return conditions.selector(NEW_MONSTER_PREDICATE);
+    }
+    @Unique
+    private static final Predicate<LivingEntity> NEW_MONSTER_PREDICATE = entity -> entity.getType().getCategory() == MobCategory.MONSTER
+            && entity instanceof Mob
+            && !entity.hasEffect(ModEffects.TAUNT_CHARM)
+            && !entity.hasEffect(ModEffects.TAUNT_REPEL_MOB)
+            && !entity.getTags().contains("ethereal_immune");
 
     /// aida - make harold and the vessel un-teleportable by taunt
     @WrapOperation(method = "lambda$doAction$1",
             at = @At(value = "INVOKE",
                      target = "Lnet/minecraft/world/entity/Mob;setPos(DDD)V"))
     private void dontYoinkBosses(Mob mob, double x, double y, double z, Operation<Void> original) {
-        if(!(/*mob instanceof ArtifactBossEntity ||*/ mob instanceof TheVesselEntity || mob instanceof VaultBossEntity))
+        if(!(mob instanceof TheVesselEntity || mob instanceof VaultBoss))
             original.call(mob, x, y, z);
     }
 }
