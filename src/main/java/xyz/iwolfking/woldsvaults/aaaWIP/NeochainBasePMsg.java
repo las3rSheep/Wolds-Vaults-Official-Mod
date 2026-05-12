@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 public class NeochainBasePMsg extends NeochainParticleData<Vector3f> {
 
-    private static final float ADJ_MULT = 1.0F;
+    private static final float ADJ_MULT = 20.0F;
     static byte toAdjQuarter(float f) {
         return QuarterF.toQuarter(f / ADJ_MULT);
     }
