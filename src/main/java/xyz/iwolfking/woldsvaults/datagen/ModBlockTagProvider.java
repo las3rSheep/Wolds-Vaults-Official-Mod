@@ -57,6 +57,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.PUZZLE_CUBE_BLOCK)
                 .add(ModBlocks.TIME_TRIAL_TROPHY_BLOCK)
                 .add(ModBlocks.TRINKET_FUSION_BLOCK)
+                .add(iskallia.vault.init.ModBlocks.CRYSTAL_BLOCK)
 
                 .add(ModBlocks.TENOS_BRICKS_SLAB)
                 .add(ModBlocks.TENOS_BRICK_CHISELED_SLAB)
@@ -112,6 +113,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.TENOS_PLANKS_SLAB)
                 .add(ModBlocks.TENOS_PLANKS_STAIRS)
                 .add(ModBlocks.OWNED_CRAFTING_TABLE_BLOCK)
+                .add(iskallia.vault.init.ModBlocks.CARDBOARD_BOX)
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_dark_oak_log"))
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_spruce_log"))
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_oak_log"))
