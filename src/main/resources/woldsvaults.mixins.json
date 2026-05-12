@@ -357,6 +357,7 @@
     "vaulthunters.fixes.CardPosMixin",
     "vaulthunters.fixes.MixinAbilityCooldownPercentAttributeReader",
     "vaulthunters.fixes.MixinAbstractEarthquakeAbility",
+    "vaulthunters.fixes.MixinAbstractSmiteAbility",
     "vaulthunters.fixes.MixinAscensionObjective",
     "vaulthunters.fixes.MixinAttributeGearData",
     "vaulthunters.fixes.MixinBailObjective",
