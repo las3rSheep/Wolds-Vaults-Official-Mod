@@ -17,6 +17,7 @@ public class ModTooltipsProvider extends AbstractTooltipProvider {
 
         add("builtin_overrides", builder -> {
             builder
+                    .addTooltipEntry(iskallia.vault.init.ModBlocks.VOID_CRUCIBLE.getRegistryName(), "Use to whitelist items you don't want to void with <light_purple>Void + Pickup<gray> mode on Vault Magnets.")
                     .addTooltipEntry(iskallia.vault.init.ModItems.RELIC_BOOSTER_PACK.getRegistryName(), "Legacy Item");
         });
 
@@ -73,7 +74,7 @@ public class ModTooltipsProvider extends AbstractTooltipProvider {
                     .addTooltipEntry(ModItems.WOLD_STAR.getRegistryName(), "Used in crafting Creative items.")
                     .addTooltipEntry(ModItems.SMASHED_VAULT_GEM.getRegistryName(), "Obtained when a vault ore would normally drop nothing.")
                     .addTooltipEntry(ModBlocks.OWNED_CRAFTING_TABLE_BLOCK.getRegistryName(), "Use with <aqua>Integrated Dynamics's<yellow> Crafting Interface<white> when you want to utilize research locked recipes!")
-                    .addTooltipEntry(ModBlocks.TRINKET_FUSION_BLOCK.getRegistryName(), "Combines <light_purple>Trinkets into <gold>Fusion Trinkets<white> using the power of <light_purple>Prismatic Glue");
+                    .addTooltipEntry(ModBlocks.TRINKET_FUSION_BLOCK.getRegistryName(), "Combines <light_purple>Trinkets into <gold>Fusion Trinkets<gray> using the power of <light_purple>Prismatic Glue");
         });
     }
 }
