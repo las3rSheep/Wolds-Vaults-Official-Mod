@@ -391,6 +391,7 @@
     "vaulthunters.fixes.MixinScheduledModifiers",
     "vaulthunters.fixes.MixinSpiritExtractorTileEntity",
     "vaulthunters.fixes.MixinStatisticsElementContainerScreenData",
+    "vaulthunters.fixes.MixinTauntAbility",
     "vaulthunters.fixes.MixinThemeBlockRetriever",
     "vaulthunters.fixes.MixinToolItem",
     "vaulthunters.fixes.MixinTreasureDoorTileEntityRenderer",
