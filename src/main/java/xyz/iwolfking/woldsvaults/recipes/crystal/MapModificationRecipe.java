@@ -8,6 +8,7 @@ import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.IdentifiableItem;
 import iskallia.vault.item.crystal.CrystalData;
 import iskallia.vault.item.crystal.VaultCrystalItem;
+import iskallia.vault.item.crystal.properties.CapacityCrystalProperties;
 import iskallia.vault.recipe.anvil.AnvilContext;
 import iskallia.vault.recipe.anvil.VanillaAnvilRecipe;
 import mezz.jei.api.constants.RecipeTypes;
@@ -15,6 +16,10 @@ import mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.AnvilBlock;
+import xyz.iwolfking.vhapi.integration.jevh.VHAPIJEIPlugin;
+import xyz.iwolfking.vhapi.integration.jevh.categories.CrystalWorkbenchRecipeCategory;
+import xyz.iwolfking.vhapi.integration.jevh.lib.CrystalWorkbenchRecipe;
+import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.items.gear.VaultMapItem;
 import java.util.List;
@@ -51,7 +56,6 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
 
     @Override
     public void onRegisterJEI(IRecipeRegistration registry) {
-        IVanillaRecipeFactory factory = registry.getVanillaRecipeFactory();
 
         ItemStack map = new ItemStack(ModItems.MAP);
         if(map.getItem() instanceof IdentifiableItem identifiableItem) {
@@ -60,14 +64,7 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
 
         VaultGearData mapData = VaultGearData.read(map);
 
-
-        ItemStack crystal = VaultCrystalItem.create(crystalData -> {
-            crystalData.getModifiers().add(new VaultModifierStack(VaultModifierRegistry.get(VaultMod.id("greedy")), 1));
-            crystalData.getProperties().setLevel(100);
-        });
-
         ItemStack crystalOutput = VaultCrystalItem.create(crystalData -> {
-            crystalData.getModifiers().add(new VaultModifierStack(VaultModifierRegistry.get(VaultMod.id("greedy")), 1));
             crystalData.getProperties().setLevel(100);
             applySpecialModifiers(crystalData, mapData, VaultGearModifier.AffixType.IMPLICIT, null, null, false);
             applySpecialModifiers(crystalData, mapData, VaultGearModifier.AffixType.PREFIX, null, null, false);
@@ -75,7 +72,7 @@ public class MapModificationRecipe extends VanillaAnvilRecipe {
             crystalData.getProperties().setUnmodifiable(true);
         });
 
-        registry.addRecipes(RecipeTypes.ANVIL, List.of(factory.createAnvilRecipe(List.of(crystal), List.of(map), List.of(crystalOutput))));
+        registry.addRecipes(List.of(new CrystalWorkbenchRecipe(map, crystalOutput)), CrystalWorkbenchRecipeCategory.UID);
     }
 
 }
