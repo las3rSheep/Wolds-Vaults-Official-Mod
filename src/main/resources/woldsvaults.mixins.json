@@ -71,6 +71,7 @@
     "ensorcellation.MixinCommonEvents",
     "ensorcellation.MixinCurseMercyEnchantment",
     "ensorcellation.MixinEnsorcEnchantments",
+    "everycompat.UtilsMixin",
     "fruitbag.MixinFruitBagHandler",
     "fruitbag.MixinFruitSlot",
     "ftbessentials.MixinFTBBackCommand",
