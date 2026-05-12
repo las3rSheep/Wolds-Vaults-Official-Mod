@@ -119,7 +119,7 @@ public class MixinGearAttributeEvents {
                     CommonEvents.ENTITY_DAMAGE_BLOCK.invoke(new EntityDamageBlockEvent.Data(true, damageSource, attacked));
                 else {
                     event.setCanceled(true);
-                    ((LivingEntityAccessor)attacked).setLastHurt(6.9f*currentAmp);
+                    ((LivingEntityAccessor)attacked).setLastHurt(Math.max(6.9f*currentAmp, event.getAmount()*(1+currentAmp/10.0f)));
                     attacked.invulnerableTime = attacked.invulnerableDuration;
 
                     CommonEvents.ENTITY_DAMAGE_BLOCK.invoke(new EntityDamageBlockEvent.Data(false, damageSource, attacked));
