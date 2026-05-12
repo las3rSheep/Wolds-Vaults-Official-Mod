@@ -4,6 +4,7 @@
     "woldsvaults:tenos_planks_slab",
     "woldsvaults:tenos_planks_stairs",
     "woldsvaults:owned_crafting_table",
+    "the_vault:cardboard_box",
     {
       "id": "#chipped:stripped_dark_oak_log",
       "required": false

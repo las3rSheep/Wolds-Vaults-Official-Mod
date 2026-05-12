@@ -186,7 +186,7 @@
     },
     {
       "item": "woldsvaults:trinket_fusion_forge",
-      "value": "Combines <light_purple>Trinkets into <gold>Fusion Trinkets<white> using the power of <light_purple>Prismatic Glue"
+      "value": "Combines <light_purple>Trinkets into <gold>Fusion Trinkets<gray> using the power of <light_purple>Prismatic Glue"
     }
   ]
 }

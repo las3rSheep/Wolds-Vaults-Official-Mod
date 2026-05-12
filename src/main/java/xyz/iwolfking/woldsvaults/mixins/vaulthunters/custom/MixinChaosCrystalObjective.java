@@ -26,7 +26,7 @@ public class MixinChaosCrystalObjective {
     @WrapOperation(method = "lambda$configure$1", at = @At(value = "INVOKE", target = "Liskallia/vault/config/ChaosConfig;generate(Lnet/minecraft/resources/ResourceLocation;I)Ljava/util/Optional;"))
     private Optional<ChaosTask> changeChaosTaskPool(ChaosConfig instance, ResourceLocation pool, int level, Operation<Optional<ChaosTask>> original)
     {
-        if(woldsVaults$SIGIL.get().equals("adept")) {
+        if(woldsVaults$SIGIL.get() != null && woldsVaults$SIGIL.get().equals("adept")) {
             return instance.generate(VaultMod.id("big_chaos"), level);
         }
 
