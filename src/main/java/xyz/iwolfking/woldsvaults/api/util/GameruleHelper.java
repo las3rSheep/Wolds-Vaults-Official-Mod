@@ -25,6 +25,7 @@ public class GameruleHelper {
         gameruleMap.put("enableVaults", GameruleHelper.isEnabled(ModGameRules.ENABLE_VAULTS, level));
         gameruleMap.put("enableSkillAltars", GameruleHelper.isEnabled(ModGameRules.ENABLE_SKILL_ALTARS, level));
         gameruleMap.put("enableModifierWorkbench", GameruleHelper.isEnabled(ModGameRules.ENABLE_MODIFIER_WORKBENCH, level));
+        gameruleMap.put("enableWaterframes", GameruleHelper.isEnabled(ModGameRules.ALLOW_WATERFRAMES, level));
         if(players != null && !players.isEmpty()) {
             players.forEach(serverPlayer -> {
                 ModNetwork.sendToClient(new ClientboundSyncGamerulesMessage(gameruleMap), serverPlayer);

@@ -39,6 +39,9 @@ public abstract class MixinVirtualCraftingOutputSlot {
          else if(pStack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SkillAltarBlock && !GameruleHelper.isEnabled(ModGameRules.ENABLE_SKILL_ALTARS, player.getLevel())) {
             cir.setReturnValue(false);
          }
+         else if(pStack.getItem().getRegistryName() != null && pStack.getItem().getRegistryName().getNamespace().equals("waterframes") && !GameruleHelper.isEnabled(ModGameRules.ALLOW_WATERFRAMES, player.getLevel())) {
+            cir.setReturnValue(false);
+         }
       }
    }
 }
