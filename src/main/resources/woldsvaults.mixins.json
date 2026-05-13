@@ -57,6 +57,7 @@
     "cookingforblockheads.MixinKitchenBlock",
     "craftingtweaks.CompressMessageMixin",
     "create.accessors.FilterItemAccessor",
+    "create.accessors.MixinCreativeFluidTankTileEntity",
     "customstartinggear.MixinDataManager",
     "dimensional_worldborder.MixinDimensionalWorldborder",
     "dungeons_library.MixinArtifactsBarRenderer",
