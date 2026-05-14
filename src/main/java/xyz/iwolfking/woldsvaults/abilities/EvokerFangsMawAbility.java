@@ -3,7 +3,6 @@ package xyz.iwolfking.woldsvaults.abilities;
 import com.google.gson.JsonObject;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.net.BitBuffer;
-import iskallia.vault.skill.ability.effect.spi.core.Ability;
 import iskallia.vault.skill.ability.effect.spi.core.InstantManaAbility;
 import iskallia.vault.skill.base.SkillContext;
 import iskallia.vault.util.calc.AreaOfEffectHelper;
@@ -13,12 +12,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.phys.Vec3;
 import xyz.iwolfking.woldsvaults.api.util.DelayedExecutionHelper;
 import xyz.iwolfking.woldsvaults.entities.projectiles.CustomFangEntity;
 
 import java.util.Optional;
 
-public class EvokerFangsAbility extends InstantManaAbility {
+public class EvokerFangsMawAbility extends InstantManaAbility {
 
     private double radius;
     private float damageMultiplier;
@@ -26,44 +26,40 @@ public class EvokerFangsAbility extends InstantManaAbility {
 
 
     @Override
-    protected Ability.ActionResult doAction(SkillContext context) {
+    protected ActionResult doAction(SkillContext context) {
         return context.getSource().as(ServerPlayer.class).map(player -> {
             ServerLevel level = (ServerLevel) player.level;
-            double realRadius = AreaOfEffectHelper.adjustAreaOfEffect(player, this, (float) this.radius);
+
+            double range = AreaOfEffectHelper.adjustAreaOfEffect(player, this, (float) this.radius) * 1.5;
+            Vec3 look = player.getLookAngle().normalize();
 
             float playerAttackDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
             float finalDamage = playerAttackDamage * this.damageMultiplier;
 
-            for (double d = 1.0; d <= realRadius; d += 1.5) {
-                final double currentDist = d;
+            level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                    SoundEvents.EVOKER_PREPARE_WOLOLO, SoundSource.PLAYERS, 1.2F, 0.7F);
 
-                int delay = (int) (d * 2);
+            for (double d = 1.5; d <= range; d += 1.0) {
+                final double distance = d;
+                int delay = (int) (d * 1);
 
                 DelayedExecutionHelper.schedule(level, delay, () -> {
-                    spawnFangRing(player, level, currentDist, finalDamage);
+                    Vec3 spawnPos = player.position().add(look.scale(distance));
+
+                    // We summon 3 fangs per "step" to make the maw wide enough to hit reliably
+                    for (int side = -1; side <= 1; side++) {
+                        Vec3 perpendicular = new Vec3(-look.z, 0, look.x).scale(side * 0.5);
+                        Vec3 finalPos = spawnPos.add(perpendicular);
+
+                        CustomFangEntity fangs = new CustomFangEntity(level, finalPos.x, finalPos.y, finalPos.z, player.getYRot(), 0, player, finalDamage, this.healingPerHit, true);
+                        level.addFreshEntity(fangs);
+                    }
                 });
             }
 
-            level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                    SoundEvents.EVOKER_PREPARE_ATTACK, SoundSource.PLAYERS, 1.0F, 1.0F);
-
             this.putOnCooldown(context);
-            return Ability.ActionResult.successCooldownImmediate();
-        }).orElse(Ability.ActionResult.fail());
-    }
-
-    private void spawnFangRing(ServerPlayer player, ServerLevel level, double dist, float damage) {
-
-        int count = (int) (Math.PI * 2 * dist / 1.5);
-        for (int i = 0; i < count; i++) {
-            double angle = i * (Math.PI * 2 / count);
-            double x = player.getX() + Math.cos(angle) * dist;
-            double z = player.getZ() + Math.sin(angle) * dist;
-            double y = player.getY();
-
-            CustomFangEntity fangs = new CustomFangEntity(level, x, y, z, player.getYRot(), 0, player, damage, this.healingPerHit, false);
-            level.addFreshEntity(fangs);
-        }
+            return ActionResult.successCooldownImmediate();
+        }).orElse(ActionResult.fail());
     }
 
     @Override

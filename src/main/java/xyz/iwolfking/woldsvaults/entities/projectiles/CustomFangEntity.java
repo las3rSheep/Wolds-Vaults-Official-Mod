@@ -10,6 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.EvokerFangs;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import xyz.iwolfking.woldsvaults.init.ModEntities;
 import xyz.iwolfking.woldsvaults.mixins.accessors.EvokerFangsAccessor;
 
@@ -18,14 +19,17 @@ import java.util.List;
 public class CustomFangEntity extends EvokerFangs {
     private float customDamage = 6.0F;
     private float healAmount = 0.0F;
+    private boolean isMaw = false;
 
 
-    public CustomFangEntity(Level level, double x, double y, double z, float yRot, int warmup, LivingEntity owner, float damage, float heal) {
+
+    public CustomFangEntity(Level level, double x, double y, double z, float yRot, int warmup, LivingEntity owner, float damage, float heal, boolean isMaw) {
         this(ModEntities.CUSTOM_FANGS, level);
         this.setPos(x, y, z);
         this.setYRot(yRot);
         this.customDamage = damage;
         this.healAmount = heal;
+        this.isMaw = isMaw;
         this.setOwner(owner);
     }
 
@@ -71,6 +75,18 @@ public class CustomFangEntity extends EvokerFangs {
 
     private void dealDamageTo(LivingEntity pTarget) {
         LivingEntity livingentity = this.getOwner();
+        if (this.isMaw && this.getOwner() != null) {
+            Vec3 pullDir = this.getOwner().position().subtract(pTarget.position());
+
+            double distance = pullDir.horizontalDistance();
+
+            if (distance > 1.0) {
+                Vec3 motion = pullDir.normalize().scale(0.65);
+
+                pTarget.setDeltaMovement(new Vec3(motion.x, 0.2, motion.z));
+                pTarget.hurtMarked = true;
+            }
+        }
         if (pTarget.isAlive() && !pTarget.isInvulnerable() && pTarget != livingentity && livingentity instanceof Player owner) {
             pTarget.hurt(DamageSource.playerAttack(owner), customDamage);
         }
@@ -82,6 +98,7 @@ public class CustomFangEntity extends EvokerFangs {
         super.addAdditionalSaveData(nbt);
         nbt.putFloat("CustomDamage", this.customDamage);
         nbt.putFloat("HealAmount", this.healAmount);
+        nbt.putBoolean("IsMaw", this.isMaw);
     }
 
     @Override
@@ -89,5 +106,6 @@ public class CustomFangEntity extends EvokerFangs {
         super.readAdditionalSaveData(nbt);
         this.customDamage = nbt.getFloat("CustomDamage");
         this.healAmount = nbt.getFloat("HealAmount");
+        this.isMaw = nbt.getBoolean("IsMaw");
     }
 }
