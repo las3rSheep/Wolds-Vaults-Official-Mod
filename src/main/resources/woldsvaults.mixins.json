@@ -29,6 +29,7 @@
     "MixinTagLoader",
     "MixinThrownTrident",
     "ThrownTridentAccessor",
+    "accessors.EvokerFangsAccessor",
     "accessors.MobEffectInstanceAccessor",
     "accessors.SheepAccessor",
     "accessors.ThrowableItemProjectileAccessor",
