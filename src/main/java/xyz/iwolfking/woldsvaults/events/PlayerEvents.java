@@ -124,6 +124,9 @@ public class PlayerEvents {
             else if(event.getItemStack().getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SkillAltarBlock && !GameruleHelper.isEnabled(ModGameRules.ENABLE_SKILL_ALTARS, event.getPlayer().getLevel())) {
                 event.getToolTip().add(new TextComponent("Skill Altars are disabled in this world!").withStyle(ChatFormatting.RED));
             }
+            else if(event.getItemStack().getItem().getRegistryName().getNamespace().equals("waterframes") && !GameruleHelper.isEnabled(ModGameRules.ALLOW_WATERFRAMES, event.getPlayer().getLevel())) {
+                event.getToolTip().add(new TextComponent("WaterFrames have been disabled by your admin!").withStyle(ChatFormatting.RED));
+            }
         }
 
     }

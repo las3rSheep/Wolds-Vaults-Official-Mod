@@ -4,6 +4,8 @@ import iskallia.vault.block.SkillAltarBlock;
 import iskallia.vault.item.KnowledgeBrewItem;
 import iskallia.vault.item.MentorsBrewItem;
 import iskallia.vault.item.VaultDollItem;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.BlockItem;
@@ -39,6 +41,9 @@ public abstract class MixinResultSlot{
             cir.setReturnValue(false);
         }
         else if(pStack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SkillAltarBlock && !GameruleHelper.isEnabled(ModGameRules.ENABLE_SKILL_ALTARS, player.getLevel())) {
+            cir.setReturnValue(false);
+        }
+        else if(pStack.getItem().getRegistryName() != null && pStack.getItem().getRegistryName().getNamespace().equals("waterframes") && !GameruleHelper.isEnabled(ModGameRules.ALLOW_WATERFRAMES, player.getLevel())) {
             cir.setReturnValue(false);
         }
     }

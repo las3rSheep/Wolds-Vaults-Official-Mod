@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 /// aida - allow taunt to target vault bosses, but not teleport them
-@Mixin(value = TauntAbility.class, remap = false)
+@Mixin(value = TauntAbility.class)
 public class MixinTauntAbility {
 
     /// aida - make harold targetable with taunt

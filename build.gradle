@@ -323,7 +323,7 @@ dependencies {
     implementation fg.deobf("curse.maven:regions-unexplored-659110:4554212")
     runtimeOnly fg.deobf("curse.maven:selene-499980:6047192")
     runtimeOnly fg.deobf("curse.maven:buildscape-1377354:7875602")
-    runtimeOnly fg.deobf("curse.maven:every-compat-628539:7949360")
+    implementation fg.deobf("curse.maven:every-compat-628539:7949360")
 
 
     //Mod Box datagen
@@ -380,7 +380,7 @@ dependencies {
     implementation fg.deobf('local:vhroller:1.3.2')
     implementation fg.deobf('local:forgified-sgui:1.0.2')
     implementation fg.deobf('local:black_market_tweaks:1.8')
-    implementation fg.deobf('local:vhapi:4.8.0')
+    implementation fg.deobf('local:vhapi:5.3.0')
     implementation fg.deobf('local:ftb-essentials:1802.2.2-build.83')
 //    implementation fg.deobf('local:serverportals:1.18.2-1.5')
 
