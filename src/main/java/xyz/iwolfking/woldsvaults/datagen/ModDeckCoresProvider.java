@@ -173,6 +173,9 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
                 stringWeightedListBuilder.add("natural", 2);
                 stringWeightedListBuilder.add("arsenal", 2);
                 stringWeightedListBuilder.add("aegis", 2);
+                stringWeightedListBuilder.add("sparkling", 2);
+                stringWeightedListBuilder.add("pluto", 2);
+                stringWeightedListBuilder.add("jupiter", 2);
             });
             builder.addPool("completion_crate", stringWeightedListBuilder -> {
                 stringWeightedListBuilder.add("bazaar", 1);
@@ -180,6 +183,7 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
             });
             builder.addPool("dungeon_boss", stringWeightedListBuilder -> {
                 stringWeightedListBuilder.add("adept", 1);
+                stringWeightedListBuilder.add("void", 1);
             });
         });
     }

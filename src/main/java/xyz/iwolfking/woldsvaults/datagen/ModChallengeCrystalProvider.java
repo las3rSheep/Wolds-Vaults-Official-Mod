@@ -1,15 +1,9 @@
 package xyz.iwolfking.woldsvaults.datagen;
 
 import iskallia.vault.VaultMod;
-import iskallia.vault.core.vault.modifier.VaultModifierStack;
-import iskallia.vault.core.vault.modifier.registry.VaultModifierRegistry;
-import iskallia.vault.core.vault.objective.BingoObjective;
 import iskallia.vault.core.world.roll.IntRoll;
 import iskallia.vault.item.crystal.layout.ClassicInfiniteCrystalLayout;
-import iskallia.vault.item.crystal.objective.BingoCrystalObjective;
 import iskallia.vault.item.crystal.objective.ChaosCrystalObjective;
-import iskallia.vault.item.crystal.objective.ElixirCrystalObjective;
-import iskallia.vault.item.crystal.objective.ScavengerBingoCrystalObjective;
 import iskallia.vault.item.crystal.theme.PoolCrystalTheme;
 import iskallia.vault.item.crystal.theme.ValueCrystalTheme;
 import iskallia.vault.item.crystal.time.ValueCrystalTime;

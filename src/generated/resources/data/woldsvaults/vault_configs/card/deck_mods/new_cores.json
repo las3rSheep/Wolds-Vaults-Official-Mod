@@ -703,6 +703,18 @@
       {
         "value": "aegis",
         "weight": 2.0
+      },
+      {
+        "value": "sparkling",
+        "weight": 2.0
+      },
+      {
+        "value": "pluto",
+        "weight": 2.0
+      },
+      {
+        "value": "jupiter",
+        "weight": 2.0
       }
     ],
     "treasure_sand": [
@@ -802,6 +814,10 @@
     "dungeon_boss": [
       {
         "value": "adept",
+        "weight": 1.0
+      },
+      {
+        "value": "void",
         "weight": 1.0
       }
     ]
