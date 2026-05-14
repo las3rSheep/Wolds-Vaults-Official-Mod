@@ -34,7 +34,6 @@ public class CustomFangEntity extends EvokerFangs {
     }
 
     public void tick() {
-        super.tick();
         if (this.level.isClientSide) {
             if (((EvokerFangsAccessor)this).getClientSideAttackStarted()) {
                 ((EvokerFangsAccessor)this).setLifeTicks(((EvokerFangsAccessor)this).getLifeTicks() - 1);
@@ -50,7 +49,8 @@ public class CustomFangEntity extends EvokerFangs {
                     }
                 }
             }
-        } else if (((EvokerFangsAccessor)this).getWarmupDelayTicks() - 1 < 0) {
+        }
+        else if (((EvokerFangsAccessor)this).getWarmupDelayTicks() - 1 < 0) {
             if (((EvokerFangsAccessor)this).getWarmupDelayTicks() == -8) {
                 for(LivingEntity livingentity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(0.2D, 0.0D, 0.2D))) {
                     this.dealDamageTo(livingentity);
@@ -66,8 +66,7 @@ public class CustomFangEntity extends EvokerFangs {
                 this.discard();
             }
         }
-        ((EvokerFangsAccessor)this).setWarmupDelayTicks(((EvokerFangsAccessor)this).getLifeTicks() - 1);
-
+        ((EvokerFangsAccessor)this).setWarmupDelayTicks(((EvokerFangsAccessor) this).getWarmupDelayTicks() - 1);
     }
 
     private void dealDamageTo(LivingEntity pTarget) {
@@ -75,6 +74,7 @@ public class CustomFangEntity extends EvokerFangs {
         if (pTarget.isAlive() && !pTarget.isInvulnerable() && pTarget != livingentity && livingentity instanceof Player owner) {
             pTarget.hurt(DamageSource.playerAttack(owner), customDamage);
         }
+
     }
 
     @Override
