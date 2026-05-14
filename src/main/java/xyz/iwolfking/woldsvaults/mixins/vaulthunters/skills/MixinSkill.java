@@ -37,6 +37,7 @@ public class MixinSkill extends TypeSupplierAdapter<Skill> {
         this.register("concentrate", ConcentrateAbility.class,ConcentrateAbility::new);
         this.register("fangs", EvokerFangsAbility.class, EvokerFangsAbility::new);
         this.register("fangs_maw", EvokerFangsMawAbility.class, EvokerFangsMawAbility::new);
+        this.register("meteor_storm", MeteorStormAbility.class, MeteorStormAbility::new);
 
         this.register("reach_cap_power", ReachPrestigePower.class, ReachPrestigePower::new);
         this.register("crafting_recipe_power", CraftingRecipePower.class, CraftingRecipePower::new);
