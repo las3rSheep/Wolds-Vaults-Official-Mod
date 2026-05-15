@@ -22,7 +22,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
 
     private double radius;
     private float damageMultiplier;
-    private float healingPerHit;
+    private float executeThreshold;
 
 
     @Override
@@ -61,7 +61,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
             double z = player.getZ() + Math.sin(angle) * dist;
             double y = player.getY();
 
-            CustomFangEntity fangs = new CustomFangEntity(level, x, y, z, player.getYRot(), 0, player, damage, this.healingPerHit, false);
+            CustomFangEntity fangs = new CustomFangEntity(level, x, y, z, player.getYRot(), player, damage, this.executeThreshold, false);
             level.addFreshEntity(fangs);
         }
     }
@@ -71,7 +71,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
         super.writeBits(buffer);
         Adapters.DOUBLE.writeBits(this.radius, buffer);
         Adapters.FLOAT.writeBits(this.damageMultiplier, buffer);
-        Adapters.FLOAT.writeBits(this.healingPerHit, buffer);
+        Adapters.FLOAT.writeBits(this.executeThreshold, buffer);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
         super.readBits(buffer);
         this.radius = Adapters.DOUBLE.readBits(buffer).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readBits(buffer).orElse(0.0F);
-        this.healingPerHit = Adapters.FLOAT.readBits(buffer).orElse(0.0F);
+        this.executeThreshold = Adapters.FLOAT.readBits(buffer).orElse(0.0F);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
         return super.writeNbt().map(nbt -> {
             Adapters.DOUBLE.writeNbt(this.radius).ifPresent(tag -> nbt.put("radius", tag));
             Adapters.FLOAT.writeNbt(this.damageMultiplier).ifPresent(tag -> nbt.put("damageMultiplier", tag));
-            Adapters.FLOAT.writeNbt(this.healingPerHit).ifPresent(tag -> nbt.put("healingPerHit", tag));
+            Adapters.FLOAT.writeNbt(this.executeThreshold).ifPresent(tag -> nbt.put("executeThreshold", tag));
             return nbt;
         });
     }
@@ -97,7 +97,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
         super.readNbt(nbt);
         this.radius = Adapters.DOUBLE.readNbt(nbt.get("radius")).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readNbt(nbt.get("damageMultiplier")).orElse(0.0F);
-        this.healingPerHit = Adapters.FLOAT.readNbt(nbt.get("healingPerHit")).orElse(0.0F);
+        this.executeThreshold = Adapters.FLOAT.readNbt(nbt.get("executeThreshold")).orElse(0.0F);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
         return super.writeJson().map(json -> {
             Adapters.DOUBLE.writeJson(this.radius).ifPresent(element -> json.add("radius", element));
             Adapters.FLOAT.writeJson(this.damageMultiplier).ifPresent(element -> json.add("damageMultiplier", element));
-            Adapters.FLOAT.writeJson(this.healingPerHit).ifPresent(element -> json.add("healingPerHit", element));
+            Adapters.FLOAT.writeJson(this.executeThreshold).ifPresent(element -> json.add("executeThreshold", element));
             return json;
         });
     }
@@ -115,6 +115,6 @@ public class EvokerFangsAbility extends InstantManaAbility {
         super.readJson(json);
         this.radius = Adapters.DOUBLE.readJson(json.get("radius")).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readJson(json.get("damageMultiplier")).orElse(0.0F);
-        this.healingPerHit = Adapters.FLOAT.readJson(json.get("healingPerHit")).orElse(0.0F);
+        this.executeThreshold = Adapters.FLOAT.readJson(json.get("executeThreshold")).orElse(0.0F);
     }
 }

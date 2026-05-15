@@ -1,14 +1,23 @@
 package xyz.iwolfking.woldsvaults.entities.projectiles;
 
+import iskallia.vault.entity.entity.FloatingItemEntity;
 import iskallia.vault.entity.entity.PetEntity;
+import iskallia.vault.init.ModItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.EvokerFangs;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import xyz.iwolfking.woldsvaults.init.ModEntities;
@@ -18,17 +27,17 @@ import java.util.List;
 
 public class CustomFangEntity extends EvokerFangs {
     private float customDamage = 6.0F;
-    private float healAmount = 0.0F;
+    private float executeThreshold = 0.0F;
     private boolean isMaw = false;
 
 
 
-    public CustomFangEntity(Level level, double x, double y, double z, float yRot, int warmup, LivingEntity owner, float damage, float heal, boolean isMaw) {
+    public CustomFangEntity(Level level, double x, double y, double z, float yRot, LivingEntity owner, float damage, float executeThreshold, boolean isMaw) {
         this(ModEntities.CUSTOM_FANGS, level);
         this.setPos(x, y, z);
         this.setYRot(yRot);
         this.customDamage = damage;
-        this.healAmount = heal;
+        this.executeThreshold = executeThreshold;
         this.isMaw = isMaw;
         this.setOwner(owner);
     }
@@ -74,30 +83,82 @@ public class CustomFangEntity extends EvokerFangs {
     }
 
     private void dealDamageTo(LivingEntity pTarget) {
-        LivingEntity livingentity = this.getOwner();
-        if (this.isMaw && this.getOwner() != null) {
-            Vec3 pullDir = this.getOwner().position().subtract(pTarget.position());
+        LivingEntity owner = this.getOwner();
 
-            double distance = pullDir.horizontalDistance();
+        if(pTarget == owner || pTarget instanceof Player || !pTarget.isAlive() || pTarget.isInvulnerable() || !(owner instanceof Player player)) {
+            return;
+        }
 
-            if (distance > 1.0) {
-                Vec3 motion = pullDir.normalize().scale(0.65);
 
-                pTarget.setDeltaMovement(new Vec3(motion.x, 0.2, motion.z));
+
+        if (this.isMaw) {
+            double distance = owner.position().distanceTo(pTarget.position());
+
+            if (distance > 1.5) {
+                Vec3 pullDir = owner.position().subtract(pTarget.position()).normalize().scale(0.65);
+                pTarget.setDeltaMovement(new Vec3(pullDir.x, 0.2, pullDir.z));
                 pTarget.hurtMarked = true;
             }
-        }
-        if (pTarget.isAlive() && !pTarget.isInvulnerable() && pTarget != livingentity && livingentity instanceof Player owner) {
-            pTarget.hurt(DamageSource.playerAttack(owner), customDamage);
+
+            pTarget.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 180, 1));
+
+            if (distance >= 5.0 && distance < 10.0) {
+                pTarget.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 180, 0));
+                ((ServerLevel)this.level).sendParticles(ParticleTypes.ANGRY_VILLAGER, pTarget.getX(), pTarget.getEyeY(), pTarget.getZ(), 3, 0.2, 0.2, 0.2, 0.0);
+            }
+
+            else if (distance >= 10.0) {
+                pTarget.addEffect(new MobEffectInstance(iskallia.vault.init.ModEffects.VULNERABLE, 180, 0));
+
+                ((ServerLevel)this.level).sendParticles(ParticleTypes.SOUL_FIRE_FLAME, pTarget.getX(), pTarget.getEyeY(), pTarget.getZ(), 5, 0.2, 0.2, 0.2, 0.03);
+            }
+
+            if(owner.getRandom().nextFloat() <= executeThreshold) {
+                spawnHeartFragment(pTarget);
+            }
         }
 
+        pTarget.hurt(DamageSource.playerAttack(player), customDamage);
+
+        if (!isMaw) {
+
+            float targetHealthPercent = pTarget.getHealth() / pTarget.getMaxHealth();
+
+            if (this.executeThreshold > 0 && targetHealthPercent <= this.executeThreshold) {
+
+                ServerLevel serverLevel = (ServerLevel) this.level;
+                serverLevel.sendParticles(ParticleTypes.SOUL, pTarget.getX(), pTarget.getY() + 1.0, pTarget.getZ(), 20, 0.2, 0.5, 0.2, 0.05);
+                serverLevel.sendParticles(ParticleTypes.LARGE_SMOKE, pTarget.getX(), pTarget.getY() + 1.0, pTarget.getZ(), 10, 0.3, 0.3, 0.3, 0.02);
+
+                serverLevel.playSound(null, pTarget.blockPosition(), SoundEvents.ZOMBIE_VILLAGER_CONVERTED, SoundSource.PLAYERS, 1.0F, 2.0F);
+
+                pTarget.hurt(DamageSource.playerAttack(player), Float.MAX_VALUE);
+
+                spawnHeartFragment(pTarget);
+
+            }
+
+        }
+    }
+
+    private void spawnHeartFragment(LivingEntity target) {
+        ItemStack heartFragment = new ItemStack(ModItems.HEART_FRAGMENT);
+
+        FloatingItemEntity floatingItem = FloatingItemEntity.create(
+                target.level,
+                new BlockPos(target.getX(), target.getY() + 0.4F, target.getZ()),
+                heartFragment
+        ).setDroppingParticles(true);
+
+        floatingItem.setColor(11540247, 7669511);
+        target.level.addFreshEntity(floatingItem);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.putFloat("CustomDamage", this.customDamage);
-        nbt.putFloat("HealAmount", this.healAmount);
+        nbt.putFloat("ExecuteThreshold", this.executeThreshold);
         nbt.putBoolean("IsMaw", this.isMaw);
     }
 
@@ -105,7 +166,7 @@ public class CustomFangEntity extends EvokerFangs {
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         this.customDamage = nbt.getFloat("CustomDamage");
-        this.healAmount = nbt.getFloat("HealAmount");
+        this.executeThreshold = nbt.getFloat("ExecuteThreshold");
         this.isMaw = nbt.getBoolean("IsMaw");
     }
 }

@@ -22,7 +22,7 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
 
     private double radius;
     private float damageMultiplier;
-    private float healingPerHit;
+    private float heartFragmentChance;
 
 
     @Override
@@ -46,12 +46,11 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
                 DelayedExecutionHelper.schedule(level, delay, () -> {
                     Vec3 spawnPos = player.position().add(look.scale(distance));
 
-                    // We summon 3 fangs per "step" to make the maw wide enough to hit reliably
                     for (int side = -1; side <= 1; side++) {
                         Vec3 perpendicular = new Vec3(-look.z, 0, look.x).scale(side * 0.5);
                         Vec3 finalPos = spawnPos.add(perpendicular);
 
-                        CustomFangEntity fangs = new CustomFangEntity(level, finalPos.x, finalPos.y, finalPos.z, player.getYRot(), 0, player, finalDamage, this.healingPerHit, true);
+                        CustomFangEntity fangs = new CustomFangEntity(level, finalPos.x, finalPos.y, finalPos.z, player.getYRot(), player, finalDamage, heartFragmentChance, true);
                         level.addFreshEntity(fangs);
                     }
                 });
@@ -67,7 +66,7 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         super.writeBits(buffer);
         Adapters.DOUBLE.writeBits(this.radius, buffer);
         Adapters.FLOAT.writeBits(this.damageMultiplier, buffer);
-        Adapters.FLOAT.writeBits(this.healingPerHit, buffer);
+        Adapters.FLOAT.writeBits(this.heartFragmentChance, buffer);
     }
 
     @Override
@@ -75,7 +74,7 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         super.readBits(buffer);
         this.radius = Adapters.DOUBLE.readBits(buffer).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readBits(buffer).orElse(0.0F);
-        this.healingPerHit = Adapters.FLOAT.readBits(buffer).orElse(0.0F);
+        this.heartFragmentChance = Adapters.FLOAT.readBits(buffer).orElse(0.0F);
     }
 
     @Override
@@ -83,7 +82,7 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         return super.writeNbt().map(nbt -> {
             Adapters.DOUBLE.writeNbt(this.radius).ifPresent(tag -> nbt.put("radius", tag));
             Adapters.FLOAT.writeNbt(this.damageMultiplier).ifPresent(tag -> nbt.put("damageMultiplier", tag));
-            Adapters.FLOAT.writeNbt(this.healingPerHit).ifPresent(tag -> nbt.put("healingPerHit", tag));
+            Adapters.FLOAT.writeNbt(this.heartFragmentChance).ifPresent(tag -> nbt.put("heartFragmentChance", tag));
             return nbt;
         });
     }
@@ -93,7 +92,7 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         super.readNbt(nbt);
         this.radius = Adapters.DOUBLE.readNbt(nbt.get("radius")).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readNbt(nbt.get("damageMultiplier")).orElse(0.0F);
-        this.healingPerHit = Adapters.FLOAT.readNbt(nbt.get("healingPerHit")).orElse(0.0F);
+        this.heartFragmentChance = Adapters.FLOAT.readNbt(nbt.get("healingPerHit")).orElse(0.0F);
     }
 
     @Override
@@ -101,7 +100,7 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         return super.writeJson().map(json -> {
             Adapters.DOUBLE.writeJson(this.radius).ifPresent(element -> json.add("radius", element));
             Adapters.FLOAT.writeJson(this.damageMultiplier).ifPresent(element -> json.add("damageMultiplier", element));
-            Adapters.FLOAT.writeJson(this.healingPerHit).ifPresent(element -> json.add("healingPerHit", element));
+            Adapters.FLOAT.writeJson(this.heartFragmentChance).ifPresent(element -> json.add("heartFragmentChance", element));
             return json;
         });
     }
@@ -111,6 +110,6 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         super.readJson(json);
         this.radius = Adapters.DOUBLE.readJson(json.get("radius")).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readJson(json.get("damageMultiplier")).orElse(0.0F);
-        this.healingPerHit = Adapters.FLOAT.readJson(json.get("healingPerHit")).orElse(0.0F);
+        this.heartFragmentChance = Adapters.FLOAT.readJson(json.get("heartFragmentChance")).orElse(0.0F);
     }
 }
