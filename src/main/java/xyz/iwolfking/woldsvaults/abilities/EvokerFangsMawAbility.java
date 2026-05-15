@@ -68,6 +68,26 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         return EffectDurationHelper.adjustEffectDurationFloor(player, 180);
     }
 
+    public double getRadius() {
+        return radius;
+    }
+
+    public float getDamageMultiplier() {
+        return damageMultiplier;
+    }
+
+    public float getBaseDamage() {
+        return baseDamage;
+    }
+
+    public float getHeartFragmentChance() {
+        return heartFragmentChance;
+    }
+
+    public int getEffectAmplifier() {
+        return effectAmplifier;
+    }
+
     @Override
     public void writeBits(BitBuffer buffer) {
         super.writeBits(buffer);
@@ -106,7 +126,7 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         this.radius = Adapters.DOUBLE.readNbt(nbt.get("radius")).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readNbt(nbt.get("damageMultiplier")).orElse(0.0F);
         this.baseDamage = Adapters.FLOAT.readNbt(nbt.get("baseDamage")).orElse(0.0F);
-        this.heartFragmentChance = Adapters.FLOAT.readNbt(nbt.get("healingPerHit")).orElse(0.0F);
+        this.heartFragmentChance = Adapters.FLOAT.readNbt(nbt.get("heartFragmentChance")).orElse(0.0F);
         this.effectAmplifier = Adapters.INT.readNbt(nbt.get("effectAmplifier")).orElse(0);
     }
 
