@@ -1,5 +1,8 @@
 package xyz.iwolfking.woldsvaults.entities.projectiles;
 
+import iskallia.vault.entity.boss.ArtifactBossEntity;
+import iskallia.vault.entity.boss.TheVesselEntity;
+import iskallia.vault.entity.boss.VaultBossBaseEntity;
 import iskallia.vault.entity.entity.FloatingItemEntity;
 import iskallia.vault.init.ModItems;
 import net.minecraft.core.BlockPos;
@@ -124,6 +127,11 @@ public class CustomFangEntity extends EvokerFangs {
             float targetHealthPercent = pTarget.getHealth() / pTarget.getMaxHealth();
 
             if (this.executeThreshold > 0 && targetHealthPercent <= this.executeThreshold) {
+
+                if(pTarget instanceof TheVesselEntity || pTarget instanceof VaultBossBaseEntity) {
+                    spawnHeartFragment(pTarget);
+                    return;
+                }
 
                 ServerLevel serverLevel = (ServerLevel) this.level;
                 serverLevel.sendParticles(ParticleTypes.SOUL, pTarget.getX(), pTarget.getY() + 1.0, pTarget.getZ(), 20, 0.2, 0.5, 0.2, 0.05);
