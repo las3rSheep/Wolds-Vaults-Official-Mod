@@ -6,6 +6,7 @@ import iskallia.vault.core.net.BitBuffer;
 import iskallia.vault.skill.ability.effect.spi.core.InstantManaAbility;
 import iskallia.vault.skill.base.SkillContext;
 import iskallia.vault.util.calc.AreaOfEffectHelper;
+import iskallia.vault.util.calc.EffectDurationHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -22,7 +23,9 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
 
     private double radius;
     private float damageMultiplier;
+    private float baseDamage;
     private float heartFragmentChance;
+    private int effectAmplifier;
 
 
     @Override
@@ -34,7 +37,7 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
             Vec3 look = player.getLookAngle().normalize();
 
             float playerAttackDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
-            float finalDamage = playerAttackDamage * this.damageMultiplier;
+            float finalDamage = (playerAttackDamage * this.damageMultiplier) + baseDamage;
 
             level.playSound(null, player.getX(), player.getY(), player.getZ(),
                     SoundEvents.EVOKER_PREPARE_WOLOLO, SoundSource.PLAYERS, 1.2F, 0.7F);
@@ -50,7 +53,7 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
                         Vec3 perpendicular = new Vec3(-look.z, 0, look.x).scale(side * 0.5);
                         Vec3 finalPos = spawnPos.add(perpendicular);
 
-                        CustomFangEntity fangs = new CustomFangEntity(level, finalPos.x, finalPos.y, finalPos.z, player.getYRot(), player, finalDamage, heartFragmentChance, true);
+                        CustomFangEntity fangs = new CustomFangEntity(level, finalPos.x, finalPos.y, finalPos.z, player.getYRot(), player, finalDamage, heartFragmentChance, getEffectDuration(player), effectAmplifier, true);
                         level.addFreshEntity(fangs);
                     }
                 });
@@ -61,12 +64,18 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         }).orElse(ActionResult.fail());
     }
 
+    public int getEffectDuration(ServerPlayer player) {
+        return EffectDurationHelper.adjustEffectDurationFloor(player, 180);
+    }
+
     @Override
     public void writeBits(BitBuffer buffer) {
         super.writeBits(buffer);
         Adapters.DOUBLE.writeBits(this.radius, buffer);
         Adapters.FLOAT.writeBits(this.damageMultiplier, buffer);
+        Adapters.FLOAT.writeBits(this.baseDamage, buffer);
         Adapters.FLOAT.writeBits(this.heartFragmentChance, buffer);
+        Adapters.INT.writeBits(this.effectAmplifier, buffer);
     }
 
     @Override
@@ -74,7 +83,9 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         super.readBits(buffer);
         this.radius = Adapters.DOUBLE.readBits(buffer).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readBits(buffer).orElse(0.0F);
+        this.baseDamage = Adapters.FLOAT.readBits(buffer).orElse(0.0F);
         this.heartFragmentChance = Adapters.FLOAT.readBits(buffer).orElse(0.0F);
+        this.effectAmplifier = Adapters.INT.readBits(buffer).orElse(0);
     }
 
     @Override
@@ -82,7 +93,9 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         return super.writeNbt().map(nbt -> {
             Adapters.DOUBLE.writeNbt(this.radius).ifPresent(tag -> nbt.put("radius", tag));
             Adapters.FLOAT.writeNbt(this.damageMultiplier).ifPresent(tag -> nbt.put("damageMultiplier", tag));
+            Adapters.FLOAT.writeNbt(this.baseDamage).ifPresent(tag -> nbt.put("baseDamage", tag));
             Adapters.FLOAT.writeNbt(this.heartFragmentChance).ifPresent(tag -> nbt.put("heartFragmentChance", tag));
+            Adapters.INT.writeNbt(this.effectAmplifier).ifPresent(tag -> nbt.put("effectAmplifier", tag));
             return nbt;
         });
     }
@@ -92,7 +105,9 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         super.readNbt(nbt);
         this.radius = Adapters.DOUBLE.readNbt(nbt.get("radius")).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readNbt(nbt.get("damageMultiplier")).orElse(0.0F);
+        this.baseDamage = Adapters.FLOAT.readNbt(nbt.get("baseDamage")).orElse(0.0F);
         this.heartFragmentChance = Adapters.FLOAT.readNbt(nbt.get("healingPerHit")).orElse(0.0F);
+        this.effectAmplifier = Adapters.INT.readNbt(nbt.get("effectAmplifier")).orElse(0);
     }
 
     @Override
@@ -100,7 +115,9 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         return super.writeJson().map(json -> {
             Adapters.DOUBLE.writeJson(this.radius).ifPresent(element -> json.add("radius", element));
             Adapters.FLOAT.writeJson(this.damageMultiplier).ifPresent(element -> json.add("damageMultiplier", element));
+            Adapters.FLOAT.writeJson(this.baseDamage).ifPresent(element -> json.add("baseDamage", element));
             Adapters.FLOAT.writeJson(this.heartFragmentChance).ifPresent(element -> json.add("heartFragmentChance", element));
+            Adapters.INT.writeJson(this.effectAmplifier).ifPresent(element -> json.add("effectAmplifier", element));
             return json;
         });
     }
@@ -110,6 +127,8 @@ public class EvokerFangsMawAbility extends InstantManaAbility {
         super.readJson(json);
         this.radius = Adapters.DOUBLE.readJson(json.get("radius")).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readJson(json.get("damageMultiplier")).orElse(0.0F);
+        this.baseDamage = Adapters.FLOAT.readJson(json.get("baseDamage")).orElse(0.0F);
         this.heartFragmentChance = Adapters.FLOAT.readJson(json.get("heartFragmentChance")).orElse(0.0F);
+        this.effectAmplifier = Adapters.INT.readJson(json.get("effectAmplifier")).orElse(0);
     }
 }

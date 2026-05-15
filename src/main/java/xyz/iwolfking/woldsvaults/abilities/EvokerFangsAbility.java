@@ -22,6 +22,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
 
     private double radius;
     private float damageMultiplier;
+    private float baseDamage;
     private float executeThreshold;
 
 
@@ -32,7 +33,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
             double realRadius = AreaOfEffectHelper.adjustAreaOfEffect(player, this, (float) this.radius);
 
             float playerAttackDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
-            float finalDamage = playerAttackDamage * this.damageMultiplier;
+            float finalDamage = (playerAttackDamage * this.damageMultiplier) + baseDamage;
 
             for (double d = 1.0; d <= realRadius; d += 1.5) {
                 final double currentDist = d;
@@ -61,7 +62,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
             double z = player.getZ() + Math.sin(angle) * dist;
             double y = player.getY();
 
-            CustomFangEntity fangs = new CustomFangEntity(level, x, y, z, player.getYRot(), player, damage, this.executeThreshold, false);
+            CustomFangEntity fangs = new CustomFangEntity(level, x, y, z, player.getYRot(), player, damage, this.executeThreshold, 0, 0,false);
             level.addFreshEntity(fangs);
         }
     }
@@ -71,6 +72,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
         super.writeBits(buffer);
         Adapters.DOUBLE.writeBits(this.radius, buffer);
         Adapters.FLOAT.writeBits(this.damageMultiplier, buffer);
+        Adapters.FLOAT.writeBits(this.baseDamage, buffer);
         Adapters.FLOAT.writeBits(this.executeThreshold, buffer);
     }
 
@@ -79,6 +81,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
         super.readBits(buffer);
         this.radius = Adapters.DOUBLE.readBits(buffer).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readBits(buffer).orElse(0.0F);
+        this.baseDamage = Adapters.FLOAT.readBits(buffer).orElse(0.0F);
         this.executeThreshold = Adapters.FLOAT.readBits(buffer).orElse(0.0F);
     }
 
@@ -87,6 +90,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
         return super.writeNbt().map(nbt -> {
             Adapters.DOUBLE.writeNbt(this.radius).ifPresent(tag -> nbt.put("radius", tag));
             Adapters.FLOAT.writeNbt(this.damageMultiplier).ifPresent(tag -> nbt.put("damageMultiplier", tag));
+            Adapters.FLOAT.writeNbt(this.baseDamage).ifPresent(tag -> nbt.put("baseDamage", tag));
             Adapters.FLOAT.writeNbt(this.executeThreshold).ifPresent(tag -> nbt.put("executeThreshold", tag));
             return nbt;
         });
@@ -97,6 +101,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
         super.readNbt(nbt);
         this.radius = Adapters.DOUBLE.readNbt(nbt.get("radius")).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readNbt(nbt.get("damageMultiplier")).orElse(0.0F);
+        this.baseDamage = Adapters.FLOAT.readNbt(nbt.get("baseDamage")).orElse(0.0F);
         this.executeThreshold = Adapters.FLOAT.readNbt(nbt.get("executeThreshold")).orElse(0.0F);
     }
 
@@ -105,6 +110,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
         return super.writeJson().map(json -> {
             Adapters.DOUBLE.writeJson(this.radius).ifPresent(element -> json.add("radius", element));
             Adapters.FLOAT.writeJson(this.damageMultiplier).ifPresent(element -> json.add("damageMultiplier", element));
+            Adapters.FLOAT.writeJson(this.baseDamage).ifPresent(element -> json.add("baseDamage", element));
             Adapters.FLOAT.writeJson(this.executeThreshold).ifPresent(element -> json.add("executeThreshold", element));
             return json;
         });
@@ -115,6 +121,7 @@ public class EvokerFangsAbility extends InstantManaAbility {
         super.readJson(json);
         this.radius = Adapters.DOUBLE.readJson(json.get("radius")).orElse(0.0);
         this.damageMultiplier = Adapters.FLOAT.readJson(json.get("damageMultiplier")).orElse(0.0F);
+        this.baseDamage = Adapters.FLOAT.readJson(json.get("baseDamage")).orElse(0.0F);
         this.executeThreshold = Adapters.FLOAT.readJson(json.get("executeThreshold")).orElse(0.0F);
     }
 }

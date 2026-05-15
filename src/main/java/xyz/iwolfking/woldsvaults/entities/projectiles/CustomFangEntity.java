@@ -24,17 +24,21 @@ import xyz.iwolfking.woldsvaults.mixins.accessors.EvokerFangsAccessor;
 public class CustomFangEntity extends EvokerFangs {
     private float customDamage = 6.0F;
     private float executeThreshold = 0.0F;
+    private int effectDuration = 180;
+    private int effectAmplifier = 0;
     private boolean isMaw = false;
 
 
 
-    public CustomFangEntity(Level level, double x, double y, double z, float yRot, LivingEntity owner, float damage, float executeThreshold, boolean isMaw) {
+    public CustomFangEntity(Level level, double x, double y, double z, float yRot, LivingEntity owner, float damage, float executeThreshold, int effectDuration, int effectAmplifier, boolean isMaw) {
         this(ModEntities.CUSTOM_FANGS, level);
         this.setPos(x, y, z);
         this.setYRot(yRot);
         this.customDamage = damage;
         this.executeThreshold = executeThreshold;
         this.isMaw = isMaw;
+        this.effectDuration = effectDuration;
+        this.effectAmplifier = effectAmplifier;
         this.setOwner(owner);
     }
 
@@ -86,26 +90,24 @@ public class CustomFangEntity extends EvokerFangs {
             return;
         }
 
-
-
         if (this.isMaw) {
             double distance = owner.position().distanceTo(pTarget.position());
 
             if (distance > 1.5) {
-                Vec3 pullDir = owner.position().subtract(pTarget.position()).normalize().scale(0.65);
+                Vec3 pullDir = owner.position().subtract(pTarget.position()).normalize().scale(0.95);
                 pTarget.setDeltaMovement(new Vec3(pullDir.x, 0.2, pullDir.z));
                 pTarget.hurtMarked = true;
             }
 
-            pTarget.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 180, 1));
+            pTarget.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, effectDuration, effectAmplifier + 2));
 
             if (distance >= 5.0 && distance < 10.0) {
-                pTarget.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 180, 0));
-                ((ServerLevel)this.level).sendParticles(ParticleTypes.ANGRY_VILLAGER, pTarget.getX(), pTarget.getEyeY(), pTarget.getZ(), 3, 0.2, 0.2, 0.2, 0.0);
+                pTarget.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, effectDuration, effectAmplifier + 1));
+                ((ServerLevel)this.level).sendParticles(ParticleTypes.DRAGON_BREATH, pTarget.getX(), pTarget.getEyeY(), pTarget.getZ(), 3, 0.2, 0.2, 0.2, 0.0);
             }
 
             else if (distance >= 10.0) {
-                pTarget.addEffect(new MobEffectInstance(iskallia.vault.init.ModEffects.VULNERABLE, 180, 0));
+                pTarget.addEffect(new MobEffectInstance(iskallia.vault.init.ModEffects.VULNERABLE, effectDuration, effectAmplifier));
 
                 ((ServerLevel)this.level).sendParticles(ParticleTypes.SOUL_FIRE_FLAME, pTarget.getX(), pTarget.getEyeY(), pTarget.getZ(), 5, 0.2, 0.2, 0.2, 0.03);
             }
@@ -156,6 +158,8 @@ public class CustomFangEntity extends EvokerFangs {
         super.addAdditionalSaveData(nbt);
         nbt.putFloat("CustomDamage", this.customDamage);
         nbt.putFloat("ExecuteThreshold", this.executeThreshold);
+        nbt.putInt("EffectDuration", this.effectDuration);
+        nbt.putInt("EffectAmplifier", this.effectAmplifier);
         nbt.putBoolean("IsMaw", this.isMaw);
     }
 
@@ -164,6 +168,8 @@ public class CustomFangEntity extends EvokerFangs {
         super.readAdditionalSaveData(nbt);
         this.customDamage = nbt.getFloat("CustomDamage");
         this.executeThreshold = nbt.getFloat("ExecuteThreshold");
+        this.effectDuration = nbt.getInt("EffectDuration");
+        this.effectAmplifier = nbt.getInt("EffectAmplifier");
         this.isMaw = nbt.getBoolean("IsMaw");
     }
 }
