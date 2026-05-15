@@ -1,7 +1,6 @@
 package xyz.iwolfking.woldsvaults.entities.projectiles;
 
 import iskallia.vault.entity.entity.FloatingItemEntity;
-import iskallia.vault.entity.entity.PetEntity;
 import iskallia.vault.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -12,7 +11,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -22,8 +20,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import xyz.iwolfking.woldsvaults.init.ModEntities;
 import xyz.iwolfking.woldsvaults.mixins.accessors.EvokerFangsAccessor;
-
-import java.util.List;
 
 public class CustomFangEntity extends EvokerFangs {
     private float customDamage = 6.0F;
@@ -48,8 +44,8 @@ public class CustomFangEntity extends EvokerFangs {
 
     public void tick() {
         if (this.level.isClientSide) {
+            ((EvokerFangsAccessor)this).setLifeTicks(((EvokerFangsAccessor) this).getLifeTicks() - 1);
             if (((EvokerFangsAccessor)this).getClientSideAttackStarted()) {
-                ((EvokerFangsAccessor)this).setLifeTicks(((EvokerFangsAccessor)this).getLifeTicks() - 1);
                 if (((EvokerFangsAccessor)this).getLifeTicks() == 14) {
                     for(int i = 0; i < 12; ++i) {
                         double d0 = this.getX() + (this.random.nextDouble() * 2.0D - 1.0D) * (double)this.getBbWidth() * 0.5D;
@@ -80,6 +76,7 @@ public class CustomFangEntity extends EvokerFangs {
             }
         }
         ((EvokerFangsAccessor)this).setWarmupDelayTicks(((EvokerFangsAccessor) this).getWarmupDelayTicks() - 1);
+        ((EvokerFangsAccessor)this).setLifeTicks(((EvokerFangsAccessor) this).getLifeTicks() - 1);
     }
 
     private void dealDamageTo(LivingEntity pTarget) {
