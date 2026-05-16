@@ -24,8 +24,9 @@ public class ModVaultPortalBlocksProvider extends AbstractVaultPortalBlocksProvi
             builder.add("copycats:copycat_block");
         });
 
-        add("carpenterblocks", builder -> {
-            builder.add("carpenterblocks:blockframe");
+        add("blockcarpentry", builder -> {
+            builder.add("blockcarpentry:frameblock");
+            builder.add("blockcarpentry:illusion_block");
         });
 
         add("vh_compressium", builder -> {
