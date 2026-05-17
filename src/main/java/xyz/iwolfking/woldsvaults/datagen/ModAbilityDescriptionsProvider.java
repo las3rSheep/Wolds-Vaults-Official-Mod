@@ -151,6 +151,73 @@ public class ModAbilityDescriptionsProvider extends AbstractAbilityDescriptionsP
                 next.add("manaCost");
             });
 
+            builder.addDescription("Fangs_Base", jsonElements -> {
+                jsonElements.add(JsonDescription.simple("Summons a ring of Fangs in a "));
+                jsonElements.add(JsonDescription.simple("radius ", "$radius"));
+                jsonElements.add(JsonDescription.simple("around you dealing damage plus a portion of your "));
+                jsonElements.add(JsonDescription.simple("Attack Damage", "$damage"));
+                jsonElements.add(JsonDescription.simple(".\n\n"));
+                jsonElements.add(JsonDescription.simple("If a target is below a certain percentage of their "));
+                jsonElements.add(JsonDescription.simple("health", "green"));
+                jsonElements.add(JsonDescription.simple(", they will be "));
+                jsonElements.add(JsonDescription.simple("executed ", "red"));
+                jsonElements.add(JsonDescription.simple("and drop a  "));
+                jsonElements.add(JsonDescription.simple("Heart Fragment", "green"));
+                jsonElements.add(JsonDescription.simple("."));
+                jsonElements.add(JsonDescription.simple("\n\nApplies On-Hit effects."));
+                jsonElements.add(castAbility());
+            }, current -> {
+                current.add("adjustedRadius");
+                current.add("damageMultiplier");
+                current.add("baseDamage");
+                current.add("executeThreshold");
+                current.add("cooldown");
+                current.add("manaCost");
+            }, next -> {
+                next.add("adjustedRadius");
+                next.add("damageMultiplier");
+                next.add("baseDamage");
+                next.add("executeThreshold");
+                next.add("cooldown");
+                next.add("manaCost");
+            });
+
+            builder.addDescription("Fangs_Maw", jsonElements -> {
+                jsonElements.add(JsonDescription.simple("Summons a line of Fangs in front of you"));
+                jsonElements.add(JsonDescription.simple(" dealing damage plus a portion of your "));
+                jsonElements.add(JsonDescription.simple("Attack Damage", "$damage"));
+                jsonElements.add(JsonDescription.simple(", pulling any target hit towards you.\n\n"));
+                jsonElements.add(JsonDescription.simple("Depending on the distance the target was pulled from, they will have "));
+                jsonElements.add(JsonDescription.simple("Slowness", "#78329F"));
+                jsonElements.add(JsonDescription.simple(","));
+                jsonElements.add(JsonDescription.simple(" Weakness", "#783269"));
+                jsonElements.add(JsonDescription.simple(", "));
+                jsonElements.add(JsonDescription.simple("and "));
+                jsonElements.add(JsonDescription.simple("Vulnerability ", "#B13269"));
+                jsonElements.add(JsonDescription.simple("applied to them.\n\n"));
+                jsonElements.add(JsonDescription.simple("Chance to drop a "));
+                jsonElements.add(JsonDescription.simple("Heart Fragment", "green"));
+                jsonElements.add(JsonDescription.simple(" per mob hit."));
+                jsonElements.add(JsonDescription.simple("\n\nApplies On-Hit effects."));
+                jsonElements.add(castAbility());
+            }, current -> {
+                current.add("adjustedRadius");
+                current.add("damageMultiplier");
+                current.add("baseDamage");
+                current.add("heartFragmentChance");
+                current.add("effectAmplifier");
+                current.add("cooldown");
+                current.add("manaCost");
+            }, next -> {
+                next.add("adjustedRadius");
+                next.add("damageMultiplier");
+                next.add("baseDamage");
+                next.add("heartFragmentChance");
+                next.add("effectAmplifier");
+                next.add("cooldown");
+                next.add("manaCost");
+            });
+
             builder.addDescription("Vein_Miner_Chain", jsonElements -> {
                 jsonElements.add(JsonDescription.simple("Changes Vein Miner to mine blocks that are "));
                 jsonElements.add(JsonDescription.simple("further apart ", "$distance"));

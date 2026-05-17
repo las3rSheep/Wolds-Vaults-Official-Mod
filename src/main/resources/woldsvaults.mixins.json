@@ -256,6 +256,7 @@
     "vaulthunters.custom.MixinGreedVesselEntity",
     "vaulthunters.custom.MixinHeraldCrystalObjective",
     "vaulthunters.custom.MixinHeraldObjective",
+    "vaulthunters.custom.MixinImbuementAltarTileEntity",
     "vaulthunters.custom.MixinImplodeAbility",
     "vaulthunters.custom.MixinInscriptionData",
     "vaulthunters.custom.MixinInventoryHudRenderer",

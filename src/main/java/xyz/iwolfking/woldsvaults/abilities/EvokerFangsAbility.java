@@ -19,7 +19,6 @@ import xyz.iwolfking.woldsvaults.entities.projectiles.CustomFangEntity;
 import java.util.Optional;
 
 public class EvokerFangsAbility extends InstantManaAbility {
-
     private double radius;
     private float damageMultiplier;
     private float baseDamage;
@@ -65,6 +64,23 @@ public class EvokerFangsAbility extends InstantManaAbility {
             CustomFangEntity fangs = new CustomFangEntity(level, x, y, z, player.getYRot(), player, damage, this.executeThreshold, 0, 0,false);
             level.addFreshEntity(fangs);
         }
+    }
+
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public float getDamageMultiplier() {
+        return damageMultiplier;
+    }
+
+    public float getBaseDamage() {
+        return baseDamage;
+    }
+
+    public float getExecuteThreshold() {
+        return executeThreshold;
     }
 
     @Override
