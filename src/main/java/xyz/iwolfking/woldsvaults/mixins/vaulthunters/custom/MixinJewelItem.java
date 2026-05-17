@@ -1,14 +1,9 @@
 package xyz.iwolfking.woldsvaults.mixins.vaulthunters.custom;
 
-import iskallia.vault.config.VaultRecyclerConfig;
-import iskallia.vault.config.entry.ChanceItemStackEntry;
 import iskallia.vault.core.random.RandomSource;
 import iskallia.vault.dynamodel.DynamicModel;
-import iskallia.vault.gear.attribute.VaultGearModifier;
-import iskallia.vault.gear.data.VaultGearData;
+import iskallia.vault.dynamodel.DynamicModelItem;
 import iskallia.vault.gear.item.VaultGearItem;
-import iskallia.vault.init.ModConfigs;
-import iskallia.vault.init.ModItems;
 import iskallia.vault.item.core.DataInitializationItem;
 import iskallia.vault.item.core.DataTransferItem;
 import iskallia.vault.item.tool.JewelItem;
@@ -20,11 +15,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.iwolfking.woldsvaults.models.Jewels;
 
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Mixin(value = JewelItem.class, remap = false)
 public abstract class MixinJewelItem extends Item implements VaultGearItem, DataInitializationItem, DataTransferItem {
@@ -61,5 +57,10 @@ public abstract class MixinJewelItem extends Item implements VaultGearItem, Data
             this.instantIdentify(null, stack);
         }
 
+    }
+
+    @Inject(method = "getColor", at = @At("HEAD"), cancellable = true)
+    private static void noColorIfModel(ItemStack stack, CallbackInfoReturnable<Integer> cir){
+        ((DynamicModelItem) stack.getItem()).getDynamicModelId(stack).ifPresent(modelId -> cir.setReturnValue(0xFFFFFF));
     }
 }
