@@ -189,7 +189,7 @@
       "item": "the_vault:jewel",
       "models": [
         {
-          "value": "the_vault:gear/jewel/treasure",
+          "value": "the_vault:gear/jewel/breaching",
           "weight": 1
         }
       ],
