@@ -431,14 +431,6 @@ public class BallisticBingoObjective extends BingoObjective {
         } else {
             TaskRendererContext context = new TaskRendererContext(poseStack, partialTicks, MultiBufferSource.immediate(Tesselator.getInstance().getBuilder()), Minecraft.getInstance().font);
             task.onRender(context);
-            if (this.getOr(BLACKOUT, false)) {
-                Font font = Minecraft.getInstance().font;
-                String label = "BLACKOUT";
-                int labelWidth = font.width(label);
-                int x = (window.getGuiScaledWidth() - labelWidth) / 2;
-                int y = 4;
-                font.drawShadow(poseStack, label, (float)x, (float)y, -48060);
-            }
 
             return true;
         }
