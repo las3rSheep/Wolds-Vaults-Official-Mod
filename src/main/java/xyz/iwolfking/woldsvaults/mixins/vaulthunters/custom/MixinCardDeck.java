@@ -15,10 +15,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.iwolfking.woldsvaults.api.lib.ICardDeckCache;
 import xyz.iwolfking.woldsvaults.modifiers.deck.EmptySlotDeckModifier;
+import xyz.iwolfking.woldsvaults.modifiers.deck.lib.IRemovableSlotModifier;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Mixin(value = CardDeck.class, remap = false)
@@ -130,6 +132,17 @@ public abstract class MixinCardDeck implements ICardDeckCache {
                     .map(Map.Entry::getKey)
                     .orElse(null);
         }
+    }
+
+    @Inject(method = "removeModifiersMatching", at = @At("HEAD"))
+    private void callRemovalMethod(Predicate<DeckModifier<?>> predicate, CallbackInfo ci) {
+        this.modifiers.forEach(deckModifier -> {
+            if(predicate.test(deckModifier)) {
+                if(deckModifier instanceof IRemovableSlotModifier removableSlotModifier) {
+                    removableSlotModifier.onRemove((CardDeck)(Object)this);
+                }
+            }
+        });
     }
 
 
