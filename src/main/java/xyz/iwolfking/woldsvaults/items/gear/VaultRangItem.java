@@ -17,6 +17,7 @@ import iskallia.vault.item.BasicItem;
 import iskallia.vault.snapshot.AttributeSnapshot;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.SidedHelper;
+import iskallia.vault.util.damage.AttackScaleHelper;
 import iskallia.vault.world.data.DiscoveredModelsData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
@@ -53,6 +54,7 @@ import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 import vazkii.quark.base.handler.QuarkSounds;
+import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.api.data.enchantments.AllowedEnchantmentsData;
 import xyz.iwolfking.woldsvaults.items.gear.rang.VaultRangEntity;
 import xyz.iwolfking.woldsvaults.items.gear.rang.VaultRangLogic;
@@ -163,6 +165,26 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
             ItemStack placeholder = itemstack.copy();
             placeholder.getOrCreateTag().putUUID(TAG_RANG_FLIGHT_ID, entity.getUUID());
             playerIn.setItemInHand(handIn, placeholder);
+
+            AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(playerIn);
+            Double attackSpeed = snapshot.getAttributeValue(ModGearAttributes.ATTACK_SPEED, VaultGearAttributeTypeMerger.doubleSum());
+            Double attackSpeedMult = snapshot.getAttributeValue(ModGearAttributes.ATTACK_SPEED_PERCENT, VaultGearAttributeTypeMerger.doubleSum());
+
+            if (!playerIn.getAbilities().instabuild) {
+                double trueAttackSpeed = 4.0 + attackSpeed;
+                trueAttackSpeed += trueAttackSpeed * attackSpeedMult;
+
+                double currentSpeed = Math.max(0.1, trueAttackSpeed);
+
+                double balancingConstant = 30.0;
+
+                int cooldown = (int) Math.round(balancingConstant / currentSpeed);
+                cooldown = Math.max(0, cooldown);
+
+                if(cooldown > 0) {
+                    playerIn.getCooldowns().addCooldown(this, cooldown);
+                }
+            }
         }
 
         playerIn.awardStat(Stats.ITEM_USED.get(this));
