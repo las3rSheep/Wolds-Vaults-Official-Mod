@@ -63,7 +63,7 @@ public class ModCardDecksProvider extends AbstractDeckProvider {
                 deckBuilder.add("OAOOOOAO");
                 deckBuilder.add("OXOXXOXO");
                 deckBuilder.add("OOOOOOOO");
-            }), new IntRangeEntry(3, 3));
+            }), new IntRangeEntry(2, 2));
         });
 
 
