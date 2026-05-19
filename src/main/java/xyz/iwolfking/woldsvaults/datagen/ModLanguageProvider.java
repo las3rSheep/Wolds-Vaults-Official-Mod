@@ -68,6 +68,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModEntities.STAR_DEVOURER_ENTITY, "Star Beast");
         add(ModEntities.SINGULARITY_CREEPER, "Singularity Creeper");
         add(ModEntities.CUSTOM_FANGS, "Fangs");
+        add(ModItems.GREED_TREE_RESET_ITEM, "Greed Infused Neuralizer");
         add("fix.woldsvaults.schematic_terminal_no_permission", "You do not have permission to place an Overworld Inscription here!");
         add("fluid.woldsvaults.molten_trinket", "Molten Trinket");
         add("block.woldsvaults.prismatic_glue", "Prismatic Glue");

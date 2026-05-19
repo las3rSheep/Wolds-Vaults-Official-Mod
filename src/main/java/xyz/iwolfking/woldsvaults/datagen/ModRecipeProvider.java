@@ -417,6 +417,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 9
         ).unlockedBy("has_essence", has(iskallia.vault.init.ModItems.VAULT_ESSENCE)).save(pFinishedRecipeConsumer);
 
+        new InfuserRecipeBuilder(
+                iskallia.vault.init.ModItems.GREED_COIN,
+                iskallia.vault.init.ModItems.NEURALIZER,
+                ModItems.GREED_TREE_RESET_ITEM,
+                40,
+                25
+        ).unlockedBy("has_greed_coin", has(iskallia.vault.init.ModItems.GREED_COIN)).save(pFinishedRecipeConsumer);
+
         companionRerollRecipe("companion_temporalizer", pFinishedRecipeConsumer);
 
         gemBlockRecipe("block_gem_wutodie", ModBlocks.WUTODIE, iskallia.vault.init.ModItems.WUTODIE_GEM, pFinishedRecipeConsumer);

@@ -181,6 +181,10 @@
       "value": "Obtained when a vault ore would normally drop nothing."
     },
     {
+      "item": "woldsvaults:greed_neuralizer",
+      "value": "Use to reset your Greed Tree unlocks!"
+    },
+    {
       "item": "woldsvaults:owned_crafting_table",
       "value": "Use with <aqua>Integrated Dynamics's<yellow> Crafting Interface<white> when you want to utilize research locked recipes!"
     },
