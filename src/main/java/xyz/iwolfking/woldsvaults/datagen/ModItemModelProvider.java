@@ -96,6 +96,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.MOLTEN_TRINKET_BUCKET);
         simpleItem(ModItems.MOB_BINDING_STONE);
         simpleItem(ModItems.GREED_TREE_RESET_ITEM);
+        simpleItem(ModItems.EXQUISITE_BOX);
         getBuilder(ModItems.RESEARCH_TOKEN.getRegistryName().getPath())
                 .parent(new ModelFile.UncheckedModelFile(
                         ResourceLocation.parse("builtin/entity")
