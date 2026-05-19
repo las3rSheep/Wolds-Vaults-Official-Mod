@@ -139,6 +139,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("unlock_goal.woldsvaults.wizard_trinket_pouch", "Your arcane energy has enlightened you!");
         add("unlock_goal.woldsvaults.looters_trinket_pouch", "You are enlightened with a beautiful dream of boundless loot!");
         add("unlock_goal.woldsvaults.treasure_jewel", "You envision a better way of opening Treasure Chests!");
+        add("unlock_goal.woldsvaults.underwater_theme", "You ponder the thought of an entire vault under the sea...");
         add("vault_gear_modifiers.woldsvaults.safer_spaces_recharging_barrier", "Recharging Barrier");
         add("vault_gear_modifiers.woldsvaults.safer_spaces_improved_block", "Improved Block");
         add("key.woldsvaults.open_inventory_hud", "Open Inventory HUD Edit Screen");
