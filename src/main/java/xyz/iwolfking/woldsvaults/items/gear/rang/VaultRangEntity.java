@@ -2,6 +2,7 @@ package xyz.iwolfking.woldsvaults.items.gear.rang;
 
 import com.google.common.collect.Multimap;
 import iskallia.vault.entity.entity.FloatingItemEntity;
+import iskallia.vault.entity.entity.PetEntity;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.core.BlockPos;
@@ -344,7 +345,7 @@ public class VaultRangEntity extends Projectile {
         double nearestDistance = Double.MAX_VALUE;
 
         for (LivingEntity candidate : this.level.getEntitiesOfClass(LivingEntity.class, searchBox)) {
-            if (!candidate.isAlive() || candidate.isSpectator() || candidate instanceof Player) {
+            if (!candidate.isAlive() || candidate.isSpectator() || candidate instanceof Player || candidate instanceof PetEntity) {
                 continue;
             }
             if (candidate == thrower || candidate == lastHit) {
