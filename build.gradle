@@ -279,7 +279,7 @@ dependencies {
     implementation fg.deobf("curse.maven:vaultmapper-1099126:7326513")
     compileOnly fg.deobf("curse.maven:xaeros-minimap-263420:3778436")
     compileOnly fg.deobf('curse.maven:alexs-cloud-storage-606618:3757407')
-    compileOnly fg.deobf('curse.maven:atomicstrykers-infernal-mobs-227875:4149699')
+    implementation fg.deobf('curse.maven:atomicstrykers-infernal-mobs-227875:4149699')
     implementation fg.deobf('curse.maven:better-combat-by-daedelus-639842:4428885')
     compileOnly fg.deobf('curse.maven:cooking-for-blockheads-231484:4065856')
     implementation fg.deobf('curse.maven:ensorcellation-349447:4782920')

@@ -242,6 +242,7 @@
     "vaulthunters.custom.MixinDeckModifierAdapter",
     "vaulthunters.custom.MixinEntityEvents",
     "vaulthunters.custom.MixinEtchingApplicationTableTileEntity",
+    "vaulthunters.custom.MixinEtchingHelper",
     "vaulthunters.custom.MixinEtchingItem",
     "vaulthunters.custom.MixinExperiencedExpertise",
     "vaulthunters.custom.MixinGearAttributeEvents",
