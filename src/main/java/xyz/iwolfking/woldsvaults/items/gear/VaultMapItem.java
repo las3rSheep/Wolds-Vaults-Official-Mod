@@ -334,12 +334,16 @@ public class VaultMapItem extends BasicItem implements VaultGearItem, IVaultCrys
                     inscriptionData.apply(context.getPlayer().orElse(null), output, data);
                 } else {
                     VaultModifierStack stack = new VaultModifierStack(settableValueVaultModifier, 1);
-                    data.getModifiers().add(stack);
+                    if(data.addModifierByCrafting(stack, true, true)) {
+                        data.addModifierByCrafting(stack, true, false);
+                    }
                 }
 
             } else if (vaultMod != null) {
                 VaultModifierStack stack = new VaultModifierStack(vaultMod, 1);
-                data.getModifiers().add(stack);
+                if(data.addModifierByCrafting(stack, true, true)) {
+                    data.addModifierByCrafting(stack, true, false);
+                }
             }
         }
         return true;
