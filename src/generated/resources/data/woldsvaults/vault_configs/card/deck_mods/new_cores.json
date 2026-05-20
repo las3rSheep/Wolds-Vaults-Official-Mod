@@ -421,6 +421,58 @@
       "id": "talent",
       "type": "group_adjacency_efficiency"
     },
+    "construction": {
+      "modifierValue": {
+        "count": 0.0,
+        "type": "constant"
+      },
+      "modifierValues": {
+        "lesser": {
+          "value": {
+            "count": 0.0,
+            "type": "constant"
+          },
+          "modelId": "woldsvaults:deck_cores/arcane_deck_core_lesser#inventory",
+          "name": "Lesser Construction Core",
+          "colour": 13618375,
+          "slotRoll": {
+            "count": 1,
+            "type": "constant"
+          },
+          "requiredGroups": [],
+          "requiredColors": []
+        },
+        "greater": {
+          "value": {
+            "count": 0.0,
+            "type": "constant"
+          },
+          "modelId": "woldsvaults:deck_cores/arcane_deck_core_greater#inventory",
+          "name": "Greater Construction Core",
+          "colour": 16769382,
+          "slotRoll": {
+            "min": 3,
+            "max": 5,
+            "type": "uniform"
+          },
+          "requiredGroups": [],
+          "requiredColors": []
+        }
+      },
+      "requiredGroups": [],
+      "requiredColors": [],
+      "slotRoll": {
+        "min": 2,
+        "max": 3,
+        "type": "uniform"
+      },
+      "groupName": "",
+      "modelId": "woldsvaults:deck_cores/arcane_deck_core#inventory",
+      "name": "Construction Core",
+      "colour": 13618375,
+      "id": "construction",
+      "type": "create_slots"
+    },
     "nitwit": {
       "modifierValue": {
         "min": 0.75,

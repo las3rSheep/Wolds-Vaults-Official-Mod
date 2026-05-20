@@ -92,6 +92,13 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
             arcaneDeckModifier.modifierRolls.put("lesser", slotVariant("Lesser Arcane Core", IntRoll.ofConstant(1), FloatRoll.ofConstant(0), 13618375, "woldsvaults:deck_cores/arcane_deck_core_lesser#inventory", Set.of(), Set.of()));
             arcaneDeckModifier.modifierRolls.put("greater", slotVariant("Greater Arcane Core", IntRoll.ofUniform(3, 5), FloatRoll.ofConstant(0), 16769382, "woldsvaults:deck_cores/arcane_deck_core_greater#inventory", Set.of(), Set.of()));
 
+            CreateSlotDeckModifier.Config constructionCoreModifier = new CreateSlotDeckModifier.Config("");
+            constructionCoreModifier.slotRoll = IntRoll.ofUniform(2, 3);
+            constructionCoreModifier.modifierRoll = FloatRoll.ofConstant(0);
+            constructionCoreModifier.modifierRolls.put("lesser", slotVariant("Lesser Construction Core", IntRoll.ofConstant(1), FloatRoll.ofConstant(0), 13618375, "woldsvaults:deck_cores/arcane_deck_core_lesser#inventory", Set.of(), Set.of()));
+            constructionCoreModifier.modifierRolls.put("greater", slotVariant("Greater Construction Core", IntRoll.ofUniform(3, 5), FloatRoll.ofConstant(0), 16769382, "woldsvaults:deck_cores/arcane_deck_core_greater#inventory", Set.of(), Set.of()));
+
+
             ArcaneSlotDeckModifier.Config adeptDeckModifier = new ArcaneSlotDeckModifier.Config();
             adeptDeckModifier.slotRoll = IntRoll.ofConstant(1);
             adeptDeckModifier.modifierRoll = FloatRoll.ofUniformedStep(2.0F, 4.0F, 1.0F);
@@ -127,6 +134,7 @@ public class ModDeckCoresProvider extends AbstractDeckCoreProvider {
             builder.addCore("pluto", DominanceDeckModifier::new, plutoDeckModifier,"Pluto Core", 13618375,"woldsvaults:deck_cores/pluto_deck_core#inventory");
             builder.addCore("premium", GroupSynergyDeckModifier::new, premiumCoreModifier,"Premium Core", 13618375,"woldsvaults:deck_cores/premium_deck_core#inventory");
             builder.addCore("sparkling", GlobalDeckModifier::new, sparklingDeckCore,"Sparkling Core", 13618375,"woldsvaults:deck_cores/sparkling_deck_core#inventory");
+            builder.addCore("construction", CreateSlotDeckModifier::new, constructionCoreModifier,"Construction Core", 13618375,"woldsvaults:deck_cores/arcane_deck_core#inventory");
             builder.addPool("default", stringWeightedListBuilder -> {
                 stringWeightedListBuilder.add("arsenal", 1);
                 stringWeightedListBuilder.add("aegis", 1);
