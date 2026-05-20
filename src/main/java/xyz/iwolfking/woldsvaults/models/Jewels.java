@@ -13,6 +13,7 @@ public class Jewels {
     public static final PlainItemModel KALEIDOSCOPE;
     public static final PlainItemModel PAX;
     public static final PlainItemModel BREACHING;
+    public static final PlainItemModel FROST;
 
     static {
         STELLA = REGISTRY.register(new PlainItemModel(VaultMod.id("gear/jewel/stella"), "Eternal Stella")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
@@ -21,5 +22,6 @@ public class Jewels {
         KALEIDOSCOPE = REGISTRY.register(new PlainItemModel(VaultMod.id("gear/jewel/kaleidoscope"), "Kaleidoscope")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
         PAX = REGISTRY.register(new PlainItemModel(VaultMod.id("gear/jewel/pax"), "Pax")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
         BREACHING = REGISTRY.register(new PlainItemModel(VaultMod.id("gear/jewel/breaching"), "Breaching")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
+        FROST = REGISTRY.register(new PlainItemModel(VaultMod.id("gear/jewel/frost"), "Frost")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
     }
 }
