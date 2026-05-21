@@ -1,5 +1,7 @@
 package xyz.iwolfking.woldsvaults.aaaWIP;
 
+import java.util.HashMap;
+
 /// a simple queue that allows cutsies, sorting elements according to a float supplied alongside the data, as long as the float is greater than a certain minimum value
 public class CutsieQueue<k,v> {
     ///minimum value required to sort the elements instead of queueing them
@@ -10,42 +12,67 @@ public class CutsieQueue<k,v> {
     Node midqueue;
     Node qBack;
 
+    //hashmap for better searching
+    HashMap<k, Node> map = new HashMap<>();
+
     public CutsieQueue(k rootKey, v rootVal, float minSortValue) {
         this.minSortValue = minSortValue;
         this.qFront = new Node(rootKey, rootVal, 0);
         this.midqueue = this.qFront;
         this.qBack = this.qFront;
     }
+    public CutsieQueue(float minSortValue) {
+        this.minSortValue = minSortValue;
+        this.qFront = null;
+        this.midqueue = null;
+        this.qBack = null;
+    }
 
     //public methods
     public v find(k target) {
         return findNode(target).val;
     }
+    public float checkSortVal(k target) {
+        Node node = findNode(target);
+        if(node != null)
+            return node.dist;
+        else
+            return Float.NaN;
+    }
     public void add(k key, v val, float sortVal) {
-        qAdd( new Node(key, val, sortVal));
+        Node node = new Node(key, val, sortVal);
+        map.put(key, node);
+        qAdd(node);
     }
     public void move(k kScion, v val, float sortVal) {
+        if(sortVal <= minSortValue)
+            return;
         Node scion = findNode(kScion);
         qRemove(scion);
         scion.val = val;
         scion.dist = sortVal;
         qAdd(scion);
     }
-    public returnData poll() {
+    public ReturnData poll() {
         if(qFront == null)
             return null;
         Node polled = qFront;
         qFront = qFront.toBak;
         qRemove(polled);
-        return new returnData(polled);
+        map.remove(polled.key);
+        return new ReturnData(polled);
+    }
+    public boolean isEmpty() {
+        return qFront == null;
     }
 
     //internal methods
     protected Node findNode(k target) {
-        Node it = qFront;
-        while(it != null && it.key != target)
-            it = it.toBak;
-        return it;
+//        Node it = qFront;
+//        while(it != null && it.key != target)
+//            it = it.toBak;
+//        return it;
+        return map.get(target);
     }
 
     private void qAdd(Node node) {
@@ -57,6 +84,7 @@ public class CutsieQueue<k,v> {
             }
             else {
                 qInsert(qFront, node);
+                midqueue = node;
                 qFront = node;
             }
         } else {
@@ -80,8 +108,10 @@ public class CutsieQueue<k,v> {
             infrontOfThis = behindThis.toBak;
             behindThis.toBak = qMe;
         }
-        qMe.toFwd = behindThis;
-        qMe.toBak = infrontOfThis;
+        if(qMe != null) {
+            qMe.toFwd = behindThis;
+            qMe.toBak = infrontOfThis;
+        }
         if(infrontOfThis != null)
            infrontOfThis.toFwd = qMe;
         if(behindThis == qBack)
@@ -119,13 +149,15 @@ public class CutsieQueue<k,v> {
         }
     }
 
-    public class returnData {
+    public class ReturnData {
         public final k key;
         public final v val;
+        public final float dist;
 
-        protected returnData(Node node) {
+        protected ReturnData(Node node) {
             this.key = node.key;
             this.val = node.val;
+            this.dist = node.dist;
         }
     }
 }

@@ -28,6 +28,9 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.PacketDistributor;
+import xyz.iwolfking.woldsvaults.aaaWIP.ChainQueue.AbstractChainQueue;
+import xyz.iwolfking.woldsvaults.aaaWIP.ChainQueue.ChainQ_BlockEucl;
+import xyz.iwolfking.woldsvaults.aaaWIP.CutsieQueue;
 import xyz.iwolfking.woldsvaults.aaaWIP.NeochainBasePMsg;
 import xyz.iwolfking.woldsvaults.init.ModNetwork;
 
@@ -52,7 +55,7 @@ public abstract class WoldBreakHandler extends BlockBreakHandler {
         IItemDamageHandler damageHandler = getDamageHandler(heldItem);
         int limit = this.getBlockLimit(player);
         if (limit == 1) {
-            this.destroyBlock(level, player, heldItem, damageHandler, pos, this.shouldVoid(level, player, level.getBlockState(pos)), false);
+            this.destroyBlock(level, player, heldItem, damageHandler, pos, this.shouldVoid(level, player, level.getBlockState(pos)), true);
             return true;
         } else if (limit <= 0) {
             return false;
@@ -95,44 +98,86 @@ public abstract class WoldBreakHandler extends BlockBreakHandler {
         ItemStack heldItem = player.getItemInHand(InteractionHand.MAIN_HAND);
         IItemDamageHandler damageHandler = getDamageHandler(heldItem);
         int limit = this.getBlockLimit(player);
-        int range = this.getRange();
         if (limit == 1) {
-            this.destroyBlock(level, player, heldItem, damageHandler, pos, this.shouldVoid(level, player, level.getBlockState(pos)), false);
+            this.destroyBlock(level, player, heldItem, damageHandler, pos, this.shouldVoid(level, player, level.getBlockState(pos)), true);
             return true;
         } else if (limit <= 0) {
             return false;
         } else {
+            int range = this.getRange();
+            float filterRange = Float.POSITIVE_INFINITY;
+//            float filterRange = range;
             boolean heldItemStartedEmpty = heldItem.isEmpty();
             NeochainBasePMsg pMessage = new NeochainBasePMsg();
             Set<BlockPos> traversedBlocks = new HashSet<>();
-            Queue<BlockPos> positionQueue = new LinkedList<>();
-            positionQueue.add(pos);
+            AbstractChainQueue<BlockPos, BlockPos> queue;
 
-            while (!positionQueue.isEmpty()) {
-                BlockPos headPos = positionQueue.poll();
+//            queue = new ChainQ_BlockCheb<>(pos, null, 1);
+            queue = new ChainQ_BlockEucl<>(pos, pos, 2.9f);
+//            filterRange *= range;
+//            queue = new ChainQ_BlockManh<>(pos, null, 1);
 
-                for (BlockPos offset : BlockPos.withinManhattanStream(headPos, range, range, range).map(BlockPos::immutable).toList()) {
-                    if (traversedBlocks.size() >= limit) {
-                        positionQueue.clear();
-                        break;
-                    }
+            CutsieQueue<BlockPos, BlockPos>.ReturnData head = queue.poll();
+            BlockPos headPos = head.key;
+            this.destroyBlock(level, player, heldItem, damageHandler, headPos, this.shouldVoid(level, player, level.getBlockState(headPos)), true);
+            pMessage.addRoot(getV(headPos));
+            traversedBlocks.add(headPos);
 
-                    if (!traversedBlocks.contains(offset)) {
+            do {
+                for(BlockPos offset : BlockPos.withinManhattanStream(headPos, range, range, range).map(BlockPos::immutable).toList()) {
+                    if(!traversedBlocks.contains(offset)) {
                         BlockState blockState = level.getBlockState(offset);
                         if (!blockState.isAir() && blockState.getBlock() == targetBlock) {
-                            this.destroyBlock(level, player, heldItem, damageHandler, offset, this.shouldVoid(level, player, blockState), !offset.equals(pos));
-                            if (heldItem.isEmpty() && !heldItemStartedEmpty || heldItem.getItem() instanceof VaultGearItem gearItem && gearItem.isBroken(heldItem)) {
-                                positionQueue.clear();
-                                break;
+                            float cur = queue.checkSortVal(offset);
+                            if(Float.isNaN(cur)) {//new spot
+                                queue.add(offset, headPos, queue.calcDistance(offset, headPos));
+                            } else {//old spot
+                                float newDist = queue.calcDistance(offset, headPos);
+                                if(newDist < cur)
+                                    queue.move(offset, headPos, newDist);
                             }
-
-                            positionQueue.add(offset);
-                            traversedBlocks.add(offset);
-                            pMessage.add(getV(offset), getV(headPos));
                         }
                     }
                 }
-            }
+
+                if(queue.isEmpty())
+                    break;
+                head = queue.poll();
+                if(head.dist > filterRange)
+                    break;
+
+                headPos = head.key;
+                pMessage.add(getV(headPos), getV(head.val));
+                this.destroyBlock(level, player, heldItem, damageHandler, headPos, this.shouldVoid(level, player, level.getBlockState(headPos)), false);
+                traversedBlocks.add(headPos);
+
+            } while (!(traversedBlocks.size() >= limit || heldItem.isEmpty() && !heldItemStartedEmpty || heldItem.getItem() instanceof VaultGearItem gearItem && gearItem.isBroken(heldItem)));
+
+//            while (!positionQueue.isEmpty()) {
+//                BlockPos headPos = positionQueue.poll();
+//
+//                for (BlockPos offset : BlockPos.withinManhattanStream(headPos, range, range, range).map(BlockPos::immutable).toList()) {
+//                    if (traversedBlocks.size() >= limit) {
+//                        positionQueue.clear();
+//                        break;
+//                    }
+//
+//                    if (!traversedBlocks.contains(offset)) {
+//                        BlockState blockState = level.getBlockState(offset);
+//                        if (!blockState.isAir() && blockState.getBlock() == targetBlock) {
+//                            this.destroyBlock(level, player, heldItem, damageHandler, offset, this.shouldVoid(level, player, blockState), !offset.equals(pos));
+//                            if (heldItem.isEmpty() && !heldItemStartedEmpty || heldItem.getItem() instanceof VaultGearItem gearItem && gearItem.isBroken(heldItem)) {
+//                                positionQueue.clear();
+//                                break;
+//                            }
+//
+//                            positionQueue.add(offset);
+//                            traversedBlocks.add(offset);
+//                            pMessage.add(getV(offset), getV(headPos));
+//                        }
+//                    }
+//                }
+//            }
 
             ModNetwork.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(()->player), pMessage);
 
