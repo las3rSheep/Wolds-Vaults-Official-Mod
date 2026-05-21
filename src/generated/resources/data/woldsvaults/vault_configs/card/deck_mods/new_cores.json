@@ -432,7 +432,7 @@
             "count": 0.0,
             "type": "constant"
           },
-          "modelId": "woldsvaults:deck_cores/arcane_deck_core_lesser#inventory",
+          "modelId": "woldsvaults:deck_cores/construction_deck_core_lesser#inventory",
           "name": "Lesser Construction Core",
           "colour": 13618375,
           "slotRoll": {
@@ -447,11 +447,11 @@
             "count": 0.0,
             "type": "constant"
           },
-          "modelId": "woldsvaults:deck_cores/arcane_deck_core_greater#inventory",
+          "modelId": "woldsvaults:deck_cores/construction_deck_core_greater#inventory",
           "name": "Greater Construction Core",
           "colour": 16769382,
           "slotRoll": {
-            "min": 3,
+            "min": 4,
             "max": 5,
             "type": "uniform"
           },
@@ -467,7 +467,7 @@
         "type": "uniform"
       },
       "groupName": "",
-      "modelId": "woldsvaults:deck_cores/arcane_deck_core#inventory",
+      "modelId": "woldsvaults:deck_cores/construction_deck_core#inventory",
       "name": "Construction Core",
       "colour": 13618375,
       "id": "construction",
