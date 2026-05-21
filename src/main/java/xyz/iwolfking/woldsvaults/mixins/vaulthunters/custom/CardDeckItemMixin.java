@@ -7,7 +7,6 @@ import iskallia.vault.item.CardDeckItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -16,12 +15,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
 import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.CardDeckAccessor;
-import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.CardEntry$ColorAccessor;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 @Mixin(value = CardDeckItem.class, remap = false)
 public class CardDeckItemMixin {
@@ -30,7 +27,7 @@ public class CardDeckItemMixin {
      * @author iwolfking
      * @reason Render live preview of card deck instead of just default layout.
      */
-    @Overwrite
+    @Overwrite(remap = true)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
         Optional<CardDeck> deckOpt = CardDeckItem.getCardDeck(stack);
         
@@ -69,7 +66,12 @@ public class CardDeckItemMixin {
                             }
                         }
 
-                        if (structuralMatch != null) {
+                        Optional<MutableComponent> cardComponent = woldsVaults$getCardIconComponent(deck, structuralMatch);
+
+                        if(cardComponent.isPresent()) {
+                            rowComponent.append(cardComponent.get());
+                        }
+                        else if (structuralMatch != null) {
                             if (structuralMatch.allowedGroups != null && structuralMatch.allowedGroups.contains("Arcane")) {
                                 arcaneSlotsCount++;
                                 rowComponent.append(new TextComponent("◆").withStyle(ChatFormatting.LIGHT_PURPLE));
@@ -100,5 +102,47 @@ public class CardDeckItemMixin {
         } else {
             CardDeckItem.appendLayoutPreview(CardDeckItem.getId(stack), tooltip, false);
         }
+    }
+
+    @Unique
+    private Optional<MutableComponent> woldsVaults$getCardIconComponent(CardDeck deck, CardPos pos) {
+        if(deck.getCard(pos).isPresent()) {
+            Card card = deck.getCard(pos).get();
+            if(card.getColor() != null && card.getGroups() != null) {
+                return Optional.of(new TextComponent(woldsVaults$getGroupIcon(card.getGroups())).withStyle(card.getColor().getColoredText().getStyle()));
+            }
+        }
+
+        return Optional.empty();
+    }
+
+    @Unique
+    private String woldsVaults$getGroupIcon(List<String> groups) {
+        if(groups.contains("Arcane")) {
+            return "A";
+        }
+        else if(groups.contains("Evolution")) {
+            return "E";
+        }
+        else if(groups.contains("Resource")) {
+            return "R";
+        }
+        else if(groups.contains("Knack")) {
+            return "K";
+        }
+        else if(groups.contains("Temporal")) {
+            return "T";
+        }
+        else if(groups.contains("Shiny")) {
+            return "✮";
+        }
+        else if(groups.contains("Deluxe")) {
+            return "D";
+        }
+        else if(groups.contains("Stat")) {
+            return "S";
+        }
+
+        return "■";
     }
 }

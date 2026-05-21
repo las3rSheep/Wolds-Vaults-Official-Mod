@@ -677,6 +677,16 @@
     }
   },
   "pools": {
+    "factory": [
+      {
+        "value": "construction",
+        "weight": 1.0
+      },
+      {
+        "value": "tool",
+        "weight": 1.0
+      }
+    ],
     "default": [
       {
         "value": "arsenal",
@@ -860,6 +870,10 @@
       },
       {
         "value": "sparkling",
+        "weight": 1.0
+      },
+      {
+        "value": "construction",
         "weight": 1.0
       }
     ],
