@@ -133,6 +133,12 @@ public class ModDeckRecipesProvider extends AbstractDeckRecipesProvider {
                 itemStacks.add(new ItemStack(ModItems.BLACK_OPAL_GEM, 16));
                 itemStacks.add(new ItemStack(ModItems.POG, 1));
             });
+            builder.addRecipe(WoldsVaults.id("construction_core"), "construction", "lesser", itemStacks -> {
+                itemStacks.add(new ItemStack(ModBlocks.VAULT_GOLD, 16));
+                itemStacks.add(new ItemStack(ModItems.SILVER_SCRAP, 256));
+                itemStacks.add(new ItemStack(ModItems.BLACK_OPAL_GEM, 16));
+                itemStacks.add(new ItemStack(ModItems.POG, 1));
+            });
         });
     }
 
