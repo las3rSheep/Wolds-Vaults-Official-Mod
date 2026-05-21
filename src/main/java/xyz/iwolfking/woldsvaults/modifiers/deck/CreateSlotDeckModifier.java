@@ -156,7 +156,7 @@ public class CreateSlotDeckModifier extends DeckModifier<CreateSlotDeckModifier.
 
     @Override
     public void addText(List<Component> tooltip, int minIndex, TooltipFlag flag, float time) {
-        MutableComponent comp = (new TextComponent("+")).append((new TextComponent(slotRoll + " ").append(new TextComponent(config.groupName).withStyle(ChatFormatting.AQUA))));
+        MutableComponent comp = (new TextComponent("+")).append((new TextComponent(slotRoll + " additional ").append(new TextComponent(config.groupName.isEmpty() ? "" : config.groupName).withStyle(ChatFormatting.GOLD))));
 
         comp.append(StringUtils.pluralise(" slot", slotRoll));
         if (Screen.hasShiftDown()) {
@@ -169,6 +169,12 @@ public class CreateSlotDeckModifier extends DeckModifier<CreateSlotDeckModifier.
 
     @Override
     public boolean voidConfigIfPopulated() {
+        return false;
+    }
+
+    //Prevent upgrading this core directly
+    @Override
+    public boolean isBetter(DeckModifier<?> other) {
         return false;
     }
 
