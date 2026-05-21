@@ -125,7 +125,7 @@ public class ModUniqueGearProvider extends AbstractUniqueGearProvider {
         ));
 
         consumer.accept(entry("woldsvaults:shattering_jewel", new UniqueGearBuilder("Shatterering Jewel", ModItems.JEWEL)
-                .model("the_vault:gear/jewel/treasure")
+                .model("the_vault:gear/jewel/breaching")
                 .implicit("the_vault:u_jewel_size_stella")
                 .prefix("the_vault:breaching_jewel")
                 .dropLocation("Gateways")
