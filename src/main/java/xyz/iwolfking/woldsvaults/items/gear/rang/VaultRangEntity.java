@@ -637,6 +637,7 @@ public class VaultRangEntity extends Projectile {
         this.noPhysics = true;
 
         List<ItemEntity> items = this.level.getEntitiesOfClass(ItemEntity.class, this.getBoundingBox().inflate(2));
+        items.removeIf(itemEntity -> itemEntity.getTags().contains("fake_item") || itemEntity.getTags().contains("PreventMagnetMovement"));
         List<ExperienceOrb> xp = this.level.getEntitiesOfClass(ExperienceOrb.class, this.getBoundingBox().inflate(2));
 
         Vec3 ourPos = this.position();
@@ -752,6 +753,10 @@ public class VaultRangEntity extends Projectile {
 
     @Override
     protected boolean canAddPassenger(@Nonnull Entity passenger) {
+        if (passenger.getTags().contains("fake_item") || passenger.getTags().contains("PreventMagnetMovement")) {
+            return false;
+        }
+
         return super.canAddPassenger(passenger) || passenger instanceof ItemEntity || passenger instanceof ExperienceOrb;
     }
 
