@@ -481,7 +481,12 @@
     "vaulthunters.fixes.MixinToolItemRenderer",
     "vaulthunters.fixes.MixinUniqueCodexScreen",
     "vaulthunters.fixes.MixinVoidStoneItem",
-    "vaulthunters.objectives.MixinClientCrystalData"
+    "vaulthunters.objectives.MixinClientCrystalData",
+    "servertransfer.MixinClientAdvancements",
+    "servertransfer.MixinClientLifecycleHandler",
+    "servertransfer.MixinRecipeManagerScriptLoader",
+    "servertransfer.MixinThermalRecipeManagers",
+    "servertransfer.MixinVHAPISyncDescriptor"
   ],
   "injectors": {
     "defaultRequire": 1
