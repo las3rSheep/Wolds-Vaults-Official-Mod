@@ -6,6 +6,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.network.packets.OpenFloatingTextScreenPacket;
 import xyz.iwolfking.woldsvaults.network.packets.StopFlightMessage;
 import xyz.iwolfking.woldsvaults.network.message.BrewingAltarParticleMessage;
 import xyz.iwolfking.woldsvaults.network.message.ClientboundSyncGamerulesMessage;
@@ -26,6 +27,7 @@ public class ModNetwork {
 
     public static void init() {
         CHANNEL.registerMessage(id++, StopFlightMessage.class, StopFlightMessage::encode, StopFlightMessage::decode, StopFlightMessage::handle);
+        CHANNEL.registerMessage(id++, OpenFloatingTextScreenPacket.class, OpenFloatingTextScreenPacket::encode, OpenFloatingTextScreenPacket::decode, OpenFloatingTextScreenPacket::handle);
         CHANNEL.registerMessage(id++, UpdateFloatingTextPacket.class, UpdateFloatingTextPacket::encode, UpdateFloatingTextPacket::decode, UpdateFloatingTextPacket::handle);
         CHANNEL.registerMessage(id++, TimeTrialLeaderboardS2CPacket.class, TimeTrialLeaderboardS2CPacket::encode, TimeTrialLeaderboardS2CPacket::decode, TimeTrialLeaderboardS2CPacket::handle);
         CHANNEL.registerMessage(id++, BrewingAltarParticleMessage.class, BrewingAltarParticleMessage::encode, BrewingAltarParticleMessage::decode, BrewingAltarParticleMessage::handle);

@@ -2,6 +2,7 @@ package xyz.iwolfking.woldsvaults.blocks;
 
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -24,6 +25,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 import xyz.iwolfking.woldsvaults.blocks.containers.FloatingTextEditScreen;
 import xyz.iwolfking.woldsvaults.blocks.tiles.ConfigurableFloatingTextTileEntity;
+import xyz.iwolfking.woldsvaults.init.ModNetwork;
+import xyz.iwolfking.woldsvaults.network.packets.OpenFloatingTextScreenPacket;
 
 public class ConfigurableFloatingTextBlock extends Block implements EntityBlock {
 
@@ -68,21 +71,15 @@ public class ConfigurableFloatingTextBlock extends Block implements EntityBlock 
 
 
     @Override
-    public InteractionResult use(
-            BlockState state,
-            Level level,
-            BlockPos pos,
-            Player player,
-            InteractionHand hand,
-            BlockHitResult hit
-    ) {
-        if (level.isClientSide) {
-            BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof ConfigurableFloatingTextTileEntity tile) {
-                openConfigurableFloatingTextEditScreen(tile);
-            }
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
+            ModNetwork.CHANNEL.send(
+                    net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> serverPlayer),
+                    new OpenFloatingTextScreenPacket(pos)
+            );
         }
-        return InteractionResult.SUCCESS;
+
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     @OnlyIn(Dist.CLIENT)
