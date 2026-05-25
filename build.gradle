@@ -294,6 +294,9 @@ dependencies {
     implementation fg.deobf("curse.maven:effortless-building-302113:4369816")
     compileOnly fg.deobf("curse.maven:valkyrien-skies-258371:4991985")
     compileOnly fg.deobf("curse.maven:just-enough-resources-jer-240630:4445746")
+    compileOnly fg.deobf("curse.maven:jea-444941:3680036")
+    compileOnly fg.deobf("curse.maven:crafttweaker-239197:6256079")
+    compileOnly fg.deobf("curse.maven:powah-rearchitected-633483:4525198")
 
     // deps needed for runtime debug
     runtimeOnly fg.deobf("curse.maven:autoreglib-250363:3642382") // quark
