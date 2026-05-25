@@ -1,5 +1,7 @@
 package xyz.iwolfking.woldsvaults.aaaWIP;
 
+import xyz.iwolfking.woldsvaults.WoldsVaults;
+
 import java.util.HashMap;
 
 /// a simple queue that allows cutsies, sorting elements according to a float supplied alongside the data, as long as the float is greater than a certain minimum value
@@ -45,13 +47,16 @@ public class CutsieQueue<k,v> {
         qAdd(node);
     }
     public void move(k kScion, v val, float sortVal) {
+//        WoldsVaults.LOGGER.info("trymove");
         if(sortVal <= minSortValue)
             return;
-        Node scion = findNode(kScion);
-        qRemove(scion);
-        scion.val = val;
-        scion.dist = sortVal;
-        qAdd(scion);
+//        Node scion = findNode(kScion);
+//        qRemove(scion);
+        qRemove(findNode(kScion));
+//        scion.val = val;
+//        scion.dist = sortVal;
+//        qAdd(scion);
+        qAdd(new Node(kScion, val, sortVal));
     }
     public ReturnData poll() {
         if(qFront == null)
@@ -65,6 +70,12 @@ public class CutsieQueue<k,v> {
     public boolean isEmpty() {
         return qFront == null;
     }
+    public void esplod() {
+        map.clear();
+        qFront = null;
+        midqueue = null;
+        qBack = null;
+    }
 
     //internal methods
     protected Node findNode(k target) {
@@ -76,6 +87,7 @@ public class CutsieQueue<k,v> {
     }
 
     private void qAdd(Node node) {
+//        WoldsVaults.LOGGER.info("qAdd {} with {}, at {}",node.key, node.val, node.dist);
         float dist = node.dist;
         if(dist <= minSortValue) {
             if(midqueue != null) {

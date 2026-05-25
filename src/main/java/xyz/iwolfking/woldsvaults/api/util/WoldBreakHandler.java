@@ -28,6 +28,7 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.PacketDistributor;
+import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.aaaWIP.ChainQueue.AbstractChainQueue;
 import xyz.iwolfking.woldsvaults.aaaWIP.ChainQueue.ChainQ_BlockEucl;
 import xyz.iwolfking.woldsvaults.aaaWIP.CutsieQueue;
@@ -105,21 +106,26 @@ public abstract class WoldBreakHandler extends BlockBreakHandler {
             return false;
         } else {
             int range = this.getRange();
+
             float filterRange = Float.POSITIVE_INFINITY;
 //            float filterRange = range;
+
             boolean heldItemStartedEmpty = heldItem.isEmpty();
             NeochainBasePMsg pMessage = new NeochainBasePMsg();
             Set<BlockPos> traversedBlocks = new HashSet<>();
             AbstractChainQueue<BlockPos, BlockPos> queue;
 
 //            queue = new ChainQ_BlockCheb<>(pos, null, 1);
+
             queue = new ChainQ_BlockEucl<>(pos, pos, 2.9f);
 //            filterRange *= range;
+
 //            queue = new ChainQ_BlockManh<>(pos, null, 1);
 
             CutsieQueue<BlockPos, BlockPos>.ReturnData head = queue.poll();
             BlockPos headPos = head.key;
-            this.destroyBlock(level, player, heldItem, damageHandler, headPos, this.shouldVoid(level, player, level.getBlockState(headPos)), true);
+
+            this.destroyBlock(level, player, heldItem, damageHandler, headPos, this.shouldVoid(level, player, level.getBlockState(headPos)), false);
             pMessage.addRoot(getV(headPos));
             traversedBlocks.add(headPos);
 
