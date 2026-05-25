@@ -9,8 +9,6 @@ import iskallia.vault.block.entity.VaultChestTileEntity;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.VaultLevel;
-import iskallia.vault.core.vault.VaultUtils;
-import iskallia.vault.core.vault.modifier.spi.VaultModifier;
 import iskallia.vault.entity.VaultBoss;
 import iskallia.vault.entity.boss.TheVesselEntity;
 import iskallia.vault.entity.boss.VaultBossEntity;
@@ -26,9 +24,9 @@ import iskallia.vault.entity.entity.elite.EliteZombieEntity;
 import iskallia.vault.event.ActiveFlags;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
+import iskallia.vault.gear.etching.EtchingHelper;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.trinket.TrinketHelper;
-import iskallia.vault.gear.trinket.effects.DamageImmunityTrinket;
 import iskallia.vault.gear.trinket.effects.MultiJumpTrinket;
 import iskallia.vault.item.gear.TrinketItem;
 import iskallia.vault.snapshot.AttributeSnapshot;
@@ -60,7 +58,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -69,7 +66,6 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.event.CurioChangeEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.abilities.SneakyGetawayAbility;
-import xyz.iwolfking.woldsvaults.api.util.VaultModifierUtils;
 import xyz.iwolfking.woldsvaults.api.util.WoldAttributeHelper;
 import xyz.iwolfking.woldsvaults.api.util.WoldEtchingHelper;
 import xyz.iwolfking.woldsvaults.config.forge.WoldsVaultsConfig;
@@ -77,6 +73,7 @@ import xyz.iwolfking.woldsvaults.api.data.HexEffects;
 import xyz.iwolfking.woldsvaults.api.data.discovery.DiscoveredRecipesData;
 import xyz.iwolfking.woldsvaults.effect.mobeffects.EchoingEffectInstance;
 import xyz.iwolfking.woldsvaults.effect.mobeffects.PercentBurnEffect;
+import xyz.iwolfking.woldsvaults.effect.trinkets.EffectOnHitTakenEffect;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModEtchingGearAttributes;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
@@ -84,14 +81,11 @@ import xyz.iwolfking.woldsvaults.items.TrinketPouchItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultTridentItem;
-import xyz.iwolfking.woldsvaults.modifiers.vault.AntiImmunityModifier;
 import xyz.iwolfking.woldsvaults.objectives.data.bosses.WoldBoss;
 import xyz.iwolfking.woldsvaults.api.util.WoldEventHelper;
 
-import java.util.List;
 import java.util.Random;
 import java.util.function.BiConsumer;
-import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(
         modid = WoldsVaults.MOD_ID
@@ -107,7 +101,7 @@ public class LivingEntityEvents {
     }
 
     @SubscribeEvent
-    public static void dodge(LivingHurtEvent event) {
+    public static void onPlayerHit(LivingHurtEvent event) {
         LivingEntity entity = event.getEntityLiving();
 
         if (!(entity instanceof Player))
@@ -117,6 +111,12 @@ public class LivingEntityEvents {
 
         if (!(source instanceof EntityDamageSource) || source.isExplosion() || source.isBypassInvul())
             return;
+
+        TrinketHelper.getTrinkets(entity, EffectOnHitTakenEffect.class).forEach(effectOnHitTakenEffectTrinketStack -> {
+            if(entity.getRandom().nextFloat() <= effectOnHitTakenEffectTrinketStack.trinket().getConfig().getChance() && !entity.hasEffect(effectOnHitTakenEffectTrinketStack.trinket().getConfig().getEffect())) {
+                entity.addEffect(new MobEffectInstance(effectOnHitTakenEffectTrinketStack.trinket().getConfig().getEffectInstance()));
+            }
+        });
 
         float dodgeChance = AttributeSnapshotHelper.getInstance().getSnapshot(entity).getAttributeValue(ModGearAttributes.DODGE_PERCENT, VaultGearAttributeTypeMerger.floatSum());
         if(entity.hasEffect(ModEffects.SNEAKY_GETAWAY)) {
@@ -351,6 +351,10 @@ public class LivingEntityEvents {
                 else {
                     event.setAmount(event.getAmount() + (event.getEntityLiving().getMaxHealth() * reavingDamage));
                 }
+
+                EtchingHelper.getEtchings(player, ModEtchingGearAttributes.REAVING_HEMMORAGE).stream().findFirst().ifPresent(reavingHemmorageAttribute -> {
+                    event.getEntityLiving().addEffect(new MobEffectInstance(iskallia.vault.init.ModEffects.BLEED, 160, reavingHemmorageAttribute.getValue()));
+                });
 
                 if(ANCHOR_SLAM_SOUND == null) {
                     WoldsVaults.LOGGER.debug("Anchor Slam Sound was null, Better Combat mod is missing.");

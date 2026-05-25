@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "woldsvaults:mob_binding_stone"
+    ]
+  },
+  "criteria": {
+    "has_blopal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "the_vault:perfect_black_opal"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "woldsvaults:mob_binding_stone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blopal",
+      "has_the_recipe"
+    ]
+  ]
+}

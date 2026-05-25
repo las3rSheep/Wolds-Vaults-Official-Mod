@@ -138,22 +138,22 @@ public class ModEtchingsProvider extends AbstractEtchingProvider {
                 });
                 etchingEntryBuilder.attribute(WoldsVaults.id("fireball_volley_mitosis"), "ModEtching", WoldsVaults.id("fireball_volley_mitosis_etching"), tierBasicListBuilder -> {
                     tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(0, 8, 10, 1, new IntegerAttributeGenerator.Range(1, 1, 1)));
-                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(0, 8, 10, 1, new IntegerAttributeGenerator.Range(1, 1, 1)));
                     tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(8, 10, 10, 1, new IntegerAttributeGenerator.Range(2, 2, 1)));
                     tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(10, -1, 10, 1, new IntegerAttributeGenerator.Range(2, 4, 1)));
                 }).minGreedTier(0);
             });
 
-//            builder.addEtching(WoldsVaults.id("reaving_hemmorage"), "Reaving Hemmorage",  "<#98329F>Reaving<gray> inflicts <red>Bleed<gray> <yellow>%dvalueA<gray> for <yellow>%dvalueB<gray> seconds", 9974431, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
-//                etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
-//                    stringBasicListBuilder.add("Offensive");
-//                });
-//                etchingEntryBuilder.attribute(WoldsVaults.id("reaving_hemmorage"), "ModEtching", WoldsVaults.id("reaving_hemmorage_etching"), tierBasicListBuilder -> {
-//                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(3, 5, 10, 1, new PairAttributeGenerator.Config2<>(new IntegerAttributeGenerator.Range(5, 7 , 1), new IntegerAttributeGenerator.Range(6,8,1), "amplifier", "duration")));
-//                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(5, 8, 10, 1, new PairAttributeGenerator.Config2<>(new IntegerAttributeGenerator.Range(8, 9 , 1), new IntegerAttributeGenerator.Range(9,10,1), "amplifier", "duration")));
-//                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(8, -1, 10, 1, new PairAttributeGenerator.Config2<>(new IntegerAttributeGenerator.Range(10, 12 , 1), new IntegerAttributeGenerator.Range(10,12,1), "amplifier", "duration")));
-//                }).minGreedTier(3);
-//            });
+            builder.addEtching(WoldsVaults.id("reaving_hemmorage"), "Reaving Hemmorage",  "<#98329F>Reaving<gray> inflicts <red>Bleed<gray> <yellow>%dvalue<gray> for <yellow>8<gray> seconds", 9974431, VaultGearModifier.AffixType.IMPLICIT, etchingEntryBuilder -> {
+                etchingEntryBuilder.typeGroups(stringBasicListBuilder -> {
+                    stringBasicListBuilder.add("Offensive");
+                });
+                etchingEntryBuilder.attribute(WoldsVaults.id("reaving_hemmorage"), "ModEtching", WoldsVaults.id("reaving_hemmorage_etching"), tierBasicListBuilder -> {
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(0, 5, 10, 1, new IntegerAttributeGenerator.Range(3, 4, 1)));
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(5, 7, 10, 1, new IntegerAttributeGenerator.Range(4, 5, 1)));
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(7, 10, 10, 1, new IntegerAttributeGenerator.Range(5, 7, 1)));
+                    tierBasicListBuilder.add(GearModifierRegistryHelper.createEtchingTier(10, -1, 10, 1, new IntegerAttributeGenerator.Range(7, 9, 1)));
+                }).minGreedTier(0);
+            });
         });
     }
 }

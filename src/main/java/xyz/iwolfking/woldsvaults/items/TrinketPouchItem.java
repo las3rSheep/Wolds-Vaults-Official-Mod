@@ -109,6 +109,11 @@ public class TrinketPouchItem extends BasicItem implements ICurioItem {
     @Override
     public boolean canEquip(SlotContext slotContext, ItemStack stack) {
         Optional<SlotResult> slot = CuriosApi.getCuriosHelper().findCurio(slotContext.entity(), "trinket_pouch", 0);
+
+        if(!slotContext.getIdentifier().equals("trinket_pouch")) {
+            return false;
+        }
+
         return slot.map(slotResult -> slotResult.stack().isEmpty()).orElse(true);
     }
 

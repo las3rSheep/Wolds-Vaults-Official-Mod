@@ -189,7 +189,7 @@
       "item": "the_vault:jewel",
       "models": [
         {
-          "value": "the_vault:gear/jewel/treasure",
+          "value": "the_vault:gear/jewel/breaching",
           "weight": 1
         }
       ],
@@ -746,6 +746,34 @@
       },
       "modifierTags": [],
       "weight": 1
+    },
+    "woldsvaults:plague_steppers": {
+      "name": "Plague Steppers",
+      "item": "the_vault:boots",
+      "models": [
+        {
+          "value": "the_vault:gear/armor/plague/boots",
+          "weight": 1
+        }
+      ],
+      "modifierIdentifiers": {
+        "BASE_ATTRIBUTE": [
+          "the_vault:base_durability"
+        ],
+        "IMPLICIT": [
+          "the_vault:base_armor",
+          "the_vault:base_movement"
+        ],
+        "PREFIX": [
+          "the_vault:u_mod_armor",
+          "the_vault:mod_poison_nova_level"
+        ],
+        "SUFFIX": [
+          "the_vault:mod_poison_trail"
+        ]
+      },
+      "modifierTags": [],
+      "weight": 1
     }
   },
   "pools": {
@@ -830,6 +858,9 @@
     "the_vault:baguette": {
       "the_vault:baguette": 1
     },
+    "woldsvaults:plague_steppers": {
+      "woldsvaults:plague_steppers": 1
+    },
     "the_vault:crafted": {
       "woldsvaults:ocean_current": 1,
       "woldsvaults:fork_of_the_glutton": 1,
@@ -856,7 +887,8 @@
       "woldsvaults:safer_spaces": 1,
       "woldsvaults:bamboo_fightstick": 1,
       "the_vault:chainlash": 1,
-      "the_vault:baguette": 1
+      "the_vault:baguette": 1,
+      "woldsvaults:plague_steppers": 1
     },
     "the_vault:collection": {
       "woldsvaults:ocean_current": 1,
@@ -885,7 +917,8 @@
       "woldsvaults:safer_spaces": 1,
       "woldsvaults:bamboo_fightstick": 1,
       "the_vault:chainlash": 1,
-      "the_vault:baguette": 1
+      "the_vault:baguette": 1,
+      "woldsvaults:plague_steppers": 1
     }
   }
 }

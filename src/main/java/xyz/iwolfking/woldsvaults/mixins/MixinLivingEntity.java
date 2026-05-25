@@ -33,13 +33,12 @@ import javax.annotation.Nullable;
 
 
 @Mixin(value = LivingEntity.class, priority = 900)
-abstract class MixinLivingEntity extends Entity {
+public abstract class MixinLivingEntity extends Entity {
 
     private MixinLivingEntity(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
-    @Shadow @Nullable public abstract MobEffectInstance getEffect(MobEffect pEffect);
     @Shadow public abstract boolean shouldDiscardFriction();
 
 
@@ -68,6 +67,10 @@ abstract class MixinLivingEntity extends Entity {
 
     @Shadow public abstract boolean hasEffect(MobEffect pEffect);
     @Shadow public abstract AttributeMap getAttributes();
+
+    @Shadow
+    @Nullable
+    public abstract MobEffectInstance getEffect(MobEffect pEffect);
 
     // Prestige
     @Inject(method = "getAttributeValue", at = @At("HEAD"), cancellable = true)

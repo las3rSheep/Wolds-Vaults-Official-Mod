@@ -125,7 +125,7 @@ public class ModUniqueGearProvider extends AbstractUniqueGearProvider {
         ));
 
         consumer.accept(entry("woldsvaults:shattering_jewel", new UniqueGearBuilder("Shatterering Jewel", ModItems.JEWEL)
-                .model("the_vault:gear/jewel/treasure")
+                .model("the_vault:gear/jewel/breaching")
                 .implicit("the_vault:u_jewel_size_stella")
                 .prefix("the_vault:breaching_jewel")
                 .dropLocation("Gateways")
@@ -425,6 +425,35 @@ public class ModUniqueGearProvider extends AbstractUniqueGearProvider {
                 .slotType(UniqueCodexConfig.IntroductionPage.SlotType.WAND)
                 .build()
         ));
+
+        consumer.accept(entry("woldsvaults:plague_steppers", new UniqueGearBuilder("Plague Steppers", ModItems.BOOTS)
+                .model("the_vault:gear/armor/plague/boots")
+                .base("the_vault:base_durability")
+                .implicit("the_vault:base_armor", "the_vault:base_movement")
+                .prefix("the_vault:u_mod_armor")
+                .prefix("the_vault:mod_poison_nova_level")
+                .suffix("the_vault:mod_poison_trail")
+                .dropLocation("Black Market")
+                .description("Spread your stink around with these sick digs for your feet!", "$text")
+                .modelType("ARMOR")
+                .slotType(UniqueCodexConfig.IntroductionPage.SlotType.FEET)
+                .build()
+        ));
+
+//        consumer.accept(entry("woldsvaults:titans_blade", new UniqueGearBuilder("Titan's Blade", ModItems.SWORD)
+//                .model("the_vault:gear/sword/titan")
+//                .base("the_vault:base_durability")
+//                .implicit("the_vault:base_attack_damage", "the_vault:base_attack_speed")
+//                .prefix("the_vault:u_mod_armor")
+//                .prefix("the_vault:mod_poison_nova_level")
+//                .suffix("the_vault:mod_poison_trail")
+//                .dropLocation("Black Market")
+//                .description("Spread your stink around with these sick digs for your feet!", "$text")
+//                .modelType("ARMOR")
+//                .slotType(UniqueCodexConfig.IntroductionPage.SlotType.FEET)
+//                .build()
+//        ));
+
     }
 
     private GeneratedEntry entry(String id, UniqueGearEntry data) {

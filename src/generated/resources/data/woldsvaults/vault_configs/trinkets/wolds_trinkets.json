@@ -80,6 +80,23 @@
         "addedAmplifier": 1,
         "curiosSlot": "green_trinket"
       }
+    },
+    "the_vault:immortal_seal": {
+      "weight": 10,
+      "name": "Immortal Seal",
+      "effectText": "5% chance to gain Immortality for 5 seconds",
+      "color": 16534066,
+      "minUses": 20,
+      "maxUses": 30,
+      "minCraftedUses": 12,
+      "maxCraftedUses": 30,
+      "config": {
+        "chance": 0.05,
+        "addedAmplifier": 1,
+        "duration": 100,
+        "effect": "the_vault:immortality",
+        "curiosSlot": "red_trinket"
+      }
     }
   }
 }

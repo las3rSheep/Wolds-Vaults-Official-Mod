@@ -17,6 +17,9 @@ public class ModGearModelRollRaritiesProvider extends AbstractVanillaGearModelRo
             builder.addForRarity(VaultGearRarity.valueOf("MYTHIC"), ModelType.ARMOR, models -> {
                 models.add(VaultMod.id("gear/armor/heatwave").toString());
             });
+            builder.addForRarity(VaultGearRarity.UNIQUE, ModelType.ARMOR, models -> {
+                models.add(VaultMod.id("gear/armor/plague").toString());
+            });
         });
     }
 }

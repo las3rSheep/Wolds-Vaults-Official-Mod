@@ -1,5 +1,166 @@
 {
   "descriptions": {
+    "Artificer": [
+      {
+        "text": "When you identify "
+      },
+      {
+        "text": "Vault Gear ",
+        "color": "#82D4FC"
+      },
+      {
+        "text": "it gains "
+      },
+      {
+        "text": "100 ",
+        "color": "yellow"
+      },
+      {
+        "text": "additional "
+      },
+      {
+        "text": "Crafting Potential",
+        "color": "gold"
+      },
+      {
+        "text": "."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      }
+    ],
+    "HealthIncrease": [
+      {
+        "text": "Increases your "
+      },
+      {
+        "text": "Health ",
+        "color": "#008700"
+      },
+      {
+        "text": "."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "1 15 Hearts",
+        "color": "$text"
+      }
+    ],
+    "Toolsmith": [
+      {
+        "text": "When crafting "
+      },
+      {
+        "text": "Vault Tools ",
+        "color": "#82D4FC"
+      },
+      {
+        "text": "they gain "
+      },
+      {
+        "text": "75 ",
+        "color": "yellow"
+      },
+      {
+        "text": "additional capacity."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      }
+    ],
+    "ShieldOfLastingGuard": [
+      {
+        "text": "Increases the "
+      },
+      {
+        "text": "Block Chance ",
+        "color": "#00F5B2"
+      },
+      {
+        "text": "Cap."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "1 ",
+        "color": "$text"
+      },
+      {
+        "text": "+10.0%\n",
+        "color": "#FFD700"
+      }
+    ],
+    "SoulFetcher": [
+      {
+        "text": "Increases your "
+      },
+      {
+        "text": "Soul Shard Chance",
+        "color": "#6D02FB"
+      },
+      {
+        "text": "."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "1 ",
+        "color": "$text"
+      },
+      {
+        "text": "+100.0%\n",
+        "color": "#FFD700"
+      }
+    ],
+    "MythicBounty": [
+      {
+        "text": "Bounties now always roll as "
+      },
+      {
+        "text": "Legendary bounties",
+        "color": "gold"
+      },
+      {
+        "text": ".\n\n"
+      },
+      {
+        "text": "Lost Bounties ",
+        "color": "aqua"
+      },
+      {
+        "text": "will now roll a "
+      },
+      {
+        "text": "Mythic bounty",
+        "color": "light_purple"
+      },
+      {
+        "text": " with a"
+      },
+      {
+        "text": " unique ",
+        "color": "yellow"
+      },
+      {
+        "text": "reward pool"
+      },
+      {
+        "text": "."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      }
+    ],
     "SpiritsHand": [
       {
         "text": "Increases the "

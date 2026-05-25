@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.init;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.registries.RegistryObject;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 
 public class ModSounds {
@@ -19,7 +20,12 @@ public class ModSounds {
 
     public static SoundEvent HATURKIN_GOBBLE;
 
+    public static SoundEvent LOGINAR_ATTACK;
+    public static SoundEvent LOGINAR_DEATH;
+    public static SoundEvent LOGINAR_HURT;
+    public static SoundEvent LOGINAR_IDLE;
 
+    public static SoundEvent RANG_RICOCHET;
 
     public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
         WOLD_DEATH = registerSound(event, "wold_death");
@@ -30,6 +36,11 @@ public class ModSounds {
         OMINOUS_AMBIENCE = registerSound(event, "ominous_ambience");
         BLENDER = registerSound(event, "blender");
         HATURKIN_GOBBLE = registerSound(event, "haturkin_gobble");
+        LOGINAR_ATTACK = registerSound(event, "loginar_attack");
+        LOGINAR_DEATH = registerSound(event, "loginar_death");
+        LOGINAR_HURT = registerSound(event, "loginar_hurt");
+        LOGINAR_IDLE = registerSound(event, "loginar_idle");
+        RANG_RICOCHET = registerSound(event, "rang_ricochet");
     }
 
     private static SoundEvent registerSound(RegistryEvent.Register<SoundEvent> event, String soundName) {

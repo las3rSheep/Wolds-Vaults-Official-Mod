@@ -1,0 +1,10 @@
+{
+  "MODELS": [
+    {
+      "id": "the_vault:gear/armor/plague/boots",
+      "displayName": "Plague Steppers",
+      "discoverOnRoll": true,
+      "allowTransmogrification": true
+    }
+  ]
+}

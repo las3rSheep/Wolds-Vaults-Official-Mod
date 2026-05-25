@@ -6,11 +6,13 @@ import iskallia.vault.VaultMod;
 import iskallia.vault.gear.trinket.GearAttributeTrinket;
 import iskallia.vault.gear.trinket.effects.AttributeTrinket;
 import iskallia.vault.gear.trinket.effects.PotionEffectTrinket;
+import iskallia.vault.init.ModEffects;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.effect.MobEffects;
 import xyz.iwolfking.vhapi.api.datagen.AbstractTrinketProvider;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.api.lib.trinket.MultiAttributeTrinket;
+import xyz.iwolfking.woldsvaults.effect.trinkets.EffectOnHitTakenEffect;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 
 import java.util.List;
@@ -29,6 +31,7 @@ public class ModTrinketsProvider extends AbstractTrinketProvider {
                     .addTrinket(VaultMod.id("running_shoes"), AbstractTrinketProvider.Builder.createTrinket(0, "Running Shoes", "Parkour uses no energy", 20, 30, 12, 12, new PotionEffectTrinket.Config(Effects.INEXHAUSTIBLE.getId(), 1), AbstractTrinketProvider.Builder.TrinketSlot.BLUE_TRINKET))
                     .addTrinket(VaultMod.id("chromatic_diffuser"), AbstractTrinketProvider.Builder.createTrinket(10, "Chromatic Diffuser", "Adds an additional 10% chance to trigger Effect Clouds", 20, 30, 12, 12, new AttributeTrinket.Config<Float>(ModGearAttributes.INCREASED_EFFECT_CLOUD_CHANCE, 0.1F), AbstractTrinketProvider.Builder.TrinketSlot.RED_TRINKET))
                     .addTrinket(VaultMod.id("miners_headlamp"), AbstractTrinketProvider.Builder.createTrinket(10, "Miner's Headlamp", "Grants night vision, +25% Copiously", 20, 30, 12, 12, new PotionEffectTrinket.Config(MobEffects.NIGHT_VISION.getRegistryName(), 1), AbstractTrinketProvider.Builder.TrinketSlot.GREEN_TRINKET))
+                    .addTrinket(VaultMod.id("immortal_seal"), AbstractTrinketProvider.Builder.createTrinket(10, "Immortal Seal", "5% chance to gain Immortality for 5 seconds", 20, 30, 12, 12, new EffectOnHitTakenEffect.Config(0.05F, ModEffects.IMMORTALITY.getRegistryName(), 1, 100), Builder.TrinketSlot.RED_TRINKET))
                     .build();
         });
 

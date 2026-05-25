@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.datagen;
 
 import iskallia.vault.VaultMod;
+import iskallia.vault.config.entry.IntRollRangeEntry;
 import iskallia.vault.config.gear.VaultGearTierConfig;
 import iskallia.vault.gear.attribute.ability.AbilityFloatValueAttribute;
 import iskallia.vault.gear.attribute.ability.AbilityLevelAttribute;
@@ -233,6 +234,13 @@ public class ModVaultGearTiersProvider extends AbstractVaultGearConfigProvider {
                             vaultGearModifierTiersBuilder.add(50, -1, 10, "Weakness IV", ResourceLocation.withDefaultNamespace("empty"), 240, 4.0f, MobEffects.WEAKNESS.getColor(), false, 0.05F, MobEffects.WEAKNESS.getRegistryName(), 240, 0);
                             vaultGearModifierTiersBuilder.add(75, -1, 10, "Weakness V", ResourceLocation.withDefaultNamespace("empty"), 300, 4.0f, MobEffects.WEAKNESS.getColor(), false, 0.05F, MobEffects.WEAKNESS.getRegistryName(), 300, 0);
                         });
+                vaultGearAttributeGroupBuilder
+                        .addModifier(iskallia.vault.init.ModGearAttributes.ABILITY_LEVEL, "ModPoisonNovaLevel", "mod_poison_nova_level", List.of(), vaultGearModifierTiersBuilder -> {
+                            vaultGearModifierTiersBuilder.add(0, -1, 10, new AbilityLevelAttribute.Config("Nova_Dot", 1));
+                            vaultGearModifierTiersBuilder.add(0, -1, 10, new AbilityLevelAttribute.Config("Nova_Dot", 2));
+                            vaultGearModifierTiersBuilder.add(50, -1, 10, new AbilityLevelAttribute.Config("Nova_Dot", 3));
+                            vaultGearModifierTiersBuilder.add(75, -1, 10, new AbilityLevelAttribute.Config("Nova_Dot", 4));
+                        });
             }).build();
             builder.key(VaultMod.id("unique")).add(VaultGearTierConfig.ModifierAffixTagGroup.SUFFIX, vaultGearAttributeGroupBuilder -> {
                 vaultGearAttributeGroupBuilder
@@ -266,6 +274,11 @@ public class ModVaultGearTiersProvider extends AbstractVaultGearConfigProvider {
                             vaultGearModifierTiersBuilder.add(50, -1, 10, new AbilityLevelAttribute.Config("Expunge_Base", 3));
                             vaultGearModifierTiersBuilder.add(75, -1, 10, new AbilityLevelAttribute.Config("Expunge_Base", 4));
                         });
+                vaultGearAttributeGroupBuilder.addModifier(iskallia.vault.init.ModGearAttributes.EFFECT_TRAIL, "ModEffectTrail", "mod_poison_trail", List.of(), vaultGearModifierTiersBuilder -> {
+                   vaultGearModifierTiersBuilder.add(0, 65, 10, MobEffects.POISON.getRegistryName(), new IntRollRangeEntry(140, 200, 20));
+                   vaultGearModifierTiersBuilder.add(65, -1, 10, MobEffects.POISON.getRegistryName(), new IntRollRangeEntry(200, 240, 20));
+                   vaultGearModifierTiersBuilder.add(90, -1, 10, MobEffects.POISON.getRegistryName(), new IntRollRangeEntry(240, 300, 20));
+                });
             }).build();
         });
 

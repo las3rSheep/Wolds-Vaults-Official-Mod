@@ -15,14 +15,17 @@ import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.random.ChunkRandom;
 import iskallia.vault.core.random.JavaRandom;
 import iskallia.vault.core.vault.Vault;
+import iskallia.vault.core.vault.modifier.modifier.ObjectiveShuffleModifier;
 import iskallia.vault.core.vault.modifier.spi.VaultModifier;
 import iskallia.vault.core.vault.objective.BingoObjective;
 import iskallia.vault.core.vault.objective.Objective;
 import iskallia.vault.core.vault.objective.Objectives;
 import iskallia.vault.core.vault.objective.PvPObjective;
+import iskallia.vault.core.vault.player.Completion;
 import iskallia.vault.core.vault.player.Listener;
 import iskallia.vault.core.vault.player.Listeners;
 import iskallia.vault.core.vault.player.Runner;
+import iskallia.vault.core.vault.stat.StatCollector;
 import iskallia.vault.core.world.storage.VirtualWorld;
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModKeybinds;
@@ -37,12 +40,14 @@ import iskallia.vault.task.source.EntityTaskSource;
 import iskallia.vault.task.source.TaskSource;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import xyz.iwolfking.woldsvaults.api.util.ObjectiveHelper;
+import xyz.iwolfking.woldsvaults.api.util.VaultModifierUtils;
 import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.BingoObjectiveAccessor;
 
 import java.util.Iterator;
@@ -79,7 +84,7 @@ public class BallisticBingoObjective extends BingoObjective {
 
     public TaskContext getContext(VirtualWorld world, Vault vault) {
         this.setIfAbsent(TASK_SOURCE, () -> EntityTaskSource.ofUuids(JavaRandom.ofInternal((Long)vault.get(Vault.SEED)), new UUID[0]));
-        return TaskContext.of((TaskSource)this.get(TASK_SOURCE), world.getServer()).setVault(vault);
+        return TaskContext.of(this.get(TASK_SOURCE), world.getServer()).setVault(vault);
     }
 
     private TaskContext getContext(VirtualWorld world, Vault vault, UUID uuid) {
@@ -174,18 +179,28 @@ public class BallisticBingoObjective extends BingoObjective {
         });
         CommonEvents.LISTENER_LEAVE.register(this, (data) -> {
             if (data.getVault() == vault) {
-                Listener patt5575$temp = data.getListener();
-                if (patt5575$temp instanceof Runner) {
-                    Runner runner = (Runner)patt5575$temp;
+                Listener patt6371$temp = data.getListener();
+                if (patt6371$temp instanceof Runner) {
+                    Runner runner = (Runner)patt6371$temp;
+                    if (this.getOr(BLACKOUT, false) && !this.isCompleted()) {
+                        vault.ifPresent(Vault.STATS, (collector) -> {
+                            StatCollector stats = collector.get(runner.getId());
+                            if (stats != null) {
+                                stats.set(StatCollector.COMPLETION, Completion.BAILED);
+                            }
+
+                        });
+                    }
+
                     if (this.pvp) {
-                        BingoTask board = (BingoTask)((BingoObjective.TaskMap)this.get(TASKS)).remove(runner.getId());
+                        BingoTask board = (BingoTask)((TaskMap)this.get(TASKS)).remove(runner.getId());
                         if (board != null) {
                             board.onDetach();
                         }
                     } else {
-                        Object patt5819$temp = this.get(TASK_SOURCE);
-                        if (patt5819$temp instanceof EntityTaskSource) {
-                            EntityTaskSource entitySource = (EntityTaskSource)patt5819$temp;
+                        Object patt6994$temp = this.get(TASK_SOURCE);
+                        if (patt6994$temp instanceof EntityTaskSource) {
+                            EntityTaskSource entitySource = (EntityTaskSource)patt6994$temp;
                             entitySource.remove(new UUID[]{runner.getId()});
                         }
                     }
@@ -220,7 +235,7 @@ public class BallisticBingoObjective extends BingoObjective {
                 return;
             }
         }
-
+        int previousBingos = this.getBingos();
         if (this.pvp) {
             ((BingoObjective.TaskMap)this.get(TASKS)).forEach((uuid, task) -> {
                 if (task instanceof BingoTask bingo) {
@@ -236,8 +251,33 @@ public class BallisticBingoObjective extends BingoObjective {
             }
         }
 
+        if (this.getBingos() > previousBingos) {
+            VaultModifierUtils.getModifiersOfType(vault, ObjectiveShuffleModifier.class).stream().findFirst().ifPresent(modifier -> {
+                if (modifier.shouldRegenerate()) {
+                    if (this.pvp) {
+                        this.get(TASKS).forEach((uuid, task) -> {
+                            if (task instanceof BingoTask bingox) {
+                                bingox.regenerateIncomplete(this.getContext(world, vault, uuid));
+                            }
+                        });
+                    } else if (this.get(TASK) instanceof BingoTask bingo) {
+                        bingo.regenerateIncomplete(this.getContext(world, vault));
+                        this.lastScaledJoined = -1;
+                    }
+                } else if (this.pvp) {
+                    this.get(TASKS).forEach((uuid, task) -> {
+                        if (task instanceof BingoTask bingox) {
+                            bingox.shuffleIncomplete();
+                        }
+                    });
+                } else if (this.get(TASK) instanceof BingoTask bingo) {
+                    bingo.shuffleIncomplete();
+                }
+            });
+        }
+
         if (world.getTickCount() % 20 == 0) {
-            int joined = (Integer)this.getOr(JOINED, 0);
+            int joined = this.getOr(JOINED, 0);
             if (this.pvp) {
                 (this.get(TASKS)).values().forEach((task) -> {
                     if (task instanceof BingoTask root) {
@@ -318,7 +358,7 @@ public class BallisticBingoObjective extends BingoObjective {
 
         if (listener instanceof Runner runner) {
             if (this.pvp) {
-                BingoTask task = (BingoTask)((BingoObjective.TaskMap)this.get(TASKS)).get(runner.getId());
+                BingoTask task = (BingoTask) this.get(TASKS).get(runner.getId());
                 if (task != null && task.getCompletedBingos() > 0) {
                     (this.get(CHILDREN)).forEach(child -> child.tickListener(world, vault, listener));
                 }
@@ -353,7 +393,7 @@ public class BallisticBingoObjective extends BingoObjective {
                 TaskRendererContext context = new TaskRendererContext((PoseStack)null, 0.0F, MultiBufferSource.immediate(Tesselator.getInstance().getBuilder()), Minecraft.getInstance().font);
                 UUID uuid = Minecraft.getInstance().player != null ? Minecraft.getInstance().player.getUUID() : null;
                 context.setUuid(uuid);
-                Task task = this.pvp && uuid != null ? (Task)((BingoObjective.TaskMap)this.get(TASKS)).get(uuid) : (Task)this.get(TASK);
+                Task task = this.pvp && uuid != null ? this.get(TASKS).get(uuid) : (Task)this.get(TASK);
                 if (task != null && task.onMouseScrolled(event.getScrollDelta(), context)) {
                     event.setCanceled(true);
                 }
@@ -365,9 +405,9 @@ public class BallisticBingoObjective extends BingoObjective {
 
     @OnlyIn(Dist.CLIENT)
     public boolean render(Vault vault, PoseStack poseStack, Window window, float partialTicks, Player player) {
-        List<PvPObjective> objs = ((Objectives)vault.get(Vault.OBJECTIVES)).getAll(PvPObjective.class);
+        List<PvPObjective> objs = vault.get(Vault.OBJECTIVES).getAll(PvPObjective.class);
         if (!objs.isEmpty()) {
-            PvPObjective objective = (PvPObjective)objs.get(0);
+            PvPObjective objective = objs.get(0);
             if (!objective.has(PvPObjective.COUNTDOWN_FINISHED)) {
                 return false;
             }
@@ -376,7 +416,7 @@ public class BallisticBingoObjective extends BingoObjective {
         if (this.isCompleted() && (Minecraft.getInstance().screen != null || !ModKeybinds.openBingo.isDown())) {
             boolean rendered = false;
 
-            for(Objective objective : (Objective.ObjList)this.get(CHILDREN)) {
+            for(Objective objective : this.get(CHILDREN)) {
                 rendered |= objective.render(vault, poseStack, window, partialTicks, player);
             }
 
@@ -391,6 +431,7 @@ public class BallisticBingoObjective extends BingoObjective {
         } else {
             TaskRendererContext context = new TaskRendererContext(poseStack, partialTicks, MultiBufferSource.immediate(Tesselator.getInstance().getBuilder()), Minecraft.getInstance().font);
             task.onRender(context);
+
             return true;
         }
     }

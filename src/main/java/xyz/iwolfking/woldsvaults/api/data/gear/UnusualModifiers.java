@@ -113,7 +113,6 @@ public class UnusualModifiers {
 
         NON_SACK_PREFIX.add(UnusualModifierLib.REACH);
         NON_SACK_PREFIX.add(UnusualModifierLib.MOVEMENT_SPEED);
-        NON_SACK_PREFIX.add(UnusualModifierLib.RESISTANCE);
         NON_SACK_PREFIX.add(UnusualModifierLib.LEECH);
         NON_SACK_PREFIX.add(UnusualModifierLib.MANA_ADDITIVE);
         NON_SACK_PREFIX.add(UnusualModifierLib.MANA_REGEN);
@@ -137,6 +136,7 @@ public class UnusualModifiers {
         NON_SACK_SUFFIX.add(UnusualModifierLib.DODGE_CHANCE);
         PLUSHIE_SUFFIX.addAll(NON_SACK_SUFFIX);
 
+        NON_SACK_PREFIX.add(UnusualModifierLib.RESISTANCE);
         NON_SACK_SUFFIX.add(UnusualModifierLib.ABILITY_POWER_PERCENTILE);
         NON_SACK_PREFIX.add(UnusualModifierLib.DAMAGE_INCREASE);
         UNUSUAL_MODIFIERS_MAP_PREFIX.put(VaultMod.id("plushie"), PLUSHIE_PREFIX);

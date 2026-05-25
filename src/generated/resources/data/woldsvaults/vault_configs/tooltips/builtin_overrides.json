@@ -1,6 +1,10 @@
 {
   "tooltips": [
     {
+      "item": "the_vault:vault_charm_controller",
+      "value": "Use to whitelist items you don't want to void with <light_purple>Void + Pickup<gray> mode on Vault Magnets."
+    },
+    {
       "item": "the_vault:relic_booster_pack",
       "value": "Legacy Item"
     }

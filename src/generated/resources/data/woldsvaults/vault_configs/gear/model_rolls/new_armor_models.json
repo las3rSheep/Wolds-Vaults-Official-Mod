@@ -2,7 +2,11 @@
   "weightedRollChance": 0,
   "ARMOR_MODEL_ROLLS": {
     "MYTHIC": [
-      "the_vault:gear/armor/heatwave"
+      "the_vault:gear/armor/heatwave",
+      "the_vault:gear/armor/plague"
+    ],
+    "UNIQUE": [
+      "the_vault:gear/armor/plague"
     ]
   },
   "SWORD_MODEL_ROLLS": {},

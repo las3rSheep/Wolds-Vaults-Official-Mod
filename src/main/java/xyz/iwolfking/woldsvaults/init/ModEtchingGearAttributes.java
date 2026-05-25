@@ -31,7 +31,7 @@ public class ModEtchingGearAttributes {
     public static final VaultGearAttribute<Boolean> DIVINITY = woldsAttr("divinity", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.booleanComparator());
     public static final VaultGearAttribute<Integer> DIFFUSE_CHEMICAL_BOMB = woldsAttr("diffuse_chemical_bomb", VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.intComparator());
     public static final VaultGearAttribute<Integer> FIREBALL_VOLLEY_MITOSIS = woldsAttr("fireball_volley_mitosis", VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.intComparator());
-    public static final VaultGearAttribute<Pair<Integer, Integer>> REAVING_HEMMORAGE = woldsAttr("reaving_hemmorage", VaultGearAttributeType.pairType(VaultGearAttributeType.intType(), VaultGearAttributeType.intType()), ModGearAttributeGenerators.pairGenerator(ModGearAttributeGenerators.intRange(), ModGearAttributeGenerators.intRange(), "amplifier", "duration"), ModGearAttributeReaders.none());
+    public static final VaultGearAttribute<Integer> REAVING_HEMMORAGE = woldsAttr("reaving_hemmorage", VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.none(), VaultGearAttributeComparator.intComparator());
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {

@@ -303,12 +303,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void generateGatewayChannelingBlock() {
         VariantBlockStateBuilder vbb = this.getVariantBuilder(ModBlocks.GATEWAY_CHANNELING_BLOCK);
         ModelFile existingModel = models().getExistingFile(modLoc("block/gateway_channeling_block"));
+        ModelFile usedModel = models().getExistingFile(modLoc("block/gateway_channeling_block_used"));
 
         vbb.setModels(vbb.partialState().with(GatewayChannelingBlock.USED, false),
                 vbb.partialState().modelForState().modelFile(existingModel).build());
 
         vbb.setModels(vbb.partialState().with(GatewayChannelingBlock.USED, true),
-                vbb.partialState().modelForState().modelFile(existingModel).build());
+                vbb.partialState().modelForState().modelFile(usedModel).build());
 
 
         itemModels().withExistingParent("gateway_channeling_block", modLoc("block/gateway_channeling_block"));

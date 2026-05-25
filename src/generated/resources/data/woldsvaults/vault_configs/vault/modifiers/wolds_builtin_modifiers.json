@@ -23,7 +23,7 @@
           "color": "#EBFF8D",
           "description": "This vault's difficulty is locked to Piece of Cake.",
           "descriptionFormatted": "This vault's difficulty is locked to Piece of Cake.",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/piece_of_cake"
         }
       },
       "the_vault:easy": {
@@ -36,7 +36,7 @@
           "color": "#EBFF8D",
           "description": "This vault's difficulty is locked to Easy.",
           "descriptionFormatted": "This vault's difficulty is locked to Easy.",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/easy"
         }
       },
       "the_vault:normal": {
@@ -49,7 +49,7 @@
           "color": "#EBFF8D",
           "description": "This vault's difficulty is locked to Normal.",
           "descriptionFormatted": "This vault's difficulty is locked to Normal.",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/normal"
         }
       },
       "the_vault:hard": {
@@ -62,7 +62,7 @@
           "color": "#EBFF8D",
           "description": "This vault's difficulty is locked to Hard.",
           "descriptionFormatted": "This vault's difficulty is locked to Hard.",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/hard"
         }
       },
       "the_vault:impossible": {
@@ -75,7 +75,7 @@
           "color": "#EBFF8D",
           "description": "This vault's difficulty is locked to Impossible.",
           "descriptionFormatted": "This vault's difficulty is locked to Impossible.",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/impossible"
         }
       },
       "the_vault:fragged": {
@@ -88,7 +88,7 @@
           "color": "#EBFF8D",
           "description": "This vault's difficulty is locked to Fragged.",
           "descriptionFormatted": "This vault's difficulty is locked to Fragged.",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/fragged"
         }
       },
       "the_vault:normalized": {
@@ -101,7 +101,7 @@
           "color": "#EBFF8D",
           "description": "This vault's difficulty is locked to Normal.",
           "descriptionFormatted": "This vault's difficulty is locked to Normal.",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/normal"
         }
       }
     },
@@ -795,7 +795,7 @@
           "color": "#47402d",
           "description": "Permanent Blindness Effect",
           "descriptionFormatted": "Permanent Blindness Effect",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/light_out"
         }
       }
     },
@@ -959,7 +959,7 @@
           "color": "#F74780",
           "description": "-100% Copiously",
           "descriptionFormatted": "-%d%% Copiously",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/corroded_veins"
         }
       },
       "the_vault:perfect_ores": {
@@ -1027,7 +1027,7 @@
           "color": "#DB7C00",
           "description": "x0 Experience Multiplier",
           "descriptionFormatted": "x0 Experience Multiplier",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/no_xp"
         }
       }
     },
@@ -2579,7 +2579,7 @@
           "color": "#3ffbf4",
           "description": "Just asking for trouble...",
           "descriptionFormatted": "Just asking for trouble...",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/greedy"
         }
       },
       "the_vault:omega_bonus": {
@@ -2975,7 +2975,7 @@
           "color": "#da6d5a",
           "description": "Mobs can hit you with a wide number of negative effects on hit",
           "descriptionFormatted": "Mobs can hit you with a wide number of negative effects on hit",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/chemical_bath"
         }
       },
       "the_vault:bubbling_trouble": {
@@ -2994,7 +2994,7 @@
           "color": "#da6d5a",
           "description": "Mobs can hit you with a wide number of negative effects on hit, mobs are a bit stronger",
           "descriptionFormatted": "Mobs can hit you with a wide number of negative effects on hit, mobs are a bit stronger",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/bubbling_trouble"
         }
       },
       "the_vault:ice_cold_essence": {
@@ -3054,7 +3054,7 @@
           "color": "#da6d5a",
           "description": "Your healing and mana regeration is reduced, your cooldowns are increased",
           "descriptionFormatted": "Your healing and mana regeration is reduced, your cooldowns are increased",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/weak_heart"
         }
       },
       "the_vault:weak_limbs": {
@@ -3069,7 +3069,7 @@
           "color": "#da6d5a",
           "description": "You move slower and hit weaker",
           "descriptionFormatted": "You move slower and hit weaker",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/weak_limbs"
         }
       },
       "the_vault:ticking_clock": {
@@ -3084,7 +3084,7 @@
           "color": "#d52424",
           "description": "Mobs move faster and have a chance to take time away on hit",
           "descriptionFormatted": "Mobs move faster and have a chance to take time away on hit",
-          "icon": "the_vault:gui/modifiers/impossible"
+          "icon": "woldsvaults:gui/modifiers/ticking_clock"
         }
       },
       "the_vault:abusive_mobs": {

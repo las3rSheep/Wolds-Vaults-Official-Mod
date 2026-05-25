@@ -55,13 +55,13 @@ public class ModVaultModifiersProvider extends AbstractVaultModifierProvider {
     public void addFiles(Map<String, Consumer<ModifierBuilder>> map) {
         map.put("wolds_builtin_modifiers", modifierBuilder -> {
             empty(modifierBuilder, WoldsVaults.id("rotting"), "Rotting", "#EBFF8D", "This vault is starting to rot, it might go rotten with more fruit consumption!", null, VaultMod.id("gui/modifiers/rotten"));
-            difficultyLock(modifierBuilder, VaultMod.id("piece_of_cake"), VaultDifficulty.PIECE_OF_CAKE, true, "Piece of Cake", "#EBFF8D", "This vault's difficulty is locked to Piece of Cake.", null, VaultMod.id("gui/modifiers/impossible"));
-            difficultyLock(modifierBuilder, VaultMod.id("easy"), VaultDifficulty.EASY, true, "Easy", "#EBFF8D", "This vault's difficulty is locked to Easy.", null, VaultMod.id("gui/modifiers/impossible"));
-            difficultyLock(modifierBuilder, VaultMod.id("normal"), VaultDifficulty.NORMAL, true, "Normal", "#EBFF8D", "This vault's difficulty is locked to Normal.", null, VaultMod.id("gui/modifiers/impossible"));
-            difficultyLock(modifierBuilder, VaultMod.id("hard"), VaultDifficulty.HARD, true, "Hard", "#EBFF8D", "This vault's difficulty is locked to Hard.", null, VaultMod.id("gui/modifiers/impossible"));
-            difficultyLock(modifierBuilder, VaultMod.id("impossible"), VaultDifficulty.IMPOSSIBLE, true, "Impossible", "#EBFF8D", "This vault's difficulty is locked to Impossible.", null, VaultMod.id("gui/modifiers/impossible"));
-            difficultyLock(modifierBuilder, VaultMod.id("fragged"), VaultDifficulty.FRAGGED, true, "Fragged", "#EBFF8D", "This vault's difficulty is locked to Fragged.", null, VaultMod.id("gui/modifiers/impossible"));
-            difficultyLock(modifierBuilder, VaultMod.id("normalized"), VaultDifficulty.NORMAL, false, "Normalized", "#EBFF8D", "This vault's difficulty is locked to Normal.", null, VaultMod.id("gui/modifiers/impossible"));
+            difficultyLock(modifierBuilder, VaultMod.id("piece_of_cake"), VaultDifficulty.PIECE_OF_CAKE, true, "Piece of Cake", "#EBFF8D", "This vault's difficulty is locked to Piece of Cake.", null, WoldsVaults.id("gui/modifiers/piece_of_cake"));
+            difficultyLock(modifierBuilder, VaultMod.id("easy"), VaultDifficulty.EASY, true, "Easy", "#EBFF8D", "This vault's difficulty is locked to Easy.", null, WoldsVaults.id("gui/modifiers/easy"));
+            difficultyLock(modifierBuilder, VaultMod.id("normal"), VaultDifficulty.NORMAL, true, "Normal", "#EBFF8D", "This vault's difficulty is locked to Normal.", null, WoldsVaults.id("gui/modifiers/normal"));
+            difficultyLock(modifierBuilder, VaultMod.id("hard"), VaultDifficulty.HARD, true, "Hard", "#EBFF8D", "This vault's difficulty is locked to Hard.", null, WoldsVaults.id("gui/modifiers/hard"));
+            difficultyLock(modifierBuilder, VaultMod.id("impossible"), VaultDifficulty.IMPOSSIBLE, true, "Impossible", "#EBFF8D", "This vault's difficulty is locked to Impossible.", null, WoldsVaults.id("gui/modifiers/impossible"));
+            difficultyLock(modifierBuilder, VaultMod.id("fragged"), VaultDifficulty.FRAGGED, true, "Fragged", "#EBFF8D", "This vault's difficulty is locked to Fragged.", null, WoldsVaults.id("gui/modifiers/fragged"));
+            difficultyLock(modifierBuilder, VaultMod.id("normalized"), VaultDifficulty.NORMAL, false, "Normalized", "#EBFF8D", "This vault's difficulty is locked to Normal.", null, WoldsVaults.id("gui/modifiers/normal"));
 
             artifactChance(modifierBuilder, VaultMod.id("more_artifact_chance"), 0.01F, "Increased Artifact Chance", "#EBFF8D", "Every stack increases the artifact chance by 1 percent.", "+%d%% Artifact Chance", VaultMod.id("gui/modifiers/more_artifact1"));
             artifactChance(modifierBuilder, VaultMod.id("pogging"), 0.05F, "Pogging", "#EBFF8D", "Every stack increases the artifact chance by 5 percent.", "+%d%% Artifact Chance", VaultMod.id("gui/modifiers/more_artifact1"));
@@ -139,14 +139,14 @@ public class ModVaultModifiersProvider extends AbstractVaultModifierProvider {
             playerStat(modifierBuilder, VaultMod.id("dangerous"), PlayerStat.RESISTANCE, -0.25F,  "Dangerous", "#CA9A5B", "-25% Resistance", "-%d%% Resistance", VaultMod.id("gui/modifiers/vulnerable"));
             playerStat(modifierBuilder, VaultMod.id("piercing"), PlayerStat.RESISTANCE, -0.5F,  "Piercing", "#CA9A5B", "-50% Resistance", "-%d%% Resistance", VaultMod.id("gui/modifiers/vulnerable"));
             playerStat(modifierBuilder, VaultMod.id("protected"), PlayerStat.RESISTANCE, 0.1F,  "Protected", "#CA9A5B", "+10% Resistance", "+%d%% Resistance", VaultMod.id("gui/modifiers/vulnerable"));
-            playerStat(modifierBuilder, VaultMod.id("corroded_veins"), PlayerStat.COPIOUSLY, -1.0F,  "Corroded Veins", "#F74780", "-100% Copiously", "-%d%% Copiously", VaultMod.id("gui/modifiers/impossible"));
+            playerStat(modifierBuilder, VaultMod.id("corroded_veins"), PlayerStat.COPIOUSLY, -1.0F,  "Corroded Veins", "#F74780", "-100% Copiously", "-%d%% Copiously", WoldsVaults.id("gui/modifiers/corroded_veins"));
             playerStat(modifierBuilder, VaultMod.id("perfect_ores"), PlayerStat.COPIOUSLY, 1.0F,  "Perfect Veins", "#ffba00", "+100% Copiously", "+%d%% Copiously", VaultMod.id("gui/modifiers/rich"));
             playerStat(modifierBuilder, VaultMod.id("orematic"), PlayerStat.COPIOUSLY, 0.35F,  "Rich Veins", "#F74780", "+35% Copiously", "+%d%% Copiously", VaultMod.id("gui/modifiers/oremania"));
             playerStat(modifierBuilder, VaultMod.id("leeching"), PlayerStat.LEECH, 0.05F,  "Bloodsucking", "#FF5555", "+5% Leech", "+%d%% Leech", VaultMod.id("gui/modifiers/god_token_idona"));
 
             lootWeight(modifierBuilder, VaultMod.id("super_plentiful"), PlaceholderBlock.Type.ORE, 0.6F,  "Super Plentiful", "#FF85FF", "+60% Vault Ores", "+%d%% Vault Ores", VaultMod.id("gui/modifiers/plentiful"));
 
-            experienceMultiplier(modifierBuilder, VaultMod.id("true_noxp"),0.0F,  "No XP", "#DB7C00", "x0 Experience Multiplier", null, VaultMod.id("gui/modifiers/impossible"));
+            experienceMultiplier(modifierBuilder, VaultMod.id("true_noxp"),0.0F,  "No XP", "#DB7C00", "x0 Experience Multiplier", null, WoldsVaults.id("gui/modifiers/no_xp"));
 
             inline(modifierBuilder, VaultMod.id("unhinged"), VaultMod.id("unhinged"),  0, "Unhinged", "#DB7C00", "An Unhinged experience.", null, VaultMod.id("gui/modifiers/impossible"));
             inline(modifierBuilder, VaultMod.id("random_harsh_negative"), VaultMod.id("random_harsh_negative"),  0, "Random Harsh Negative", "#fe3333", "Unknown Negative Modifier.", null, VaultMod.id("gui/modifiers/impossible"));
@@ -408,7 +408,7 @@ public class ModVaultModifiersProvider extends AbstractVaultModifierProvider {
 
             grouped(modifierBuilder, VaultMod.id("greedy"), resourceLocationIntegerMap -> {
                 resourceLocationIntegerMap.put(VaultMod.id("greedy_single"), 1);
-            },"Greedy", "#3ffbf4", "Just asking for trouble...", null, VaultMod.id("gui/modifiers/impossible"));
+            },"Greedy", "#3ffbf4", "Just asking for trouble...", null, WoldsVaults.id("gui/modifiers/greedy"));
 
             grouped(modifierBuilder, VaultMod.id("omega_bonus"), resourceLocationIntegerMap -> {
                 resourceLocationIntegerMap.put(VaultMod.id("gilded"), 1);
@@ -590,7 +590,7 @@ public class ModVaultModifiersProvider extends AbstractVaultModifierProvider {
                 resourceLocationIntegerMap.put(VaultMod.id("dark"), 1);
                 resourceLocationIntegerMap.put(VaultMod.id("stunning"), 1);
                 resourceLocationIntegerMap.put(VaultMod.id("fatiguing"), 1);
-            },"Chemical Bath", "#da6d5a", "Mobs can hit you with a wide number of negative effects on hit", null, VaultMod.id("gui/modifiers/impossible"));
+            },"Chemical Bath", "#da6d5a", "Mobs can hit you with a wide number of negative effects on hit", null, WoldsVaults.id("gui/modifiers/chemical_bath"));
 
             grouped(modifierBuilder, VaultMod.id("bubbling_trouble"), resourceLocationIntegerMap -> {
                 resourceLocationIntegerMap.put(VaultMod.id("ruthless_mobs"), 1);
@@ -599,7 +599,7 @@ public class ModVaultModifiersProvider extends AbstractVaultModifierProvider {
                 resourceLocationIntegerMap.put(VaultMod.id("poisoning"), 1);
                 resourceLocationIntegerMap.put(VaultMod.id("wither"), 1);
                 resourceLocationIntegerMap.put(WoldsVaults.id("bleeding_mobs"), 1);
-            },"Bubble, Toil, and Trouble", "#da6d5a", "Mobs can hit you with a wide number of negative effects on hit, mobs are a bit stronger", null, VaultMod.id("gui/modifiers/impossible"));
+            },"Bubble, Toil, and Trouble", "#da6d5a", "Mobs can hit you with a wide number of negative effects on hit, mobs are a bit stronger", null, WoldsVaults.id("gui/modifiers/bubbling_trouble"));
 
             grouped(modifierBuilder, VaultMod.id("ice_cold_essence"), resourceLocationIntegerMap -> {
                 resourceLocationIntegerMap.put(VaultMod.id("freezing"), 4);
@@ -620,17 +620,17 @@ public class ModVaultModifiersProvider extends AbstractVaultModifierProvider {
                 resourceLocationIntegerMap.put(VaultMod.id("antiheal"), 1);
                 resourceLocationIntegerMap.put(VaultMod.id("weakened_cdr"), 1);
                 resourceLocationIntegerMap.put(VaultMod.id("mana_regen_down"), 1);
-            },"Weak Heart", "#da6d5a", "Your healing and mana regeration is reduced, your cooldowns are increased", null, VaultMod.id("gui/modifiers/impossible"));
+            },"Weak Heart", "#da6d5a", "Your healing and mana regeration is reduced, your cooldowns are increased", null, WoldsVaults.id("gui/modifiers/weak_heart"));
 
             grouped(modifierBuilder, VaultMod.id("weak_limbs"), resourceLocationIntegerMap -> {
                 resourceLocationIntegerMap.put(VaultMod.id("weakened"), 1);
                 resourceLocationIntegerMap.put(VaultMod.id("slowed"), 1);
-            },"Weak Limbs", "#da6d5a", "You move slower and hit weaker", null, VaultMod.id("gui/modifiers/impossible"));
+            },"Weak Limbs", "#da6d5a", "You move slower and hit weaker", null, WoldsVaults.id("gui/modifiers/weak_limbs"));
 
             grouped(modifierBuilder, VaultMod.id("ticking_clock"), resourceLocationIntegerMap -> {
                 resourceLocationIntegerMap.put(VaultMod.id("haunting"), 4);
                 resourceLocationIntegerMap.put(VaultMod.id("enraged_mobs"), 4);
-            },"Ticking Clock", "#d52424", "Mobs move faster and have a chance to take time away on hit", null, VaultMod.id("gui/modifiers/impossible"));
+            },"Ticking Clock", "#d52424", "Mobs move faster and have a chance to take time away on hit", null, WoldsVaults.id("gui/modifiers/ticking_clock"));
 
             grouped(modifierBuilder, VaultMod.id("abusive_mobs"), resourceLocationIntegerMap -> {
                 resourceLocationIntegerMap.put(VaultMod.id("ruthless_mobs"), 2);
@@ -646,7 +646,7 @@ public class ModVaultModifiersProvider extends AbstractVaultModifierProvider {
                 resourceLocationIntegerMap.put(VaultMod.id("normalized"), 1);
             },"Raid", "#d89e01", "No Vault Fruit can be used, and you take no durability damage", null, VaultMod.id("gui/modifiers/raid"));
 
-            playerEffect(modifierBuilder, WoldsVaults.id("lights_out"), ResourceLocation.fromNamespaceAndPath("wildbackport", "darkness"), 0, "Light's Out", "#47402d", "Permanent Blindness Effect", null, VaultMod.id("gui/modifiers/impossible"));
+            playerEffect(modifierBuilder, WoldsVaults.id("lights_out"), ResourceLocation.fromNamespaceAndPath("wildbackport", "darkness"), 0, "Light's Out", "#47402d", "Permanent Blindness Effect", null, WoldsVaults.id("gui/modifiers/light_out"));
 
             brazierPool(modifierBuilder, WoldsVaults.id("all_bad_haunted_braziers"), WoldsVaults.id("all_bad_haunted_braziers"), "All Bad Haunted Braziers", "#47402d", "Braziers only have negative effects", null, VaultMod.id("gui/modifiers/impossible"));
 

@@ -39,6 +39,9 @@
       "WAND": [
         "the_vault:chainlash",
         "the_vault:baguette"
+      ],
+      "FEET": [
+        "woldsvaults:plague_steppers"
       ]
     }
   },
@@ -777,6 +780,27 @@
         ]
       },
       "uniqueId": "the_vault:baguette"
+    },
+    {
+      "title": {
+        "description": {
+          "text": "Plague Steppers",
+          "color": "#7D520E"
+        }
+      },
+      "description": {
+        "description": [
+          {
+            "text": "Spread your stink around with these sick digs for your feet!",
+            "color": "$text"
+          },
+          {
+            "text": "\n\nDrops in: Black Market",
+            "color": "#7D520E"
+          }
+        ]
+      },
+      "uniqueId": "woldsvaults:plague_steppers"
     }
   ]
 }

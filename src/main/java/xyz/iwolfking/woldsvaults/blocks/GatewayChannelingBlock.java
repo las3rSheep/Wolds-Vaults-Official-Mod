@@ -86,7 +86,11 @@ public class GatewayChannelingBlock extends Block {
                 if (!player.isCreative() && !randomGateway) {
                     stack.shrink(1);
                 }
-                world.setBlockAndUpdate(pos, state.setValue(USED, true));
+
+                if(randomGateway) {
+                    world.setBlockAndUpdate(pos, state.setValue(USED, true));
+                }
+
                 return InteractionResult.CONSUME;
             }
         }

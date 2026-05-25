@@ -57,5 +57,25 @@ public abstract class MixinAbilityLabelFactory {
                 "baseAmplitude",
                 context -> label("\n Base Amplitude: ",binding(context.config(), "baseAmplitude"),"force")
         );
+        FACTORY_MAP.put(
+                "damageMultiplier",
+                context -> label("\n Attack Damage Percentage: ",binding(context.config(), "damageMultiplier"),"damageReduction")
+        );
+        FACTORY_MAP.put(
+                "baseDamage",
+                context -> label("\n Base Damage: ",binding(context.config(), "baseDamage"),"damage")
+        );
+        FACTORY_MAP.put(
+                "heartFragmentChance",
+                context -> label("\n Heart Fragment Chance: ",binding(context.config(), "heartFragmentChance"),"force")
+        );
+        FACTORY_MAP.put(
+                "effectAmplifier",
+                context -> label("\n Effect Amplifier: ",binding(context.config(), "effectAmplifier"),"radius")
+        );
+        FACTORY_MAP.put(
+                "executeThreshold",
+                context -> label("\n Execute Threshhold: ",binding(context.config(), "executeThreshold"),"levelLo")
+        );
     }
 }

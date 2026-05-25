@@ -53,7 +53,7 @@ public class TrinketFusionCategory implements IRecipeCategory<TrinketFusionRecip
         );
     }
 
-    @Override
+    @Override @SuppressWarnings("removal")
     public void draw(TrinketFusionRecipe recipe, PoseStack poseStack, double mouseX, double mouseY) {
         arrow.draw(poseStack, 79, 34);
     }

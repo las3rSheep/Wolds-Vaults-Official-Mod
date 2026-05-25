@@ -16,6 +16,7 @@ public class ModVaultBlacklistProvider extends AbstractVaultBlacklistProvider {
     @Override
     public void registerConfigs() {
         add("wolds_blacklist", builder -> {
+           builder.blacklist("draconicevolution:stabilized_spawner");
            builder.blacklist("ars_nouveau:*");
            builder.blacklist("occultism:*");
            builder.blacklist("peripherals:*");

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "compressium:ornate_chain_1"
+    }
+  ],
+  "result": {
+    "item": "the_vault:ornate_chain",
+    "count": 9
+  }
+}

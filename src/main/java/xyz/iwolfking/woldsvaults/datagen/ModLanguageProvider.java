@@ -62,6 +62,14 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.PRISMATIC_GLUE_BLOCK, "Prismatic Glue");
         add(ModBlocks.MOLTEN_TRINKET_BLOCK, "Molten Trinket");
         add(ModItems.DUST_OF_POWER, "Dust of Power");
+        add(ModEntities.LOGINAR, "Alien");
+        add(ModEntities.ASTRAL_STALKER, "Astral Stalker");
+        add(ModEntities.NEBULA_SENTINEL, "Nebula Sentinel");
+        add(ModEntities.STAR_DEVOURER_ENTITY, "Star Beast");
+        add(ModEntities.SINGULARITY_CREEPER, "Singularity Creeper");
+        add(ModEntities.CUSTOM_FANGS, "Fangs");
+        add(ModItems.GREED_TREE_RESET_ITEM, "Greed Infused Neuralizer");
+        add("fix.woldsvaults.schematic_terminal_no_permission", "You do not have permission to place an Overworld Inscription here!");
         add("fluid.woldsvaults.molten_trinket", "Molten Trinket");
         add("block.woldsvaults.prismatic_glue", "Prismatic Glue");
         add("block.woldsvaults.flowing_prismatic_glue", "Flowing Prismatic Glue");
@@ -132,6 +140,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("unlock_goal.woldsvaults.wizard_trinket_pouch", "Your arcane energy has enlightened you!");
         add("unlock_goal.woldsvaults.looters_trinket_pouch", "You are enlightened with a beautiful dream of boundless loot!");
         add("unlock_goal.woldsvaults.treasure_jewel", "You envision a better way of opening Treasure Chests!");
+        add("unlock_goal.woldsvaults.underwater_theme", "You ponder the thought of an entire vault under the sea...");
         add("vault_gear_modifiers.woldsvaults.safer_spaces_recharging_barrier", "Recharging Barrier");
         add("vault_gear_modifiers.woldsvaults.safer_spaces_improved_block", "Improved Block");
         add("key.woldsvaults.open_inventory_hud", "Open Inventory HUD Edit Screen");
@@ -171,12 +180,16 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.scannable.vault_pylon_module", "Scanner Module: Pylons");
         add(ModItems.CRYSTAL_SEAL_UNHINGED, "Seal of the Psychopath");
         add(ModItems.CRYSTAL_SEAL_DOOMSAYER, "Seal of the Doomsayer");
+        add(ModItems.CRYSTAL_SEAL_DOOMSAYER_SHUFFLE, "Seal of the Shuffling Doomsayer");
         add(ModItems.CRYSTAL_SEAL_SPIRITS, "Seal of the Exorcist");
         add(ModItems.CRYSTAL_SEAL_ENCHANTER, "Seal of the Enchanter");
         add(ModItems.CRYSTAL_SEAL_TITAN, "Seal of the Titan");
         add(ModItems.UNINFUSED_TERRASTEEL_INGOT, "Uninfused Terrasteel Ingot");
         add(ModItems.POGGING_SEED_BASE, "Pogging Seed Base");
         add(ModItems.ECHOING_SEED_BASE, "Echoing Seed Base");
+        add(ModItems.MOB_BINDING_STONE, "Mob Binding Stone");
+        add("tooltip.woldsvaults.egg_supported", "§a✔ §7Supported");
+        add("tooltip.woldsvaults.egg_unsupported", "§c✘ §7Unsupported");
         add("menu.woldsvaults.rewards_menu", "Rewards Menu");
         add("item.the_vault.plushie", "Vault Plushie");
         add("item.the_vault.loot_sack", "Vault Sack");
@@ -249,6 +262,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.OMEGA_BOX, "Omega Box");
         add(ModItems.CATALYST_BOX, "Catalyst Box");
         add(ModItems.ENIGMA_EGG, "Enigma Egg");
+        add(ModItems.DRYGMY_SPAWN_EGG, "Drygmy Spawn Egg");
         add("itemGroup.woldsvaults", "Wold's Vaults");
         add("item.woldsvaults.zephyr_charm", "Zephyr Charm");
         add("item.woldsvaults.augment_piece", "Augment Piece");

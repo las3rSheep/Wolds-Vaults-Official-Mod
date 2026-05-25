@@ -7,21 +7,27 @@ import dev.attackeight.just_enough_vh.jei.JEIRecipeProvider;
 import dev.attackeight.just_enough_vh.jei.RecyclerRecipe;
 import dev.attackeight.just_enough_vh.jei.TheVaultJEIPlugin;
 import dev.attackeight.just_enough_vh.jei.category.ForgeItemRecipeCategory;
+import iskallia.vault.VaultMod;
 import iskallia.vault.config.ShopPedestalConfig;
 import iskallia.vault.config.entry.IntRangeEntry;
 import iskallia.vault.config.entry.recipe.ConfigForgeRecipe;
 import iskallia.vault.core.card.CardEntry;
 import iskallia.vault.core.card.modifier.card.TaskLootCardModifier;
 import iskallia.vault.core.random.ChunkRandom;
+import iskallia.vault.core.vault.modifier.VaultModifierStack;
+import iskallia.vault.core.vault.modifier.registry.VaultModifierRegistry;
 import iskallia.vault.core.world.loot.LootPool;
 import iskallia.vault.core.world.loot.entry.LootEntry;
 import iskallia.vault.gear.VaultGearRarity;
 import iskallia.vault.gear.attribute.VaultGearAttribute;
+import iskallia.vault.gear.attribute.VaultGearModifier;
 import iskallia.vault.gear.crafting.recipe.VaultForgeRecipe;
 import iskallia.vault.gear.data.VaultGearData;
+import iskallia.vault.gear.item.IdentifiableItem;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.gear.trinket.TrinketEffect;
 import iskallia.vault.gear.trinket.TrinketEffectRegistry;
+import iskallia.vault.item.crystal.VaultCrystalItem;
 import iskallia.vault.item.gear.TrinketItem;
 import iskallia.vault.util.StringUtils;
 import jeresources.util.LootTableHelper;
@@ -32,6 +38,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import net.mehvahdjukaar.cagerium.Cagerium;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
@@ -53,8 +60,11 @@ import org.jetbrains.annotations.NotNull;
 import shadows.gateways.gate.Gateway;
 import shadows.gateways.gate.GatewayManager;
 import shadows.gateways.gate.Reward;
+import xyz.iwolfking.vhapi.api.registry.CapstoneRecipeRegistry;
+import xyz.iwolfking.vhapi.api.util.ConditionalModUtils;
 import xyz.iwolfking.vhapi.integration.jevh.LabeledLootInfo;
 import xyz.iwolfking.vhapi.integration.jevh.LabeledLootInfoRecipeCategory;
+import xyz.iwolfking.vhapi.integration.jevh.lib.CrystalWorkbenchRecipe;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.config.lib.GenericLootableConfig;
 import xyz.iwolfking.woldsvaults.config.lib.GenericShopPedestalConfig;
@@ -62,6 +72,7 @@ import xyz.iwolfking.woldsvaults.init.*;
 import xyz.iwolfking.woldsvaults.integration.jei.category.*;
 import xyz.iwolfking.woldsvaults.integration.jei.category.lib.GenericLootableBoxCategory;
 import xyz.iwolfking.woldsvaults.integration.jei.category.lib.ShopTierCategory;
+import xyz.iwolfking.woldsvaults.integration.jei.compat.CageriumJEIProvider;
 import xyz.iwolfking.woldsvaults.items.CombinedTrinketItem;
 import xyz.iwolfking.woldsvaults.items.LayoutModificationItem;
 import xyz.iwolfking.woldsvaults.mixins.vaulthunters.accessors.TaskLootCardModifierConfigAccessor;
@@ -73,6 +84,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static mezz.jei.api.recipe.RecipeIngredientRole.INPUT;
 import static mezz.jei.api.recipe.RecipeIngredientRole.OUTPUT;
+import static xyz.iwolfking.woldsvaults.items.gear.VaultMapItem.applySpecialModifiers;
 
 @JeiPlugin
 @SuppressWarnings("unused")
@@ -154,6 +166,12 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
                 new ItemStack(ModBlocks.TRINKET_FUSION_BLOCK),
                 RecipeType.create("woldsvaults", "trinket_fusion", TrinketFusionRecipe.class)
         );
+
+        if (ConditionalModUtils.isModPresent("cagerium")) {
+            registration.addRecipeCatalyst(new ItemStack(Cagerium.CAGE.get()), CageriumJEIProvider.CAGERIUM_EGG_SUPPORT);
+            registration.addRecipeCatalyst(new ItemStack(Cagerium.TERRARIUM.get()), CageriumJEIProvider.CAGERIUM_EGG_SUPPORT);
+            registration.addRecipeCatalyst(new ItemStack(Cagerium.PLATE.get()), CageriumJEIProvider.CAGERIUM_EGG_SUPPORT);
+        }
     }
 
     @Override
@@ -191,6 +209,10 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
         registration.addRecipeCategories(makeLabeledLootInfoCategory(guiHelper, USEFUL_FILTER_ITEMS, AllItems.ATTRIBUTE_FILTER.get(), new TextComponent("Useful Filter Items")));
         registration.addRecipeCategories(makeLabeledLootInfoCategory(guiHelper, GATEWAY_REWARDS, ModItems.UNIDENTIFIED_GATEWAY_PEARL, new TextComponent("Gateway Rewards")));
         registration.addRecipeCategories(makeLabeledIngredientPoolCategory(guiHelper, GREED_VAULT_ALTAR, iskallia.vault.init.ModBlocks.VAULT_ALTAR, new TextComponent("Greed Vault Altar")));
+
+        if(ConditionalModUtils.isModPresent("cagerium")) {
+            registration.addRecipeCategories(makeLabeledIngredientPoolCategory(guiHelper, CageriumJEIProvider.CAGERIUM_EGG_SUPPORT, Cagerium.CAGE.get(), new TextComponent("Cagerium Egg Support")));
+        }
     }
 
     @Override @SuppressWarnings("removal")
@@ -251,7 +273,18 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
         registration.addRecipes(USEFUL_FILTER_ITEMS, getUsefulFilterItems());
         registration.addRecipes(GATEWAY_REWARDS, getGatewayRewards());
         registration.addRecipes(GREED_VAULT_ALTAR, getGreedVaultAltarIngredients());
+
+        //Add Wold capstones to VHAPI's Capstone recipe registry
+        CapstoneRecipeRegistry.register(registration, ModItems.ALL_SEEING_EYE_CAPSTONE, VaultMod.id("all_seeing_eye"));
+        CapstoneRecipeRegistry.register(registration, ModItems.ENCHANTED_CAPSTONE, VaultMod.id("bingo_enchanted"));
+        CapstoneRecipeRegistry.register(registration, ModItems.FRENZY_CAPSTONE, VaultMod.id("frenzy"));
+        CapstoneRecipeRegistry.register(registration, ModItems.PROSPEROUS_CAPSTONE, VaultMod.id("prosperous"));
+
         addCustomRecyclerRecipes(registration);
+
+        if(ConditionalModUtils.isModPresent("cagerium")) {
+            registration.addRecipes(CageriumJEIProvider.CAGERIUM_EGG_SUPPORT, CageriumJEIProvider.getEggsPerTier());
+        }
     }
 
 
@@ -499,11 +532,11 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
     }
 
 
-    protected static ItemStack formatItemStack(ItemStack item, int amountMin, int amountMax, double weight, double totalWeight, @Nullable Integer amount) {
+    public static ItemStack formatItemStack(ItemStack item, int amountMin, int amountMax, double weight, double totalWeight, @Nullable Integer amount) {
         return formatItemStack(item, amountMin, amountMax, weight, totalWeight, amount, null);
     }
 
-    private static ItemStack formatItemStack(ItemStack item, int amountMin, int amountMax, double weight, double totalWeight, @Nullable Integer amount, @Nullable String rollText) {
+    public static ItemStack formatItemStack(ItemStack item, int amountMin, int amountMax, double weight, double totalWeight, @Nullable Integer amount, @Nullable String rollText) {
         ItemStack result = item.copy();
         if (item.isEmpty()) {
             result = new ItemStack(Items.BARRIER);

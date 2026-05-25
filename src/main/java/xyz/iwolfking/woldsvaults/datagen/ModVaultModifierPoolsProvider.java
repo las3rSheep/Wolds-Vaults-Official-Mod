@@ -800,7 +800,7 @@ public class ModVaultModifierPoolsProvider extends AbstractVaultModifierPoolsPro
                                 e.add("the_vault:energizing", 4);
                                 e.add("the_vault:sparkling", 1);
                                 e.add("the_vault:orematic", 2);
-                                e.add("the_vault:xp_gain", 4);
+                                e.add("the_vault:soul_xp", 4);
                                 e.add("the_vault:item_quantity", 4);
                                 e.add("the_vault:item_rarity", 4);
                                 e.add("the_vault:copiously", 4);

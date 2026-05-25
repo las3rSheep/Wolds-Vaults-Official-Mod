@@ -11,6 +11,7 @@
       "dungeons_mobs:iceologer"
     ],
     "the_vault:horde": [
+      "woldsvaults:loginar",
       "woldsvaults:hostile_turkey",
       "woldsvaults:hostile_chicken",
       "grimoireofgaia:selkie",
@@ -28,6 +29,9 @@
       "grimoireofgaia:deathword"
     ],
     "the_vault:assassin": [
+      "woldsvaults:astral_stalker",
+      "woldsvaults:singularity_creeper",
+      "alexsmobs:cosmaw",
       "woldsvaults:hostile_sheep",
       "the_vault:vault_wraith_yellow",
       "grimoireofgaia:yuki_onna",
@@ -75,6 +79,8 @@
       "the_vault:vault_dood"
     ],
     "the_vault:tank": [
+      "woldsvaults:nebula_sentinel",
+      "woldsvaults:star_devourer",
       "grimoireofgaia:incinerator",
       "grimoireofgaia:matango",
       "wildbackport:warden",

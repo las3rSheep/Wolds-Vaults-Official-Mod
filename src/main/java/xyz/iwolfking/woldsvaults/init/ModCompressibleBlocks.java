@@ -34,6 +34,9 @@ public class ModCompressibleBlocks {
         ADDITIONAL_COMPRESSIBLE_BLOCKS.put("sandy_block", new CompressibleBlock("sandy_block", VaultMod.id("sandy_block"), VaultMod.id("block/sandy_block"), VaultMod.id("block/sandy_block"), CompressibleType.BLOCK, 9, true));
         ADDITIONAL_COMPRESSIBLE_BLOCKS.put("rotten_meat_block", new CompressibleBlock("rotten_meat_block", VaultMod.id("rotten_meat_block"), VaultMod.id("block/rotten_meat_block"), VaultMod.id("block/rotten_meat_block"), CompressibleType.BLOCK, 9, true));
         ADDITIONAL_COMPRESSIBLE_BLOCKS.put("velvet_block", new CompressibleBlock("velvet_block", VaultMod.id("velvet_block"), VaultMod.id("block/velvet"), VaultMod.id("block/velvet_block"), CompressibleType.BLOCK, 9, true));
+        ADDITIONAL_COMPRESSIBLE_BLOCKS.put("topaz_block", new CompressibleBlock("topaz_block", VaultMod.id("topaz_block"), VaultMod.id("block/gilded_topaz_block"), VaultMod.id("block/topaz_block"), CompressibleType.BLOCK, 9, true));
+        ADDITIONAL_COMPRESSIBLE_BLOCKS.put("compressed_soot_block", new CompressibleBlock("compressed_soot_block", VaultMod.id("compressed_soot_block"), VaultMod.id("block/soot"), VaultMod.id("block/compressed_soot_block"), CompressibleType.BLOCK, 9, true));
+        ADDITIONAL_COMPRESSIBLE_BLOCKS.put("ornate_chain", new CompressibleBlock("ornate_chain", VaultMod.id("ornate_chain"), VaultMod.id("block/ornate_chain"), VaultMod.id("block/ornate_chain"), CompressibleType.BLOCK, 9, true));
     }
 
     public static Map<CompressibleBlock, List<Supplier<Block>>> getRegisteredBlocks() {

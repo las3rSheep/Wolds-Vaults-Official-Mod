@@ -2434,6 +2434,14 @@
     },
     {
       "value": {
+        "id": "woldsvaults:drygmy_spawn_egg",
+        "amountMin": 1,
+        "amountMax": 1
+      },
+      "weight": 1
+    },
+    {
+      "value": {
         "id": "woldsvaults:monster_eye_spawn_egg",
         "amountMin": 1,
         "amountMax": 1

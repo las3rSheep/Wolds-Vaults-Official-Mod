@@ -119,6 +119,8 @@ public class TrinketFusionForgeTileEntity extends BlockEntity implements MenuPro
         TrinketItem.getTrinket(storedA).ifPresent(effects::add);
         TrinketItem.getTrinket(storedB).ifPresent(effects::add);
 
+
+
         this.result = CombinedTrinketItem.createCombined(
                 effects,
                 VaultUsesHelper.getUses(storedA) + VaultUsesHelper.getUses(storedB)
@@ -135,6 +137,10 @@ public class TrinketFusionForgeTileEntity extends BlockEntity implements MenuPro
 
         if (!(a.getItem().equals(ModItems.TRINKET))) return false;
         if (!(b.getItem().equals(ModItems.TRINKET))) return false;
+
+        if(TrinketItem.getTrinket(a).equals(TrinketItem.getTrinket(b))) {
+            return false;
+        }
 
         if (tank.getFluidAmount() < FLUID_COST) return false;
 

@@ -1,5 +1,6 @@
 {
   "ITEM_BLACKLIST": [
+    "draconicevolution:stabilized_spawner",
     "ars_nouveau:*",
     "occultism:*",
     "peripherals:*",
@@ -46,6 +47,7 @@
     "botania:flugel_eye"
   ],
   "BLOCK_BLACKLIST": [
+    "draconicevolution:stabilized_spawner",
     "ars_nouveau:*",
     "occultism:*",
     "peripherals:*",

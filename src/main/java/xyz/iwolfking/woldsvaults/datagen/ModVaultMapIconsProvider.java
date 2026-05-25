@@ -63,7 +63,7 @@ public class ModVaultMapIconsProvider extends AbstractVaultMapIconsProvider {
             });
 
             builder.addRoomIcons(VaultMod.id("gui/map/gateway"), resourceLocations -> {
-                resourceLocations.add(VaultMod.id("map/rooms/gateway_channeling/gateway"));
+                resourceLocations.add(VaultMod.id("map/rooms/gateway_channeling/gateway_channeling1"));
             });
 
             builder.addRoomIcons(VaultMod.id("gui/map/graveyard"), resourceLocations -> {

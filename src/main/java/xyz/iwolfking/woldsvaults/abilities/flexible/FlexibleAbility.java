@@ -8,9 +8,11 @@
 
 package xyz.iwolfking.woldsvaults.abilities.flexible;
 
+import iskallia.vault.skill.ability.effect.EarthquakeAbility;
 import iskallia.vault.skill.ability.effect.GrenadeAbility;
 import iskallia.vault.skill.ability.effect.ImplodeAbility;
 import iskallia.vault.skill.ability.effect.SmiteAbility;
+import iskallia.vault.skill.ability.effect.spi.AbstractEarthquakeAbility;
 import iskallia.vault.skill.ability.effect.spi.AbstractNovaAbility;
 import iskallia.vault.skill.ability.effect.spi.core.Ability;
 import iskallia.vault.skill.base.Skill;
@@ -47,6 +49,13 @@ public class FlexibleAbility {
                 FlexibleNova novaAbility = new FlexibleNova();
                 novaAbility.cast(player, target, (AbstractNovaAbility) abilityToCast);
                 durabilityDamage = ((AbstractNovaAbility) abilityToCast).getManaCost();
+                break;
+            case "Earthquake":
+                FlexibleQuake quake = new FlexibleQuake();
+                if(abilityToCast instanceof EarthquakeAbility) {
+                    quake.cast(player, target, (EarthquakeAbility) abilityToCast);
+                }
+                durabilityDamage = ((AbstractEarthquakeAbility) abilityToCast).getManaCost();
                 break;
             case "Implode":
                 FlexibleImplode implodeAbility = new FlexibleImplode();

@@ -53,6 +53,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.CRYSTAL_SEAL_ZEALOT);
         simpleItem(ModItems.CRYSTAL_SEAL_ENCHANTER);
         simpleItem(ModItems.CRYSTAL_SEAL_DOOMSAYER);
+        shuffleSeal(ModItems.CRYSTAL_SEAL_DOOMSAYER_SHUFFLE);
         simpleItem(ModItems.CRYSTAL_SEAL_SPIRITS);
         simpleItem(ModItems.CRYSTAL_SEAL_TITAN);
         simpleItem(ModItems.CRYSTAL_SEAL_ALCHEMY);
@@ -93,6 +94,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.SCAVENGER_POUCH_ITEM);
         simpleItem(ModItems.PRISMATIC_GLUE_BUCKET);
         simpleItem(ModItems.MOLTEN_TRINKET_BUCKET);
+        simpleItem(ModItems.MOB_BINDING_STONE);
+        simpleItem(ModItems.GREED_TREE_RESET_ITEM);
+        simpleItem(ModItems.EXQUISITE_BOX);
         getBuilder(ModItems.RESEARCH_TOKEN.getRegistryName().getPath())
                 .parent(new ModelFile.UncheckedModelFile(
                         ResourceLocation.parse("builtin/entity")
@@ -160,6 +164,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         spawnEgg(ModItems.MONSTER_EYE_EGG);
         spawnEgg(ModItems.ROBOT_EGG);
         spawnEgg(ModItems.WOLD_EGG);
+        spawnEgg(ModItems.DRYGMY_SPAWN_EGG);
 
         charm("idona_token");
         charm("tenos_token");
@@ -253,6 +258,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         deckCore(WoldsVaults.id("arcane_deck_core"));
         deckCore(WoldsVaults.id("premium_deck_core"));
         deckCore(WoldsVaults.id("sparkling_deck_core"));
+        deckCore(WoldsVaults.id("construction_deck_core"));
 
         ModConfigs.RESEARCHES_GUI = new ResearchesGUIConfig().readConfig();
         ModConfigs.RESEARCHES_GUI.getStyles().forEach((name, s) -> {
@@ -295,6 +301,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getRegistryName().getPath(),
                 ResourceLocation.parse("item/generated")).texture("layer0",
                 WoldsVaults.id("item/" + item.getRegistryName().getPath()));
+    }
+
+    private ItemModelBuilder shuffleSeal(Item item) {
+        return withExistingParent(item.getRegistryName().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                WoldsVaults.id("item/" + item.getRegistryName().getPath())).texture("layer1", VaultMod.id("item/shuffle_seal_overlay"));
     }
 
     public ItemModelBuilder skillScroll(String skillId) {

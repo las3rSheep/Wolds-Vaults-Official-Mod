@@ -166,6 +166,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_perfect_benitoite", has(iskallia.vault.init.ModItems.PERFECT_BENITOITE))
                 .save(pFinishedRecipeConsumer);
 
+        ShapedRecipeBuilder.shaped(ModItems.MOB_BINDING_STONE)
+                .define('M', iskallia.vault.init.ModItems.VAULT_MEAT)
+                .define('P', iskallia.vault.init.ModItems.PAINITE_GEM)
+                .define('E', iskallia.vault.init.ModItems.PERFECT_BLACK_OPAL)
+                .pattern("PMP")
+                .pattern("MEM")
+                .pattern("PMP")
+                .unlockedBy("has_blopal", has(iskallia.vault.init.ModItems.PERFECT_BLACK_OPAL))
+                .save(pFinishedRecipeConsumer);
+
         ShapedRecipeBuilder.shaped(ModBlocks.TRINKET_FUSION_BLOCK)
                 .define('N', iskallia.vault.init.ModItems.ECHO_POG)
                 .define('I', ModItems.POGOMINIUM_INGOT)
@@ -406,6 +416,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 40,
                 9
         ).unlockedBy("has_essence", has(iskallia.vault.init.ModItems.VAULT_ESSENCE)).save(pFinishedRecipeConsumer);
+
+        new InfuserRecipeBuilder(
+                iskallia.vault.init.ModItems.GREED_COIN,
+                iskallia.vault.init.ModItems.NEURALIZER,
+                ModItems.GREED_TREE_RESET_ITEM,
+                40,
+                25
+        ).unlockedBy("has_greed_coin", has(iskallia.vault.init.ModItems.GREED_COIN)).save(pFinishedRecipeConsumer);
 
         companionRerollRecipe("companion_temporalizer", pFinishedRecipeConsumer);
 

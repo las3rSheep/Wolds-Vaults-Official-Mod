@@ -41,6 +41,9 @@ public class MixinRewardConfig {
         else if(poolId.equals("legendary")) {
             coinMult = 4;
         }
+        else if(poolId.equals("mythic")) {
+            coinMult = 12;
+        }
         if(vaultLevel >= 0 && vaultLevel <= 10) {
             return new OverSizedItemStack(new ItemStack(ModBlocks.VAULT_GOLD), random.nextInt(coinMult, 3 * coinMult));
         }

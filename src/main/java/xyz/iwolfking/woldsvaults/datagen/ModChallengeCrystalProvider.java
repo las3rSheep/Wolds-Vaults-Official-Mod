@@ -1,15 +1,9 @@
 package xyz.iwolfking.woldsvaults.datagen;
 
 import iskallia.vault.VaultMod;
-import iskallia.vault.core.vault.modifier.VaultModifierStack;
-import iskallia.vault.core.vault.modifier.registry.VaultModifierRegistry;
-import iskallia.vault.core.vault.objective.BingoObjective;
 import iskallia.vault.core.world.roll.IntRoll;
 import iskallia.vault.item.crystal.layout.ClassicInfiniteCrystalLayout;
-import iskallia.vault.item.crystal.objective.BingoCrystalObjective;
 import iskallia.vault.item.crystal.objective.ChaosCrystalObjective;
-import iskallia.vault.item.crystal.objective.ElixirCrystalObjective;
-import iskallia.vault.item.crystal.objective.ScavengerBingoCrystalObjective;
 import iskallia.vault.item.crystal.theme.PoolCrystalTheme;
 import iskallia.vault.item.crystal.theme.ValueCrystalTheme;
 import iskallia.vault.item.crystal.time.ValueCrystalTime;
@@ -75,7 +69,7 @@ public class ModChallengeCrystalProvider extends AbstractChallengeCrystalProvide
 
             builder.addEntry("blackout_scavingo", challengeEntryBuilder -> {
                 challengeEntryBuilder
-                        .objective(CrystalObjectiveHelper.createScavingo(0.25F, 5, 5, true, null))
+                        .objective(CrystalObjectiveHelper.createScavingo(0.25F, 5, 5, true, VaultMod.id("bingos")))
                         .modifier(VaultMod.id("rotten"), 1)
                         .modifier(VaultMod.id("no_companion"), 1)
                         .exhausted();
@@ -131,7 +125,7 @@ public class ModChallengeCrystalProvider extends AbstractChallengeCrystalProvide
 
             builder.addEntry("survival_of_the_fittest", challengeEntryBuilder -> {
                 challengeEntryBuilder
-                        .objective(new SurvivalCrystalObjective(0.5F, 45, List.of("t1", "t1_t2", "t2", "t2_t3", "t3", "t3_t4", "t4")))
+                        .objective(new SurvivalCrystalObjective(0.5F, 30, List.of("t1", "t1_t2", "t2", "t2_t3", "t3", "t3_t4", "t4")))
                         .modifier(VaultMod.id("no_companion"), 1)
                         .layout(new ClassicInfiniteCrystalLayout(1))
                         .exhausted();

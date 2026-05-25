@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class ClientboundSyncGamerulesMessage {
-    private Map<String, Boolean> gamerules;
+    private final Map<String, Boolean> gamerules;
 
     public ClientboundSyncGamerulesMessage(Map<String, Boolean> gamerules) {
         this.gamerules = gamerules;
@@ -40,10 +40,11 @@ public class ClientboundSyncGamerulesMessage {
         if (player != null) {
             for(String rule : message.gamerules.keySet()) {
                 switch (rule) {
-                    case "enablePlacingVaultDolls" ->  ((GameRules.BooleanValue)player.getLevel().getGameRules().getRule(ModGameRules.ENABLE_PLACING_VAULT_DOLLS)).set(message.gamerules.get(rule), null);
-                    case "enableVaultDolls" -> ((GameRules.BooleanValue)player.getLevel().getGameRules().getRule(ModGameRules.ENABLE_VAULT_DOLLS)).set(message.gamerules.get(rule), null);
-                    case "vaultAllowMentoring" -> ((GameRules.BooleanValue)player.getLevel().getGameRules().getRule(iskallia.vault.init.ModGameRules.ALLOW_MENTOR_BREW)).set(message.gamerules.get(rule), null);
-                    case "vaultAllowKnowledgeBrew" -> ((GameRules.BooleanValue)player.getLevel().getGameRules().getRule(iskallia.vault.init.ModGameRules.ALLOW_KNOWLEDGE_BREW)).set(message.gamerules.get(rule), null);
+                    case "enablePlacingVaultDolls" ->  player.getLevel().getGameRules().getRule(ModGameRules.ENABLE_PLACING_VAULT_DOLLS).set(message.gamerules.get(rule), null);
+                    case "enableVaultDolls" -> player.getLevel().getGameRules().getRule(ModGameRules.ENABLE_VAULT_DOLLS).set(message.gamerules.get(rule), null);
+                    case "vaultAllowMentoring" -> player.getLevel().getGameRules().getRule(iskallia.vault.init.ModGameRules.ALLOW_MENTOR_BREW).set(message.gamerules.get(rule), null);
+                    case "enableSkillAltars" -> player.getLevel().getGameRules().getRule(ModGameRules.ENABLE_SKILL_ALTARS).set(message.gamerules.get(rule), null);
+                    case "enableWaterframes" -> player.getLevel().getGameRules().getRule(ModGameRules.ALLOW_WATERFRAMES).set(message.gamerules.get(rule), null);
                 }
             }
         }

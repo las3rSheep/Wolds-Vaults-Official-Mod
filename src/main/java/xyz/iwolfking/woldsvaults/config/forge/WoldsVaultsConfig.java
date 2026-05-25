@@ -14,6 +14,8 @@ public class WoldsVaultsConfig
         public final ForgeConfigSpec.ConfigValue<Boolean> weaponsShouldntBeBetter;
 
         public final ForgeConfigSpec.ConfigValue<OutputFormat> tooltipOutputFormat;
+        public final ForgeConfigSpec.BooleanValue hideVaultLootInfoTooltip;
+        public final ForgeConfigSpec.BooleanValue serverTransferReloadSkip;
 
         public Client(ForgeConfigSpec.Builder builder)
         {
@@ -24,6 +26,8 @@ public class WoldsVaultsConfig
             builder.push("Mining Speedometer");
             this.tooltipOutputFormat = builder.comment("The Output Format for the speedometer jade tooltip")
                     .defineEnum("Jade Output Format", OutputFormat.NEXT_MINING_SPEED_BREAKPOINT);
+            this.hideVaultLootInfoTooltip = builder.comment("Hide vault loot info tooltip").define("hideVaultLootInfoTooltip", true);
+            this.serverTransferReloadSkip = builder.comment("skip reloading of certain parts of the game when transferring to different server").define("serverTransferReloadSkip", true);
             builder.pop();
         }
     }

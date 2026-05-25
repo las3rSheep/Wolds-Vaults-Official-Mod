@@ -57,6 +57,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.PUZZLE_CUBE_BLOCK)
                 .add(ModBlocks.TIME_TRIAL_TROPHY_BLOCK)
                 .add(ModBlocks.TRINKET_FUSION_BLOCK)
+                .add(iskallia.vault.init.ModBlocks.CRYSTAL_BLOCK)
 
                 .add(ModBlocks.TENOS_BRICKS_SLAB)
                 .add(ModBlocks.TENOS_BRICK_CHISELED_SLAB)
@@ -112,6 +113,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.TENOS_PLANKS_SLAB)
                 .add(ModBlocks.TENOS_PLANKS_STAIRS)
                 .add(ModBlocks.OWNED_CRAFTING_TABLE_BLOCK)
+                .add(iskallia.vault.init.ModBlocks.CARDBOARD_BOX)
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_dark_oak_log"))
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_spruce_log"))
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath("chipped", "stripped_oak_log"))
@@ -137,10 +139,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             VAULT_STONE, VAULT_COBBLESTONE, ORNATE_BLOCK, GILDED_BLOCK, VAULT_DIAMOND_BLOCK, ANCIENT_COPPER_BLOCK
         }
         enum RequiresPick {
-            VAULT_STONE, VAULT_COBBLESTONE, ORNATE_BLOCK, GILDED_BLOCK, VAULT_DIAMOND_BLOCK, ANCIENT_COPPER_BLOCK, VAULT_PLATING_BLOCK, CARBON_BLOCK, CHROMATIC_IRON_BLOCK, CHROMATIC_STEEL_BLOCK, CHROMATIC_GOLD_BLOCK, SILVER_SCRAP_BLOCK, LIVING_ROCK_BLOCK_COBBLE
+            VAULT_STONE, VAULT_COBBLESTONE, ORNATE_BLOCK, GILDED_BLOCK, VAULT_DIAMOND_BLOCK, ANCIENT_COPPER_BLOCK, VAULT_PLATING_BLOCK, CARBON_BLOCK, CHROMATIC_IRON_BLOCK, CHROMATIC_STEEL_BLOCK, CHROMATIC_GOLD_BLOCK, SILVER_SCRAP_BLOCK, LIVING_ROCK_BLOCK_COBBLE, ORNATE_CHAIN, TOPAZ_BLOCK
         }
         enum RequiresShovel {
-            VAULT_ESSENCE_BLOCK, SANDY_BLOCK, ROTTEN_MEAT_BLOCK
+            VAULT_ESSENCE_BLOCK, SANDY_BLOCK, ROTTEN_MEAT_BLOCK, COMPRESSED_SOOT_BLOCK
         }
         enum RequiresHoe {
             MAGIC_SILK_BLOCK, VELVET_BLOCK
