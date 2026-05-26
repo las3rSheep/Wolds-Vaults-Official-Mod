@@ -56,6 +56,7 @@ import org.jetbrains.annotations.NotNull;
 import vazkii.quark.base.handler.QuarkSounds;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.api.data.enchantments.AllowedEnchantmentsData;
+import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.items.gear.rang.VaultRangEntity;
 import xyz.iwolfking.woldsvaults.items.gear.rang.VaultRangLogic;
 import xyz.iwolfking.woldsvaults.models.Rangs;
@@ -86,7 +87,31 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
         return isInFlight(stack) ? stack.getTag().getUUID(TAG_RANG_FLIGHT_ID) : null;
     }
 
-    public static void clearInFlight(ItemStack stack) {
+    public void addCooldown(ItemStack stack, Player player) {
+        AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
+        Double attackSpeed = snapshot.getAttributeValue(ModGearAttributes.ATTACK_SPEED, VaultGearAttributeTypeMerger.doubleSum());
+        Double attackSpeedMult = snapshot.getAttributeValue(ModGearAttributes.ATTACK_SPEED_PERCENT, VaultGearAttributeTypeMerger.doubleSum());
+
+        if (!player.getAbilities().instabuild) {
+            double trueAttackSpeed = 4.0 + attackSpeed;
+            trueAttackSpeed += trueAttackSpeed * attackSpeedMult;
+
+            double currentSpeed = Math.max(0.1, trueAttackSpeed);
+
+            double baseCooldown = 20.0;
+
+            int cooldown = (int) Math.round(baseCooldown / currentSpeed);
+            cooldown = Math.max(0, cooldown);
+
+            WoldsVaults.LOGGER.info(String.valueOf(cooldown));
+
+            if(cooldown > 0) {
+                player.getCooldowns().addCooldown(this, cooldown);
+            }
+        }
+    }
+
+    public static void clearInFlight(ItemStack stack, Player player) {
         if (stack.hasTag()) {
             stack.getTag().remove(TAG_RANG_FLIGHT_ID);
         }
@@ -105,7 +130,7 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
             VaultRangEntity rang = findInFlightEntity(stack, serverLevel);
             if (rang != null) rang.discard();
         }
-        clearInFlight(stack);
+        clearInFlight(stack, player);
     }
 
     @SubscribeEvent
@@ -165,26 +190,6 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
             ItemStack placeholder = itemstack.copy();
             placeholder.getOrCreateTag().putUUID(TAG_RANG_FLIGHT_ID, entity.getUUID());
             playerIn.setItemInHand(handIn, placeholder);
-
-            AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(playerIn);
-            Double attackSpeed = snapshot.getAttributeValue(ModGearAttributes.ATTACK_SPEED, VaultGearAttributeTypeMerger.doubleSum());
-            Double attackSpeedMult = snapshot.getAttributeValue(ModGearAttributes.ATTACK_SPEED_PERCENT, VaultGearAttributeTypeMerger.doubleSum());
-
-            if (!playerIn.getAbilities().instabuild) {
-                double trueAttackSpeed = 4.0 + attackSpeed;
-                trueAttackSpeed += trueAttackSpeed * attackSpeedMult;
-
-                double currentSpeed = Math.max(0.1, trueAttackSpeed);
-
-                double balancingConstant = 30.0;
-
-                int cooldown = (int) Math.round(balancingConstant / currentSpeed);
-                cooldown = Math.max(0, cooldown);
-
-                if(cooldown > 0) {
-                    playerIn.getCooldowns().addCooldown(this, cooldown);
-                }
-            }
         }
 
         playerIn.awardStat(Stats.ITEM_USED.get(this));
@@ -247,7 +252,7 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
             if (isInFlight(stack) && world instanceof ServerLevel serverLevel) {
                 VaultRangEntity rang = findInFlightEntity(stack, serverLevel);
                 if (rang == null || !rang.isAlive()) {
-                    clearInFlight(stack);
+                    clearInFlight(stack, player);
                 }
             }
             this.vaultGearTick(stack, player);

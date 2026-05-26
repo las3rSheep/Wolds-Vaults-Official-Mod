@@ -671,6 +671,9 @@ public class VaultRangEntity extends Projectile {
                     int placeholderSlot = this.findInFlightPlaceholderSlot(inventory);
                     if (placeholderSlot >= 0) {
                         inventory.setItem(placeholderSlot, stack);
+                        if(stack.getItem() instanceof VaultRangItem rangItem) {
+                            rangItem.addCooldown(stack, player);
+                        }
                     }
                 }
 
