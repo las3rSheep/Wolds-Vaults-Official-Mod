@@ -103,8 +103,6 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
             int cooldown = (int) Math.round(baseCooldown / currentSpeed);
             cooldown = Math.max(0, cooldown);
 
-            WoldsVaults.LOGGER.info(String.valueOf(cooldown));
-
             if(cooldown > 0) {
                 player.getCooldowns().addCooldown(this, cooldown);
             }
