@@ -84,7 +84,7 @@
     "the_vault:immortal_seal": {
       "weight": 10,
       "name": "Immortal Seal",
-      "effectText": "5% chance to gain Immortality for 5 seconds",
+      "effectText": "5% chance to gain Immortality for 5 seconds on hit",
       "color": 16534066,
       "minUses": 20,
       "maxUses": 30,
