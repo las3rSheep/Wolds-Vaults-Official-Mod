@@ -456,6 +456,11 @@
     "scannable.BlockScanResultAccessor",
     "scannable.MixinScanManager",
     "scannable.MixinScanResultProviderBlock",
+    "servertransfer.MixinClientAdvancements",
+    "servertransfer.MixinClientLifecycleHandler",
+    "servertransfer.MixinRecipeManagerScriptLoader",
+    "servertransfer.MixinThermalRecipeManagers",
+    "servertransfer.MixinVHAPISyncDescriptor",
     "sophisticatedbackpacks.MixinBackpackModel",
     "vaulthunters.accessors.VaultChestRendererAccessor",
     "vaulthunters.custom.MixinAbilityDialog",
@@ -481,12 +486,7 @@
     "vaulthunters.fixes.MixinToolItemRenderer",
     "vaulthunters.fixes.MixinUniqueCodexScreen",
     "vaulthunters.fixes.MixinVoidStoneItem",
-    "vaulthunters.objectives.MixinClientCrystalData",
-    "servertransfer.MixinClientAdvancements",
-    "servertransfer.MixinClientLifecycleHandler",
-    "servertransfer.MixinRecipeManagerScriptLoader",
-    "servertransfer.MixinThermalRecipeManagers",
-    "servertransfer.MixinVHAPISyncDescriptor"
+    "vaulthunters.objectives.MixinClientCrystalData"
   ],
   "injectors": {
     "defaultRequire": 1

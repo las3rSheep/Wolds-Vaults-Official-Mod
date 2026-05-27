@@ -205,17 +205,15 @@ public class ConcentrateAbility extends InstantManaAbility {
     private static MobEffect getEffectConversion(MobEffect effect, Random random) {
         if (effect == MobEffects.MOVEMENT_SLOWDOWN || effect == iskallia.vault.init.ModEffects.CHILLED || effect == MobEffects.MOVEMENT_SPEED) return ModEffects.QUICKENING;
         if (effect == MobEffects.WEAKNESS || effect == iskallia.vault.init.ModEffects.BLEED || effect == MobEffects.DAMAGE_BOOST) return ModEffects.EMPOWER;
-        if (effect == MobEffects.POISON) return random.nextBoolean() ? iskallia.vault.init.ModEffects.PURIFYING_AURA : MobEffects.REGENERATION;
         if (effect == iskallia.vault.init.ModEffects.VULNERABLE) return ModEffects.EMPOWER;
-        if (effect == iskallia.vault.init.ModEffects.FREEZE || effect == iskallia.vault.init.ModEffects.HYPOTHERMIA) return random.nextBoolean() ? MobEffects.FIRE_RESISTANCE : MobEffects.DIG_SPEED;
+        if (effect == iskallia.vault.init.ModEffects.FREEZE || effect == iskallia.vault.init.ModEffects.HYPOTHERMIA) return ModEffects.QUICKENING;
         if (effect == iskallia.vault.init.ModEffects.TAUNT_REPEL_MOB) return random.nextBoolean() ? AMEffectRegistry.SOULSTEAL : MobEffects.NIGHT_VISION;
         if (effect == MobEffects.UNLUCK) return MobEffects.LUCK;
-        if (effect == MobEffects.WITHER) return MobEffects.REGENERATION;
         if (effect == MobEffects.HUNGER) return MobEffects.SATURATION;
         if (effect == ModEffects.SHRINKING) return ModEffects.GROWING;
         if (effect == MobEffects.LEVITATION) return MobEffects.CONDUIT_POWER;
         if (effect == MobEffects.DIG_SPEED) return MobEffects.SATURATION;
-        return ModEffects.EMPOWER;
+        return random.nextBoolean() ? ModEffects.EMPOWER : ModEffects.QUICKENING;
     }
 
     private static Vector3f[] getEffectColors(MobEffect effect) {
